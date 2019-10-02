@@ -59,7 +59,7 @@ Technically the Coq platform will be a git/github/gitlab repo containing:
 ## Steps
 
 - Move the current Windows Installer from core Coq to the platform
-- Simplify the windows installer in Coq Coq to only install Coq (nd possibly very few selected plugins)
+- Simplify the windows installer in core Coq to only install Coq (and possibly very few selected plugins)
 - Move CI of platform packages from core Coq CI to Coq platform CI
 - Ensure that platform CI runs with Coq master and release branches daily
 - Change additional package CI tests currently running in Coq Coq CI so that they use the platform. That is
