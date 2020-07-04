@@ -8,7 +8,7 @@ In more detail, the primary goals are:
 
 **Ease of use**: Provide an easy and fast way to install a usable Coq system. Ease of installation is especially important in eduction, where each course attendee has to be able to install Coq with a known feature set with reasonable effort. Also for industrial users, which sometimes start using Coq by looking at some non trivial research projects, an easy to install system leaves a good first impression.
 
-**Completeness**: The easy installation shall include in addition to the core Coq system commonly used plugins and libraries. The definition of "commonly used" is of cause difficult. For the Windows installer, packages have been added either on request of users or teachers or because several research projects use a package as pre requisite. It would be ideal if a large number of important research projects would compile with the packages provided with the extended platform.
+**Completeness**: The easy installation shall include in addition to the core Coq system commonly used plugins and libraries. The definition of "commonly used" is, of course, difficult. For the Windows installer, packages have been added either on request of users or teachers or because several research projects use a package as pre requisite. It would be ideal if a large number of important research projects would compile with the packages provided with the extended platform.
 
 **Stability**: The composition of the Coq platform, that is the selection of packages, should be stable. It should be a rare event that a package is removed from the platform. This means that packages should only be added if the authors and maintainers of a package agree to provide a certain level of maintenance. Finding a compromise between this goal and the *Completeness* goal will likely be difficult and require some curation.
 
@@ -67,5 +67,5 @@ Technically the Coq platform will be a git/github/gitlab repo containing:
   - make sure the packages build with the version of dependencies provided by the platform
 - Create a binary package for Linux (Snap store)
 - Create a binary package for Mac (Apple store)
-- Create an opam repo for the platform (or do this based on teh existing Coq repo)
+- Create an opam repo for the platform (or do this based on the existing Coq repo)
 - Provide developer setups on all platforms
