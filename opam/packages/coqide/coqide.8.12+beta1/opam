@@ -1,0 +1,54 @@
+opam-version: "2.0"
+maintainer: "coqdev@inria.fr"
+authors: "The Coq development team, INRIA, CNRS, and contributors."
+homepage: "https://coq.inria.fr"
+bug-reports: "https://github.com/coq/coq/issues"
+dev-repo: "git+https://github.com/coq/coq.git"
+license: "LGPL-2.1-only"
+synopsis: "IDE of the Coq formal proof management system"
+description: """
+CoqIDE is a graphical user interface for interactive development
+of mathematical definitions, executable algorithms, and proofs of theorems
+using the Coq proof assistant.
+"""
+
+depends: [
+  "coq" {= version}
+  "lablgtk3-sourceview3"
+  "conf-findutils" {build}
+  "conf-gnome-icon-theme3"
+]
+patches: [
+  "0001-Windows-build-use-architecture-dependent-version-of-.patch"
+]
+build: [
+  [
+    "./configure"
+    "-configdir" "%{lib}%/coq/config"
+    "-prefix" prefix
+    "-mandir" man
+    "-docdir" doc
+    "-libdir" "%{lib}%/coq"
+    "-datadir" "%{share}%/coq"
+    "-flambda-opts" "-O3 -unbox-closures"
+  ]
+  [make "-j%{jobs}%" "coqide-files"]
+  [make "-j%{jobs}%" "coqide-opt"]
+]
+install: [
+  make
+  "install-ide-bin"
+  "install-ide-files"
+  "install-ide-info"
+  "install-ide-devfiles"
+]
+
+extra-files: [
+  ["coqide.install" "sha512=0c59f0c3cf3453e92c02b29aceb31090020410d2b0dd2856172cd19b1b2b58b2a1d46047fb08a9c1d4767d87934c73ae6adfcb4204b1ea6a55a85ba75b2b812d"]
+  ["0001-Windows-build-use-architecture-dependent-version-of-.patch" "sha512=1819a8bea92af3478157170c5ed6d41a860b5a621ab36588f55d6dedbd6adc076c3db0b58a76c4a50882d7b40e6e0daed5cf20a41d7633b06d29c67d0b5e53de"]
+]
+
+url {
+  src: "https://github.com/coq/coq/archive/V8.12+beta1.tar.gz"
+  checksum: "sha512=14ba987ead8c510262055e87dbca4927733bdbc795a7590e4d2afdbecb6b80094ec3376b17e51e2ecc0bfa758d90a2a2246d356e40b2e7bd4980c1daf3954f65"
+}
