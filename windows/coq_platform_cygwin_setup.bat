@@ -255,7 +255,7 @@ IF "%RUNSETUP%"=="Y" (
     --local-package-dir "%CYGWIN_LOCAL_CACHE_WFMT%" ^
     --no-shortcuts ^
     %CYGWIN_OPT% ^
-    -P cygwin-devel,gcc-core ^
+    -P cygwin-devel,gcc-core,gcc-g++, ^
     -P rsync,patch,diffutils,curl,make,unzip,git,m4,perl,wget ^
     -P gdb,liblzma5 ^
     -P automake,automake1.14 ^

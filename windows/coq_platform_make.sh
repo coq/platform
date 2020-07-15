@@ -621,6 +621,7 @@ then
   opam init --disable-sandboxing default "https://github.com/fdopen/opam-repository-mingw.git#opam2" -c "ocaml-variants.4.07.1+mingw64c"
   opam repo add coq-released https://coq.inria.fr/opam/released
   opam repo add coq-core-dev https://coq.inria.fr/opam/core-dev/
+  opam repo add coq-extra-dev https://coq.inria.fr/opam/extra-dev/
   opam repo add platform_patch file://$CYGWIN_INSTALLDIR_MFMT/build/opam/ --all-switches
 fi
 
@@ -631,5 +632,13 @@ opam upgrade
 
 ### Install opam packages ###
 
+# lablgtk3 3.1.1 does not link with flexlink
+opam pin lablgtk3 3.0.beta5
 opam pin coq 8.12+beta1
 opam install coqide
+opam install coq-bignums coq-equations menhir coq-coquelicot coq-flocq coq-interval coq-quickchick coq-ext-lib
+
+# No package coq-mathcomp  coq-aactactics 
+# 8.12 incompatible: coq-mtac2 coq-compcert.3.7~coq-platform coq-vst coq-elpi coq-hierarchy-builder
+# Failed: coq-menhirlib
+# Requires external tools gappa
