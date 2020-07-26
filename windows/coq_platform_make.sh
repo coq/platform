@@ -639,9 +639,9 @@ opam upgrade
 opam pin lablgtk3 3.0.beta5
 opam pin coq 8.12.0
 opam install coqide
-opam install coq-bignums coq-equations menhir coq-coquelicot coq-flocq coq-interval coq-quickchick coq-ext-lib
+opam install coq-bignums coq-equations menhir coq-coquelicot coq-flocq coq-interval coq-quickchick coq-ext-lib coq-aac-tactics
 
-# No package coq-mathcomp  coq-aactactics 
+# No package coq-mathcomp   
 # 8.12 incompatible: coq-mtac2 coq-compcert.3.7~coq-platform coq-vst coq-elpi coq-hierarchy-builder
 # Failed: coq-menhirlib
 # Requires external tools gappa
