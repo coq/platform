@@ -612,17 +612,20 @@ make_gtk_sourceview3
 export OPAMYES=yes
 export OPAMCOLOR=never
 
-if [ ! -d "~/.opam" ]
+if [ ! -d "$HOME/.opam" ]
 then
   wget https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz
   tar -xf 'opam64.tar.xz'
   bash opam64/install.sh --prefix /usr/x86_64-w64-mingw32/sys-root/mingw
   which opam
+  # Todo: give a nicer name to the switch
   opam init --disable-sandboxing default "https://github.com/fdopen/opam-repository-mingw.git#opam2" -c "ocaml-variants.4.07.1+mingw64c"
-  opam repo add coq-released https://coq.inria.fr/opam/released
-  opam repo add coq-core-dev https://coq.inria.fr/opam/core-dev/
-  opam repo add coq-extra-dev https://coq.inria.fr/opam/extra-dev/
-  opam repo add platform_patch file://$CYGWIN_INSTALLDIR_MFMT/build/opam/ --all-switches
+  opam repo add default-nowin "https://github.com/ocaml/opam-repository.git" --rank 2 
+  opam repo add coq-released "https://coq.inria.fr/opam/released"
+  opam repo add coq-core-dev "https://coq.inria.fr/opam/core-dev/"
+  opam repo add coq-extra-dev "https://coq.inria.fr/opam/extra-dev/"
+  opam repo add platform_patch file://$CYGWIN_INSTALLDIR_MFMT/build/opam/
+  opam repo list
 fi
 
 ### Update opam with possible changes in platform_patch ###
@@ -634,7 +637,7 @@ opam upgrade
 
 # lablgtk3 3.1.1 does not link with flexlink
 opam pin lablgtk3 3.0.beta5
-opam pin coq 8.12+beta1
+opam pin coq 8.12.0
 opam install coqide
 opam install coq-bignums coq-equations menhir coq-coquelicot coq-flocq coq-interval coq-quickchick coq-ext-lib
 
