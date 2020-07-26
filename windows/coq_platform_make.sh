@@ -624,7 +624,7 @@ then
   opam repo add coq-released "https://coq.inria.fr/opam/released"
   opam repo add coq-core-dev "https://coq.inria.fr/opam/core-dev/"
   opam repo add coq-extra-dev "https://coq.inria.fr/opam/extra-dev/"
-  opam repo add platform_patch file://$CYGWIN_INSTALLDIR_MFMT/build/opam/
+  opam repo add platform_patch "file://$CYGWIN_INSTALLDIR_MFMT/build/opam/"
   opam repo list
 fi
 
@@ -641,7 +641,20 @@ opam pin coq 8.12.0
 opam install coqide
 opam install coq-bignums coq-equations menhir coq-coquelicot coq-flocq coq-interval coq-quickchick coq-ext-lib coq-aac-tactics
 
-# No package coq-mathcomp   
+# The standard set of mathcomp modules
+# Plus two generally useful eextensions and their dependency
+opam pin coq-mathcomp-ssreflect 1.11.0
+opam install \
+  coq-mathcomp-algebra \
+  coq-mathcomp-character \
+  coq-mathcomp-field \
+  coq-mathcomp-fingroup \
+  coq-mathcomp-solvable \
+  \
+  coq-mathcomp-real-closed \
+  coq-mathcomp-finmap \
+  coq-mathcomp-bigenough
+
 # 8.12 incompatible: coq-mtac2 coq-compcert.3.7~coq-platform coq-vst coq-elpi coq-hierarchy-builder
 # Failed: coq-menhirlib
 # Requires external tools gappa
