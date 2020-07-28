@@ -96,23 +96,33 @@ fi
 
 ###################### PATHS #####################
 
+# The folder of this script
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-# Name and create some 'global' folders
+# Folders used by this shell script (on Windows this mean cygwin) only
 BUILDLOGS="$BUILDROOT/buildlogs"
 FLAGFILES="$BUILDROOT/flagfiles"
-FILELISTS="$BUILDROOT/filelists"
-BINSPECIAL="$BUILDROOT/bin_special"
 PATCHES="$BUILDROOT/patches"
 TARBALLS="$BUILDROOT/tarballs"
-OPAMPACKAGES="$SCRIPTDIR/opam"
+
+# On Windows/Cygwin BINSPECIAL is used via PATH in MinGW programs, but cygwin takes care of adjusting PATH when calling non cygwin executables
+# MinGW path format would not work for BINSPECIAL because it contains C: and posix PATH variables use : as separator
+BINSPECIAL="$BUILDROOT/bin_special"
+
+# On Windows/Cygwin OPAMPACKAGES is passed to MinGW opam, so it must be in MinGW format
+if [[ "$OSTYPE" == cygwin ]]
+then
+  OPAMPACKAGES="$(cygpath -m "$SCRIPTDIR/opam")"
+else
+  OPAMPACKAGES="$SCRIPTDIR/opam"
+fi
+
 # Set SOURCECACHE only if it is not yet set
 : "${SOURCECACHE:=$BUILDROOT/source_cache}"
 
 mkdir -p "$BUILDROOT"
 mkdir -p "$BUILDLOGS"
 mkdir -p "$FLAGFILES"
-mkdir -p "$FILELISTS"
 mkdir -p "$BINSPECIAL"
 mkdir -p "$PATCHES"
 mkdir -p "$TARBALLS"
@@ -510,7 +520,8 @@ then
   opam repo add coq-released "https://coq.inria.fr/opam/released" || true
   opam repo add coq-core-dev "https://coq.inria.fr/opam/core-dev" || true
   opam repo add coq-extra-dev "https://coq.inria.fr/opam/extra-dev" || true
-  opam repo add "patch$OPAM_SWITCH_NAME" "file://$OPAMPACKAGES" || true
+  # This repo shall always be specific to this switch - if it exists, fail
+  opam repo add "patch$OPAM_SWITCH_NAME" "file://$OPAMPACKAGES"
 else
   echo "===== opam switch already exists ====="
 fi
