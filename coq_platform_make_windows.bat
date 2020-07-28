@@ -63,7 +63,7 @@ REM see -cygforce in ReadMe.txt
 SET CYGWIN_FORCE=N
 
 REM see -srccache in ReadMe.txt
-SET SOURCE_LOCAL_CACHE_WFMT=%BATCHDIR%source_cache
+SET SOURCECACHE=%BATCHDIR%source_cache
 
 REM see -threads in ReadMe.txt
 SET MAKE_THREADS=8
@@ -145,7 +145,7 @@ IF "%~0" == "-cygforce" (
 )
 
 IF "%~0" == "-srccache" (
-  SET SOURCE_LOCAL_CACHE_WFMT=%~1
+  SET SOURCECACHE=%~1
   SHIFT
   SHIFT
   GOTO Parse
@@ -188,16 +188,16 @@ REM CFMT = cygwin format (\cygdrive\c\..)  Used for Cygwin PATH variable, which 
 REM MFMT = MinGW format (C:/...)           Used for the build, because \\ requires escaping. Mingw can handle \ and /.
 
 SET CYGWIN_INSTALLDIR_MFMT=%CYGWIN_INSTALLDIR_WFMT:\=/%
-SET SOURCE_LOCAL_CACHE_MFMT=%SOURCE_LOCAL_CACHE_WFMT:\=/%
+SET SOURCECACHE=%SOURCECACHE:\=/%
 
 SET CYGWIN_INSTALLDIR_CFMT=%CYGWIN_INSTALLDIR_MFMT:C:/=/cygdrive/c/%
-SET SOURCE_LOCAL_CACHE_CFMT=%SOURCE_LOCAL_CACHE_MFMT:C:/=/cygdrive/c/%
+SET SOURCECACHE=%SOURCECACHE:C:/=/cygdrive/c/%
 
 SET CYGWIN_INSTALLDIR_CFMT=%CYGWIN_INSTALLDIR_CFMT:D:/=/cygdrive/d/%
-SET SOURCE_LOCAL_CACHE_CFMT=%SOURCE_LOCAL_CACHE_CFMT:D:/=/cygdrive/d/%
+SET SOURCECACHE=%SOURCECACHE:D:/=/cygdrive/d/%
 
 SET CYGWIN_INSTALLDIR_CFMT=%CYGWIN_INSTALLDIR_CFMT:E:/=/cygdrive/e/%
-SET SOURCE_LOCAL_CACHE_CFMT=%SOURCE_LOCAL_CACHE_CFMT:E:/=/cygdrive/e/%
+SET SOURCECACHE=%SOURCECACHE:E:/=/cygdrive/e/%
 
 ECHO CYGWIN INSTALL DIR (WIN)    = %CYGWIN_INSTALLDIR_WFMT%
 ECHO CYGWIN INSTALL DIR (MINGW)  = %CYGWIN_INSTALLDIR_MFMT%
@@ -294,7 +294,7 @@ REM PROFILEREAD (this is set to true if the /etc/profile has been read, which cr
 SET "HOME="
 SET "PROFILEREAD="
 
-copy "%BATCHDIR%\coq_platform_configure_profile.sh" "%CYGWIN_INSTALLDIR_WFMT%\var\tmp" || GOTO ErrorExit
+copy "%BATCHDIR%\windows\coq_platform_configure_profile.sh" "%CYGWIN_INSTALLDIR_WFMT%\var\tmp" || GOTO ErrorExit
 %BASH% --login "%CYGWIN_INSTALLDIR_CFMT%\var\tmp\coq_platform_configure_profile.sh" "%PROXY%" || GOTO ErrorExit
 
 ECHO ========== BUILD COQ PLATFORM ==========
@@ -303,11 +303,11 @@ MKDIR "%CYGWIN_INSTALLDIR_WFMT%\build"
 
 RMDIR /S /Q "%CYGWIN_INSTALLDIR_WFMT%\build\patches"
 MKDIR "%CYGWIN_INSTALLDIR_WFMT%\build\patches"
-COPY "%BATCHDIR%\patches\*.*" "%CYGWIN_INSTALLDIR_WFMT%\build\patches" || GOTO ErrorExit
+COPY "%BATCHDIR%\windows\patches\*.*" "%CYGWIN_INSTALLDIR_WFMT%\build\patches" || GOTO ErrorExit
 
 RMDIR /S /Q "%CYGWIN_INSTALLDIR_WFMT%\build\opam"
 MKDIR "%CYGWIN_INSTALLDIR_WFMT%\build\opam"
-XCOPY /S "%BATCHDIR%\..\opam\*.*" "%CYGWIN_INSTALLDIR_WFMT%\build\opam" || GOTO ErrorExit
+XCOPY /S "%BATCHDIR%\opam\*.*" "%CYGWIN_INSTALLDIR_WFMT%\build\opam" || GOTO ErrorExit
 
 COPY "%BATCHDIR%\coq_platform_make.sh" "%CYGWIN_INSTALLDIR_WFMT%\build" || GOTO ErrorExit
 
@@ -341,7 +341,7 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -cygcache = %CYGWIN_LOCAL_CACHE_WFMT%
   ECHO -cyglocal = %CYGWIN_FROM_CACHE%
   ECHO -cygquiet = %CYGWIN_QUIET%
-  ECHO -srccache = %SOURCE_LOCAL_CACHE_WFMT%
+  ECHO -srccache = %SOURCECACHE%
   GOTO :EOF
 
 :CheckYN

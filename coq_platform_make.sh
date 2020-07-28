@@ -41,6 +41,7 @@ then
     BUILD="$(gcc -dumpmachine)"
     HOST="$BUILD"
     TARGET="$BUILD"
+    BUILDROOT="$HOME/coq-platform"
 elif [[ "$OSTYPE" == darwin* ]]
 then
     echo "OSX '$OSTYPE' detected"
@@ -48,6 +49,7 @@ then
     BUILD="$(gcc -dumpmachine)"
     HOST="$BUILD"
     TARGET="$BUILD"
+    BUILDROOT="$HOME/coq-platform"
 elif [[ "$OSTYPE" == cygwin ]]
 then
     echo "Cygwin '$OSTYPE' detected"
@@ -74,9 +76,12 @@ then
     # The OS for which the tool creates code/for which the libs are
     TARGET=$TARGET_ARCH
 
+    # Since the cygwin is especially setup for building coq-platform, we build in the global folder /build
+    BUILDROOT="/build"
+
     # sysroot prefix for the above /build/host/target combination
-    PREFIX=$(cygpath -w /)/usr/$TARGET/sys-root/mingw
-    mkdir -p "$PREFIXMINGW/bin"
+    PREFIX=$(cygpath -m /)/usr/$TARGET/sys-root/mingw
+    mkdir -p "$PREFIX/bin"
 
     # Cygwin uses different arch name for 32 bit than mingw/gcc
     case $ARCH in
@@ -94,18 +99,16 @@ fi
 SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # Name and create some 'global' folders
-PLATFORMROOT="$HOME/coq-platform"
-BUILDROOT="$PLATFORMROOT/build"
 BUILDLOGS="$BUILDROOT/buildlogs"
 FLAGFILES="$BUILDROOT/flagfiles"
 FILELISTS="$BUILDROOT/filelists"
 BINSPECIAL="$BUILDROOT/bin_special"
 PATCHES="$BUILDROOT/patches"
 TARBALLS="$BUILDROOT/tarballs"
-SOURCECACHE="$PLATFORMROOT/source_cache"
 OPAMPACKAGES="$SCRIPTDIR/opam"
+# Set SOURCECACHE only if it is not yet set
+: "${SOURCECACHE:=$BUILDROOT/source_cache}"
 
-mkdir -p "$PLATFORMROOT"
 mkdir -p "$BUILDROOT"
 mkdir -p "$BUILDLOGS"
 mkdir -p "$FLAGFILES"
@@ -413,208 +416,13 @@ function build_post {
 function build_conf_make_inst {
   if build_prep "$1" "$2" "$3" ; then
     $4
-    logn configure ./configure --build="$BUILD" --host="$HOST" --target="$TARGET" --prefix="$PREFIXMINGW" "${@:5}"
+    logn configure ./configure --build="$BUILD" --host="$HOST" --target="$TARGET" --prefix="$PREFIX" "${@:5}"
     # shellcheck disable=SC2086
     log1 make $MAKE_OPT
     log2 make install
     log2 make clean
     build_post
   fi
-}
-
-# ------------------------------------------------------------------------------
-# Install all files given by a glob pattern to a given folder
-#
-# parameters
-# $1 source path
-# $2 pattern (in '')
-# $3 target folder
-# ------------------------------------------------------------------------------
-
-function install_glob {
-  SRCDIR=$(realpath -m $1)
-  DESTDIR=$(realpath -m $3)
-  ( cd "$SRCDIR" && find . -maxdepth 1 -type f -name "$2" -exec install -D -T  "$SRCDIR"/{} "$DESTDIR"/{} \; )
-}
-
-# ------------------------------------------------------------------------------
-# Recursively Install all files given by a glob pattern to a given folder
-#
-# parameters
-# $1 source path
-# $2 pattern (in '')
-# $3 target folder
-# ------------------------------------------------------------------------------
-
-function install_rec {
-  SRCDIR=$(realpath -m $1)
-  DESTDIR=$(realpath -m $3)
-  ( cd "$SRCDIR" && find . -type f -name "$2" -exec install -D -T  "$SRCDIR"/{} "$DESTDIR"/{} \; )
-}
-
-# ------------------------------------------------------------------------------
-# Write a file list of the target folder
-# The file lists are used to create file lists for the windows installer
-# Don't overwrite an existing file list
-#
-# parameters
-# $1 name of file list
-# ------------------------------------------------------------------------------
-
-function list_files {
-  if [ ! -e "/build/filelists/$1" ] ; then
-    ( cd "$PREFIXCOQ" && find . -type f | sort > /build/filelists/"$1" )
-  fi
-}
-
-# ------------------------------------------------------------------------------
-# Write a file list of the target folder
-# The file lists are used to create file lists for the windows installer
-# Do overwrite an existing file list
-#
-# parameters
-# $1 name of file list
-# ------------------------------------------------------------------------------
-
-function list_files_always {
-  ( cd "$PREFIXCOQ" && find . -type f | sort > /build/filelists/"$1" )
-}
-
-# ------------------------------------------------------------------------------
-# Compute the set difference of two file lists
-#
-# parameters
-# $1 name of list A-B (set difference of set A minus set B)
-# $2 name of list A
-# $3 name of list B
-# ------------------------------------------------------------------------------
-
-function diff_files {
-  # See http://www.catonmat.net/blog/set-operations-in-unix-shell/ for file list set operations
-  comm -23 <(sort "/build/filelists/$2") <(sort "/build/filelists/$3") > "/build/filelists/$1"
-}
-
-# ------------------------------------------------------------------------------
-# Filter a list of files with a regular expression
-#
-# parameters
-# $1 name of output file list
-# $2 name of input file list
-# $3 name of filter regexp
-# ------------------------------------------------------------------------------
-
-function filter_files {
-  grep -E "$3" "/build/filelists/$2" > "/build/filelists/$1"
-}
-
-# ------------------------------------------------------------------------------
-# Convert a file list to NSIS installer format
-#
-# parameters
-# $1 name of file list file (output file is the same with extension .nsi)
-# ------------------------------------------------------------------------------
-
-function files_to_nsis {
-  # Split the path in the file list into path and filename and create SetOutPath and File instructions
-  # Note: File /oname cannot be used, because it does not create the paths as SetOutPath does
-  # Note: I didn't check if the redundant SetOutPath instructions have a bad impact on installer size or install time
-  tr '/' '\\' < "/build/filelists/$1" | sed -r 's/^\.(.*)\\([^\\]+)$/SetOutPath $INSTDIR\\\1\nFile ${COQ_SRC_PATH}\\\1\\\2/' > "/build/filelists/$1.nsh"
-}
-
-# ------------------------------------------------------------------------------
-# Create an nsis installer addon section
-#
-# parameters
-# $1 identifier of installer section and base name of file list files
-# $2 human readable name of section
-# $3 description of section
-# $4 flags (space separated list of keywords): off = default off
-#
-# $1 must be a valid NSIS identifier!
-# ------------------------------------------------------------------------------
-
-function installer_addon_section {
-  installersection=$1
-  list_files "addon_pre_$installersection"
-
-  echo 'LangString' "DESC_$1" '${LANG_ENGLISH}' "\"$3\"" >> "/build/filelists/addon_strings.nsh"
-
-  echo '!insertmacro MUI_DESCRIPTION_TEXT' '${'"Sec_$1"'}' '$('"DESC_$1"')' >> "/build/filelists/addon_descriptions.nsh"
-
-  local sectionoptions=
-  if [[ "$4" == *off* ]] ; then sectionoptions+=" /o" ; fi
-
-  echo "Section $sectionoptions \"$2\" Sec_$1" >> "/build/filelists/addon_sections.nsh"
-  echo 'SetOutPath "$INSTDIR\"' >> "/build/filelists/addon_sections.nsh"
-  echo '!include "..\..\..\filelists\addon_'"$1"'.nsh"' >> "/build/filelists/addon_sections.nsh"
-  echo 'SectionEnd' >> "/build/filelists/addon_sections.nsh"
-}
-
-# ------------------------------------------------------------------------------
-# Start an installer addon dependency group
-#
-# parameters
-# $1 identifier of the section which depends on other sections
-# The parameters must match the $1 parameter of a installer_addon_section call
-# ------------------------------------------------------------------------------
-
-dependencysections=
-
-function installer_addon_dependency_beg {
-  installer_addon_dependency "$1"
-  dependencysections="$1 $dependencysections"
-}
-
-# ------------------------------------------------------------------------------
-# End an installer addon dependency group
-# ------------------------------------------------------------------------------
-
-function installer_addon_dependency_end {
-  set -- $dependencysections
-  shift
-  dependencysections="$*"
-}
-
-# ------------------------------------------------------------------------------
-# Create an nsis installer addon dependency entry
-# This needs to be bracketed with installer_addon_dependencies_beg/end
-#
-# parameters
-# $1 identifier of the section on which other sections might depend
-# The parameters must match the $1 parameter of a installer_addon_section call
-# ------------------------------------------------------------------------------
-
-function installer_addon_dependency {
-  for section in $dependencysections ; do
-    echo '${CheckSectionDependency} ${Sec_'"$section"'} ${Sec_'"$1"'} '"'$section' '$1'" >> "/build/filelists/addon_dependencies.nsh"
-  done
-}
-
-# ------------------------------------------------------------------------------
-# Finish an installer section after an addon build
-#
-# This creates the file list files
-#
-# parameters: none
-# ------------------------------------------------------------------------------
-
-function installer_addon_end {
-  if [ -n "$installersection" ]; then
-    list_files "addon_post_$installersection"
-    diff_files "addon_$installersection" "addon_post_$installersection" "addon_pre_$installersection"
-    files_to_nsis "addon_$installersection"
-  fi
-}
-
-# ------------------------------------------------------------------------------
-# Set all timeouts in all .v files to 1000
-# Since timeouts can lead to CI failures, this is useful
-#
-# parameters: none
-# ------------------------------------------------------------------------------
-
-function coq_set_timeouts_1000 {
-  find . -type f -name '*.v' -print0 | xargs -0 sed -i 's/timeout\s\+[0-9]\+/timeout 1000/g'
 }
 
 ###################### MODULE BUILD FUNCTIONS #####################
@@ -739,7 +547,6 @@ then
   sudo port install gtk-doc gtk3 +quartz gtksourceview3 +quartz adwaita-icon-theme
 elif [[ "$OSTYPE" == cygwin ]]
 then
-  export PATH="$BINSPECIAL:$PATH"
   make_arch_pkg_config
   make_gtk_sourceview3
 else
