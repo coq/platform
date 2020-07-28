@@ -393,7 +393,6 @@ function build_post {
     touch "$FLAGFILES/$BUILD_PACKAGE_NAME.finished"
     PATH=$BUILD_OLDPATH
     LOGTARGET=other
-    installer_addon_end
   fi
 }
 
@@ -482,16 +481,15 @@ which opam
 export OPAMYES=yes
 export OPAMCOLOR=never
 
-# ToDo: improve this - opam might be somewhere else
-
 if ! opam var root &> /dev/null
 then
   echo "===== INITIALIZING OPAM ====="
   if [[ "$OSTYPE" == cygwin ]]
   then
-    opam init --disable-sandboxing --compiler 'ocaml-variants.4.07.1+mingw64c' $OPAM_SWITCH_NAME 'https://github.com/fdopen/opam-repository-mingw.git#opam2'
+    # Init opam with windows specific default repo
+    opam init --bare --disable-sandboxing default 'https://github.com/fdopen/opam-repository-mingw.git#opam2'
   else
-    opam init --compiler 'ocaml-base-compiler.4.07.1' $OPAM_SWITCH_NAME
+    opam init --bare
   fi
 else
   echo "===== opam already initialized ====="
@@ -521,7 +519,10 @@ fi
 
 opam switch $OPAM_SWITCH_NAME
 eval $(opam env)
+
+echo === OPAM REPOSITORIES ===
 opam repo list
+echo === OPAM PACKAGES ===
 opam list
 
 # Cleanup old build artifacts for current switch ###
