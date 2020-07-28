@@ -646,6 +646,9 @@ opam update platform_patch
 
 ### Install opam packages ###
 
+# This conflicts with the use of variables e.g. in VST
+unset ARCH
+
 # lablgtk3 3.1.1 does not link with flexlink
 opam pin lablgtk3 3.0.beta5
 opam pin coq 8.12.0
@@ -668,8 +671,8 @@ opam install \
 
 opam pin coq-menhirlib 20200624
 
-opam install coq-compcert.3.7+8.12~coq_platform
-opam install coq-compcert-64.3.7+8.12~coq_platform~open_source
+opam install coq-compcert.3.7+8.12~coq_platform coq-compcert-64.3.7+8.12~coq_platform~open_source
+opam install coq-vst.2.6 coq-vst-64.2.6
 
-# 8.12 incompatible: coq-mtac2 coq-vst coq-elpi coq-hierarchy-builder
+# 8.12 incompatible: coq-mtac2 coq-elpi coq-hierarchy-builder
 # Requires external tools gappa

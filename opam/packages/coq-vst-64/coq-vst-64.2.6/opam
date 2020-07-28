@@ -1,0 +1,48 @@
+opam-version: "2.0"
+synopsis: "Verified Software Toolchain"
+description: "The software toolchain includes static analyzers to check assertions about your program; optimizing compilers to translate your program to machine language; operating systems and libraries to supply context for your program. The Verified Software Toolchain project assures with machine-checked proofs that the assertions claimed at the top of the toolchain really hold in the machine-language program, running in the operating-system context."
+authors: [
+  "Andrew W. Appel"
+  "Lennart Beringer"
+  "Sandrine Blazy"
+  "Qinxiang Cao"
+  "Santiago Cuellar"
+  "Robert Dockins"
+  "Josiah Dodds"
+  "Nick Giannarakis"
+  "Samuel Gruetter"
+  "Aquinas Hobor"
+  "Jean-Marie Madiot"
+  "William Mansky"
+]
+maintainer: "VST team"
+homepage: "http://vst.cs.princeton.edu/"
+dev-repo: "git+https://github.com/PrincetonUniversity/VST.git"
+bug-reports: "https://github.com/PrincetonUniversity/VST/issues"
+license: "https://raw.githubusercontent.com/PrincetonUniversity/VST/master/LICENSE"
+build: [
+  [make "-j" "BITSIZE=64"]
+]
+install: [
+  [make "install"]
+]
+depends: [
+  "ocaml"
+  # This are the release versions of Coq which includes this version of VST
+  # See vst_CI_REF in
+  # https://github.com/coq/coq/blob/V8.11.0/dev/ci/ci-basic-overlay.sh
+  "coq" {>= "8.12" & < "8.13"}
+  "coq-compcert-64" {(= "3.7+8.12~coq_platform") | (= "3.7+8.12~coq_platform~open_source") }
+  "coq-flocq" {>= "3.2.1"}
+]
+flags: light-uninstall
+tags: [
+  "category:CS/Semantics and Compilation/Semantics"
+  "keyword:C"
+  "logpath:VST"
+  "date:2020-07-28"
+]
+url {
+  src: "https://github.com/PrincetonUniversity/VST/archive/release-v2.6.tar.gz"
+  checksum: "sha512=c852a3bdaddcaf9c6799f9806d84fb9432f149ae121fb65b8eb92f6df7827e71c8f421e025afae9fc7b397f7206eadd810e2333d152f4e3b06336e6a25672d38"
+}
