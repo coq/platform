@@ -46,8 +46,8 @@ install: [
 depends: [
   "coq" {>= "8.12" & < "8.13"}
   "coq-flocq" {>= "3.2.1"}
-  "coq-menhirlib" {>= "20190626" & <= "20200624"}
-  "menhir" {>= "20190626" & <= "20200624"}
+  "coq-menhirlib" {>= "20190626"}
+  "menhir" {>= "20190626"}
   "ocaml" {>= "4.05.0"}
 ]
 synopsis: "The CompCert C compiler (64 bit, using coq-platform supplied version of Flocq)"
