@@ -631,7 +631,6 @@ fi
 ### Update opam with possible changes in platform_patch ###
 
 opam update platform_patch
-opam upgrade
 
 ### Install opam packages ###
 
@@ -654,6 +653,10 @@ opam install \
   coq-mathcomp-real-closed \
   coq-mathcomp-finmap \
   coq-mathcomp-bigenough
+
+opam pin coq-menhirlib 20200624
+
+# opam install coq-compcert.3.7~coq-platform
 
 # 8.12 incompatible: coq-mtac2 coq-compcert.3.7~coq-platform coq-vst coq-elpi coq-hierarchy-builder
 # Failed: coq-menhirlib
