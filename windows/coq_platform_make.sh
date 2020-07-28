@@ -28,52 +28,96 @@ export PS4='+\t '
 # Set this to 1 if all module directories shall be removed before build (no incremental make)
 RMDIR_BEFORE_BUILD=1
 
+###################### PARAMETER #####################
+
+OPAM_SWITCH_NAME=_coq-platform_.8.12.beta1
+
 ###################### ARCHITECTURES #####################
 
-# The OS on which the build of the tool/lib runs
-BUILD=$(gcc -dumpmachine)
+if [[ "$OSTYPE" == linux-gnu* ]]
+then
+    echo "Linux '$OSTYPE' detected"
+    # On Linux, BUILD, HOST and TARGET are the same
+    BUILD="$(gcc -dumpmachine)"
+    HOST="$BUILD"
+    TARGET="$BUILD"
+elif [[ "$OSTYPE" == darwin* ]]
+then
+    echo "OSX '$OSTYPE' detected"
+    # On OSX, BUILD, HOST and TARGET are the same
+    BUILD="$(gcc -dumpmachine)"
+    HOST="$BUILD"
+    TARGET="$BUILD"
+elif [[ "$OSTYPE" == cygwin ]]
+then
+    echo "Cygwin '$OSTYPE' detected"
 
-# The OS on which the tool runs
-# "`find /bin -name "*mingw32-gcc.exe"`" -dumpmachine
-HOST=$TARGET_ARCH
+    # check environment
+    if [[ "$TARGET_ARCH" == "" ]]
+    then
+      echo "ERROR: TARGET_ARCH not set"
+      exit 1
+    fi
+    if [[ "$ARCH" == "" ]]
+    then
+      echo "ERROR: ARCH not set"
+      exit 1
+    fi
 
-# The OS for which the tool creates code/for which the libs are
-TARGET=$TARGET_ARCH
+    # The OS on which the build of the tool/lib runs
+    BUILD=$(gcc -dumpmachine)
 
-# Cygwin uses different arch name for 32 bit than mingw/gcc
-case $ARCH in
-  x86_64) CYGWINARCH=x86_64 ;;
-  i686)   CYGWINARCH=x86 ;;
-  *)      false ;;
-esac
+    # The OS on which the tool runs
+    # "`find /bin -name "*mingw32-gcc.exe"`" -dumpmachine
+    HOST=$TARGET_ARCH
+
+    # The OS for which the tool creates code/for which the libs are
+    TARGET=$TARGET_ARCH
+
+    # sysroot prefix for the above /build/host/target combination
+    PREFIX=$(cygpath -w /)/usr/$TARGET/sys-root/mingw
+    mkdir -p "$PREFIXMINGW/bin"
+
+    # Cygwin uses different arch name for 32 bit than mingw/gcc
+    case $ARCH in
+      x86_64) CYGWINARCH=x86_64 ;;
+      i686)   CYGWINARCH=x86 ;;
+      *)      false ;;
+    esac
+else
+    echo "ERROR: unsopported OS type '$OSTYPE'"
+    exit 1
+fi
 
 ###################### PATHS #####################
 
+SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 # Name and create some 'global' folders
-PATCHES=/build/patches
-BUILDLOGS=/build/buildlogs
-FLAGFILES=/build/flagfiles
-TARBALLS=/build/tarballs
-FILELISTS=/build/filelists
-BINSPECIAL=/build/bin_special
+PLATFORMROOT="$HOME/coq-platform"
+BUILDROOT="$PLATFORMROOT/build"
+BUILDLOGS="$BUILDROOT/buildlogs"
+FLAGFILES="$BUILDROOT/flagfiles"
+FILELISTS="$BUILDROOT/filelists"
+BINSPECIAL="$BUILDROOT/bin_special"
+PATCHES="$BUILDROOT/patches"
+TARBALLS="$BUILDROOT/tarballs"
+SOURCECACHE="$PLATFORMROOT/source_cache"
+OPAMPACKAGES="$SCRIPTDIR/opam"
 
-mkdir -p $BUILDLOGS
-mkdir -p $FLAGFILES
-mkdir -p $TARBALLS
-mkdir -p $FILELISTS
-mkdir -p $BINSPECIAL
-cd /build
+mkdir -p "$PLATFORMROOT"
+mkdir -p "$BUILDROOT"
+mkdir -p "$BUILDLOGS"
+mkdir -p "$FLAGFILES"
+mkdir -p "$FILELISTS"
+mkdir -p "$BINSPECIAL"
+mkdir -p "$PATCHES"
+mkdir -p "$TARBALLS"
+mkdir -p "$SOURCECACHE"
+mkdir -p "$OPAMPACKAGES"
+cd "$BUILDROOT"
 
-export PATH=/build/bin_special:$PATH
-
-# Create source cache folder
-mkdir -p "$SOURCE_LOCAL_CACHE_CFMT"
-
-# sysroot prefix for the above /build/host/target combination
-# This must be in MFMT (C:/.../) because the OCaml library path is based on it and OCaml is a MinGW application.
-PREFIXMINGW=$CYGWIN_INSTALLDIR_MFMT/usr/$TARGET_ARCH/sys-root/mingw
-
-mkdir -p "$PREFIXMINGW/bin"
+export PATH="$BINSPECIAL":$PATH
 
 ###################### Copy Cygwin Setup Info #####################
 
@@ -82,13 +126,13 @@ mkdir -p "$PREFIXMINGW/bin"
 # Do this as early as possible to avoid changes by other setups (the repo folder is shared).
 
 # Escape URL to folder name
-CYGWIN_REPO_FOLDER=${CYGWIN_REPOSITORY}/
-CYGWIN_REPO_FOLDER=${CYGWIN_REPO_FOLDER//:/%3a}
-CYGWIN_REPO_FOLDER=${CYGWIN_REPO_FOLDER//\//%2f}
+# CYGWIN_REPO_FOLDER=${CYGWIN_REPOSITORY}/
+# CYGWIN_REPO_FOLDER=${CYGWIN_REPO_FOLDER//:/%3a}
+# CYGWIN_REPO_FOLDER=${CYGWIN_REPO_FOLDER//\//%2f}
 
 # Copy files
-cp "$CYGWIN_LOCAL_CACHE_WFMT/$CYGWIN_REPO_FOLDER/$CYGWINARCH/setup.ini" $TARBALLS
-cp /etc/setup/installed.db $TARBALLS
+# cp "$CYGWIN_LOCAL_CACHE_WFMT/$CYGWIN_REPO_FOLDER/$CYGWINARCH/setup.ini" $TARBALLS
+# cp /etc/setup/installed.db $TARBALLS
 
 ###################### LOGGING #####################
 
@@ -209,8 +253,8 @@ function get_expand_source_tar {
 
   # Get the source archive either from the source cache or online
   if [ ! -f "$TARBALLS/$name.$3" ] ; then
-    if [ -f "$SOURCE_LOCAL_CACHE_CFMT/$name.$3" ] ; then
-      cp "$SOURCE_LOCAL_CACHE_CFMT/$name.$3" "$TARBALLS"
+    if [ -f "$SOURCECACHE/$name.$3" ] ; then
+      cp "$SOURCECACHE/$name.$3" "$TARBALLS"
     else
       wget --progress=dot:giga "$1/$2.$3"
       if file -i "$2.$3" | grep text/html; then
@@ -224,8 +268,8 @@ function get_expand_source_tar {
       fi
       mv "$name.$3" "$TARBALLS"
       # Save the source archive in the source cache
-      if [ -d "$SOURCE_LOCAL_CACHE_CFMT" ] ; then
-        cp "$TARBALLS/$name.$3" "$SOURCE_LOCAL_CACHE_CFMT"
+      if [ -d "$SOURCECACHE" ] ; then
+        cp "$TARBALLS/$name.$3" "$SOURCECACHE"
       fi
     fi
   fi
@@ -596,53 +640,112 @@ function make_gtk_sourceview3 {
   build_conf_make_inst  https://download.gnome.org/sources/gtksourceview/3.24  gtksourceview-3.24.11  tar.xz  make_arch_pkg_config
 }
 
-###################### TOP LEVEL BUILD #####################
+###################### INSTALL OPAM #####################
 
-### Manually built packages ###
+# Note: use help <builtin> to get information on bash builtin commands like "command"
 
-# Build pkg_config globaly
-export PATH=/build/bin_special/:$PATH
-make_arch_pkg_config
+if ! command -v opam &> /dev/null
+then
+  echo "===== INSTALLING OPAM ====="
+  if [[ "$OSTYPE" == linux-gnu* ]]
+  then
+    sudo apt-get install opam
+  elif [[ "$OSTYPE" == darwin* ]]
+  then
+    sudo port install opam
+  elif [[ "$OSTYPE" == cygwin ]]
+  then
+    wget https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz
+    tar -xf 'opam64.tar.xz'
+    bash opam64/install.sh --prefix /usr/x86_64-w64-mingw32/sys-root/mingw
+  else
+      echo "ERROR: unsopported OS type '$OSTYPE'"
+      exit 1
+  fi
+  echo "OPAM is now $(command -v opam)"
+else
+  echo "===== opam already installed ====="
+fi
 
-# Cygwin gtksourceview is outdated and has very serious bugs
-make_gtk_sourceview3
+which opam
 
-### Setup opam ###
+###################### INITIALIZE OPAM #####################
 
 export OPAMYES=yes
 export OPAMCOLOR=never
 
-if [ ! -d "$HOME/.opam" ]
+# ToDo: improve this - opam might be somewhere else
+
+if ! opam var root &> /dev/null
 then
-  wget https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz
-  tar -xf 'opam64.tar.xz'
-  bash opam64/install.sh --prefix /usr/x86_64-w64-mingw32/sys-root/mingw
-  which opam
-  # Todo: give a nicer name to the switch
-  opam init --disable-sandboxing default "https://github.com/fdopen/opam-repository-mingw.git#opam2" -c "ocaml-variants.4.07.1+mingw64c"
-  opam repo add default-nowin "https://github.com/ocaml/opam-repository.git" --rank 2 
-  opam repo add coq-released "https://coq.inria.fr/opam/released"
-  opam repo add coq-core-dev "https://coq.inria.fr/opam/core-dev/"
-  opam repo add coq-extra-dev "https://coq.inria.fr/opam/extra-dev/"
-  opam repo add platform_patch "file://$CYGWIN_INSTALLDIR_MFMT/build/opam/"
-  opam repo list
+  echo "===== INITIALIZING OPAM ====="
+  if [[ "$OSTYPE" == cygwin ]]
+  then
+    opam init --disable-sandboxing default --compiler 'ocaml-variants.4.07.1+mingw64c' $OPAM_SWITCH_NAME 'https://github.com/fdopen/opam-repository-mingw.git#opam2'
+  else
+    opam init --compiler 'ocaml-base-compiler.4.07.1' $OPAM_SWITCH_NAME
+  fi
+else
+  echo "===== opam already initialized ====="
 fi
 
-### Switch opam to coq-platform switch ###
+###################### CREATE OPAM SWITCH #####################
 
-opam switch ocaml-variants.4.07.1+mingw64c
+if ! opam switch $OPAM_SWITCH_NAME 2>/dev/null
+then
+  echo "===== CREATE OPAM SWITCH ====="
+  if [[ "$OSTYPE" == cygwin ]]
+  then
+    opam switch create $OPAM_SWITCH_NAME 'ocaml-variants.4.07.1+mingw64c'
+    opam repo add default-nowin "https://github.com/ocaml/opam-repository.git" --rank 2 
+  else
+    opam switch create $OPAM_SWITCH_NAME 'ocaml-base-compiler.4.07.1'
+  fi
+  opam repo add coq-released "https://coq.inria.fr/opam/released" || true
+  opam repo add coq-core-dev "https://coq.inria.fr/opam/core-dev/" || true
+  opam repo add coq-extra-dev "https://coq.inria.fr/opam/extra-dev/" || true
+  opam repo add platform_patch "file://$CYGWIN_INSTALLDIR_MFMT/build/opam/" || true
+else
+  echo "===== opam switch already exists ====="
+fi
+
+###################### SELECT OPAM SWITCH #####################
+
+opam switch $OPAM_SWITCH_NAME
 eval $(opam env)
+opam repo list
+opam list
 
-### Cleanup old build artifacts for current switch ###
-
+# Cleanup old build artifacts for current switch ###
 # Note: this frequently proved to be required (build errors when doing experiments)
 # Note: this keeps downloads and logs
 
 opam clean --switch-cleanup
 
-### Update opam with possible changes in platform_patch ###
+###################### Update opam ######################
 
 opam update platform_patch
+
+###################### PREREQUISITES #####################
+
+echo "===== INSTALLING OPAM ====="
+if [[ "$OSTYPE" == linux-gnu* ]]
+then
+  sudo apt-get install gtk3-devel gtksourceview3-devel
+elif [[ "$OSTYPE" == darwin* ]]
+then
+  sudo port install gtk-doc gtk3 +quartz gtksourceview3 +quartz adwaita-icon-theme
+elif [[ "$OSTYPE" == cygwin ]]
+then
+  export PATH="$BINSPECIAL:$PATH"
+  make_arch_pkg_config
+  make_gtk_sourceview3
+else
+    echo "ERROR: unsopported OS type '$OSTYPE'"
+    exit 1
+fi
+
+###################### TOP LEVEL BUILD #####################
 
 ### Install opam packages ###
 
