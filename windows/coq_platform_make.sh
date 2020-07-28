@@ -628,6 +628,18 @@ then
   opam repo list
 fi
 
+### Switch opam to coq-platform switch ###
+
+opam switch ocaml-variants.4.07.1+mingw64c
+eval $(opam env)
+
+### Cleanup old build artifacts for current switch ###
+
+# Note: this frequently proved to be required (build errors when doing experiments)
+# Note: this keeps downloads and logs
+
+opam clean --switch-cleanup
+
 ### Update opam with possible changes in platform_patch ###
 
 opam update platform_patch
@@ -656,8 +668,8 @@ opam install \
 
 opam pin coq-menhirlib 20200624
 
-# opam install coq-compcert.3.7~coq-platform
+opam install coq-compcert.3.7+8.12~coq_platform
+opam install coq-compcert-64.3.7+8.12~coq_platform~open_source
 
-# 8.12 incompatible: coq-mtac2 coq-compcert.3.7~coq-platform coq-vst coq-elpi coq-hierarchy-builder
-# Failed: coq-menhirlib
+# 8.12 incompatible: coq-mtac2 coq-vst coq-elpi coq-hierarchy-builder
 # Requires external tools gappa
