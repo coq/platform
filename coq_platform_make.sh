@@ -704,7 +704,7 @@ then
   opam repo add coq-released "https://coq.inria.fr/opam/released" || true
   opam repo add coq-core-dev "https://coq.inria.fr/opam/core-dev" || true
   opam repo add coq-extra-dev "https://coq.inria.fr/opam/extra-dev" || true
-  opam repo add platform_patch "file://$OPAMPACKAGES" || true
+  opam repo add "patch$OPAM_SWITCH_NAME" "file://$OPAMPACKAGES" || true
 else
   echo "===== opam switch already exists ====="
 fi
