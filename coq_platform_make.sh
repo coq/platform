@@ -681,7 +681,7 @@ then
   echo "===== INITIALIZING OPAM ====="
   if [[ "$OSTYPE" == cygwin ]]
   then
-    opam init --disable-sandboxing default --compiler 'ocaml-variants.4.07.1+mingw64c' $OPAM_SWITCH_NAME 'https://github.com/fdopen/opam-repository-mingw.git#opam2'
+    opam init --disable-sandboxing --compiler 'ocaml-variants.4.07.1+mingw64c' $OPAM_SWITCH_NAME 'https://github.com/fdopen/opam-repository-mingw.git#opam2'
   else
     opam init --compiler 'ocaml-base-compiler.4.07.1' $OPAM_SWITCH_NAME
   fi
@@ -702,9 +702,9 @@ then
     opam switch create $OPAM_SWITCH_NAME 'ocaml-base-compiler.4.07.1'
   fi
   opam repo add coq-released "https://coq.inria.fr/opam/released" || true
-  opam repo add coq-core-dev "https://coq.inria.fr/opam/core-dev/" || true
-  opam repo add coq-extra-dev "https://coq.inria.fr/opam/extra-dev/" || true
-  opam repo add platform_patch "file://$CYGWIN_INSTALLDIR_MFMT/build/opam/" || true
+  opam repo add coq-core-dev "https://coq.inria.fr/opam/core-dev" || true
+  opam repo add coq-extra-dev "https://coq.inria.fr/opam/extra-dev" || true
+  opam repo add platform_patch "file://$OPAMPACKAGES" || true
 else
   echo "===== opam switch already exists ====="
 fi
@@ -724,7 +724,9 @@ opam clean --switch-cleanup
 
 ###################### Update opam ######################
 
-opam update platform_patch
+# opam update platform_patch
+
+opam update
 
 ###################### PREREQUISITES #####################
 
