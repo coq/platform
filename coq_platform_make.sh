@@ -501,9 +501,9 @@ then
   if [[ "$OSTYPE" == cygwin ]]
   then
     # Init opam with windows specific default repo
-    opam init --bare --disable-sandboxing default 'https://github.com/fdopen/opam-repository-mingw.git#opam2'
+    opam init --bare --shell-setup --enable-shell-hook --enable-completion --disable-sandboxing default 'https://github.com/fdopen/opam-repository-mingw.git#opam2'
   else
-    opam init --bare
+    opam init --bare --shell-setup --enable-shell-hook --enable-completion
   fi
 else
   echo "===== opam already initialized ====="
