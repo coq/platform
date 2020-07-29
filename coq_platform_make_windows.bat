@@ -31,12 +31,10 @@ SET BATCHDIR=%~dp0
 
 REM see -arch in ReadMe.txt, but values are x86_64 or i686 (not 64 or 32)
 SET ARCH=x86_64
+SET SETUP=setup-x86_64.exe
 
 REM see -destcyg in ReadMe.txt
 SET DESTCYG=C:\bin\cygwin_coq_platform
-
-REM see -setup in ReadMe.txt
-SET SETUP=setup-x86_64.exe
 
 REM see -proxy in ReadMe.txt
 IF DEFINED HTTP_PROXY (
@@ -268,7 +266,8 @@ IF "%RUNSETUP%"=="Y" (
     -P gettext-devel,libgettextpo-devel ^
     -P libglib2.0-devel,libgdk_pixbuf2.0-devel ^
     -P libtool,intltool ^
-    -P adwaita-icon-theme,gtk-update-icon-cache ^
+    -P gtk-update-icon-cache ^
+    -P mingw64-x86_64-adwaita-icon-theme,mingw64-x86_64-adwaita-themes ^
     -P libfontconfig1 ^
     -P bison,flex ^
     %EXTRAPACKAGES% ^
@@ -321,9 +320,8 @@ ECHO ========== BATCH FUNCTIONS ==========
 
 :PrintPars
   REM  01234567890123456789012345678901234567890123456789012345678901234567890123456789
-  ECHO -arch     ^<i686 or x86_64^> Set cygwin, ocaml and coq to 32 or 64 bit
+  ECHO -arch     ^<32 or 64^> Set cygwin, ocaml and coq to 32 or 64 bit
   ECHO -destcyg  ^<path to cygwin destination folder^>
-  ECHO -setup    ^<cygwin setup program name^> (auto adjusted to -arch)
   ECHO -proxy    ^<internet proxy^>
   ECHO -cygrepo  ^<cygwin download repository^>
   ECHO -cygcache ^<local cygwin repository/cache^>

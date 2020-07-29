@@ -89,6 +89,10 @@ then
       i686)   CYGWINARCH=x86 ;;
       *)      false ;;
     esac
+
+    # The cygwin installation is missing a compiled schema for GTK (dialog resources and the like), so create it
+    # Todo: this should be fixed upstream by a post install script
+    glib-compile-schemas $PREFIX/share/glib-2.0/schemas/
 else
     echo "ERROR: unsopported OS type '$OSTYPE'"
     exit 1
@@ -577,6 +581,7 @@ unset ARCH
 opam pin lablgtk3 3.0.beta5
 opam pin coq 8.12.0
 opam install coqide
+
 opam install coq-bignums coq-equations menhir coq-coquelicot coq-flocq coq-interval coq-quickchick coq-ext-lib coq-aac-tactics
 
 # The standard set of mathcomp modules
