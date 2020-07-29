@@ -30,7 +30,7 @@ RMDIR_BEFORE_BUILD=1
 
 ###################### PARAMETER #####################
 
-OPAM_SWITCH_NAME=_coq-platform_.8.12.beta1
+OPAM_SWITCH_NAME=_coq-platform_.8.12.alpha1
 
 ###################### ARCHITECTURES #####################
 
@@ -554,15 +554,37 @@ opam update
 
 ###################### PREREQUISITES #####################
 
-echo "===== INSTALLING OPAM ====="
-if [[ "$OSTYPE" == linux-gnu* ]]
+echo "===== INSTALLING PREREQUISITES ====="
+if [[ "$OSTYPE" == linux-gnu* ]] || [[ "$OSTYPE" == darwin* ]]
 then
-  sudo apt-get install gtk3-devel gtksourceview3-devel
-elif [[ "$OSTYPE" == darwin* ]]
-then
-  sudo port install gtk-doc gtk3 +quartz gtksourceview3 +quartz adwaita-icon-theme
+  # On these system we use opam depext to install dependencies
+  # install depext
+  opam install depext
+  # Note: for each depext package we check upfront if it is there - depext always tries to install it which needs sudo rights
+
+  # install pkg-config if it is not there
+  if ! command -v pkg-config &> /dev/null
+  then
+    opam depext conf-pkg-config
+  fi
+
+  # install gtk3 if not there
+  if ! pkg-config --short-errors --print-errors --atleast-version 3.18 gtk+-3.0
+  then
+    opam depext conf-gtk3
+  fi
+
+  # install gtksourceview3 if not there
+  if ! pkg-config --short-errors --print-errors gtksourceview-3.0
+  then
+    opam depext conf-gtksourceview3
+  fi
+
+  # sudo port install gtk-doc gtk3 +quartz gtksourceview3 +quartz adwaita-icon-theme
 elif [[ "$OSTYPE" == cygwin ]]
 then
+  # On cygwin all prerequsites available from the package manager are installed upfront
+  # ToDo: anyway install depext
   make_arch_pkg_config
   make_gtk_sourceview3
 else
