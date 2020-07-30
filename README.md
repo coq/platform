@@ -3,6 +3,20 @@ Preliminary / experimental version of the Coq platform discussed in the coq-dev 
 
 See [`charter.md`](/charter.md) for the coq platform concept.
 
+# Note on Licenses
+
+The Coq platform setup scripts and the selection of packages is licensed LGPL 2.1+.
+This license does **not** apply to the packages installed by the Coq platform.
+You can get an overview over the licenses of the installed software (after installing it)
+with the command:
+```
+opam list --columns=name,license:
+```
+In case no license is given please clarify on the homepage of the software:
+```
+opam list --columns=name,homepage:
+```
+
 # Features of the 8.12~alpha1 release
 
 - fully opam based, also on Windows
@@ -32,10 +46,8 @@ coq-mathcomp-real-closed
 coq-mathcomp-finmap
 coq-mathcomp-bigenough
 coq-menhirlib 20200624
-coq-compcert.3.7+8.12~coq_platform
-coq-compcert-64.3.7+8.12~coq_platform~open_source
+coq-compcert.3.7+8.12~coq_platform~open_source
 coq-vst.2.6
-coq-vst-64.2.6
 ```
 - one setup script for Windows, macOS and Linux with few OS dependent sections only
 - on Windows there is an additional wrapper batch script to setup cygwin as build and working environment

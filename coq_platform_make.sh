@@ -628,8 +628,8 @@ opam install \
 
 opam pin coq-menhirlib 20200624
 
-opam install coq-compcert.3.7+8.12~coq_platform coq-compcert-64.3.7+8.12~coq_platform~open_source
-opam install coq-vst.2.6 coq-vst-64.2.6
+opam install coq-compcert.3.7+8.12~coq_platform~open_source
+opam install coq-vst.2.6
 
 # 8.12 incompatible: coq-mtac2 coq-elpi coq-hierarchy-builder
 # Requires external tools gappa
