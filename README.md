@@ -20,7 +20,7 @@ Please note that some opam packages require and install system packages with man
 These dependencies might have various licenses. You need to refer to your system package manager to
 inspect the licenses of such packages.
 
-# Features of the 8.12~alpha1 release
+# Features of the 8.12.0.alpha2 release
 
 - fully opam based, also on Windows
 - system prerequisites are installed using opam depext in a system independent manner
@@ -64,7 +64,7 @@ coq-vst.2.6
 - Linux is not yet tested in any way
 - A few packages from the Coq 8.12.0 Windows installer are still missing: `mtac2`, `elpi`, `hierarchy-builder` and `gappa`
 
-# Usage of the 8.12~alpha1 release
+# Usage of the 8.12.0.alpha2 release
 
 - Get the coq platform scripts via either of these methods
   - `git clone https://github.com/MSoegtropIMC/coq-platform.git`
@@ -73,10 +73,10 @@ coq-vst.2.6
 - For all OSes this will
   - create a new opam switch (and setup and/or initialize opam if it is not there yet).
   - install system prerequisites (like gtk3)
-- The name of the opam switch is `_coq-platform_.8.12.alpha1`.
+- The name of the opam switch is `_coq-platform_.8.12.0.alpha2`.
   Use the following commands to activate this switch after opening a new shell:
     ```
-    opam switch _coq-platform_.8.12.alpha1
+    opam switch _coq-platform_.8.12.0.alpha2
     eval $(opam env)
     ```
   or rerun `opam init` to automate this in each new shell.
@@ -147,7 +147,7 @@ without -Q and -R options. If you want to work with the 64 bit variants, please 
 - On Linux or macOS open a shell in the usual way.
 - Run these commands:
     ```
-    opam switch _coq-platform_.8.12.alpha1
+    opam switch _coq-platform_.8.12.0.alpha2
     eval $(opam env)
     ```
 - Install additional packages with `opam install "package"`
