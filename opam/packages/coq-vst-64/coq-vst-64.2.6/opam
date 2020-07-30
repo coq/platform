@@ -21,7 +21,7 @@ dev-repo: "git+https://github.com/PrincetonUniversity/VST.git"
 bug-reports: "https://github.com/PrincetonUniversity/VST/issues"
 license: "https://raw.githubusercontent.com/PrincetonUniversity/VST/master/LICENSE"
 build: [
-  [make "-j" "BITSIZE=64"]
+  [make "-j%{jobs}%" "BITSIZE=64"]
 ]
 install: [
   [make "install"]
