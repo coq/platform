@@ -580,6 +580,12 @@ then
     opam depext conf-gtksourceview3
   fi
 
+  # install adwaita-icon-theme if not there
+  if ! pkg-config --short-errors --print-errors adwaita-icon-theme
+  then
+    opam depext conf-gnome-icon-theme3
+  fi
+
   # sudo port install gtk-doc gtk3 +quartz gtksourceview3 +quartz adwaita-icon-theme
 elif [[ "$OSTYPE" == cygwin ]]
 then
