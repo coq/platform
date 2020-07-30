@@ -1,0 +1,25 @@
+From 6a8204d46faa6776265ed7320b498f63b1e87bba Mon Sep 17 00:00:00 2001
+From: Michael Soegtrop <7895506+MSoegtropIMC@users.noreply.github.com>
+Date: Sun, 7 Jun 2020 20:55:41 +0200
+Subject: [PATCH 7/9] Use ocamlfind to find menhirLib
+
+---
+ configure | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure b/configure
+index 6bd7ed0e..edf85dd4 100755
+--- a/configure
++++ b/configure
+@@ -582,7 +582,7 @@ case "$menhir_ver" in
+   20[0-9][0-9][0-9][0-9][0-9][0-9])
+       if test "$menhir_ver" -ge $MENHIR_REQUIRED; then
+           echo "version $menhir_ver -- good!"
+-          menhir_dir=$(menhir --suggest-menhirLib | tr -d '\r' | tr '\\' '/')
++          menhir_dir=$(ocamlfind -query menhirLib | tr -d '\r' | tr '\\' '/')
+           if test -z "$menhir_dir"; then
+               echo "Error: cannot determine the location of the Menhir API library."
+               echo "This can be due to an incorrect Menhir package."
+-- 
+2.27.0
+

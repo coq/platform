@@ -1,0 +1,121 @@
+From e2c86f5a76387c8642566ce2e35449e71566d772 Mon Sep 17 00:00:00 2001
+From: Jacques-Henri Jourdan <jacques-henri.jourdan@normalesup.org>
+Date: Mon, 4 May 2020 11:37:49 +0200
+Subject: [PATCH 6/9] Coq-MenhirLib: explicit import ListNotations (#354)
+
+import ListNotations wherever it is necessary so that we do not rely on it being exported by Program.  (See #352.)
+
+This is a backport from upstream: https://gitlab.inria.fr/fpottier/menhir/-/commit/53f94fa42c80ab1728383e9d2b19006180b14a78
+---
+ MenhirLib/Alphabet.v             | 3 ++-
+ MenhirLib/Grammar.v              | 3 ++-
+ MenhirLib/Interpreter.v          | 2 ++
+ MenhirLib/Interpreter_complete.v | 3 ++-
+ MenhirLib/Interpreter_correct.v  | 3 ++-
+ MenhirLib/Validator_complete.v   | 1 +
+ MenhirLib/Validator_safe.v       | 1 +
+ 7 files changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/MenhirLib/Alphabet.v b/MenhirLib/Alphabet.v
+index 29070e3d..530e3b4a 100644
+--- a/MenhirLib/Alphabet.v
++++ b/MenhirLib/Alphabet.v
+@@ -11,7 +11,8 @@
+ (*                                                                          *)
+ (****************************************************************************)
+ 
+-From Coq Require Import Omega List Syntax Relations RelationClasses.
++From Coq Require Import Omega List Relations RelationClasses.
++Import ListNotations.
+ 
+ Local Obligation Tactic := intros.
+ 
+diff --git a/MenhirLib/Grammar.v b/MenhirLib/Grammar.v
+index a371318b..9be374e8 100644
+--- a/MenhirLib/Grammar.v
++++ b/MenhirLib/Grammar.v
+@@ -11,7 +11,8 @@
+ (*                                                                          *)
+ (****************************************************************************)
+ 
+-From Coq Require Import List Syntax Orders.
++From Coq Require Import List Orders.
++Import ListNotations.
+ Require Import Alphabet.
+ 
+ (** The terminal non-terminal alphabets of the grammar. **)
+diff --git a/MenhirLib/Interpreter.v b/MenhirLib/Interpreter.v
+index 568597ba..c36ca614 100644
+--- a/MenhirLib/Interpreter.v
++++ b/MenhirLib/Interpreter.v
+@@ -12,6 +12,7 @@
+ (****************************************************************************)
+ 
+ From Coq Require Import List Syntax.
++Import ListNotations.
+ From Coq.ssr Require Import ssreflect.
+ Require Automaton.
+ Require Import Alphabet Grammar Validator_safe.
+@@ -82,6 +83,7 @@ Proof. by rewrite /cast -Eqdep_dec.eq_rect_eq_dec. Qed.
+ CoInductive buffer : Type :=
+   Buf_cons { buf_head : token; buf_tail : buffer }.
+ 
++Declare Scope buffer_scope.
+ Delimit Scope buffer_scope with buf.
+ Bind Scope buffer_scope with buffer.
+ 
+diff --git a/MenhirLib/Interpreter_complete.v b/MenhirLib/Interpreter_complete.v
+index ec69592b..51f2524b 100644
+--- a/MenhirLib/Interpreter_complete.v
++++ b/MenhirLib/Interpreter_complete.v
+@@ -11,7 +11,8 @@
+ (*                                                                          *)
+ (****************************************************************************)
+ 
+-From Coq Require Import List Syntax Arith.
++From Coq Require Import List Arith.
++Import ListNotations.
+ From Coq.ssr Require Import ssreflect.
+ Require Import Alphabet Grammar.
+ Require Automaton Interpreter Validator_complete.
+diff --git a/MenhirLib/Interpreter_correct.v b/MenhirLib/Interpreter_correct.v
+index 1325f610..083be5b7 100644
+--- a/MenhirLib/Interpreter_correct.v
++++ b/MenhirLib/Interpreter_correct.v
+@@ -11,7 +11,8 @@
+ (*                                                                          *)
+ (****************************************************************************)
+ 
+-From Coq Require Import List Syntax.
++From Coq Require Import List.
++Import ListNotations.
+ Require Import Alphabet.
+ Require Grammar Automaton Interpreter.
+ From Coq.ssr Require Import ssreflect.
+diff --git a/MenhirLib/Validator_complete.v b/MenhirLib/Validator_complete.v
+index ebb74500..9ba3e53c 100644
+--- a/MenhirLib/Validator_complete.v
++++ b/MenhirLib/Validator_complete.v
+@@ -13,6 +13,7 @@
+ 
+ From Coq Require Import List Syntax Derive.
+ From Coq.ssr Require Import ssreflect.
++Import ListNotations.
+ Require Automaton.
+ Require Import Alphabet Validator_classes.
+ 
+diff --git a/MenhirLib/Validator_safe.v b/MenhirLib/Validator_safe.v
+index 628d2009..e7a54b47 100644
+--- a/MenhirLib/Validator_safe.v
++++ b/MenhirLib/Validator_safe.v
+@@ -12,6 +12,7 @@
+ (****************************************************************************)
+ 
+ From Coq Require Import List Syntax Derive.
++Import ListNotations.
+ From Coq.ssr Require Import ssreflect.
+ Require Automaton.
+ Require Import Alphabet Validator_classes.
+-- 
+2.27.0
+

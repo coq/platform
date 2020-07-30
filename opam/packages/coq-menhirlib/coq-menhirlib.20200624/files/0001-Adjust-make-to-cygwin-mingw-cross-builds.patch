@@ -1,0 +1,56 @@
+From 3a66583a4f4bcbf728f9509675c2bcc9735c1174 Mon Sep 17 00:00:00 2001
+From: Michael Soegtrop <7895506+MSoegtropIMC@users.noreply.github.com>
+Date: Sun, 26 Jul 2020 21:33:15 +0200
+Subject: [PATCH] Adjust make to cygwin mingw cross builds
+
+---
+ coq-menhirlib/src/Makefile     | 4 ++--
+ coq-menhirlib/src/Makefile.coq | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/coq-menhirlib/src/Makefile b/coq-menhirlib/src/Makefile
+index 426e5d50..28ab0adb 100644
+--- a/coq-menhirlib/src/Makefile
++++ b/coq-menhirlib/src/Makefile
+@@ -1,6 +1,6 @@
+ PWD := $(shell pwd)
+ 
+-COQINCLUDE := -R $(PWD) MenhirLib \
++COQINCLUDE := -R . MenhirLib \
+ 
+ export COQINCLUDE
+ 
+@@ -22,7 +22,7 @@ clean:
+ # A nonempty value can be used to perform a dummy installation
+ # in a different location.
+ 
+-CONTRIB = $(shell $(COQBIN)coqc -where)/user-contrib
++CONTRIB = $(shell $(COQBIN)coqc -where  | tr -d '\r' | tr '\\' '/')/user-contrib
+ TARGET  = $(DESTDIR)$(CONTRIB)/MenhirLib
+ 
+ install: all
+diff --git a/coq-menhirlib/src/Makefile.coq b/coq-menhirlib/src/Makefile.coq
+index c530fa91..b1543069 100644
+--- a/coq-menhirlib/src/Makefile.coq
++++ b/coq-menhirlib/src/Makefile.coq
+@@ -11,7 +11,7 @@ SHELL := /usr/bin/env bash
+ #
+ #
+ # This Makefile relies on the following variables:
+-# ROOTDIR    (default: `pwd`)
++# ROOTDIR    (default: .)
+ # COQBIN     (default: empty)
+ # COQINCLUDE (default: empty)
+ # VV         (default: *.v)
+@@ -32,7 +32,7 @@ SHELL := /usr/bin/env bash
+ # in -R options, etc., must be absolute paths.
+ 
+ ifndef ROOTDIR
+-	ROOTDIR := $(shell pwd)
++	ROOTDIR := .
+ endif
+ 
+ ifndef VV
+-- 
+2.27.0
+

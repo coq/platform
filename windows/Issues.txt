@@ -1,0 +1,11 @@
+opam install coq-compcert-64.3.7+8.12~coq_platform
+
+# x86_64/vararg.S:121: Error: junk at end of line, first unrecognized character is `_'
+# x86_64/vararg.S:121: Warning: .size pseudo-op used outside of .def/.endef: ignored.
+# x86_64/vararg.S:121: Error: junk at end of line, first unrecognized character is `_'
+# x86_64/vararg.S:148: Warning: .type pseudo-op used outside of .def/.endef: ignored.
+# x86_64/vararg.S:148: Error: junk at end of line, first unrecognized character is `_'
+# x86_64/vararg.S:148: Warning: .size pseudo-op used outside of .def/.endef: ignored.
+# x86_64/vararg.S:148: Error: junk at end of line, first unrecognized character is `_'
+
+Check if this is caused by the updated menhirlib

@@ -1,0 +1,81 @@
+From b7980c83620ca556b83b8c396ea7a2bc81810222 Mon Sep 17 00:00:00 2001
+From: Xavier Leroy <xavier.leroy@college-de-france.fr>
+Date: Wed, 29 Apr 2020 15:40:13 +0200
+Subject: [PATCH 1/9] Install "compcert.config" file along the Coq development
+
+The file contains various parameters about the target processor and ABI,
+useful for VST and possibly other users of CompCert as a Coq library.
+
+It is in "var=val" syntax so that it can be included directly from
+a Makefile or a shell script.
+---
+ .gitignore |  1 +
+ Makefile   | 19 ++++++++++++++++++-
+ 2 files changed, 19 insertions(+), 1 deletion(-)
+
+diff --git a/.gitignore b/.gitignore
+index da883cff..5ee5f7ad 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -30,6 +30,7 @@
+ /.depend
+ /.depend.extr
+ /compcert.ini
++/compcert.config
+ /x86/ConstpropOp.v
+ /x86/SelectOp.v
+ /x86/SelectLong.v
+diff --git a/Makefile b/Makefile
+index af069e3f..8c0be846 100644
+--- a/Makefile
++++ b/Makefile
+@@ -142,6 +142,9 @@ endif
+ ifeq ($(CLIGHTGEN),true)
+ 	$(MAKE) clightgen
+ endif
++ifeq ($(INSTALL_COQDEV),true)
++	$(MAKE) compcert.config
++endif
+ 
+ proof: $(FILES:.v=.vo)
+ 
+@@ -219,6 +222,19 @@ compcert.ini: Makefile.config
+ 	 echo "response_file_style=$(RESPONSEFILE)";) \
+         > compcert.ini
+ 
++compcert.config: Makefile.config
++	(echo "# CompCert configuration parameters"; \
++        echo "COMPCERT_ARCH=$(ARCH)"; \
++        echo "COMPCERT_MODEL=$(MODEL)"; \
++        echo "COMPCERT_ABI=$(ABI)"; \
++        echo "COMPCERT_ENDIANNESS=$(ENDIANNESS)"; \
++        echo "COMPCERT_BITSIZE=$(BITSIZE)"; \
++        echo "COMPCERT_SYSTEM=$(SYSTEM)"; \
++        echo "COMPCERT_VERSION=$(BUILDVERSION)"; \
++        echo "COMPCERT_BUILDNR=$(BUILDNR)"; \
++        echo "COMPCERT_TAG=$(TAG)" \
++        ) > compcert.config
++
+ driver/Version.ml: VERSION
+ 	cat VERSION \
+ 	| sed -e 's|\(.*\)=\(.*\)|let \1 = \"\2\"|g' \
+@@ -253,6 +269,7 @@ ifeq ($(INSTALL_COQDEV),true)
+           install -m 0644 $$d/*.vo $(DESTDIR)$(COQDEVDIR)/$$d/; \
+ 	done
+ 	install -m 0644 ./VERSION $(DESTDIR)$(COQDEVDIR)
++	install -m 0644 ./compcert.config $(DESTDIR)$(COQDEVDIR)
+ 	@(echo "To use, pass the following to coq_makefile or add the following to _CoqProject:"; echo "-R $(COQDEVDIR) compcert") > $(DESTDIR)$(COQDEVDIR)/README
+ endif
+ 
+@@ -262,7 +279,7 @@ clean:
+ 	rm -f $(patsubst %, %/.*.aux, $(DIRS))
+ 	rm -rf doc/html doc/*.glob
+ 	rm -f driver/Version.ml
+-	rm -f compcert.ini
++	rm -f compcert.ini compcert.config
+ 	rm -f extraction/STAMP extraction/*.ml extraction/*.mli .depend.extr
+ 	rm -f tools/ndfun tools/modorder tools/*.cm? tools/*.o
+ 	rm -f $(GENERATED) .depend
+-- 
+2.27.0
+

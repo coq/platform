@@ -1,0 +1,25 @@
+From 1feb12c82ec9c047256238d187c228b5464058ac Mon Sep 17 00:00:00 2001
+From: Michael Soegtrop <7895506+MSoegtropIMC@users.noreply.github.com>
+Date: Tue, 5 May 2020 17:10:06 +0200
+Subject: [PATCH 8/9] Use platform supplied menhirlib as suggested by jhjourdan
+
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 8c0be846..132a6cb5 100644
+--- a/Makefile
++++ b/Makefile
+@@ -242,7 +242,7 @@ driver/Version.ml: VERSION
+ 
+ cparser/Parser.v: cparser/Parser.vy
+ 	@rm -f $@
+-	$(MENHIR) --coq --coq-lib-path compcert.MenhirLib --coq-no-version-check cparser/Parser.vy
++	$(MENHIR) --coq cparser/Parser.vy
+ 	@chmod a-w $@
+ 
+ depend: $(GENERATED) depend1
+-- 
+2.27.0
+

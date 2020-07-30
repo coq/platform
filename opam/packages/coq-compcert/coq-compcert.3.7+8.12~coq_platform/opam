@@ -1,0 +1,67 @@
+opam-version: "2.0"
+authors: "Xavier Leroy <xavier.leroy@inria.fr>"
+maintainer: "Jacques-Henri Jourdan <jacques-Henri.jourdan@normalesup.org>"
+homepage: "http://compcert.inria.fr/"
+dev-repo: "git+https://github.com/AbsInt/CompCert.git"
+bug-reports: "https://github.com/AbsInt/CompCert/issues"
+license: "INRIA Non-Commercial License Agreement"
+version: "3.7"
+build: [
+  ["./configure"
+  "ia32-linux" {os = "linux"}
+  "ia32-macosx" {os = "macos"}
+  "ia32-cygwin" {os = "cygwin"}
+  "ia32-cygwin" {os = "win32"}
+  "-bindir" "%{bin}%"
+  "-libdir" "%{lib}%/compcert"
+  "-install-coqdev"
+  "-clightgen"
+  "-coqdevdir" "%{lib}%/coq/user-contrib/compcert"
+  "-ignore-coq-version"]
+  [make "-j%{jobs}%" {ocaml:version >= "4.06"}]
+]
+patches: [
+  "0001-Install-compcert.config-file-along-the-Coq-developme.patch"
+  "0002-Dual-license-aarch64-Archi.v-Cbuiltins.ml-extraction.patch"
+  "0003-Update-the-list-of-dual-licensed-files.patch"
+  "0004-Use-Coq-platform-supplied-Flocq.patch"
+  "0005-Import-ListNotations-explicitly.patch"
+  "0006-Coq-MenhirLib-explicit-import-ListNotations-354.patch"
+  "0007-Use-ocamlfind-to-find-menhirLib.patch"
+  "0008-Use-platform-supplied-menhirlib-as-suggested-by-jhjo.patch"
+  "0009-Don-t-build-MenhirLib-platform-version-is-used.patch"
+]
+extra-files: [
+  ["0001-Install-compcert.config-file-along-the-Coq-developme.patch" "sha256=62e36964ed3d06a213caea8639be51641c25df3c4ea384e01ce57d015de698d3"]
+  ["0002-Dual-license-aarch64-Archi.v-Cbuiltins.ml-extraction.patch" "sha256=1af58e827aa24be60e115878b9f70f1bf715f83bb1b91da8e2a9d749f4195d29"]
+  ["0003-Update-the-list-of-dual-licensed-files.patch" "sha256=bf91c7d3e2177620296838658cafbeffdd50d8d1ef56649b56a35644410e1337"]
+  ["0004-Use-Coq-platform-supplied-Flocq.patch" "sha256=83261a1fae459c319c0288a543787d3abcadaa2cccb1c34543c9784fe645f942"]
+  ["0005-Import-ListNotations-explicitly.patch" "sha256=c4f29203e8dcaa17c76543ad77dabefdb555588567d4f6055cd53e19a9c81081"]
+  ["0006-Coq-MenhirLib-explicit-import-ListNotations-354.patch" "sha256=3b7f59d4736d36878bbe3c0fed80e7db1ae75b9c8a5a9c90a57df2c1a4f4ae78"]
+  ["0007-Use-ocamlfind-to-find-menhirLib.patch" "sha256=df3f103977fa02bd339f6a8537da6bd4eaf1baa54c9675508e3bd16dbe11464e"]
+  ["0008-Use-platform-supplied-menhirlib-as-suggested-by-jhjo.patch" "sha256=bcd2eb6eafb5a71fd0ee8ecf6f1b100b06723c636adb0ef2f915fa0ac3585c64"]
+  ["0009-Don-t-build-MenhirLib-platform-version-is-used.patch" "sha256=77835a85124eb1e8afefdcaf9eaa5beab64ed0fea22fceab78b7fd550778c857"]
+]
+install: [
+  [make "install"]
+]
+depends: [
+  "coq" {>= "8.12" & < "8.13"}
+  "coq-flocq" {>= "3.2.1"}
+  "coq-menhirlib" {>= "20190626"}
+  "menhir" {>= "20190626"}
+  "ocaml" {>= "4.05.0"}
+]
+synopsis: "The CompCert C compiler (using coq-platform supplied version of Flocq)"
+tags: [
+  "category:CS/Semantics and Compilation/Compilation"
+  "category:CS/Semantics and Compilation/Semantics"
+  "keyword:C"
+  "keyword:compiler"
+  "logpath:compcert"
+  "date:2020-04-29"
+]
+url {
+  src: "https://github.com/AbsInt/CompCert/archive/v3.7.tar.gz"
+  checksum: "sha256=ceee1b2ed6c2576cb66eb7a0f2669dcf85e65c0fc68385f0781b0ca4edb87eb0"
+}

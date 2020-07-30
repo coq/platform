@@ -1,0 +1,26 @@
+From 48d9cbd2dd476ccf59b9327040e86f41911ab484 Mon Sep 17 00:00:00 2001
+From: Xavier Leroy <xavier.leroy@college-de-france.fr>
+Date: Mon, 4 May 2020 12:04:38 +0200
+Subject: [PATCH 5/9] Import ListNotations explicitly
+
+So as not to depend on an implicit import from module Program.
+(See PR #352.)
+---
+ lib/Floats.v | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/lib/Floats.v b/lib/Floats.v
+index ea9e220d..25a55620 100644
+--- a/lib/Floats.v
++++ b/lib/Floats.v
+@@ -22,6 +22,7 @@ Require Import Binary Bits Core.
+ Require Import IEEE754_extra.
+ Require Import Program.
+ Require Archi.
++Import ListNotations.
+ 
+ Close Scope R_scope.
+ Open Scope Z_scope.
+-- 
+2.27.0
+
