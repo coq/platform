@@ -30,7 +30,7 @@ RMDIR_BEFORE_BUILD=1
 
 ###################### PARAMETER #####################
 
-OPAM_SWITCH_NAME=_coq-platform_.8.12.alpha1
+OPAM_SWITCH_NAME=_coq-platform_.8.12.0.alpha2
 
 ###################### ARCHITECTURES #####################
 
