@@ -5,7 +5,7 @@ See [`charter.md`](/charter.md) for the coq platform concept.
 
 # Note on Licenses
 
-The Coq platform setup scripts and the selection of packages is licensed LGPL 2.1+.
+The Coq platform setup scripts and the selection of packages are licensed LGPL 2.1+.
 This license does **not** apply to the packages installed by the Coq platform.
 You can get an overview over the licenses of the installed software (after installing it)
 with the command:
@@ -16,6 +16,9 @@ In case no license is given please clarify on the homepage of the software:
 ```
 opam list --columns=name,homepage:
 ```
+Please note that some opam packages require and install system packages with many dependencies (e.g GTK3).
+These dependencies might have various licenses. You need to refer to your system package manager to
+inspect the licenses of such packages.
 
 # Features of the 8.12~alpha1 release
 
@@ -105,3 +108,47 @@ coq-vst.2.6
 ## Linux
 
 this is work in progress.
+
+## Installation of additional packages or package variants
+
+### CompCert and VST variants
+
+For some packages, notably CompCert and VST (the Princeton tool-chain for verification of C code), exist various variants.
+By default the 32 bit open source variant of CompCert and the 32 bit variant of VST are installed.
+The open source variant of CompCert does not include cligthgen, which is required to use VST for your own code, but it is not
+required to learn VST with provided examples. If you want to install clightgen and compcert for research or evaluation use or
+if you have a commercial license, you can install the full version by changing the line towards the end of `coq_platform_make.sh`:
+```
+opam install coq-compcert.3.7+8.12~coq_platform~open_source
+```
+to
+```
+opam install coq-compcert.3.7+8.12~coq_platform
+```
+Please check to the CompCert license at (https://github.com/AbsInt/CompCert/blob/master/LICENSE) before you do this change.
+
+Besides the open source and non open source variant of CompCert, there is also a 64 bit variant of CompCert and VST, which can
+be installed by adding these lines:
+```
+opam install coq-compcert-64.3.7+8.12~coq_platform~open_source
+opam install coq-vst-64.2.6
+```
+either add the end of `coq_platform_make.sh` or as a manual step later (see next section).
+Please note that since both variants can be installed in parallel, only one, the 32 bit variant, is immediately available to Coq
+without -Q and -R options. If you want to work with the 64 bit variants, please use these options in your Coq project:
+```
+-Q $(coqc -where)/../coq-variant/compcert64/compcert compcert
+-Q $(coqc -where)/../coq-variant/VST64/VST VST
+```
+
+### Installation of other packages
+
+- On Windows open a shell with `C:\bin\cygwin_coq_platform\cygwin.bat`.
+- On Linux or macOS open a shell in the usual way.
+- Run these commands:
+    ```
+    opam switch _coq-platform_.8.12.alpha1
+    eval $(opam env)
+    ```
+- Install additional packages with `opam install "package"`
+- You can find packages with `opam list --all | grep "some keyword"`
