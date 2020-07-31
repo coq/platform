@@ -24,7 +24,7 @@ build: [
   [make "-j%{jobs}%" "BITSIZE=64"]
 ]
 install: [
-  [make "install"]
+  [make "install" "BITSIZE=64"]
 ]
 depends: [
   "ocaml"
