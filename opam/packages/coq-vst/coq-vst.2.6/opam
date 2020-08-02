@@ -28,21 +28,17 @@ install: [
 ]
 depends: [
   "ocaml"
-  # This are the release versions of Coq which includes this version of VST
-  # See vst_CI_REF in
-  # https://github.com/coq/coq/blob/V8.11.0/dev/ci/ci-basic-overlay.sh
-  "coq" {>= "8.12" & < "8.13"}
-  "coq-compcert" {(= "3.7+8.12~coq_platform") | (= "3.7+8.12~coq_platform~open_source") }
+  "coq" {>= "8.11" & < "8.13"}
+  "coq-compcert" {(= "3.7~coq_platform~open_source") | (= "3.7~coq_platform") | (= "3.7+8.12~coq_platform~open_source") | (= "3.7+8.12~coq_platform")}
   "coq-flocq" {>= "3.2.1"}
 ]
-flags: light-uninstall
 tags: [
   "category:CS/Semantics and Compilation/Semantics"
   "keyword:C"
   "logpath:VST"
-  "date:2020-07-28"
+  "date:2020-07-31"
 ]
 url {
-  src: "https://github.com/PrincetonUniversity/VST/archive/release-v2.6.tar.gz"
-  checksum: "sha512=bc757abda3111f2a6b8a4f52435f728d1fffdbf13979cd5456d8e3a515a540a6b2b3dcc9ea8cbf5c3002d0326de6428ec1a577aa685ebc92f14f475c13089311"
+  src: "https://github.com/PrincetonUniversity/VST/archive/v2.6.tar.gz"
+  checksum: "sha512=6de7d6b00830bb181f19af62619515fea699633fa3e995c25d9f4f876d1d6a7d7985057d79be9e9c66200d234ee3e95fc74f1e60c0fa619326b2eb8fcc637d77"
 }
