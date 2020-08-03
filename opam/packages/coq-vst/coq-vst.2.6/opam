@@ -29,7 +29,7 @@ install: [
 depends: [
   "ocaml"
   "coq" {>= "8.11" & < "8.13"}
-  "coq-compcert" {(= "3.7~coq_platform~open_source") | (= "3.7~coq_platform") | (= "3.7+8.12~coq_platform~open_source") | (= "3.7+8.12~coq_platform")}
+  "coq-compcert" {(= "3.7~coq-platform~open-source") | (= "3.7~coq-platform") | (= "3.7+8.12~coq_platform~open_source") | (= "3.7+8.12~coq_platform")}
   "coq-flocq" {>= "3.2.1"}
 ]
 tags: [
