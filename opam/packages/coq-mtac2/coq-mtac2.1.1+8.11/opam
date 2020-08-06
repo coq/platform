@@ -1,0 +1,24 @@
+opam-version: "2.0"
+maintainer: "beta.ziliani@gmail.com"
+homepage: "https://github.com/Mtac2/Mtac2"
+dev-repo: "git+https://github.com/Mtac2/Mtac2.git"
+bug-reports: "https://github.com/Mtac2/Mtac2/issues"
+authors: ["Beta Ziliani <beta.ziliani@gmail.com>" "Jan-Oliver Kaiser <janno@mpi-sws.org>" "Robbert Krebbers <mail@robbertkrebbers.nl>" "Yann Régis-Gianas <yrg@pps.univ-paris-diderot.fr>" "Derek Dreyer <dreyer@mpi-sws.org>"]
+license: "MIT"
+build: [
+  ["./configure.sh"]
+  [make "-j%{jobs}%"]
+]
+install: [
+  [make "install"]
+]
+depends: [
+  "ocaml"
+  "coq" {>= "8.11.0" & < "8.12~"}
+  "coq-unicoq" {>= "1.3~" & < "2~"}
+]
+synopsis: "Mtac2: Typed Tactics for Coq"
+url {
+  src: "https://github.com/Mtac2/Mtac2/archive/5d0b98344718216a6aea2f5bda53862554499811.tar.gz"
+  checksum: "sha512=2dcc246ca9a4d96088d78a4ba644615a3d937e8a7857a89d1c5d19bbf3e0254e117ae43fe6c66aedec5230904d4ec516ece225fe3a634d303d9cc5d0a3e30588"
+}

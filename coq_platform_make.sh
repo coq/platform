@@ -30,7 +30,7 @@ RMDIR_BEFORE_BUILD=1
 
 ###################### PARAMETER #####################
 
-OPAM_SWITCH_NAME=_coq-platform_.8.12.0.alpha2
+OPAM_SWITCH_NAME=_coq-platform_.8.11.2.alpha1
 
 ###################### ARCHITECTURES #####################
 
@@ -522,8 +522,6 @@ then
     opam switch create $OPAM_SWITCH_NAME 'ocaml-base-compiler.4.07.1'
   fi
   opam repo add coq-released "https://coq.inria.fr/opam/released" || true
-  opam repo add coq-core-dev "https://coq.inria.fr/opam/core-dev" || true
-  opam repo add coq-extra-dev "https://coq.inria.fr/opam/extra-dev" || true
   # This repo shall always be specific to this switch - if it exists, fail
   opam repo add "patch$OPAM_SWITCH_NAME" "file://$OPAMPACKAGES"
 else
@@ -607,7 +605,7 @@ unset ARCH
 
 # lablgtk3 3.1.1 does not link with flexlink
 opam pin lablgtk3 3.0.beta5
-opam pin coq 8.12.0
+opam pin coq 8.11.2
 opam install coqide
 
 opam install coq-bignums coq-equations menhir coq-coquelicot coq-flocq coq-interval coq-quickchick coq-ext-lib coq-aac-tactics
@@ -626,10 +624,11 @@ opam install \
   coq-mathcomp-finmap \
   coq-mathcomp-bigenough
 
-opam pin coq-menhirlib 20200624
-
-opam install coq-compcert.3.7+8.12~coq_platform~open_source
+opam install coq-compcert.3.7~coq-platform
 opam install coq-vst.2.6
 
-# 8.12 incompatible: coq-mtac2 coq-elpi coq-hierarchy-builder
+opam install coq-unicoq coq-mtac2
+
+# Build issues opam install coq-elpi coq-hierarchy-builder
+
 # Requires external tools gappa
