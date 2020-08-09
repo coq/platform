@@ -1,0 +1,66 @@
+From 670b368c226f52a2f660810083dbc13f0554dbd3 Mon Sep 17 00:00:00 2001
+From: Michael Soegtrop <7895506+MSoegtropIMC@users.noreply.github.com>
+Date: Sun, 26 Jul 2020 21:33:15 +0200
+Subject: [PATCH] Adjust make to cygwin mingw cross builds
+
+---
+ coq-menhirlib/src/Makefile     |  4 ++--
+ coq-menhirlib/src/Makefile.coq | 13 ++-----------
+ 2 files changed, 4 insertions(+), 13 deletions(-)
+
+diff --git a/coq-menhirlib/src/Makefile b/coq-menhirlib/src/Makefile
+index bb04f20f..2003662b 100644
+--- a/coq-menhirlib/src/Makefile
++++ b/coq-menhirlib/src/Makefile
+@@ -1,6 +1,6 @@
+ PWD := $(shell pwd)
+ 
+-COQINCLUDE := -R $(PWD) MenhirLib \
++COQINCLUDE := -R . MenhirLib \
+ 
+ export
+ 
+@@ -24,7 +24,7 @@ clean:
+ # A nonempty value can be used to perform a dummy installation
+ # in a different location.
+ 
+-CONTRIB := $(shell $(COQBIN)coqc -where)/user-contrib
++CONTRIB := $(shell $(COQBIN)coqc -where  | tr -d '\r' | tr '\\' '/')/user-contrib
+ TARGET  := $(DESTDIR)$(CONTRIB)/MenhirLib
+ 
+ install: all
+diff --git a/coq-menhirlib/src/Makefile.coq b/coq-menhirlib/src/Makefile.coq
+index c530fa91..f272c8ee 100644
+--- a/coq-menhirlib/src/Makefile.coq
++++ b/coq-menhirlib/src/Makefile.coq
+@@ -11,7 +11,7 @@ SHELL := /usr/bin/env bash
+ #
+ #
+ # This Makefile relies on the following variables:
+-# ROOTDIR    (default: `pwd`)
++# ROOTDIR    (default: .)
+ # COQBIN     (default: empty)
+ # COQINCLUDE (default: empty)
+ # VV         (default: *.v)
+@@ -22,17 +22,8 @@ SHELL := /usr/bin/env bash
+ # VERBOSE    (default: undefined)
+ #            (if defined, commands are displayed)
+ 
+-# We usually refer to the .v files using relative paths (such as Foo.v)
+-# but [coqdep -R] produces dependencies that refer to absolute paths
+-# (such as /bar/Foo.v). This confuses [make], which does not recognize
+-# that these files are the same. As a result, [make] does not respect
+-# the dependencies.
+-
+-# We fix this by using ABSOLUTE PATHS EVERYWHERE. The paths used in targets,
+-# in -R options, etc., must be absolute paths.
+-
+ ifndef ROOTDIR
+-	ROOTDIR := $(shell pwd)
++	ROOTDIR := .
+ endif
+ 
+ ifndef VV
+-- 
+2.27.0
+
