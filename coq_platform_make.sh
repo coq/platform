@@ -74,7 +74,7 @@ then
     BUILD=$(gcc -dumpmachine)
 
     # The OS on which the tool runs
-    # "`find /bin -name "*mingw32-gcc.exe"`" -dumpmachine
+    # $(find /bin -name "*mingw32-gcc.exe") -dumpmachine
     HOST=$TARGET_ARCH
 
     # The OS for which the tool creates code/for which the libs are
@@ -485,15 +485,6 @@ function make_arch_pkg_config {
   gcc -DARCH="$TARGET_ARCH" -o bin_special/pkg-config.exe $PATCHES/pkg-config.c
 }
 
-##### GTK-SOURCEVIEW3 #####
-
-# Note: the cygwin package is version 3.24.6.1 which has a severe bug in DLL_MAIN
-# Whenever a thread is closed, it deletes some global context objects which later leads to crashes
-
-function make_gtk_sourceview3 {
-  build_conf_make_inst  https://download.gnome.org/sources/gtksourceview/3.24  gtksourceview-3.24.11  tar.xz  make_arch_pkg_config
-}
-
 ###################### INSTALL OPAM #####################
 
 # Note: use help <builtin> to get information on bash builtin commands like "command"
@@ -536,7 +527,7 @@ else
   # Note: on some OSes 2.0.5 is the latest available version and I am not aware that this does not work.
   # The script is mostly tested with opam 2.0.7
   # See https://opam.ocaml.org/doc/Install.html
-  if [ $(ver $(opam --version)) -lt $(ver 2.0.5) ]
+  if [ $(version_to_number $(opam --version)) -lt $(version_to_number 2.0.5) ]
   then
     echo "Your installed opam version $(opam --version) is older than 2.0.5."
     echo "This version of opam is not supported."
@@ -651,13 +642,14 @@ then
   # On cygwin all prerequsites available from the package manager are installed upfront
   # ToDo: anyway install depext
   make_arch_pkg_config
-  make_gtk_sourceview3
 else
     echo "ERROR: unsopported OS type '$OSTYPE'"
     exit 1
 fi
 
 ###################### TOP LEVEL BUILD #####################
+
+echo "===== INSTALLING OPAM PACKAGES ====="
 
 ### Install opam packages ###
 
