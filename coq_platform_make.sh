@@ -21,9 +21,13 @@
 
 set -o nounset
 set -o errexit
-set -x
-# Print current wall time as part of the xtrace
-export PS4='+\t '
+
+if [ ! -z ${COQPLATFORM_VERBOSE+x} ]
+then
+  set -x
+  # Print current wall time as part of the xtrace
+  export PS4='+\t '
+fi
 
 # Set this to 1 if all module directories shall be removed before build (no incremental make)
 RMDIR_BEFORE_BUILD=1
@@ -220,6 +224,35 @@ else
 fi
 
 ###################### UTILITY FUNCTIONS #####################
+
+# ------------------------------------------------------------------------------
+# Convert a version string in A.B.C.D format to a comparable number
+# - the version string may have up to 4 components
+# - each component may have up to 2 digits
+#
+# Parameters
+# $1 version string
+# ------------------------------------------------------------------------------
+
+function version_to_number {
+  printf "%d%02d%02d%02d" $(echo "$1" | tr '.' ' ');
+}
+
+# ------------------------------------------------------------------------------
+# Check if a command is available
+#
+# Parameters
+# $1 command ro check for, e.g. gcc, clang, curl
+# ------------------------------------------------------------------------------
+
+function check_command_available {
+  if ! command -v "$1" &> /dev/null
+  then
+    echo "This script requires command '$1' to be installed."
+    echo "Please install this command manually using your system's package manager!"
+    exit 1
+  fi
+}
 
 # ------------------------------------------------------------------------------
 # Get a source tar ball, expand and patch it
@@ -470,12 +503,26 @@ then
   echo "===== INSTALLING OPAM ====="
   if [[ "$OSTYPE" == linux-gnu* ]]
   then
-    sudo apt-get install opam
+    # On Linux use the opam install script - Linux has too many variants.
+    check_command_available curl
+    sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
   elif [[ "$OSTYPE" == darwin* ]]
   then
-    sudo port install opam
+    # On macOS if a package manager is installed, use it - otherwise use the opam install script.
+    # The advantage of using a package manager is that opam is updated automatically.
+    if command -v port &> /dev/null
+    then
+      sudo port install opam
+    elif command -v brew &> /dev/null
+    then
+      brew install opam
+    else
+      check_command_available curl
+      sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
+    fi
   elif [[ "$OSTYPE" == cygwin ]]
   then
+    # Assume we want MinGW cross - this requires a special opam
     wget https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz
     tar -xf 'opam64.tar.xz'
     bash opam64/install.sh --prefix /usr/x86_64-w64-mingw32/sys-root/mingw
@@ -483,9 +530,21 @@ then
       echo "ERROR: unsopported OS type '$OSTYPE'"
       exit 1
   fi
-  echo "OPAM is now $(command -v opam)"
+  echo "OPAM is now $(command -v opam) with version $(opam --version)"
 else
-  echo "===== opam already installed ====="
+  echo "===== CHECKING VERSION OF INSTALLED OPAM ====="
+  # Note: on some OSes 2.0.5 is the latest available version and I am not aware that this does not work.
+  # The script is mostly tested with opam 2.0.7
+  # See https://opam.ocaml.org/doc/Install.html
+  if [ $(ver $(opam --version)) -lt $(ver 2.0.5) ]
+  then
+    echo "Your installed opam version $(opam --version) is older than 2.0.5."
+    echo "This version of opam is not supported."
+    echo "If you ininstall opam, this script will install the latest version."
+    exit 1
+  else
+    echo "Found opam $(opam --version) - good!"
+  fi
 fi
 
 which opam
