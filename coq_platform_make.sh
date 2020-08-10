@@ -166,8 +166,6 @@ then
     opam switch create $OPAM_SWITCH_NAME 'ocaml-base-compiler.4.07.1'
   fi
   opam repo add coq-released "https://coq.inria.fr/opam/released" || true
-  opam repo add coq-core-dev "https://coq.inria.fr/opam/core-dev" || true
-  opam repo add coq-extra-dev "https://coq.inria.fr/opam/extra-dev" || true
   # This repo shall always be specific to this switch - if it exists, fail
   opam repo add "patch$OPAM_SWITCH_NAME" "file://$OPAMPACKAGES"
 else
