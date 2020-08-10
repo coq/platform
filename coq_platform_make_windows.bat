@@ -8,7 +8,7 @@ REM Released to the public under the
 REM GNU Lesser General Public License Version 2.1 or later
 REM See https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
 
-REM Based on <coq>/dev/build/windows/coq_platform_cygwin_setup.bat
+REM Based on ^<coq^>/dev/build/windows/coq_platform_cygwin_setup.bat
 
 REM (C) 2016 Intel Deutschland GmbH
 REM Author: Michael Soegtrop
@@ -45,26 +45,24 @@ IF DEFINED HTTP_PROXY (
   SET "PROXY= "
 )
 
-REM see -cygrepo in ReadMe.txt
-SET CYGWIN_REPOSITORY=http://mirror.easyname.at/cygwin
+REM A Cygwin mirror - see https://cygwin.com/mirrors.html for choices
+REM THIS MUST NOT INCLUDE THE TRAILING /
+SET CYGWIN_REPOSITORY=https://mirrors.kernel.org/sourceware/cygwin
 
-REM see -cygcache in ReadMe.txt
+REM A local folder (in Windows path syntax) where cygwin packages are cached
 SET CYGWIN_LOCAL_CACHE_WFMT=%BATCHDIR%cygwin_cache
 
-REM see -cyglocal in ReadMe.txt
+REM If Y, install Cygwin as found in the cache - do not try to update from teh repo server
 SET CYGWIN_FROM_CACHE=N
 
-REM see -cygquiet in ReadMe.txt
+REM If Y, do an unattended installation of Cygwin
 SET CYGWIN_QUIET=Y
 
-REM see -cygforce in ReadMe.txt
+REM If Y, force run the cygwin setup - even if it appears to be installed already
 SET CYGWIN_FORCE=N
 
-REM see -srccache in ReadMe.txt
-SET SOURCECACHE=%BATCHDIR%source_cache
-
-REM see -threads in ReadMe.txt
-SET MAKE_THREADS=8
+REM If Y, automatically run the coq-platform setup after cygwin setup
+SET BUILD_COQ_PLATFORM=Y
 
 REM ========== PARSE COMMAND LINE PARAMETERS ==========
 
@@ -142,15 +140,9 @@ IF "%~0" == "-cygforce" (
   GOTO Parse
 )
 
-IF "%~0" == "-srccache" (
-  SET SOURCECACHE=%~1
-  SHIFT
-  SHIFT
-  GOTO Parse
-)
-
-IF "%~0" == "-threads" (
-  SET MAKE_THREADS=%~1
+IF "%~0" == "-build" (
+  SET BUILD_COQ_PLATFORM=%~1
+  CALL :CheckYN -build %~1 || GOTO ErrorExit
   SHIFT
   SHIFT
   GOTO Parse
@@ -186,16 +178,9 @@ REM CFMT = cygwin format (\cygdrive\c\..)  Used for Cygwin PATH variable, which 
 REM MFMT = MinGW format (C:/...)           Used for the build, because \\ requires escaping. Mingw can handle \ and /.
 
 SET CYGWIN_INSTALLDIR_MFMT=%CYGWIN_INSTALLDIR_WFMT:\=/%
-SET SOURCECACHE=%SOURCECACHE:\=/%
-
 SET CYGWIN_INSTALLDIR_CFMT=%CYGWIN_INSTALLDIR_MFMT:C:/=/cygdrive/c/%
-SET SOURCECACHE=%SOURCECACHE:C:/=/cygdrive/c/%
-
 SET CYGWIN_INSTALLDIR_CFMT=%CYGWIN_INSTALLDIR_CFMT:D:/=/cygdrive/d/%
-SET SOURCECACHE=%SOURCECACHE:D:/=/cygdrive/d/%
-
 SET CYGWIN_INSTALLDIR_CFMT=%CYGWIN_INSTALLDIR_CFMT:E:/=/cygdrive/e/%
-SET SOURCECACHE=%SOURCECACHE:E:/=/cygdrive/e/%
 
 ECHO CYGWIN INSTALL DIR (WIN)    = %CYGWIN_INSTALLDIR_WFMT%
 ECHO CYGWIN INSTALL DIR (MINGW)  = %CYGWIN_INSTALLDIR_MFMT%
@@ -293,24 +278,28 @@ REM PROFILEREAD (this is set to true if the /etc/profile has been read, which cr
 SET "HOME="
 SET "PROFILEREAD="
 
-copy "%BATCHDIR%\windows\coq_platform_configure_profile.sh" "%CYGWIN_INSTALLDIR_WFMT%\var\tmp" || GOTO ErrorExit
-%BASH% --login "%CYGWIN_INSTALLDIR_CFMT%\var\tmp\coq_platform_configure_profile.sh" "%PROXY%" || GOTO ErrorExit
+copy "%BATCHDIR%\windows\configure_profile.sh" "%CYGWIN_INSTALLDIR_WFMT%\var\tmp" || GOTO ErrorExit
+%BASH% --login "%CYGWIN_INSTALLDIR_CFMT%/var/tmp/configure_profile.sh" "%PROXY%" || GOTO ErrorExit
+
+REM Get cygwin user home folder as windows path
+REM Note: we don't write the full path from cygwin, because it is a bit dangerous if this fails.
+REM We want to prepend USER_HOME_DIR_MFMT here to be sure we stay in this folder.
+SET /p USER_HOME_DIR_CFMT=<"%CYGWIN_INSTALLDIR_WFMT%\var\tmp\main_user_folder.txt"
+SET USER_HOME_DIR_MFMT=%CYGWIN_INSTALLDIR_MFMT%%USER_HOME_DIR_CFMT%
+SET USER_HOME_DIR_WFMT=%USER_HOME_DIR_MFMT:/=\%
 
 ECHO ========== BUILD COQ PLATFORM ==========
 
-MKDIR "%CYGWIN_INSTALLDIR_WFMT%\build"
+IF "%BUILD_COQ_PLATFORM%" == "Y" (
+  RMDIR /S /Q "%USER_HOME_DIR_MFMT%/coq-platform"
+  MKDIR "%USER_HOME_DIR_MFMT%/coq-platform"
+  XCOPY /S "%BATCHDIR%*.*" "%USER_HOME_DIR_WFMT%\coq-platform" || GOTO ErrorExit
 
-RMDIR /S /Q "%CYGWIN_INSTALLDIR_WFMT%\build\patches"
-MKDIR "%CYGWIN_INSTALLDIR_WFMT%\build\patches"
-COPY "%BATCHDIR%\windows\patches\*.*" "%CYGWIN_INSTALLDIR_WFMT%\build\patches" || GOTO ErrorExit
+  %BASH% --login "%CYGWIN_INSTALLDIR_CFMT%/%USER_HOME_DIR_CFMT%/coq-platform/coq_platform_make.sh" || GOTO ErrorExit
 
-RMDIR /S /Q "%CYGWIN_INSTALLDIR_WFMT%\build\opam"
-MKDIR "%CYGWIN_INSTALLDIR_WFMT%\build\opam"
-XCOPY /S "%BATCHDIR%\opam\*.*" "%CYGWIN_INSTALLDIR_WFMT%\build\opam" || GOTO ErrorExit
-
-COPY "%BATCHDIR%\coq_platform_make.sh" "%CYGWIN_INSTALLDIR_WFMT%\build" || GOTO ErrorExit
-
-%BASH% --login "%CYGWIN_INSTALLDIR_CFMT%\build\coq_platform_make.sh" || GOTO ErrorExit
+) ELSE (
+  ECHO Note: Automatic Coq platform build has been disabled with -build=N
+)
 
 ECHO ========== FINISHED ==========
 
@@ -321,6 +310,7 @@ ECHO ========== BATCH FUNCTIONS ==========
 :PrintPars
   REM  01234567890123456789012345678901234567890123456789012345678901234567890123456789
   ECHO -arch     ^<32 or 64^> Set cygwin, ocaml and coq to 32 or 64 bit
+  ECHO -build    ^<Y or N^> build coq platform
   ECHO -destcyg  ^<path to cygwin destination folder^>
   ECHO -proxy    ^<internet proxy^>
   ECHO -cygrepo  ^<cygwin download repository^>
@@ -329,17 +319,15 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -cygquiet ^<Y or N^> install cygwin without user interaction
   ECHO -srccache ^<local source code repository/cache^>
   ECHO(
-  ECHO See ReadMe.txt for a detailed description of all parameters
-  ECHO(
   ECHO Parameter values (default or currently set):
   ECHO -arch     = %ARCH%
+  ECHO -build    = %BUILD_COQ_PLATFORM%
   ECHO -destcyg  = %DESTCYG%
   ECHO -proxy    = %PROXY%
   ECHO -cygrepo  = %CYGWIN_REPOSITORY%
   ECHO -cygcache = %CYGWIN_LOCAL_CACHE_WFMT%
   ECHO -cyglocal = %CYGWIN_FROM_CACHE%
   ECHO -cygquiet = %CYGWIN_QUIET%
-  ECHO -srccache = %SOURCECACHE%
   GOTO :EOF
 
 :CheckYN
@@ -356,5 +344,5 @@ ECHO ========== BATCH FUNCTIONS ==========
   GOTO :EOF
 
 :ErrorExit
-  ECHO ERROR coq_platform_cygwin_setup.bat failed
+  ECHO ERROR coq_platform_make_windows.bat failed
   EXIT /b 1
