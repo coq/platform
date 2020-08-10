@@ -1,0 +1,19 @@
+# cygwin replaced ARCH-pkg-config with a shell script, which doesn't work e.g. for dune on Windows.
+# This builds a binary replacement for the shell script and puts it into the opam switch bin folder.
+# Note: this buids a cygwin executable and needs cygwin gcc. Not sure what the conf package for this would be.
+
+opam-version: "2.0"
+maintainer: "7895506+MSoegtropIMC@users.noreply.github.com"
+authors: "Michael Soegtrop"
+bug-reports: "https://github.com/MSoegtropIMC/coq-platform/issues"
+homepage: "https://github.com/MSoegtropIMC/coq-platform/"
+license: "LGPL-2.1-or-later"
+extra-files: [
+  ["pkg-config.c" "sha512=ea257df4d4715f7a16437d1fc6cfc34d5db159d43089ba34efdcda7d27ed83026f5cb5b0f90e42942e81af7cb01484661596cf1132e777cb23b5f8adc200e52c"]
+]
+build: [
+  [ "gcc" "-DARCH=%{arch}%-w64-mingw32" "-o" "pkg-config.exe" "pkg-config.c" ]
+]
+install: [ "cp" "pkg-config.exe" bin ]
+synopsis: "A pkg-config executable for MinGW packages on cygwin hosts"
+available: os = "win32" & os-distribution = "cygwinports"

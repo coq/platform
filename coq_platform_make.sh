@@ -471,20 +471,6 @@ function build_conf_make_inst {
   fi
 }
 
-###################### MODULE BUILD FUNCTIONS #####################
-
-##### ARCH-pkg-config replacement #####
-
-# cygwin replaced ARCH-pkg-config with a shell script, which doesn't work e.g. for dune on Windows.
-# This builds a binary replacement for the shell script and puts it into the bin_special folder.
-# This action builds and buts pkg-config in ./bin_special.
-# This can be a local folder or a global folder.
-# PATH must be set manually accordingly.
-
-function make_arch_pkg_config {
-  gcc -DARCH="$TARGET_ARCH" -o bin_special/pkg-config.exe $PATCHES/pkg-config.c
-}
-
 ###################### INSTALL OPAM #####################
 
 # Note: use help <builtin> to get information on bash builtin commands like "command"
@@ -598,53 +584,47 @@ opam clean --switch-cleanup
 
 ###################### Update opam ######################
 
-# opam update platform_patch
-
 opam update
 
 ###################### PREREQUISITES #####################
 
 echo "===== INSTALLING PREREQUISITES ====="
-if [[ "$OSTYPE" == linux-gnu* ]] || [[ "$OSTYPE" == darwin* ]]
+
+# Install opam's extenral dependency manager depext
+opam install depext
+
+if [ "$OSTYPE" == cygwin ]
 then
-  # On these system we use opam depext to install dependencies
-  # install depext
-  opam install depext
-  # Note: for each depext package we check upfront if it is there - depext always tries to install it which needs sudo rights
-
-  # install pkg-config if it is not there
-  if ! command -v pkg-config &> /dev/null
-  then
-    opam depext conf-pkg-config
-  fi
-
-  # install gtk3 if not there
-  if ! pkg-config --short-errors --print-errors --atleast-version 3.18 gtk+-3.0
-  then
-    opam depext conf-gtk3
-  fi
-
-  # install gtksourceview3 if not there
-  if ! pkg-config --short-errors --print-errors gtksourceview-3.0
-  then
-    opam depext conf-gtksourceview3
-  fi
-
-  # install adwaita-icon-theme if not there
-  if ! pkg-config --short-errors --print-errors adwaita-icon-theme
-  then
-    opam depext conf-gnome-icon-theme3
-  fi
-
-  # sudo port install gtk-doc gtk3 +quartz gtksourceview3 +quartz adwaita-icon-theme
-elif [[ "$OSTYPE" == cygwin ]]
-then
-  # On cygwin all prerequsites available from the package manager are installed upfront
-  # ToDo: anyway install depext
-  make_arch_pkg_config
+  # This is an executable replacement for the cygwin pkg-config shell script
+  opam install dep-pkg-config-mingw
 else
-    echo "ERROR: unsopported OS type '$OSTYPE'"
-    exit 1
+
+# Note: for each depext package we check upfront if it is there.
+# This has the advantage that all stuff requring sudo is at the begining.
+# Usually running one sudo command upfront is enough to keep the password for 15 minutes.
+
+# install pkg-config if it is not there
+if ! command -v pkg-config &> /dev/null
+then
+  opam depext conf-pkg-config
+fi
+
+# install gtk3 if not there
+if ! pkg-config --short-errors --print-errors --atleast-version 3.18 gtk+-3.0
+then
+  opam depext conf-gtk3
+fi
+
+# install gtksourceview3 if not there
+if ! pkg-config --short-errors --print-errors gtksourceview-3.0
+then
+  opam depext conf-gtksourceview3
+fi
+
+# install adwaita-icon-theme if not there
+if ! pkg-config --short-errors --print-errors adwaita-icon-theme
+then
+  opam depext conf-gnome-icon-theme3
 fi
 
 ###################### TOP LEVEL BUILD #####################
