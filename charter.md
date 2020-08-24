@@ -62,7 +62,7 @@ The initial time frame is set to 1 to 3 months after a major Coq release. This t
 
 There shall be some coupling between the Coq major release cycle and the Coq platform major release cycle. However, the frequency of intermediate (minor) releases is still to be determined. What kind of package updates to include in minor platform releases is still to be determined. The versionning scheme is also still undecided and might depend on the other choices regarding the release cycle.
 
-### Quality constrainsts for included packages
+### Quality constraints for included packages
 
 For now, we haven't set any quality constraints beyond the fact that the packages are sufficiently used and stable. But other constraints, such as the existence of complete documentation, might be set in the future.
 
