@@ -44,6 +44,8 @@ Here are the different categories of expected stakeholders for the Coq platform:
 
 - The author(s) or current maintainer(s) of the package shall agree to the inclusion of their package in the Coq platform. This means that they agree to put reasonable effort into releasing a version of the package compatible with each new Coq release shortly after every Coq release and to maintain some relative stability between each release. The agreement of the authors is given via a comment in the respective github issue.
 
+- All the dependencies of a platform package are also officially part of the platform. This means in particular that, apart from dependencies that are outside the Coq ecosystem and are well-known to be stable and well supported, the maintainers of the dependencies should also agree to the inclusion in the platform and commit to keep producing new compatible releases which are relatively stable. As part of the stability committment, maintainers should refrain from adding new dependencies that are not already part of the platform without raising the question with the platform maintainers.
+
 ## Package exclusion process
 
 - The exclusion of a package shall be a rare event.
