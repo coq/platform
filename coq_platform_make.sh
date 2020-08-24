@@ -25,7 +25,7 @@ RMDIR_BEFORE_BUILD=1
 
 ###################### PARAMETER #####################
 
-OPAM_SWITCH_NAME=_coq-platform_.8.12.0.alpha3test
+OPAM_SWITCH_NAME=_coq-platform_.8.12.0.alpha3
 
 ###################### PATHS #####################
 
@@ -254,6 +254,7 @@ PACKAGES="${PACKAGES} coq-elpi.1.5.1 elpi.1.11.4"
 PACKAGES="${PACKAGES} coq-equations.1.2.3+8.12"
 PACKAGES="${PACKAGES} coq-ext-lib.0.11.2"
 PACKAGES="${PACKAGES} coq-flocq.3.3.1"
+PACKAGES="${PACKAGES} coq-gappa.1.4.4 gappa.1.3.5"
 PACKAGES="${PACKAGES} coq-interval.4.0.0"
 PACKAGES="${PACKAGES} coq-hierarchy-builder.0.10.0"
 PACKAGES="${PACKAGES} coq-menhirlib.20200624 menhir.20200624"
@@ -295,4 +296,3 @@ unset ARCH
 opam install ${PACKAGES}
 
 # 8.12 incompatible: coq-mtac2
-# Requires external tools gappa
