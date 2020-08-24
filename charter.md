@@ -72,6 +72,10 @@ For now, we haven't set any quality constraints beyond the fact that the package
 
 For now, we haven't yet decided whether packages under non-open source licenses (such as CompCert's academic license) will be accepted in the platform. We could even consider imposing some additional reusability criteria for Coq libraries.
 
+### OCaml compatibility
+
+There should be a clear policy on which OCaml versions must be supported by Coq plugins and tools. The easiest solution for platform maintainers would be to support all OCaml versions that Coq itself supports. However, this should be discussed with package maintainers, who can have a need for more recent OCaml versions.
+
 ### Several tiers
 
 If it turns out that it would help providing timely releases or solving the licensing questions raised above, we might decide to provide several tiers of the Coq platform. For instance, we could provide both a core Coq platform that would be released only weeks after a Coq release and provide a basic set of Coq packages with strict inclusion criteria, and an extended Coq platform that would be released months after and provide a larger set of packages with more lax inclusion criteria. If we were to provide several tiers, the naming scheme for those is still to be determined.
