@@ -25,7 +25,7 @@ RMDIR_BEFORE_BUILD=1
 
 ###################### PARAMETER #####################
 
-OPAM_SWITCH_NAME=_coq-platform_.8.12.0.alpha3
+OPAM_SWITCH_NAME=_coq-platform_.8.12.0.alpha3test
 
 ###################### PATHS #####################
 
@@ -232,40 +232,67 @@ then
   opam depext conf-gnome-icon-theme3
 fi
 
+###################### PACKAGE SELECTION #####################
+
+# Uncomment packages you do not want
+
+echo "===== SELECT OPAM PACKAGES ====="
+
+PACKAGES=""
+
+PACKAGES="${PACKAGES} coq.8.12.0"
+
+# GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
+# Note: lablgtk3 3.1.1 does not link with flexlink on MinGW
+PACKAGES="${PACKAGES} coqide.8.12.0 lablgtk3.3.0.beta5"
+
+# Some generally useful quick to compile packages
+PACKAGES="${PACKAGES} coq-aac-tactics.8.12.0"
+PACKAGES="${PACKAGES} coq-bignums.8.12.0"
+PACKAGES="${PACKAGES} coq-coquelicot.3.1.0"
+PACKAGES="${PACKAGES} coq-elpi.1.5.1 elpi.1.11.4"
+PACKAGES="${PACKAGES} coq-equations.1.2.3+8.12"
+PACKAGES="${PACKAGES} coq-ext-lib.0.11.2"
+PACKAGES="${PACKAGES} coq-flocq.3.3.1"
+PACKAGES="${PACKAGES} coq-interval.4.0.0"
+PACKAGES="${PACKAGES} coq-hierarchy-builder.0.10.0"
+PACKAGES="${PACKAGES} coq-menhirlib.20200624 menhir.20200624"
+PACKAGES="${PACKAGES} coq-quickchick.1.4.0"
+
+# The standard set of mathcomp modules
+PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.11.0"
+PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.11.0"
+PACKAGES="${PACKAGES} coq-mathcomp-character.1.11.0"
+PACKAGES="${PACKAGES} coq-mathcomp-field.1.11.0"
+PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.11.0"
+PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.11.0"
+# Plus two generally useful eextensions and their dependency
+PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.1"
+PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.0"
+PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.0"
+
+# CompCert and Princeton VST
+# These take longer to compile !
+if [ ! -z ${COQPLATFORM_NONOPEN+x} ]
+then
+  # Todo: there is no mutex between coq platform and coq platform open source
+  PACKAGES="${PACKAGES} coq-compcert.3.7+8.12~coq_platform"
+else
+  PACKAGES="${PACKAGES} coq-compcert.3.7+8.12~coq_platform~open_source"
+fi
+PACKAGES="${PACKAGES} coq-vst.2.6"
+
 ###################### TOP LEVEL BUILD #####################
 
 echo "===== INSTALL OPAM PACKAGES ====="
 
-### Install opam packages ###
-
 # This conflicts with the use of variables e.g. in VST
 unset ARCH
 
-# lablgtk3 3.1.1 does not link with flexlink
-opam pin lablgtk3 3.0.beta5
-opam pin coq 8.12.0
-opam install coqide
+# Note: it is more efficient to install all modules in parallel
+# opam can then make best use of parallelism
+# In case you run into memory issues, it is better to do this sequentially
+opam install ${PACKAGES}
 
-opam install coq-bignums coq-equations menhir coq-coquelicot coq-flocq coq-interval coq-quickchick coq-ext-lib coq-aac-tactics
-
-# The standard set of mathcomp modules
-# Plus two generally useful eextensions and their dependency
-opam pin coq-mathcomp-ssreflect 1.11.0
-opam install \
-  coq-mathcomp-algebra \
-  coq-mathcomp-character \
-  coq-mathcomp-field \
-  coq-mathcomp-fingroup \
-  coq-mathcomp-solvable \
-  \
-  coq-mathcomp-real-closed \
-  coq-mathcomp-finmap \
-  coq-mathcomp-bigenough
-
-opam pin coq-menhirlib 20200624
-
-opam install coq-compcert.3.7+8.12~coq_platform~open_source
-opam install coq-vst.2.6
-
-# 8.12 incompatible: coq-mtac2 coq-elpi coq-hierarchy-builder
+# 8.12 incompatible: coq-mtac2
 # Requires external tools gappa
