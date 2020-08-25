@@ -1,17 +1,12 @@
-# Opam packages
+# Script
 
-- coq-ext-lib is taken from dev
+ask for parallel vs sequential build
 
-ToDo: add patch for coq-ext-lib and/or upstream opam package
-ToDo: remove extra-dev repo
+ask for open source versus full compcert
 
-# OSX
+# License
 
-- The setup expects that MacPorts is installed - it is used for the installation or prerequisites
-- Even if prerequisites are installed, the script runs a sudo command to install them (this does nothing if they are installed)
-
-ToDo: check the availability of libraries in a MacPorts / homebrew independent way, e.g. pkg-config and don't try to install them if they exist
-ToDo: try with an empty port if all prerequisites are installed
+Change license to something more permissive
 
 # Windows
 
