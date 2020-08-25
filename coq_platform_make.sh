@@ -238,9 +238,7 @@ fi
 
 echo "===== SELECT OPAM PACKAGES ====="
 
-PACKAGES=""
-
-PACKAGES="${PACKAGES} coq.8.12.0"
+PACKAGES="coq.8.12.0"
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 # Note: lablgtk3 3.1.1 does not link with flexlink on MinGW
@@ -255,10 +253,12 @@ PACKAGES="${PACKAGES} coq-equations.1.2.3+8.12"
 PACKAGES="${PACKAGES} coq-ext-lib.0.11.2"
 PACKAGES="${PACKAGES} coq-flocq.3.3.1"
 PACKAGES="${PACKAGES} coq-gappa.1.4.4 gappa.1.3.5"
-PACKAGES="${PACKAGES} coq-interval.4.0.0"
 PACKAGES="${PACKAGES} coq-hierarchy-builder.0.10.0"
+PACKAGES="${PACKAGES} coq-interval.4.0.0"
 PACKAGES="${PACKAGES} coq-menhirlib.20200624 menhir.20200624"
+PACKAGES="${PACKAGES} coq-mtac2.1.3+8.12"
 PACKAGES="${PACKAGES} coq-quickchick.1.4.0"
+PACKAGES="${PACKAGES} coq-unicoq.1.5+8.12"
 
 # The standard set of mathcomp modules
 PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.11.0"
@@ -282,6 +282,9 @@ else
   PACKAGES="${PACKAGES} coq-compcert.3.7+8.12~coq_platform~open_source"
 fi
 PACKAGES="${PACKAGES} coq-vst.2.6"
+
+# Note: there is some experimental evidence that the package given last is tried to build first
+# (after its dependencies). Since VST takes longest, give it last.
 
 ###################### TOP LEVEL BUILD #####################
 
