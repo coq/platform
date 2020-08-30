@@ -1,9 +1,5 @@
 # Script
 
-ask for parallel vs sequential build
-
-ask for open source versus full compcert
-
 # Test
 
 add a script to download recent versions of test files for all provided libraries / plugins.

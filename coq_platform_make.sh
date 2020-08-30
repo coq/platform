@@ -25,7 +25,8 @@ RMDIR_BEFORE_BUILD=1
 
 ###################### PARAMETER #####################
 
-OPAM_SWITCH_NAME=_coq-platform_.8.12.0.alpha3
+COQ_PLATFORM_VERSION=8.12.0.alpha3
+COQ_PLATFORM_SWITCH_NAME=_coq-platform_.$COQ_PLATFORM_VERSION
 
 ###################### PATHS #####################
 
@@ -69,6 +70,203 @@ function check_command_available {
     exit 1
   fi
 }
+
+# ------------------------------------------------------------------------------
+# Ask a y/cacnel question
+#
+# $1 message
+# ------------------------------------------------------------------------------
+
+function ask_user_yes_cancel {
+  while true; do
+    read -p "$1 (y/c + enter) " answer
+    case $answer in
+        [Yy]* ) ANSWER=Y; return 0 ;;
+        [Cc]* ) exit 1 ;;
+        * ) echo "Please answer 'y' or 'c' to cancel/exit.";;
+    esac
+  done
+}
+
+# ------------------------------------------------------------------------------
+# Ask a y/n/cancel question
+#
+# $1 message
+# ------------------------------------------------------------------------------
+
+function ask_user_yes_no_cancel {
+  while true; do
+    read -p "$1 (y/n/c + enter) " answer
+    case $answer in
+        [Yy]* ) ANSWER=Y; return 0 ;;
+        [Nn]* ) ANSWER=N; return 0 ;;
+        [Cc]* ) exit 1 ;;
+        * ) echo "Please answer 'y' or 'n' or 'c' to cancel/exit.";;
+    esac
+  done
+}
+
+# ------------------------------------------------------------------------------
+# Ask for a number
+#
+# $1 message
+# $2 lower
+# $3 upper
+# ------------------------------------------------------------------------------
+
+function ask_user_mumber {
+  while true; do
+    read -p "$1 (number in $2..$3) " answer
+    if [ "$2" -le "$answer" ] && [ "$answer" -le "$3" ]
+    then
+      ANSWER="$answer"
+      return 0
+    else
+      "Please enter a number between $2 and $3"
+    fi
+  done
+}
+
+# ------------------------------------------------------------------------------
+# Determine the total and available RAM in kbyte
+#
+# results are stored in MEM_TOTAL and MEM_AVAIL
+# ------------------------------------------------------------------------------
+
+function get_memory_info {
+  if [[ "$OSTYPE" == linux-gnu* ]]
+  then
+      echo "TODO: unimplemented"
+    exit 1
+  elif [[ "$OSTYPE" == darwin* ]]
+  then
+    MEM_TOTAL=$(echo $(sysctl hw.memsize | awk '{print $2}') / 1024 | bc)
+    MEM_AVAIL=$(echo '(' $(sysctl vm.page_free_count | awk '{print $2}') '+' $(sysctl vm.page_speculative_count | awk '{print $2}') ') * 4' | bc)
+  elif [[ "$OSTYPE" == cygwin ]]
+  then
+      echo "TODO: unimplemented"
+    exit 1
+  else
+      echo "ERROR: unsopported OS type '$OSTYPE'"
+      exit 1
+  fi
+}
+
+###################### User choices #####################
+
+# NOTE: These choices can be skipped by setting the environment variables
+
+# introduction
+
+if [ ! "${COQ_PLATFORM_INTRO:-Y}" = "N" ]
+then
+cat <<EOH
+============================== 1/3 INTRODUCTION ==============================
+This script installs the Coq platform version $COQ_PLATFORM_VERSION, that is:
+
+- the Coq compiler and Coq's standard library
+- CoqIDE, a GTK3 based graphical user interface
+- various widely used libraries and plugins
+
+The script uses opam, the OCaml package manager, to do all the work.
+In case opam is not yet installed, it will install opam.
+A new opam switch named $COQ_PLATFORM_SWITCH_NAME will be created.
+
+The script compiles everything from sources, which might takes less than one
+hour on a fast machine with lot's of RAM, or several hours with little RAM.
+
+The script is tested on these platforms:
+- Windows 10 with cygwin installed by coq_platform_make_windows.bat
+- macOS Catalina 10.15.4
+- Ubuntu 18.04 LTS
+In case you have issues, please report a bug at:
+https://github.com/MSoegtropIMC/coq-platform/issues
+============================== 1/3 INTRODUCTION ==============================
+EOH
+ask_user_yes_cancel "Continue with compiling and installing the Coq platform?"
+fi
+
+# parallel or sequential build
+
+if [ -z "${COQ_PLATFORM_PARALLEL:+x}" ]
+then
+cat <<EOH
+============================= 2/3 PARALLEL BUILD =============================
+The Coq platform opam build has two levels of parallelism:
+
+- parallel build of (independent) opam packages
+- parallel build inside the make of each opam package
+
+Since a single coqc call can take more than 1 GB of RAM and since the two
+above kinds of parallelism multiply, the total amount of memory can be large.
+But it is not as bad as one might expect: test show that a full parallel
+build takes less than 14GB of RAM with 15 parallel make jobs.
+
+With 32 GB or RAM a parallel package build with 16 make jobs is recommended.
+With 16 GB of RAM a parallel package build with 4 make jobs is recommended.
+With 8 GB of RAM a sequential package build with 4 make jobs is recommended.
+With 4 GB+1GB swap a sequential packahge build with 1 make job is recommended.
+With less RAM, you might have to remove failing packages, e.g. VST.
+In order to remove packages, just edit this script at "PACKAGE SELECTION".
+
+In case these recommendations don't work for you, please report an issue at:
+https://github.com/MSoegtropIMC/coq-platform/issues
+============================= 2/3 PARALLEL BUILD =============================
+EOH
+  ask_user_yes_no_cancel "Build opam packages parallel (y) or sequential (n)?"
+  COQ_PLATFORM_PARALLEL=$ANSWER
+  ask_user_mumber "Number of parallel make jobs" 1 16
+  COQ_PLATFORM_PARALLEL_JOBS=$ANSWER
+fi
+
+# CompCert open source or full
+
+if [ -z "${COQ_PLATFORM_COMPCERT_FULL:+x}" ]
+then
+cat <<EOH
+================================ 3/3 COMPCERT ================================
+The Coq platform installs the formally verified C compiler CompCert.
+
+CompCert is *not* free / open source software, but may be used for research and
+evaluation purposes. Please clarify the license at:
+
+https://github.com/AbsInt/CompCert/blob/master/LICENSE
+
+Parts of CompCert are required for the Princeton C verification tool VST.
+Some parts of CompCert are open source and for exploring or learning VST
+using the supplied example programs, this open source part is sufficient.
+If you want to use VST with your own C code, you need the non open source
+variant of CompCert. before you install the full version of CompCert,
+please make sure that your intended usage conforms to the above license.
+
+You can also change this later using opam commands.
+================================ 3/3 COMPCERT ================================
+EOH
+  ask_user_yes_no_cancel "Install full (y) or open source (n) version of CompCert?"
+  COQ_PLATFORM_COMPCERT_FULL=$ANSWER
+fi
+
+# Delete opam switch
+
+if command -v opam &> /dev/null && opam switch $COQ_PLATFORM_SWITCH_NAME >/dev/null 2>&1
+then
+cat <<EOH
+================================ OPAM SWITCH =================================
+The Coq platform creates the opam switch $COQ_PLATFORM_SWITCH_NAME.
+
+Apparently this switch already exists. It is recommended to delete the switch,
+so that you get a clean and well defined result.
+
+For incremental builds after a failure, e.g. cause of RAM size issues, it is
+no problem to keep the switch.
+================================ OPAM SWITCH =================================
+EOH
+  ask_user_yes_no_cancel "Shall the existing switch be kept (y) or deleted (n) ?"
+  if $ANSWER == N
+  then
+    opam switch remove $COQ_PLATFORM_SWITCH_NAME
+  fi
+fi
 
 ###################### INSTALL OPAM #####################
 
@@ -146,26 +344,26 @@ fi
 
 ###################### CREATE OPAM SWITCH #####################
 
-if ! opam switch $OPAM_SWITCH_NAME 2>/dev/null
+if ! opam switch $COQ_PLATFORM_SWITCH_NAME 2>/dev/null
 then
   echo "===== CREATE OPAM SWITCH ====="
   if [[ "$OSTYPE" == cygwin ]]
   then
-    opam switch create $OPAM_SWITCH_NAME 'ocaml-variants.4.07.1+mingw64c'
+    opam switch create $COQ_PLATFORM_SWITCH_NAME 'ocaml-variants.4.07.1+mingw64c'
     opam repo add default-nowin "https://github.com/ocaml/opam-repository.git" --rank 2 
   else
-    opam switch create $OPAM_SWITCH_NAME 'ocaml-base-compiler.4.07.1'
+    opam switch create $COQ_PLATFORM_SWITCH_NAME 'ocaml-base-compiler.4.07.1'
   fi
   opam repo add coq-released "https://coq.inria.fr/opam/released" || true
   # This repo shall always be specific to this switch - if it exists, fail
-  opam repo add "patch$OPAM_SWITCH_NAME" "file://$OPAMPACKAGES"
+  opam repo add "patch$COQ_PLATFORM_SWITCH_NAME" "file://$OPAMPACKAGES"
 else
   echo "===== opam switch already exists ====="
 fi
 
 ###################### SELECT OPAM SWITCH #####################
 
-opam switch $OPAM_SWITCH_NAME
+opam switch $COQ_PLATFORM_SWITCH_NAME
 eval $(opam env)
 
 echo === OPAM REPOSITORIES ===
@@ -188,7 +386,7 @@ then
   opam update
   touch "$HOME/.opam_update_timestamp"
 else
-  opam update "patch$OPAM_SWITCH_NAME"
+  opam update "patch$COQ_PLATFORM_SWITCH_NAME"
 fi
 
 ###################### PREREQUISITES #####################
@@ -274,7 +472,7 @@ PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.0"
 
 # CompCert and Princeton VST
 # These take longer to compile !
-if [ ! -z ${COQPLATFORM_NONOPEN+x} ]
+if [ "$COQ_PLATFORM_COMPCERT_FULL" == "Y" ]
 then
   # Todo: there is no mutex between coq platform and coq platform open source
   PACKAGES="${PACKAGES} coq-compcert.3.7+8.12~coq_platform"
@@ -288,14 +486,20 @@ PACKAGES="${PACKAGES} coq-vst.2.6"
 
 ###################### TOP LEVEL BUILD #####################
 
-echo "===== INSTALL OPAM PACKAGES ====="
-
 # This conflicts with the use of variables e.g. in VST
 unset ARCH
 
-# Note: it is more efficient to install all modules in parallel
-# opam can then make best use of parallelism
-# In case you run into memory issues, it is better to do this sequentially
-opam install ${PACKAGES}
+opam config set jobs $COQ_PLATFORM_PARALLEL_JOBS
 
-# 8.12 incompatible: coq-mtac2
+if [ "$COQ_PLATFORM_PARALLEL" == "Y" ]
+then
+  echo "===== INSTALL OPAM PACKAGES (PARALLEL) ====="
+  opam install ${PACKAGES}
+else
+  echo "===== INSTALL OPAM PACKAGES (SEQUENTIAL) ====="
+  for package in ${PACKAGES}
+  do
+    opam install ${package}
+  done
+fi
+
