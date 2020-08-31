@@ -52,6 +52,11 @@ else
   OPAMPACKAGES="$SCRIPTDIR/opam"
 fi
 
+###################### OPAM SETTINGS #####################
+
+export OPAMYES=yes
+export OPAMCOLOR=never
+
 ###################### UTILITY FUNCTIONS #####################
 
 # ------------------------------------------------------------------------------
@@ -274,7 +279,7 @@ no problem to keep the switch.
 ================================ OPAM SWITCH =================================
 EOH
   ask_user_yes_no_cancel "Shall the existing switch be kept (y) or deleted (n) ?"
-  if $ANSWER == N
+  if [ $ANSWER == N ]
   then
     opam switch remove $COQ_PLATFORM_SWITCH_NAME
   fi
@@ -336,9 +341,6 @@ fi
 which opam
 
 ###################### INITIALIZE OPAM #####################
-
-export OPAMYES=yes
-export OPAMCOLOR=never
 
 if ! opam var root &> /dev/null
 then
