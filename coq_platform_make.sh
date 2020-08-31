@@ -13,11 +13,23 @@
 set -o nounset
 set -o errexit
 
-if [ ! -z ${COQPLATFORM_VERBOSE+x} ]
+if [ ! -z ${COQ_PLATFORM_VERBOSE+x} ]
 then
   set -x
   # Print current wall time as part of the xtrace
   export PS4='+\t '
+  # Set command to time opam commands
+  if [[ "$OSTYPE" == linux-gnu* ]]
+  then
+    COQ_PLATFORM_TIME="/usr/bin/time -v"
+  elif [[ "$OSTYPE" == darwin* ]]
+  then
+    COQ_PLATFORM_TIME="/usr/bin/time -l"
+  else
+    COQ_PLATFORM_TIME=""
+  fi
+else
+  COQ_PLATFORM_TIME=""
 fi
 
 # Set this to 1 if all module directories shall be removed before build (no incremental make)
@@ -349,14 +361,14 @@ then
   echo "===== CREATE OPAM SWITCH ====="
   if [[ "$OSTYPE" == cygwin ]]
   then
-    opam switch create $COQ_PLATFORM_SWITCH_NAME 'ocaml-variants.4.07.1+mingw64c'
-    opam repo add default-nowin "https://github.com/ocaml/opam-repository.git" --rank 2 
+    $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME 'ocaml-variants.4.07.1+mingw64c'
+    $COQ_PLATFORM_TIME opam repo add default-nowin "https://github.com/ocaml/opam-repository.git" --rank 2 
   else
-    opam switch create $COQ_PLATFORM_SWITCH_NAME 'ocaml-base-compiler.4.07.1'
+    $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME 'ocaml-base-compiler.4.07.1'
   fi
-  opam repo add coq-released "https://coq.inria.fr/opam/released" || true
+  $COQ_PLATFORM_TIME opam repo add coq-released "https://coq.inria.fr/opam/released" || true
   # This repo shall always be specific to this switch - if it exists, fail
-  opam repo add "patch$COQ_PLATFORM_SWITCH_NAME" "file://$OPAMPACKAGES"
+  $COQ_PLATFORM_TIME opam repo add "patch$COQ_PLATFORM_SWITCH_NAME" "file://$OPAMPACKAGES"
 else
   echo "===== opam switch already exists ====="
 fi
@@ -383,10 +395,10 @@ echo "===== UPDATE OPAM REPOSITORIES ====="
 
 if [ ! -f "$HOME/.opam_update_timestamp" ] || [ $(find "$HOME/.opam_update_timestamp" -mmin +60 -print) ]
 then
-  opam update
+  $COQ_PLATFORM_TIME opam update
   touch "$HOME/.opam_update_timestamp"
 else
-  opam update "patch$COQ_PLATFORM_SWITCH_NAME"
+  $COQ_PLATFORM_TIME opam update "patch$COQ_PLATFORM_SWITCH_NAME"
 fi
 
 ###################### PREREQUISITES #####################
@@ -394,12 +406,12 @@ fi
 echo "===== INSTALL PREREQUISITES ====="
 
 # Install opam's extenral dependency manager depext
-opam install depext
+$COQ_PLATFORM_TIME opam install depext
 
 if [ "$OSTYPE" == cygwin ]
 then
   # This is an executable replacement for the cygwin pkg-config shell script
-  opam install dep-pkg-config-mingw
+  $COQ_PLATFORM_TIME opam install dep-pkg-config-mingw
 fi
 
 # Note: for each depext package we check upfront if it is there.
@@ -409,25 +421,25 @@ fi
 # install pkg-config if it is not there
 if ! command -v pkg-config &> /dev/null
 then
-  opam depext conf-pkg-config
+  $COQ_PLATFORM_TIME opam depext conf-pkg-config
 fi
 
 # install gtk3 if not there
 if ! pkg-config --short-errors --print-errors --atleast-version 3.18 gtk+-3.0
 then
-  opam depext conf-gtk3
+  $COQ_PLATFORM_TIME opam depext conf-gtk3
 fi
 
 # install gtksourceview3 if not there
 if ! pkg-config --short-errors --print-errors gtksourceview-3.0
 then
-  opam depext conf-gtksourceview3
+  $COQ_PLATFORM_TIME opam depext conf-gtksourceview3
 fi
 
 # install adwaita-icon-theme if not there
 if ! pkg-config --short-errors --print-errors adwaita-icon-theme
 then
-  opam depext conf-gnome-icon-theme3
+  $COQ_PLATFORM_TIME opam depext conf-gnome-icon-theme3
 fi
 
 ###################### PACKAGE SELECTION #####################
@@ -494,12 +506,12 @@ opam config set jobs $COQ_PLATFORM_PARALLEL_JOBS
 if [ "$COQ_PLATFORM_PARALLEL" == "Y" ]
 then
   echo "===== INSTALL OPAM PACKAGES (PARALLEL) ====="
-  opam install ${PACKAGES}
+  $COQ_PLATFORM_TIME opam install ${PACKAGES}
 else
   echo "===== INSTALL OPAM PACKAGES (SEQUENTIAL) ====="
   for package in ${PACKAGES}
   do
-    opam install ${package}
+    $COQ_PLATFORM_TIME opam install ${package}
   done
 fi
 
