@@ -426,22 +426,30 @@ then
   $COQ_PLATFORM_TIME opam depext conf-pkg-config
 fi
 
-# install gtk3 if not there
+# install gtk3 if not there (CoqIDE)
 if ! pkg-config --short-errors --print-errors --atleast-version 3.18 gtk+-3.0
 then
   $COQ_PLATFORM_TIME opam depext conf-gtk3
 fi
 
-# install gtksourceview3 if not there
+# install gtksourceview3 if not there (CoqIDE)
 if ! pkg-config --short-errors --print-errors gtksourceview-3.0
 then
   $COQ_PLATFORM_TIME opam depext conf-gtksourceview3
 fi
 
-# install adwaita-icon-theme if not there
+# install adwaita-icon-theme if not there (CoqIDE)
 if ! pkg-config --short-errors --print-errors adwaita-icon-theme
 then
   $COQ_PLATFORM_TIME opam depext conf-gnome-icon-theme3
+fi
+
+# install GMP, MPFR, BOOST if not there (gappa)
+# Note: There is no easy way to check if boost is installed, so check if gappa itself is installed.
+#       If the script is run again, this should be a sufficient test.
+if [ $(opam var "gappa:installed") == "false" ]
+then
+  opam depext gappa
 fi
 
 ###################### PACKAGE SELECTION #####################
