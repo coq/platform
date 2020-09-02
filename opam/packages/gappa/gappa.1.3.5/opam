@@ -25,6 +25,8 @@ depends: [
   "conf-gmp"
   "conf-mpfr"
   "conf-boost"
+  "conf-bison"
+  "conf-flex"
 ]
 synopsis: "Tool intended for formally proving properties on numerical programs dealing with floating-point or fixed-point arithmetic"
 url {
