@@ -5,17 +5,8 @@
 # (C) 2020 Michael Soegtrop
 
 # Released to the public under the
-# GNU Lesser General Public License Version 2.1 or later
-# See https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
-
-# Based on <coq>/dev/build/windows/makecoq_mingw.sh
-
-# (C) 2016..2018 Intel Deutschland GmbH
-# Author: Michael Soegtrop
-#
-# Released to the public by Intel under the
-# GNU Lesser General Public License Version 2.1 or later
-# See https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+# Creative Commons CC0 1.0 Universal License
+# See https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt
 
 ###################### Script safety and debugging settings ######################
 

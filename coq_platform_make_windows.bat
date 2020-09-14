@@ -5,17 +5,8 @@ REM ========== COPYRIGHT/COPYLEFT ==========
 REM (C) 2020 Michael Soegtrop
 
 REM Released to the public under the
-REM GNU Lesser General Public License Version 2.1 or later
-REM See https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
-
-REM Based on ^<coq^>/dev/build/windows/coq_platform_cygwin_setup.bat
-
-REM (C) 2016 Intel Deutschland GmbH
-REM Author: Michael Soegtrop
-
-REM Released to the public by Intel under the
-REM GNU Lesser General Public License Version 2.1 or later
-REM See https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+REM Creative Commons CC0 1.0 Universal License
+REM See https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt
 
 REM ========== NOTES ==========
 
