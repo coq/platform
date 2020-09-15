@@ -41,13 +41,13 @@ then
 			Please restart the script after you installed either MacPorts or Homebrew.
 			======================= MacPorts or HomeBrew required! =======================
 			EOH
-		exit 1
+		return 1
 	fi
 
 elif [[ "$OSTYPE" == cygwin ]]
 then
 
-	if [ "${COQ_PLATFORM_CYGWIN_OK:+N}" != "Y" ]
+	if [ "${COQ_PLATFORM_CYGWIN_OK:-N}" != "Y" ]
 	then
 		cat <<-EOH
 			================================= Bad Cygwin =================================
@@ -65,10 +65,10 @@ then
 			Please start the script via coq_platform_make_windows.bat from a DOS shell.
 			================================= Bad Cygwin =================================
 			EOH
-		exit 1
+		return 1
 	fi
 
 else
 		echo "ERROR: unsopported OS type '$OSTYPE'"
-		exit 1
+		return 1
 fi

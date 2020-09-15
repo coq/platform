@@ -34,7 +34,7 @@ then
 			Please restart the script after you updated the sandbox script.
 			======================== Outdated Opam sandbox script ========================
 			EOH
-		exit 1
+		return 1
 	fi
 
 fi

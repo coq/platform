@@ -18,6 +18,7 @@ export OPAMCOLOR=never
 
 ###################### SCRIPT INITIALIZATION #####################
 
+cd "$(dirname "$0")"
 source shell_scripts/init_safety_debug.sh
 source shell_scripts/init_paths.sh
 source shell_scripts/init_utilities.sh

@@ -12,8 +12,6 @@
 
 if [[ "$OSTYPE" == linux-gnu* ]]
 then
-	check_command_available curl
-
 	if ! command -v gcc &> /dev/null || ! command -v g++ &> /dev/null || ! command -v make &> /dev/null
 	then
 		cat <<-EOH
@@ -30,7 +28,7 @@ then
 			Please restart the script after you installed the build tools.
 			=========================== Build tools required! ===========================
 			EOH
-	exit 1
+	return 1
 	fi
 
 elif [[ "$OSTYPE" == darwin* ]]
@@ -52,7 +50,7 @@ then
 			Please restart the script after you installed the build tools.
 			=========================== Build tools required! ===========================
 			EOH
-		exit 1
+		return 1
 	fi
 
 fi

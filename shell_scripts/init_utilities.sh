@@ -39,7 +39,7 @@ function check_command_available {
     echo "This script will exit now."
     echo "Please restart the script after you installed '$1'."
     echo "=========================== Missing prerequisite ============================"
-    exit 1
+    return 1
   fi
 }
 
@@ -57,7 +57,7 @@ function ask_user_opt1_cancel {
     read -p "$1 (${2:0:1} / c=cancel) " answer
     case "$answer" in
         [$2]* ) ANSWER=${2:0:1}; echo; return 0 ;;
-        [cC]* ) exit 1 ;;
+        [cC]* ) return 1 ;;
         * ) echo "Please answer '${2:0:1}'=$3 or 'c'=cancel/exit.";;
     esac
   done
@@ -80,7 +80,7 @@ function ask_user_opt2_cancel {
     case "$answer" in
         [$2]* ) ANSWER=${2:0:1}; echo; return 0 ;;
         [$4]* ) ANSWER=${4:0:1}; echo; return 0 ;;
-        [cC]* ) exit 1 ;;
+        [cC]* ) return 1 ;;
         * ) echo "Please answer '${2:0:1}'=$3 or ${4:0:1}'=$5 or 'c'=cancel/exit.";;
     esac
   done
@@ -98,7 +98,7 @@ function ask_user_mumber {
   while true; do
     read -p "$1 (number in $2..$3) " answer
     case "$answer" in
-        [cC]* ) exit 1 ;;
+        [cC]* ) return 1 ;;
     esac
     if [ "$2" -le "$answer" ] && [ "$answer" -le "$3" ]
     then
@@ -121,7 +121,7 @@ function get_memory_info {
   if [[ "$OSTYPE" == linux-gnu* ]]
   then
       echo "TODO: unimplemented"
-    exit 1
+    return 1
   elif [[ "$OSTYPE" == darwin* ]]
   then
     MEM_TOTAL=$(echo $(sysctl hw.memsize | awk '{print $2}') / 1024 | bc)
@@ -129,9 +129,9 @@ function get_memory_info {
   elif [[ "$OSTYPE" == cygwin ]]
   then
       echo "TODO: unimplemented"
-    exit 1
+    return 1
   else
       echo "ERROR: unsopported OS type '$OSTYPE'"
-      exit 1
+      return 1
   fi
 }

@@ -40,7 +40,7 @@ then
     bash opam64/install.sh --prefix /usr/x86_64-w64-mingw32/sys-root/mingw
   else
       echo "ERROR: unsopported OS type '$OSTYPE'"
-      exit 1
+      return 1
   fi
   echo "OPAM is now $(command -v opam) with version $(opam --version)"
 else
@@ -53,7 +53,7 @@ else
     echo "Your installed opam version $(opam --version) is older than 2.0.5."
     echo "This version of opam is not supported."
     echo "If you ininstall opam, this script will install the latest version."
-    exit 1
+    return 1
   else
     echo "Found opam $(opam --version) - good!"
   fi
