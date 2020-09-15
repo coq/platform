@@ -8,8 +8,6 @@
 # Creative Commons CC0 1.0 Universal License
 # See https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt
 
-# Note: use help <builtin> to get information on bash builtin commands like "command"
-
 ###################### SANITY CHECK SYSTEM PREREQUISITES #####################
 
 if [[ "$OSTYPE" == linux-gnu* ]]
@@ -49,7 +47,7 @@ then
 elif [[ "$OSTYPE" == cygwin ]]
 then
 
-	if [ -z "${CYGWIN_INSTALLDIR_CFMT:+x}" ]
+	if [ "${COQ_PLATFORM_CYGWIN_OK:+N}" != "Y" ]
 	then
 		cat <<-EOH
 			================================= Bad Cygwin =================================
@@ -57,14 +55,14 @@ then
 			of other prerequisites. Since Cygwin does not include a package manager,
 			the best way to ensure that all packages are there is to use the script
 
-				coq_platform_make_windows.bat
+			    coq_platform_make_windows.bat
 
 			to setup cygwin and run coq_platform_make.sh. Apparently you did run the script
 			coq_platform_make.sh directly from a pre-existing cygwin installation.
 			This is not supported.
 
 			This script will exit now.
-			Please restart the script via coq_platform_make_windows.bat from a DOS shell.
+			Please start the script via coq_platform_make_windows.bat from a DOS shell.
 			================================= Bad Cygwin =================================
 			EOH
 		exit 1

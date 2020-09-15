@@ -8,8 +8,6 @@
 # Creative Commons CC0 1.0 Universal License
 # See https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt
 
-# Note: use help <builtin> to get information on bash builtin commands like "command"
-
 ###################### SANITY OPAM SANDBOX SCRIPT #####################
 
 if [[ "$OSTYPE" == darwin* ]]

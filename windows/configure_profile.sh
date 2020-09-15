@@ -24,8 +24,6 @@ if [ ! -f $donefile ] ; then
     echo export ftp_proxy="http://$1"
   fi
 
-  mkdir -p "$RESULT_INSTALLDIR_CFMT/bin"
-
   # A tightly controlled path helps to avoid issues
   # Note: the order is important: first have the cygwin binaries, then the mingw binaries in the path!
   # Note: /bin is mounted at /usr/bin and /lib at /usr/lib and it is common to use /usr/bin in PATH
@@ -37,6 +35,9 @@ if [ ! -f $donefile ] ; then
   echo unset ORIGINAL_PATH
   # Other installations of OCaml will mess up things
   echo unset OCAMLLIB
+
+  # Set a marker that this is a cygwin inteded for Coq platform compilation
+  echo export COQ_PLATFORM_CYGWIN_OK=Y
 
   exec 1>&6 6>&-       # Restore stdout from file descriptor 6 and close file descriptor #6
 
