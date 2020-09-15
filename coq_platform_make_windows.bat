@@ -200,6 +200,9 @@ REM Cygwin setup does not touch the ACLs of existing folders.
 
 ECHO "========== DOWNLOAD CYGWIN SETUP =========="
 
+REM Delete Cygwin setup file if it is older than 1 day, so that it is downloaded again
+FORFILES /P %CYGWIN_LOCAL_CACHE_WFMT% /M %SETUP% /D -1 /C "cmd /C del @file" 2> NUL
+
 IF NOT EXIST "%CYGWIN_LOCAL_CACHE_WFMT%\%SETUP%" (
   powershell -Command "(New-Object Net.WebClient).DownloadFile('http://www.cygwin.com/%SETUP%', '%CYGWIN_LOCAL_CACHE_WFMT%/%SETUP%')"
 )
@@ -237,7 +240,7 @@ IF "%RUNSETUP%"=="Y" (
     -P mingw64-%ARCH%-binutils,mingw64-%ARCH%-gcc-core,mingw64-%ARCH%-gcc-g++,mingw64-%ARCH%-windows_default_manifest ^
     -P mingw64-%ARCH%-headers,mingw64-%ARCH%-runtime,mingw64-%ARCH%-pthreads,mingw64-%ARCH%-zlib ^
     -P mingw64-%ARCH%-gtk3,mingw64-%ARCH%-libxml2,mingw64-%ARCH%-cairo ^
-    -P mingw64-%ARCH%-gmp,mingw64-%ARCH%-mpfr ^
+    -P mingw64-%ARCH%-gmp,mingw64-%ARCH%-mpfr,mingw64-%ARCH%-boost ^
     -P libiconv-devel,libunistring-devel,libncurses-devel ^
     -P gettext-devel,libgettextpo-devel ^
     -P libglib2.0-devel,libgdk_pixbuf2.0-devel ^
@@ -308,7 +311,7 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -cygcache ^<local cygwin repository/cache^>
   ECHO -cyglocal ^<Y or N^> install cygwin from cache
   ECHO -cygquiet ^<Y or N^> install cygwin without user interaction
-  ECHO -srccache ^<local source code repository/cache^>
+  ECHO -cygforce ^<Y or N^> run cygwin setup even if destination is already installed
   ECHO(
   ECHO Parameter values (default or currently set):
   ECHO -arch     = %ARCH%
@@ -319,6 +322,7 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -cygcache = %CYGWIN_LOCAL_CACHE_WFMT%
   ECHO -cyglocal = %CYGWIN_FROM_CACHE%
   ECHO -cygquiet = %CYGWIN_QUIET%
+  ECHO -cygforce = %CYGWIN_FORCE%
   GOTO :EOF
 
 :CheckYN
