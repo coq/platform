@@ -22,11 +22,15 @@ source shell_scripts/init_safety_debug.sh
 source shell_scripts/init_paths.sh
 source shell_scripts/init_utilities.sh
 
+###################### SYSTEM SANITY CHECKS #####################
+
+source shell_scripts/check_system.sh
+source shell_scripts/check_compiler.sh
+
 ###################### USER CHOICES #####################
 
 # NOTE: These choices can be skipped by
-# - setting the environment variables tested in the scripts
-# - giving corresponding parameters
+# setting the environment variables tested in the scripts
 
 source shell_scripts/ask_introduction.sh
 source shell_scripts/ask_parallel_build.sh
@@ -36,6 +40,7 @@ source shell_scripts/ask_delete_opam_switch.sh
 ###################### INSTALL/INIT OPAM #####################
 
 source shell_scripts/install_opam.sh
+source shell_scripts/check_opam_sandbox.sh
 
 ###################### INSTALL PREREQUISITES #####################
 
