@@ -34,7 +34,7 @@ then
     fi
   elif [[ "$OSTYPE" == cygwin ]]
   then
-    # Assume we want MinGW cross - this requires a special opam
+    # We want MinGW cross - this requires a special opam
     wget https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz
     tar -xf 'opam64.tar.xz'
     bash opam64/install.sh --prefix /usr/x86_64-w64-mingw32/sys-root/mingw
@@ -85,7 +85,8 @@ then
   if [[ "$OSTYPE" == cygwin ]]
   then
     $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME 'ocaml-variants.4.07.1+mingw64c'
-    $COQ_PLATFORM_TIME opam repo add default-nowin "https://github.com/ocaml/opam-repository.git" --rank 2 
+    # For development it is sometimes useful to add the main opam repo in addition to get latest packages
+    # $COQ_PLATFORM_TIME opam repo add default-nowin "https://github.com/ocaml/opam-repository.git" --rank 2 
   else
     $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME 'ocaml-base-compiler.4.07.1'
   fi
