@@ -54,7 +54,7 @@ function check_command_available {
 
 function ask_user_opt1_cancel {
   while true; do
-    read -p "$1 (${2:0:1} / c=cancel) " answer
+    read -p "$1 (${2:0:1}/c=cancel) " answer
     case "$answer" in
         [$2]* ) ANSWER=${2:0:1}; echo; return 0 ;;
         [cC]* ) return 1 ;;
@@ -76,12 +76,38 @@ function ask_user_opt1_cancel {
 
 function ask_user_opt2_cancel {
   while true; do
-    read -p "$1 (${2:0:1} / ${4:0:1} / c=cancel) " answer
+    read -p "$1 (${2:0:1}/${4:0:1}/c=cancel) " answer
     case "$answer" in
         [$2]* ) ANSWER=${2:0:1}; echo; return 0 ;;
         [$4]* ) ANSWER=${4:0:1}; echo; return 0 ;;
         [cC]* ) return 1 ;;
-        * ) echo "Please answer '${2:0:1}'=$3 or ${4:0:1}'=$5 or 'c'=cancel/exit.";;
+        * ) echo "Please answer '${2:0:1}'=$3, ${4:0:1}'=$5 or 'c'=cancel/exit.";;
+    esac
+  done
+}
+
+# ------------------------------------------------------------------------------
+# Ask a three option + cancel question
+# Set environment variable ANSWER to the result
+#
+# $1 message
+# $2 option 1 keys (only first is shown - this is also the retuen value)
+# $3 option 1 text
+# $4 option 2 keys (only first is shown - this is also the retuen value)
+# $5 option 2 text
+# $6 option 3 keys (only first is shown - this is also the retuen value)
+# $7 option 3 text
+# ------------------------------------------------------------------------------
+
+function ask_user_opt3_cancel {
+  while true; do
+    read -p "$1 (${2:0:1}/${4:0:1}/${6:0:1}/c=cancel) " answer
+    case "$answer" in
+        [$2]* ) ANSWER=${2:0:1}; echo; return 0 ;;
+        [$4]* ) ANSWER=${4:0:1}; echo; return 0 ;;
+        [$6]* ) ANSWER=${6:0:1}; echo; return 0 ;;
+        [cC]* ) return 1 ;;
+        * ) echo "Please answer '${2:0:1}'=$3, ${4:0:1}'=$5, ${6:0:1}'=$7 or 'c'=cancel/exit.";;
     esac
   done
 }

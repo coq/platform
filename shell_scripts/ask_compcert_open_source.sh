@@ -27,12 +27,14 @@ Parts of CompCert are required for the Princeton C verification tool VST.
 Some parts of CompCert are open source and for exploring or learning VST
 using the supplied example programs, this open source part is sufficient.
 If you want to use VST with your own C code, you need the non open source
-variant of CompCert. before you install the full version of CompCert,
+variant of CompCert. Before you install the full non-free version of CompCert,
 please make sure that your intended usage conforms to the above license.
+
+If you answer n=no below to skip CompCert, VST will also not be installed.
 
 You can also change this later using opam commands.
 ================================== COMPCERT ==================================
 EOH
-  ask_user_opt2_cancel "Install full (f) or open source (o) version of CompCert?" fF "full" oO "open source"
+  ask_user_opt3_cancel "Install full (f), open source (o) or no (n) CompCert?" fF "full" oO "open source" nN "none"
   COQ_PLATFORM_COMPCERT=$ANSWER
 fi
