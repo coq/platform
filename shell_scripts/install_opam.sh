@@ -90,8 +90,9 @@ then
   else
     $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME 'ocaml-base-compiler.4.07.1'
   fi
-  $COQ_PLATFORM_TIME opam repo add coq-released "https://coq.inria.fr/opam/released" || true
-  # This repo shall always be specific to this switch - if it exists, fail
+  $COQ_PLATFORM_TIME opam repo add coq-released "https://coq.inria.fr/opam/released"
+  # This repo shall always be specific to this switch - so delete it if it exists
+  $COQ_PLATFORM_TIME opam repo remove --all "patch$COQ_PLATFORM_SWITCH_NAME" || true
   $COQ_PLATFORM_TIME opam repo add "patch$COQ_PLATFORM_SWITCH_NAME" "file://$OPAMPACKAGES"
   touch "$HOME/.opam_update_timestamp"
 else
