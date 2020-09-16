@@ -161,3 +161,37 @@ function get_memory_info {
       return 1
   fi
 }
+
+# ------------------------------------------------------------------------------
+# Check value against an enumeration argument
+# The value __unset__, which should be substituted for unset variables is valid.
+#
+# $1: value to check
+# $2: bash pattern as used in case
+# $3: item name for error message
+# ------------------------------------------------------------------------------
+
+function check_value_enumeraton {
+  case "$1" in
+    $2) return 0;;
+    __unset__) return 0;;
+    *) echo "ERROR: Illegal value $1 for $3. Valid is '$2'."; return 1;;
+  esac
+}
+
+# ------------------------------------------------------------------------------
+# Check value against a number range
+#
+# $1: value to check
+# $2: lower bound
+# $3: upper bound
+# $4: item name for error message
+# ------------------------------------------------------------------------------
+
+function check_value_range {
+  if [ "$1" -lt "$2" ] || [ "$1" -gt "$3" ]
+  then
+    echo "ERROR: Illegal value $1 for $4. Valid is '$2..$3'."
+    return 1
+  fi
+}

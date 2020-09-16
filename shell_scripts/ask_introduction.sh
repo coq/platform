@@ -12,7 +12,7 @@
 
 # introduction
 
-if [ ! "${COQ_PLATFORM_INTRO:-Y}" = "N" ]
+if [ ! "${COQ_PLATFORM_INTRO:-y}" == "n" ]
 then
 cat <<EOH
 ================================ INTRODUCTION ================================

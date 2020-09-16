@@ -15,15 +15,20 @@ unset ARCH
 
 opam config set jobs $COQ_PLATFORM_PARALLEL_JOBS
 
-if [ "$COQ_PLATFORM_PARALLEL" == "p" ]
-then
-  echo "===== INSTALL OPAM PACKAGES (PARALLEL) ====="
-  $COQ_PLATFORM_TIME opam install ${PACKAGES}
-else
-  echo "===== INSTALL OPAM PACKAGES (SEQUENTIAL) ====="
-  for package in ${PACKAGES}
-  do
-    $COQ_PLATFORM_TIME opam install ${package}
-  done
-fi
-
+case "$COQ_PLATFORM_PARALLEL" in
+  [pP]*) 
+    echo "===== INSTALL OPAM PACKAGES (PARALLEL) ====="
+    $COQ_PLATFORM_TIME opam install ${PACKAGES}
+    ;;
+  [sS]*) 
+    echo "===== INSTALL OPAM PACKAGES (SEQUENTIAL) ====="
+    for package in ${PACKAGES}
+    do
+      $COQ_PLATFORM_TIME opam install ${package}
+    done
+    ;;
+  *)
+    echo "Illegal value for COQ_PLATFORM_PARALLEL - aborting"
+    false
+    ;;
+esac

@@ -12,7 +12,7 @@
 
 # parallel or sequential build
 
-if [ -z "${COQ_PLATFORM_PARALLEL:+x}" ]
+if [ -z "${COQ_PLATFORM_PARALLEL:+x}" ] || [ -z "${COQ_PLATFORM_PARALLEL_JOBS:+x}" ]
 then
 cat <<EOH
 =============================== PARALLEL BUILD ===============================
