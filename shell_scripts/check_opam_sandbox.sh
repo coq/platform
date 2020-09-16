@@ -13,28 +13,26 @@
 if [[ "$OSTYPE" == darwin* ]]
 then
 
-	# Check of opam sandbox script is current
+	# Check if opam sandbox script is current
 	if !  grep "allow network" "$(opam var root)/opam-init/hooks/sandbox.sh"
 	then
 		cat <<-"EOH"
 			======================== Outdated Opam sandbox script ========================
 			Opam has a sandbox mechanism to ensure that build scripts do not modify
-			files outside of their build tree. While youe opam version is OK,
-			the version of your sandbox script is not. Unfortunately opam does not
-			update this file after opam init. This means you need to update this file
-			manually. Please replace the file
+			files outside of their build tree. While your opam version is fine, the
+			version of your sandbox script is outdated. The likely root cause of this
+			is that some time in the past you updated opam without a call to:
 
-			$(opam var root)/opam-init/hooks/sandbox.sh
+			  opam init --reinit --no-setup
 			
-			With the version downloaded here:
-
-			https://github.com/ocaml/opam/blob/2.0.7/src/state/shellscripts/sandbox_exec.sh
-
-			for installation instructions. This script will exit now.
-			Please restart the script after you updated the sandbox script.
+			This opam call updates your .opam folder to the current version of opam.
+			Shall this script now run "opam init --reinit --no-setup" to fix this?
 			======================== Outdated Opam sandbox script ========================
 			EOH
-		return 1
+		ask_user_opt1_cancel "Enter (y) to run 'opam init --reinit --no-setup' now or (c) to cancel" yY yes
+		if [ "$ANSWER" == "y" ]
+		then
+			opam init --reinit --no-setup
+		fi
 	fi
-
 fi
