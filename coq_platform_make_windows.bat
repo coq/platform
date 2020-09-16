@@ -295,7 +295,19 @@ IF "%BUILD_COQ_PLATFORM%" == "Y" (
   ECHO Note: Automatic Coq platform build has been disabled with -build=N
 )
 
+REM  01234567890123456789012345678901234567890123456789012345678901234567890123456789
 ECHO ========== FINISHED ==========
+ECHO(
+ECHO You can start your freshly created Coq platform Cygwin via:
+ECHO(
+ECHO   %CYGWIN_INSTALLDIR_WFMT%/cygwin.bat
+ECHO(
+ECHO This will start a bash with opam, coqc, coqide and other tools available.
+ECHO Please note that coqc, ocamlc and many other tools are Windows executables,
+ECHO not cygwin executables, so they do not understand cygwin paths like /home.
+ECHO As long as you use only relative paths - forward slashes are fine - there
+ECHO is no issue with this. If you want to give an absolute path to one of the tools
+ECHO you have to convert it with "$(cygpath -wa mypath)".
 
 GOTO :EOF
 
