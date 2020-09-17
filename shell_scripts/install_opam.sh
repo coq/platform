@@ -93,11 +93,12 @@ then
   $COQ_PLATFORM_TIME opam repo remove --all "patch$COQ_PLATFORM_SWITCH_NAME" || true
   $COQ_PLATFORM_TIME opam repo add --dont-select "patch$COQ_PLATFORM_SWITCH_NAME" "file://$OPAMPACKAGES"
 
-  # Create switch with the patch repo registered right away in case we need to patch OCaml
-  $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME $COQ_PLATFORM_OCAML_VERSION --repositories="patch$COQ_PLATFORM_SWITCH_NAME",default
+  # Add the Coq repo - not a repo can be added many times as long as the URL is the same
+  $COQ_PLATFORM_TIME opam repo add --dont-select coq-released "https://coq.inria.fr/opam/released"
 
-  # Add the Coq repo
-  $COQ_PLATFORM_TIME opam repo add coq-released "https://coq.inria.fr/opam/released"
+  # Create switch with the patch repo registered right away in case we need to patch OCaml
+  $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME $COQ_PLATFORM_OCAML_VERSION --repositories="patch$COQ_PLATFORM_SWITCH_NAME",coq-released,default
+
   touch "$HOME/.opam_update_timestamp"
 else
   echo "===== opam switch already exists ====="
