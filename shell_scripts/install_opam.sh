@@ -84,16 +84,20 @@ then
   echo "===== CREATE OPAM SWITCH ====="
   if [[ "$OSTYPE" == cygwin ]]
   then
-    $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME 'ocaml-variants.4.07.1+mingw64c'
-    # For development it is sometimes useful to add the main opam repo in addition to get latest packages
-    # $COQ_PLATFORM_TIME opam repo add default-nowin "https://github.com/ocaml/opam-repository.git" --rank 2 
+    COQ_PLATFORM_OCAML_VERSION='ocaml-variants.4.07.1+mingw64c'
   else
-    $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME 'ocaml-base-compiler.4.07.1'
+    COQ_PLATFORM_OCAML_VERSION='ocaml-base-compiler.4.07.1'
   fi
-  $COQ_PLATFORM_TIME opam repo add coq-released "https://coq.inria.fr/opam/released"
+  # Register switch specific repo
   # This repo shall always be specific to this switch - so delete it if it exists
   $COQ_PLATFORM_TIME opam repo remove --all "patch$COQ_PLATFORM_SWITCH_NAME" || true
-  $COQ_PLATFORM_TIME opam repo add "patch$COQ_PLATFORM_SWITCH_NAME" "file://$OPAMPACKAGES"
+  $COQ_PLATFORM_TIME opam repo add --dont-select "patch$COQ_PLATFORM_SWITCH_NAME" "file://$OPAMPACKAGES"
+
+  # Create switch with the patch repo registered right away in case we need to patch OCaml
+  $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME $COQ_PLATFORM_OCAML_VERSION --repositories="patch$COQ_PLATFORM_SWITCH_NAME",default
+
+  # Add the Coq repo
+  $COQ_PLATFORM_TIME opam repo add coq-released "https://coq.inria.fr/opam/released"
   touch "$HOME/.opam_update_timestamp"
 else
   echo "===== opam switch already exists ====="
