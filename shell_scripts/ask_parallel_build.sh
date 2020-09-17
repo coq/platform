@@ -12,7 +12,7 @@
 
 # parallel or sequential build
 
-if [ -z "${COQ_PLATFORM_PARALLEL:+x}" ] || [ -z "${COQ_PLATFORM_PARALLEL_JOBS:+x}" ]
+if [ -z "${COQ_PLATFORM_PARALLEL:+x}" ] || [ -z "${COQ_PLATFORM_JOBS:+x}" ]
 then
 cat <<EOH
 =============================== PARALLEL BUILD ===============================
@@ -40,5 +40,5 @@ EOH
   ask_user_opt2_cancel "Build opam packages parallel (p) or sequential (s)?" pP "parallel" sS "sequential"
   COQ_PLATFORM_PARALLEL=$ANSWER
   ask_user_mumber "Number of parallel make jobs" 1 16
-  COQ_PLATFORM_PARALLEL_JOBS=$ANSWER
+  COQ_PLATFORM_JOBS=$ANSWER
 fi

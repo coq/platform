@@ -43,23 +43,33 @@ SET CYGWIN_REPOSITORY=https://mirrors.kernel.org/sourceware/cygwin
 REM A local folder (in Windows path syntax) where cygwin packages are cached
 SET CYGWIN_LOCAL_CACHE_WFMT=%BATCHDIR%cygwin_cache
 
-REM If Y, install Cygwin as found in the cache - do not try to update from teh repo server
-SET CYGWIN_FROM_CACHE=N
+REM If y, install Cygwin as found in the cache - do not try to update from teh repo server
+SET CYGWIN_FROM_CACHE=n
 
-REM If Y, do an unattended installation of Cygwin
-SET CYGWIN_QUIET=Y
+REM If y, do an unattended installation of Cygwin
+SET CYGWIN_QUIET=y
 
-REM If Y, force run the cygwin setup - even if it appears to be installed already
-SET CYGWIN_FORCE=N
+REM If y, force run the cygwin setup - even if it appears to be installed already
+SET CYGWIN_FORCE=n
 
-REM If Y, automatically run the coq-platform setup after cygwin setup
-SET BUILD_COQ_PLATFORM=Y
+REM If y, automatically run the coq-platform setup after cygwin setup
+SET BUILD_COQ_PLATFORM=y
 
 REM ========== PARSE COMMAND LINE PARAMETERS ==========
 
 SHIFT
 
 :Parse
+
+IF "%~0" == "-help" (
+  CALL :PrintUsage
+  GOTO :EOF
+)
+
+IF "%~0" == "-h" (
+  CALL :PrintUsage
+  GOTO :EOF
+)
 
 IF "%~0" == "-arch" (
   IF "%~1" == "32" (
@@ -139,12 +149,55 @@ IF "%~0" == "-build" (
   GOTO Parse
 )
 
+REM The parameters passed to the final script are checked there
+
+IF "%~0" == "-intro" (
+  SET COQ_PLATFORM_INTRO=%~1
+  SHIFT
+  SHIFT
+  GOTO Parse
+)
+
+IF "%~0" == "-parallel" (
+  SET COQ_PLATFORM_PARALLEL=%~1
+  SHIFT
+  SHIFT
+  GOTO Parse
+)
+
+IF "%~0" == "-jobs" (
+  SET COQ_PLATFORM_JOBS=%~1
+  SHIFT
+  SHIFT
+  GOTO Parse
+)
+
+IF "%~0" == "-compcert" (
+  SET COQ_PLATFORM_COMPCERT=%~1
+  SHIFT
+  SHIFT
+  GOTO Parse
+)
+
+IF "%~0" == "-vst" (
+  SET COQ_PLATFORM_VST=%~1
+  SHIFT
+  SHIFT
+  GOTO Parse
+)
+
+IF "%~0" == "-switch" (
+  SET COQ_PLATFORM_SWITCH=%~1
+  SHIFT
+  SHIFT
+  GOTO Parse
+)
+
 IF NOT "%~0" == "" (
   ECHO Install cygwin and download, compile and install OCaml and Coq for MinGW
   ECHO !!! Illegal parameter %~0
-  ECHO Usage:
-  ECHO coq_platform_cygwin_setup
-  CALL :PrintPars
+  ECHO(
+  CALL :PrintUsage
   GOTO :EOF
 )
 
@@ -152,7 +205,7 @@ REM ========== CONFIRM PARAMETERS ==========
 
 CALL :PrintPars
 REM Note: DOS batch replaces variables on parsing, so one can't use a variable just set in an () block
-IF "%COQREGTESTING%"=="Y" (GOTO DontAsk)
+IF "%COQREGTESTING%"=="y" (GOTO DontAsk)
   SET /p ANSWER="Is this correct? y/n "
   IF NOT "%ANSWER%"=="y" (GOTO :EOF)
 :DontAsk
@@ -186,11 +239,11 @@ REM One can't set a variable to empty in DOS, but you can set it to a space this
 REM The quotes are just there to make the space visible and to protect from "remove trailing spaces".
 SET "CYGWIN_OPT= "
 
-IF "%CYGWIN_FROM_CACHE%" == "Y" (
+IF "%CYGWIN_FROM_CACHE%" == "y" (
   SET CYGWIN_OPT= %CYGWIN_OPT% -L
 )
 
-IF "%CYGWIN_QUIET%" == "Y" (
+IF "%CYGWIN_QUIET%" == "y" (
   SET CYGWIN_OPT= %CYGWIN_OPT% -q --no-admin
 )
 
@@ -209,22 +262,22 @@ IF NOT EXIST "%CYGWIN_LOCAL_CACHE_WFMT%\%SETUP%" (
 
 ECHO "========== INSTALL CYGWIN =========="
 
-SET RUNSETUP=Y
+SET RUNSETUP=y
 IF EXIST "%CYGWIN_INSTALLDIR_WFMT%\etc\setup\installed.db" (
-  SET RUNSETUP=N
+  SET RUNSETUP=n
 )
-IF NOT "%CYGWIN_QUIET%" == "Y" (
-  SET RUNSETUP=Y
+IF NOT "%CYGWIN_QUIET%" == "y" (
+  SET RUNSETUP=y
 )
 
-IF "%CYGWIN_FORCE%" == "Y" (
-  SET RUNSETUP=Y
+IF "%CYGWIN_FORCE%" == "y" (
+  SET RUNSETUP=y
 )
 
 REM If you need to add packages, see https://cygwin.com/packages/package_list.html for package names
 REM In the description of each package you also find the file list and maintainer there
 
-IF "%RUNSETUP%"=="Y" (
+IF "%RUNSETUP%"=="y" (
   "%CYGWIN_LOCAL_CACHE_WFMT%\%SETUP%" ^
     --proxy "%PROXY%" ^
     --site "%CYGWIN_REPOSITORY%" ^
@@ -256,9 +309,9 @@ IF "%RUNSETUP%"=="Y" (
   MKDIR "%CYGWIN_INSTALLDIR_WFMT%\build\buildlogs"
 )
 
-IF NOT "%CYGWIN_QUIET%" == "Y" (
+IF NOT "%CYGWIN_QUIET%" == "y" (
   REM Like most setup programs, cygwin setup starts the real setup as a separate process, so wait for it.
-  REM This is not required with the -cygquiet=Y and the resulting --no-admin option.
+  REM This is not required with the -cygquiet=y and the resulting --no-admin option.
   :waitsetup
   tasklist /fi "imagename eq %SETUP%" | find ":" > NUL
   IF ERRORLEVEL 1 GOTO waitsetup
@@ -284,7 +337,7 @@ SET USER_HOME_DIR_WFMT=%USER_HOME_DIR_MFMT:/=\%
 
 ECHO ========== BUILD COQ PLATFORM ==========
 
-IF "%BUILD_COQ_PLATFORM%" == "Y" (
+IF "%BUILD_COQ_PLATFORM%" == "y" (
   RMDIR /S /Q "%USER_HOME_DIR_MFMT%/coq-platform"
   MKDIR "%USER_HOME_DIR_MFMT%/coq-platform"
   XCOPY /S "%BATCHDIR%*.*" "%USER_HOME_DIR_WFMT%\coq-platform" || GOTO ErrorExit
@@ -292,7 +345,7 @@ IF "%BUILD_COQ_PLATFORM%" == "Y" (
   %BASH% --login "%CYGWIN_INSTALLDIR_CFMT%/%USER_HOME_DIR_CFMT%/coq-platform/coq_platform_make.sh" || GOTO ErrorExit
 
 ) ELSE (
-  ECHO Note: Automatic Coq platform build has been disabled with -build=N
+  ECHO Note: Automatic Coq platform build has been disabled with -build=n
 )
 
 REM  01234567890123456789012345678901234567890123456789012345678901234567890123456789
@@ -315,19 +368,50 @@ GOTO :EOF
 
 ECHO ========== BATCH FUNCTIONS ==========
 
-:PrintPars
+:PrintUsage
   REM  01234567890123456789012345678901234567890123456789012345678901234567890123456789
-  ECHO -arch     ^<32 or 64^> Set cygwin, ocaml and coq to 32 or 64 bit
-  ECHO -build    ^<Y or N^> build coq platform
-  ECHO -destcyg  ^<path to cygwin destination folder^>
-  ECHO -proxy    ^<internet proxy^>
-  ECHO -cygrepo  ^<cygwin download repository^>
-  ECHO -cygcache ^<local cygwin repository/cache^>
-  ECHO -cyglocal ^<Y or N^> install cygwin from cache
-  ECHO -cygquiet ^<Y or N^> install cygwin without user interaction
-  ECHO -cygforce ^<Y or N^> run cygwin setup even if destination is already installed
+  ECHO Usage: coq_platform_make_windows [options]
   ECHO(
+  ECHO First install a fresh Cygwin with all required prerequisites.
+  ECHO Then run a script in this Cygwin which creates a new opam switch
+  ECHO and makes and installs the Coq platform in this switch.
+  ECHO(
+  ECHO Cygwin setup parameters:
+  ECHO(
+  ECHO -h, -help  Print this help message and exit
+  ECHO -arch      ^<32 or 64^> Set cygwin, ocaml and coq to 32 or 64 bit
+  ECHO -build=y   Setup cygwin and build Coq platform
+  ECHO -build=n   Just setup cygin - don't build Coq platform
+  ECHO -destcyg   ^<path to cygwin destination folder^>
+  ECHO -proxy     ^<internet proxy^>
+  ECHO -cygrepo   ^<cygwin download repository^>
+  ECHO -cygcache  ^<local cygwin repository/cache^>
+  ECHO -cyglocal  ^<y or n^> install cygwin from cache
+  ECHO -cygquiet  ^<y or n^> install cygwin without user interaction
+  ECHO -cygforce  ^<y or n^> run cygwin setup even if destination is already installed
+  ECHO(
+  ECHO Coq platform setup parameters:
+  ECHO(
+  ECHO If an option is not given, the option is explained and asked for interactively.
+  ECHO Except for expert users this is the recommended way to run this script.
+  ECHO(
+  ECHO -intro=n     Skip introduction message
+  ECHO -parallel=p  Build several opam packages in parallel
+  ECHO -parallel=s  Build opam packages sequentially
+  ECHO -jobs=1..16  Number of make threads per package
+  ECHO -compcert=f  Build full non-free version of CompCert
+  ECHO -compcert=o  Build only open source part of CompCert
+  ECHO -compcert=n  Do not build CompCert and VST
+  ECHO -vst=y       Build Verified Software Toolchain (takes a while)
+  ECHO -vst=n       Do not build Verified Software Toolchain
+  ECHO -switch=k    In case the opam switch already exists, keep it
+  ECHO -switch=d    In case the opam switch already exists, delete it
+  REM  01234567890123456789012345678901234567890123456789012345678901234567890123456789
+  GOTO :EOF
+
+:PrintPars
   ECHO Parameter values (default or currently set):
+  ECHO (Run "coq_platform_make_windows -h" for details)
   ECHO -arch     = %ARCH%
   ECHO -build    = %BUILD_COQ_PLATFORM%
   ECHO -destcyg  = %DESTCYG%
@@ -337,17 +421,23 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -cyglocal = %CYGWIN_FROM_CACHE%
   ECHO -cygquiet = %CYGWIN_QUIET%
   ECHO -cygforce = %CYGWIN_FORCE%
+  ECHO -intro    = %COQ_PLATFORM_INTRO%
+  ECHO -parallel = %COQ_PLATFORM_PARALLEL%
+  ECHO -jobs     = %COQ_PLATFORM_JOBS%
+  ECHO -compcert = %COQ_PLATFORM_COMPCERT%
+  ECHO -vst      = %COQ_PLATFORM_VST%
+  ECHO -switch   = %COQ_PLATFORM_SWITCH%
   GOTO :EOF
 
 :CheckYN
   REM Reset errorlevel to 0
   CMD /c "EXIT /b 0"
-  IF "%2" == "Y" (
-    REM OK Y
-  ) ELSE IF "%2" == "N" (
-    REM OK N
+  IF "%2" == "y" (
+    REM OK y
+  ) ELSE IF "%2" == "n" (
+    REM OK n
   ) ELSE (
-    ECHO ERROR Parameter %1 must be Y or N, but is %2
+    ECHO ERROR Parameter %1 must be y or n, but is %2
     GOTO ErrorExit
   )
   GOTO :EOF

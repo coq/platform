@@ -56,8 +56,8 @@ function ask_user_opt1_cancel {
   while true; do
     read -p "$1 (${2:0:1}/c=cancel) " answer
     case "$answer" in
-        [$2]* ) ANSWER=${2:0:1}; echo; return 0 ;;
-        [cC]* ) return 1 ;;
+        [$2] ) ANSWER=${2:0:1}; echo; return 0 ;;
+        [cC] ) return 1 ;;
         * ) echo "Please answer '${2:0:1}'=$3 or 'c'=cancel/exit.";;
     esac
   done
@@ -78,9 +78,9 @@ function ask_user_opt2_cancel {
   while true; do
     read -p "$1 (${2:0:1}/${4:0:1}/c=cancel) " answer
     case "$answer" in
-        [$2]* ) ANSWER=${2:0:1}; echo; return 0 ;;
-        [$4]* ) ANSWER=${4:0:1}; echo; return 0 ;;
-        [cC]* ) return 1 ;;
+        [$2] ) ANSWER=${2:0:1}; echo; return 0 ;;
+        [$4] ) ANSWER=${4:0:1}; echo; return 0 ;;
+        [cC] ) return 1 ;;
         * ) echo "Please answer '${2:0:1}'=$3, ${4:0:1}'=$5 or 'c'=cancel/exit.";;
     esac
   done
@@ -103,10 +103,10 @@ function ask_user_opt3_cancel {
   while true; do
     read -p "$1 (${2:0:1}/${4:0:1}/${6:0:1}/c=cancel) " answer
     case "$answer" in
-        [$2]* ) ANSWER=${2:0:1}; echo; return 0 ;;
-        [$4]* ) ANSWER=${4:0:1}; echo; return 0 ;;
-        [$6]* ) ANSWER=${6:0:1}; echo; return 0 ;;
-        [cC]* ) return 1 ;;
+        [$2] ) ANSWER=${2:0:1}; echo; return 0 ;;
+        [$4] ) ANSWER=${4:0:1}; echo; return 0 ;;
+        [$6] ) ANSWER=${6:0:1}; echo; return 0 ;;
+        [cC] ) return 1 ;;
         * ) echo "Please answer '${2:0:1}'=$3, ${4:0:1}'=$5, ${6:0:1}'=$7 or 'c'=cancel/exit.";;
     esac
   done
@@ -124,7 +124,7 @@ function ask_user_mumber {
   while true; do
     read -p "$1 (number in $2..$3) " answer
     case "$answer" in
-        [cC]* ) return 1 ;;
+        [cC] ) return 1 ;;
     esac
     if [ "$2" -le "$answer" ] && [ "$answer" -le "$3" ]
     then

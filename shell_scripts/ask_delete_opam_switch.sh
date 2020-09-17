@@ -14,7 +14,7 @@
 
 if command -v opam &> /dev/null && opam switch $COQ_PLATFORM_SWITCH_NAME >/dev/null 2>&1
 then
-	if [ -z "${COQ_PLATFORM_SWITCH_KEEP:+x}" ]
+	if [ -z "${COQ_PLATFORM_SWITCH:+x}" ]
 	then
 		cat <<-EOH
 			================================ OPAM SWITCH =================================
@@ -28,10 +28,10 @@ then
 			================================ OPAM SWITCH =================================
 			EOH
 		ask_user_opt2_cancel "Shall the existing switch be kept (k) or deleted (d) ?" kK "keep" dD "delete"
-		COQ_PLATFORM_SWITCH_KEEP=$ANSWER
+		COQ_PLATFORM_SWITCH=$ANSWER
 	fi
 
-	if [ "$COQ_PLATFORM_SWITCH_KEEP" == "d" ]
+	if [ "$COQ_PLATFORM_SWITCH" == "d" ]
 	then
 		opam switch remove $COQ_PLATFORM_SWITCH_NAME
 	fi

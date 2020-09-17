@@ -57,15 +57,15 @@ PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.1"
 PACKAGES="${PACKAGES} coq-menhirlib.20200624 menhir.20200624"
 # Todo: there is no mutex between coq platform and coq platform open source
 case "$COQ_PLATFORM_COMPCERT" in
-  [fF]*) PACKAGES="${PACKAGES} coq-compcert.3.7+8.12~coq_platform" ;;
-  [oO]*) PACKAGES="${PACKAGES} coq-compcert.3.7+8.12~coq_platform~open_source" ;;
-  [nN]*) true ;;
+  [fF]) PACKAGES="${PACKAGES} coq-compcert.3.7+8.12~coq_platform" ;;
+  [oO]) PACKAGES="${PACKAGES} coq-compcert.3.7+8.12~coq_platform~open_source" ;;
+  [nN]) true ;;
   *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
 esac
 
 case "$COQ_PLATFORM_VST" in
-  [yY]*) PACKAGES="${PACKAGES} coq-vst.2.6" ;;
-  [nN]*) true ;;
+  [yY]) PACKAGES="${PACKAGES} coq-vst.2.6" ;;
+  [nN]) true ;;
   *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
 esac
 

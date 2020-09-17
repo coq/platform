@@ -13,14 +13,14 @@
 # This is set by the windows batch file and conflicts with the use of variables e.g. in VST
 unset ARCH
 
-opam config set jobs $COQ_PLATFORM_PARALLEL_JOBS
+opam config set jobs $COQ_PLATFORM_JOBS
 
 case "$COQ_PLATFORM_PARALLEL" in
-  [pP]*) 
+  [pP]) 
     echo "===== INSTALL OPAM PACKAGES (PARALLEL) ====="
     $COQ_PLATFORM_TIME opam install ${PACKAGES}
     ;;
-  [sS]*) 
+  [sS]) 
     echo "===== INSTALL OPAM PACKAGES (SEQUENTIAL) ====="
     for package in ${PACKAGES}
     do

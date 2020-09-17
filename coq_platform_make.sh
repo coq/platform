@@ -32,49 +32,45 @@ coq_platform_make.sh [options]
 Create a new opam switch named $COQ_PLATFORM_SWITCH_NAME
 and make and install the Coq platform in this switch.
 
-If no options are given each option is explained and asked for interactively.
+If an option is not given, the option is explained and asked for interactively.
 Except for expert users this is the recommended way to run this script.
 
 OPTIONS:
-  -h                     Print this help message
-  --help                 Print this help message
-  --no-intro             Skip introduction message
-  --parallel=p           Build several opam packages in parallel
-  --parallel=s           Build opam packages sequentially
-  --parallel-jobs=1..16  Number of make threads per package
-  --compcert=f           Build full non-free version of CompCert
-  --compcert=o           Build only open source part of CompCert
-  --compcert=n           Do not build CompCert and VST
-  --vst=y                Build Verified Software Toolchain
-  --vst=n                Do not build Verified Software Toolchain
-  --keep=k               In case the opam switch already exists, keep it
-  --keep=d               In case the opam switch already exists, delete it
-
-All argument values can be expressive values, say --compcert=open_source
-as long as the first letter matches.
+  -h, -help    Print this help message
+  -intro=n     Skip introduction message
+  -parallel=p  Build several opam packages in parallel
+  -parallel=s  Build opam packages sequentially
+  -jobs=1..16  Number of make threads per package
+  -compcert=f  Build full non-free version of CompCert
+  -compcert=o  Build only open source part of CompCert
+  -compcert=n  Do not build CompCert and VST
+  -vst=y       Build Verified Software Toolchain (takes a while)
+  -vst=n       Do not build Verified Software Toolchain
+  -switch=k    In case the opam switch already exists, keep it
+  -switch=d    In case the opam switch already exists, delete it
 EOH
 }
 
 for arg in "$@"
 do
   case "$arg" in
-    --help|-h)         print_usage; false;;
-    --no-intro)        COQ_PLATFORM_INTRO=n;;
-    --parallel=*)      COQ_PLATFORM_PARALLEL="${arg#*=}";;
-    --parallel-jobs=*) COQ_PLATFORM_PARALLEL_JOBS="${arg#*=}";;
-    --compcert=*)      COQ_PLATFORM_COMPCERT="${arg#*=}";;
-    --vst=*)           COQ_PLATFORM_VST="${arg#*=}";;
-    --keep=*)          COQ_PLATFORM_SWITCH_KEEP="${arg#*=}";;
+    -help|-h)    print_usage; false;;
+    -intro=*)    COQ_PLATFORM_INTRO=n="${arg#*=}";;
+    -parallel=*) COQ_PLATFORM_PARALLEL="${arg#*=}";;
+    -jobs=*)     COQ_PLATFORM_JOBS="${arg#*=}";;
+    -compcert=*) COQ_PLATFORM_COMPCERT="${arg#*=}";;
+    -vst=*)      COQ_PLATFORM_VST="${arg#*=}";;
+    -switch=*)   COQ_PLATFORM_SWITCH="${arg#*=}";;
     *) echo "ERROR: Unknown command line argument $arg!"; print_usage; false;;
   esac
 done
 
-check_value_enumeraton "${COQ_PLATFORM_INTRO:-__unset__}"         "[yn]*"  "COQ_PLATFORM_INTRO"
-check_value_enumeraton "${COQ_PLATFORM_PARALLEL:-__unset__}"      "[ps]*"  "--parallel/COQ_PLATFORM_PARALLEL"
-check_value_range      "${COQ_PLATFORM_PARALLEL_JOBS:-__unset__}" 1 16     "--parallel-jobs/COQ_PLATFORM_PARALLEL_JOBS"
-check_value_enumeraton "${COQ_PLATFORM_COMPCERT:-__unset__}"      "[fon]*" "--compcert/COQ_PLATFORM_COMPCERT"
-check_value_enumeraton "${COQ_PLATFORM_VST:-__unset__}"           "[yn]*"  "--vst/COQ_PLATFORM_VST"
-check_value_enumeraton "${COQ_PLATFORM_SWITCH_KEEP:-__unset__}"   "[kd]*"  "--keep/COQ_PLATFORM_SWITCH_KEEP"
+check_value_enumeraton "${COQ_PLATFORM_INTRO:-__unset__}"    "[yn]"  "COQ_PLATFORM_INTRO"
+check_value_enumeraton "${COQ_PLATFORM_PARALLEL:-__unset__}" "[ps]"  "-parallel/COQ_PLATFORM_PARALLEL"
+check_value_range      "${COQ_PLATFORM_JOBS:-__unset__}"     1 16    "-jobs/COQ_PLATFORM_JOBS"
+check_value_enumeraton "${COQ_PLATFORM_COMPCERT:-__unset__}" "[fon]" "-compcert/COQ_PLATFORM_COMPCERT"
+check_value_enumeraton "${COQ_PLATFORM_VST:-__unset__}"      "[yn]"  "-vst/COQ_PLATFORM_VST"
+check_value_enumeraton "${COQ_PLATFORM_SWITCH:-__unset__}"   "[kd]"  "-switch/COQ_PLATFORM_SWITCH"
 
 ###################### SYSTEM SANITY CHECKS #####################
 
