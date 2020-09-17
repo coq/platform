@@ -4,6 +4,9 @@ authors: "Guillaume Melquiond"
 bug-reports: "https://gitlab.inria.fr/gappa/gappa/-/issues"
 homepage: "https://gitlab.inria.fr/gappa/gappa"
 license: "CeCILL"
+patches: [
+  "remake.patch"
+]
 build: [
   [ "autoreconf" ]
   # Note: configure.in seems to reference this file

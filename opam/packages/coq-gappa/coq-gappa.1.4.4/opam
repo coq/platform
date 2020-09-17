@@ -4,6 +4,9 @@ homepage: "http://gappa.gforge.inria.fr/"
 dev-repo: "git+https://gitlab.inria.fr/gappa/coq.git"
 bug-reports: "https://gitlab.inria.fr/gappa/coq/issues"
 license: "LGPL-3.0-or-later"
+patches: [
+  "remake.patch"
+]
 build: [
   ["autoconf"] {dev}
   ["./configure"]

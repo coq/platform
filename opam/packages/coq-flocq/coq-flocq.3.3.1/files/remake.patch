@@ -1,0 +1,13 @@
+diff --git a/remake.cpp b/remake.cpp
+index 56a3c2f..e7bcbcd 100644
+--- a/remake.cpp
++++ b/remake.cpp
+@@ -800,7 +800,7 @@ struct log
+ 	}
+ };
+ 
+-static log debug;
++static struct log debug;
+ 
+ struct log_auto_close
+ {
