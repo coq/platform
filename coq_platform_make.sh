@@ -55,7 +55,7 @@ for arg in "$@"
 do
   case "$arg" in
     -help|-h)    print_usage; false;;
-    -intro=*)    COQ_PLATFORM_INTRO=n="${arg#*=}";;
+    -intro=*)    COQ_PLATFORM_INTRO="${arg#*=}";;
     -parallel=*) COQ_PLATFORM_PARALLEL="${arg#*=}";;
     -jobs=*)     COQ_PLATFORM_JOBS="${arg#*=}";;
     -compcert=*) COQ_PLATFORM_COMPCERT="${arg#*=}";;
