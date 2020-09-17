@@ -5,7 +5,7 @@ See [`charter.md`](/charter.md) for the coq platform concept.
 
 # Note on Licenses
 
-The Coq platform setup scripts and the selection of packages are licensed LGPL 2.1+.
+The Coq platform setup scripts and the selection of packages are licensed Creative Commons CC0.
 This license does **not** apply to the packages installed by the Coq platform.
 You can get an overview over the licenses of the installed software (after installing it)
 with the command:
