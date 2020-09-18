@@ -23,7 +23,7 @@ Please note that some opam packages require and install system packages with man
 These dependencies might have various licenses. You need to refer to your system package manager to
 inspect the licenses of such packages.
 
-# Features of the 8.12.0~beta1 release
+# Features of the 8.12.0+beta1 release
 
 - fully opam based, also on Windows
 - system prerequisites are installed using opam depext in a system independent manner
@@ -73,19 +73,19 @@ menhir                   20200624              An LR(1) parser generator
 
 - installers for OSX and Windows are not yet provided - mostly cause of open questions on licenses
 
-# Usage of the 8.12.0~beta1 release
+# Usage of the 8.12.0+beta1 release
 
 - Get the coq platform scripts via either of these methods
-  - `git clone --branch v8.12.0~beta1 https://github.com/MSoegtropIMC/coq-platform.git`
-  - download and extract `https://github.com/MSoegtropIMC/coq-platform/archive/v8.12.0~beta1.zip`
+  - `git clone --branch v8.12.0+beta1 https://github.com/MSoegtropIMC/coq-platform.git`
+  - download and extract `https://github.com/MSoegtropIMC/coq-platform/archive/v8.12.0+beta1.zip`
 - Follow the below OS specfic instructions.
 - For all OSes this will
   - create a new opam switch (and setup and/or initialize opam if it is not there yet).
   - install system prerequisites (like gtk3)
-- The name of the opam switch is `_coq-platform_.8.12.0~beta1`.
+- The name of the opam switch is `_coq-platform_.8.12.0+beta1`.
   Use the following commands to activate this switch after opening a new shell:
     ```
-    opam switch _coq-platform_.8.12.0~beta1
+    opam switch _coq-platform_.8.12.0+beta1
     eval $(opam env)
     ```
   or rerun `opam init` to automate this in each new shell.
@@ -173,7 +173,7 @@ without -Q and -R options. If you want to work with the 64 bit variants, please 
 - On Linux or macOS open a shell in the usual way.
 - Run these commands:
     ```
-    opam switch _coq-platform_.8.12.0~beta1
+    opam switch _coq-platform_.8.12.0+beta1
     eval $(opam env)
     ```
 - Install additional packages with `opam install "package"`
