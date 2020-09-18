@@ -17,8 +17,7 @@ source shell_scripts/init_utilities.sh
 
 ###################### SETTINGS #####################
 
-COQ_PLATFORM_VERSION=8.12.0.alpha3
-COQ_PLATFORM_SWITCH_NAME=_coq-platform_.$COQ_PLATFORM_VERSION
+source coq_platform_switch_name.sh
 
 export OPAMYES=yes
 export OPAMCOLOR=never
