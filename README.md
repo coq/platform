@@ -71,7 +71,7 @@ menhir                   20200624              An LR(1) parser generator
 
 ## Nonfeatures
 
-- installers for OSX and Windows are not yet provided - mostly cause of open questions on licenses
+- installers for OSX and Windows are not yet provided - this is work in progress
 
 # Usage of the 8.12.0+beta1 release
 
