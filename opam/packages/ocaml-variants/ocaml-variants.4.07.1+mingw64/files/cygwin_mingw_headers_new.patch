@@ -1,0 +1,25 @@
+diff --git a/byterun/caml/misc.h b/byterun/caml/misc.h
+index 8244de93b..dfcc1cfad 100644
+--- a/byterun/caml/misc.h
++++ b/byterun/caml/misc.h
+@@ -415,7 +415,6 @@ extern void caml_set_fields (intnat v, unsigned long, unsigned long);
+ 
+ #if defined(_WIN32) && !defined(_UCRT)
+ extern int caml_snprintf(char * buf, size_t size, const char * format, ...);
+-#define snprintf caml_snprintf
+ #endif
+ 
+ #ifdef CAML_INSTR
+@@ -424,6 +423,12 @@ extern int caml_snprintf(char * buf, size_t size, const char * format, ...);
+ #include <time.h>
+ #include <stdio.h>
+ 
++/* snprintf emulation for Win32 - do define after stdio.h, in case snprintf is defined */
++
++#if defined(_WIN32) && !defined(_UCRT)
++#define snprintf caml_snprintf
++#endif
++
+ extern intnat caml_stat_minor_collections;
+ extern intnat CAML_INSTR_STARTTIME, CAML_INSTR_STOPTIME;
+ 

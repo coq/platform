@@ -1,0 +1,43 @@
+opam-version: "2.0"
+synopsis: "OCaml 4.07.1 (mingw64)"
+maintainer: "platform@lists.ocaml.org"
+authors: "Xavier Leroy and many contributors"
+homepage: "https://ocaml.org"
+bug-reports: "https://github.com/ocaml/ocaml/issues"
+dev-repo: "git://github.com/ocaml/ocaml"
+depends: [
+  "ocaml" {= "4.07.1" & post}
+  "base-unix" {post}
+  "base-bigarray" {post}
+  "base-threads" {post}
+]
+conflict-class: "ocaml-core-compiler"
+flags: compiler
+setenv: [
+  [OCAMLLIB = "%{prefix}%/lib/ocaml"]
+  [CAML_LD_LIBRARY_PATH = "%{lib}%/stublibs"]
+  [CC = "x86_64-w64-mingw32-gcc.exe"]
+  [CPP = "x86_64-w64-mingw32-cpp.exe"]
+]
+build: [
+  ["cp" "config/m-nt.h" "byterun/caml/m.h"]
+  ["cp" "config/s-nt.h" "byterun/caml/s.h"]
+  ["cp" "config/Makefile.mingw64" "config/Makefile"]
+  ["sed" "-i" "s#@PREFIX@#%{prefix}%#g" "config/Makefile"]
+  [make "SHELL=/bin/dash" "flexdll" "world.opt" "flexlink.opt"]
+]
+install: [
+  [make "SHELL=/bin/dash" "install"]
+  ["mkdir" "-p" "%{lib}%/ocaml"]
+  [
+    "dash"
+    "-exc"
+    "echo \"* : g = 1\" > %{lib}%/ocaml/ocaml_compiler_internal_params"
+  ]
+  [ "dash" "-exc" "echo \"%{lib}%/stublibs\"  >> \"%{lib}%/ocaml/ld.conf\"" ]
+]
+patches: ["ocaml-4.07.1.patch" "inline-flexdll.patch" "cygwin_mingw_headers_new.patch"]
+url {
+  src: "https://github.com/ocaml/ocaml/archive/4.07.1.tar.gz"
+  checksum: "md5=352fe8d46cb238a26aa10c38bad6ecb6"
+}
