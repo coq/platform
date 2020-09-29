@@ -38,7 +38,7 @@ PACKAGES="${PACKAGES} coq-gappa.1.4.4 gappa.1.3.5"
 PACKAGES="${PACKAGES} coq-interval.4.0.0"
 
 # Elpi, Coq-elpi and hierarchy builder
-PACKAGES="${PACKAGES} coq-elpi.1.5.1 elpi.1.11.4"
+PACKAGES="${PACKAGES} coq-elpi.1.5.1 elpi.1.11.4-1"
 PACKAGES="${PACKAGES} coq-hierarchy-builder.0.10.0"
 
 # The standard set of mathcomp modules
