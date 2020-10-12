@@ -4,12 +4,14 @@ homepage: "http://gmplib.org/"
 bug-reports: "https://github.com/ocaml/opam-repository/issues"
 license: "GPL-1.0-or-later"
 build: [
-  ["sh" "-exc" "cc -c $CFLAGS -I/usr/local/include test.c"] {os != "macos"}
+  ["sh" "-exc" "cc -c $CFLAGS -I/usr/local/include test.c"]
+    {os != "macos" & os != "win32"}
   [
     "sh"
     "-exc"
     "cc -c $CFLAGS -I/opt/local/include -I/usr/local/include test.c"
   ] {os = "macos"}
+  ["./test-win.sh"] {os = "win32"}
 ]
 depexts: [
   ["libgmp-dev"] {os-family = "debian"}
@@ -21,10 +23,14 @@ depexts: [
   ["gmp"] {os = "freebsd"}
   ["gmp-dev"] {os-distribution = "alpine"}
   ["gmp-devel"] {os-family = "suse"}
+  ["gmp"] {os = "win32" & os-distribution = "cygwinports"}
 ]
 synopsis: "Virtual package relying on a GMP lib system installation"
 description:
   "This package can only install if the GMP lib is installed on the system."
 authors: "nbraud"
-extra-files: ["test.c" "md5=ec8cc21ab709bdd57103de36e7b0b53f"]
+extra-files: [
+  ["test.c" "md5=ec8cc21ab709bdd57103de36e7b0b53f"]
+  ["test-win.sh" "md5=05384d0d4e7478c22ce97eae13532740"]
+]
 flags: conf
