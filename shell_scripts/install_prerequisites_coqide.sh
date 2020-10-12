@@ -25,5 +25,5 @@ fi
 # install adwaita-icon-theme if not there (CoqIDE)
 if ! pkg-config --short-errors --print-errors adwaita-icon-theme
 then
-  $COQ_PLATFORM_TIME opam depext conf-adwaita-icon-theme3
+  $COQ_PLATFORM_TIME opam depext conf-adwaita-icon-theme
 fi
