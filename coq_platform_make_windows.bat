@@ -253,6 +253,8 @@ REM Cygwin setup does not touch the ACLs of existing folders.
 
 ECHO "========== DOWNLOAD CYGWIN SETUP =========="
 
+mkdir %CYGWIN_LOCAL_CACHE_WFMT%
+
 REM Delete Cygwin setup file if it is older than 1 day, so that it is downloaded again
 FORFILES /P %CYGWIN_LOCAL_CACHE_WFMT% /M %SETUP% /D -1 /C "cmd /C del @file" 2> NUL
 
