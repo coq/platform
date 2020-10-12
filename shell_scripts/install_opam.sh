@@ -83,13 +83,13 @@ then
       ENABLE_SANDOX=N
     fi
   fi
-  if [ ENABLE_SANDOX==N ]
+  if [ $ENABLE_SANDOX == N ]
   then
 cat <<EOH
 
 Updating or installing the bubblewrap sandbox on your system might be
 difficult. Opam uses bubblewrap to make sure that make files access their
-their local build folders only, so that a gone wild "cd .. && rm -rf" in a
+clocal build folders only, so that a gone wild "cd .. && rm -rf" in a
 "make clean" does not erase your home folder. This is an extra sefety measure
 and it is not strictly required. You have probably run "make" in some open
 source software build folder before without using a sandbox. Opam has this
