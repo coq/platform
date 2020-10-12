@@ -61,6 +61,49 @@ fi
 
 which opam
 
+###################### CHECK SYSTEm SANDBOX VERSION #####################
+
+ENABLE_SANDOX=Y
+COQ_PLATFORM_OPAM_INIT_EXTRA=""
+
+if [[ "$OSTYPE" == linux-gnu* ]]
+then
+  if ! command -v bwrap &> /dev/null
+  then
+    echo "========================= BUBBLEWRAP SYSTEM SANDBOX ========================="
+    echo "You do not have the sandbox system 'bubblewrap' installed."
+    ENABLE_SANDOX=N
+  else
+    # This is the bwrap version on Ununtu 18.04 LTS, which seems to work
+    if [ $(version_to_number $(brwap --version)) -lt $(version_to_number 0.2.1) ]
+    then
+      echo "========================= BUBBLEWRAP SYSTEM SANDBOX ========================="
+      echo "Your version of the sandbox system 'bubblewrap' is too old."
+      echo "You have version $(brwap --version) but we need at least 0.2.1"
+      ENABLE_SANDOX=N
+    fi
+  fi
+  if [ ENABLE_SANDOX==N ]
+  then
+cat <<EOH
+
+Updating or installing the bubblewrap sandbox on your system might be
+difficult. Opam uses bubblewrap to make sure that make files access their
+their local build folders only, so that a gone wild "cd .. && rm -rf" in a
+"make clean" does not erase your home folder. This is an extra sefety measure
+and it is not strictly required. You have probably run "make" in some open
+source software build folder before without using a sandbox. Opam has this
+extra measure because it runs a lot of builds for many software packages,
+which increases the risk.
+You can either cancel and try to install or upgrade bubblewrap to at least
+version 0.2.1, or you can run opam without sandbox.
+========================= BUBBLEWRAP SYSTEM SANDBOX =========================
+EOH
+    ask_user_opt1_cancel "Disable sandbox (d) or cancel (c)?" dD "dsiable sandbox"
+    COQ_PLATFORM_OPAM_INIT_EXTRA=--disable-sandboxing
+  fi
+fi
+
 ###################### INITIALIZE OPAM #####################
 
 if ! opam var root &> /dev/null
@@ -71,7 +114,7 @@ then
     # Init opam with windows specific default repo
     opam init --bare --shell-setup --enable-shell-hook --enable-completion --disable-sandboxing default 'https://github.com/fdopen/opam-repository-mingw.git#opam2'
   else
-    opam init --bare --shell-setup --enable-shell-hook --enable-completion
+    opam init --bare --shell-setup --enable-shell-hook --enable-completion $COQ_PLATFORM_OPAM_INIT_EXTRA
   fi
 else
   echo "===== opam already initialized ====="
