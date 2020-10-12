@@ -61,7 +61,7 @@ fi
 
 which opam
 
-###################### CHECK SYSTEm SANDBOX VERSION #####################
+###################### CHECK SYSTEM SANDBOX VERSION #####################
 
 ENABLE_SANDOX=Y
 COQ_PLATFORM_OPAM_INIT_EXTRA=""
@@ -75,11 +75,11 @@ then
     ENABLE_SANDOX=N
   else
     # This is the bwrap version on Ununtu 18.04 LTS, which seems to work
-    if [ $(version_to_number $(bwrap --version)) -lt $(version_to_number 0.2.1) ]
+    if [ $(version_to_number $(bwrap --version | cut -f 2 -d ' ')) -lt $(version_to_number 0.2.1) ]
     then
       echo "========================= BUBBLEWRAP SYSTEM SANDBOX ========================="
       echo "Your version of the sandbox system 'bubblewrap' is too old."
-      echo "You have version $(bwrap --version) but we need at least 0.2.1"
+      echo "You have version $(bwrap --version | cut -f 2 -d ' ') but we need at least 0.2.1"
       ENABLE_SANDOX=N
     fi
   fi
