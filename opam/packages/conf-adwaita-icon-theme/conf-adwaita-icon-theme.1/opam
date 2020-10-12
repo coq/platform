@@ -4,7 +4,9 @@ homepage: "https://github.com/adwaita/adwaita-icon-theme"
 bug-reports: "https://gitlab.adwaita.org/adwaita/adwaita-icon-theme/issues"
 authors: "GNU Project"
 license: ["LGPL-3.0-only" "CC-BY-SA-3.0"]
-build: ["pkg-config" "--short-errors" "--print-errors" "adwaita-icon-theme"]
+# E.g. on Fedora the system package does not contain a .pc file.
+# Testing for this folder seems to be more portable than using system packager commands as fallback.
+build: [ "sh" "-c" "pkg-config --short-errors --print-errors adwaita-icon-theme || [ -d /usr/share/icons/Adwaita ]"]
 depends: [
   "conf-pkg-config" {build}
 ]
