@@ -35,7 +35,7 @@ then
   elif [[ "$OSTYPE" == cygwin ]]
   then
     # We want MinGW cross - this requires a special opam
-    wget https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz
+    wget https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz -O opam64.tar.xz
     tar -xf 'opam64.tar.xz'
     bash opam64/install.sh --prefix /usr/x86_64-w64-mingw32/sys-root/mingw
   else
