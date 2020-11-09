@@ -10,7 +10,7 @@
 
 ###################### SANITY CHECK SYSTEM PREREQUISITES #####################
 
-if [[ "$OSTYPE" == linux-gnu* ]]
+if [[ "$OSTYPE" == linux* ]]
 then
 
 	check_command_available curl

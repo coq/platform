@@ -144,7 +144,7 @@ function ask_user_mumber {
 # ------------------------------------------------------------------------------
 
 function get_memory_info {
-  if [[ "$OSTYPE" == linux-gnu* ]]
+  if [[ "$OSTYPE" == linux* ]]
   then
       echo "TODO: unimplemented"
     return 1

@@ -10,7 +10,7 @@
 
 ###################### CHECK IF WE HAVE A COMPILER #####################
 
-if [[ "$OSTYPE" == linux-gnu* ]]
+if [[ "$OSTYPE" == linux* ]]
 then
 	if ! command -v gcc &> /dev/null || ! command -v g++ &> /dev/null || ! command -v make &> /dev/null
 	then
@@ -22,7 +22,11 @@ then
 
 				gcc, g++, make
 
-			Some distributions have a package "build-essentials"
+			Debian, Ubuntu: apt-get install build-essentials
+			CentOS, RHEL:   yum groupinstall "Development Tools"
+			Fedora :        dnf groupinstall "Development Tools"
+			OpenSuse:       zypper in -t pattern devel_C_C++
+			(All above commands must be run with "sudo" or start a root shell with "su")
 
 			This script will exit now.
 			Please restart the script after you installed the build tools.

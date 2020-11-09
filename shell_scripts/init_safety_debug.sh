@@ -21,7 +21,7 @@ then
   # Set command to time opam commands
   # Note/ToDo: the maximum resident set shown by time is the maximum resident set of the largest child,
   # not the maximum resident set of the process tree.
-  if [[ "$OSTYPE" == linux-gnu* ]]
+  if [[ "$OSTYPE" == linux* ]]
   then
     COQ_PLATFORM_TIME="/usr/bin/time -v"
   elif [[ "$OSTYPE" == darwin* ]]

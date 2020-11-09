@@ -13,7 +13,7 @@
 if ! command -v opam &> /dev/null
 then
   echo "===== INSTALLING OPAM ====="
-  if [[ "$OSTYPE" == linux-gnu* ]]
+  if [[ "$OSTYPE" == linux* ]]
   then
     # On Linux use the opam install script - Linux has too many variants.
     check_command_available curl
@@ -66,7 +66,7 @@ which opam
 ENABLE_SANDOX=Y
 COQ_PLATFORM_OPAM_INIT_EXTRA=""
 
-if [[ "$OSTYPE" == linux-gnu* ]]
+if [[ "$OSTYPE" == linux* ]]
 then
   if ! command -v bwrap &> /dev/null
   then
