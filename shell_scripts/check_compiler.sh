@@ -22,10 +22,9 @@ then
 
 				gcc, g++, make
 
-			Debian, Ubuntu: apt-get install build-essentials
-			CentOS, RHEL:   yum groupinstall "Development Tools"
-			Fedora :        dnf groupinstall "Development Tools"
-			OpenSuse:       zypper in -t pattern devel_C_C++
+			Debian, Ubuntu:       apt-get install build-essentials
+			CentOS, RHEL, Fedora: dnf groupinstall "Development Tools"
+			OpenSuse:             zypper in -t pattern devel_C_C++
 			(All above commands must be run with "sudo" or start a root shell with "su")
 
 			This script will exit now.

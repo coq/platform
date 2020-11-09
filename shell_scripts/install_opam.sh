@@ -141,8 +141,6 @@ then
 
   # Create switch with the patch repo registered right away in case we need to patch OCaml
   $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME $COQ_PLATFORM_OCAML_VERSION --repositories="patch$COQ_PLATFORM_SWITCH_NAME",coq-released,default
-
-  touch "$HOME/.opam_update_timestamp"
 else
   echo "===== opam switch already exists ====="
 fi
