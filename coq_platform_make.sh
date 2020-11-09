@@ -75,6 +75,7 @@ check_value_enumeraton "${COQ_PLATFORM_SWITCH:-__unset__}"   "[kd]"  "-switch/CO
 
 source shell_scripts/check_system.sh
 source shell_scripts/check_compiler.sh
+source shell_scripts/sanitize_environment.sh
 
 ###################### USER CHOICES #####################
 
