@@ -22,7 +22,7 @@ PACKAGES="coq.8.12.0"
 PACKAGES="${PACKAGES} coqide.8.12.0 lablgtk3.3.0.beta5"
 
 # Some generally useful packages
-PACKAGES="${PACKAGES} coq-unicoq.1.5+8.12"
+PACKAGES="${PACKAGES} coq-unicoq.1.5+8.13"
 PACKAGES="${PACKAGES} coq-ext-lib.0.11.2"
 PACKAGES="${PACKAGES} coq-equations.1.2.3+8.12"
 PACKAGES="${PACKAGES} coq-bignums.8.12.0"
