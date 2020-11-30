@@ -27,7 +27,7 @@ PACKAGES="${PACKAGES} coq-ext-lib.0.11.2"
 PACKAGES="${PACKAGES} coq-equations.1.2.3+8.12"
 PACKAGES="${PACKAGES} coq-bignums.8.12.0"
 PACKAGES="${PACKAGES} coq-aac-tactics.8.12.0"
-PACKAGES="${PACKAGES} coq-mtac2.1.3+8.12"
+PACKAGES="${PACKAGES} coq-mtac2.1.4+8.13"
 PACKAGES="${PACKAGES} coq-simple-io.1.4.0"
 PACKAGES="${PACKAGES} coq-quickchick.1.4.0"
 
