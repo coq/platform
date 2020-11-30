@@ -42,12 +42,12 @@ PACKAGES="${PACKAGES} coq-elpi.1.8.1 elpi.1.12.0"
 PACKAGES="${PACKAGES} coq-hierarchy-builder.1.0.0"
 
 # The standard set of mathcomp modules
-PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.11.0"
-PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.11.0"
-PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.11.0"
-PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.11.0"
-PACKAGES="${PACKAGES} coq-mathcomp-field.1.11.0"
-PACKAGES="${PACKAGES} coq-mathcomp-character.1.11.0"
+PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.12.0"
+PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.12.0"
+PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.12.0"
+PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.12.0"
+PACKAGES="${PACKAGES} coq-mathcomp-field.1.12.0"
+PACKAGES="${PACKAGES} coq-mathcomp-character.1.12.0"
 # Plus a few extra mathcomp modules
 PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.0"
 PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.0"
