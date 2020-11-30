@@ -35,7 +35,7 @@ PACKAGES="${PACKAGES} coq-quickchick.1.4.0"
 PACKAGES="${PACKAGES} coq-flocq.3.3.1"
 PACKAGES="${PACKAGES} coq-coquelicot.3.1.0"
 PACKAGES="${PACKAGES} coq-gappa.1.4.6 gappa.1.3.5"
-PACKAGES="${PACKAGES} coq-interval.4.0.0"
+PACKAGES="${PACKAGES} coq-interval.4.1.0"
 
 # Elpi, Coq-elpi and hierarchy builder
 PACKAGES="${PACKAGES} coq-elpi.1.5.1 elpi.1.11.4-1"
