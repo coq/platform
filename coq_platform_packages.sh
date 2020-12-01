@@ -50,7 +50,7 @@ PACKAGES="${PACKAGES} coq-mathcomp-field.1.12.0"
 PACKAGES="${PACKAGES} coq-mathcomp-character.1.12.0"
 # Plus a few extra mathcomp modules
 PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.0"
-PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.0"
+PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"
 PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.1"
 
 # Menhir, CompCert and Princeton VST - these take longer to compile !
