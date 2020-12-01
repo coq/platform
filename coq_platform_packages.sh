@@ -28,7 +28,7 @@ PACKAGES="${PACKAGES} coq-equations.1.2.3+8.13"
 PACKAGES="${PACKAGES} coq-bignums.8.13.0~beta1"
 PACKAGES="${PACKAGES} coq-aac-tactics.8.13.0"
 PACKAGES="${PACKAGES} coq-mtac2.1.4+8.13"
-PACKAGES="${PACKAGES} coq-simple-io.1.4.0"
+PACKAGES="${PACKAGES} coq-simple-io.1.5.0"
 PACKAGES="${PACKAGES} coq-quickchick.1.5.0"
 
 # Analysis and numerics
