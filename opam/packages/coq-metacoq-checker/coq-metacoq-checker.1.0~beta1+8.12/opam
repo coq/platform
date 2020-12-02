@@ -15,6 +15,7 @@ authors: ["Abhishek Anand <aa755@cs.cornell.edu>"
 ]
 license: "MIT"
 patches: [
+  "coq-where-tr.patch"
   "metacoq-lineendings.patch"
 ]
 build: [
