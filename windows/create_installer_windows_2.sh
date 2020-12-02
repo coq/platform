@@ -8,11 +8,16 @@ set -o errexit
 DIR_TARGET=windows_installer
 FILE_DEP_HIDDEN="$DIR_TARGET"/dependencies_hidden.nsh
 FILE_DEP_VISIBLE="$DIR_TARGET"/dependencies_visible.nsh
+FILE_RES_HIDDEN="$DIR_TARGET"/reset_hidden.nsh
+FILE_RES_VISIBLE="$DIR_TARGET"/reset_visible.nsh
+> $FILE_RES_HIDDEN
+> $FILE_RES_VISIBLE
 
 # Sort a dependecy file by dependency level (leaves last)
 # $1 input file name
-# $2 output file name
-# $3 awk print statement
+# $2 check macro output file name
+# $3 NSIS Check macro name
+# $4 reset macro output file name
 
 function sort_dependencies
 {
@@ -39,14 +44,18 @@ function sort_dependencies
           exit 1;
         }
       }
+      for (pkg in IsDest) {
+        print "${UnselectSection}", "${Sec_"pkg"}" >> "'"$4"'"
+      }
       for (i=0; i<n; i++) {
         print DepLvl[i], DepSrc[i], DepDest[i];
       }
-    }' | sort -r -n | awk "$3" > "$2"
+    }' | sort -r -n | awk "
+    { print \"\${$3}\", \"\${Sec_\"\$2\"}\", \"\${Sec_\"\$3\"}\", \"'\"\$2\"'\", \"'\"\$3\"'\"; }" > "$2"
 }
 
-sort_dependencies "$FILE_DEP_HIDDEN.in" "$FILE_DEP_HIDDEN" '{ print "${CheckHiddenSectionDependency}", "${Sec_"$2"}", "${Sec_"$3"}"; }'
-sort_dependencies "$FILE_DEP_VISIBLE.in" "$FILE_DEP_VISIBLE" '{ print "${CheckVisibleSectionDependency}", "${Sec_"$2"}", "${Sec_"$3"}", "'"'"'"$2"'"'"'", "'"'"'"$3"'"'"'"; }'
+sort_dependencies "$FILE_DEP_HIDDEN.in" "$FILE_DEP_HIDDEN" 'CheckHiddenSectionDependency' "$FILE_RES_HIDDEN"
+sort_dependencies "$FILE_DEP_VISIBLE.in" "$FILE_DEP_VISIBLE" 'CheckVisibleSectionDependency' "$FILE_RES_VISIBLE"
 
 cd $DIR_TARGET
 
@@ -59,9 +68,9 @@ cp ../windows/*.ns* .
 wget --no-clobber https://github.com/coq/coq/raw/v8.12/ide/coq.ico
 wget --no-clobber https://github.com/coq/coq/raw/v8.12/LICENSE
 
-
-VERSION=$(coqc --print-version | cut -d ' ' -f 1 | tr -d '\r')
-# -DARCH="$ARCH" -DCOQ_SRC_PATH="$PREFIXCOQ"
-"$NSIS" -DVERSION="$VERSION" Coq.nsi
+COQ_VERSION=$(coqc --print-version | cut -d ' ' -f 1 | tr -d '\r')
+COQ_ARCH=$(uname -m)
+#  -DCOQ_SRC_PATH="$PREFIXCOQ"
+"$NSIS" -DVERSION="$COQ_VERSION" -DARCH="$COQ_ARCH" Coq.nsi
 
 cd ..

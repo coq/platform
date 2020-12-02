@@ -8,8 +8,6 @@
 ; VERSION      Coq version, e.g. 8.5-pl2
 ; ARCH         The target architecture, either x86_64 or i686
 ; COQ_SRC_PATH path of Coq installation in Windows or MinGW format (either \\ or /, but with drive letter)
-; COQ_ICON     path of Coq icon file in Windows or MinGW format
-; COQ_ADDONS   list of addons that are shipped
 
 ; Enable compression after debugging.
 SetCompress off
@@ -20,13 +18,14 @@ SetCompress off
 
 !include "MUI2.nsh"
 !include "FileAssociation.nsh"
-!include "StrRep.nsh"
-!include "ReplaceInFile.nsh"
 !include "winmessages.nsh"
+;!include "StrRep.nsh"
+;!include "ReplaceInFile.nsh"
 
-Var COQ_SRC_PATH_BS   ; COQ_SRC_PATH with \ instead of /
-Var COQ_SRC_PATH_DBS  ; COQ_SRC_PATH with \\ instead of /
-Var INSTDIR_DBS       ; INSTDIR with \\ instead of \
+; Used by OCaml
+; Var COQ_SRC_PATH_BS   ; COQ_SRC_PATH with \ instead of /
+; Var COQ_SRC_PATH_DBS  ; COQ_SRC_PATH with \\ instead of /
+; Var INSTDIR_DBS       ; INSTDIR with \\ instead of "\" 
 
 ;--------------------------------
 ;Configuration
@@ -72,44 +71,41 @@ FunctionEnd
 ;--------------------------------
 ;Installer Sections
 
-; Section "Coq" Sec1
+Section "-CoqWinStuff" Sec_CoqWinStuff
+  SetOutPath "$INSTDIR\"
 
-;   SetOutPath "$INSTDIR\"
-;   !include "..\..\..\filelists\coq_base.nsh"
+  ${registerExtension} "$INSTDIR\bin\coqide.exe" ".v" "Coq Script File"
 
-;   ${registerExtension} "$INSTDIR\bin\coqide.exe" ".v" "Coq Script File"
+  ;Store install folder
+  WriteRegStr HKCU "Software\${MY_PRODUCT}" "" $INSTDIR
 
-;   ;Store install folder
-;   WriteRegStr HKCU "Software\${MY_PRODUCT}" "" $INSTDIR
+  ;Create uninstaller
+  WriteUninstaller "$INSTDIR\Uninstall.exe"
+  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
+      "DisplayName" "Coq Version ${VERSION}"
+  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
+      "UninstallString" '"$INSTDIR\Uninstall.exe"'
+  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
+      "DisplayVersion" "${VERSION}"
+  WriteRegDWORD HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
+      "NoModify" "1"
+  WriteRegDWORD HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
+      "NoRepair" "1"
+  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
+      "URLInfoAbout" "http://coq.inria.fr"
 
-;   ;Create uninstaller
-;   WriteUninstaller "$INSTDIR\Uninstall.exe"
-;   WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
-;       "DisplayName" "Coq Version ${VERSION}"
-;   WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
-;       "UninstallString" '"$INSTDIR\Uninstall.exe"'
-;   WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
-;       "DisplayVersion" "${VERSION}"
-;   WriteRegDWORD HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
-;       "NoModify" "1"
-;   WriteRegDWORD HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
-;       "NoRepair" "1"
-;   WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
-;       "URLInfoAbout" "http://coq.inria.fr"
-
-;   ; Create start menu entries
-;   ; SetOutPath is required for the path in the .lnk files
-;   SetOutPath "$INSTDIR"
-;   CreateDirectory "$SMPROGRAMS\Coq"
-;   ; The first shortcut set here is treated as main application by Windows 7/8.
-;   ; Use CoqIDE as main application
-;   CreateShortCut "$SMPROGRAMS\Coq\CoqIde.lnk" "$INSTDIR\bin\coqide.exe"
-;   CreateShortCut "$SMPROGRAMS\Coq\Coq.lnk" "$INSTDIR\bin\coqtop.exe"
-;   WriteINIStr "$SMPROGRAMS\Coq\The Coq HomePage.url" "InternetShortcut" "URL" "http://coq.inria.fr"
-;   WriteINIStr "$SMPROGRAMS\Coq\The Coq Standard Library.url" "InternetShortcut" "URL" "http://coq.inria.fr/library"
-;   CreateShortCut "$SMPROGRAMS\Coq\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
-
-; SectionEnd
+  ; Create start menu entries
+  ; SetOutPath is required for the path in the .lnk files
+  SetOutPath "$INSTDIR"
+  CreateDirectory "$SMPROGRAMS\Coq"
+  ; The first shortcut set here is treated as main application by Windows 7/8.
+  ; Use CoqIDE as main application
+  CreateShortCut "$SMPROGRAMS\Coq\CoqIde.lnk" "$INSTDIR\bin\coqide.exe"
+  CreateShortCut "$SMPROGRAMS\Coq\Coq.lnk" "$INSTDIR\bin\coqtop.exe"
+  WriteINIStr "$SMPROGRAMS\Coq\The Coq HomePage.url" "InternetShortcut" "URL" "http://coq.inria.fr"
+  WriteINIStr "$SMPROGRAMS\Coq\The Coq Standard Library.url" "InternetShortcut" "URL" "http://coq.inria.fr/library"
+  CreateShortCut "$SMPROGRAMS\Coq\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
+SectionEnd
 
 ;OCAML Section "Ocaml for native compute and plugin development" Sec2
 ;OCAML   SetOutPath "$INSTDIR\"
@@ -128,13 +124,8 @@ FunctionEnd
 ;OCAML   !insertmacro ReplaceInFile "$INSTDIR\etc\findlib.conf" "$COQ_SRC_PATH_DBS" "$INSTDIR_DBS"
 ;OCAML SectionEnd
 
-SectionGroup "Coq addons" SecVisible
-  !include "sections_visible.nsh"
-SectionGroupEnd
-
-SectionGroup "-Dependencies" SecHidden
-  !include "sections_hidden.nsh"
-SectionGroupEnd
+!include "sections_visible.nsh"
+!include "sections_hidden.nsh"
 
 ;OCAML Section "OCAMLLIB current user" Sec4
 ;OCAML    WriteRegStr HKCU "Environment" "OCAMLLIB" "$INSTDIR\libocaml"
@@ -154,6 +145,10 @@ SectionGroupEnd
 
 ;--------------------------------
 ;Section dependencies
+
+; FUNCTION/MACRO CheckVisibleSectionDependency
+; Check dependencies between visible sections
+; Inform user when sections are enabled/disabled
 
 ; Parameters on the stack:
 ; top-0 : section B on which section A dependencies
@@ -207,6 +202,10 @@ FunctionEnd
 
 !define CheckVisibleSectionDependency "!insertmacro CheckVisibleSectionDependency"
 
+; FUNCTION/MACRO CheckHiddenSectionDependency
+; Check dependencies between visible sections
+; Silently enable all drequired dependent sections
+
 ; Parameters on the stack:
 ; top-0 : section B on which section A dependencies
 ; top-1 : section A, which depends on section B
@@ -240,7 +239,7 @@ Function CheckHiddenSectionDependency
   Pop $R1
 FunctionEnd
 
-!macro CheckHiddenSectionDependency secA secB
+!macro CheckHiddenSectionDependency secA secB nameA nameB
   Push "${secA}"
   Push "${secB}"
   Call CheckHiddenSectionDependency
@@ -248,8 +247,36 @@ FunctionEnd
 
 !define CheckHiddenSectionDependency "!insertmacro CheckHiddenSectionDependency"
 
+; FUNCTION/MACRO UnselectSectionX
+; Unconditonally unselect a section
+
+; Parameters on the stack:
+; top-0 : section to be deselected
+
+Function UnselectSectionX
+            ; stack=sec rest
+  Exch $R0  ; stack=$R0 rest; $R0=sec
+  Push $R1
+
+  SectionGetFlags $R0 $R1
+  IntOp $R1 $R1 & ${SECTION_OFF}
+  SectionSetFlags $R0 $R1
+
+  Pop $R1
+  Pop $R0
+FunctionEnd
+
+!macro UnselectSectionX sec
+  Push "${sec}"
+  Call UnselectSectionX
+!macroend
+
+!define UnselectSection "!insertmacro UnselectSectionX"
+
 Function .onSelChange
   !include "dependencies_visible.nsh"
+  !include "reset_hidden.nsh"
+  !include "dependencies_hidden.nsh"
 FunctionEnd
 
 ;--------------------------------
@@ -310,22 +337,12 @@ FunctionEnd
 ;Language Strings
 
   ;Description
-  LangString DESC_1 ${LANG_ENGLISH} "This package contains Coq and CoqIDE."
-  LangString DESC_2 ${LANG_ENGLISH} "This package contains the following extra Coq packages: ${COQ_ADDONS}"
-  LangString DESC_3 ${LANG_ENGLISH} "This package contains the development files needed in order to build a plugin for Coq."
-  ; LangString DESC_4 ${LANG_ENGLISH} "Set the OCAMLLIB environment variable for the current user."
-  ; LangString DESC_5 ${LANG_ENGLISH} "Set the OCAMLLIB environment variable for all users."
   !include "strings.nsh"
 
 ;--------------------------------
 ;Descriptions
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-  !insertmacro MUI_DESCRIPTION_TEXT ${Sec1} $(DESC_1)
-  !insertmacro MUI_DESCRIPTION_TEXT ${Sec2} $(DESC_2)
-  !insertmacro MUI_DESCRIPTION_TEXT ${Sec3} $(DESC_3)
-  ;OCAML !insertmacro MUI_DESCRIPTION_TEXT ${Sec4} $(DESC_4)
-  ;OCAML !insertmacro MUI_DESCRIPTION_TEXT ${Sec5} $(DESC_5)
   !include "section_descriptions.nsh"
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
