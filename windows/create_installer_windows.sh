@@ -4,6 +4,7 @@
 
 set -o nounset
 set -o errexit
+shopt -s extglob
 
 ##### Utility functions #####
 
@@ -58,8 +59,8 @@ FILE_SEC_DESCRIPTIONS="$DIR_TARGET"/section_descriptions.nsh
 
 echo "Create package list"
 
-packages_pos="$(opam list --installed-roots --short --columns=name | grep '^coq\|^menhir\|^gappa\|^elpi')"
-packages_neg="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk')"
+packages_pos="$(opam list --installed-roots --short --columns=name | grep '^coq\|^menhir\|^gappa')"
+packages_neg="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^elpi')"
 
 if [ "$packages_pos" != "$packages_neg" ]
 then
@@ -70,6 +71,33 @@ then
 fi
 
 SELECTABLE_PACKAGES=$packages_pos
+
+# Implicit glob pattern: *
+declare -A OPAM_FILE_WHITELIST
+
+OPAM_FILE_WHITELIST[ocaml-variants]="nothing" # this has the ocaml compiler in
+OPAM_FILE_WHITELIST[base]="nothing" # ocaml stdlib
+OPAM_FILE_WHITELIST[ocaml-compiler-libs]="nothing"
+
+OPAM_FILE_WHITELIST[dune]="nothing"
+OPAM_FILE_WHITELIST[configurator]="nothing"
+OPAM_FILE_WHITELIST[sexplib0]="nothing"
+OPAM_FILE_WHITELIST[csexp]="nothing"
+OPAM_FILE_WHITELIST[ocamlbuild]="nothing"
+OPAM_FILE_WHITELIST[result]="nothing"
+OPAM_FILE_WHITELIST[cppo]="nothing"
+
+OPAM_FILE_WHITELIST[elpi]="nothing" # linked in coq-elpi
+OPAM_FILE_WHITELIST[camlp5]="nothing" # linked in elpi
+OPAM_FILE_WHITELIST[ppx_drivers]="nothing" # linked in elpi
+OPAM_FILE_WHITELIST[ppxlib]="nothing" # linked in elpi
+OPAM_FILE_WHITELIST[ppx_deriving]="nothing" # linked in elpi
+OPAM_FILE_WHITELIST[ocaml-migrate-parsetree]="nothing" # linked in elpi
+OPAM_FILE_WHITELIST[re]="nothing" # linked in elpi
+
+OPAM_FILE_WHITELIST[lablgtk3]="*stubs.dll" # we keep only the stublib DLL, the rest is linked in coqide
+OPAM_FILE_WHITELIST[lablgtk3-sourceview3]="*stubs.dll" # we keep only the stublib DLL, the rest is linked in coqide
+OPAM_FILE_WHITELIST[cairo2]="*stubs.dll" # we keep only the stublib DLL, the rest is linked in coqide
 
 ###### Function for analyzing one package
 
@@ -103,8 +131,15 @@ function analyze_package {
   fi
 
   # Create file list include file
-  echo "# File list for $1" > "$DIR_TARGET"/files_$1.nsh
-  files="$(opam show --list-files $1)"
+  if [ ${OPAM_FILE_WHITELIST[$1]+_} ]
+  then
+    filter="${OPAM_FILE_WHITELIST[$1]}"
+    #echo "  - taking only files matching glob: $filter"
+  else
+    filter="*" # take everything
+  fi
+  echo "# File list for $1 matching $filter" > "$DIR_TARGET"/files_$1.nsh
+  files="$(opam show --list-files $1 | (while read X; do if [[ $X == @($filter) ]]; then echo $X; fi; done))"
   reldir_win_prev="--none--"
   for file in $files
   do
