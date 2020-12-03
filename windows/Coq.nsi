@@ -146,17 +146,17 @@ SectionEnd
 ;--------------------------------
 ;Section dependencies
 
-; FUNCTION/MACRO CheckVisibleSectionDependency
-; Check dependencies between visible sections
-; Inform user when sections are enabled/disabled
+; FUNCTION/MACRO SectionVisibleSelect
+; Check dependencies between visible sections and select B when A is selected
+; Inform user when sections are selected
 
 ; Parameters on the stack:
-; top-0 : section B on which section A dependencies
+; top-0 : section B on which section A dependends
 ; top-1 : section A, which depends on section B
 ; top-2 : name of section B
 ; top-3 : name of section A
 
-Function CheckVisibleSectionDependency
+Function SectionVisibleSelect
             ; stack=nameB nameA secB secA rest
   Exch $R3  ; stack=$R3   nameA secB secA rest; $R3=nameB
   Exch      ; stack=nameA $R3   secB secA rest
@@ -192,15 +192,71 @@ Function CheckVisibleSectionDependency
   Pop $R1
 FunctionEnd
 
-!macro CheckVisibleSectionDependency secA secB nameA nameB
+!macro SectionVisibleSelect secA secB nameA nameB
   Push "${secA}"
   Push "${secB}"
   Push "${nameA}"
   Push "${nameB}"
-  Call CheckVisibleSectionDependency
+  Call SectionVisibleSelect
 !macroend
 
-!define CheckVisibleSectionDependency "!insertmacro CheckVisibleSectionDependency"
+!define SectionVisibleSelect "!insertmacro SectionVisibleSelect"
+
+; FUNCTION/MACRO SectionVisibleDeselect
+; Check dependencies between visible sections and deselect section A when B is not selected
+; Inform user when sections are disabled
+
+; Parameters on the stack:
+; top-0 : section B on which section A depends
+; top-1 : section A, which depends on section B
+; top-2 : name of section B
+; top-3 : name of section A
+
+Function SectionVisibleDeselect
+            ; stack=nameB nameA secB secA rest
+  Exch $R3  ; stack=$R3   nameA secB secA rest; $R3=nameB
+  Exch      ; stack=nameA $R3   secB secA rest
+  Exch $R2  ; stack=$R2   $R3   secB secA rest; $R2=nameA
+  Exch 2    ; stack=secB  $R3   $R2  secA rest
+  Exch $R1  ; stack=$R1   $R3   $R2  secA rest; $R1=secB
+  Exch 3    ; stack=secA  $R3   $R2  $R1  rest;
+  Exch $R0  ; stack=$R0   $R3   $R2  $R1  rest; $R0=secA
+            ; Take care of save order when popping the stack!
+  Push $R4
+  Push $R5
+
+  SectionGetFlags $R1 $R1
+  IntOp $R1 $R1 & ${SF_SELECTED}
+
+  SectionGetFlags $R0 $R4
+  IntOp $R5 $R4 & ${SF_SELECTED}
+
+  ${If} $R1 != ${SF_SELECTED}
+  ${AndIf} $R5 == ${SF_SELECTED}
+
+  IntOp $R5 $R4 & ${SECTION_OFF}
+  SectionSetFlags $R0 $R5
+  MessageBox MB_OK '"$R2" has been deselected, because it depends on "$R3"'
+
+  ${EndIf}
+
+  Pop $R5
+  Pop $R4
+  Pop $R0
+  Pop $R3
+  Pop $R2
+  Pop $R1
+FunctionEnd
+
+!macro SectionVisibleDeselect secA secB nameA nameB
+  Push "${secA}"
+  Push "${secB}"
+  Push "${nameA}"
+  Push "${nameB}"
+  Call SectionVisibleDeselect
+!macroend
+
+!define SectionVisibleDeselect "!insertmacro SectionVisibleDeselect"
 
 ; FUNCTION/MACRO CheckHiddenSectionDependency
 ; Check dependencies between visible sections
@@ -274,7 +330,19 @@ FunctionEnd
 !define UnselectSection "!insertmacro UnselectSectionX"
 
 Function .onSelChange
-  !include "dependencies_visible.nsh"
+  ; The index of the changed section is in $0. First check if this is a selection or deselection
+  Push $1
+  SectionGetFlags $0 $1
+  IntOp $1 $1 & ${SF_SELECTED}
+  ${If} $1 == ${SF_SELECTED}
+    ; The changed package is selected, so select dependencies
+    !include "dependencies_visible_selection.nsh"
+  ${Else}
+    ; The changed package is deselected, so deselect packages which depend on it
+    !include "dependencies_visible_deselection.nsh"
+  ${EndIf}
+  Pop $1
+
   !include "reset_hidden.nsh"
   !include "dependencies_hidden.nsh"
 FunctionEnd
