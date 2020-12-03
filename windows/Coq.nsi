@@ -7,7 +7,6 @@
 ; The following command line defines are expected:
 ; VERSION      Coq version, e.g. 8.5-pl2
 ; ARCH         The target architecture, either x86_64 or i686
-; COQ_SRC_PATH path of Coq installation in Windows or MinGW format (either \\ or /, but with drive letter)
 
 ; Enable compression after debugging.
 SetCompress off
@@ -179,8 +178,9 @@ Function SectionVisibleSelect
   ${AndIf} $R5 != ${SF_SELECTED}
 
   IntOp $R5 $R4 | ${SF_SELECTED}
+  IntOp $R5 $R5 | ${SF_BOLD}
   SectionSetFlags $R1 $R5
-  MessageBox MB_OK '"$R3" has been selected, because "$R2" depends on it'
+  StrCpy $2 "$2 $R3"
 
   ${EndIf}
 
@@ -235,8 +235,9 @@ Function SectionVisibleDeselect
   ${AndIf} $R5 == ${SF_SELECTED}
 
   IntOp $R5 $R4 & ${SECTION_OFF}
+  IntOp $R5 $R5 | ${SF_BOLD}
   SectionSetFlags $R0 $R5
-  MessageBox MB_OK '"$R2" has been deselected, because it depends on "$R3"'
+  StrCpy $2 "$2 $R2"
 
   ${EndIf}
 
@@ -329,18 +330,51 @@ FunctionEnd
 
 !define UnselectSection "!insertmacro UnselectSectionX"
 
+Function .onInit
+  Push $R0
+  ; For licensing reasons CompCert and VST are off by default
+  ; (By agreement with Xavier CompCert shall be explicitly selected)
+  !ifdef Sec_coq_compcert
+    SectionGetFlags ${Sec_coq_compcert} $R0
+    IntOp $R0 $R0 & ${SECTION_OFF}
+    SectionSetFlags ${Sec_coq_compcert} $R0
+  !endif
+
+  !ifdef Sec_coq_vst
+    SectionGetFlags ${Sec_coq_vst} $R0
+    IntOp $R0 $R0 & ${SECTION_OFF}
+    SectionSetFlags ${Sec_coq_vst} $R0
+  !endif
+  Pop $R0
+FunctionEnd
+
 Function .onSelChange
   ; The index of the changed section is in $0. First check if this is a selection or deselection
   Push $1
+  Push $2 ; Concatenated package list
+  Push $3 ; name of modified package
+
   SectionGetFlags $0 $1
+  SectionGetText $0 $3
   IntOp $1 $1 & ${SF_SELECTED}
   ${If} $1 == ${SF_SELECTED}
     ; The changed package is selected, so select dependencies
+    StrCpy $2 ""
     !include "dependencies_visible_selection.nsh"
+    ${If} $2 != ""
+      MessageBox MB_OK 'The following packages:$\n$\n $2$\n$\nhave been selected, because:$\n$\n  $3$\n$\ndepends on them.$\nAuto (de)selected packages are marked bold (sticky).'
+    ${EndIf}
   ${Else}
     ; The changed package is deselected, so deselect packages which depend on it
+    StrCpy $2 ""
     !include "dependencies_visible_deselection.nsh"
+    ${If} $2 != ""
+      MessageBox MB_OK 'The following packages:$\n$\n $2$\n$\nhave been deselected, because they depend on:$\n$\n  $3.$\n$\nAuto (de)selected packages are marked bold (sticky).'
+    ${EndIf}
   ${EndIf}
+  
+  Pop $3
+  Pop $2
   Pop $1
 
   !include "reset_hidden.nsh"
@@ -355,32 +389,33 @@ FunctionEnd
 ; The section index variables are only defined after the section definitions.
 
   !define MUI_ICON "coq.ico"
+  ;!define MUI_CUSTOMFUNCTION_GUIINIT PreselectSections
 
   !insertmacro MUI_PAGE_WELCOME
   !insertmacro MUI_PAGE_LICENSE "LICENSE"
   !insertmacro MUI_PAGE_COMPONENTS
 
-  !ifdef Sec_compcert
+  !ifdef Sec_coq_compcert
     !define LicCompCert_Title "CompCert License Agreement"
     !define LicCompCert_SubTitle "You selected the CompCert addon. CompCert is not open source. Please review the license terms before installing CompCert!"
     !define LicCompCert_Bottom "If you accept the terms of the agreement, click I Agree to continue. Otherwise go back and unselect the CompCert addon."
-    !insertmacro MUI_PAGE_LICENSE_EXTRA "${COQ_SRC_PATH}/lib/coq/user-contrib/compcert/LICENSE" "${LicCompCert_Title}" "${LicCompCert_SubTitle}" "${LicCompCert_Bottom}" SelFuncCompCert
+    !insertmacro MUI_PAGE_LICENSE_EXTRA "coq-compcert-license.txt" "${LicCompCert_Title}" "${LicCompCert_SubTitle}" "${LicCompCert_Bottom}" SelFuncCompCert
 
     Function SelFuncCompCert
-      ${Unless} ${SectionIsSelected} ${Sec_compcert}
+      ${Unless} ${SectionIsSelected} ${Sec_coq_compcert}
         Abort
       ${EndUnless}
     FunctionEnd
   !endif
 
-  !ifdef Sec_vst
+  !ifdef Sec_coq_vst
     !define LicVST_Title "Princeton VST License Agreement"
     !define LicVST_SubTitle "You selected the VST addon. VST contains parts of CompCert which are not open source. Please review the license terms before installing VST!"
     !define LicVST_Bottom "If you accept the terms of the agreement, click I Agree to continue. Otherwise go back and unselect the VST addon."
-    !insertmacro MUI_PAGE_LICENSE_EXTRA "${COQ_SRC_PATH}/lib/coq/user-contrib/VST/LICENSE" "${LicVST_Title}" "${LicVST_SubTitle}" "${LicVST_Bottom}" SelFuncVST
+    !insertmacro MUI_PAGE_LICENSE_EXTRA "coq-vst-license.txt" "${LicVST_Title}" "${LicVST_SubTitle}" "${LicVST_Bottom}" SelFuncVST
 
     Function SelFuncVST
-      ${Unless} ${SectionIsSelected} ${Sec_vst}
+      ${Unless} ${SectionIsSelected} ${Sec_coq_vst}
         Abort
       ${EndUnless}
     FunctionEnd

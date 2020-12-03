@@ -78,12 +78,14 @@ NSIS=$(pwd)/nsis-3.06.1/makensis.exe
 chmod u+x "$NSIS"
 cp ../windows/*.ns* .
 
-wget --no-clobber https://github.com/coq/coq/raw/v8.12/ide/coq.ico
-wget --no-clobber https://github.com/coq/coq/raw/v8.12/LICENSE
+# ToDo: we need a more elegant way to get this data via opam
+wget https://github.com/coq/coq/raw/v8.12/ide/coq.ico
+wget https://github.com/coq/coq/raw/v8.12/LICENSE
+wget https://raw.githubusercontent.com/AbsInt/CompCert/v3.7/LICENSE -O coq-compcert-license.txt
+wget https://raw.githubusercontent.com/PrincetonUniversity/VST/v2.6/LICENSE -O coq-vst-license.txt
 
 COQ_VERSION=$(coqc --print-version | cut -d ' ' -f 1 | tr -d '\r')
 COQ_ARCH=$(uname -m)
-#  -DCOQ_SRC_PATH="$PREFIXCOQ"
 "$NSIS" -DVERSION="$COQ_VERSION" -DARCH="$COQ_ARCH" Coq.nsi
 
 cd ..
