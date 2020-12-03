@@ -204,6 +204,18 @@ do
   analyze_package "$package" 0
 done
 
+# Fix coq missing files
+echo 'SetOutPath $INSTDIR\bin' >> "$DIR_TARGET"/files_coq.nsh
+for x in $(ldd `which coqc` | cut -d / -f 2- | grep mingw | cut -d ' ' -f 1 | sort -u); do
+  echo -n "FILE "; cygpath -w /$x;
+done >> "$DIR_TARGET"/files_coq.nsh
+
+# Fix coqide missing files
+echo 'SetOutPath $INSTDIR\bin' >> "$DIR_TARGET"/files_coqide.nsh
+for x in $(ldd `which coqide` | cut -d / -f 2- | grep mingw | cut -d ' ' -f 1 | sort -u); do
+  echo -n "FILE "; cygpath -w /$x;
+done >> "$DIR_TARGET"/files_coqide.nsh
+
 # Sort the hidden dependency file by level
 # so that lower level dependencies come after higher level dependencies
 sort -o "$FILE_DEP_HIDDEN" "$FILE_DEP_HIDDEN"
