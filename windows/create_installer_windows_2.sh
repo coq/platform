@@ -9,15 +9,16 @@ DIR_TARGET=windows_installer
 FILE_DEP_HIDDEN="$DIR_TARGET"/dependencies_hidden.nsh
 FILE_DEP_VISIBLE="$DIR_TARGET"/dependencies_visible.nsh
 FILE_RES_HIDDEN="$DIR_TARGET"/reset_hidden.nsh
-FILE_RES_VISIBLE="$DIR_TARGET"/reset_visible.nsh
 > $FILE_RES_HIDDEN
-> $FILE_RES_VISIBLE
+FILE_VISIBLE_SEL="$DIR_TARGET"/dependencies_visible_selection.nsh
+FILE_VISIBLE_DESEL="$DIR_TARGET"/dependencies_visible_deselection.nsh
 
 # Sort a dependecy file by dependency level (leaves last)
 # $1 input file name
 # $2 check macro output file name
 # $3 NSIS Check macro name
 # $4 reset macro output file name
+# $5 sort options (e.g. -r for reverse)
 
 function sort_dependencies
 {
@@ -50,18 +51,30 @@ function sort_dependencies
       for (i=0; i<n; i++) {
         print DepLvl[i], DepSrc[i], DepDest[i];
       }
-    }' | sort -r -n | awk "
+    }' | sort $5 -n | awk "
     { print \"\${$3}\", \"\${Sec_\"\$2\"}\", \"\${Sec_\"\$3\"}\", \"'\"\$2\"'\", \"'\"\$3\"'\"; }" > "$2"
 }
 
-sort_dependencies "$FILE_DEP_HIDDEN.in" "$FILE_DEP_HIDDEN" 'CheckHiddenSectionDependency' "$FILE_RES_HIDDEN"
-sort_dependencies "$FILE_DEP_VISIBLE.in" "$FILE_DEP_VISIBLE" 'CheckVisibleSectionDependency' "$FILE_RES_VISIBLE"
+sort_dependencies "$FILE_DEP_HIDDEN.in" "$FILE_DEP_HIDDEN" 'CheckHiddenSectionDependency' "$FILE_RES_HIDDEN" -r
+sort_dependencies "$FILE_DEP_VISIBLE.in" "$FILE_VISIBLE_SEL" 'SectionVisibleSelect' /dev/null -r
+sort_dependencies "$FILE_DEP_VISIBLE.in" "$FILE_VISIBLE_DESEL" 'SectionVisibleDeSelect' /dev/null ""
 
 cd $DIR_TARGET
 
-wget --no-clobber --progress=dot:giga http://downloads.sourceforge.net/project/nsis/NSIS%202/2.51/nsis-2.51.zip
-unzip -o nsis-2.51.zip
-NSIS=$(pwd)/nsis-2.51/makensis.exe
+# NSIS 2.51 has the bug that $0 is not set in .onSelChange, so use the latest version 3.06.1
+
+wget --no-clobber --progress=dot:giga http://downloads.sourceforge.net/project/nsis/NSIS%203/3.06.1/nsis-3.06.1.zip
+unzip -o nsis-3.06.1
+# Unzipping this results in very strange permissions - fix this
+chmod -R 700 nsis-3.06.1
+
+# Enable the below lines to enable logging
+# wget --no-clobber --progress=dot:giga http://downloads.sourceforge.net/project/nsis/NSIS%203/3.06.1/nsis-3.06.1-log.zip
+# unzip -o nsis-3.06.1-log.zip -d nsis-3.06.1-log
+# cp -rf nsis-3.06.1-log/* nsis-3.06.1
+
+NSIS=$(pwd)/nsis-3.06.1/makensis.exe
+
 chmod u+x "$NSIS"
 cp ../windows/*.ns* .
 
