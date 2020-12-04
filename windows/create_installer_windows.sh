@@ -6,18 +6,6 @@ set -o nounset
 set -o errexit
 shopt -s extglob
 
-##### Utility functions #####
-
-# Check if a newline searated list contains an item
-# $1 = list
-# $2 = item
-
-function list_contains {
-#   This variant does not work when $2 contains regexp chars like conf-g++
-#   [[ $1 =~ (^|[[:space:]])$2($|[[:space:]]) ]]
-    [[ $'\n'"$1"$'\n' == *$'\n'"$2"$'\n'* ]]
-}
-
 ##### Files and folders #####
 
 # The opam prefix - stripped from absolute paths to create relative paths
@@ -52,6 +40,59 @@ FILE_STRINGS="$DIR_TARGET"/strings.nsh
 FILE_SEC_DESCRIPTIONS="$DIR_TARGET"/section_descriptions.nsh
 > "$FILE_SEC_DESCRIPTIONS"
 
+##### Utility functions #####
+
+# Check if a newline searated list contains an item
+# $1 = list
+# $2 = item
+
+function list_contains {
+#   This variant does not work when $2 contains regexp chars like conf-g++
+#   [[ $1 =~ (^|[[:space:]])$2($|[[:space:]]) ]]
+    [[ $'\n'"$1"$'\n' == *$'\n'"$2"$'\n'* ]]
+}
+
+# Add dlls for an executable using ldd to find them
+# $1 = executable name
+# $2 = regexp filter (grep)
+# $3 = file list file name
+
+function add_dlls_using_ldd {
+  if [ -f "$DIR_TARGET/$3.nsh" ]
+  then
+    echo "Adding DLLs for $1"
+    echo 'SetOutPath $INSTDIR\bin' >> "$DIR_TARGET/$3.nsh"
+    for file in $(ldd $(which "$1") | cut -d ' ' -f 3 | grep "$2" | sort -u)
+    do
+      echo -n "FILE "; cygpath -aw "$file";
+    done >> "$DIR_TARGET/$3.nsh"
+  fi
+}
+
+# Add files from a cygwin package using package name and grp filter
+# $1 = cygwin package name
+# $2 = regexp filter (grep)
+# $3 = file list file name
+
+function add_files_using_cygwin_package {
+  prevpath="--none--"
+  if [ -f "$DIR_TARGET/$3.nsh" ]
+  then
+    echo "Adding files from cygwin package $1"
+    for file in $(cygcheck -l "$1" | grep "$2" | sort -u)
+    do
+      relpath="${file#/usr/x86_64-w64-mingw32/sys-root/mingw/}"
+      relpath="${relpath%/*}"
+      if [ "$relpath" != "$prevpath" ]
+      then
+        echo 'SetOutPath $INSTDIR\'"$(cygpath -w "$relpath")"
+        prevpath="$relpath"
+      fi
+      echo -n "FILE "; cygpath -aw "$file";
+    done >> "$DIR_TARGET/$3.nsh"
+  fi
+}
+
 ###### Get filtered list of explicitly installed packages #####
 
 # Note: since both positive and negative filtering makes sense, we do both and require that the result is identical.
@@ -71,6 +112,8 @@ then
 fi
 
 SELECTABLE_PACKAGES=$packages_pos
+
+###### Associative array with package name -> file filter (shell glob pattern) #####
 
 # Implicit glob pattern: *
 declare -A OPAM_FILE_WHITELIST
@@ -192,11 +235,9 @@ function analyze_package {
   done
 }
 
-###### Recursively check dependencies of packages #####
+###### Go through selected packages and recursively analyze dependencies #####
 
-# Go through list of packages and analyze them
-
-# The initialli st of packages is the list of top level packages
+# The initial list of packages is the list of top level packages
 PACKAGES="$SELECTABLE_PACKAGES"
 
 for package in $SELECTABLE_PACKAGES
@@ -204,18 +245,17 @@ do
   analyze_package "$package" 0
 done
 
-# Fix coq missing files
-echo 'SetOutPath $INSTDIR\bin' >> "$DIR_TARGET"/files_coq.nsh
-for x in $(ldd `which coqc` | cut -d / -f 2- | grep mingw | cut -d ' ' -f 1 | sort -u); do
-  echo -n "FILE "; cygpath -w /$x;
-done >> "$DIR_TARGET"/files_coq.nsh
+###### Add system DLLs to some packages #####
 
-# Fix coqide missing files
-echo 'SetOutPath $INSTDIR\bin' >> "$DIR_TARGET"/files_coqide.nsh
-for x in $(ldd `which coqide` | cut -d / -f 2- | grep mingw | cut -d ' ' -f 1 | sort -u); do
-  echo -n "FILE "; cygpath -w /$x;
-done >> "$DIR_TARGET"/files_coqide.nsh
+add_dlls_using_ldd "coqc" '/usr/x86_64-w64-mingw32/sys-root/' "files_coq"
+add_dlls_using_ldd "coqide" '/usr/x86_64-w64-mingw32/sys-root/' "files_coqide"
+add_dlls_using_ldd "gappa" '/usr/x86_64-w64-mingw32/sys-root/' "files_gappa"
 
-# Sort the hidden dependency file by level
-# so that lower level dependencies come after higher level dependencies
-sort -o "$FILE_DEP_HIDDEN" "$FILE_DEP_HIDDEN"
+###### Add subset of adwaita icon theme #####
+
+add_files_using_cygwin_package "mingw64-x86_64-adwaita-icon-theme"  \
+"/\(16x16\|22x22\|32x32\|48x48\)/.*\("\
+"actions/bookmark\|actions/document\|devices/drive\|actions/format-text\|actions/go\|actions/list\|"\
+"actions/media\|actions/pan\|actions/process\|actions/system\|actions/window\|"\
+"mimetypes/text\|places/folder\|places/user\|status/dialog\)"  \
+"files_conf-adwaita-icon-theme"
