@@ -9,8 +9,8 @@
 ; ARCH         The target architecture, either x86_64 or i686
 
 ; Enable compression after debugging.
-SetCompress off
-; SetCompressor lzma
+; SetCompress off
+SetCompressor lzma
 
 !define MY_PRODUCT "Coq" ;Define your own software name here
 !define OUTFILE "coq-${VERSION}-installer-windows-${ARCH}.exe"
