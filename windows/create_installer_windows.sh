@@ -4,7 +4,6 @@
 
 set -o nounset
 set -o errexit
-shopt -s extglob
 
 ##### Files and folders #####
 
@@ -115,32 +114,35 @@ SELECTABLE_PACKAGES=$packages_pos
 
 ###### Associative array with package name -> file filter (shell glob pattern) #####
 
-# Implicit glob pattern: *
+# If not white list regexp is given it is "."
+# If not black list list regexp is given it is "\.byte\.exe$"
+
 declare -A OPAM_FILE_WHITELIST
+declare -A OPAM_FILE_BLACKLIST
 
-OPAM_FILE_WHITELIST[ocaml-variants]="nothing" # this has the ocaml compiler in
-OPAM_FILE_WHITELIST[base]="nothing" # ocaml stdlib
-OPAM_FILE_WHITELIST[ocaml-compiler-libs]="nothing"
+OPAM_FILE_WHITELIST[ocaml-variants]='.^' # this has the ocaml compiler in
+OPAM_FILE_WHITELIST[base]='.^' # ocaml stdlib
+OPAM_FILE_WHITELIST[ocaml-compiler-libs]='.^'
 
-OPAM_FILE_WHITELIST[dune]="nothing"
-OPAM_FILE_WHITELIST[configurator]="nothing"
-OPAM_FILE_WHITELIST[sexplib0]="nothing"
-OPAM_FILE_WHITELIST[csexp]="nothing"
-OPAM_FILE_WHITELIST[ocamlbuild]="nothing"
-OPAM_FILE_WHITELIST[result]="nothing"
-OPAM_FILE_WHITELIST[cppo]="nothing"
+OPAM_FILE_WHITELIST[dune]='.^'
+OPAM_FILE_WHITELIST[configurator]='.^'
+OPAM_FILE_WHITELIST[sexplib0]='.^'
+OPAM_FILE_WHITELIST[csexp]='.^'
+OPAM_FILE_WHITELIST[ocamlbuild]='.^'
+OPAM_FILE_WHITELIST[result]='.^'
+OPAM_FILE_WHITELIST[cppo]='.^'
 
-OPAM_FILE_WHITELIST[elpi]="nothing" # linked in coq-elpi
-OPAM_FILE_WHITELIST[camlp5]="nothing" # linked in elpi
-OPAM_FILE_WHITELIST[ppx_drivers]="nothing" # linked in elpi
-OPAM_FILE_WHITELIST[ppxlib]="nothing" # linked in elpi
-OPAM_FILE_WHITELIST[ppx_deriving]="nothing" # linked in elpi
-OPAM_FILE_WHITELIST[ocaml-migrate-parsetree]="nothing" # linked in elpi
-OPAM_FILE_WHITELIST[re]="nothing" # linked in elpi
+OPAM_FILE_WHITELIST[elpi]='.^' # linked in coq-elpi
+OPAM_FILE_WHITELIST[camlp5]='.^' # linked in elpi
+OPAM_FILE_WHITELIST[ppx_drivers]='.^' # linked in elpi
+OPAM_FILE_WHITELIST[ppxlib]='.^' # linked in elpi
+OPAM_FILE_WHITELIST[ppx_deriving]='.^' # linked in elpi
+OPAM_FILE_WHITELIST[ocaml-migrate-parsetree]='.^' # linked in elpi
+OPAM_FILE_WHITELIST[re]='.^' # linked in elpi
 
-OPAM_FILE_WHITELIST[lablgtk3]="*stubs.dll" # we keep only the stublib DLL, the rest is linked in coqide
-OPAM_FILE_WHITELIST[lablgtk3-sourceview3]="*stubs.dll" # we keep only the stublib DLL, the rest is linked in coqide
-OPAM_FILE_WHITELIST[cairo2]="*stubs.dll" # we keep only the stublib DLL, the rest is linked in coqide
+OPAM_FILE_WHITELIST[lablgtk3]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
+OPAM_FILE_WHITELIST[lablgtk3-sourceview3]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
+OPAM_FILE_WHITELIST[cairo2]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
 
 ###### Function for analyzing one package
 
@@ -174,15 +176,23 @@ function analyze_package {
   fi
 
   # Create file list include file
+
   if [ ${OPAM_FILE_WHITELIST[$1]+_} ]
   then
-    filter="${OPAM_FILE_WHITELIST[$1]}"
-    #echo "  - taking only files matching glob: $filter"
+    whitelist="${OPAM_FILE_WHITELIST[$1]}"
   else
-    filter="*" # take everything
+    whitelist="." # take everything
   fi
-  echo "# File list for $1 matching $filter" > "$DIR_TARGET"/files_$1.nsh
-  files="$(opam show --list-files $1 | (while read X; do if [[ $X == @($filter) ]]; then echo $X; fi; done))"
+
+  if [ ${OPAM_FILE_BLACKLIST[$1]+_} ]
+  then
+    blacklist="${OPAM_FILE_WHITELIST[$1]}"
+  else
+    blacklist="\.byte\.exe" # exclude byte code stuff
+  fi
+
+  echo "# File list for $1 matching $whitelist excluding $blacklist" > "$DIR_TARGET"/files_$1.nsh
+  files="$(opam show --list-files $1 | grep "$whitelist" | grep -v "$blacklist" )" || true
   reldir_win_prev="--none--"
   for file in $files
   do
@@ -210,7 +220,7 @@ function analyze_package {
     fi
   done
 
-  # handle dependencies
+# handle dependencies
   # Note: the --installed is required cause of an opam bug.
   # See https://github.com/ocaml/opam/issues/4461
   dependencies="$(opam list --required-by=$1 --short --installed)"
