@@ -104,6 +104,12 @@ Section "-CoqWinStuff" Sec_CoqWinStuff
   WriteINIStr "$SMPROGRAMS\Coq\The Coq HomePage.url" "InternetShortcut" "URL" "http://coq.inria.fr"
   WriteINIStr "$SMPROGRAMS\Coq\The Coq Standard Library.url" "InternetShortcut" "URL" "http://coq.inria.fr/library"
   CreateShortCut "$SMPROGRAMS\Coq\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
+  ; fill in coq_environment.txt
+  SetOutPath "$INSTDIR\bin\"
+  FileOpen $9 "$INSTDIR\bin\coq_environment.txt" w
+  FileWrite $9 "COQLIB=$\"$INSTDIR$\"$\r$\n"
+  FileWrite $9 "OCAMLFIND=$\"$INSTDIR\bin\ocamlfind.exe$\"$\r$\n"
+  FileClose $9
 SectionEnd
 
 ;OCAML Section "Ocaml for native compute and plugin development" Sec2
