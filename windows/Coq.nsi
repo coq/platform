@@ -106,10 +106,12 @@ Section "-CoqWinStuff" Sec_CoqWinStuff
   CreateShortCut "$SMPROGRAMS\Coq\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
   ; fill in coq_environment.txt
   SetOutPath "$INSTDIR\bin\"
+  Push $9
   FileOpen $9 "$INSTDIR\bin\coq_environment.txt" w
   FileWrite $9 "COQLIB=$\"$INSTDIR$\"$\r$\n"
   FileWrite $9 "OCAMLFIND=$\"$INSTDIR\bin\ocamlfind.exe$\"$\r$\n"
   FileClose $9
+  Pop $9
 SectionEnd
 
 ;OCAML Section "Ocaml for native compute and plugin development" Sec2
