@@ -479,8 +479,6 @@ Section "Uninstall"
   DeleteRegKey HKCU "Software\${MY_PRODUCT}"
   DeleteRegKey HKLM "SOFTWARE\Coq"
   DeleteRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Coq"
-  DeleteRegKey HKCU "Environment\OCAMLLIB"
-  DeleteRegKey HKLM "SYSTEM\CurrentControlSet\Control\Session Manager\Environment\OCAMLLIB"
   ${unregisterExtension} ".v" "Coq Script File"
 
   ; Root folders
