@@ -186,7 +186,7 @@ function analyze_package {
 
   if [ ${OPAM_FILE_BLACKLIST[$1]+_} ]
   then
-    blacklist="${OPAM_FILE_WHITELIST[$1]}"
+    blacklist="${OPAM_FILE_BLACKLIST[$1]}"
   else
     blacklist="\.byte\.exe" # exclude byte code stuff
   fi
