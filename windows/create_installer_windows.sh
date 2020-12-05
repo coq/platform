@@ -188,11 +188,11 @@ function analyze_package {
   then
     blacklist="${OPAM_FILE_BLACKLIST[$1]}"
   else
-    blacklist="\.byte\.exe" # exclude byte code stuff
+    blacklist="(\.byte\.exe|\.cm[aiox]|\.cmxa|\.o)$" # exclude byte code and library stuff
   fi
 
   echo "# File list for $1 matching $whitelist excluding $blacklist" > "$DIR_TARGET"/files_$1.nsh
-  files="$(opam show --list-files $1 | grep "$whitelist" | grep -v "$blacklist" )" || true
+  files="$(opam show --list-files $1 | grep -E "$whitelist" | grep -E -v "$blacklist" )" || true
   reldir_win_prev="--none--"
   for file in $files
   do
