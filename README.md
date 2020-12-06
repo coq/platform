@@ -23,44 +23,43 @@ Please note that some opam packages require and install system packages with man
 These dependencies might have various licenses. You need to refer to your system package manager to
 inspect the licenses of such packages.
 
-# Features of the 8.12.1 release
+# Features of the 8.13+beta release
 
 - fully opam based, also on Windows
 - single script call to install system dependencies, opam (if not there), a fresh opam switch and the coq platform
 - interactive (well script based) guidance of the user through the few parameters
 - includes all packages provided in the 8.12 windows installer. The list of included packages is:
 ```
-coq                       8.12.1                Formal proof management system
-coqide                    8.12.1                IDE of the Coq formal proof management system
-coq-aac-tactics           8.12.0                Coq plugin providing tactics for rewriting universally quantified equ
-coq-bignums               8.12.0                Bignums, the Coq library of arbitrary large numbers
-coq-compcert              3.7+8.12~coq_platform The CompCert C compiler (using coq-platform supplied version of Flocq
-coq-coquelicot            3.1.0                 A Coq formalization of real analysis compatible with the standard lib
-coq-elpi                  1.5.1                 Elpi extension language for Coq
-coq-equations             1.2.3+8.12            A function definition package for Coq
-coq-ext-lib               0.11.2                A library of Coq definitions, theorems, and tactics
-coq-flocq                 3.3.1                 A formalization of floating-point arithmetic for the Coq system
-coq-gappa                 1.4.4                 A Coq tactic for discharging goals about floating-point arithmetic an
-coq-hierarchy-builder     0.10.0                Hierarchy Builder
-coq-interval              4.0.0                 A Coq tactic for proving bounds on real-valued expressions automatica
-coq-mathcomp-algebra      1.11.0                Mathematical Components Library on Algebra
-coq-mathcomp-bigenough    1.0.0                 A small library to do epsilon - N reasonning
-coq-mathcomp-character    1.11.0                Mathematical Components Library on character theory
-coq-mathcomp-field        1.11.0                Mathematical Components Library on Fields
-coq-mathcomp-fingroup     1.11.0                Mathematical Components Library on finite groups
-coq-mathcomp-finmap       1.5.0                 Finite sets, finite maps, finitely supported functions, orders
-coq-mathcomp-real-closed  1.1.1                 Mathematical Components Library on real closed fields
-coq-mathcomp-solvable     1.11.0                Mathematical Components Library on finite groups (II)
-coq-mathcomp-ssreflect    1.11.0                Small Scale Reflection
-coq-menhirlib             20200624              A support library for verified Coq parsers produced by Menhir
-coq-mtac2                 1.3+8.12              Mtac2: Typed Tactics for Coq
-coq-quickchick            1.4.0                 Randomized Property-Based Testing Plugin for Coq
-coq-simple-io             1.4.0                 IO monad for Coq
-coq-unicoq                1.5+8.12              An enhanced unification algorithm for Coq
-coq-vst                   2.6                   Verified Software Toolchain
-elpi                      1.11.4-1              ELPI - Embeddable λProlog Interpreter
-gappa                     1.3.5                 Tool intended for formally proving properties on numerical programs d
-menhir                    20200624              An LR(1) parser generator
+coq                       8.13.dev        Formal proof management system
+coqide                    8.13.dev        IDE of the Coq formal proof management system
+coq-aac-tactics           8.13.0          Coq plugin providing tactics for rewriting universally quantified equations
+coq-bignums               8.13.0~beta1    Bignums, the Coq library of arbitrary large numbers
+coq-compcert              3.8             The CompCert C compiler (64 bit)
+coq-coquelicot            3.1.0           A Coq formalization of real analysis compatible with the standard library
+coq-elpi                  1.8.1           Elpi extension language for Coq
+coq-equations             1.2.3+8.13      A function definition package for Coq
+coq-ext-lib               0.11.3          A library of Coq definitions, theorems, and tactics
+coq-flocq                 3.3.1           A formalization of floating-point arithmetic for the Coq system
+coq-gappa                 1.4.6           A Coq tactic for discharging goals about floating-point arithmetic and roun
+coq-hierarchy-builder     1.0.0           Hierarchy Builder
+coq-interval              4.1.0           A Coq tactic for proving bounds on real-valued expressions automatically
+coq-mathcomp-algebra      1.12.0          Mathematical Components Library on Algebra
+coq-mathcomp-bigenough    1.0.0           A small library to do epsilon - N reasonning
+coq-mathcomp-character    1.12.0          Mathematical Components Library on character theory
+coq-mathcomp-field        1.12.0          Mathematical Components Library on Fields
+coq-mathcomp-fingroup     1.12.0          Mathematical Components Library on finite groups
+coq-mathcomp-finmap       1.5.1           Finite sets, finite maps, finitely supported functions
+coq-mathcomp-real-closed  1.1.2           Mathematical Components Library on real closed fields
+coq-mathcomp-solvable     1.12.0          Mathematical Components Library on finite groups (II)
+coq-mathcomp-ssreflect    1.12.0          Small Scale Reflection
+coq-menhirlib             20200624        A support library for verified Coq parsers produced by Menhir
+coq-mtac2                 1.4+8.13        Mtac2: Typed Tactics for Coq
+coq-quickchick            1.5.0           Randomized Property-Based Testing Plugin for Coq
+coq-simple-io             1.5.0           IO monad for Coq
+coq-unicoq                1.5+8.13        An enhanced unification algorithm for Coq
+coq-vst                   2.7             Verified Software Toolchain
+gappa                     1.3.5           Tool intended for formally proving properties on numerical programs dealing
+menhir                    20200624        An LR(1) parser generator
 ```
 - one unified setup script for Windows, macOS and Linux with few OS dependent sections only
 - on Windows there is an additional wrapper batch script to setup Cygwin as build and working environment
@@ -75,19 +74,19 @@ menhir                    20200624              An LR(1) parser generator
 
 - an installer for OSX are not yet provided - this is work in progress
 
-# Usage of the 8.12.1.0 release
+# Usage of the 8.13+beta.0 release
 
 - Get the coq platform scripts via either of these methods
-  - `git clone --branch v8.12.1.0 https://github.com/MSoegtropIMC/coq-platform.git`
-  - download and extract `https://github.com/MSoegtropIMC/coq-platform/archive/v8.12.1.0.zip`
+  - `git clone --branch v8.13+beta.0 https://github.com/MSoegtropIMC/coq-platform.git`
+  - download and extract `https://github.com/MSoegtropIMC/coq-platform/archive/v8.13+beta.0.zip`
 - Follow the below OS specfic instructions.
 - For all OSes this will
   - create a new opam switch (and setup and/or initialize opam if it is not there yet).
   - install system prerequisites (like gtk3)
-- The name of the opam switch is `_coq-platform_.8.12.1.0`.
+- The name of the opam switch is `_coq-platform_.8.13+beta.0`.
   Use the following commands to activate this switch after opening a new shell:
     ```
-    opam switch _coq-platform_.8.12.1.0
+    opam switch _coq-platform_.8.13+beta.0
     eval $(opam env)
     ```
   or rerun `opam init` to automate this in each new shell.
@@ -206,7 +205,7 @@ without -Q and -R options. If you want to work with the 64 bit variants, please 
 - On Linux or macOS open a shell in the usual way.
 - Run these commands:
     ```
-    opam switch _coq-platform_.8.12.1.0
+    opam switch _coq-platform_.8.13+beta.0
     eval $(opam env)
     ```
 - Install additional packages with `opam install "package"`
