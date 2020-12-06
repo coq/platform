@@ -1,8 +1,8 @@
 # Coq platform
 
 The coq platform is a set of scripts and patches which allows to compile and install Coq and
-a set of useful Coq libraries and plugins on macOS, Windows and Linux in a reliable way
-with consistent results.
+a set of useful Coq libraries and plugins on macOS, Windows and many Linux distributions in a
+reliable way with consistent results.
 
 See [`charter.md`](/charter.md) for the coq platform concept.
 
@@ -23,91 +23,106 @@ Please note that some opam packages require and install system packages with man
 These dependencies might have various licenses. You need to refer to your system package manager to
 inspect the licenses of such packages.
 
-# Features of the 8.12.0+beta1 release
+# Features of the 8.12.1 release
 
 - fully opam based, also on Windows
-- system prerequisites are installed using opam depext in a system independent manner
-  (on Windows/cygwin currently all prerequisites are installed upfront during cygwin installation)
 - single script call to install system dependencies, opam (if not there), a fresh opam switch and the coq platform
 - interactive (well script based) guidance of the user through the few parameters
 - includes all packages provided in the 8.12 windows installer. The list of included packages is:
 ```
-coq                      8.12.0                Formal proof management system
-coqide                   8.12.0                IDE of the Coq formal proof management system
-coq-aac-tactics          8.12.0                This Coq plugin provides tactics for rewriting universally quantified e
-coq-bignums              8.12.0                Bignums, the Coq library of arbitrary large numbers
-coq-compcert             3.7+8.12~coq_platform The CompCert C compiler (using coq-platform supplied version of Flocq)
-coq-coquelicot           3.1.0                 A Coq formalization of real analysis compatible with the standard libra
-coq-elpi                 1.5.1                 Elpi extension language for Coq
-coq-equations            1.2.3+8.12            A function definition package for Coq
-coq-ext-lib              0.11.2                A library of Coq definitions, theorems, and tactics
-coq-flocq                3.3.1                 A formalization of floating-point arithmetic for the Coq system
-coq-gappa                1.4.4                 A Coq tactic for discharging goals about floating-point arithmetic and 
-coq-hierarchy-builder    0.10.0                Hierarchy Builder
-coq-interval             4.0.0                 A Coq tactic for proving bounds on real-valued expressions automaticall
-coq-mathcomp-algebra     1.11.0                Mathematical Components Library on Algebra
-coq-mathcomp-bigenough   1.0.0                 A small library to do epsilon - N reasonning
-coq-mathcomp-character   1.11.0                Mathematical Components Library on character theory
-coq-mathcomp-field       1.11.0                Mathematical Components Library on Fields
-coq-mathcomp-fingroup    1.11.0                Mathematical Components Library on finite groups
-coq-mathcomp-finmap      1.5.0                 Finite sets, finite maps, finitely supported functions, orders
-coq-mathcomp-real-closed 1.1.1                 Mathematical Components Library on real closed fields
-coq-mathcomp-solvable    1.11.0                Mathematical Components Library on finite groups (II)
-coq-mathcomp-ssreflect   1.11.0                Small Scale Reflection
-coq-menhirlib            20200624              A support library for verified Coq parsers produced by Menhir
-coq-mtac2                1.3+8.12              Mtac2: Typed Tactics for Coq
-coq-quickchick           1.4.0                 Randomized Property-Based Testing Plugin for Coq
-coq-simple-io            1.3.0                 IO monad for Coq
-coq-unicoq               1.5+8.12              An enhanced unification algorithm for Coq
-coq-vst                  2.6                   Verified Software Toolchain
-gappa                    1.3.5                 Tool intended for formally proving properties on numerical programs dea
-menhir                   20200624              An LR(1) parser generator
+coq                       8.12.1                Formal proof management system
+coqide                    8.12.1                IDE of the Coq formal proof management system
+coq-aac-tactics           8.12.0                Coq plugin providing tactics for rewriting universally quantified equ
+coq-bignums               8.12.0                Bignums, the Coq library of arbitrary large numbers
+coq-compcert              3.7+8.12~coq_platform The CompCert C compiler (using coq-platform supplied version of Flocq
+coq-coquelicot            3.1.0                 A Coq formalization of real analysis compatible with the standard lib
+coq-elpi                  1.5.1                 Elpi extension language for Coq
+coq-equations             1.2.3+8.12            A function definition package for Coq
+coq-ext-lib               0.11.2                A library of Coq definitions, theorems, and tactics
+coq-flocq                 3.3.1                 A formalization of floating-point arithmetic for the Coq system
+coq-gappa                 1.4.4                 A Coq tactic for discharging goals about floating-point arithmetic an
+coq-hierarchy-builder     0.10.0                Hierarchy Builder
+coq-interval              4.0.0                 A Coq tactic for proving bounds on real-valued expressions automatica
+coq-mathcomp-algebra      1.11.0                Mathematical Components Library on Algebra
+coq-mathcomp-bigenough    1.0.0                 A small library to do epsilon - N reasonning
+coq-mathcomp-character    1.11.0                Mathematical Components Library on character theory
+coq-mathcomp-field        1.11.0                Mathematical Components Library on Fields
+coq-mathcomp-fingroup     1.11.0                Mathematical Components Library on finite groups
+coq-mathcomp-finmap       1.5.0                 Finite sets, finite maps, finitely supported functions, orders
+coq-mathcomp-real-closed  1.1.1                 Mathematical Components Library on real closed fields
+coq-mathcomp-solvable     1.11.0                Mathematical Components Library on finite groups (II)
+coq-mathcomp-ssreflect    1.11.0                Small Scale Reflection
+coq-menhirlib             20200624              A support library for verified Coq parsers produced by Menhir
+coq-mtac2                 1.3+8.12              Mtac2: Typed Tactics for Coq
+coq-quickchick            1.4.0                 Randomized Property-Based Testing Plugin for Coq
+coq-simple-io             1.4.0                 IO monad for Coq
+coq-unicoq                1.5+8.12              An enhanced unification algorithm for Coq
+coq-vst                   2.6                   Verified Software Toolchain
+elpi                      1.11.4-1              ELPI - Embeddable λProlog Interpreter
+gappa                     1.3.5                 Tool intended for formally proving properties on numerical programs d
+menhir                    20200624              An LR(1) parser generator
 ```
-- one setup script for Windows, macOS and Linux with few OS dependent sections only
+- one unified setup script for Windows, macOS and Linux with few OS dependent sections only
 - on Windows there is an additional wrapper batch script to setup Cygwin as build and working environment
+- on Windows there is in addition a classic Windows installer mostly intended for quick installation by beginners
+- it is easy to build variants of the Windows with modified content from an existing opam switch
+- system prerequisites are installed using opam depext in a system independent manner
 - the script should be fairly robust and safe - it will immediately abort an all errors not explicitly handled
 - the script can be restarted if it fails - e.g cause of internet issues - it will not redo things it already did
 - the scripts are modular and easy to configure for specific needs, e.g. a reduced or extended setup for a lecture - see [`variants.md`](/variants.md)
 
 ## Nonfeatures
 
-- installers for OSX and Windows are not yet provided - this is work in progress
+- an installer for OSX are not yet provided - this is work in progress
 
-# Usage of the 8.12.0+beta1 release
+# Usage of the 8.12.1.0 release
 
 - Get the coq platform scripts via either of these methods
-  - `git clone --branch v8.12.0+beta1 https://github.com/MSoegtropIMC/coq-platform.git`
-  - download and extract `https://github.com/MSoegtropIMC/coq-platform/archive/v8.12.0+beta1.zip`
+  - `git clone --branch v8.12.1.0 https://github.com/MSoegtropIMC/coq-platform.git`
+  - download and extract `https://github.com/MSoegtropIMC/coq-platform/archive/v8.12.1.0.zip`
 - Follow the below OS specfic instructions.
 - For all OSes this will
   - create a new opam switch (and setup and/or initialize opam if it is not there yet).
   - install system prerequisites (like gtk3)
-- The name of the opam switch is `_coq-platform_.8.12.0+beta1`.
+- The name of the opam switch is `_coq-platform_.8.12.1.0`.
   Use the following commands to activate this switch after opening a new shell:
     ```
-    opam switch _coq-platform_.8.12.0+beta1
+    opam switch _coq-platform_.8.12.1.0
     eval $(opam env)
     ```
   or rerun `opam init` to automate this in each new shell.
 - The main opam repository for Coq developments is already added to the created opam switch, so it should be easy to install additional coq (or ocaml) packages. On Windows the support of packages is a bit reduced, but still quite good.
 - The full installation might require up to 5 GB of disk space.
 
-## Windows
+## Windows (using the installer)
+
+This method is intended for beginners.
+For advanced users it is recommended to compile Coq from sources via opam (see next section).
+
+In case you want to use the fats path:
+
+- Download the installer from https://github.com/coq/platform/releases (click on "Assets" at the end of a release section)
+- Run the installer and follow the instructions
+
+A note to lecturers: it is easy to create a customized Windows installer from an opam switch.
+
+## Windows (compiling from sources)
+
+This method is intended for advanced users which need additional flexibility and/or an advanced working environment.
+For beginners it is recommended to use the Windows installer (see previous section).
 
 - Open a command window, navigate to the download folder and execute `coq_platform_make_windows.bat`
-- This will setup a fresh cygwin as build host (the created Coq is MinGW and runs without cygwin).
+- This will ask for the cygwin installation path and setup a fresh cygwin as build host (the created Coq is MinGW and runs without cygwin).
 - After the cygwin setup, the script will automatically execute the common setup shell script `coq_platform_make.sh`.
-- The script will ask a few questions of no parameters are given and then run fully unattended.
+- The script will ask a few questions if no parameters are given and then run fully unattended.
 - The build time is between 1..5 hours, depending on CPU speed and RAM size.
-- The default cygwin installation folder is `C:\bin\cygwin_coq_platform`.
 - The script has various options for configuring paths and proxies; see `example_coq_platform_make.bat` for an example command line.
-- The resulting Coq installation is opam based and best used from the cygwin prompt (started via `C:\bin\cygwin_coq_platform\cygwin.bat`) - please remember to activate the opam switch as explained above with `opam switch` when opening a new cygwin shell. CoqIDE can be started from the cygwin prompt with `coqide`.
+- The resulting Coq installation is opam based and best used from the cygwin prompt (started via `C:\<your_coq_platform_cygwin_path>\cygwin.bat`) - please remember to activate the opam switch as explained above with `opam switch` when opening a new cygwin shell. CoqIDE can be started from the cygwin prompt with `coqide`.
 - It is possible to install several versions of the Coq platform in one Cygwin, as long as the pre-requisites are met. This is best achieved
-by running the additional `coq_platform_make.sh` directly from teh coq platfiorm created Cygwin.
+by running the additional `coq_platform_make.sh` directly from the coq platfiorm created Cygwin.
 
-A note on **virus scanners**: there are no reports of virus scanners reporting any executable generated by the coq platform as virus but they sometimes lead
-to errors in the build process. If a virus scanner does it's work it has files and/or directories open which on Windows results in `Permission denied` errors
-in case a build system tries to rename a folder or file. This is not a bug of the scanners but a design issue of Windows, namely that open files and folders are referenced by path names rather than inode numbers. An example error message is:
+A note on **virus scanners**: there are no reports of virus scanners reporting any executable generated by the coq platform as virus but they sometimes lead to errors in the build process.
+If a virus scanner does its work it has files and/or directories open which on Windows results in `Permission denied` errors in case a build system tries to rename a folder or file. This is not a bug of the scanners but a design issue of Windows, namely that open files and folders are referenced by path names rather than inode numbers. An example error message is:
 ```
 <><> Fetching repository information ><><><><><><><><><><><><><><><><><><><><><>
 [ERROR] Could not update repository "default": "C:\\bin\\cygwin_coqplatform_8_12_0\\bin\\mv.exe
@@ -133,7 +148,11 @@ In case this happens, it might help to simply retry and if this does not help to
 
 - Open a shell, navigate to the download folder and execute `coq_platform_make.sh`.
 - The system will ask for sudo permissions to install prerequisites *several times* so the script is not fully unattended but all installations of dependencies are done directly after the initialization of the opam switch.
-- The script is tested on Ubuntu 18.04 but should work on all Linuxes and BSD variants thanks to `opam depext`.
+- The script is tested on these Linux distributions:
+  - Ubuntu 18.04 LTS and 16.04 LTS
+  - Fedora 32
+  - CentOS 8
+  - OpenSuse 15
 - The resulting Coq installation is opam based and best used from the shell prompt - please remember to activate the opam switch as explained above with `opam switch` when opening a new shell. CoqIDE can be started from the shell prompt with `coqide`.
 - The setup script creates a folder `$HOME/coq-platform` where it stores a few files but likely this will be removed in future releases.
 
@@ -183,11 +202,11 @@ without -Q and -R options. If you want to work with the 64 bit variants, please 
 
 ### Installation of other packages
 
-- On Windows open a shell with `C:\bin\cygwin_coq_platform\cygwin.bat`.
+- On Windows open a shell with `C:\<your_coq_platform_cygwin_path>\cygwin.bat`.
 - On Linux or macOS open a shell in the usual way.
 - Run these commands:
     ```
-    opam switch _coq-platform_.8.12.0+beta1
+    opam switch _coq-platform_.8.12.1.0
     eval $(opam env)
     ```
 - Install additional packages with `opam install "package"`
