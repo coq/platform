@@ -20,14 +20,11 @@ REM For a description of all parameters, see ReadMe.txt
 SET BATCHFILE=%~0
 SET BATCHDIR=%~dp0
 
-REM see -arch in ReadMe.txt, but values are x86_64 or i686 (not 64 or 32)
+REM Values are x86_64 or i686 (not 64 or 32)
 SET ARCH=x86_64
 SET SETUP=setup-x86_64.exe
 
-REM see -destcyg in ReadMe.txt
-SET DESTCYG=C:\bin\cygwin_coq_platform
-
-REM see -proxy in ReadMe.txt
+REM HTTP/HTTPS proxy (without http://)
 IF DEFINED HTTP_PROXY (
   SET PROXY=%HTTP_PROXY:http://=%
 ) else (
@@ -151,8 +148,8 @@ IF "%~0" == "-build" (
 
 REM The parameters passed to the final script are checked there
 
-IF "%~0" == "-intro" (
-  SET COQ_PLATFORM_INTRO=%~1
+IF "%~0" == "-extent" (
+  SET COQ_PLATFORM_EXTENT=%~1
   SHIFT
   SHIFT
   GOTO Parse
@@ -199,6 +196,53 @@ IF NOT "%~0" == "" (
   ECHO(
   CALL :PrintUsage
   GOTO :EOF
+)
+
+REM ========== ASK FOR INSTALL LOCATION ==========
+
+IF "%DESTCYG%" == "" (
+  REM  01234567890123456789012345678901234567890123456789012345678901234567890123456789
+  ECHO ======================== CYGWIN INSTALLATION LOCATION ========================
+  ECHO The Coq Platform uses Cygwin, a light weight Posix emulator for Windows, as
+  ECHO build environment for the Coq Platform. Please enter below the installation
+  ECHO path for the Cygwin root folder.
+  ECHO You can use one cygwin installation for several different variants of the Coq
+  ECHO platform, so there is no need to give a version specific name. But the name
+  ECHO should indicate that the cygwin is specialized for Coq platform builds.
+  ECHO(
+  ECHO The following recommended paths can be chosen by entering a number:
+  ECHO 1  C:\cygwin_coq.
+  ECHO 2  C:\cygwin_coq_platform.
+  ECHO 3  C:\bin\cygwin_coq_platform.
+  ECHO Please enter a number 1...3 or a complete path
+  ECHO ======================== CYGWIN INSTALLATION LOCATION ========================
+  SET /P DESTCYG="Cygwin install folder: "
+)
+
+:REPEAT_LOCATION_ENTRY
+IF "%DESTCYG%" == "" (
+  ECHO Please enter a path or a number or Ctrl+C to abort
+  SET /P DESTCYG="Cygwin install folder: "
+)
+
+IF "%DESTCYG%" == "" (
+  GOTO REPEAT_LOCATION_ENTRY
+)
+
+IF "%DESTCYG%" == "1" (
+  SET DESTCYG="C:\cygwin_coq"
+) ELSE IF "%DESTCYG%" == "2" (
+  SET DESTCYG="C:\cygwin_coq_platform"
+) ELSE IF "%DESTCYG%" == "3" (
+  SET DESTCYG="C:\bin\cygwin_coq_platform"
+) ELSE (
+  REM CHECK PATH
+  IF EXIST %DESTCYG%\NUL (
+    IF NOT EXIST %DESTCYG%\home\%USERNAME%\coq-platform\NUL (
+      ECHO ERROR: The folder %DESTCYG% exists and is not a coq platform cygwin folder!
+      EXIT 1
+    )
+  )
 )
 
 REM ========== CONFIRM PARAMETERS ==========
@@ -397,7 +441,9 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO If an option is not given, the option is explained and asked for interactively.
   ECHO Except for expert users this is the recommended way to run this script.
   ECHO(
-  ECHO -intro=n     Skip introduction message
+  ECHO -extent=f    Setup opam and build full Coq platform
+  ECHO -extent=b    Just setup opam and build Coq (basic)
+  ECHO -extent=i    Just setup opam and build Coq + CoqIDE
   ECHO -parallel=p  Build several opam packages in parallel
   ECHO -parallel=s  Build opam packages sequentially
   ECHO -jobs=1..16  Number of make threads per package
@@ -423,7 +469,7 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -cyglocal = %CYGWIN_FROM_CACHE%
   ECHO -cygquiet = %CYGWIN_QUIET%
   ECHO -cygforce = %CYGWIN_FORCE%
-  ECHO -intro    = %COQ_PLATFORM_INTRO%
+  ECHO -extent   = %COQ_PLATFORM_EXTENT%
   ECHO -parallel = %COQ_PLATFORM_PARALLEL%
   ECHO -jobs     = %COQ_PLATFORM_JOBS%
   ECHO -compcert = %COQ_PLATFORM_COMPCERT%

@@ -10,12 +10,12 @@
 
 ###################### USER CHOICES #####################
 
-# introduction
+# introduction / extent
 
-if [ ! "${COQ_PLATFORM_INTRO:-y}" == "n" ]
+if [ -z "${COQ_PLATFORM_EXTENT:+x}" ]
 then
 cat <<EOH
-================================ INTRODUCTION ================================
+====================== JUST COQ OR COMPLETE PLATFORM ? =======================
 This script installs the Coq platform version $COQ_PLATFORM_VERSION, that is:
 
 - the Coq compiler and Coq's standard library
@@ -26,16 +26,16 @@ The script uses opam, the OCaml package manager, to do all the work.
 In case opam is not yet installed, it will install opam.
 A new opam switch named $COQ_PLATFORM_SWITCH_NAME will be created.
 
+This script is tested on Windows 10, macOS Catalina and many Linux variants.
+
 The script compiles everything from sources, which might takes less than one
 hour on a fast machine with lot's of RAM, or up to 6 hours with little RAM.
 
-The script is tested on these platforms:
-- Windows 10 with cygwin installed by coq_platform_make_windows.bat
-- macOS Catalina 10.15.4 with XCode 11.0.3
-- Ubuntu 18.04 LTS
-In case you have issues, please report a bug at:
-https://github.com/coq/platform/issues
-================================ INTRODUCTION ================================
+Instead of installing the full Coq platform now, you can just install Coq or
+Coq + CoqIDE and install additional packages via opam later as needed.
+You should install CoqIDE unless you know what VSCoq or Proof General is.
+====================== JUST COQ OR COMPLETE PLATFORM ? =======================
 EOH
-ask_user_opt1_cancel "Enter y to continue with compiling/installing the Coq platform!" yY yes
+  ask_user_opt3_cancel "Install full platform (f), Coq base (b) or Coq+CoqIDE (i)?" fF "full platform" bB "Coq" iI "Coq+CoqIDE"
+  COQ_PLATFORM_EXTENT=$ANSWER
 fi
