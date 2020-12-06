@@ -36,7 +36,9 @@ Except for expert users this is the recommended way to run this script.
 
 OPTIONS:
   -h, -help    Print this help message
-  -intro=n     Skip introduction message
+  -extent=p    Setup opam and build full Coq platform
+  -extent=c    Just setup opam and build Coq
+  -extent=i    Just setup opam and build Coq+CoqIDE
   -parallel=p  Build several opam packages in parallel
   -parallel=s  Build opam packages sequentially
   -jobs=1..16  Number of make threads per package
@@ -54,7 +56,7 @@ for arg in "$@"
 do
   case "$arg" in
     -help|-h)    print_usage; false;;
-    -intro=*)    COQ_PLATFORM_INTRO="${arg#*=}";;
+    -extent=*)   COQ_PLATFORM_EXTENT="${arg#*=}";;
     -parallel=*) COQ_PLATFORM_PARALLEL="${arg#*=}";;
     -jobs=*)     COQ_PLATFORM_JOBS="${arg#*=}";;
     -compcert=*) COQ_PLATFORM_COMPCERT="${arg#*=}";;
@@ -64,7 +66,7 @@ do
   esac
 done
 
-check_value_enumeraton "${COQ_PLATFORM_INTRO:-__unset__}"    "[yn]"  "COQ_PLATFORM_INTRO"
+check_value_enumeraton "${COQ_PLATFORM_EXTENT:-__unset__}"   "[fbi]" "-extent/COQ_PLATFORM_EXTENT"
 check_value_enumeraton "${COQ_PLATFORM_PARALLEL:-__unset__}" "[ps]"  "-parallel/COQ_PLATFORM_PARALLEL"
 check_value_range      "${COQ_PLATFORM_JOBS:-__unset__}"     1 16    "-jobs/COQ_PLATFORM_JOBS"
 check_value_enumeraton "${COQ_PLATFORM_COMPCERT:-__unset__}" "[fon]" "-compcert/COQ_PLATFORM_COMPCERT"

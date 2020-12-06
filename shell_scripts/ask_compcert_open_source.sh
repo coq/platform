@@ -14,6 +14,8 @@
 
 if [ -z "${COQ_PLATFORM_COMPCERT:+x}" ]
 then
+  if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fF] ]]
+  then
 cat <<EOH
 ================================== COMPCERT ==================================
 The Coq platform installs the formally verified C compiler CompCert.
@@ -35,6 +37,9 @@ If you answer n=no below to skip CompCert, VST will also not be installed.
 You can also change this later using opam commands.
 ================================== COMPCERT ==================================
 EOH
-  ask_user_opt3_cancel "Install full (f), open source (o) or no (n) CompCert?" fF "full" oO "open source" nN "none"
-  COQ_PLATFORM_COMPCERT=$ANSWER
+    ask_user_opt3_cancel "Install full (f), open source (o) or no (n) CompCert?" fF "full" oO "open source" nN "none"
+    COQ_PLATFORM_COMPCERT=$ANSWER
+  else
+    COQ_PLATFORM_COMPCERT=n
+  fi
 fi

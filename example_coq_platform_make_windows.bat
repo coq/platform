@@ -4,9 +4,9 @@ REM Each coq-platform will create its own opam switch.
 REM The reason for having a version specific cygwin folder name is simplification of testing.
 
 CALL coq_platform_make_windows.bat ^
-  -destcyg=C:\bin\cygwin_coqplatform_8_12_0 ^
+  -destcyg=C:\cygwin_coq_platform ^
   -cygcache=C:\bin\cygwin_cache ^
   -cygrepo=https://mirrors.kernel.org/sourceware/cygwin ^
-  -intro=n -parallel=p -jobs=16 -compcert=o -vst=y -switch=k
+  -extent=f -parallel=p -jobs=16 -switch=k -compcert=o -vst=y
 
-REM -cygquiet=N   -cygforce=Y
+REM -cygquiet=N -cygforce=Y

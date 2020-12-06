@@ -19,7 +19,13 @@ PACKAGES="coq.8.12.1"
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 # Note: lablgtk3 3.1.1 does not link with flexlink on MinGW
+if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfF] ]]
+then
 PACKAGES="${PACKAGES} coqide.8.12.1 lablgtk3.3.0.beta5"
+fi
+
+if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fF] ]]
+then
 
 # Some generally useful packages
 PACKAGES="${PACKAGES} coq-unicoq.1.5+8.12"
@@ -68,6 +74,8 @@ case "$COQ_PLATFORM_VST" in
   [nN]) true ;;
   *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
 esac
+
+fi
 
 # Note: there is some experimental evidence that the in a parallel build
 # package given last is tried to build first (after its dependencies).
