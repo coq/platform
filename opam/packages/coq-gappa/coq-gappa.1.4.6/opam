@@ -4,6 +4,9 @@ homepage: "http://gappa.gforge.inria.fr/"
 dev-repo: "git+https://gitlab.inria.fr/gappa/coq.git"
 bug-reports: "https://gitlab.inria.fr/gappa/coq/issues"
 license: "LGPL-3.0-or-later"
+patches: [
+  "makefile.patch"
+]
 build: [
   ["autoconf"] {dev}
   ["./configure" "OCAMLFIND=ocamlfind"]
@@ -31,3 +34,6 @@ synopsis: "A Coq tactic for discharging goals about floating-point arithmetic an
 url {
   src: "git+https://gitlab.inria.fr/gappa/coq.git#3935dfe7"
 }
+extra-files: [
+  ["makefile.patch" "sha256=0781e2da6b30febc2b8d6b4c2f1ad1d3a404e79b252c0bb597ffbe6023a21e42"]
+]
