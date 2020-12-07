@@ -7,7 +7,7 @@ index 0ec949ee..4c0df5f2 100755
  # Check Coq version
  
 -COQVERSION= 8.11.0 or-else 8.11.1 or-else 8.11.2 or-else 8.12+beta1 or-else 8.12.0
-+COQVERSION= 8.11.0 or-else 8.11.1 or-else 8.11.2 or-else 8.12+beta1 or-else 8.12.0 or-else 8.12.1 or-else 8.13+alpha or-else 8.13+beta
++COQVERSION= 8.11.0 or-else 8.11.1 or-else 8.11.2 or-else 8.12+beta1 or-else 8.12.0 or-else 8.12.1 or-else 8.13+alpha or-else 8.13+beta1
  
  COQV=$(shell $(COQC) -v)
  ifneq ($(IGNORECOQVERSION),true)
