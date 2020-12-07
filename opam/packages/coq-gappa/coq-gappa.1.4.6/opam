@@ -35,5 +35,5 @@ url {
   src: "git+https://gitlab.inria.fr/gappa/coq.git#3935dfe7"
 }
 extra-files: [
-  ["makefile.patch" "sha256=0781e2da6b30febc2b8d6b4c2f1ad1d3a404e79b252c0bb597ffbe6023a21e42"]
+  ["makefile.patch" "sha256=93ad1133996de0e9535158d643cbf3bd96a0bdc89bb8c4aecc06aae3a9b8848d"]
 ]
