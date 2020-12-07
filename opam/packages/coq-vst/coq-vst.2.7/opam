@@ -42,5 +42,5 @@ tags: [
   "date:2020-12-06"
 ]
 url {
-  src: "git+https://github.com/PrincetonUniversity/VST.git#master"
+  src: "git+https://github.com/PrincetonUniversity/VST.git#d69c03ce12f912fcb928aaf8c5841c0cf4c04ce6"
 }
