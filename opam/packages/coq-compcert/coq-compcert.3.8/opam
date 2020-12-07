@@ -26,7 +26,9 @@ install: [
 depends: [
   "coq" {>= "8.7.0" & < "8.14"}
   "menhir" {>= "20190626"}
+  "coq-menhirlib" {>= "20190626"}
   "ocaml" {>= "4.05.0"}
+  "coq-flocq"
 ]
 synopsis: "The CompCert C compiler (64 bit)"
 tags: [
