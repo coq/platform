@@ -230,11 +230,11 @@ IF "%DESTCYG%" == "" (
 )
 
 IF "%DESTCYG%" == "1" (
-  SET DESTCYG="C:\cygwin_coq"
+  SET DESTCYG=C:\cygwin_coq
 ) ELSE IF "%DESTCYG%" == "2" (
-  SET DESTCYG="C:\cygwin_coq_platform"
+  SET DESTCYG=C:\cygwin_coq_platform
 ) ELSE IF "%DESTCYG%" == "3" (
-  SET DESTCYG="C:\bin\cygwin_coq_platform"
+  SET DESTCYG=C:\bin\cygwin_coq_platform
 ) ELSE (
   REM CHECK PATH
   IF EXIST %DESTCYG%\NUL (
