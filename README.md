@@ -78,8 +78,8 @@ menhir                    20200624              An LR(1) parser generator
 # Usage of the 8.12.1.0 release
 
 - Get the coq platform scripts via either of these methods
-  - `git clone --branch v8.12.1.0 https://github.com/MSoegtropIMC/coq-platform.git`
-  - download and extract `https://github.com/MSoegtropIMC/coq-platform/archive/v8.12.1.0.zip`
+  - `git clone --branch v8.12.1.0 https://github.com/coq/platform.git`
+  - download and extract `https://github.com/coq/platform/archive/v8.12.1.0.zip`
 - Follow the below OS specfic instructions.
 - For all OSes this will
   - create a new opam switch (and setup and/or initialize opam if it is not there yet).
