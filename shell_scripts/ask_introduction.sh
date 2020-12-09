@@ -34,7 +34,7 @@ The script is tested on these platforms:
 - macOS Catalina 10.15.4 with XCode 11.0.3
 - Ubuntu 18.04 LTS
 In case you have issues, please report a bug at:
-https://github.com/MSoegtropIMC/coq-platform/issues
+https://github.com/coq/platform/issues
 ================================ INTRODUCTION ================================
 EOH
 ask_user_opt1_cancel "Enter y to continue with compiling/installing the Coq platform!" yY yes

@@ -34,7 +34,7 @@ With less RAM, you might have to remove failing packages, e.g. VST.
 In order to remove packages, just edit this script at "PACKAGE SELECTION".
 
 In case these recommendations don't work for you, please report an issue at:
-https://github.com/MSoegtropIMC/coq-platform/issues
+https://github.com/coq/platform/issues
 =============================== PARALLEL BUILD ===============================
 EOH
   ask_user_opt2_cancel "Build opam packages parallel (p) or sequential (s)?" pP "parallel" sS "sequential"
