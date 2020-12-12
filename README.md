@@ -4,7 +4,7 @@ The coq platform is a set of scripts and patches which allows to compile and ins
 a set of useful Coq libraries and plugins on macOS, Windows and many Linux distributions in a
 reliable way with consistent results.
 
-See [`charter.md`](/charter.md) for the coq platform concept.
+See [Charter](charter.md) for the coq platform concept.
 
 # Note on Licenses
 
@@ -135,13 +135,7 @@ In case this happens, it might help to simply retry and if this does not help to
 
 ## macOS
 
-- Open a shell, navigate to the download folder and execute `coq_platform_make.sh`.
-- The script assumes that you have either MacPorts or homebrew installed for installing prerequisites.
-  - If you are using MacPorts, the system will ask for sudo permissions to install prerequisites *several times* so the script is not fully unattended but all installations of dependencies are done directly after the initialization of the opam switch.
-  - With macPorts I have seen aborts cause or temporary internet (curl download) issues. In this case just rerun the script.
-- Using Homebrew should work but is less well tested than MacPorts
-- The resulting Coq installation is opam based and best used from the shell prompt - please remember to activate the opam switch as explained above with `opam switch` when opening a new shell. CoqIDE can be started from the shell prompt with `coqide`.
-- The setup script creates a folder `$HOME/coq-platform` where it stores a few files but likely this will be removed in future releases.
+See [README_macOS](README_macOS.md).
 
 ## Linux
 
@@ -163,9 +157,7 @@ For some packages, notably CompCert and VST (the Princeton tool-chain for verifi
 By default the 32 bit variant of CompCert and the 32 bit variant of VST are installed.
 
 CompCert is **not** free / open source software, but may be used for research and
-evaluation purposes. Please clarify the license at:
-
-[`CompCert License`](https://github.com/AbsInt/CompCert/blob/master/LICENSE)
+evaluation purposes. Please clarify the license at [CompCert License](https://github.com/AbsInt/CompCert/blob/master/LICENSE).
 
 Parts of CompCert are required for the Princeton C verification tool VST.
 Some parts of CompCert are open source and for exploring or learning VST
