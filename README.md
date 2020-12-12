@@ -4,7 +4,7 @@ The coq platform is a set of scripts and patches which allows to compile and ins
 a set of useful Coq libraries and plugins on macOS, Windows and many Linux distributions in a
 reliable way with consistent results.
 
-See [`charter.md`](/charter.md) for the coq platform concept.
+See [Charter](charter.md) for the coq platform concept.
 
 # Note on Licenses
 
@@ -23,7 +23,7 @@ Please note that some opam packages require and install system packages with man
 These dependencies might have various licenses. You need to refer to your system package manager to
 inspect the licenses of such packages.
 
-# Features of the 8.12.1 release
+# Features of the 8.12.1.0 release
 
 - fully opam based, also on Windows
 - single script call to install system dependencies, opam (if not there), a fresh opam switch and the coq platform
@@ -59,7 +59,7 @@ coq-simple-io             1.4.0                 IO monad for Coq
 coq-unicoq                1.5+8.12              An enhanced unification algorithm for Coq
 coq-vst                   2.6                   Verified Software Toolchain
 elpi                      1.11.4-1              ELPI - Embeddable λProlog Interpreter
-gappa                     1.3.5                 Tool intended for formally proving properties on numerical programs d
+gappa                     1.3.5                 Tool intended for formally proving properties on numerical programs
 menhir                    20200624              An LR(1) parser generator
 ```
 - one unified setup script for Windows, macOS and Linux with few OS dependent sections only
@@ -75,7 +75,7 @@ menhir                    20200624              An LR(1) parser generator
 
 - an installer for OSX are not yet provided - this is work in progress
 
-# Usage of the 8.12.1.0 release
+# Installation of the 8.12.1.0 release
 
 - Get the coq platform scripts via either of these methods
   - `git clone --branch v8.12.1.0 https://github.com/coq/platform.git`
@@ -136,13 +136,7 @@ In case this happens, it might help to simply retry and if this does not help to
 
 ## macOS
 
-- Open a shell, navigate to the download folder and execute `coq_platform_make.sh`.
-- The script assumes that you have either MacPorts or homebrew installed for installing prerequisites.
-  - If you are using MacPorts, the system will ask for sudo permissions to install prerequisites *several times* so the script is not fully unattended but all installations of dependencies are done directly after the initialization of the opam switch.
-  - With macPorts I have seen aborts cause or temporary internet (curl download) issues. In this case just rerun the script.
-- Using Homebrew should work but is less well tested than MacPorts
-- The resulting Coq installation is opam based and best used from the shell prompt - please remember to activate the opam switch as explained above with `opam switch` when opening a new shell. CoqIDE can be started from the shell prompt with `coqide`.
-- The setup script creates a folder `$HOME/coq-platform` where it stores a few files but likely this will be removed in future releases.
+See [README_macOS](README_macOS.md).
 
 ## Linux
 
@@ -164,9 +158,7 @@ For some packages, notably CompCert and VST (the Princeton tool-chain for verifi
 By default the 32 bit variant of CompCert and the 32 bit variant of VST are installed.
 
 CompCert is **not** free / open source software, but may be used for research and
-evaluation purposes. Please clarify the license at:
-
-[`CompCert License`](https://github.com/AbsInt/CompCert/blob/master/LICENSE)
+evaluation purposes. Please clarify the license at [CompCert License](https://github.com/AbsInt/CompCert/blob/master/LICENSE).
 
 Parts of CompCert are required for the Princeton C verification tool VST.
 Some parts of CompCert are open source and for exploring or learning VST
