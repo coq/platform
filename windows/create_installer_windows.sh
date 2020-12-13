@@ -31,6 +31,16 @@ FILE_DEP_VISIBLE="$DIR_TARGET"/dependencies_visible.nsh
 FILE_DEP_HIDDEN="$DIR_TARGET"/dependencies_hidden.nsh
 > "$FILE_DEP_HIDDEN"
 
+# a NSIS include file, which resets all hidden dependency selections
+FILE_RES_HIDDEN="$DIR_TARGET"/reset_hidden.nsh
+> $FILE_RES_HIDDEN
+
+# a NSIS include file which selects dependents of visible sections
+FILE_VISIBLE_SEL="$DIR_TARGET"/dependencies_visible_selection.nsh
+
+# a NSIS include file which deselects dependents of visible sections
+FILE_VISIBLE_DESEL="$DIR_TARGET"/dependencies_visible_deselection.nsh
+
 # The NSIS include file for strings, e.g. section descriptions
 FILE_STRINGS="$DIR_TARGET"/strings.nsh
 > "$FILE_STRINGS"
@@ -112,7 +122,7 @@ fi
 
 SELECTABLE_PACKAGES=$packages_pos
 
-###### Associative array with package name -> file filter (shell glob pattern) #####
+###### Associative array with package name -> file filter (regexp pattern) #####
 
 # If not white list regexp is given it is "."
 # If not black list list regexp is given it is "\.byte\.exe$"
@@ -220,7 +230,7 @@ function analyze_package {
     fi
   done
 
-# handle dependencies
+  # handle dependencies
   # Note: the --installed is required cause of an opam bug.
   # See https://github.com/ocaml/opam/issues/4461
   dependencies="$(opam list --required-by=$1 --short --installed)"
@@ -243,6 +253,50 @@ function analyze_package {
       analyze_package "$dependency" $(($2 + 1))
     fi
   done
+}
+
+###### Function for sorting a dependency list by level #####
+
+# Sort a dependecy file by dependency level (leaves last)
+# $1 input file name
+# $2 check macro output file name
+# $3 NSIS Check macro name
+# $4 reset macro output file name
+# $5 sort options (e.g. -r for reverse)
+
+function sort_dependencies
+{
+  cat  "$1" | awk '
+    BEGIN{n=0}
+    { DepSrc[n]=$1; DepDest[n]=$2; n++; IsSrc[$1]=1; IsDest[$2]=1; }
+    END{
+      PROCINFO["sorted_in"] = "@ind_str_asc";
+      for (pkg in IsDest) {
+        if(!IsSrc[pkg]) DestLvl[pkg]=1
+      }
+      fnd=1;
+      for(lvl=1; fnd; lvl++) {
+        fnd=0;
+        for (i=0; i<n; i++) {
+          if (DestLvl[DepDest[i]]==lvl) {
+            DestLvl[DepSrc[i]]=lvl+1;
+            DepLvl[i]=lvl;
+            fnd=1;
+          }
+        }
+        if(lvl>=50) {
+          print "The dependency tree has more than 50 levels - there are likely cyclic dependencies";
+          exit 1;
+        }
+      }
+      for (pkg in IsDest) {
+        print "${UnselectSection}", "${Sec_"pkg"}" >> "'"$4"'"
+      }
+      for (i=0; i<n; i++) {
+        print DepLvl[i], DepSrc[i], DepDest[i];
+      }
+    }' | sort $5 -n | awk "
+    { print \"\${$3}\", \"\${Sec_\"\$2\"}\", \"\${Sec_\"\$3\"}\", \"'\"\$2\"'\", \"'\"\$3\"'\"; }" > "$2"
 }
 
 ###### Go through selected packages and recursively analyze dependencies #####
@@ -269,3 +323,49 @@ add_files_using_cygwin_package "mingw64-x86_64-adwaita-icon-theme"  \
 "actions/media\|actions/pan\|actions/process\|actions/system\|actions/window\|"\
 "mimetypes/text\|places/folder\|places/user\|status/dialog\)"  \
 "files_conf-adwaita-icon-theme"
+
+###### Create dependency reset/selection/deselection include files
+
+sort_dependencies "$FILE_DEP_HIDDEN.in" "$FILE_DEP_HIDDEN" 'CheckHiddenSectionDependency' "$FILE_RES_HIDDEN" -r
+sort_dependencies "$FILE_DEP_VISIBLE.in" "$FILE_VISIBLE_SEL" 'SectionVisibleSelect' /dev/null -r
+sort_dependencies "$FILE_DEP_VISIBLE.in" "$FILE_VISIBLE_DESEL" 'SectionVisibleDeSelect' /dev/null ""
+
+###### Create the NSIS installer
+
+cd $DIR_TARGET
+
+# NSIS 2.51 has the bug that $0 is not set in .onSelChange, so use the latest version 3.06.1
+
+wget --no-clobber --progress=dot:giga http://downloads.sourceforge.net/project/nsis/NSIS%203/3.06.1/nsis-3.06.1.zip
+unzip -o nsis-3.06.1
+# Unzipping this results in very strange permissions - fix this
+chmod -R 700 nsis-3.06.1
+
+# Enable the below lines to enable logging
+# wget --no-clobber --progress=dot:giga http://downloads.sourceforge.net/project/nsis/NSIS%203/3.06.1/nsis-3.06.1-log.zip
+# unzip -o nsis-3.06.1-log.zip -d nsis-3.06.1-log
+# cp -rf nsis-3.06.1-log/* nsis-3.06.1
+
+NSIS=$(pwd)/nsis-3.06.1/makensis.exe
+
+chmod u+x "$NSIS"
+cp ../windows/*.ns* .
+
+# ToDo: we need a more elegant way to get this data via opam
+wget https://github.com/coq/coq/raw/v8.12/ide/coq.ico
+wget https://github.com/coq/coq/raw/v8.12/LICENSE
+wget https://raw.githubusercontent.com/AbsInt/CompCert/v3.7/LICENSE -O coq-compcert-license.txt
+wget https://raw.githubusercontent.com/PrincetonUniversity/VST/v2.6/LICENSE -O coq-vst-license.txt
+
+echo "==============================================================================="
+echo "NOTE: The creation of the installer can take 10 minutes"
+echo "(cause of the CPU heavy but effective LZMA compression used)"
+echo "==============================================================================="
+COQ_VERSION=$(coqc --print-version | cut -d ' ' -f 1 | tr -d '\r')
+COQ_ARCH=$(uname -m)
+"$NSIS" -DVERSION="$COQ_VERSION" -DARCH="$COQ_ARCH" Coq.nsi
+
+echo "==============================================================================="
+echo "Created installer: $DIR_TARGET/coq-$COQ_VERSION-installer-windows-$COQ_ARCH.exe"
+echo "==============================================================================="
+cd ..
