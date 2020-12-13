@@ -38,7 +38,13 @@ REM THIS MUST NOT INCLUDE THE TRAILING /
 SET CYGWIN_REPOSITORY=https://mirrors.kernel.org/sourceware/cygwin
 
 REM A local folder (in Windows path syntax) where cygwin packages are cached
-SET CYGWIN_LOCAL_CACHE_WFMT=%BATCHDIR%cygwin_cache
+IF EXIST %TEMP%\NUL (
+  SET CYGWIN_LOCAL_CACHE_WFMT=%TEMP%\coq_platform_cygwin_cache
+) ELSE IF EXIST %TMP%\NUL (
+  SET CYGWIN_LOCAL_CACHE_WFMT=%TMP%\coq_platform_cygwin_cache
+) ELSE (
+  SET CYGWIN_LOCAL_CACHE_WFMT=%BATCHDIR%cygwin_cache
+)
 
 REM If y, install Cygwin as found in the cache - do not try to update from teh repo server
 SET CYGWIN_FROM_CACHE=n
