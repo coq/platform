@@ -45,9 +45,10 @@ then
 
 			The easiest way to install the build tools on macOS is:
 
-			- install XCode via the app store
-			- run the following command line in a terminal
+			- macOS Calatina & BigSur: run the following command line in a terminal
 				xcode-select --install
+			- older macOS: first install "XCode development tools" from the App store.
+			  then try the above command.
 
 			This script will exit now.
 			Please restart the script after you installed the build tools.
