@@ -76,42 +76,11 @@ menhir                    20200624        An LR(1) parser generator
 
 # Usage of the 8.13+beta.0 release
 
-- Get the coq platform scripts via either of these methods
-  - `git clone --branch v8.13+beta.0 https://github.com/coq/platform.git`
-  - download and extract `https://github.com/coq/platform/archive/v8.13+beta.0.zip`
-- Follow the below OS specfic instructions.
-- For all OSes this will
-  - create a new opam switch (and setup and/or initialize opam if it is not there yet).
-  - install system prerequisites (like gtk3)
-- The name of the opam switch is `_coq-platform_.8.13+beta.0`.
-  Use the following commands to activate this switch after opening a new shell:
-    ```
-    opam switch _coq-platform_.8.13+beta.0
-    eval $(opam env)
-    ```
-  or rerun `opam init` to automate this in each new shell.
-- The main opam repository for Coq developments is already added to the created opam switch, so it should be easy to install additional coq (or ocaml) packages. On Windows the support of packages is a bit reduced, but still quite good.
-- The full installation might require up to 5 GB of disk space.
+Please refer to the ReadMe file for your OS.
 
-## Windows
-
-See [README_Windows](README_Windows.md)
-
-## macOS
-
-See [README_macOS](README_macOS.md).
-
-## Linux
-
-- Open a shell, navigate to the download folder and execute `coq_platform_make.sh`.
-- The system will ask for sudo permissions to install prerequisites *several times* so the script is not fully unattended but all installations of dependencies are done directly after the initialization of the opam switch.
-- The script is tested on these Linux distributions:
-  - Ubuntu 18.04 LTS and 16.04 LTS
-  - Fedora 32
-  - CentOS 8
-  - OpenSuse 15
-- The resulting Coq installation is opam based and best used from the shell prompt - please remember to activate the opam switch as explained above with `opam switch` when opening a new shell. CoqIDE can be started from the shell prompt with `coqide`.
-- The setup script creates a folder `$HOME/coq-platform` where it stores a few files but likely this will be removed in future releases.
+- macOS: see [README_macOS](README_macOS.md).
+- Windows: see [README_Windows](README_Windows.md)
+- Linux: see [README_Linux](README_Linux.md).
 
 ## Installation of additional packages or package variants
 
