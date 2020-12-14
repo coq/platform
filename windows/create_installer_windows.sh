@@ -5,14 +5,13 @@
 set -o nounset
 set -o errexit
 
-##### ARHCITECTURE #####
-
-ARCHCODE=$(uname -m)
-
 ##### Files and folders #####
 
 # The opam prefix - stripped from absolute paths to create relative paths
 OPAM_PREFIX="$(opam conf var prefix)"
+
+# The architecture
+COQ_ARCH=$(uname -m)
 
 # The folder for the windows installer stuff
 DIR_TARGET=windows_installer
@@ -89,7 +88,7 @@ function add_dlls_using_ldd {
 # Note:
 # This function strips common prefixes in the destination.
 # Currently only one prefix is stripped:
-#   /usr/$ARCHCODE-w64-mingw32/sys-root/mingw/
+#   /usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/
 # In case there are additional prefixes to skip add them here.
 # It doesn't make much sense to have a prefix parameter, because one
 # package could have several prefixes
@@ -101,7 +100,7 @@ function add_files_using_cygwin_package {
     prevpath="--none--"
     for file in $(cygcheck -l "$1" | grep "$2" | sort -u)
     do
-      relpath="${file#/usr/$ARCHCODE-w64-mingw32/sys-root/mingw/}"
+      relpath="${file#/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/}"
       relpath="${relpath%/*}"
       if [ "$relpath" != "$prevpath" ]
       then
@@ -359,15 +358,15 @@ done
 
 ###### Add system DLLs to some packages #####
 
-add_dlls_using_ldd "coqc" "/usr/$ARCHCODE-w64-mingw32/sys-root/" "files_coq"
-add_dlls_using_ldd "coqide" "/usr/$ARCHCODE-w64-mingw32/sys-root/" "files_coqide"
-add_dlls_using_ldd "gappa" "/usr/$ARCHCODE-w64-mingw32/sys-root/" "files_gappa"
+add_dlls_using_ldd "coqc" "/usr/${COQ_ARCH}-w64-mingw32/sys-root/" "files_coq"
+add_dlls_using_ldd "coqide" "/usr/${COQ_ARCH}-w64-mingw32/sys-root/" "files_coqide"
+add_dlls_using_ldd "gappa" "/usr/${COQ_ARCH}-w64-mingw32/sys-root/" "files_gappa"
 
 ###### Add GTK resources #####
 
 ### Adwaita icon theme
 
-add_files_using_cygwin_package "mingw64-$ARCHCODE-adwaita-icon-theme"  \
+add_files_using_cygwin_package "mingw64-${COQ_ARCH}-adwaita-icon-theme"  \
 "/\(16x16\|22x22\|32x32\|48x48\)/.*\("\
 "actions/bookmark\|actions/document\|devices/drive\|actions/format-text\|actions/go\|actions/list\|"\
 "actions/media\|actions/pan\|actions/process\|actions/system\|actions/window\|"\
@@ -376,7 +375,7 @@ add_files_using_cygwin_package "mingw64-$ARCHCODE-adwaita-icon-theme"  \
 
 ### GTK compiled schemas
 
-add_single_file "/usr/$ARCHCODE-w64-mingw32/sys-root/mingw/" "share/glib-2.0/schemas/gschemas.compiled" "files_dep-glib-compiled-schemas"
+add_single_file "/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/" "share/glib-2.0/schemas/gschemas.compiled" "files_dep-glib-compiled-schemas"
 
 ### GTK sourceview languag specs and styles (except coq itself)
 
@@ -388,7 +387,7 @@ add_single_file "/usr/$ARCHCODE-w64-mingw32/sys-root/mingw/" "share/glib-2.0/sch
 # styles/classic.xml
 # But since teh complete set is compressed not that large, we add the complete set
 
-add_foler_recursively "/usr/$ARCHCODE-w64-mingw32/sys-root/mingw/" "share/gtksourceview-3.0" "files_dep-gtksourceview3"
+add_foler_recursively "/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/" "share/gtksourceview-3.0" "files_dep-gtksourceview3"
 
 ###### Create dependency reset/selection/deselection include files #####
 
@@ -428,7 +427,6 @@ echo "NOTE: The creation of the installer can take 10 minutes"
 echo "(cause of the CPU heavy but effective LZMA compression used)"
 echo "==============================================================================="
 COQ_VERSION=$(coqc --print-version | cut -d ' ' -f 1 | tr -d '\r')
-COQ_ARCH=$(uname -m)
 "$NSIS" -DVERSION="$COQ_VERSION" -DARCH="$COQ_ARCH" Coq.nsi
 
 echo "==============================================================================="
