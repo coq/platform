@@ -44,6 +44,8 @@ Here are the different categories of expected stakeholders for the Coq platform:
 
 - The author(s) or current maintainer(s) of the package shall agree to the inclusion of their package in the Coq platform. This means that they agree to put reasonable effort into releasing a version of the package compatible with each new Coq release shortly after every Coq release and to maintain some relative stability between each release. The agreement of the authors is given via a comment in the respective github issue.
 
+- All the dependencies of a platform package are also officially part of the platform. This means in particular that, apart from dependencies that are outside the Coq ecosystem and are well-known to be stable and well supported, the maintainers of the dependencies should also agree to the inclusion in the platform and commit to keep producing new compatible releases which are relatively stable. As part of the stability committment, maintainers should refrain from adding new dependencies that are not already part of the platform without raising the question with the platform maintainers.
+
 ## Package exclusion process
 
 - The exclusion of a package shall be a rare event.
@@ -62,13 +64,17 @@ The initial time frame is set to 1 to 3 months after a major Coq release. This t
 
 There shall be some coupling between the Coq major release cycle and the Coq platform major release cycle. However, the frequency of intermediate (minor) releases is still to be determined. What kind of package updates to include in minor platform releases is still to be determined. The versionning scheme is also still undecided and might depend on the other choices regarding the release cycle.
 
-### Quality constrainsts for included packages
+### Quality constraints for included packages
 
 For now, we haven't set any quality constraints beyond the fact that the packages are sufficiently used and stable. But other constraints, such as the existence of complete documentation, might be set in the future.
 
 ### Licensing constraints for included packages
 
 For now, we haven't yet decided whether packages under non-open source licenses (such as CompCert's academic license) will be accepted in the platform. We could even consider imposing some additional reusability criteria for Coq libraries.
+
+### OCaml compatibility
+
+There should be a clear policy on which OCaml versions must be supported by Coq plugins and tools. The easiest solution for platform maintainers would be to support all OCaml versions that Coq itself supports. However, this should be discussed with package maintainers, who can have a need for more recent OCaml versions.
 
 ### Several tiers
 
