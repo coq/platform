@@ -73,7 +73,7 @@ menhir                    20200624              An LR(1) parser generator
 
 ## Nonfeatures
 
-- an installer for OSX are not yet provided - this is work in progress
+- an installer for OSX is not yet provided - this is work in progress
 
 # Installation of the 8.12.1.0 release
 
