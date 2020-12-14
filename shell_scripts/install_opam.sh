@@ -37,7 +37,7 @@ then
     # We want MinGW cross - this requires a special opam
     wget https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz -O opam64.tar.xz
     tar -xf 'opam64.tar.xz'
-    bash opam64/install.sh --prefix /usr/x86_64-w64-mingw32/sys-root/mingw
+    bash opam64/install.sh --prefix /usr/`uname -m`-w64-mingw32/sys-root/mingw
   else
       echo "ERROR: unsopported OS type '$OSTYPE'"
       return 1
@@ -127,7 +127,11 @@ then
   echo "===== CREATE OPAM SWITCH ====="
   if [[ "$OSTYPE" == cygwin ]]
   then
-    COQ_PLATFORM_OCAML_VERSION='ocaml-variants.4.07.1+mingw64c'
+    if [ "`uname -m`" = "x86_64" ]; then
+      COQ_PLATFORM_OCAML_VERSION="ocaml-variants.4.07.1+mingw64c"
+    else
+      COQ_PLATFORM_OCAML_VERSION="ocaml-variants.4.07.1+mingw32c"
+    fi
   else
     COQ_PLATFORM_OCAML_VERSION='ocaml-base-compiler.4.07.1'
   fi
