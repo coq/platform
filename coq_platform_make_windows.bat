@@ -23,6 +23,7 @@ SET BATCHDIR=%~dp0
 REM Values are x86_64 or i686 (not 64 or 32)
 SET ARCH=x86_64
 SET SETUP=setup-x86_64.exe
+SET BITS="64"
 
 REM HTTP/HTTPS proxy (without http://)
 IF DEFINED HTTP_PROXY (
@@ -78,10 +79,12 @@ IF "%~0" == "-arch" (
   IF "%~1" == "32" (
     SET ARCH=i686
     SET SETUP=setup-x86.exe
+    SET BITS="32"
   ) ELSE (
     IF "%~1" == "64" (
       SET ARCH=x86_64
       SET SETUP=setup-x86_64.exe
+      SET BITS="64"
     ) ELSE (
       ECHO "Invalid -arch, valid are 32 and 64"
       GOTO :EOF
@@ -217,9 +220,9 @@ IF "%DESTCYG%" == "" (
   ECHO should indicate that the cygwin is specialized for Coq platform builds.
   ECHO(
   ECHO The following recommended paths can be chosen by entering a number:
-  ECHO 1  C:\cygwin_coq.
-  ECHO 2  C:\cygwin_coq_platform.
-  ECHO 3  C:\bin\cygwin_coq_platform.
+  ECHO 1  C:\cygwin%BITS%_coq.
+  ECHO 2  C:\cygwin%BITS%_coq_platform.
+  ECHO 3  C:\bin\cygwin%BITS%_coq_platform.
   ECHO Please enter a number 1...3 or a complete path
   ECHO ======================== CYGWIN INSTALLATION LOCATION ========================
   SET /P DESTCYG="Cygwin install folder: "
@@ -236,11 +239,11 @@ IF "%DESTCYG%" == "" (
 )
 
 IF "%DESTCYG%" == "1" (
-  SET DESTCYG=C:\cygwin_coq
+  SET DESTCYG=C:\cygwin%BITS%_coq
 ) ELSE IF "%DESTCYG%" == "2" (
-  SET DESTCYG=C:\cygwin_coq_platform
+  SET DESTCYG=C:\cygwin%BITS%_coq_platform
 ) ELSE IF "%DESTCYG%" == "3" (
-  SET DESTCYG=C:\bin\cygwin_coq_platform
+  SET DESTCYG=C:\bin\cygwin%BITS%_coq_platform
 ) ELSE (
   REM CHECK PATH
   IF EXIST %DESTCYG%\NUL (
@@ -351,7 +354,7 @@ IF "%RUNSETUP%"=="y" (
     -P libglib2.0-devel,libgdk_pixbuf2.0-devel ^
     -P libtool,intltool ^
     -P gtk-update-icon-cache ^
-    -P mingw64-x86_64-adwaita-icon-theme,mingw64-x86_64-adwaita-themes ^
+    -P mingw64-%ARCH%-adwaita-icon-theme,mingw64-%ARCH%-adwaita-themes ^
     -P libfontconfig1 ^
     -P bison,flex ^
     %EXTRAPACKAGES% ^
