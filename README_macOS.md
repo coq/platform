@@ -5,7 +5,7 @@
   - Earlier OS variants: Try if `xcode-select --install` works.
     In case this does not work, first install "XCode Developer Tools" from the App store (might take 1 hour) and try again.
 - If you have neither Homebrew nor MacPorts installed, read the section [Homebrew and MacPorts](#homebrew-and-macports) below.
-- If you have Homebrew installed, read the section [Homebrew issues and work arounds](#homebrew-issues-and-work-arounds) below.
+- If you have Homebrew installed, read the section [Homebrew issues and workarounds](#homebrew-issues-and-workarounds) below.
 - Get the coq platform scripts via either of these methods
   - `git clone --branch v8.12.1.0 https://github.com/coq/platform.git`
   - download and extract `https://github.com/coq/platform/archive/v8.12.1.0.zip`
@@ -20,7 +20,7 @@
 - The main opam repositories for Coq and OCaml developments are already added to the created opam switch, so it should be easy to install additional Coq (or OCaml) packages.
 - CoqIDE can be started from the shell prompt with `coqide`.
 - The full installation might require up to 5 GB of disk space.
-- The setup script creates a folder `$HOME/coq-platform` where it stores a few files but likely this will be removed in future releases.
+- The setup script creates a folder `$HOME/coq-platform` where it stores a few files but this will likely be removed in future releases.
 
 # Tests run on macOS
 
@@ -36,7 +36,7 @@ All tests where run with extent=platform, parallel 16 threads, compcert=full, VS
 - macOS Catalina 10.15.7 (fresh), Apple clang version 11.0.3 => see note below
 - macOS BigSur   11.0.1  (fresh), Apple clang version 12.0.0 => see note below
 
-Homebrew requires a few work arounds to install GTK+3. See section [Homebrew issues and work arounds](#homebrew-issues-and-work-arounds) below.
+Homebrew requires a few workarounds to install GTK+3. See section [Homebrew issues and workarounds](#homebrew-issues-and-workarounds) below.
 
 ## Tested commit
 
@@ -61,7 +61,7 @@ If you already have MacPorts or Homebrew installed, we recommend to keep what yo
 - MacPorts uses rsync transport - this is fast but can be an issue if you are behind a proxy. Using different transports is a bit complicated - e.g. one can use git or https zip download to get the package repository manually and point MacPorts to it, but then it won't update automatically. Homebrew uses git over https transport, which should work behind a proxy (if this doesn't work, not much else will work either).
 - MacPorts requires sudo rights to install software while Homebrew makes its target folder (`/usr/local`) writable to the current user. Some people say there are security issues with the Homebrew approach. See [Is Homebrew safe?](#is-homebrew-safe) below for a short presentation of the arguments.
 - Homebrew seems to be a bit more widely used with a bit broader package support than MacPorts, but for the Coq platform both work equally well.
-- MacPorts uses /opt/local as default installation folder, while Homebrew uses /usr/local as default folder. On a plain fresh macOS, /usr/local is typically empty, but other software seems to use the same folder. Since Homebrew requires that /usr/local is writable to the current user this can result in issues. You might have to make /usr/local recursively writable by the current user and possibly even reinstall all Homebrew packages to solve such issues. See [Homebrew issues and work arounds](#homebrew-issues-and-work-arounds) below. The folder used by MacPorts seems to be exclusively used by MacPorts, so it does not have similar issues. Definitely when you decide to install Homebrew fresh, you should check if /usr/local is empty, and if not run `sudo chown -R ${USER}:admin /usr/local/*` before you install Homebrew.
+- MacPorts uses /opt/local as default installation folder, while Homebrew uses /usr/local as default folder. On a plain fresh macOS, /usr/local is typically empty, but other software seems to use the same folder. Since Homebrew requires that /usr/local is writable to the current user this can result in issues. You might have to make /usr/local recursively writable by the current user and possibly even reinstall all Homebrew packages to solve such issues. See [Homebrew issues and workarounds](#homebrew-issues-and-workarounds) below. The folder used by MacPorts seems to be exclusively used by MacPorts, so it does not have similar issues. Definitely when you decide to install Homebrew fresh, you should check if `/usr/local` is empty, and if not run `sudo chown -R ${USER}:admin /usr/local/*` before you install Homebrew.
 - MacPorts ports use a dedicated text format for port description files - similar to opam. Homebrew by contrast uses arbitrary Ruby programs as package description. So MacPorts is possibly more structured while Homebrew is more flexible.
 
 ## Installing
@@ -80,9 +80,11 @@ A short summary of the dispute:
 - The Homebrew authors say that it is safer to make `/usr/local` writable to the current user and run installers without elevated rights, because this way an installer can only mess up `/usr/local` - which is not part of the core system - while an installer run with sudo rights can mess up any file in the system. This is a valid argument.
 - The Homebrew critics say that making especially `/usr/local/bin` writable to the current user is dangerous, because it is the first folder in the default PATH. So an adversary could say put a version of `sudo` there which steals your admin password. The bad thing is that any program run by the user - even without elevated rights - could do this, since with Homebrew installed `/usr/local/bin` is writable for the current user. This is also a valid argument.
 
-So in summary it is a dangerous thing to make `/usr/local/bin` writable to the current user, but the alternative - running `sudo make install` for 100 software packages - is also not free of danger. Also installing opam and putting `~/.opam/<switch>/bin` at the begin of the PATH opens the door to sneaking in adversarial programs in a similar way - with the big difference that opam by default doesn't do this in a fresh shell but only after you called `eval $(opam env)`. The short summary is: there is no entirely safe way to install 100s of open source packages. If you trust the community reviews of open source software, you might be better off with MacPorts. If you more trust Murphy's law you might be better of with following Homebrew's path to limit potential damage to `/user/local`
+It is a dangerous thing to make `/usr/local/bin` writable to the current user, but the alternative - running `sudo make install` for 100 software packages - is also not free of danger. Also installing opam and putting `~/.opam/<switch>/bin` at the begin of the PATH opens the door to sneaking in adversarial programs in a similar way - with the big difference that opam by default doesn't do this in a fresh shell but only after you called `eval $(opam env)`.
 
-## Homebrew issues and work arounds
+The bottom line is: there is no entirely safe way to install 100s of open source packages. If you trust the community reviews of open source software, you might be better off with MacPorts. If you more trust Murphy's law you might be better of with following Homebrew's path to limit potential damage to `/user/local`.
+
+## Homebrew issues and workarounds
 
 - Homebrew makes part of `/usr/local` writable for the current user, but if `/usr/local` is also used by other software this might result in issues. Homebrew requires that `/usr/local` is writable to the current user, or at least these folders are:
   - `/usr/local/bin`

@@ -4,7 +4,7 @@
   - Debian, Ubuntu:       sudo apt-get install build-essentials
   - CentOS, RHEL, Fedora: sudo dnf groupinstall "Development Tools"
   - OpenSuse:             sudo zypper in -t pattern devel_C_C++
-- For CentOS and possibly RHEL some additional spets are required, see [CentOS](#centos) below.
+- For CentOS and possibly RHEL some additional steps are required, see [CentOS](#centos) below.
 - Get the coq platform scripts via either of these methods
   - `git clone --branch v8.12.1.0 https://github.com/coq/platform.git`
   - download and extract `https://github.com/coq/platform/archive/v8.12.1.0.zip`
@@ -19,7 +19,7 @@
 - The main opam repositories for Coq and OCaml developments are already added to the created opam switch, so it should be easy to install additional Coq (or OCaml) packages.
 - CoqIDE can be started from the shell prompt with `coqide`.
 - The full installation might require up to 5 GB of disk space.
-- The setup script creates a folder `$HOME/coq-platform` where it stores a few files but likely this will be removed in future releases.
+- The setup script creates a folder `$HOME/coq-platform` where it stores a few files but this will likely be removed in future releases.
 
 # Tests run on Linux
 
@@ -49,7 +49,7 @@ Date:   Sun Dec 13 17:50:52 2020 +0100
 
 Centos requires two additional steps. First sudo should be enabled, so that opam depext can work. opam depext automatically installs required system dependencies, which requires sudo rights. Since one cannot run the complete script as super user, there is no easy way around using sudo. The only method is to make sure that all prerequisites are installed upfront. One way to do this is to run the coq platform script until it asks for the sudo password and then see what it want's to do and do this as super user.
 
-Sudo can be enable sudo for the current user as follows:
+Sudo can be enabled for the current user as follows:
 ```
 su
 usermod -aG wheel username
@@ -64,4 +64,4 @@ CentOS by default doesn't have things like the gtk-sourceview in its repo. Addit
 ```
 sudo dnf config-manager --set-enabled PowerTools
 ```
-This might not required if you do not install CoqIDE, but this has not been tested. Possibly other opam packages also need packages from the CentOS PowerTools repo.
+This might not be required if you do not install CoqIDE, but this has not been tested. Possibly other opam packages also need packages from the CentOS PowerTools repo.
