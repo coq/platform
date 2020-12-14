@@ -6,14 +6,14 @@
   - OpenSuse:             sudo zypper in -t pattern devel_C_C++
 - For CentOS and possibly RHEL some additional steps are required, see [CentOS](#centos) below.
 - Get the coq platform scripts via either of these methods
-  - `git clone --branch v8.12.1.0 https://github.com/coq/platform.git`
-  - download and extract `https://github.com/coq/platform/archive/v8.12.1.0.zip`
+  - `git clone --branch v8.13 https://github.com/coq/platform.git`
+  - download and extract `https://github.com/coq/platform/archive/v8.13.zip`
 - Open a shell, navigate to the download folder and execute `coq_platform_make.sh`.
 - The system will ask for sudo permissions to install prerequisites *several times* so the script is not fully unattended but all installations of dependencies are done directly after the initialization of the opam switch.
 - In case the script aborts e.g. cause of internet issues, just rerun the script.
-- The script creates a new opam switch named `_coq-platform_.8.12.1.0` - this means the script does not touch your existing opam setup unless you already have a switch of this name.
+- The script creates a new opam switch named `_coq-platform_.8.13.0+beta1` - this means the script does not touch your existing opam setup unless you already have a switch of this name.
 - Use the following commands to activate this switch after opening a new shell:
-  - `opam switch _coq-platform_.8.12.1.0`
+  - `opam switch _coq-platform_.8.13.0+beta1`
   - `eval $(opam env)`
   - The second step can be automated by rerunning `opam init`
 - The main opam repositories for Coq and OCaml developments are already added to the created opam switch, so it should be easy to install additional Coq (or OCaml) packages.
@@ -23,23 +23,11 @@
 
 # Tests run on Linux
 
-All tests where run with extent=platform, parallel 16 threads, compcert=full, VST=yes, on a machine with 32GB of RAM.
-
-- Ubuntu 18.04 LTS => OK
-- Ubuntu 16.04 LTS => OK
-- Fedora 32 => OK
-- CentOS 8 => OK, but see [CentOS](#centos) below.
-- OpenSuse 15 => OK
+ToDo
 
 ## Tested commit
 
-```
-commit 8c3c2013ce32bd681a51397463f548c270a004ac (HEAD -> v8.12, origin/v8.12)
-Author: Michael Soegtrop <7895506+MSoegtropIMC@users.noreply.github.com>
-Date:   Sun Dec 13 17:50:52 2020 +0100
-
-    macOS: Clarified XCode install instructions in script message
-```
+ToDo
 
 # Notes for specific Linux distributions
 

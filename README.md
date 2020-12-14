@@ -105,16 +105,16 @@ The compilation of VST takes quite a while on slow / small RAM PCs. For this rea
 
 You can change the selection of packages any time later by issuing `opam install` commands, e.g.
 ```
-opam install coq-compcert.3.7+8.12~coq_platform~open_source
-opam install coq-compcert.3.7+8.12~coq_platform
-opam install coq-vst.2.6
+opam install coq-compcert.3.8~open_source (Not yet supported yb beta)
+opam install coq-compcert.3.8
+opam install coq-vst.2.7
 ```
 
 Besides the open source and non open source variant of CompCert, there is also a 64 bit variant of CompCert and VST, which can
 be installed by running these commands:
 ```
-opam install coq-compcert-64.3.7+8.12~coq_platform~open_source
-opam install coq-vst-64.2.6
+opam install coq-compcert-64.3.8
+opam install coq-vst-64.2.7
 ```
 or by adjusting [`coq_platform_packages.sh`](/coq_platform_packages.sh) accordingly.
 Please note that since both variants can be installed in parallel, only one, the 32 bit variant, is immediately available to Coq

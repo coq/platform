@@ -7,14 +7,14 @@
 - If you have neither Homebrew nor MacPorts installed, read the section [Homebrew and MacPorts](#homebrew-and-macports) below.
 - If you have Homebrew installed, read the section [Homebrew issues and workarounds](#homebrew-issues-and-workarounds) below.
 - Get the coq platform scripts via either of these methods
-  - `git clone --branch v8.12.1.0 https://github.com/coq/platform.git`
-  - download and extract `https://github.com/coq/platform/archive/v8.12.1.0.zip`
+  - `git clone --branch v8.13 https://github.com/coq/platform.git`
+  - download and extract `https://github.com/coq/platform/archive/v8.13.zip`
 - Open a shell, navigate to the download folder and execute `coq_platform_make.sh`.
 - If you are using MacPorts, the system will ask for sudo permissions to install prerequisites *several times* so the script is not fully unattended but all installations of dependencies are done directly after the initialization of the opam switch.
 - In case the script aborts e.g. cause of internet issues, just rerun the script.
-- The script creates a new opam switch named `_coq-platform_.8.12.1.0` - this means the script does not touch your existing opam setup unless you already have a switch of this name.
+- The script creates a new opam switch named `_coq-platform_.8.13.0+beta1` - this means the script does not touch your existing opam setup unless you already have a switch of this name.
 - Use the following commands to activate this switch after opening a new shell:
-  - `opam switch _coq-platform_.8.12.1.0`
+  - `opam switch _coq-platform_.8.13.0+beta1`
   - `eval $(opam env)`
   - The second step can be automated by rerunning `opam init`
 - The main opam repositories for Coq and OCaml developments are already added to the created opam switch, so it should be easy to install additional Coq (or OCaml) packages.
@@ -24,29 +24,13 @@
 
 # Tests run on macOS
 
-All tests where run with extent=platform, parallel 16 threads, compcert=full, VST=yes, on a machine with 32GB of RAM.
-
-## Macports 2.6.4
-
-- macOS Catalina 10.15.7 (fresh), Apple clang version 11.0.3 => OK
-- macOS BigSur   11.0.1  (fresh), Apple clang version 12.0.0 => OK
-
-## Homebrew 2.6.1
-
-- macOS Catalina 10.15.7 (fresh), Apple clang version 11.0.3 => see note below
-- macOS BigSur   11.0.1  (fresh), Apple clang version 12.0.0 => see note below
+ToDo.
 
 Homebrew requires a few workarounds to install GTK+3. See section [Homebrew issues and workarounds](#homebrew-issues-and-workarounds) below.
 
 ## Tested commit
 
-```
-commit bd2ec784ceb94784cf9c463d7ee058e923d2dbfc (HEAD -> v8.12, origin/v8.12)
-Author: Michael Soegtrop <7895506+MSoegtropIMC@users.noreply.github.com>
-Date:   Wed Dec 9 18:26:49 2020 +0100
-
-    macOS 11: fix for remake
-```
+ToDo
 
 # Homebrew and MacPorts
 
