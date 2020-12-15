@@ -46,6 +46,6 @@ extra-files: [
 ]
 
 url {
-  src: "https://github.com/coq/coq/archive/V8.12.0.tar.gz"
-  checksum: "sha512=8a64624c578ce0ab781fb3b1f162bd8b095735ad891fdad2fb7c40849afbdc7c1360187c6b62a5ef2982566f4c6c78029240c611ae769943a5250af300eb1240"
+  src: "https://github.com/coq/coq/archive/V8.12.2.tar.gz"
+  checksum: "sha512=6b524edbceb5795f04bbd2b52f191bfcf10b611f7a2fa0450c30b72c944f88418d261729476b64603faacfe2be5f7992a2997541e54e6f8691d4dc8b4969198d"
 }
