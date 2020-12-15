@@ -1,0 +1,47 @@
+opam-version: "2.0"
+synopsis: "Verified Software Toolchain"
+description: "The software toolchain includes static analyzers to check assertions about your program; optimizing compilers to translate your program to machine language; operating systems and libraries to supply context for your program. The Verified Software Toolchain project assures with machine-checked proofs that the assertions claimed at the top of the toolchain really hold in the machine-language program, running in the operating-system context."
+authors: [
+  "Andrew W. Appel"
+  "Lennart Beringer"
+  "Sandrine Blazy"
+  "Qinxiang Cao"
+  "Santiago Cuellar"
+  "Robert Dockins"
+  "Josiah Dodds"
+  "Nick Giannarakis"
+  "Samuel Gruetter"
+  "Aquinas Hobor"
+  "Jean-Marie Madiot"
+  "William Mansky"
+]
+maintainer: "VST team"
+homepage: "http://vst.cs.princeton.edu/"
+dev-repo: "git+https://github.com/PrincetonUniversity/VST.git"
+bug-reports: "https://github.com/PrincetonUniversity/VST/issues"
+license: "https://raw.githubusercontent.com/PrincetonUniversity/VST/master/LICENSE"
+patches: [
+  "makefile.patch"
+]
+build: [
+  [make "-j%{jobs}%" "BITSIZE=32"]
+]
+install: [
+  [make "install" "BITSIZE=32"]
+]
+depends: [
+  "ocaml"
+  "coq" {>= "8.11" & < "8.13"}
+  "coq-compcert" {(= "3.7~coq-platform~open-source") | (= "3.7~coq-platform") | (= "3.7+8.12~coq_platform~open_source") | (= "3.7+8.12~coq_platform")}
+  "coq-flocq" {>= "3.2.1"}
+]
+tags: [
+  "category:CS/Semantics and Compilation/Semantics"
+  "keyword:C"
+  "logpath:VST"
+  "date:2020-08-02"
+]
+url {
+  src: "https://github.com/PrincetonUniversity/VST/archive/v2.6.tar.gz"
+  checksum: "sha512=4fea46c423fd5abfa403ae88bc34a859960c6e7bbafddc1f208fc4d93af29b0711804a5eb3c917cd70d407f9a3deffa7157edc4bbfef186635280080153f47b3"
+}

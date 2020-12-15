@@ -15,13 +15,13 @@
 # ATTENTION: The packages are given in an oeder so that dependencies are built
 #            first - important fo sequential builds!
 
-PACKAGES="coq.8.12.1"
+PACKAGES="coq.8.12.2"
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 # Note: lablgtk3 3.1.1 does not link with flexlink on MinGW
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfF] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.12.1 lablgtk3.3.0.beta5"
+PACKAGES="${PACKAGES} coqide.8.12.2 lablgtk3.3.0.beta5"
 fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fF] ]]

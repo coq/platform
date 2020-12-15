@@ -23,15 +23,15 @@ Please note that some opam packages require and install system packages with man
 These dependencies might have various licenses. You need to refer to your system package manager to
 inspect the licenses of such packages.
 
-# Features of the 8.12.1.0 release
+# Features of the 8.12.2.0 release
 
 - fully opam based, also on Windows
 - single script call to install system dependencies, opam (if not there), a fresh opam switch and the coq platform
 - interactive (well script based) guidance of the user through the few parameters
 - includes all packages provided in the 8.12 windows installer. The list of included packages is:
 ```
-coq                       8.12.1                Formal proof management system
-coqide                    8.12.1                IDE of the Coq formal proof management system
+coq                       8.12.2                Formal proof management system
+coqide                    8.12.2                IDE of the Coq formal proof management system
 coq-aac-tactics           8.12.0                Coq plugin providing tactics for rewriting universally quantified equ
 coq-bignums               8.12.0                Bignums, the Coq library of arbitrary large numbers
 coq-compcert              3.7+8.12~coq_platform The CompCert C compiler (using coq-platform supplied version of Flocq
@@ -75,7 +75,7 @@ menhir                    20200624              An LR(1) parser generator
 
 - an installer for OSX is not yet provided - this is work in progress
 
-# Installation of the 8.12.1.0 release
+# Installation of the 8.12.2.0 release
 
 Please refer to the ReadMe file for your OS.
 
@@ -131,7 +131,7 @@ without -Q and -R options. If you want to work with the 64 bit variants, please 
 - On Linux or macOS open a shell in the usual way.
 - Run these commands:
     ```
-    opam switch _coq-platform_.8.12.1.0
+    opam switch _coq-platform_.8.12.2.0
     eval $(opam env)
     ```
 - Install additional packages with `opam install "package"`
