@@ -9,6 +9,18 @@
 # See https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt
 
 ###################### INSTALL OPAM #####################
+function run_opam_installer {
+  check_command_available curl
+  curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh > opam_installer.sh
+  chmod a+x opam_installer.sh
+  if [[ "${COQREGTESTING:-n}" == y ]]
+  then
+    sudo sh -c 'yes "" | ./opam_installer.sh'
+  else
+    ./opam_installer.sh
+  fi
+  rm opam_installer.sh
+}
 
 if ! command -v opam &> /dev/null
 then
@@ -16,8 +28,7 @@ then
   if [[ "$OSTYPE" == linux* ]]
   then
     # On Linux use the opam install script - Linux has too many variants.
-    check_command_available curl
-    sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
+    run_opam_installer
   elif [[ "$OSTYPE" == darwin* ]]
   then
     # On macOS if a package manager is installed, use it - otherwise use the opam install script.
@@ -29,8 +40,7 @@ then
     then
       brew install opam
     else
-      check_command_available curl
-      sh <(curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)
+      run_opam_installer
     fi
   elif [[ "$OSTYPE" == cygwin ]]
   then
@@ -99,7 +109,10 @@ You can either cancel and try to install or upgrade bubblewrap to at least
 version 0.2.1, or you can run opam without sandbox.
 ========================= BUBBLEWRAP SYSTEM SANDBOX =========================
 EOH
-    ask_user_opt1_cancel "Disable sandbox (d) or cancel (c)?" dD "dsiable sandbox"
+    if [[ "${COQREGTESTING:-n}" == n ]]
+    then
+      ask_user_opt1_cancel "Disable sandbox (d) or cancel (c)?" dD "dsiable sandbox"
+    fi
     COQ_PLATFORM_OPAM_INIT_EXTRA=--disable-sandboxing
   fi
 fi
