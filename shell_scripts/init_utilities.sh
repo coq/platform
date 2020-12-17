@@ -189,6 +189,10 @@ function check_value_enumeraton {
 # ------------------------------------------------------------------------------
 
 function check_value_range {
+  if [ "$1" == "__unset__" ]
+  then
+    return 0
+  fi
   if [ "$1" -lt "$2" ] || [ "$1" -gt "$3" ]
   then
     echo "ERROR: Illegal value $1 for $4. Valid is '$2..$3'."
