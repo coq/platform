@@ -85,12 +85,19 @@ function add_dlls_using_ldd {
 # $1 = cygwin package name
 # $2 = regexp filter (grep)
 # $3 = file list file name
+# Note:
+# This function strips common prefixes in the destination.
+# Currently only one prefix is stripped:
+#   /usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/
+# In case there are additional prefixes to skip add them here.
+# It doesn't make much sense to have a prefix parameter, because one
+# package could have several prefixes
 
 function add_files_using_cygwin_package {
-  prevpath="--none--"
   if [ -f "$DIR_TARGET/$3.nsh" ]
   then
     echo "Adding files from cygwin package $1"
+    prevpath="--none--"
     for file in $(cygcheck -l "$1" | grep "$2" | sort -u)
     do
       relpath="${file#/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/}"
@@ -102,6 +109,43 @@ function add_files_using_cygwin_package {
       fi
       echo -n "FILE "; cygpath -aw "$file";
     done >> "$DIR_TARGET/$3.nsh"
+  fi
+}
+
+# Add a folder recursively
+# $1 = path prefix (absolute cygwin format, must end with /)
+# $2 = relative path to $1 (must not start with /)
+# $3 file list file name
+
+function add_foler_recursively {
+  if [ -f "$DIR_TARGET/$3.nsh" ]
+  then
+    echo "Adding files from folder $1/$2"
+    prevpath="--none--"
+    for file in $(find $1$2 -type f | sort -u)
+    do
+      relpath="${file#$1}"
+      relpath="${relpath%/*}"
+      if [ "$relpath" != "$prevpath" ]
+      then
+        echo 'SetOutPath $INSTDIR\'"$(cygpath -w "$relpath")"
+        prevpath="$relpath"
+      fi
+      echo -n "FILE "; cygpath -aw "$file";
+    done >> "$DIR_TARGET/$3.nsh"
+  fi
+}
+
+# Add a single file
+# $1 = path prefix (absolute cygwin format)
+# $2 = relative path to $1
+# $3 file list file name
+
+function add_single_file {
+  if [ -f "$DIR_TARGET/$3.nsh" ]
+  then
+    echo 'SetOutPath $INSTDIR\'"$(dirname "$(cygpath -w "$2")")" >> "$DIR_TARGET/$3.nsh"
+    echo -n "FILE $(cygpath -aw "$1$2")" >> "$DIR_TARGET/$3.nsh"
   fi
 }
 
@@ -318,7 +362,9 @@ add_dlls_using_ldd "coqc" "/usr/${COQ_ARCH}-w64-mingw32/sys-root/" "files_coq"
 add_dlls_using_ldd "coqide" "/usr/${COQ_ARCH}-w64-mingw32/sys-root/" "files_coqide"
 add_dlls_using_ldd "gappa" "/usr/${COQ_ARCH}-w64-mingw32/sys-root/" "files_gappa"
 
-###### Add subset of adwaita icon theme #####
+###### Add GTK resources #####
+
+### Adwaita icon theme
 
 add_files_using_cygwin_package "mingw64-${COQ_ARCH}-adwaita-icon-theme"  \
 "/\(16x16\|22x22\|32x32\|48x48\)/.*\("\
@@ -327,13 +373,29 @@ add_files_using_cygwin_package "mingw64-${COQ_ARCH}-adwaita-icon-theme"  \
 "mimetypes/text\|places/folder\|places/user\|status/dialog\)"  \
 "files_conf-adwaita-icon-theme"
 
-###### Create dependency reset/selection/deselection include files
+### GTK compiled schemas
+
+add_single_file "/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/" "share/glib-2.0/schemas/gschemas.compiled" "files_dep-glib-compiled-schemas"
+
+### GTK sourceview languag specs and styles (except coq itself)
+
+# Not really everything is needed from this. These might suffice:
+# language-specs/dev.lang
+# language-specs/language.dtd
+# language-specs/language.rng
+# language-specs/language2.rng
+# styles/classic.xml
+# But since teh complete set is compressed not that large, we add the complete set
+
+add_foler_recursively "/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/" "share/gtksourceview-3.0" "files_dep-gtksourceview3"
+
+###### Create dependency reset/selection/deselection include files #####
 
 sort_dependencies "$FILE_DEP_HIDDEN.in" "$FILE_DEP_HIDDEN" 'CheckHiddenSectionDependency' "$FILE_RES_HIDDEN" -r
 sort_dependencies "$FILE_DEP_VISIBLE.in" "$FILE_VISIBLE_SEL" 'SectionVisibleSelect' /dev/null -r
 sort_dependencies "$FILE_DEP_VISIBLE.in" "$FILE_VISIBLE_DESEL" 'SectionVisibleDeSelect' /dev/null ""
 
-###### Create the NSIS installer
+###### Create the NSIS installer #####
 
 cd $DIR_TARGET
 
