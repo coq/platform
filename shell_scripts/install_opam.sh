@@ -35,9 +35,9 @@ then
   elif [[ "$OSTYPE" == cygwin ]]
   then
     # We want MinGW cross - this requires a special opam
-    wget https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam64.tar.xz -O opam64.tar.xz
-    tar -xf 'opam64.tar.xz'
-    bash opam64/install.sh --prefix /usr/`uname -m`-w64-mingw32/sys-root/mingw
+    wget https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam$BITSIZE.tar.xz -O "opam$BITSIZE.tar.xz"
+    tar -xf "opam$BITSIZE.tar.xz"
+    bash opam$BITSIZE/install.sh --prefix "/usr/$(uname -m)-w64-mingw32/sys-root/mingw"
   else
       echo "ERROR: unsopported OS type '$OSTYPE'"
       return 1
@@ -164,6 +164,19 @@ opam list
 # Note: this keeps downloads and logs
 
 opam clean --switch-cleanup
+
+###################### HACK OPAM ARCHITECTURE ON 32 BIT CYGWIN #####################
+
+# Note: opam running on 32 bit cygwin on 64 bit windows has arch x86_64
+
+if [ "$OSTYPE" == cygwin ] && [ "$BITSIZE" == 32 ] && [ "$(opam var arch)" != i686 ]
+then
+  conf_file="$(opam var prefix)"/.opam-switch/switch-config
+  # Search for "variables {", print it, print an additional variable assignment and continue with next line
+  # For everything else (condition 1) do the default action of print $0
+  awk '/^variables \{/ {print $0; print "  arch: \"i686\""; next} 1' "$conf_file" > "$conf_file.tmp"
+  mv "$conf_file.tmp" "$conf_file"
+fi
 
 ###################### Update opam ######################
 
