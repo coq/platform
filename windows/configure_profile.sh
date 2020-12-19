@@ -28,7 +28,7 @@ if [ ! -f $donefile ] ; then
   # Note: the order is important: first have the cygwin binaries, then the mingw binaries in the path!
   # Note: /bin is mounted at /usr/bin and /lib at /usr/lib and it is common to use /usr/bin in PATH
   # See cat /proc/mounts
-  echo "export PATH=/build/bin_special:/usr/local/bin:/usr/bin:/usr/$TARGET_ARCH/sys-root/mingw/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows"
+  echo "export PATH=/build/bin_special:/usr/local/bin:/usr/bin:/usr/$TARGET_ARCH/sys-root/mingw/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows:/usr/$OTHER_ARCH-pc-cygwin/sys-root/usr/bin"
 
   # find and xargs complain if the environment is larger than (I think) 8k.
   # ORIGINAL_PATH (set by cygwin) can be a few k and exceed the limit
