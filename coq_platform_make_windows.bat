@@ -360,7 +360,7 @@ IF "%RUNSETUP%"=="y" (
     -P mingw64-%ARCH%-adwaita-icon-theme,mingw64-%ARCH%-adwaita-themes ^
     -P libfontconfig1 ^
     -P bison,flex ^
-    -P cygwin%OTHER_BITS%-binutils cygwin%OTHER_BITS%-gcc-core ^
+    -P cygwin%OTHER_BITS%-binutils,cygwin%OTHER_BITS%-gcc-core ^
     %EXTRAPACKAGES% ^
     || GOTO ErrorExit
 
