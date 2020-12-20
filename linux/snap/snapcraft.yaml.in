@@ -1,0 +1,60 @@
+name: coq-prover
+base: core18
+version: '@@COQ_VERSION@@'
+summary: Coq
+description: |
+  @@COQ_DESCRIPTION@@
+
+grade: stable
+confinement: strict
+
+parts:
+  coq:
+    plugin: nil
+    build-packages: [build-essential, curl, m4, unzip, git]
+    source: .
+    source-type: local
+    override-build: |
+      if [ -d $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/ ]; then exit 0; fi
+      # build
+      echo "COQ_PLATFORM_VERSION=@@COQ_VERSION@@" >> coq_platform_switch_name.sh
+      echo "COQ_PLATFORM_SWITCH_NAME=@@COQ_VERSION@@" >> coq_platform_switch_name.sh
+      COQREGTESTING=y OPAMROOT=$SNAPCRAFT_PART_INSTALL/coq-platform/ ./coq_platform_make.sh @@PLATFORM_ARGS@@
+      # cleanup
+      OPAMROOT=$SNAPCRAFT_PART_INSTALL/coq-platform/ opam clean
+      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/ \( -name '*.byte.exe' -o -name '*.byte' -o -name '*.cm[aioxt]' -o -name '*.cmxa' -o -name '*.[oa]' -o -name '*.cmti' -o -name '*.glob' \) -type f  -delete
+      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/bin/ -maxdepth 1 -mindepth 1 \! -name 'coq*' -exec rm -f {} \;
+      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/lib/ -maxdepth 1 -mindepth 1 \! \( -name 'coq' -o -name 'stublibs' \) -exec rm -rf {} \;
+      rm -rf $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/share/ocaml-secondary-compiler
+      rm -rf $SNAPCRAFT_PART_INSTALL/coq-platform/repo/
+
+  wrapper:
+    plugin: nil
+    after: [coq]
+    source: .
+    source-type: local
+    override-build: |
+      # install wrapper for apps
+      mkdir -p $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/bin/
+      cp linux/snap/coq_wrapper_* $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/bin/
+
+apps:
+  coqide:
+    command: coq-platform/@@COQ_VERSION@@/bin/coq_wrapper_coqide
+    plugs: [desktop, home]
+    extensions: [gnome-3-28]
+    desktop: ../project/snap/gui/coqide.desktop
+  coqtop:
+    plugs: [home]
+    command: coq-platform/@@COQ_VERSION@@/bin/coq_wrapper_coqtop
+  coqc:
+    plugs: [home]
+    command: coq-platform/@@COQ_VERSION@@/bin/coq_wrapper_coqc
+  coq-makefile:
+    plugs: [home]
+    command: coq-platform/@@COQ_VERSION@@/bin/coq_wrapper_coq_makefile
+  coqidetop:
+    plugs: [home]
+    command: coq-platform/@@COQ_VERSION@@/bin/coq_wrapper_coqidetop.opt
+
+
