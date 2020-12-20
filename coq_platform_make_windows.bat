@@ -23,7 +23,8 @@ SET BATCHDIR=%~dp0
 REM Values are x86_64 or i686 (not 64 or 32)
 SET ARCH=x86_64
 SET SETUP=setup-x86_64.exe
-SET BITS="64"
+SET BITS=64
+SET OTHER_BITS=32
 
 REM HTTP/HTTPS proxy (without http://)
 IF DEFINED HTTP_PROXY (
@@ -79,12 +80,14 @@ IF "%~0" == "-arch" (
   IF "%~1" == "32" (
     SET ARCH=i686
     SET SETUP=setup-x86.exe
-    SET BITS="32"
+    SET BITS=32
+    SET OTHER_BITS=64
   ) ELSE (
     IF "%~1" == "64" (
       SET ARCH=x86_64
       SET SETUP=setup-x86_64.exe
-      SET BITS="64"
+      SET BITS=64
+      SET OTHER_BITS=32
     ) ELSE (
       ECHO "Invalid -arch, valid are 32 and 64"
       GOTO :EOF
@@ -357,6 +360,7 @@ IF "%RUNSETUP%"=="y" (
     -P mingw64-%ARCH%-adwaita-icon-theme,mingw64-%ARCH%-adwaita-themes ^
     -P libfontconfig1 ^
     -P bison,flex ^
+    -P cygwin%OTHER_BITS%-binutils cygwin%OTHER_BITS%-gcc-core ^
     %EXTRAPACKAGES% ^
     || GOTO ErrorExit
 
