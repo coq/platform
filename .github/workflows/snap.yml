@@ -1,0 +1,112 @@
+# Main doc: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/introduction-to-github-actions
+# Runners spec: https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners
+# Glob expressions: https://github.com/actions/toolkit/tree/main/packages/glob
+
+name: Snap package
+
+###############################################################################
+# Schedule:
+# - push on any branch whose name matches v** or master
+# - any pull request
+# - once a day
+# - manually with parameters (see also github_actions/run_snap.sh)
+###############################################################################
+on:
+  push:
+    branches:
+      - v**
+      - master
+  pull_request:
+    branches:
+      - '**'
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      save:
+        description: 'Save artifact for download'
+        default: false
+      upload:
+        description: 'Upload artifact to snap store'
+        default: false
+      platform:
+        description: 'Arguments for the platform script'
+        required: true
+        default: '-extent=f -parallel=p -jobs=2 -vst=y -compcert=f'
+
+###############################################################################
+# Platform script options shared among all jobs
+#
+# Default values when the job is run automatically
+###############################################################################
+env:
+  COQREGTESTING: y
+  PLATFORM: -extent=i -parallel=p -jobs=2
+  SAVE_ARTIFACT: true
+
+jobs:
+###############################################################################
+# Snap
+#
+# CAVEATS:
+# - bubblewrap does not work inside lxd (used by snap)
+# - uploading requires a secret in GH https://github.com/snapcore/action-publish
+###############################################################################
+
+  Ubuntu_snap:
+    name: Snap package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Set PLATFORM
+        if: ${{ github.event.inputs.platform != '' }}
+        run: echo "PLATFORM=${{ github.event.inputs.platform }}" >> $GITHUB_ENV
+
+      - name: Set SAVE_ARTIFACT
+        if: ${{ github.event.inputs.save != '' }}
+        run: echo "SAVE_ARTIFACT=${{ github.event.inputs.save }}" >> $GITHUB_ENV
+
+      - name: Install opam
+        env:
+          OPAM_VERSION: 2.0.7
+        run: |
+          curl -L https://github.com/ocaml/opam/releases/download/${OPAM_VERSION}/opam-${OPAM_VERSION}-x86_64-linux > opam.${OPAM_VERSION}
+          chmod a+x opam.${OPAM_VERSION}
+          sudo cp opam.${OPAM_VERSION} /usr/local/bin/opam.${OPAM_VERSION}
+          sudo ln -s /usr/local/bin/opam.${OPAM_VERSION} /usr/local/bin/opam
+          opam init --bare --disable-sandboxing -y
+          opam switch create default --empty -y
+          opam repo add coq-released https://coq.inria.fr/opam/released
+          opam repo add coq-dev https://coq.inria.fr/opam/core-dev
+          opam repo add coq-extra https://coq.inria.fr/opam/extra-dev
+          opam repo add coq-platform file://$PWD/opam
+          opam repo set-repos coq-platform coq-released coq-dev coq-extra default
+          opam update
+
+      - name: Generate snapcraft file
+        run: linux/create_linux_installer.sh $PLATFORM
+
+      - name: Print snapcraft file
+        run: cat snap/snapcraft.yaml
+
+      - name: Run snapcraft
+        uses: snapcore/action-build@v1
+        id: build
+
+      - name: Save Artifact
+        if: ${{ env.SAVE_ARTIFACT }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'Snap package'
+          path: ${{ steps.build.outputs.snap }}
+
+      - name: Upload Artifact to the Snap store
+        if: ${{ github.event.inputs.upload }}
+        uses: snapcore/action-publish@v1
+        with:
+          store_login: ${{ secrets.STORE_LOGIN }}
+          snap: ${{ steps.build.outputs.snap }}
+          release: edge
