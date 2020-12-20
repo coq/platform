@@ -39,8 +39,9 @@ tags: [
   "category:CS/Semantics and Compilation/Semantics"
   "keyword:C"
   "logpath:VST"
-  "date:2020-12-06"
+  "date:2020-12-20"
 ]
 url {
-  src: "git+https://github.com/PrincetonUniversity/VST.git#master"
+  src: "https://github.com/PrincetonUniversity/VST/archive/v2.7.tar.gz"
+  checksum: "sha512=98bade7086a8ad2cc21f3d77f33b2a453990086e57ac78d4e1aa37cf5140172897e2e1355dc88347003356773a329b6183882965277e850d4affe0fe5d79636c"
 }

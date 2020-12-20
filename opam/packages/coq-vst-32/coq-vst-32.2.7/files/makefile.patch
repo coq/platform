@@ -2,15 +2,6 @@ diff --git a/Makefile b/Makefile
 index 0ec949ee..4c0df5f2 100755
 --- a/Makefile
 +++ b/Makefile
-@@ -21,7 +21,7 @@ COQLIB=$(shell $(COQC) -where | tr -d '\r' | tr '\\' '/')
- 
- # Check Coq version
- 
--COQVERSION= 8.11.0 or-else 8.11.1 or-else 8.11.2 or-else 8.12+beta1 or-else 8.12.0
-+COQVERSION= 8.11.0 or-else 8.11.1 or-else 8.11.2 or-else 8.12+beta1 or-else 8.12.0 or-else 8.12.1 or-else 8.13+alpha or-else 8.13+beta
- 
- COQV=$(shell $(COQC) -v)
- ifneq ($(IGNORECOQVERSION),true)
 @@ -80,11 +80,11 @@ ifeq ($(COMPCERT),platform)
    ifeq ($(BITSIZE),)
      COMPCERT_INST_DIR = $(COQLIB)/user-contrib/compcert
