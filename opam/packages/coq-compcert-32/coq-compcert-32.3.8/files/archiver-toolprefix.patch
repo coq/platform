@@ -1,5 +1,15 @@
+From 52b85da0afe57669227d0b735abd72971fa1dcb5 Mon Sep 17 00:00:00 2001
+From: Michael Soegtrop <7895506+MSoegtropIMC@users.noreply.github.com>
+Date: Mon, 21 Dec 2020 09:48:22 +0100
+Subject: [PATCH] Use toolprefix for archiver ar
+
+---
+ configure        | 17 +++++++++++++++++
+ runtime/Makefile |  2 +-
+ 2 files changed, 18 insertions(+), 1 deletion(-)
+
 diff --git a/configure b/configure
-index 1620ad4b..9c45ad48 100755
+index 1620ad4b..e596e343 100755
 --- a/configure
 +++ b/configure
 @@ -237,6 +237,7 @@ if test "$arch" = "arm"; then
@@ -116,6 +126,14 @@ index 1620ad4b..9c45ad48 100755
  # Math library. Set to empty under MacOS X
  LIBMATH=-lm
  
+@@ -839,6 +855,7 @@ CompCert configuration:
+     Assembler for runtime lib..... $casmruntime
+     Linker........................ $clinker
+     Linker needs '-no-pie'........ $clinker_needs_no_pie
++    Archiver...................... $archiver
+     Math library.................. $libmath
+     Build command to use.......... $make
+     Menhir API library............ $menhir_dir
 diff --git a/runtime/Makefile b/runtime/Makefile
 index 6777995d..2fd44020 100644
 --- a/runtime/Makefile
@@ -129,3 +147,6 @@ index 6777995d..2fd44020 100644
  
  %.o: %.s
  	$(CASMRUNTIME) -o $@ $^
+-- 
+2.29.2
+
