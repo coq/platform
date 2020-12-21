@@ -1,6 +1,6 @@
 #!/bin/bash
 
-command gfind || ( echo "Install gfind (eg. sudo port install findutils)" ; exit 1)
+command -v gfind || ( echo "Install gfind (eg. sudo port install findutils)" ; exit 1)
 
 rm -rf macos_installer/
 mkdir macos_installer/
@@ -34,7 +34,7 @@ function ldd {
   done
   sort -u $1.tmp > $1.new
   rm $1.tmp
-  if diff $1 $1.new; then
+  if diff -q $1 $1.new; then
     rm $1.new
   else
     mv $1.new $1
