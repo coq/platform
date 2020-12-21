@@ -25,6 +25,7 @@ SET ARCH=x86_64
 SET SETUP=setup-x86_64.exe
 SET BITS=64
 SET OTHER_BITS=32
+SET OTHER_ARCH=i686
 
 REM HTTP/HTTPS proxy (without http://)
 IF DEFINED HTTP_PROXY (
@@ -82,12 +83,14 @@ IF "%~0" == "-arch" (
     SET SETUP=setup-x86.exe
     SET BITS=32
     SET OTHER_BITS=64
+    SET OTHER_ARCH=x86_64
   ) ELSE (
     IF "%~1" == "64" (
       SET ARCH=x86_64
       SET SETUP=setup-x86_64.exe
       SET BITS=64
       SET OTHER_BITS=32
+      SET OTHER_ARCH=i686
     ) ELSE (
       ECHO "Invalid -arch, valid are 32 and 64"
       GOTO :EOF
