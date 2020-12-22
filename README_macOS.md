@@ -22,7 +22,7 @@
 - The full installation might require up to 5 GB of disk space.
 - The setup script creates a folder `$HOME/coq-platform` where it stores a few files but this will likely be removed in future releases.
 
-# Tests run on macOS
+# Manual OS-platform tests run on macOS (in addition to CI)
 
 All tests where run with extent=platform, parallel 16 threads, compcert=full, VST=yes, on a machine with 32GB of RAM.
 
