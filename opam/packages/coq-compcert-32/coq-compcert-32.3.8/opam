@@ -13,10 +13,13 @@ build: [
   ["./configure"
   "ia32-linux" {os = "linux"}
   "ia32-cygwin" {os = "cygwin"}
+  # This is for building a MinGW CompCert with cygwin host and cygwin target
   "ia32-cygwin" {os = "win32" & os-distribution = "cygwinports"}
-  "-prefix" "%{prefix}%/variants/compcert32"
+  # This is for building a 32 bit CompCert on 64 bit MinGW with cygwin build host
   "-toolprefix"     {os = "win32" & os-distribution = "cygwinports" & arch = "x86_64"}
   "i686-pc-cygwin-" {os = "win32" & os-distribution = "cygwinports" & arch = "x86_64"}
+  # The 32 bit CompCert is a variant which is installed in a non standard folder
+  "-prefix" "%{prefix}%/variants/compcert32"
   "-install-coqdev"
   "-clightgen"
   "-use-external-Flocq"
@@ -54,7 +57,7 @@ tags: [
   "keyword:C"
   "keyword:compiler"
   "logpath:compcert32"
-  "date:2020-12-05"
+  "date:2020-12-21"
 ]
 url {
   src: "https://github.com/AbsInt/CompCert/archive/v3.8.tar.gz"

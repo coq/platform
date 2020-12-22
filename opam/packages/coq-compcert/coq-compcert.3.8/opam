@@ -13,9 +13,9 @@ build: [
   "amd64-linux" {os = "linux"}
   "amd64-macosx" {os = "macos"}
   "amd64-cygwin" {os = "cygwin"}
-  # This is for building for MinGW with cygwin host and cygwin target
+  # This is for building a MinGW CompCert with cygwin host and cygwin target
   "amd64-cygwin" {os = "win32" & os-distribution = "cygwinports"}
-  # This is for building 64 bit CompCert on 32 bit MinGW with cygwin build host
+  # This is for building a 64 bit CompCert on 32 bit MinGW with cygwin build host
   "-toolprefix"        {os = "win32" & os-distribution = "cygwinports" & arch = "i686"}
   "x86_64-pc-cygwin-"  {os = "win32" & os-distribution = "cygwinports" & arch = "i686"}
   "-bindir" "%{bin}%"
@@ -45,7 +45,7 @@ tags: [
   "keyword:C"
   "keyword:compiler"
   "logpath:compcert"
-  "date:2020-12-05"
+  "date:2020-12-21"
 ]
 url {
   src: "https://github.com/AbsInt/CompCert/archive/v3.8.tar.gz"
