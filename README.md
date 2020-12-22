@@ -30,8 +30,8 @@ inspect the licenses of such packages.
 - interactive (well script based) guidance of the user through the few parameters
 - includes all packages provided in the 8.12 windows installer. The list of included packages is:
 ```
-coq                       8.13.dev        Formal proof management system
-coqide                    8.13.dev        IDE of the Coq formal proof management system
+coq                       8.13+beta1      Formal proof management system
+coqide                    8.13+beta1      IDE of the Coq formal proof management system
 coq-aac-tactics           8.13.0          Coq plugin providing tactics for rewriting universally quantified equations
 coq-bignums               8.13.0~beta1    Bignums, the Coq library of arbitrary large numbers
 coq-compcert              3.8             The CompCert C compiler (64 bit)
@@ -58,6 +58,7 @@ coq-quickchick            1.5.0           Randomized Property-Based Testing Plug
 coq-simple-io             1.5.0           IO monad for Coq
 coq-unicoq                1.5+8.13        An enhanced unification algorithm for Coq
 coq-vst                   2.7             Verified Software Toolchain
+elpi                      1.12.0          ELPI - Embeddable λProlog Interpreter
 gappa                     1.3.5           Tool intended for formally proving properties on numerical programs dealing
 menhir                    20200624        An LR(1) parser generator
 ```

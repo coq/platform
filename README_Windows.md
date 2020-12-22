@@ -27,6 +27,7 @@ For beginners it is recommended to use the Windows installer (see previous secti
 - The build time is between 1..5 hours, depending on CPU speed and RAM size.
 - The script has various options for configuring paths and proxies; see `example_coq_platform_make.bat` for an example command line.
 - The resulting Coq installation is opam based and best used from the Cygwin prompt (started via `C:\<your_coq_platform_Cygwin_path>\Cygwin.bat`)
+- The script creates a new opam switch named `_coq-platform_.8.13.0+beta1` - this means the script does not touch your existing opam setup unless you already have a switch of this name.
 - Use the following commands at the Cygwin prompt to activate this switch after opening a new shell:
   - `opam switch _coq-platform_.8.13.0+beta1`
   - `eval $(opam env)`
