@@ -19,10 +19,10 @@ PACKAGES="coq.dev"
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 # Note: lablgtk3 3.1.1 does not link with flexlink on MinGW
-if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfF] ]]
-then
-PACKAGES="${PACKAGES} coqide.dev lablgtk3.3.0.beta5"
-fi
+# if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfF] ]]
+# then
+# PACKAGES="${PACKAGES} coqide.dev lablgtk3.3.0.beta5"
+# fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fF] ]]
 then
@@ -69,11 +69,11 @@ case "$COQ_PLATFORM_COMPCERT" in
   *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
 esac
 
-case "$COQ_PLATFORM_VST" in
-  [yY]) PACKAGES="${PACKAGES} coq-vst.dev" ;;
-  [nN]) true ;;
-  *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
-esac
+# case "$COQ_PLATFORM_VST" in
+#   [yY]) PACKAGES="${PACKAGES} coq-vst.dev" ;;
+#   [nN]) true ;;
+#   *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
+# esac
 
 fi
 
