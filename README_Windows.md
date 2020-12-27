@@ -18,8 +18,8 @@ This method is intended for advanced users which need additional flexibility and
 For beginners it is recommended to use the Windows installer (see previous section).
 
 - Get the coq platform scripts via either of these methods
-  - `git clone --branch v8.12.1.0 https://github.com/coq/platform.git`
-  - download and extract `https://github.com/coq/platform/archive/v8.12.1.0.zip`
+  - `git clone --branch master https://github.com/coq/platform.git`
+  - download and extract `https://github.com/coq/platform/archive/master.zip`
 - Open a command window, navigate to the download folder and execute `coq_platform_make_windows.bat`
 - This will ask for the Cygwin installation path and setup a fresh Cygwin as build host (the created Coq is MinGW and runs without Cygwin).
 - After the Cygwin setup, the script will automatically execute the common setup shell script `coq_platform_make.sh`.
@@ -29,7 +29,7 @@ For beginners it is recommended to use the Windows installer (see previous secti
 - The resulting Coq installation is opam based and best used from the Cygwin prompt (started via `C:\<your_coq_platform_Cygwin_path>\Cygwin.bat`)
 - The script creates a new opam switch named `_coq-platform_.8.13.0+beta1` - this means the script does not touch your existing opam setup unless you already have a switch of this name.
 - Use the following commands at the Cygwin prompt to activate this switch after opening a new shell:
-  - `opam switch _coq-platform_.8.12.1.0`
+  - `opam switch _coq-platform_.master`
   - `eval $(opam env)`
   - The second step can be automated by rerunning `opam init`
 - The main opam repository for Coq developments is already added to the created opam switch, so it should be easy to install additional coq packages.
