@@ -18,13 +18,33 @@ opam config set jobs $COQ_PLATFORM_JOBS
 case "$COQ_PLATFORM_PARALLEL" in
   [pP]) 
     echo "===== INSTALL OPAM PACKAGES (PARALLEL) ====="
-    $COQ_PLATFORM_TIME opam install ${PACKAGES} || ( for log in $(opam config var root)/log/*; do echo $log; cat -n $log; done ; exit 1 )
+    if ! $COQ_PLATFORM_TIME opam install ${PACKAGES}
+    then
+      if [ "${COQREGTESTING:-n}" == y ]
+      then
+        for log in $(opam config var root)/log/*
+        do
+          echo $log; cat -n $log
+        done
+      fi
+      exit 1
+    fi
     ;;
   [sS]) 
     echo "===== INSTALL OPAM PACKAGES (SEQUENTIAL) ====="
     for package in ${PACKAGES}
     do
-      $COQ_PLATFORM_TIME opam install ${package} || ( for log in $(opam config var root)/log/*; do echo $log; cat -n $log; done ; exit 1 )
+      if ! $COQ_PLATFORM_TIME opam install ${package}
+      then
+        if [ "${COQREGTESTING:-n}" == y ]
+        then
+          for log in $(opam config var root)/log/*
+          do
+            echo $log; cat -n $log
+          done
+        fi
+        exit 1
+      fi
     done
     ;;
   *)
