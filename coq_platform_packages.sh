@@ -18,11 +18,10 @@
 PACKAGES="coq.dev"
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
-# Note: lablgtk3 3.1.1 does not link with flexlink on MinGW
-# if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfF] ]]
-# then
-# PACKAGES="${PACKAGES} coqide.dev lablgtk3.3.0.beta5"
-# fi
+if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfF] ]]
+then
+PACKAGES="${PACKAGES} coqide.dev lablgtk3.3.1.1 lablgtk3-sourceview3.3.1.1"
+fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fF] ]]
 then

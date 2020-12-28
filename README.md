@@ -67,7 +67,6 @@ menhir                    dev             An LR(1) parser generator
 ```
 Currently not supported are
 - VST
-- CoqIDE
 
 # Installation of the master branch
 
