@@ -16,8 +16,7 @@ build: [
   # This is for building a 64 bit CompCert on 32 bit MinGW with cygwin build host
   "-toolprefix"        {os = "win32" & os-distribution = "cygwinports" & arch = "i686"}
   "x86_64-pc-cygwin-"  {os = "win32" & os-distribution = "cygwinports" & arch = "i686"}
-  "-bindir" "%{bin}%"
-  "-libdir" "%{lib}%/compcert"
+  "-prefix" "%{prefix}%"
   "-install-coqdev"
   "-clightgen"
   "-use-external-Flocq"
