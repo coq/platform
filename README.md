@@ -39,7 +39,6 @@ The list of included packages is:
 coq                       dev             Formal proof management system
 coq-aac-tactics           dev             This Coq plugin provides tactics for rewriting universally quantified equat
 coq-bignums               dev             Bignums, the Coq library of arbitrary large numbers
-coq-compcert              dev             The CompCert C compiler (64 bit)
 coq-coquelicot            dev             A Coq formalization of real analysis compatible with the standard library.
 coq-elpi                  dev             Elpi extension language for Coq
 coq-equations             dev             A function definition package for Coq
@@ -66,7 +65,8 @@ gappa                     dev             Tool intended for formally proving pro
 menhir                    dev             An LR(1) parser generator
 ```
 Currently not supported are
-- VST
+- coq-vst (likely cause: incompatible with CompCert master)
+- coq-compcert (likely cause: incompatible with Flocq master)
 
 # Installation of the master branch
 
