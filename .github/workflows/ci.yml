@@ -84,13 +84,14 @@ jobs:
     steps:
       - name: 'Download Artifact'
         uses: actions/download-artifact@v2
+        id: download
         with:
           name: 'Windows installer ${{matrix.architecture}} bits'
 
       - name: 'Run Installer'
         shell: cmd
         run: |
-          CD C:\installer\
+          cd ${{steps.download.outputs.download-path}}
           FOR %%f IN (*.exe) DO %%f /S /D=C:\Coq
 
       - name: 'Smoke coqc'
