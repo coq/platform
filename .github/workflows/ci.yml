@@ -37,6 +37,12 @@ jobs:
   Windows_platform:
     name: Windows
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        architecture:
+          - '32'
+          - '64'
 
     steps:
       - name: Set git to use LF
@@ -49,16 +55,16 @@ jobs:
 
       - name: Run common platform script
         shell: cmd
-        run: coq_platform_make_windows.bat -destcyg=C:\cygwin64_coq_platform -arch=64 %PLATFORM_ARGS%
+        run: coq_platform_make_windows.bat -destcyg=C:\cygwin_coq_platform -arch=${{matrix.architecture}} %PLATFORM_ARGS%
 
       - name: Create installer
         shell: cmd
-        run: C:\cygwin64_coq_platform\bin\bash --login -c "cd coq-platform/ && windows/create_installer_windows.sh && mkdir /cygdrive/c/installer && cp windows_installer/*exe /cygdrive/c/installer/"
+        run: C:\cygwin_coq_platform\bin\bash --login -c "cd coq-platform/ && windows/create_installer_windows.sh && mkdir /cygdrive/c/installer && cp windows_installer/*exe /cygdrive/c/installer/"
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
         with:
-          name: 'Windows installer 64 bits'
+          name: 'Windows installer ${{matrix.architecture}} bits'
           path: C:\installer\*.exe
           retention-days: 5
 
@@ -66,12 +72,18 @@ jobs:
     name: Smoke test
     needs: Windows_platform
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        architecture:
+          - '32'
+          - '64'
 
     steps:
       - name: 'Download Artifact'
         uses: actions/download-artifact@v2
         with:
-          name: 'Windows installer 64 bits'
+          name: 'Windows installer ${{matrix.architecture}} bits'
 
       - name: 'Run Installer'
         shell: cmd
