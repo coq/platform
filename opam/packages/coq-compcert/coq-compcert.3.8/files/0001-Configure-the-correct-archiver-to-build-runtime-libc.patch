@@ -1,0 +1,80 @@
+From ca2ebae012d6cdcc19d0a01f54f3dad614de8e68 Mon Sep 17 00:00:00 2001
+From: Xavier Leroy <xavier.leroy@college-de-france.fr>
+Date: Thu, 24 Dec 2020 16:28:01 +0100
+Subject: [PATCH 01/16] Configure the correct archiver to build
+ runtime/libcompcert.a
+
+- Use `${toolprefix}ar` instead of `ar` so as to match the choice
+  of C compiler (as proposed by Michael Soegtrop in PR #380)
+
+- Use the Diab archiver `dar` if configured for powerpc-eabi-diab
+
+Closes: #380
+---
+ configure        | 8 +++++++-
+ runtime/Makefile | 2 +-
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/configure b/configure
+index 1620ad4b..a4b257fc 100755
+--- a/configure
++++ b/configure
+@@ -211,7 +211,7 @@ casmruntime=""
+ clinker_needs_no_pie=true
+ clinker_options=""
+ cprepro_options=""
+-
++archiver="${toolprefix}ar rcs"
+ 
+ #
+ # ARM Target Configuration
+@@ -275,6 +275,7 @@ if test "$arch" = "powerpc"; then
+         clinker="${toolprefix}dcc"
+         cprepro="${toolprefix}dcc"
+         cprepro_options="-E -D__GNUC__"
++        archiver="${toolprefix}dar -q"
+         libmath="-lm"
+         system="diab"
+         responsefile="diab"
+@@ -666,6 +667,7 @@ CLINKER=$clinker
+ CLINKER_OPTIONS=$clinker_options
+ CPREPRO=$cprepro
+ CPREPRO_OPTIONS=$cprepro_options
++ARCHIVER=$archiver
+ ENDIANNESS=$endianness
+ HAS_RUNTIME_LIB=$has_runtime_lib
+ HAS_STANDARD_HEADERS=$has_standard_headers
+@@ -750,6 +752,9 @@ CASMRUNTIME=gcc -c
+ # Linker
+ CLINKER=gcc
+ 
++# Archiver to build .a libraries
++ARCHIVER=ar rcs
++
+ # Math library. Set to empty under MacOS X
+ LIBMATH=-lm
+ 
+@@ -839,6 +844,7 @@ CompCert configuration:
+     Assembler for runtime lib..... $casmruntime
+     Linker........................ $clinker
+     Linker needs '-no-pie'........ $clinker_needs_no_pie
++    Archiver...................... $archiver
+     Math library.................. $libmath
+     Build command to use.......... $make
+     Menhir API library............ $menhir_dir
+diff --git a/runtime/Makefile b/runtime/Makefile
+index 6777995d..beb105a6 100644
+--- a/runtime/Makefile
++++ b/runtime/Makefile
+@@ -48,7 +48,7 @@ endif
+ 
+ $(LIB): $(OBJS)
+ 	rm -f $(LIB)
+-	ar rcs $(LIB) $(OBJS)
++	$(ARCHIVER) $(LIB) $(OBJS)
+ 
+ %.o: %.s
+ 	$(CASMRUNTIME) -o $@ $^
+-- 
+2.29.2
+

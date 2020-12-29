@@ -5,9 +5,7 @@ homepage: "http://compcert.inria.fr/"
 dev-repo: "git+https://github.com/AbsInt/CompCert.git"
 bug-reports: "https://github.com/AbsInt/CompCert/issues"
 license: "INRIA Non-Commercial License Agreement"
-patches: [
-  "archiver-toolprefix.patch"
-]
+patches: [ "0001-Configure-the-correct-archiver-to-build-runtime-libc.patch" ]
 build: [
   ["./configure"
   "amd64-linux" {os = "linux"}

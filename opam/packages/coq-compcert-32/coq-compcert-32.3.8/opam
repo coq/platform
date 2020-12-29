@@ -6,9 +6,7 @@ dev-repo: "git+https://github.com/AbsInt/CompCert.git"
 bug-reports: "https://github.com/AbsInt/CompCert/issues"
 license: "INRIA Non-Commercial License Agreement"
 available: os != "macos"
-patches: [
-  "archiver-toolprefix.patch"
-]
+patches: [ "0001-Configure-the-correct-archiver-to-build-runtime-libc.patch" ]
 build: [
   ["./configure"
   "ia32-linux" {os = "linux"}
