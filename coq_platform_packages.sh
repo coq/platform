@@ -37,7 +37,7 @@ PACKAGES="${PACKAGES} coq-simple-io.dev"
 PACKAGES="${PACKAGES} coq-quickchick.dev"
 
 # Analysis and numerics
-PACKAGES="${PACKAGES} coq-flocq.dev"
+PACKAGES="${PACKAGES} coq-flocq.3.dev"
 PACKAGES="${PACKAGES} coq-coquelicot.dev"
 PACKAGES="${PACKAGES} coq-gappa.dev"
 PACKAGES="${PACKAGES} coq-interval.dev"
@@ -61,12 +61,12 @@ PACKAGES="${PACKAGES} coq-mathcomp-real-closed.dev"
 # Menhir, CompCert and Princeton VST - these take longer to compile !
 PACKAGES="${PACKAGES} coq-menhirlib.dev menhir.dev"
 # Todo: there is no mutex between coq platform and coq platform open source
-# case "$COQ_PLATFORM_COMPCERT" in
-#   [fF]) PACKAGES="${PACKAGES} coq-compcert.dev" ;;
-#   [oO]) "The open source variant of CompCert is notsupp orted in the master/dev branch"; exit 1 ;;
-#   [nN]) true ;;
-#   *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
-# esac
+case "$COQ_PLATFORM_COMPCERT" in
+  [fF]) PACKAGES="${PACKAGES} coq-compcert.dev" ;;
+  [oO]) "The open source variant of CompCert is notsupp orted in the master/dev branch"; exit 1 ;;
+  [nN]) true ;;
+  *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
+esac
 
 # case "$COQ_PLATFORM_VST" in
 #   [yY]) PACKAGES="${PACKAGES} coq-vst.dev" ;;
