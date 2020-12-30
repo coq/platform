@@ -15,6 +15,7 @@ source shell_scripts/init_safety_debug.sh
 source shell_scripts/init_paths.sh
 source shell_scripts/init_utilities.sh
 source shell_scripts/init_machine_type.sh
+source shell_scripts/init_select_python.sh
 
 ###################### SETTINGS #####################
 
