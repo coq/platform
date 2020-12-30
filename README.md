@@ -37,14 +37,15 @@ The master branch contains a reduced list of packages - those where the master b
 The list of included packages is:
 ```
 coq                       dev             Formal proof management system
-coq-aac-tactics           dev             This Coq plugin provides tactics for rewriting universally quantified equat
+coq-aac-tactics           dev             This Coq plugin provides tactics for rewriting universally quantified equations, modulo associative (and possibly commutative) operators
 coq-bignums               dev             Bignums, the Coq library of arbitrary large numbers
+coq-compcert              dev             The CompCert C compiler (64 bit)
 coq-coquelicot            dev             A Coq formalization of real analysis compatible with the standard library.
 coq-elpi                  dev             Elpi extension language for Coq
 coq-equations             dev             A function definition package for Coq
 coq-ext-lib               dev             a library of Coq definitions, theorems, and tactics
-coq-flocq                 dev             A floating-point formalization for the Coq system.
-coq-gappa                 dev             A Coq tactic for discharging goals about floating-point arithmetic and roun
+coq-flocq                 3.dev           A floating-point formalization for the Coq system.
+coq-gappa                 dev             A Coq tactic for discharging goals about floating-point arithmetic and round-off errors using the Gappa prover
 coq-hierarchy-builder     dev             Hierarchy Builder
 coq-interval              dev             A Coq tactic for proving bounds on real-valued expressions automatically
 coq-mathcomp-algebra      dev             Mathematical Components Library on Algebra
@@ -52,7 +53,7 @@ coq-mathcomp-bigenough    dev             A small library to do epsilon - N reas
 coq-mathcomp-character    dev             Mathematical Components Library on character theory
 coq-mathcomp-field        dev             Mathematical Components Library on Fields
 coq-mathcomp-fingroup     dev             Mathematical Components Library on finite groups
-coq-mathcomp-finmap       dev             Finite sets, finite maps, finitely supported functions, orders
+coq-mathcomp-finmap       dev             Finite sets, finite maps, finitely supported functions
 coq-mathcomp-real-closed  dev             Mathematical Components Library on real closed fields
 coq-mathcomp-solvable     dev             Mathematical Components Library on finite groups (II)
 coq-mathcomp-ssreflect    dev             Small Scale Reflection
@@ -61,12 +62,13 @@ coq-mtac2                 dev             Mtac2: Typed Tactics for Coq
 coq-quickchick            dev             QuickChick is a random property-based testing library for Coq.
 coq-simple-io             dev             IO monad for Coq
 coq-unicoq                dev             An enhanced unification algorithm for Coq
-gappa                     dev             Tool intended for formally proving properties on numerical programs dealing
+coqide                    dev             IDE of the Coq formal proof management system
+gappa                     dev             Tool intended for formally proving properties on numerical programs dealing with floating-point or fixed-point arithmetic
 menhir                    dev             An LR(1) parser generator
 ```
 Currently not supported are
 - coq-vst (likely cause: incompatible with CompCert master)
-- coq-compcert (likely cause: incompatible with Flocq master)
+- coq-flocq is tied to the `flocq-3` branch since CompCert is not yet compatible with latest Flocq
 
 # Installation of the master branch
 
