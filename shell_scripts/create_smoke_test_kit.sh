@@ -225,9 +225,9 @@ echo 'ECHO "====================== SMOKE TEST SUCCESS ======================"'$'
 ##### Run bash runner script #####
 
 chmod u+x $smoke_script
-$smoke_script
+echo "On unix you can now run " $smoke_script
 
 ##### Run batch runner script #####
 
 chmod u+x $smoke_batch
-$smoke_batch
+echo "On windows you can now run " $smoke_batch
