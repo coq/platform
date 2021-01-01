@@ -61,11 +61,22 @@ jobs:
         shell: cmd
         run: C:\cygwin_coq_platform\bin\bash --login -c "cd coq-platform/ && windows/create_installer_windows.sh && mkdir /cygdrive/c/installer && cp windows_installer/*exe /cygdrive/c/installer/"
 
+      - name: Create smoke test kit
+        shell: cmd
+        run: C:\cygwin_coq_platform\bin\bash --login -c "cd coq-platform/ && shell_scripts/create_smoke_test_kit.sh && mkdir /cygdrive/c/smoke && cp -ra smoke-test-kit/* /cygdrive/c/smoke/"
+
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
         with:
           name: 'Windows installer ${{matrix.architecture}} bits'
           path: C:\installer\*.exe
+          retention-days: 5
+
+      - name: 'Upload smoke test kit'
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'Smoke Test Kit'
+          path: C:\smoke\
           retention-days: 5
 
   Windows_smoke:
@@ -86,6 +97,12 @@ jobs:
         with:
           name: 'Windows installer ${{matrix.architecture}} bits'
 
+      - name: 'Download smoke test kit'
+        uses: actions/download-artifact@v2
+        id: download-smoke
+        with:
+          name: 'Smoke Test Kit'
+
       - name: 'Run Installer'
         shell: cmd
         run: |
@@ -95,6 +112,14 @@ jobs:
       - name: 'Smoke coqc'
         shell: cmd
         run: C:\Coq\bin\coqc.exe -v
+
+      - name: 'Run smoke test kit'
+        shell: cmd
+        run: |
+          CD ${{steps.download-smoke.outputs.download-path}}
+          DIR
+          SET PATH=C:\Coq\bin\;%PATH%
+          CALL run-smoke-test.bat
 
 ###############################################################################
 # Ubuntu
@@ -119,6 +144,19 @@ jobs:
       - name: Run common platform script
         shell: bash
         run: ./coq_platform_make.sh $PLATFORM_ARGS
+
+      - name: Create smoke test kit
+        shell: bash
+        run: |
+          eval $(opam env)
+          shell_scripts/create_smoke_test_kit.sh
+
+      - name: 'Run smoke test kit'
+        shell: bash
+        run: |
+          eval $(opam env)
+          smoke-test-kit/run-smoke-test.sh
+
 
 ###############################################################################
 # Macos
@@ -146,3 +184,15 @@ jobs:
       - name: Run common platform script
         shell: bash
         run: ./coq_platform_make.sh $PLATFORM_ARGS
+
+      - name: Create smoke test kit
+        shell: bash
+        run: |
+          eval $(opam env)
+          shell_scripts/create_smoke_test_kit.sh
+
+      - name: 'Run smoke test kit'
+        shell: bash
+        run: |
+          eval $(opam env)
+          smoke-test-kit/run-smoke-test.sh
