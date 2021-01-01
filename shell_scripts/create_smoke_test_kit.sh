@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ###################### COPYRIGHT/COPYLEFT ######################
 
@@ -34,8 +34,8 @@ packages="$(opam list --installed-roots --short --columns=name | grep '^coq-')"
 declare -A TEST_FILES
 declare -A COQ_OPTION
 
-TEST_FILES[coq-aac-tactics]='theories/tutorial.v'
-TEST_FILES[coq-bignums]='tests/success/BigQ.v tests/success/NumberScopes.v'
+TEST_FILES[coq-aac-tactics]='theories/Tutorial.v'
+TEST_FILES[coq-bignums]='tests/success/bigQ.v tests/success/NumberScopes.v'
 TEST_FILES[coq-compcert]='lib/Coqlib.v'
 TEST_FILES[coq-compcert-32]='lib/Coqlib.v'
 COQ_OPTION[coq-compcert-32]='-Q $COQLIB/../coq-variant/compcert32/compcert compcert'
