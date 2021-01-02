@@ -15,6 +15,13 @@
 
 ###################### Script safety and debugging settings ######################
 
+case $BASH_VERSION in
+  1*|2*|3*)
+    echo "Bash version 4 or greater required"
+    exit 1
+  ;;
+esac
+
 set -o nounset
 set -o errexit
 
