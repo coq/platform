@@ -191,6 +191,7 @@ jobs:
         shell: bash
         run: |
           eval $(opam env)
+          brew install bash
           shell_scripts/create_smoke_test_kit.sh
 
       - name: 'Run smoke test kit'
