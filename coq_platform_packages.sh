@@ -30,7 +30,7 @@ then
 PACKAGES="${PACKAGES} coq-unicoq.1.5+8.13"
 PACKAGES="${PACKAGES} coq-ext-lib.0.11.3"
 PACKAGES="${PACKAGES} coq-equations.1.2.3+8.13"
-PACKAGES="${PACKAGES} coq-bignums.8.13.0~beta1"
+PACKAGES="${PACKAGES} coq-bignums.8.13.0"
 PACKAGES="${PACKAGES} coq-aac-tactics.8.13.0"
 PACKAGES="${PACKAGES} coq-mtac2.1.4+8.13"
 PACKAGES="${PACKAGES} coq-simple-io.1.5.0"
@@ -40,7 +40,7 @@ PACKAGES="${PACKAGES} coq-quickchick.1.5.0"
 PACKAGES="${PACKAGES} coq-flocq.3.3.1"
 PACKAGES="${PACKAGES} coq-coquelicot.3.1.0"
 PACKAGES="${PACKAGES} coq-gappa.1.4.6 gappa.1.3.5"
-PACKAGES="${PACKAGES} coq-interval.4.1.0"
+PACKAGES="${PACKAGES} coq-interval.4.1.1"
 
 # Elpi, Coq-elpi and hierarchy builder
 PACKAGES="${PACKAGES} coq-elpi.1.8.1 elpi.1.12.0"
