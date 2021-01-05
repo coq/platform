@@ -18,6 +18,7 @@ SetCompressor lzma
 !include "MUI2.nsh"
 !include "FileAssociation.nsh"
 !include "winmessages.nsh"
+!include "Logiclib.nsh"
 ;!include "StrRep.nsh"
 ;!include "ReplaceInFile.nsh"
 
@@ -342,17 +343,22 @@ Function .onInit
   Push $R0
   ; For licensing reasons CompCert and VST are off by default
   ; (By agreement with Xavier CompCert shall be explicitly selected)
-  !ifdef Sec_coq_compcert
-    SectionGetFlags ${Sec_coq_compcert} $R0
-    IntOp $R0 $R0 & ${SECTION_OFF}
-    SectionSetFlags ${Sec_coq_compcert} $R0
-  !endif
+  ;
+  ; Anyway in silent (batch) mode we let everything on in order to be
+  ; able able to test the installer in CI
+  ${IfNot} ${Silent}
+    !ifdef Sec_coq_compcert
+      SectionGetFlags ${Sec_coq_compcert} $R0
+      IntOp $R0 $R0 & ${SECTION_OFF}
+      SectionSetFlags ${Sec_coq_compcert} $R0
+    !endif
 
-  !ifdef Sec_coq_vst
-    SectionGetFlags ${Sec_coq_vst} $R0
-    IntOp $R0 $R0 & ${SECTION_OFF}
-    SectionSetFlags ${Sec_coq_vst} $R0
-  !endif
+    !ifdef Sec_coq_vst
+      SectionGetFlags ${Sec_coq_vst} $R0
+      IntOp $R0 $R0 & ${SECTION_OFF}
+      SectionSetFlags ${Sec_coq_vst} $R0
+    !endif
+  ${EndIf}
   Pop $R0
 FunctionEnd
 
