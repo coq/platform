@@ -15,12 +15,12 @@
 # ATTENTION: The packages are given in an oeder so that dependencies are built
 #            first - important fo sequential builds!
 
-PACKAGES="coq.8.13+beta1"
+PACKAGES="coq.8.13.0"
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfF] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.13+beta1 lablgtk3.3.1.1"
+PACKAGES="${PACKAGES} coqide.8.13.0 lablgtk3.3.1.1"
 fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fF] ]]
