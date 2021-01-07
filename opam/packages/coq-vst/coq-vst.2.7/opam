@@ -38,6 +38,9 @@ tags: [
   "logpath:VST"
   "date:2020-12-20"
 ]
+patches: ["makefile.patch"]
+extra-files: [ ["makefile.patch" "md5=a7242f51c9a723a23c9b3d7ffa062d31"] ]
 url {
-  src: "git+https://github.com/PrincetonUniversity/VST.git#release-v2.7"
+  src: "https://github.com/PrincetonUniversity/VST/archive/v2.7.tar.gz"
+  checksum: "sha256=970be13e71bdb013e2b9de64aecf1dda08228dd8ef3a1f6e4bb23ccd3a0896d3"
 }
