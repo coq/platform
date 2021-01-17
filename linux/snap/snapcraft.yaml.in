@@ -12,6 +12,7 @@ parts:
   coq:
     plugin: nil
     build-packages: [build-essential, curl, m4, unzip, git]
+    stage-packages: [make]
     source: .
     source-type: local
     override-build: |
