@@ -18,7 +18,7 @@ then
   ln -s -f /usr/bin/python2 /usr/bin/python
 fi
 
-###################### Fix tar on 32 bit cygwin #####################
+###################### Fix tar in 32 bit cygwin #####################
 
 # Cygwin updated to tar 1.33 which is broken on Cygwin 32
 
@@ -27,5 +27,17 @@ then
   if [ "`uname -m`" = "i686" ]; then
     wget http://mirrors.kernel.org/sourceware/cygwin/x86/release/tar/tar-1.32-2.tar.xz -O /tmp/tar-1.32-2.tar.xz
     tar xvf /tmp/tar-1.32-2.tar.xz -C /
+  fi
+fi
+
+###################### Fix binutils in 64 bit cygwin #####################
+
+# Cygwin updated to mingw64-x86_64-binutils is broken on Cygwin 64
+
+if [[ "$OSTYPE" == cygwin ]]
+then
+  if [ "`uname -m`" = "x86_64" ]; then
+    wget http://mirrors.kernel.org/sourceware/cygwin/x86_64/release/mingw64-x86_64-binutils/mingw64-x86_64-binutils-2.35.1-1.tar.xz -O /tmp/mingw64-x86_64-binutils-2.35.1-1.tar.xz
+    tar xvf /tmp/mingw64-x86_64-binutils-2.35.1-1.tar.xz -C /
   fi
 fi
