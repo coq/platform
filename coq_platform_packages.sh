@@ -40,7 +40,8 @@ PACKAGES="${PACKAGES} coq-quickchick.dev"
 PACKAGES="${PACKAGES} coq-flocq.3.dev"
 PACKAGES="${PACKAGES} coq-coquelicot.dev"
 PACKAGES="${PACKAGES} coq-gappa.dev"
-PACKAGES="${PACKAGES} coq-interval.dev"
+# Temporarily disabled until https://github.com/coq/coq/pull/13867 is merged
+# PACKAGES="${PACKAGES} coq-interval.dev"
 
 # Elpi, Coq-elpi and hierarchy builder
 PACKAGES="${PACKAGES} coq-elpi.dev"
