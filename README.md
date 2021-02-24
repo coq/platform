@@ -1,18 +1,27 @@
-# Coq platform
+# Coq Platform
 
-The coq platform is a set of scripts and patches which allows to compile and install Coq and
-a set of useful Coq libraries and plugins on macOS, Windows and many Linux distributions in a
-reliable way with consistent results.
+The Coq platform is a distribution of the Coq proof assistant together with a selection of Coq libraries.
+It provides a set of scripts to compile and install OPAM, Coq, Coq libraries and Coq plugins on MacOS,
+Windows and many Linux distributions in a reliable way with consistent results.
 
 See [Charter](charter.md) for the coq platform concept.
 
-# **ATTENTION - master branch**
+# Information for Coq Platform users
 
-Please do not use the master branch of Coq Platform unless you are involved in package development and want to use the master / development versions of all packages. The master branch is different from the release branches and release tags of the Coq platform. The release branches and tags use hand picked versions of packages, while the master branch always uses the latest version.
+You find the releases and downloads for binary packages here: [releases](https://github.com/coq/platform/releases).
 
-The current release branches are:
-- [v8.13](https://github.com/coq/platform/tree/v8.13) (beta for Coq 8.13+beta)
-- [v8.12](https://github.com/coq/platform/tree/v8.12) (released for Coq 8.12.2 and same package set as the legacy Windows installer)
+The current release banch is:
+- [2021.02](https://github.com/coq/platform/tree/2021.02) (release 2021.02.0 for Coq 8.13.1)
+
+Previous release branches are:
+- [v8.12](https://github.com/coq/platform/tree/v8.12) (release for Coq 8.12.2)
+
+Please refer to the README.md file on these branches for further information.
+
+Please do not use the master branch of Coq Platform unless you are involved in package development and want to use the master / development versions of all packages.
+The master branch is *not* just a more recent version of the release branches - it is different.
+The release branches and tags use hand picked versions of packages which is known to work together.
+The master branch uses the latest version for all packages (with very few exceptions) and is intended for testing upcoming versions and early development.
 
 # Note on Licenses
 
@@ -31,7 +40,9 @@ Please note that some opam packages require and install system packages with man
 These dependencies might have various licenses. You need to refer to your system package manager to
 inspect the licenses of such packages.
 
-# Coq platform master branch status
+# Information for Coq Platform developers
+
+## Coq platform master branch status
 
 The master branch contains a reduced list of packages - those where the master branch of the packages works.
 The list of included packages is:
@@ -70,9 +81,9 @@ Currently not supported are
 - coq-vst (likely cause: incompatible with CompCert master)
 - coq-flocq is tied to the `flocq-3` branch since CompCert is not yet compatible with latest Flocq
 
-# Installation of the master branch
+## Installation of the master branch
 
-Again, in most cases you should not install Coq platform master, but a release version or at least a release branch version.
+Again, in most cases you should not install Coq Platform master, but a release version or at least a release branch version.
 
 Please refer to the ReadMe file for your OS.
 
