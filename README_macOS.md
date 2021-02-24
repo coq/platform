@@ -22,16 +22,6 @@
 - The full installation might require up to 5 GB of disk space.
 - The setup script creates a folder `$HOME/coq-platform` where it stores a few files but this will likely be removed in future releases.
 
-# Tests run on macOS
-
-ToDo.
-
-Homebrew requires a few workarounds to install GTK+3. See section [Homebrew issues and workarounds](#homebrew-issues-and-workarounds) below.
-
-## Tested commit
-
-ToDo
-
 # Homebrew and MacPorts
 
 ## Homebrew or MacPorts?
