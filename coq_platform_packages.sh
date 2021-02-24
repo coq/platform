@@ -63,7 +63,7 @@ PACKAGES="${PACKAGES} coq-menhirlib.20200624 menhir.20200624"
 # Todo: there is no mutex between coq platform and coq platform open source
 case "$COQ_PLATFORM_COMPCERT" in
   [fF]) PACKAGES="${PACKAGES} coq-compcert.3.8" ;;
-  [oO]) echo "The open source variant of CompCert is notsupp orted in the beta"; exit 1 ;;
+  [oO]) echo "The open source variant of CompCert is not supported in 2021.02.0"; exit 1 ;;
   [nN]) true ;;
   *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
 esac

@@ -37,7 +37,7 @@ make a new release the package installed by a user *silently* upgrades, no
 questions asked!
 
 A user can install from `latest/edge` to test the very last upload, but also,
-and more interestingly, from `8.13/stable` to *never* move to Coq 8.14 without
+and more interestingly, from `2021.02/stable` to *never* move to Coq 8.14 without
 consent. This last option makes snap package also usable by developers (and
 indeed one finds stuff like `node` or `go` distributed via snap).
 

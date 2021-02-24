@@ -23,7 +23,7 @@ Please note that some opam packages require and install system packages with man
 These dependencies might have various licenses. You need to refer to your system package manager to
 inspect the licenses of such packages.
 
-# Features of the 2021.02+beta1 release
+# Features of the 2021.02.0 release
 
 - fully opam based, also on Windows
 - single script call to install system dependencies, opam (if not there), a fresh opam switch and the coq platform
@@ -75,7 +75,7 @@ menhir                   20200624    An LR(1) parser generator
 
 - an installer for OSX is not yet provided - this is work in progress
 
-# Usage of the 2021.02+beta1 release
+# Usage of the 2021.02.0 release
 
 Please refer to the ReadMe file for your OS.
 
@@ -106,7 +106,7 @@ The compilation of VST takes quite a while on slow / small RAM PCs. For this rea
 
 You can change the selection of packages any time later by issuing `opam install` commands, e.g.
 ```
-opam install coq-compcert.3.8~open_source (not yet supported by beta1)
+opam install coq-compcert.3.8~open_source (not yet supported by 2021.02.0)
 opam install coq-compcert.3.8
 opam install coq-vst.2.7
 ```
@@ -131,7 +131,7 @@ without -Q and -R options. If you want to work with the 64 bit variants, please 
 - On Linux or macOS open a shell in the usual way.
 - Run these commands:
     ```
-    opam switch _coq-platform_.2021.02+beta1
+    opam switch _coq-platform_.2021.02.0
     eval $(opam env)
     ```
 - Install additional packages with `opam install "package"`

@@ -7,14 +7,14 @@
 - If you have neither Homebrew nor MacPorts installed, read the section [Homebrew and MacPorts](#homebrew-and-macports) below.
 - If you have Homebrew installed, read the section [Homebrew issues and workarounds](#homebrew-issues-and-workarounds) below.
 - Get the coq platform scripts via either of these methods
-  - `git clone --branch v8.13 https://github.com/coq/platform.git`
-  - download and extract `https://github.com/coq/platform/archive/v8.13.zip`
+  - `git clone --branch 2021.02 https://github.com/coq/platform.git`
+  - download and extract `https://github.com/coq/platform/archive/2021.02.zip`
 - Open a shell, navigate to the download folder and execute `coq_platform_make.sh`.
 - If you are using MacPorts, the system will ask for sudo permissions to install prerequisites *several times* so the script is not fully unattended but all installations of dependencies are done directly after the initialization of the opam switch.
 - In case the script aborts e.g. cause of internet issues, just rerun the script.
-- The script creates a new opam switch named `_coq-platform_.8.13.0+beta1` - this means the script does not touch your existing opam setup unless you already have a switch of this name.
+- The script creates a new opam switch named `_coq-platform_.2021.02.0` - this means the script does not touch your existing opam setup unless you already have a switch of this name.
 - Use the following commands to activate this switch after opening a new shell:
-  - `opam switch _coq-platform_.8.13.0+beta1`
+  - `opam switch _coq-platform_.2021.02.0`
   - `eval $(opam env)`
   - The second step can be automated by rerunning `opam init`
 - The main opam repositories for Coq and OCaml developments are already added to the created opam switch, so it should be easy to install additional Coq (or OCaml) packages.

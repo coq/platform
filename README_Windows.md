@@ -18,8 +18,8 @@ This method is intended for advanced users which need additional flexibility and
 For beginners it is recommended to use the Windows installer (see previous section).
 
 - Get the coq platform scripts via either of these methods
-  - `git clone --branch v8.13 https://github.com/coq/platform.git`
-  - download and extract `https://github.com/coq/platform/archive/v8.13.zip`
+  - `git clone --branch 2021.02 https://github.com/coq/platform.git`
+  - download and extract `https://github.com/coq/platform/archive/2021.02.zip`
 - Open a command window, navigate to the download folder and execute `coq_platform_make_windows.bat`
 - This will ask for the Cygwin installation path and setup a fresh Cygwin as build host (the created Coq is MinGW and runs without Cygwin).
 - After the Cygwin setup, the script will automatically execute the common setup shell script `coq_platform_make.sh`.
@@ -27,9 +27,9 @@ For beginners it is recommended to use the Windows installer (see previous secti
 - The build time is between 1..5 hours, depending on CPU speed and RAM size.
 - The script has various options for configuring paths and proxies; see `example_coq_platform_make.bat` for an example command line.
 - The resulting Coq installation is opam based and best used from the Cygwin prompt (started via `C:\<your_coq_platform_Cygwin_path>\Cygwin.bat`)
-- The script creates a new opam switch named `_coq-platform_.8.13.0+beta1` - this means the script does not touch your existing opam setup unless you already have a switch of this name.
+- The script creates a new opam switch named `_coq-platform_.2021.02.0` - this means the script does not touch your existing opam setup unless you already have a switch of this name.
 - Use the following commands at the Cygwin prompt to activate this switch after opening a new shell:
-  - `opam switch _coq-platform_.8.13.0+beta1`
+  - `opam switch _coq-platform_.2021.02.0`
   - `eval $(opam env)`
   - The second step can be automated by rerunning `opam init`
 - The main opam repository for Coq developments is already added to the created opam switch, so it should be easy to install additional coq packages.
