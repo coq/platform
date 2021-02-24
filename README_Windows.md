@@ -1,6 +1,6 @@
 # Installation
 
-## Windows (using the installer)
+## Using the installer
 
 This method is intended for beginners.
 For advanced users it is recommended to compile Coq from sources via opam (see next section).
@@ -12,9 +12,9 @@ In case you want to use the fast path:
 
 A note to lecturers: it is easy to create a customized Windows installer from an opam switch - see [Customized Installers](#customized-installers)
 
-## Windows (compiling from sources with Cygwin as build host)
+## Compiling from sources with Cygwin as build host
 
-This method is intended for advanced users which need additional flexibility and/or an advanced working environment.
+This method is intended for advanced users who need additional flexibility and/or an advanced working environment.
 For beginners it is recommended to use the Windows installer (see previous section).
 
 - Get the coq platform scripts via either of these methods
@@ -39,17 +39,9 @@ For beginners it is recommended to use the Windows installer (see previous secti
 - It is possible to install several versions of the Coq platform in one Cygwin, as long as the pre-requisites are met. This is best achieved
 by running the additional `coq_platform_make.sh` directly from the coq platfiorm created Cygwin.
 
-## Windows (compiling from sources with Windows Subsystem for Linux - WSL)
+## Compiling from sources with Windows Subsystem for Linux - WSL)
 
 This method is not officially tested but reported by users to work. Essentially you follow the instructions for Linux at [README_Linux](README_Linux.md)
-
-# Tests run on Windows
-
-ToDo
-
-## Tested commit
-
-ToDo
 
 # A note on **virus scanners**
 
