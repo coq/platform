@@ -23,49 +23,49 @@ Please note that some opam packages require and install system packages with man
 These dependencies might have various licenses. You need to refer to your system package manager to
 inspect the licenses of such packages.
 
-# Features of the 8.13+beta release
+# Features of the 2021.02+beta1 release
 
 - fully opam based, also on Windows
 - single script call to install system dependencies, opam (if not there), a fresh opam switch and the coq platform
 - interactive (well script based) guidance of the user through the few parameters
-- includes all packages provided in the 8.12 windows installer. The list of included packages is:
+- includes all packages provided in the 8.13 windows installer. The list of included packages is:
 ```
-coq                       8.13+beta1      Formal proof management system
-coqide                    8.13+beta1      IDE of the Coq formal proof management system
-coq-aac-tactics           8.13.0          Coq plugin providing tactics for rewriting universally quantified equations
-coq-bignums               8.13.0~beta1    Bignums, the Coq library of arbitrary large numbers
-coq-compcert              3.8             The CompCert C compiler (64 bit)
-coq-coquelicot            3.1.0           A Coq formalization of real analysis compatible with the standard library
-coq-elpi                  1.8.1           Elpi extension language for Coq
-coq-equations             1.2.3+8.13      A function definition package for Coq
-coq-ext-lib               0.11.3          A library of Coq definitions, theorems, and tactics
-coq-flocq                 3.3.1           A formalization of floating-point arithmetic for the Coq system
-coq-gappa                 1.4.6           A Coq tactic for discharging goals about floating-point arithmetic and roun
-coq-hierarchy-builder     1.0.0           Hierarchy Builder
-coq-interval              4.1.0           A Coq tactic for proving bounds on real-valued expressions automatically
-coq-mathcomp-algebra      1.12.0          Mathematical Components Library on Algebra
-coq-mathcomp-bigenough    1.0.0           A small library to do epsilon - N reasonning
-coq-mathcomp-character    1.12.0          Mathematical Components Library on character theory
-coq-mathcomp-field        1.12.0          Mathematical Components Library on Fields
-coq-mathcomp-fingroup     1.12.0          Mathematical Components Library on finite groups
-coq-mathcomp-finmap       1.5.1           Finite sets, finite maps, finitely supported functions
-coq-mathcomp-real-closed  1.1.2           Mathematical Components Library on real closed fields
-coq-mathcomp-solvable     1.12.0          Mathematical Components Library on finite groups (II)
-coq-mathcomp-ssreflect    1.12.0          Small Scale Reflection
-coq-menhirlib             20200624        A support library for verified Coq parsers produced by Menhir
-coq-mtac2                 1.4+8.13        Mtac2: Typed Tactics for Coq
-coq-quickchick            1.5.0           Randomized Property-Based Testing Plugin for Coq
-coq-simple-io             1.5.0           IO monad for Coq
-coq-unicoq                1.5+8.13        An enhanced unification algorithm for Coq
-coq-vst                   2.7             Verified Software Toolchain
-elpi                      1.12.0          ELPI - Embeddable λProlog Interpreter
-gappa                     1.3.5           Tool intended for formally proving properties on numerical programs dealing
-menhir                    20200624        An LR(1) parser generator
+coq                      8.13.1      Formal proof management system
+coqide                   8.13.1      IDE of the Coq formal proof management system
+coq-aac-tactics          8.13.0      Coq plugin providing tactics for rewriting universally quantified equations, modulo 
+coq-bignums              8.13.0      Bignums, the Coq library of arbitrary large numbers
+coq-compcert             3.8         The CompCert C compiler (64 bit)
+coq-coquelicot           3.1.0       A Coq formalization of real analysis compatible with the standard library
+coq-elpi                 1.8.1       Elpi extension language for Coq
+coq-equations            1.2.3+8.13  A function definition package for Coq
+coq-ext-lib              0.11.3      A library of Coq definitions, theorems, and tactics
+coq-flocq                3.3.1       A formalization of floating-point arithmetic for the Coq system
+coq-gappa                1.4.6       A Coq tactic for discharging goals about floating-point arithmetic and round-off err
+coq-hierarchy-builder    1.0.0       High level commands to declare and evolve a hierarchy based on packed classes
+coq-interval             4.1.1       A Coq tactic for proving bounds on real-valued expressions automatically
+coq-mathcomp-algebra     1.12.0      Mathematical Components Library on Algebra
+coq-mathcomp-bigenough   1.0.0       A small library to do epsilon - N reasonning
+coq-mathcomp-character   1.12.0      Mathematical Components Library on character theory
+coq-mathcomp-field       1.12.0      Mathematical Components Library on Fields
+coq-mathcomp-fingroup    1.12.0      Mathematical Components Library on finite groups
+coq-mathcomp-finmap      1.5.1       Finite sets, finite maps, finitely supported functions
+coq-mathcomp-real-closed 1.1.2       Mathematical Components Library on real closed fields
+coq-mathcomp-solvable    1.12.0      Mathematical Components Library on finite groups (II)
+coq-mathcomp-ssreflect   1.12.0      Small Scale Reflection
+coq-menhirlib            20200624    A support library for verified Coq parsers produced by Menhir
+coq-mtac2                1.4+8.13    Mtac2: Typed Tactics for Coq
+coq-quickchick           1.5.0       Randomized Property-Based Testing Plugin for Coq
+coq-simple-io            1.5.0       IO monad for Coq
+coq-unicoq               1.5+8.13    An enhanced unification algorithm for Coq
+coq-vst                  2.7         Verified Software Toolchain
+elpi                     1.12.0      ELPI - Embeddable λProlog Interpreter
+gappa                    1.3.5       Tool intended for formally proving properties on numerical programs dealing
+menhir                   20200624    An LR(1) parser generator
 ```
 - one unified setup script for Windows, macOS and Linux with few OS dependent sections only
 - on Windows there is an additional wrapper batch script to setup Cygwin as build and working environment
 - on Windows there is in addition a classic Windows installer mostly intended for quick installation by beginners
-- it is easy to build variants of the Windows with modified content from an existing opam switch
+- it is easy to build variants of the Windows installer with modified content from an existing opam switch
 - system prerequisites are installed using opam depext in a system independent manner
 - the script should be fairly robust and safe - it will immediately abort an all errors not explicitly handled
 - the script can be restarted if it fails - e.g cause of internet issues - it will not redo things it already did
@@ -75,7 +75,7 @@ menhir                    20200624        An LR(1) parser generator
 
 - an installer for OSX is not yet provided - this is work in progress
 
-# Usage of the 8.13+beta.0 release
+# Usage of the 2021.02+beta1 release
 
 Please refer to the ReadMe file for your OS.
 
@@ -88,7 +88,7 @@ Please refer to the ReadMe file for your OS.
 ### CompCert and VST variants
 
 For some packages, notably CompCert and VST (the Princeton tool-chain for verification of C code), exist various variants.
-By default the 32 bit variant of CompCert and the 32 bit variant of VST are installed.
+By default the 64 bit variant of CompCert and the 64 bit variant of VST are installed.
 
 CompCert is **not** free / open source software, but may be used for research and
 evaluation purposes. Please clarify the license at [CompCert License](https://github.com/AbsInt/CompCert/blob/master/LICENSE).
@@ -106,12 +106,12 @@ The compilation of VST takes quite a while on slow / small RAM PCs. For this rea
 
 You can change the selection of packages any time later by issuing `opam install` commands, e.g.
 ```
-opam install coq-compcert.3.8~open_source (Not yet supported yb beta)
+opam install coq-compcert.3.8~open_source (not yet supported by beta1)
 opam install coq-compcert.3.8
 opam install coq-vst.2.7
 ```
 
-Besides the open source and non open source variant of CompCert, there is also a 64 bit variant of CompCert and VST, which can
+Besides the open source and non open source variant of CompCert, there is also a 32 bit variant of CompCert and VST, which can
 be installed by running these commands:
 ```
 opam install coq-compcert-64.3.8
@@ -131,7 +131,7 @@ without -Q and -R options. If you want to work with the 64 bit variants, please 
 - On Linux or macOS open a shell in the usual way.
 - Run these commands:
     ```
-    opam switch _coq-platform_.8.13+beta.0
+    opam switch _coq-platform_.2021.02+beta1
     eval $(opam env)
     ```
 - Install additional packages with `opam install "package"`
