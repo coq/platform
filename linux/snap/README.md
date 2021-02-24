@@ -43,7 +43,7 @@ indeed one finds stuff like `node` or `go` distributed via snap).
 
 CAVEAT: track's creation need to be explicitly requested. The store admins are
 happy to grant quickly a new track if it follows the same schema of an existing
-one. TODO: I did not ask yet for the `8.13` track.
+one.
 
 See also
 --------

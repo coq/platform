@@ -10,5 +10,5 @@
 
 ###################### SET THE OPAM SWITCH NAME #####################
 
-COQ_PLATFORM_VERSION=8.13.0+beta1
+COQ_PLATFORM_VERSION=2021.02+beta1
 COQ_PLATFORM_SWITCH_NAME=_coq-platform_.$COQ_PLATFORM_VERSION
