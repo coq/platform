@@ -1,8 +1,8 @@
 # Coq platform
 
-The coq platform is a set of scripts and patches which allows to compile and install Coq and
-a set of useful Coq libraries and plugins on macOS, Windows and many Linux distributions in a
-reliable way with consistent results.
+The Coq platform is a distribution of the Coq proof assistant together with a selection of Coq libraries.
+It provides a set of scripts to compile and install OPAM, Coq, Coq libraries and Coq plugins on MacOS,
+Windows and many Linux distributions in a reliable way with consistent results.
 
 See [Charter](charter.md) for the coq platform concept.
 
