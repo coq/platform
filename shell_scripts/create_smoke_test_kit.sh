@@ -52,7 +52,8 @@ TEST_FILES[coq-equations]='examples/Fin.v examples/STLC.v'
 TEST_FILES[coq-ext-lib]='examples/MonadReasoning.v examples/Printing.v'
 TEST_FILES[coq-flocq]='examples/Average.v' # In fixing: examples/Cody_Waite.v
 TEST_FILES[coq-gappa]='testsuite/example-20101018.v testsuite/example-20090706.v testsuite/example-20080417.v'
-TEST_FILES[coq-hierarchy-builder]='demo2/classical.v demo2/stage10.v demo2/stage11.v'
+TEST_FILES[coq-hierarchy-builder]='examples/demo2/classical.v examples/demo2/stage10.v examples/demo2/stage11.v examples/readme.v'
+COQ_OPTION[coq-hierarchy-builder]='-Q . demo2'
 TEST_FILES[coq-interval]='testsuite/example-20071016.v testsuite/example-20120205.v testsuite/example-20140221.v'
 TEST_FILES[coq-mathcomp-algebra]='mathcomp/algebra/finalg.v'
 TEST_FILES[coq-mathcomp-bigenough]='bigenough.v'
@@ -78,7 +79,7 @@ function patch_file() {
   awk '
     /^Require Import Gappa_tactic.$/ {print "From Gappa "$0; next}
     /^Require Import .*Rcomplements.*.$/ {print "From Coquelicot "$0; next}
-    /^From HB.demo2 / {sub("From HB.demo2 ", "", $0); print $0; next}
+    /^From HB Require Import demo2/ {sub("From HB ", "", $0); print $0; next}
     {print $0}
     ' $1 > $1.tmp
   mv -f $1.tmp $1
