@@ -14,7 +14,7 @@ name: Snap package
 on:
   push:
     branches:
-      - v**
+      - 2021.02
       - master
   pull_request:
     branches:
