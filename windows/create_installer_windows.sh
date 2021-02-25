@@ -419,8 +419,8 @@ cp ../windows/*.ns* .
 # ToDo: we need a more elegant way to get this data via opam
 wget https://github.com/coq/coq/raw/v8.13/ide/coqide/coq.ico
 wget https://github.com/coq/coq/raw/v8.13/LICENSE
-wget https://raw.githubusercontent.com/AbsInt/CompCert/v3.7/LICENSE -O coq-compcert-license.txt
-wget https://raw.githubusercontent.com/PrincetonUniversity/VST/v2.6/LICENSE -O coq-vst-license.txt
+wget https://raw.githubusercontent.com/AbsInt/CompCert/v3.8/LICENSE -O coq-compcert-license.txt
+wget https://raw.githubusercontent.com/PrincetonUniversity/VST/v2.7/LICENSE -O coq-vst-license.txt
 
 echo "==============================================================================="
 echo "NOTE: The creation of the installer can take 10 minutes"
