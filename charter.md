@@ -2,21 +2,21 @@
 
 ## Primary / user facing goals
 
-The primary goal of the Coq platform is to provide a stable and dependable extended platform for advanced usages of Coq in industry, education and research. It is inspired by the Windows installer of Coq, which since a few years includes a stable set of plugins and library developments. The primary goal of the Coq platform is to improve the situation for Coq users. It also has the potential to improve the situation for developers. The corresponding secondary goals are given in the next section.
+The primary goal of the Coq platform is to provide a stable and dependable extended platform for advanced usages of Coq in industry, education and research. It is inspired by the Windows installer of Coq, which from version 8.8 to 8.12 has provided the option to install a selection of additional external Coq packages. The primary goal of the Coq platform is to improve the situation for Coq users. It also has the potential to improve the situation for developers. The corresponding secondary goals are given in the next section.
 
 In more detail, the primary goals are:
 
 **Ease of use**: Provide an easy and fast way to install a usable Coq system. Ease of installation is especially important in eduction, where each course attendee has to be able to install Coq with a known feature set with reasonable effort. Also for industrial users, which sometimes start using Coq by looking at some non trivial research projects, an easy to install system leaves a good first impression.
 
-**Completeness**: The easy installation shall include, in addition to the core Coq system, commonly used plugins, libraries and tools. The definition of "commonly used" is, of course, difficult. For the Windows installer, packages have been added either on request of users or teachers or because several research projects use a package as pre requisite. It would be ideal if a large number of important research projects would compile with the packages provided with the extended platform.
+**Completeness**: The easy installation shall include, in addition to the core Coq system, commonly used plugins, libraries and tools. The definition of "commonly used" is, of course, difficult. For the legacy Windows installer, packages have been added either on request of users or teachers or because several research projects use a package as pre requisite. It would be ideal if a large number of important research projects would compile with the packages provided with the extended platform.
 
 **Stability**: The composition of the Coq platform, that is the selection of packages, should be stable. I.e., it should be a rare event that a package is removed from the platform and updates of included packages should have a reasonable compatibility impact. This means that packages should only be added if the authors and maintainers of a package agree to provide a certain level of maintenance. Finding a compromise between this goal and the *Completeness* goal will likely be difficult and require some curation.
 
-**Tested interoperability**: Some Coq libraries are tested with specific fixed versions of pre requisites. Other developments are tested with other versions of the same pre requisites. This has the effect that such developments cannot be used together. In the Coq platform only one version of each library or plugin shall be used and interoperability shall be tested with dedicated interoperability test cases.
+**Tested interoperability**: Some Coq libraries are tested with specific fixed versions of pre requisites. Other developments are tested with other versions of the same pre requisites. This has the effect that such developments cannot be used together. In the Coq platform only one version of each library or plugin shall be used and interoperability shall be tested with dedicated interoperability test cases. A specific version of OCaml will be selected and used.
 
-**Release plan**: The Coq platform shall have a release schedule which is coupled to the release schedule of core Coq. The platform should be released reasonably soon after each Coq release. This gives both users and maintainers of platform components a time frame for planning their work.
+**Release plan**: The Coq platform shall have a release schedule which is coupled to the release schedule of core Coq. The platform should be released reasonably soon after each Coq release. This gives both users and maintainers of platform components a time frame for planning their work. Details on how the release schedule will work can be found in CEP [#52](https://github.com/coq/ceps/pull/52).
 
-**Releases only**: In the past the Windows installer did sometimes pick intermediate versions of packages in case the most recent release did not build with current Coq. For the platform this shall be avoided. The platform's more flexible release time frame in addition to the beta phase of core Coq releases should be sufficient to make a release of each package or, in case this is not possible, to patch the most recent package release to be compatible with latest core Coq.
+**Releases only**: In the past the legacy Windows installer did sometimes pick intermediate versions of packages in case the most recent release did not build with current Coq. For the platform this shall be avoided. The platform's more flexible release time frame in addition to the beta phase of core Coq releases should be sufficient to make a release of each package or, in case this is not possible, to patch the most recent package release to be compatible with latest core Coq.
 
 **Cross platform**: The Coq platform shall be easy to install on all systems supported by core Coq, that is Linux, Windows and Mac. Since compilation of the platform takes considerable time, binary releases of the platform shall be made available on all supported platforms.
 
@@ -54,27 +54,13 @@ Here are the different categories of expected stakeholders for the Coq platform:
 
 ## Questions to be resolved
 
-Note that until the listed questions are resolved, the platform releases will be marked as experimental and the platform maintainers make no committment regarding the stability of the set of packages that it contains (although they will still try).
-
-### Time frame to release compatible packages
-
-The initial time frame is set to 1 to 3 months after a major Coq release. This time frame will be adapted based on experience.
-
-### Release cycle
-
-There shall be some coupling between the Coq major release cycle and the Coq platform major release cycle. However, the frequency of intermediate (minor) releases is still to be determined. What kind of package updates to include in minor platform releases is still to be determined. The versionning scheme is also still undecided and might depend on the other choices regarding the release cycle.
-
 ### Quality constraints for included packages
 
 For now, we haven't set any quality constraints beyond the fact that the packages are sufficiently used and stable. But other constraints, such as the existence of complete documentation, might be set in the future.
 
 ### Licensing constraints for included packages
 
-For now, we haven't yet decided whether packages under non-open source licenses (such as CompCert's academic license) will be accepted in the platform. We could even consider imposing some additional reusability criteria for Coq libraries.
-
-### OCaml compatibility
-
-There should be a clear policy on which OCaml versions must be supported by Coq plugins and tools. The easiest solution for platform maintainers would be to support all OCaml versions that Coq itself supports. However, this should be discussed with package maintainers, who can have a need for more recent OCaml versions.
+The current platform includes packages under a variety of licenses, including non-open-source licenses (in the case of CompCert). We might evolve this (non-)requirement in the future. This question is linked to the tiers question below.
 
 ### Several tiers
 
@@ -86,7 +72,7 @@ If you do see other questions that should be addressed in the platform charter, 
 
 ## The Coq platform from a technical point of view
 
-Technically the Coq platform will be a git/github/gitlab repo containing:
+Technically the Coq platform is a GitHub repo containing:
 
 - Information on packages included in the platform and their versions, sources, build instructions. This information is either given as an opam repo, or there will be automated scripts to generate the opam repo from it.
 
@@ -100,10 +86,10 @@ Technically the Coq platform will be a git/github/gitlab repo containing:
 
 ## Steps
 
-- Move the current Windows Installer from core Coq to the platform
-- Simplify the windows installer in core Coq to only install Coq (and possibly very few selected plugins)
-- Ensure that platform CI runs with Coq master and release branches daily
-- Create a binary package for Linux (Snap store)
-- Create a binary package for Mac (Apple store)
-- Create an opam repo for the platform (or do this based on the existing Coq repo)
-- Provide developer setups on all platforms
+- [x] Move the current Windows Installer from core Coq to the platform
+- [x] Decouple core Coq CI from all the packages the legacy Windows installer used to build
+- [x] Ensure that platform CI runs with Coq master and release branches daily
+- [x] Create a binary package for Linux (Snap store)
+- [ ] Create a binary package for Mac (Apple store)
+- [x] Create an opam repo for the platform (or do this based on the existing Coq repo)
+- [x] Provide developer setups on all platforms
