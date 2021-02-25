@@ -1,3 +1,9 @@
+This README presents the two standard methods to install the platform on Linux:
+- as a binary Snap package,
+- from sources, using the platform scripts.
+
+The first method is recommended for beginners and the second one is recommended for experienced users, who may want to use opam to install additional packages, beyond the standard set provided by the platform.
+
 # Installation using Snap package
 
 URL: https://snapcraft.io/coq-prover
