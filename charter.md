@@ -87,7 +87,7 @@ Technically the Coq platform is a GitHub repo containing:
 ## Steps
 
 - [x] Move the current Windows Installer from core Coq to the platform
-- ~~Simplify the windows installer in core Coq to only install Coq (and possibly very few selected plugins)~~
+- [x] Decouple core Coq CI from all the packages the legacy Windows installer used to build
 - [x] Ensure that platform CI runs with Coq master and release branches daily
 - [x] Create a binary package for Linux (Snap store)
 - [ ] Create a binary package for Mac (Apple store)
