@@ -24,13 +24,13 @@ on:
   workflow_dispatch:
     inputs:
       save:
-        description: 'Save artifact for download'
+        description: 'Save artifact for download? (true/false, default false)'
         default: false
       upload:
-        description: 'Upload artifact to snap store'
+        description: 'Upload artifact to snap store? (true/false, default false)'
         default: false
       platform:
-        description: 'Arguments for the platform script'
+        description: 'Arguments for the platform script:'
         required: true
         default: '-extent=f -parallel=p -jobs=2 -vst=y -compcert=f'
 
