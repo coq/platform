@@ -6,19 +6,16 @@ name: Coq Platform CI
 
 ###############################################################################
 # Schedule:
-# - push on any branch whose name matches v** or master
-# - any pull request
+# - push on dev-ci branch
+# - any pull request to dev-ci branch (this is likely taken from the default branch)
 ###############################################################################
 on:
   push:
     branches:
-      - v**
-      - master
+      - dev-ci
   pull_request:
     branches:
       - '**'
-  schedule:
-    - cron: "0 0 * * *"
 
 ###############################################################################
 # Platform script options shared among all jobs
