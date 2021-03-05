@@ -60,7 +60,7 @@ one.
 # Installation by compiling from sources (using opam)
 
 - Install buildtools
-  - Debian, Ubuntu:       sudo apt-get install build-essentials
+  - Debian, Ubuntu:       sudo apt-get install build-essential
   - CentOS, RHEL, Fedora: sudo dnf groupinstall "Development Tools"
   - OpenSuse:             sudo zypper in -t pattern devel_C_C++
 - For CentOS and possibly RHEL some additional steps are required, see [CentOS](#centos) below.
