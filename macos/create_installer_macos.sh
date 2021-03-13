@@ -8,17 +8,34 @@
 
 ###################### CREATE MAC DMG INSTALLER ######################
 
-# Script safety
+# Options:
+# -quick|-q : disable ZIP compression of DMG file (much faster to create and install for tests)
+
+echo "##### Building Mac DMG installer #####"
+
+###### Script safety ######
 
 set -o nounset
 set -o errexit
 
-# Check if required utilities are installed
+###### Parse command line ######
 
-command -v gfind || ( echo "Install gfind (eg. sudo port install findutils)" ; exit 1)
-command -v pip3 || ( echo "Install pip3 (eg. sudo port install py38-pip; port select --set pip3 pip38)" ; exit 1)
+ZIPCOMPR=9
 
-# Create working folder
+for arg in "$@"
+do
+  case "$arg" in
+    -quick|-q) ZIPCOMPR=0 ;;
+    *) echo "ERROR: Unknown command line argument $arg!"; false;;
+  esac
+done
+
+###### Check if required utilities are installed #####
+
+command -v gfind &> /dev/null || ( echo "Install gfind (eg. sudo port install findutils)" ; exit 1)
+command -v pip3  &> /dev/null || ( echo "Install pip3 (eg. sudo port install py38-pip; port select --set pip3 pip38)" ; exit 1)
+
+###### Create working folder and cd #####
 
 rm -rf macos_installer/
 mkdir macos_installer/
@@ -37,7 +54,7 @@ COQ_VERSION=$(coqc --print-version | cut -d ' ' -f 1)
 # The MacOS version needs to be purely numeric (no +beta) and is set separately in configure.ml
 COQ_VERSION_MACOS=$(egrep -o 'coq_macos_version *= *"[0-9.]+"' coq/configure.ml | cut -d '=' -f 2 | tr -d ' "')
 
-echo "##### Building Mac DMG installer for Coq $COQ_VERSION (MacVersion=$COQ_VERSION_MACOS) #####"
+echo "##### Coq version = $COQ_VERSION (Mac app version=$COQ_VERSION_MACOS) #####"
 
 ##### Create DMG package foldr structure #####
 
@@ -108,7 +125,8 @@ done
 # Use macpack to find dependencies and patch binaries
 
 pip3 install macpack
-mkdir ${APP}/Contents/Resources/lib/dylib
+mkdir logs
+> logs/macpack.log
 
 # Find dependencies and patch one binary
 # $1 full path to binary
@@ -118,12 +136,10 @@ function run_macpack {
   type="$(file -b $1)"
   if [ "$type" == 'Mach-O 64-bit executable x86_64' ] || [ "$type" == 'Mach-O 64-bit bundle x86_64' ]
   then
-    echo
-    echo "### Finding / patching dependencies for $1 ..."
-    macpack -d $2/lib/dylib $1
+    echo "Finding / patching dependencies for $1 ..."
+    macpack -d "$2"/lib/dylib $1 >> logs/macpack.log
   else
-    echo
-    echo "### File '$1' with type '$type' ignored."
+    echo "INFO: File '$1' with type '$type' ignored."
   fi
 }
 
@@ -152,10 +168,12 @@ hdi_opts=(-volname "coq-$COQ_VERSION-installer-macos"
           -srcfolder _dmg
           -ov # overwrite existing file
           -format UDZO
-          -imagekey "zlib-level=0"
+          -imagekey "zlib-level=$ZIPCOMPR"
 
           # needed for backward compat since macOS 10.14 which uses APFS by default
           # see discussion in #11803
           -fs hfs+
          )
 hdiutil create "${hdi_opts[@]}" "coq-$COQ_VERSION-installer-macos.dmg"
+
+echo "##### Finished installer 'coq-$COQ_VERSION-installer-macos.dmg' #####"
