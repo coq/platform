@@ -9,7 +9,10 @@
 ###################### CREATE MAC DMG INSTALLER ######################
 
 # Options:
-# -quick|-q : disable ZIP compression of DMG file (much faster to create and install for tests)
+# -quick|-q   : disable ZIP compression of DMG file (much faster to create and install for tests)
+# -install|-i : install package to /Application after creating it
+
+###################### PRELIMINARIES ######################
 
 echo "##### Building Mac DMG installer #####"
 
@@ -32,7 +35,14 @@ do
   esac
 done
 
-###### Check if required utilities are installed #####
+###### Check if required system utilities are installed #####
+
+if ! command -v port  &> /dev/null
+then
+  echo "This script assumes that system dependencies have been installed via MacPorts."
+  echo "If you are using Homebrew, please adjust add_files_using_macports_package."
+  exit 1
+fi
 
 command -v gfind &> /dev/null || ( echo "Install gfind (eg. sudo port install findutils)" ; exit 1)
 command -v pip3  &> /dev/null || ( echo "Install pip3 (eg. sudo port install py38-pip; port select --set pip3 pip38)" ; exit 1)
@@ -76,45 +86,215 @@ mkdir ${APPFOLDER}/Contents/MacOS  # The top level executable shown in launcher
 mkdir ${RSRCFOLDER}                # Most files go here
 mkdir -p ${RSRCFOLDER}/lib/dylib   # System shared libraries
 
-# Create Info.plist file
+##### Opam folder variables #####
 
-sed -e "s/VERSION/${COQ_VERSION_MACOS}/g" coq/ide/coqide/MacOS/Info.plist.template > \
-    ${APPFOLDER}/Contents/Info.plist
+# The opam prefix - stripped from absolute paths to create relative paths
+OPAM_PREFIX="$(opam conf var prefix)"
 
-##### Copy resource files the installed binaries depend on #####
+##### MacPorts folder variables #####
 
-echo '##### Copy resources #####'
+# If someone knows a better way to find out where port is installed, please let me know!
 
-# Copy icons from Coq source
+PORTCMD="$(which port)"
+PORTDIR="${PORTCMD%bin/port}"
 
-cp coq/ide/coqide/MacOS/*.icns ${RSRCFOLDER}
+###################### UTILITY FUNCTIONS ######################
 
-# Copy complete Opam switch contents
+# Check if a newline searated list contains an item
+# $1 = list
+# $2 = item
 
-cp -r $(opam config var prefix)/* ${RSRCFOLDER}
+function list_contains {
+#   This variant does not work when $2 contains regexp chars like conf-g++
+#   [[ $1 =~ (^|[[:space:]])$2($|[[:space:]]) ]]
+    [[ $'\n'"$1"$'\n' == *$'\n'"$2"$'\n'* ]]
+}
 
-# Remove things we won't need
+# Find shared library dependencies and patch one binary using macpack
+# $1 full path to binary
+# $3 relative path from binary to "${RSRCFOLDER}" filder
 
-gfind ${RSRCFOLDER} \( -name '*.byte.exe' -o -name '*.byte' -o -name '*.cm[aioxt]' -o -name '*.cmxa' -o -name '*.[oa]' -o -name '*.cmti' -o -name '*.glob' \) -type f  -delete
-gfind ${RSRCFOLDER}/bin/ -maxdepth 1 -mindepth 1 \! -name 'coq*' -exec rm -f {} \;
-gfind ${RSRCFOLDER}/lib/ -maxdepth 1 -mindepth 1 \! \( -name 'coq' -o -name 'stublibs' \) -exec rm -rf {} \;
-rm -rf ${RSRCFOLDER}/share/ocaml-secondary-compiler
+pip3 install macpack
+> logs/macpack.log
 
-# Create a shell script to start CoqIDE with correct environmant
+function add_dylibs_using_macpack {
+  type="$(file -b $1)"
+  if [ "${type}" == 'Mach-O 64-bit executable x86_64' ] || [ "${type}" == 'Mach-O 64-bit bundle x86_64' ]
+  then
+    echo "Copying shared libraries for $1 ..."
+    macpack -v -d "$2"/lib/dylib $1 >> logs/macpack.log
+  else
+    echo "INFO: File '$1' with type '${type}' ignored."
+  fi
+}
 
-cat> ${APPFOLDER}/Contents/MacOS/coqide <<'EOT'
-#!/bin/sh
-HERE=$(cd $(dirname $0); pwd)
-export PATH="${HERE}/../Resources/bin/:${PATH}"
-export LD_LIBRARY_PATH="${HERE}"
-export DYLD_LIBRARY_PATH="${HERE}"
-exec coqide
-EOT
-chmod a+x ${APPFOLDER}/Contents/MacOS/coqide
+# Add files from a MacPorts package using package name and grp filter
+# $1 = MacPorts package name
+# $2 = regexp filter (grep)
+# Note:
+# This function strips the install path of the "port" command
 
-# Create a link to the 'Applications' folder, so that one can drag and drop the application there
+function add_files_using_macports_package {
+  echo "Copying files from MacPorts package $1 ..."
+  for file in $(port contents "$1" | grep "$2" | sort -u)
+  do
+    relpath="${file#${PORTDIR}}"
+    reldir="${relpath%/*}"
+    mkdir -p "$RSRCFOLDER/$reldir"
+    cp "$file" "$RSRCFOLDER/$reldir/"
+  done
+}
 
-ln -sf /Applications _dmg/Applications
+# Add a folder recursively
+# $1 = path prefix (absolute)
+# $2 = relative path to $1 and ${RSRCFOLDER} (must not start with /)
+
+function add_foler_recursively {
+  echo "Copying files from folder $1/$2 ..."
+  mkdir -p "${RSRCFOLDER}/$2/"
+  cp -R "$1/$2/" "${RSRCFOLDER}/$2/"
+}
+
+# Add a single file
+# $1 = path prefix (absolute)
+# $2 = relative path to $1 and ${RSRCFOLDER}
+# $3 = file name
+
+function add_single_file {
+  echo "Copying single file $1/$2/$3"
+  mkdir -p "${RSRCFOLDER}/$2"
+  cp "$1/$2/$3" "${RSRCFOLDER}/$2/"
+}
+
+###### Get filtered list of explicitly installed packages #####
+
+# Note: since both positive and negative filtering makes sense, we do both and require that the result is identical.
+# This ensures people get what they expect.
+
+echo "Create package list"
+
+packages_pos="$(opam list --installed-roots --short --columns=name | grep '^coq\|^menhir\|^gappa')"
+packages_neg="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^elpi')"
+
+if [ "$packages_pos" != "$packages_neg" ]
+then
+  echo "The positive and negative list of opam packages differs. Please adjust the package filters!"
+  echo "Positive list = $packages_pos"
+  echo "Negative list = $packages_neg"
+  exit 1
+fi
+
+PRIMARY_PACKAGES="$packages_pos"
+
+###### Associative array with package name -> file filter (regexp pattern) #####
+
+# If not white list regexp is given it is "."
+# If not black list list regexp is given it is "\.byte\.exe$"
+
+declare -A OPAM_FILE_WHITELIST
+declare -A OPAM_FILE_BLACKLIST
+
+OPAM_FILE_WHITELIST[ocaml-variants]='.^' # this has the ocaml compiler in
+OPAM_FILE_WHITELIST[base]='.^' # ocaml stdlib
+OPAM_FILE_WHITELIST[ocaml-compiler-libs]='.^'
+
+OPAM_FILE_WHITELIST[dune]='.^'
+OPAM_FILE_WHITELIST[configurator]='.^'
+OPAM_FILE_WHITELIST[sexplib0]='.^'
+OPAM_FILE_WHITELIST[csexp]='.^'
+OPAM_FILE_WHITELIST[ocamlbuild]='.^'
+OPAM_FILE_WHITELIST[result]='.^'
+OPAM_FILE_WHITELIST[cppo]='.^'
+
+OPAM_FILE_WHITELIST[elpi]='.^' # linked in coq-elpi
+OPAM_FILE_WHITELIST[camlp5]='.^' # linked in elpi
+OPAM_FILE_WHITELIST[ppx_drivers]='.^' # linked in elpi
+OPAM_FILE_WHITELIST[ppxlib]='.^' # linked in elpi
+OPAM_FILE_WHITELIST[ppx_deriving]='.^' # linked in elpi
+OPAM_FILE_WHITELIST[ocaml-migrate-parsetree]='.^' # linked in elpi
+OPAM_FILE_WHITELIST[re]='.^' # linked in elpi
+
+OPAM_FILE_WHITELIST[lablgtk3]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
+OPAM_FILE_WHITELIST[lablgtk3-sourceview3]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
+OPAM_FILE_WHITELIST[cairo2]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
+
+# Lits of packages to ignore - separated by and starting with $'\n'
+IGNORED_PACKAGES=$'\n'"ocaml-secondary-compiler"
+
+###### Function for analyzing one package
+
+# Analyze one package
+# - retrieve list of files and copy to ${RSRCFOLDER}
+# - retrieve dependencies and add to list of dependent packages
+# $1 = package name
+# $2 = dependency level
+
+function process_package {
+  echo "Copying package $1 ($2) ..."
+
+  # Copy files
+
+  if [ ${OPAM_FILE_WHITELIST[$1]+_} ]
+  then
+    whitelist="${OPAM_FILE_WHITELIST[$1]}"
+  else
+    whitelist="." # take everything
+  fi
+
+  if [ ${OPAM_FILE_BLACKLIST[$1]+_} ]
+  then
+    blacklist="${OPAM_FILE_BLACKLIST[$1]}"
+  else
+    blacklist="(\.byte|\.cm[aiox]|\.cmxa|\.o|\.a)$" # exclude byte code and library stuff
+  fi
+
+  files="$(opam show --list-files $1 | grep -E "$whitelist" | grep -E -v "$blacklist" )" || true
+  for file in $files
+  do
+    if [ -d "$file" ]
+    then
+      true # ignore directories
+    elif [ -f "$file" ]
+    then
+      relpath="${file#$OPAM_PREFIX}"
+      reldir="${relpath%/*}"
+      mkdir -p "$RSRCFOLDER/$reldir"
+      cp "$file" "$RSRCFOLDER/$reldir/"
+    else
+      echo "In package '$1' the file '$file' does not exist"
+      exit 1
+    fi
+  done
+
+  # handle dependencies
+  # Note: the --installed is required cause of an opam bug.
+  # See https://github.com/ocaml/opam/issues/4461
+  dependencies="$(opam list --required-by=$1 --short --installed)"
+  for dependency in $dependencies
+  do
+    # Check if dependency is already in the list of known packages
+    if ! list_contains "$PACKAGES" "$dependency"
+    then
+      PACKAGES="$PACKAGES"$'\n'"$dependency"
+      process_package "$dependency" $(($2 + 1))
+    fi
+  done
+}
+
+###################### TOP LEVEL FILE GATHERING ######################
+
+###### Go through selected packages and recursively analyze dependencies #####
+
+echo '##### Copy Opam packages #####'
+
+# The initial list of already or otherwise processed packages is the list of top level packages
+# plus packages we don't want
+PACKAGES="$PRIMARY_PACKAGES$IGNORED_PACKAGES"
+
+for package in $PRIMARY_PACKAGES
+do
+  process_package "$package" 0
+done
 
 ##### Find system shared libraries the installed binaries depend on #####
 
@@ -130,42 +310,72 @@ for file in $(gtk-query-immodules-3.0 | grep /im- | sed s/\"//g); do
   cp ${file} ${APPFOLDER}/Contents/MacOS/
 done
 
-# Use macpack to find dependencies and patch binaries
-
-pip3 install macpack
-> logs/macpack.log
-
-# Find dependencies and patch one binary
-# $1 full path to binary
-# $2 relative path from binary to "${RSRCFOLDER}" filder
-
-function run_macpack {
-  type="$(file -b $1)"
-  if [ "${type}" == 'Mach-O 64-bit executable x86_64' ] || [ "${type}" == 'Mach-O 64-bit bundle x86_64' ]
-  then
-    echo "Finding / patching dependencies for $1 ..."
-    macpack -v -d "$2"/lib/dylib $1 >> logs/macpack.log
-  else
-    echo "INFO: File '$1' with type '${type}' ignored."
-  fi
-}
 
 for file in $(find "${RSRCFOLDER}/bin" -type f)
 do
-  run_macpack "${file}" ".."
+  add_dylibs_using_macpack "${file}" ".."
 done
 
 for file in $(find "${APPFOLDER}/Contents/MacOS" -type f)
 do
-  run_macpack "${file}" "../Resources"
+  add_dylibs_using_macpack "${file}" "../Resources"
 done
 
-# Debug: Dump all dependencies
+##### Add files from additional macports packages #####
 
-# for file in $(find "${RSRCFOLDER}/bin" "${APPFOLDER}/Contents/MacOS" "${RSRCFOLDER}/lib/dylib" -type f)
-# do
-#   otool -L "${file}"
-# done
+### Adwaita icon theme
+
+add_files_using_macports_package "adwaita-icon-theme"  \
+"/\(16x16\|22x22\|32x32\|48x48\)/.*\("\
+"actions/bookmark\|actions/document\|devices/drive\|actions/format-text\|actions/go\|actions/list\|"\
+"actions/media\|actions/pan\|actions/process\|actions/system\|actions/window\|"\
+"mimetypes/text\|places/folder\|places/user\|status/dialog\)"  \
+"files_conf-adwaita-icon-theme"
+
+### GTK compiled schemas
+
+add_single_file "${PORTDIR}" "share/glib-2.0/schemas" "gschemas.compiled"
+
+### GTK sourceview languag specs and styles (except coq itself)
+
+# Not really everything is needed from this. These might suffice:
+# language-specs/dev.lang
+# language-specs/language.dtd
+# language-specs/language.rng
+# language-specs/language2.rng
+# styles/classic.xml
+# But since the complete set is compressed not that large, we add the complete set
+
+add_foler_recursively "${PORTDIR}" "share/gtksourceview-3.0"
+
+##### MacOS DMG installer specific files #####
+
+# Create Info.plist file
+
+sed -e "s/VERSION/${COQ_VERSION_MACOS}/g" coq/ide/coqide/MacOS/Info.plist.template > \
+    ${APPFOLDER}/Contents/Info.plist
+
+# Create a shell script to start CoqIDE with correct environmant
+
+cat> ${APPFOLDER}/Contents/MacOS/coqide <<'EOT'
+#!/bin/sh
+HERE=$(cd $(dirname $0); pwd)
+export PATH="${HERE}/../Resources/bin/:${PATH}"
+export LD_LIBRARY_PATH="${HERE}"
+export DYLD_LIBRARY_PATH="${HERE}"
+exec coqide
+EOT
+chmod a+x ${APPFOLDER}/Contents/MacOS/coqide
+
+# Icons
+
+cp coq/ide/coqide/MacOS/*.icns ${RSRCFOLDER}
+
+# Create a link to the 'Applications' folder, so that one can drag and drop the application there
+
+ln -sf /Applications _dmg/Applications
+
+###################### CREATE INSTALLER ######################
 
 ##### Create DMG image from folder #####
 
