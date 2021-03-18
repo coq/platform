@@ -55,7 +55,7 @@ apps:
     plugs: [home]
     command: coq-platform/@@COQ_VERSION@@/bin/coq_wrapper_coq_makefile
   coqidetop:
-    plugs: [home,network-bind]
+    plugs: [home,network-bind,network]
     command: coq-platform/@@COQ_VERSION@@/bin/coq_wrapper_coqidetop.opt
 
 
