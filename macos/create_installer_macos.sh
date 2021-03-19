@@ -11,6 +11,7 @@
 # Options:
 # -quick|-q   : disable ZIP compression of DMG file (much faster to create and install for tests)
 # -install|-i : install package to /Application after creating it
+# -otooldump  : provide the output of otool -L for all executables
 
 ###################### PRELIMINARIES ######################
 
@@ -25,12 +26,14 @@ set -o errexit
 
 ZIPCOMPR=9
 INSTALL='N'
+OTOOLDUMP='N'
 
 for arg in "$@"
 do
   case "${arg}" in
     -quick|-q) ZIPCOMPR=0 ;;
     -install|-i) INSTALL='Y' ;;
+    -otooldump) OTOOLDUMP='Y' ;;
     *) echo "ERROR: Unknown command line argument ${arg}!"; false;;
   esac
 done
@@ -45,7 +48,8 @@ then
 fi
 
 command -v gfind &> /dev/null || ( echo "Install gfind (eg. sudo port install findutils)" ; exit 1)
-command -v pip3  &> /dev/null || ( echo "Install pip3 (eg. sudo port install py38-pip; port select --set pip3 pip38)" ; exit 1)
+command -v grealpath &> /dev/null || ( echo "Install gfind (eg. sudo port install coreutils)" ; exit 1)
+command -v macpack  &> /dev/null || ( echo "Install macpack (eg. sudo port install py38-pip; port select --set pip3 pip38; pip3 install macpack)" ; exit 1)
 
 ###### Create working folder and cd #####
 
@@ -73,18 +77,20 @@ echo "##### Coq version = ${COQ_VERSION} (Mac app version=${COQ_VERSION_MACOS}) 
 
 # Folder and image names
 
-APPNAME="Coq_${COQ_VERSION}.app"
-APPFOLDER="_dmg/${APPNAME}"
-RSRCFOLDER="${APPFOLDER}/Contents/Resources"
-DMGNAME="coq-${COQ_VERSION}-installer-macos"
+APP_NAME="Coq_${COQ_VERSION}.app"
+DMG_NAME="coq-${COQ_VERSION}-installer-macos"
+APP_ABSDIR="_dmg/${APP_NAME}"
+RSRC_ABSDIR="${APP_ABSDIR}/Contents/Resources"
+BIN_ABSDIR="$RSRC_ABSDIR/bin"
+DYNLIB_ABSDIR="$RSRC_ABSDIR/lib/dylib"
 
 # Sub folders
 
-mkdir -p ${APPFOLDER}
-mkdir ${APPFOLDER}/Contents/
-mkdir ${APPFOLDER}/Contents/MacOS  # The top level executable shown in launcher
-mkdir ${RSRCFOLDER}                # Most files go here
-mkdir -p ${RSRCFOLDER}/lib/dylib   # System shared libraries
+mkdir -p ${APP_ABSDIR}
+mkdir ${APP_ABSDIR}/Contents/
+mkdir ${APP_ABSDIR}/Contents/MacOS  # The top level executable shown in launcher
+mkdir -p ${RSRC_ABSDIR}             # Most files go here
+mkdir -p ${DYNLIB_ABSDIR}           # System shared libraries
 
 ##### Opam folder variables #####
 
@@ -112,9 +118,8 @@ function list_contains {
 
 # Find shared library dependencies and patch one binary using macpack
 # $1 full path to binary
-# $3 relative path from binary to "${RSRCFOLDER}" filder
+# $3 relative path from binary to "${RSRC_ABSDIR}" filder
 
-pip3 install macpack
 > logs/macpack.log
 
 function add_dylibs_using_macpack {
@@ -140,30 +145,30 @@ function add_files_using_macports_package {
   do
     relpath="${file#${PORTDIR}}"
     reldir="${relpath%/*}"
-    mkdir -p "$RSRCFOLDER/$reldir"
-    cp "$file" "$RSRCFOLDER/$reldir/"
+    mkdir -p "$RSRC_ABSDIR/$reldir"
+    cp "$file" "$RSRC_ABSDIR/$reldir/"
   done
 }
 
 # Add a folder recursively
 # $1 = path prefix (absolute)
-# $2 = relative path to $1 and ${RSRCFOLDER} (must not start with /)
+# $2 = relative path to $1 and ${RSRC_ABSDIR} (must not start with /)
 
 function add_foler_recursively {
   echo "Copying files from folder $1/$2 ..."
-  mkdir -p "${RSRCFOLDER}/$2/"
-  cp -R "$1/$2/" "${RSRCFOLDER}/$2/"
+  mkdir -p "${RSRC_ABSDIR}/$2/"
+  cp -R "$1/$2/" "${RSRC_ABSDIR}/$2/"
 }
 
 # Add a single file
 # $1 = path prefix (absolute)
-# $2 = relative path to $1 and ${RSRCFOLDER}
+# $2 = relative path to $1 and ${RSRC_ABSDIR}
 # $3 = file name
 
 function add_single_file {
   echo "Copying single file $1/$2/$3"
-  mkdir -p "${RSRCFOLDER}/$2"
-  cp "$1/$2/$3" "${RSRCFOLDER}/$2/"
+  mkdir -p "${RSRC_ABSDIR}/$2"
+  cp "$1/$2/$3" "${RSRC_ABSDIR}/$2/"
 }
 
 ###### Get filtered list of explicitly installed packages #####
@@ -224,7 +229,7 @@ IGNORED_PACKAGES=$'\n'"ocaml-secondary-compiler"
 ###### Function for analyzing one package
 
 # Analyze one package
-# - retrieve list of files and copy to ${RSRCFOLDER}
+# - retrieve list of files and copy to ${RSRC_ABSDIR}
 # - retrieve dependencies and add to list of dependent packages
 # $1 = package name
 # $2 = dependency level
@@ -258,8 +263,8 @@ function process_package {
     then
       relpath="${file#$OPAM_PREFIX}"
       reldir="${relpath%/*}"
-      mkdir -p "$RSRCFOLDER/$reldir"
-      cp "$file" "$RSRCFOLDER/$reldir/"
+      mkdir -p "$RSRC_ABSDIR/$reldir"
+      cp "$file" "$RSRC_ABSDIR/$reldir/"
     else
       echo "In package '$1' the file '$file' does not exist"
       exit 1
@@ -302,24 +307,45 @@ echo '##### Copy system shared libraries #####'
 
 # Copy dynamically loaded (invisible for 'otool') shared libraries for GDK and GTK
 
+PIXBUF_LOADER_ABSDIR="$RSRC_ABSDIR/lib/gdk-pixbuf-2.0/2.10.0/loaders"
+mkdir -p "$PIXBUF_LOADER_ABSDIR"
+PIXBUF_LOADER_RELDIR="$(grealpath --relative-to="$PIXBUF_LOADER_ABSDIR" "$RSRC_ABSDIR")"
 for file in $(gdk-pixbuf-query-loaders | grep pixbufloader | sed s/\"//g); do
-  cp ${file} ${APPFOLDER}/Contents/MacOS/
+  cp ${file} "$PIXBUF_LOADER_ABSDIR/"
 done
 
+IMMODULES_ABSDIR="$RSRC_ABSDIR/lib/gtk-3.0/3.0.0/immodules"
+mkdir -p "$IMMODULES_ABSDIR"
+IMMODULES_RELDIR="$(grealpath --relative-to="$IMMODULES_ABSDIR" "$RSRC_ABSDIR")"
 for file in $(gtk-query-immodules-3.0 | grep /im- | sed s/\"//g); do
-  cp ${file} ${APPFOLDER}/Contents/MacOS/
+  cp ${file} "$IMMODULES_ABSDIR"
 done
 
-
-for file in $(find "${RSRCFOLDER}/bin" -type f)
+for file in $(find "${BIN_ABSDIR}" -type f)
 do
   add_dylibs_using_macpack "${file}" ".."
 done
 
-for file in $(find "${APPFOLDER}/Contents/MacOS" -type f)
+for file in $(find "$PIXBUF_LOADER_ABSDIR" -type f)
 do
-  add_dylibs_using_macpack "${file}" "../Resources"
+  add_dylibs_using_macpack "${file}" "$PIXBUF_LOADER_RELDIR"
 done
+
+for file in $(find "$IMMODULES_ABSDIR" -type f)
+do
+  add_dylibs_using_macpack "${file}" "$IMMODULES_RELDIR"
+done
+
+# Dynamic library debug output
+
+if [ "$OTOOLDUMP" == 'Y' ]
+then
+  > logs/otool.log
+  for file in $BIN_ABSDIR/* $DYNLIB_ABSDIR/* $PIXBUF_LOADER_ABSDIR/* $IMMODULES_ABSDIR/*
+  do
+    otool -L $file >> logs/otool.log
+  done
+fi
 
 ##### Add files from additional macports packages #####
 
@@ -353,11 +379,11 @@ add_foler_recursively "${PORTDIR}" "share/gtksourceview-3.0"
 # Create Info.plist file
 
 sed -e "s/VERSION/${COQ_VERSION_MACOS}/g" coq/ide/coqide/MacOS/Info.plist.template > \
-    ${APPFOLDER}/Contents/Info.plist
+    ${APP_ABSDIR}/Contents/Info.plist
 
 # Create a shell script to start CoqIDE with correct environmant
 
-cat> ${APPFOLDER}/Contents/MacOS/coqide <<'EOT'
+cat> ${APP_ABSDIR}/Contents/MacOS/coqide <<'EOT'
 #!/bin/sh
 HERE=$(cd $(dirname $0); pwd)
 export PATH="${HERE}/../Resources/bin/:${PATH}"
@@ -365,11 +391,11 @@ export LD_LIBRARY_PATH="${HERE}"
 export DYLD_LIBRARY_PATH="${HERE}"
 exec coqide
 EOT
-chmod a+x ${APPFOLDER}/Contents/MacOS/coqide
+chmod a+x ${APP_ABSDIR}/Contents/MacOS/coqide
 
 # Icons
 
-cp coq/ide/coqide/MacOS/*.icns ${RSRCFOLDER}
+cp coq/ide/coqide/MacOS/*.icns ${RSRC_ABSDIR}
 
 # Create a link to the 'Applications' folder, so that one can drag and drop the application there
 
@@ -381,7 +407,7 @@ ln -sf /Applications _dmg/Applications
 
 echo '##### Create DMG image #####'
 
-hdi_opts=(-volname "${DMGNAME}"
+hdi_opts=(-volname "${DMG_NAME}"
           -srcfolder _dmg
           -ov # overwrite existing file
           -format UDZO
@@ -391,15 +417,15 @@ hdi_opts=(-volname "${DMGNAME}"
           # see discussion in #11803
           -fs hfs+
          )
-hdiutil create "${hdi_opts[@]}" "${DMGNAME}.dmg"
+hdiutil create "${hdi_opts[@]}" "${DMG_NAME}.dmg"
 
-echo "##### Finished installer '${DMGNAME}.dmg' #####"
+echo "##### Finished installer '${DMG_NAME}.dmg' #####"
 
 ##### Simply copy the folder over to the Applications folder #####
 
 if [ "${INSTALL}" == 'Y' ]
 then
   echo '##### Copying to /Applications folder #####'
-  rm -rf "/Applications/${APPNAME}"
-  cp -r "${APPFOLDER}" '/Applications/'
+  rm -rf "/Applications/${APP_NAME}"
+  cp -r "${APP_ABSDIR}" '/Applications/'
 fi
