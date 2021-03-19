@@ -77,7 +77,7 @@ jobs:
       - name: 'Upload smoke test kit'
         uses: actions/upload-artifact@v2
         with:
-          name: 'Smoke Test Kit'
+          name: 'Smoke Test Kit Windows ${{matrix.architecture}} bits'
           path: C:\smoke\
           retention-days: 5
 
@@ -103,7 +103,7 @@ jobs:
         uses: actions/download-artifact@v2
         id: download-smoke
         with:
-          name: 'Smoke Test Kit'
+          name: 'Smoke Test Kit Windows ${{matrix.architecture}} bits'
 
       - name: 'Run Installer'
         shell: cmd
@@ -115,7 +115,7 @@ jobs:
         shell: cmd
         run: C:\Coq\bin\coqc.exe -v
 
-      - name: 'Run smoke test kit'
+      - name: 'Run Windows smoke test kit'
         shell: cmd
         run: |
           CD ${{steps.download-smoke.outputs.download-path}}
