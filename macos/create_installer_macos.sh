@@ -40,13 +40,6 @@ done
 
 ###### Check if required system utilities are installed #####
 
-if ! command -v port  &> /dev/null
-then
-  echo "This script assumes that system dependencies have been installed via MacPorts."
-  echo "If you are using Homebrew, please adjust add_files_using_macports_package."
-  exit 1
-fi
-
 command -v gfind &> /dev/null || ( echo "Install gfind (eg. sudo port install findutils)" ; exit 1)
 command -v grealpath &> /dev/null || ( echo "Install gfind (eg. sudo port install coreutils)" ; exit 1)
 command -v macpack  &> /dev/null || ( echo "Install macpack (eg. sudo port install py38-pip; port select --set pip3 pip38; pip3 install macpack)" ; exit 1)
@@ -97,12 +90,18 @@ mkdir -p ${DYNLIB_ABSDIR}           # System shared libraries
 # The opam prefix - stripped from absolute paths to create relative paths
 OPAM_PREFIX="$(opam conf var prefix)"
 
-##### MacPorts folder variables #####
-
-# If someone knows a better way to find out where port is installed, please let me know!
+##### MacPorts/Brew folder variables #####
 
 PORTCMD="$(which port)"
-PORTDIR="${PORTCMD%bin/port}"
+
+if [ -z "${PORTCMD}" ]; then
+  PKG_MANAGER=brew
+  PKG_MANAGER_ROOT="/usr/local/"
+else
+  PKG_MANAGER=port
+  # If someone knows a better way to find out where port is installed, please let me know!
+  PKG_MANAGER_ROOT="${PORTCMD%bin/port}"
+fi
 
 ###################### UTILITY FUNCTIONS ######################
 
@@ -133,17 +132,25 @@ function add_dylibs_using_macpack {
   fi
 }
 
-# Add files from a MacPorts package using package name and grp filter
-# $1 = MacPorts package name
+# Add files from a Brew package using package name and grp filter
+# $1 = Package name
 # $2 = regexp filter (grep)
 # Note:
 # This function strips the install path of the "port" command
 
-function add_files_using_macports_package {
-  echo "Copying files from MacPorts package $1 ..."
-  for file in $(port contents "$1" | grep "$2" | sort -u)
+function add_files_of_package {
+  case $PKG_MANAGER in
+  port)
+    LIST_PKG_CONTENTS="port contents"
+  ;;
+  brew)
+    LIST_PKG_CONTENTS="brew ls -v"
+  ;;
+  esac
+  echo "Copying files from package $1 ..."
+  for file in $($LIST_PKG_CONTENTS "$1" | grep "$2" | sort -u)
   do
-    relpath="${file#${PORTDIR}}"
+    relpath="${file#${PKG_MANAGER_ROOT}}"
     reldir="${relpath%/*}"
     mkdir -p "$RSRC_ABSDIR/$reldir"
     cp "$file" "$RSRC_ABSDIR/$reldir/"
@@ -351,7 +358,7 @@ fi
 
 ### Adwaita icon theme
 
-add_files_using_macports_package "adwaita-icon-theme"  \
+add_files_of_package "adwaita-icon-theme"  \
 "/\(16x16\|22x22\|32x32\|48x48\)/.*\("\
 "actions/bookmark\|actions/document\|devices/drive\|actions/format-text\|actions/go\|actions/list\|"\
 "actions/media\|actions/pan\|actions/process\|actions/system\|actions/window\|"\
@@ -360,7 +367,7 @@ add_files_using_macports_package "adwaita-icon-theme"  \
 
 ### GTK compiled schemas
 
-add_single_file "${PORTDIR}" "share/glib-2.0/schemas" "gschemas.compiled"
+add_single_file "${PKG_MANAGER_ROOT}" "share/glib-2.0/schemas" "gschemas.compiled"
 
 ### GTK sourceview languag specs and styles (except coq itself)
 
@@ -372,7 +379,7 @@ add_single_file "${PORTDIR}" "share/glib-2.0/schemas" "gschemas.compiled"
 # styles/classic.xml
 # But since the complete set is compressed not that large, we add the complete set
 
-add_folder_recursively "${PORTDIR}" "share/gtksourceview-3.0"
+add_folder_recursively "${PKG_MANAGER_ROOT}" "share/gtksourceview-3.0"
 
 ##### MacOS DMG installer specific files #####
 
