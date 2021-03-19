@@ -205,10 +205,9 @@ jobs:
 
       - name: Install findutils, coreutils and macpack (needed by DMG script)
         run: |
-          sudo port install findutils
-          sudo port install coreutils
-          sudo port install py38-pip
-          port select --set pip3 pip38
+          sudo brew install findutils
+          sudo brew install coreutils
+          sudo brew install python@3.8
           pip3 install macpack
 
       - name: 'Build DMG installer'
