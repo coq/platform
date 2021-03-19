@@ -83,7 +83,7 @@ jobs:
           retention-days: 5
 
   Windows_smoke:
-    name: Smoke test
+    name: Smoke test Windows
     needs: Windows_platform
     runs-on: windows-latest
     strategy:
@@ -232,7 +232,7 @@ jobs:
           retention-days: 5
 
   Macos_smoke:
-    name: Smoke test
+    name: Smoke test Macos
     needs: Macos_platform
     runs-on: macos-latest
 
@@ -256,7 +256,6 @@ jobs:
         shell: bash
         run: |
           cd ${{steps.download.outputs.download-path}}
-          pwd; ls # FIXME debug
           DMG=$(ls coq-*-installer-macos.dmg)
           hdiutil attach $DMG
           cp -r /Volumes/${DMG%%.dmg}/Coq_*.app /Applications/
@@ -273,5 +272,4 @@ jobs:
         run: |
           export PATH="$PATH:$(cd /Applications/Coq_*.app/Contents/Resources/bin/; pwd)"
           cd ${{steps.download-smoke.outputs.download-path}}
-          pwd; ls # FIXME debug
-          smoke-test-kit/run-smoke-test.sh
+          ./run-smoke-test.sh
