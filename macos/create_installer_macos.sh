@@ -21,7 +21,6 @@ echo "##### Building Mac DMG installer #####"
 
 set -o nounset
 set -o errexit
-set -x
 
 ###### Parse command line ######
 
