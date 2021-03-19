@@ -271,4 +271,5 @@ jobs:
         run: |
           export PATH="$PATH:$(cd /Applications/Coq_*.app/Contents/Resources/bin/; pwd)"
           cd ${{steps.download-smoke.outputs.download-path}}
+          chmod a+x ./run-smoke-test.sh
           ./run-smoke-test.sh
