@@ -9,7 +9,7 @@
 ###################### CREATE MAC DMG INSTALLER ######################
 
 # Options:
-# -quick|-q   : disable ZIP compression of DMG file (much faster to create and install for tests)
+# -quick|-q   : disable BZIP compression of DMG file (much faster to create and install for tests)
 # -install|-i : install package to /Application after creating it
 # -otooldump  : provide the output of otool -L for all executables
 
@@ -24,14 +24,14 @@ set -o errexit
 
 ###### Parse command line ######
 
-ZIPCOMPR=9
+ZIPCOMPR="-format UDBZ" # bzip
 INSTALL='N'
 OTOOLDUMP='N'
 
 for arg in "$@"
 do
   case "${arg}" in
-    -quick|-q) ZIPCOMPR=0 ;;
+    -quick|-q) ZIPCOMPR="-format UDRO" ;;
     -install|-i) INSTALL='Y' ;;
     -otooldump) OTOOLDUMP='Y' ;;
     *) echo "ERROR: Unknown command line argument ${arg}!"; false;;
@@ -39,13 +39,6 @@ do
 done
 
 ###### Check if required system utilities are installed #####
-
-if ! command -v port  &> /dev/null
-then
-  echo "This script assumes that system dependencies have been installed via MacPorts."
-  echo "If you are using Homebrew, please adjust add_files_using_macports_package."
-  exit 1
-fi
 
 command -v gfind &> /dev/null || ( echo "Install gfind (eg. sudo port install findutils)" ; exit 1)
 command -v grealpath &> /dev/null || ( echo "Install gfind (eg. sudo port install coreutils)" ; exit 1)
@@ -64,7 +57,11 @@ mkdir logs
 coqpackagefull=$(opam list --installed-roots --short --columns=name,version coq | sed 's/ /./')
 opam source --dir=coq/ ${coqpackagefull}
 
-##### Get the version of Coq #####
+##### Get the version of Coq and the Platform #####
+
+source ../coq_platform_switch_name.sh
+
+echo "##### Coq platform version = ${COQ_PLATFORM_VERSION} #####" 
 
 COQ_VERSION=$(coqc --print-version | cut -d ' ' -f 1)
 
@@ -77,8 +74,8 @@ echo "##### Coq version = ${COQ_VERSION} (Mac app version=${COQ_VERSION_MACOS}) 
 
 # Folder and image names
 
-APP_NAME="Coq_${COQ_VERSION}.app"
-DMG_NAME="coq-${COQ_VERSION}-installer-macos"
+APP_NAME="Coq_Platform_${COQ_PLATFORM_VERSION}.app"
+DMG_NAME="coq-platform-${COQ_PLATFORM_VERSION}-installer-macos"
 APP_ABSDIR="_dmg/${APP_NAME}"
 RSRC_ABSDIR="${APP_ABSDIR}/Contents/Resources"
 BIN_ABSDIR="$RSRC_ABSDIR/bin"
@@ -97,12 +94,22 @@ mkdir -p ${DYNLIB_ABSDIR}           # System shared libraries
 # The opam prefix - stripped from absolute paths to create relative paths
 OPAM_PREFIX="$(opam conf var prefix)"
 
-##### MacPorts folder variables #####
+##### MacPorts/Brew folder variables #####
 
-# If someone knows a better way to find out where port is installed, please let me know!
-
+set +e
 PORTCMD="$(which port)"
-PORTDIR="${PORTCMD%bin/port}"
+set -e
+
+if [ -z "${PORTCMD}" ]; then
+  PKG_MANAGER=brew
+  PKG_MANAGER_ROOT="/usr/local/"
+  PKG_MANAGER_ROOT_STRIP="/usr/local/Cellar/*/*/" # one * for the package name and one for its version
+else
+  PKG_MANAGER=port
+  # If someone knows a better way to find out where port is installed, please let me know!
+  PKG_MANAGER_ROOT="${PORTCMD%bin/port}"
+  PKG_MANAGER_ROOT_STRIP="${PORTCMD%bin/port}"
+fi
 
 ###################### UTILITY FUNCTIONS ######################
 
@@ -133,17 +140,25 @@ function add_dylibs_using_macpack {
   fi
 }
 
-# Add files from a MacPorts package using package name and grp filter
-# $1 = MacPorts package name
+# Add files from a Brew package using package name and grp filter
+# $1 = Package name
 # $2 = regexp filter (grep)
 # Note:
 # This function strips the install path of the "port" command
 
-function add_files_using_macports_package {
-  echo "Copying files from MacPorts package $1 ..."
-  for file in $(port contents "$1" | grep "$2" | sort -u)
+function add_files_of_package {
+  case $PKG_MANAGER in
+  port)
+    LIST_PKG_CONTENTS="port contents"
+  ;;
+  brew)
+    LIST_PKG_CONTENTS="brew ls -v"
+  ;;
+  esac
+  echo "Copying files from package $1 ..."
+  for file in $($LIST_PKG_CONTENTS "$1" | grep "$2" | sort -u)
   do
-    relpath="${file#${PORTDIR}}"
+    relpath="${file#${PKG_MANAGER_ROOT_STRIP}}"
     reldir="${relpath%/*}"
     mkdir -p "$RSRC_ABSDIR/$reldir"
     cp "$file" "$RSRC_ABSDIR/$reldir/"
@@ -154,7 +169,7 @@ function add_files_using_macports_package {
 # $1 = path prefix (absolute)
 # $2 = relative path to $1 and ${RSRC_ABSDIR} (must not start with /)
 
-function add_foler_recursively {
+function add_folder_recursively {
   echo "Copying files from folder $1/$2 ..."
   mkdir -p "${RSRC_ABSDIR}/$2/"
   cp -R "$1/$2/" "${RSRC_ABSDIR}/$2/"
@@ -169,6 +184,100 @@ function add_single_file {
   echo "Copying single file $1/$2/$3"
   mkdir -p "${RSRC_ABSDIR}/$2"
   cp "$1/$2/$3" "${RSRC_ABSDIR}/$2/"
+}
+
+# Taken from Adwanita's Makefile
+# $1 = root of the icon theme
+
+function make_theme_index {
+pushd "$1"
+
+cat> index.theme <<'EOT'
+[Icon Theme]
+Name=Adwaita
+Comment=The Only One
+Example=folder
+
+EOT
+echo "Directories=$(find */* -type d | tr -s "\n" ,)" >> index.theme
+echo "" >> index.theme
+
+(
+for dir in `find */* -type d`; do
+    sizefull="`dirname $dir`"
+    if test "$sizefull" = "scalable"; then
+        size="16"
+    elif test "$sizefull" = "scalable-up-to-32"; then
+        size="16"
+    else
+        size="`echo $sizefull | sed -e 's/x.*$//g'`"
+    fi
+    context="`basename $dir`"
+    echo "[$dir]"
+    if test "$context" = "actions"; then
+        echo "Context=Actions"
+    fi
+    if test "$context" = "animations"; then
+        echo "Context=Animations"
+    fi
+    if test "$context" = "apps"; then
+        echo "Context=Applications"
+    fi
+    if test "$context" = "categories"; then
+        echo "Context=Categories"
+    fi
+    if test "$context" = "devices"; then
+        echo "Context=Devices"
+    fi
+    if test "$context" = "emblems"; then
+        echo "Context=Emblems"
+    fi
+    if test "$context" = "emotes"; then
+        echo "Context=Emotes"
+    fi
+    if test "$context" = "intl"; then
+        echo "Context=International"
+    fi
+    if test "$context" = "mimetypes"; then
+        echo "Context=MimeTypes"
+    fi
+    if test "$context" = "places"; then
+        echo "Context=Places"
+    fi
+    if test "$context" = "status"; then
+        echo "Context=Status"
+    fi
+    if test "$context" = "ui"; then
+        echo "Context=UI"
+    fi
+    if test "$context" = "legacy"; then
+        echo "Context=Legacy"
+    fi
+    echo "Size=$size"
+    if test "$sizefull" = "scalable"; then
+        echo "MinSize=8"
+        echo "MaxSize=512"
+        echo "Type=Scalable"
+    elif test "$sizefull" = "scalable-up-to-32"; then
+        echo "MinSize=16"
+        echo "MaxSize=32"
+        echo "Type=Scalable"
+    elif test "$size" = "256"; then
+        echo "MinSize=56"
+        echo "MaxSize=256"
+        echo "Type=Scalable"
+    elif test "$size" = "512"; then
+        echo "MinSize=56"
+        echo "MaxSize=512"
+        echo "Type=Scalable"
+    else
+        echo "Type=Fixed"
+    fi
+    echo ""
+done
+) >> index.theme
+
+popd
 }
 
 ###### Get filtered list of explicitly installed packages #####
@@ -200,6 +309,7 @@ declare -A OPAM_FILE_WHITELIST
 declare -A OPAM_FILE_BLACKLIST
 
 OPAM_FILE_WHITELIST[ocaml-variants]='.^' # this has the ocaml compiler in
+OPAM_FILE_WHITELIST[ocaml-base-compiler]='.^' # this has the ocaml compiler in
 OPAM_FILE_WHITELIST[base]='.^' # ocaml stdlib
 OPAM_FILE_WHITELIST[ocaml-compiler-libs]='.^'
 
@@ -250,7 +360,7 @@ function process_package {
   then
     blacklist="${OPAM_FILE_BLACKLIST[$1]}"
   else
-    blacklist="(\.byte|\.cm[aiox]|\.cmxa|\.o|\.a)$" # exclude byte code and library stuff
+    blacklist="(\.byte|\.cm[aiox]|\.cmxa|\.o|\.a|\.glob)$" # exclude byte code and library stuff
   fi
 
   files="$(opam show --list-files $1 | grep -E "$whitelist" | grep -E -v "$blacklist" )" || true
@@ -313,6 +423,11 @@ PIXBUF_LOADER_RELDIR="$(grealpath --relative-to="$PIXBUF_LOADER_ABSDIR" "$RSRC_A
 for file in $(gdk-pixbuf-query-loaders | grep pixbufloader | sed s/\"//g); do
   cp ${file} "$PIXBUF_LOADER_ABSDIR/"
 done
+# the paths are absolue wrt the installation path of the .app
+(cd "$PIXBUF_LOADER_ABSDIR/"; \
+ GDK_PIXBUF_MODULEDIR=. gdk-pixbuf-query-loaders | \
+   sed "s?\"\\./?\"/Applications/${APP_NAME}/Contents/Resources/lib/gdk-pixbuf-2.0/2.10.0/loaders/?" > loaders.cache)
+
 
 IMMODULES_ABSDIR="$RSRC_ABSDIR/lib/gtk-3.0/3.0.0/immodules"
 mkdir -p "$IMMODULES_ABSDIR"
@@ -351,16 +466,19 @@ fi
 
 ### Adwaita icon theme
 
-add_files_using_macports_package "adwaita-icon-theme"  \
+add_files_of_package "adwaita-icon-theme"  \
 "/\(16x16\|22x22\|32x32\|48x48\)/.*\("\
 "actions/bookmark\|actions/document\|devices/drive\|actions/format-text\|actions/go\|actions/list\|"\
 "actions/media\|actions/pan\|actions/process\|actions/system\|actions/window\|"\
-"mimetypes/text\|places/folder\|places/user\|status/dialog\)"  \
+"mimetypes/text\|places/folder\|places/user\|status/dialog\|legacy\)"  \
 "files_conf-adwaita-icon-theme"
+
+make_theme_index "${RSRC_ABSDIR}/share/icons/Adwaita/"
+
 
 ### GTK compiled schemas
 
-add_single_file "${PORTDIR}" "share/glib-2.0/schemas" "gschemas.compiled"
+add_single_file "${PKG_MANAGER_ROOT}" "share/glib-2.0/schemas" "gschemas.compiled"
 
 ### GTK sourceview languag specs and styles (except coq itself)
 
@@ -372,7 +490,7 @@ add_single_file "${PORTDIR}" "share/glib-2.0/schemas" "gschemas.compiled"
 # styles/classic.xml
 # But since the complete set is compressed not that large, we add the complete set
 
-add_foler_recursively "${PORTDIR}" "share/gtksourceview-3.0"
+add_folder_recursively "${PKG_MANAGER_ROOT}" "share/gtksourceview-3.0"
 
 ##### MacOS DMG installer specific files #####
 
@@ -389,6 +507,8 @@ HERE=$(cd $(dirname $0); pwd)
 export PATH="${HERE}/../Resources/bin/:${PATH}"
 export LD_LIBRARY_PATH="${HERE}"
 export DYLD_LIBRARY_PATH="${HERE}"
+export GDK_PIXBUF_MODULE_FILE="${HERE}/../Resources/lib/gdk-pixbuf-2.0/2.10.0/loaders/loaders.cache"
+export XDG_DATA_HOME="${HERE}/../Resources/share"
 exec coqide
 EOT
 chmod a+x ${APP_ABSDIR}/Contents/MacOS/coqide
@@ -401,6 +521,70 @@ cp coq/ide/coqide/MacOS/*.icns ${RSRC_ABSDIR}
 
 ln -sf /Applications _dmg/Applications
 
+# Description
+cat > _dmg/README.html <<EOT
+<html>
+<head>
+<title>The Coq platform - $COQ_PLATFORM_VERSION</title>
+<style>
+body {
+   width : 40em;
+   margin-left : auto;   
+   margin-right : auto;   
+}
+h1 {
+  text-align : center;
+  font-family : sans-serif;
+}
+dd { 
+  margin-bottom : 1em;
+}
+dt {
+  font-family : sans-serif;
+  font-weight : bold;
+}
+</style>
+</head>
+<body>
+<h1>The Coq platform</h1>
+<p>
+  The <a href="https://coq.inria.fr">Coq interactive prover</a> provides
+  a formal language to write
+  mathematical definitions, executable algorithms, and theorems, together
+  with an environment for semi-interactive development of machine-checked
+  proofs.
+</p>
+<p>
+  The <a href="https://github.com/coq/platform">Coq platform</a>
+  is a distribution of the Coq interactive prover together
+  with a selection of Coq libraries.
+</p>
+<p>
+  The Coq platform version $COQ_PLATFORM_VERSION
+  contains the following packages:
+</p>
+<dl>
+EOT
+
+for package in $(echo $PRIMARY_PACKAGES | sort)
+do
+  pversion="$(opam show $package -f version: | tr -d \")"
+  plicense="$(opam show $package -f license: | tr -d \")"
+  pdescr="$(opam show $package -f synopsis: | tr -d \")"
+  phomepage="$(opam show $package -f homepage: | tr -d \")"
+
+  printf "<dt><a href='%s'>%s</a></dt><dd>%s (version: %s, license: %s)</dd>" \
+    "${phomepage}" "${package}" "${pdescr}" "${pversion}" "${plicense}" \
+    >> _dmg/README.html
+done
+
+cat >> _dmg/README.html <<'EOT'
+</dl>
+</body>
+</html>
+EOT
+
+
 ###################### CREATE INSTALLER ######################
 
 ##### Create DMG image from folder #####
@@ -410,9 +594,7 @@ echo '##### Create DMG image #####'
 hdi_opts=(-volname "${DMG_NAME}"
           -srcfolder _dmg
           -ov # overwrite existing file
-          -format UDZO
-          -imagekey "zlib-level=${ZIPCOMPR}"
-
+          ${ZIPCOMPR}
           # needed for backward compat since macOS 10.14 which uses APFS by default
           # see discussion in #11803
           -fs hfs+

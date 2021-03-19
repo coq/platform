@@ -34,7 +34,7 @@ mkdir smoke-test-kit
 
 echo "Create package list"
 
-packages="$(opam list --installed-roots --short --columns=name | grep '^coq-')"
+packages="$(opam list --installed-roots --short --columns=name | grep '^coq-' | cat)"
 
 ##### Associate package name with test/example file(s) #####
 

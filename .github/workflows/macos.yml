@@ -1,0 +1,153 @@
+# Main doc: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/introduction-to-github-actions
+# Runners spec: https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners
+# Glob expressions: https://github.com/actions/toolkit/tree/main/packages/glob
+
+name: Macos
+
+###############################################################################
+# Schedule:
+# - push on any branch whose name matches v** or master
+# - any pull request
+###############################################################################
+on:
+  push:
+    branches:
+      - 2021.02
+      - master
+  pull_request:
+    branches:
+      - '**'
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Arguments for the platform script:'
+        required: true
+        default: '-extent=f -parallel=p -jobs=2 -vst=y -compcert=f'
+
+###############################################################################
+# Platform script options shared among all jobs
+###############################################################################
+env:
+  PLATFORM_ARGS: -extent=f -parallel=p -jobs=2 -vst=y -compcert=f
+  COQREGTESTING: y
+
+###############################################################################
+# Macos
+#
+# CAVEATS:
+# - COQREGTESTING broken, it makes the script loop, so we install opam by hand
+###############################################################################
+jobs:
+  Macos_platform:
+    name: Macos
+    runs-on: macos-latest
+
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - name: Set PLATFORM
+        if: ${{ github.event.inputs.platform != '' }}
+        run: echo "PLATFORM=${{ github.event.inputs.platform }}" >> $GITHUB_ENV
+
+      - name: Install opam
+        env:
+          OPAM_VERSION: 2.0.7
+        run: |
+          curl -L https://github.com/ocaml/opam/releases/download/${OPAM_VERSION}/opam-${OPAM_VERSION}-x86_64-macos > opam.${OPAM_VERSION}
+          chmod a+x opam.${OPAM_VERSION}
+          sudo cp opam.${OPAM_VERSION} /usr/local/bin/opam.${OPAM_VERSION}
+          sudo ln -s /usr/local/bin/opam.${OPAM_VERSION} /usr/local/bin/opam
+
+      - name: Run common platform script
+        shell: bash
+        run: ./coq_platform_make.sh $PLATFORM_ARGS
+
+      - name: Install bash (needed by smoke scripts)
+        run: brew install bash
+
+      - name: Create smoke test kit
+        shell: bash
+        run: |
+          eval $(opam env)
+          shell_scripts/create_smoke_test_kit.sh
+
+      - name: 'Upload smoke test kit'
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'Smoke Test Kit Macos'
+          path: smoke-test-kit/
+          retention-days: 5
+
+      - name: Install findutils, coreutils and macpack (needed by DMG script)
+        run: |
+          brew install findutils
+          brew install coreutils
+          brew install python@3.8
+          pip3 install macpack
+
+      - name: 'Build DMG installer'
+        shell: bash
+        run: |
+          eval $(opam env)
+          macos/create_installer_macos.sh
+
+      - name: 'Upload DMG script logs on failure'
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: 'DMG script error logs'
+          path: macos_installer/logs/
+
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'Macos installer'
+          path: macos_installer/coq-*-installer-macos.dmg
+          retention-days: 5
+
+  Macos_smoke:
+    name: Smoke test Macos
+    needs: Macos_platform
+    runs-on: macos-latest
+
+    steps:
+      - name: Install bash
+        run: brew install bash
+
+      - name: 'Download Artifact'
+        uses: actions/download-artifact@v2
+        id: download
+        with:
+          name: 'Macos installer'
+
+      - name: 'Download smoke test kit'
+        uses: actions/download-artifact@v2
+        id: download-smoke
+        with:
+          name: 'Smoke Test Kit Macos'
+
+      - name: 'Run Installer'
+        shell: bash
+        run: |
+          cd ${{steps.download.outputs.download-path}}
+          DMG=$(ls coq-*-installer-macos.dmg)
+          hdiutil attach $DMG
+          cp -r /Volumes/${DMG%%.dmg}/Coq_*.app /Applications/
+          hdiutil detach /Volumes/${DMG%%.dmg}/
+
+      - name: 'Smoke coqc'
+        shell: bash
+        run: |
+          cd /Applications/Coq_*.app/Contents/Resources/bin/
+          ./coqc -v
+
+      - name: 'Run Macos smoke test kit'
+        shell: bash
+        run: |
+          export PATH="$PATH:$(cd /Applications/Coq_*.app/Contents/Resources/bin/; pwd)"
+          cd ${{steps.download-smoke.outputs.download-path}}
+          chmod a+x ./run-smoke-test.sh
+          ./run-smoke-test.sh
