@@ -93,7 +93,9 @@ OPAM_PREFIX="$(opam conf var prefix)"
 
 ##### MacPorts/Brew folder variables #####
 
+set +e
 PORTCMD="$(which port)"
+set -e
 
 if [ -z "${PORTCMD}" ]; then
   PKG_MANAGER=brew
