@@ -154,7 +154,7 @@ function add_files_using_macports_package {
 # $1 = path prefix (absolute)
 # $2 = relative path to $1 and ${RSRC_ABSDIR} (must not start with /)
 
-function add_foler_recursively {
+function add_folder_recursively {
   echo "Copying files from folder $1/$2 ..."
   mkdir -p "${RSRC_ABSDIR}/$2/"
   cp -R "$1/$2/" "${RSRC_ABSDIR}/$2/"
@@ -372,7 +372,7 @@ add_single_file "${PORTDIR}" "share/glib-2.0/schemas" "gschemas.compiled"
 # styles/classic.xml
 # But since the complete set is compressed not that large, we add the complete set
 
-add_foler_recursively "${PORTDIR}" "share/gtksourceview-3.0"
+add_folder_recursively "${PORTDIR}" "share/gtksourceview-3.0"
 
 ##### MacOS DMG installer specific files #####
 
