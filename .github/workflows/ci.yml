@@ -187,15 +187,84 @@ jobs:
         shell: bash
         run: ./coq_platform_make.sh $PLATFORM_ARGS
 
+      - name: Install bash (needed by smoke scripts)
+        run: brew install bash
+
       - name: Create smoke test kit
         shell: bash
         run: |
           eval $(opam env)
-          brew install bash
           shell_scripts/create_smoke_test_kit.sh
 
-      - name: 'Run smoke test kit'
+      - name: 'Upload smoke test kit'
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'Smoke Test Kit Macos'
+          path: smoke-test-kit/
+          retention-days: 5
+
+      - name: Install findutils, coreutils and macpack (needed by DMG script)
+        run: |
+          sudo port install findutils
+          sudo port install coreutils
+          sudo port install py38-pip
+          port select --set pip3 pip38
+          pip3 install macpack
+
+      - name: 'Build DMG installer'
         shell: bash
         run: |
           eval $(opam env)
+          macos/create_installer_macos.sh -q # FIXME speedup
+
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'Macos installer'
+          path: macos_installer/coq-*-installer-macos.dmg
+          retention-days: 5
+
+  Macos_smoke:
+    name: Smoke test
+    needs: Macos_platform
+    runs-on: macos-latest
+
+    steps:
+      - name: Install bash
+        run: brew install bash
+
+      - name: 'Download Artifact'
+        uses: actions/download-artifact@v2
+        id: download
+        with:
+          name: 'Macos installer'
+
+      - name: 'Download smoke test kit'
+        uses: actions/download-artifact@v2
+        id: download-smoke
+        with:
+          name: 'Smoke Test Kit Macos'
+
+      - name: 'Run Installer'
+        shell: bash
+        run: |
+          cd ${{steps.download.outputs.download-path}}
+          pwd; ls # FIXME debug
+          DMG=$(ls coq-*-installer-macos.dmg)
+          hdiutil attach $DMG
+          cp -r /Volumes/${DMG%%.dmg}/Coq_*.app /Applications/
+          hdiutil detach /Volumes/${DMG%%.dmg}/
+
+      - name: 'Smoke coqc'
+        shell: bash
+        run: |
+          cd /Applications/Coq_*.app/Contents/Resources/bin/
+          ./coqc -v
+
+      - name: 'Run Macos smoke test kit'
+        shell: bash
+        run: |
+          export PATH="$PATH:$(cd /Applications/Coq_*.app/Contents/Resources/bin/; pwd)"
+          cd ${{steps.download-smoke.outputs.download-path}}
+          pwd; ls # FIXME debug
           smoke-test-kit/run-smoke-test.sh
