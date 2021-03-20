@@ -209,6 +209,7 @@ declare -A OPAM_FILE_WHITELIST
 declare -A OPAM_FILE_BLACKLIST
 
 OPAM_FILE_WHITELIST[ocaml-variants]='.^' # this has the ocaml compiler in
+OPAM_FILE_WHITELIST[ocaml-base-compiler]='.^' # this has the ocaml compiler in
 OPAM_FILE_WHITELIST[base]='.^' # ocaml stdlib
 OPAM_FILE_WHITELIST[ocaml-compiler-libs]='.^'
 
