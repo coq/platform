@@ -214,7 +214,7 @@ jobs:
         shell: bash
         run: |
           eval $(opam env)
-          macos/create_installer_macos.sh -q # FIXME speedup
+          macos/create_installer_macos.sh
 
       - name: 'Upload DMG script logs on failure'
         uses: actions/upload-artifact@v2
