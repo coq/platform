@@ -99,10 +99,12 @@ set -e
 if [ -z "${PORTCMD}" ]; then
   PKG_MANAGER=brew
   PKG_MANAGER_ROOT="/usr/local/"
+  PKG_MANAGER_ROOT_STRIP="/usr/local/Cellar/*/*/" # one * for the package name and one for its version
 else
   PKG_MANAGER=port
   # If someone knows a better way to find out where port is installed, please let me know!
   PKG_MANAGER_ROOT="${PORTCMD%bin/port}"
+  PKG_MANAGER_ROOT_STRIP="${PORTCMD%bin/port}"
 fi
 
 ###################### UTILITY FUNCTIONS ######################
@@ -152,7 +154,7 @@ function add_files_of_package {
   echo "Copying files from package $1 ..."
   for file in $($LIST_PKG_CONTENTS "$1" | grep "$2" | sort -u)
   do
-    relpath="${file#${PKG_MANAGER_ROOT}}"
+    relpath="${file#${PKG_MANAGER_ROOT_STRIP}}"
     reldir="${relpath%/*}"
     mkdir -p "$RSRC_ABSDIR/$reldir"
     cp "$file" "$RSRC_ABSDIR/$reldir/"
