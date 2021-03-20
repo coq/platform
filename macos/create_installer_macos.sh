@@ -323,6 +323,11 @@ PIXBUF_LOADER_RELDIR="$(grealpath --relative-to="$PIXBUF_LOADER_ABSDIR" "$RSRC_A
 for file in $(gdk-pixbuf-query-loaders | grep pixbufloader | sed s/\"//g); do
   cp ${file} "$PIXBUF_LOADER_ABSDIR/"
 done
+# the paths are absolue wrt the installation path of the .app
+(cd "$PIXBUF_LOADER_ABSDIR/"; \
+ GDK_PIXBUF_MODULEDIR=. gdk-pixbuf-query-loaders | \
+   sed 's?"\./?"/Applications/${APP_NAME}/Contents/Resources/lib/gdk-pixbuf-2.0/2.10.0/loaders/?' > loaders.cache)
+
 
 IMMODULES_ABSDIR="$RSRC_ABSDIR/lib/gtk-3.0/3.0.0/immodules"
 mkdir -p "$IMMODULES_ABSDIR"
@@ -399,6 +404,7 @@ HERE=$(cd $(dirname $0); pwd)
 export PATH="${HERE}/../Resources/bin/:${PATH}"
 export LD_LIBRARY_PATH="${HERE}"
 export DYLD_LIBRARY_PATH="${HERE}"
+export GDK_PIXBUF_MODULE_FILE="${HERE}/../Resources/lib/gdk-pixbuf-2.0/2.10.0/loaders/loaders.cache"
 exec coqide
 EOT
 chmod a+x ${APP_ABSDIR}/Contents/MacOS/coqide
