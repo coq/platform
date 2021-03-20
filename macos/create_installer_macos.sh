@@ -328,7 +328,7 @@ done
 # the paths are absolue wrt the installation path of the .app
 (cd "$PIXBUF_LOADER_ABSDIR/"; \
  GDK_PIXBUF_MODULEDIR=. gdk-pixbuf-query-loaders | \
-   sed 's?"\./?"/Applications/${APP_NAME}/Contents/Resources/lib/gdk-pixbuf-2.0/2.10.0/loaders/?' > loaders.cache)
+   sed "s?\"\\./?\"/Applications/${APP_NAME}/Contents/Resources/lib/gdk-pixbuf-2.0/2.10.0/loaders/?" > loaders.cache)
 
 
 IMMODULES_ABSDIR="$RSRC_ABSDIR/lib/gtk-3.0/3.0.0/immodules"
