@@ -375,8 +375,6 @@ add_files_of_package "adwaita-icon-theme"  \
 "mimetypes/text\|places/folder\|places/user\|status/dialog\)"  \
 "files_conf-adwaita-icon-theme"
 
-add_files_of_package "adwaita-icon-theme" "/\(icon-theme.cache\|index.theme\)"
-
 ### GTK compiled schemas
 
 add_single_file "${PKG_MANAGER_ROOT}" "share/glib-2.0/schemas" "gschemas.compiled"
