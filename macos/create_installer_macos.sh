@@ -407,6 +407,7 @@ export PATH="${HERE}/../Resources/bin/:${PATH}"
 export LD_LIBRARY_PATH="${HERE}"
 export DYLD_LIBRARY_PATH="${HERE}"
 export GDK_PIXBUF_MODULE_FILE="${HERE}/../Resources/lib/gdk-pixbuf-2.0/2.10.0/loaders/loaders.cache"
+export XDG_DATA_HOME="${HERE}/../Resources/share"
 exec coqide
 EOT
 chmod a+x ${APP_ABSDIR}/Contents/MacOS/coqide
