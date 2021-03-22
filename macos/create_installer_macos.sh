@@ -9,7 +9,7 @@
 ###################### CREATE MAC DMG INSTALLER ######################
 
 # Options:
-# -quick|-q   : disable ZIP compression of DMG file (much faster to create and install for tests)
+# -quick|-q   : disable BZIP compression of DMG file (much faster to create and install for tests)
 # -install|-i : install package to /Application after creating it
 # -otooldump  : provide the output of otool -L for all executables
 
@@ -24,14 +24,14 @@ set -o errexit
 
 ###### Parse command line ######
 
-ZIPCOMPR=9
+ZIPCOMPR="-format UDBZ" # bzip
 INSTALL='N'
 OTOOLDUMP='N'
 
 for arg in "$@"
 do
   case "${arg}" in
-    -quick|-q) ZIPCOMPR=0 ;;
+    -quick|-q) ZIPCOMPR="-format UDRO" ;;
     -install|-i) INSTALL='Y' ;;
     -otooldump) OTOOLDUMP='Y' ;;
     *) echo "ERROR: Unknown command line argument ${arg}!"; false;;
@@ -526,9 +526,7 @@ echo '##### Create DMG image #####'
 hdi_opts=(-volname "${DMG_NAME}"
           -srcfolder _dmg
           -ov # overwrite existing file
-          -format UDZO
-          -imagekey "zlib-level=${ZIPCOMPR}"
-
+          "${ZIPCOMPR}"
           # needed for backward compat since macOS 10.14 which uses APFS by default
           # see discussion in #11803
           -fs hfs+
