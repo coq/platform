@@ -182,6 +182,100 @@ function add_single_file {
   cp "$1/$2/$3" "${RSRC_ABSDIR}/$2/"
 }
 
+# Taken from Adwanita's Makefile
+# $1 = root of the icon theme
+
+function make_theme_index {
+pushd "$1"
+
+cat> index.theme <<'EOT'
+[Icon Theme]
+Name=Adwaita
+Comment=The Only One
+Example=folder
+
+EOT
+echo "Directories=$(find */* -type d | tr -s "\n" ,)" >> index.theme
+echo "" >> index.theme
+
+(
+for dir in `find */* -type d`; do
+    sizefull="`dirname $dir`"
+    if test "$sizefull" = "scalable"; then
+        size="16"
+    elif test "$sizefull" = "scalable-up-to-32"; then
+        size="16"
+    else
+        size="`echo $sizefull | sed -e 's/x.*$//g'`"
+    fi
+    context="`basename $dir`"
+    echo "[$dir]"
+    if test "$context" = "actions"; then
+        echo "Context=Actions"
+    fi
+    if test "$context" = "animations"; then
+        echo "Context=Animations"
+    fi
+    if test "$context" = "apps"; then
+        echo "Context=Applications"
+    fi
+    if test "$context" = "categories"; then
+        echo "Context=Categories"
+    fi
+    if test "$context" = "devices"; then
+        echo "Context=Devices"
+    fi
+    if test "$context" = "emblems"; then
+        echo "Context=Emblems"
+    fi
+    if test "$context" = "emotes"; then
+        echo "Context=Emotes"
+    fi
+    if test "$context" = "intl"; then
+        echo "Context=International"
+    fi
+    if test "$context" = "mimetypes"; then
+        echo "Context=MimeTypes"
+    fi
+    if test "$context" = "places"; then
+        echo "Context=Places"
+    fi
+    if test "$context" = "status"; then
+        echo "Context=Status"
+    fi
+    if test "$context" = "ui"; then
+        echo "Context=UI"
+    fi
+    if test "$context" = "legacy"; then
+        echo "Context=Legacy"
+    fi
+    echo "Size=$size"
+    if test "$sizefull" = "scalable"; then
+        echo "MinSize=8"
+        echo "MaxSize=512"
+        echo "Type=Scalable"
+    elif test "$sizefull" = "scalable-up-to-32"; then
+        echo "MinSize=16"
+        echo "MaxSize=32"
+        echo "Type=Scalable"
+    elif test "$size" = "256"; then
+        echo "MinSize=56"
+        echo "MaxSize=256"
+        echo "Type=Scalable"
+    elif test "$size" = "512"; then
+        echo "MinSize=56"
+        echo "MaxSize=512"
+        echo "Type=Scalable"
+    else
+        echo "Type=Fixed"
+    fi
+    echo ""
+done
+) >> index.theme
+
+popd
+}
+
 ###### Get filtered list of explicitly installed packages #####
 
 # Note: since both positive and negative filtering makes sense, we do both and require that the result is identical.
@@ -374,6 +468,9 @@ add_files_of_package "adwaita-icon-theme"  \
 "actions/media\|actions/pan\|actions/process\|actions/system\|actions/window\|"\
 "mimetypes/text\|places/folder\|places/user\|status/dialog\)"  \
 "files_conf-adwaita-icon-theme"
+
+make_theme_index "${RSRC_ABSDIR}/share/icons/Adwaita/"
+
 
 ### GTK compiled schemas
 
