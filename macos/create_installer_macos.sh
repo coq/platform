@@ -526,7 +526,7 @@ echo '##### Create DMG image #####'
 hdi_opts=(-volname "${DMG_NAME}"
           -srcfolder _dmg
           -ov # overwrite existing file
-          "${ZIPCOMPR}"
+          ${ZIPCOMPR}
           # needed for backward compat since macOS 10.14 which uses APFS by default
           # see discussion in #11803
           -fs hfs+
