@@ -57,7 +57,11 @@ mkdir logs
 coqpackagefull=$(opam list --installed-roots --short --columns=name,version coq | sed 's/ /./')
 opam source --dir=coq/ ${coqpackagefull}
 
-##### Get the version of Coq #####
+##### Get the version of Coq and the Platform #####
+
+source coq_platform_switch_name.sh
+
+echo "##### Coq platform version = ${COQ_PLATFORM_VERSION} #####" 
 
 COQ_VERSION=$(coqc --print-version | cut -d ' ' -f 1)
 
@@ -516,6 +520,55 @@ cp coq/ide/coqide/MacOS/*.icns ${RSRC_ABSDIR}
 # Create a link to the 'Applications' folder, so that one can drag and drop the application there
 
 ln -sf /Applications _dmg/Applications
+
+# Description
+cat > README.html <<EOT
+<html>
+<head>
+<title>The Coq platform - $COQ_PLATFORM_VERSION</title>
+<style>
+body { width : 58em; }
+</style>
+</head>
+<body>
+<h1>The Coq platform</h1>
+<p>
+  The <a href="https://coq.inria.fr">Coq interactive prover</a> provides
+  a formal language to write
+  mathematical definitions, executable algorithms, and theorems, together
+  with an environment for semi-interactive development of machine-checked
+  proofs.
+</p>
+<p>
+  The <a href="https://github.com/coq/platform">Coq platform</a>
+  is a distribution of the Coq interactive prover together
+  with a selection of Coq libraries.
+</p>
+<p>
+  The Coq platform version $COQ_PLATFORM_VERSION
+  contains the following packages:
+</p>
+<dl>
+EOT
+
+for package in $(echo $PRIMARY_PACKAGES | sort)
+do
+  pversion="$(opam show $package -f version: | tr -d \")"
+  plicense="$(opam show $package -f license: | tr -d \")"
+  pdescr="$(opam show $package -f synopsis: | tr -d \")"
+  phomepage="$(opam show $package -f homepage: | tr -d \")"
+
+  printf "<dt><a href='%s'>%s</a></dt><dd>%s (version: %s, license: %s)</dd>" \
+    "${phomepage}" "${package}" "${pdescr}" "${pversion}" "${plicense}" \
+    >> README.html
+done
+
+cat >> README.html <<'EOT'
+</dl>
+</body>
+</html>
+EOT
+
 
 ###################### CREATE INSTALLER ######################
 
