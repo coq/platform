@@ -522,7 +522,7 @@ cp coq/ide/coqide/MacOS/*.icns ${RSRC_ABSDIR}
 ln -sf /Applications _dmg/Applications
 
 # Description
-cat > README.html <<EOT
+cat > _dmg/README.html <<EOT
 <html>
 <head>
 <title>The Coq platform - $COQ_PLATFORM_VERSION</title>
@@ -560,10 +560,10 @@ do
 
   printf "<dt><a href='%s'>%s</a></dt><dd>%s (version: %s, license: %s)</dd>" \
     "${phomepage}" "${package}" "${pdescr}" "${pversion}" "${plicense}" \
-    >> README.html
+    >> _dmg/README.html
 done
 
-cat >> README.html <<'EOT'
+cat >> _dmg/README.html <<'EOT'
 </dl>
 </body>
 </html>
