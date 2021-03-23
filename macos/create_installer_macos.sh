@@ -360,7 +360,7 @@ function process_package {
   then
     blacklist="${OPAM_FILE_BLACKLIST[$1]}"
   else
-    blacklist="(\.byte|\.cm[aiox]|\.cmxa|\.o|\.a)$" # exclude byte code and library stuff
+    blacklist="(\.byte|\.cm[aiox]|\.cmxa|\.o|\.a|\.glob)$" # exclude byte code and library stuff
   fi
 
   files="$(opam show --list-files $1 | grep -E "$whitelist" | grep -E -v "$blacklist" )" || true
