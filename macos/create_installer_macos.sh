@@ -527,7 +527,22 @@ cat > _dmg/README.html <<EOT
 <head>
 <title>The Coq platform - $COQ_PLATFORM_VERSION</title>
 <style>
-body { width : 58em; }
+body {
+   width : 40em;
+   margin-left : auto;   
+   margin-right : auto;   
+}
+h1 {
+  text-align : center;
+  font-family : sans-serif;
+}
+dd { 
+  margin-bottom : 1em;
+}
+dt {
+  font-family : sans-serif;
+  font-weight : bold;
+}
 </style>
 </head>
 <body>
