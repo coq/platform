@@ -59,7 +59,7 @@ opam source --dir=coq/ ${coqpackagefull}
 
 ##### Get the version of Coq and the Platform #####
 
-source coq_platform_switch_name.sh
+source ../coq_platform_switch_name.sh
 
 echo "##### Coq platform version = ${COQ_PLATFORM_VERSION} #####" 
 
