@@ -74,8 +74,8 @@ echo "##### Coq version = ${COQ_VERSION} (Mac app version=${COQ_VERSION_MACOS}) 
 
 # Folder and image names
 
-APP_NAME="Coq_${COQ_VERSION}.app"
-DMG_NAME="coq-${COQ_VERSION}-installer-macos"
+APP_NAME="Coq_Platform_${COQ_PLATFORM_VERSION}.app"
+DMG_NAME="coq-platform-${COQ_PLATFORM_VERSION}-installer-macos"
 APP_ABSDIR="_dmg/${APP_NAME}"
 RSRC_ABSDIR="${APP_ABSDIR}/Contents/Resources"
 BIN_ABSDIR="$RSRC_ABSDIR/bin"
