@@ -13,6 +13,8 @@ source coq_platform_packages.sh
 # Snap versions cannot contain . nor +
 COQ_VERSION=${COQ_PLATFORM_VERSION//[.+]/-}
 
+COQ_CORE_VERSION=$(coqc --print-version | cut -d ' ' -f 1)
+
 # Description of the snap
 COQ_DESCRIPTION=`mktemp`
 cat > $COQ_DESCRIPTION <<EOT
@@ -21,7 +23,7 @@ cat > $COQ_DESCRIPTION <<EOT
   with an environment for semi-interactive development of machine-checked
   proofs.
   
-  This snap contains the Coq prover version $COQ_PLATFORM_VERSION
+  This snap contains the Coq prover version $COQ_CORE_VERSION
   along with CoqIDE and the following packages:
 EOT
 
