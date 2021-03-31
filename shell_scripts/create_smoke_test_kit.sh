@@ -71,6 +71,7 @@ TEST_FILES[coq-unicoq]='test-suite/microtests.v'
 TEST_FILES[coq-vst]='progs64/reverse.v progs64/verif_reverse2.v'
 TEST_FILES[coq-vst-32]='progs/reverse.v progs/verif_reverse2.v'
 COQ_OPTION[coq-vst-32]='-Q $COQLIB/../coq-variant/VST32/VST VST -Q $COQLIB/../coq-variant/compcert32/compcert compcert'
+TEST_FILES[coq-hott]=''
 
 ##### Hacks for files #####
 

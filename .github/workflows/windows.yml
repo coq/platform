@@ -30,7 +30,7 @@ on:
 # Platform script options shared among all jobs
 ###############################################################################
 env:
-  PLATFORM_ARGS: -extent=f -parallel=p -jobs=2 -vst=y -compcert=f
+  PLATFORM_ARGS: -extent=f -parallel=p -jobs=2 -vst=n -compcert=n
   COQREGTESTING: y
 
 ###############################################################################
