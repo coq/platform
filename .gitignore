@@ -3,3 +3,5 @@ windows/ReadMe.txt
 windows_installer/
 opam64/
 cygwin_cache/
+macos_installer/
+.DS_Store

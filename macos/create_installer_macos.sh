@@ -9,7 +9,7 @@
 ###################### CREATE MAC DMG INSTALLER ######################
 
 # Options:
-# -quick|-q   : disable BZIP compression of DMG file (much faster to create and install for tests)
+# -quick|-q   : disable BZIP compression of DMG + disable opam link check
 # -install|-i : install package to /Application after creating it
 # -otooldump  : provide the output of otool -L for all executables
 
@@ -24,14 +24,15 @@ set -o errexit
 
 ###### Parse command line ######
 
-ZIPCOMPR="-format UDBZ" # bzip
+ZIPCOMPR='-format UDBZ' # bzip
+CHECKOPAMLINKS='Y'
 INSTALL='N'
 OTOOLDUMP='N'
 
 for arg in "$@"
 do
   case "${arg}" in
-    -quick|-q) ZIPCOMPR="-format UDRO" ;;
+    -quick|-q) ZIPCOMPR='-format UDRO'; CHECKOPAMLINKS='N' ;;
     -install|-i) INSTALL='Y' ;;
     -otooldump) OTOOLDUMP='Y' ;;
     *) echo "ERROR: Unknown command line argument ${arg}!"; false;;
@@ -40,9 +41,9 @@ done
 
 ###### Check if required system utilities are installed #####
 
-command -v gfind &> /dev/null || ( echo "Install gfind (eg. sudo port install findutils)" ; exit 1)
-command -v grealpath &> /dev/null || ( echo "Install gfind (eg. sudo port install coreutils)" ; exit 1)
-command -v macpack  &> /dev/null || ( echo "Install macpack (eg. sudo port install py38-pip; port select --set pip3 pip38; pip3 install macpack)" ; exit 1)
+command -v gfind &> /dev/null || ( echo "Please install gfind (eg. sudo port install findutils)" ; exit 1)
+command -v grealpath &> /dev/null || ( echo "Please install gfind (eg. sudo port install coreutils)" ; exit 1)
+command -v macpack  &> /dev/null || ( echo "Please install macpack (eg. sudo port install py38-pip; port select --set pip3 pip38; pip3 install macpack)" ; exit 1)
 
 ###### Create working folder and cd #####
 
@@ -113,14 +114,20 @@ fi
 
 ###################### UTILITY FUNCTIONS ######################
 
-# Check if a newline searated list contains an item
+# Check if a space separated list contains an item
 # $1 = list
 # $2 = item
 
 function list_contains {
-#   This variant does not work when $2 contains regexp chars like conf-g++
-#   [[ $1 =~ (^|[[:space:]])$2($|[[:space:]]) ]]
-    [[ $'\n'"$1"$'\n' == *$'\n'"$2"$'\n'* ]]
+    [[ " $1 " == *" $2 "* ]]
+}
+
+# Check if a list contains an item with prefix
+# $1 = list
+# $2 = prefix
+
+function list_contains_prefix {
+    [[ " $1 " == *" $2"* ]]
 }
 
 # Find shared library dependencies and patch one binary using macpack
@@ -136,7 +143,7 @@ function add_dylibs_using_macpack {
     echo "Copying shared libraries for $1 ..."
     macpack -v -d "$2"/lib/dylib $1 >> logs/macpack.log
   else
-    echo "INFO: File '$1' with type '${type}' ignored."
+    echo "INFO: File '$1' with type '${type}' ignored in shared library analysis."
   fi
 }
 
@@ -280,15 +287,48 @@ done
 popd
 }
 
+# Check if a URL exists
+# $1 url
+
+function check_url {
+  curl --head --silent --fail "$1" >/dev/null
+}
+
+# Check if an (opam) license name has an SPDX record
+# $1 = name of license
+# $2 = name of package (for warnings)
+
+declare -A SPDX_LICENSE
+
+function check_spdx_license {
+  if [ -z ${SPDX_LICENSE[$1]+_} ]
+  then
+    if check_url "https://spdx.org/licenses/$1.html"
+    then
+      SPDX_LICENSE[$1]=yes
+    else
+      SPDX_LICENSE[$1]=no
+    fi
+  fi
+
+  if [ "${SPDX_LICENSE[$1]}" == "yes" ]
+  then
+      return 0
+  else
+    echo "License for package '$2' with name '$1' has no SPDX record" >> WARNINGS.log
+    return 1
+  fi
+}
+
 ###### Get filtered list of explicitly installed packages #####
 
 # Note: since both positive and negative filtering makes sense, we do both and require that the result is identical.
 # This ensures people get what they expect.
 
-echo "Create package list"
+echo "Create primary package list"
 
-packages_pos="$(opam list --installed-roots --short --columns=name | grep '^coq\|^menhir\|^gappa')"
-packages_neg="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^elpi')"
+packages_pos="$(opam list --installed-roots --short --columns=name | grep '^coq\|^menhir\|^gappa' | tr -s '\n' ' ')"
+packages_neg="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^elpi' | tr -s '\n' ' ')"
 
 if [ "$packages_pos" != "$packages_neg" ]
 then
@@ -302,39 +342,32 @@ PRIMARY_PACKAGES="$packages_pos"
 
 ###### Associative array with package name -> file filter (regexp pattern) #####
 
-# If not white list regexp is given it is "."
-# If not black list list regexp is given it is "\.byte\.exe$"
+# If no white list regexp is given it is "."
+# If no black list list regexp is given it is "\.byte\.exe$"
 
 declare -A OPAM_FILE_WHITELIST
 declare -A OPAM_FILE_BLACKLIST
-
-OPAM_FILE_WHITELIST[ocaml-variants]='.^' # this has the ocaml compiler in
-OPAM_FILE_WHITELIST[ocaml-base-compiler]='.^' # this has the ocaml compiler in
-OPAM_FILE_WHITELIST[base]='.^' # ocaml stdlib
-OPAM_FILE_WHITELIST[ocaml-compiler-libs]='.^'
-
-OPAM_FILE_WHITELIST[dune]='.^'
-OPAM_FILE_WHITELIST[configurator]='.^'
-OPAM_FILE_WHITELIST[sexplib0]='.^'
-OPAM_FILE_WHITELIST[csexp]='.^'
-OPAM_FILE_WHITELIST[ocamlbuild]='.^'
-OPAM_FILE_WHITELIST[result]='.^'
-OPAM_FILE_WHITELIST[cppo]='.^'
-
-OPAM_FILE_WHITELIST[elpi]='.^' # linked in coq-elpi
-OPAM_FILE_WHITELIST[camlp5]='.^' # linked in elpi
-OPAM_FILE_WHITELIST[ppx_drivers]='.^' # linked in elpi
-OPAM_FILE_WHITELIST[ppxlib]='.^' # linked in elpi
-OPAM_FILE_WHITELIST[ppx_deriving]='.^' # linked in elpi
-OPAM_FILE_WHITELIST[ocaml-migrate-parsetree]='.^' # linked in elpi
-OPAM_FILE_WHITELIST[re]='.^' # linked in elpi
 
 OPAM_FILE_WHITELIST[lablgtk3]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
 OPAM_FILE_WHITELIST[lablgtk3-sourceview3]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
 OPAM_FILE_WHITELIST[cairo2]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
 
-# Lits of packages to ignore - separated by and starting with $'\n'
-IGNORED_PACKAGES=$'\n'"ocaml-secondary-compiler"
+###### Lits of packages to ignore #####
+
+# Note: it is more efficient to ignore a package than to blacklist / not whitelist all files in it
+
+# OCaml compiler and tools
+
+IGNORED_PACKAGES="ocaml-variants ocaml-base-compiler base ocaml-compiler-libs ocaml-secondary-compiler ocamlfind-secondary"
+IGNORED_PACKAGES="${IGNORED_PACKAGES} dune configurator sexplib0 csexp ocamlbuild result cppo"
+
+# Packages linked into elpi
+
+IGNORED_PACKAGES="${IGNORED_PACKAGES} elpi camlp5 ppxlib ppx_deriving ocaml-migrate-parsetree re"
+
+# Regexp for packages to ignore
+
+IGNORED_PACKAGES_RE="^conf-"
 
 ###### Function for analyzing one package
 
@@ -364,6 +397,11 @@ function process_package {
   fi
 
   files="$(opam show --list-files $1 | grep -E "$whitelist" | grep -E -v "$blacklist" )" || true
+  if echo "$files" | grep '(modified since)' > /dev/null
+  then
+    echo "The package '$1' contains files which have been modified since opam installed them." >> WARNINGS.log
+    files=${files//(modified since)/}
+  fi
   for file in $files
   do
     if [ -d "$file" ]
@@ -388,10 +426,15 @@ function process_package {
   for dependency in $dependencies
   do
     # Check if dependency is already in the list of known packages
-    if ! list_contains "$PACKAGES" "$dependency"
+    if ! list_contains "$PACKAGES_DONE" "$dependency"
     then
-      PACKAGES="$PACKAGES"$'\n'"$dependency"
-      process_package "$dependency" $(($2 + 1))
+      # Even if teh package is excluded by IGNORED_PACKAGES_RE, we still want it in the list
+      # so that we can produce an accurate dependency list
+      PACKAGES_DONE="$PACKAGES_DONE $dependency"
+      if [[ ! "$dependency" =~ ${IGNORED_PACKAGES_RE} ]]
+      then
+        process_package "$dependency" $(($2 + 1))
+      fi
     fi
   done
 }
@@ -402,9 +445,8 @@ function process_package {
 
 echo '##### Copy Opam packages #####'
 
-# The initial list of already or otherwise processed packages is the list of top level packages
-# plus packages we don't want
-PACKAGES="$PRIMARY_PACKAGES$IGNORED_PACKAGES"
+# The initial list of already processed, otherwise processed or ignored packages
+PACKAGES_DONE="$PRIMARY_PACKAGES $IGNORED_PACKAGES"
 
 for package in $PRIMARY_PACKAGES
 do
@@ -423,10 +465,10 @@ PIXBUF_LOADER_RELDIR="$(grealpath --relative-to="$PIXBUF_LOADER_ABSDIR" "$RSRC_A
 for file in $(gdk-pixbuf-query-loaders | grep pixbufloader | sed s/\"//g); do
   cp ${file} "$PIXBUF_LOADER_ABSDIR/"
 done
-# the paths are absolue wrt the installation path of the .app
+# the paths are absolue and need to be adjustes to APP_NAME
 (cd "$PIXBUF_LOADER_ABSDIR/"; \
  GDK_PIXBUF_MODULEDIR=. gdk-pixbuf-query-loaders | \
-   sed "s?\"\\./?\"/Applications/${APP_NAME}/Contents/Resources/lib/gdk-pixbuf-2.0/2.10.0/loaders/?" > loaders.cache)
+   sed "s|^\"\\./|\"/Applications/${APP_NAME}/Contents/Resources/lib/gdk-pixbuf-2.0/2.10.0/loaders/|" > loaders.cache)
 
 
 IMMODULES_ABSDIR="$RSRC_ABSDIR/lib/gtk-3.0/3.0.0/immodules"
@@ -435,6 +477,10 @@ IMMODULES_RELDIR="$(grealpath --relative-to="$IMMODULES_ABSDIR" "$RSRC_ABSDIR")"
 for file in $(gtk-query-immodules-3.0 | grep /im- | sed s/\"//g); do
   cp ${file} "$IMMODULES_ABSDIR"
 done
+# the paths are absolue and need to be adjustes to APP_NAME
+(cd "$IMMODULES_ABSDIR/"; \
+ gtk-query-immodules-3.0 | \
+   sed "s|^\".*/immodules/|\"/Applications/${APP_NAME}/Contents/Resources/lib/gtk-3.0/3.0.0/immodules/|" > immodules.cache)
 
 for file in $(find "${BIN_ABSDIR}" -type f)
 do
@@ -470,8 +516,9 @@ add_files_of_package "adwaita-icon-theme"  \
 "/\(16x16\|22x22\|32x32\|48x48\)/.*\("\
 "actions/bookmark\|actions/document\|devices/drive\|actions/format-text\|actions/go\|actions/list\|"\
 "actions/media\|actions/pan\|actions/process\|actions/system\|actions/window\|"\
-"mimetypes/text\|places/folder\|places/user\|status/dialog\|legacy\)"  \
-"files_conf-adwaita-icon-theme"
+"mimetypes/text\|mimetypes/inode\|mimetypes/application\|"\
+"places/folder\|places/user\|status/dialog\|ui/pan\|"\
+"legacy/document\|legacy/go\|legacy/process\|legacy/window\|legacy/system\)"
 
 make_theme_index "${RSRC_ABSDIR}/share/icons/Adwaita/"
 
@@ -499,19 +546,59 @@ add_folder_recursively "${PKG_MANAGER_ROOT}" "share/gtksourceview-3.0"
 sed -e "s/VERSION/${COQ_VERSION_MACOS}/g" coq/ide/coqide/MacOS/Info.plist.template > \
     ${APP_ABSDIR}/Contents/Info.plist
 
+# Rename coqide to coqide.exe
+
+mv ${BIN_ABSDIR}/coqide ${BIN_ABSDIR}/coqide.exe
+
 # Create a shell script to start CoqIDE with correct environmant
 
-cat> ${APP_ABSDIR}/Contents/MacOS/coqide <<'EOT'
+cat> ${BIN_ABSDIR}/coqide <<'EOT'
 #!/bin/sh
-HERE=$(cd $(dirname $0); pwd)
-export PATH="${HERE}/../Resources/bin/:${PATH}"
-export LD_LIBRARY_PATH="${HERE}"
-export DYLD_LIBRARY_PATH="${HERE}"
-export GDK_PIXBUF_MODULE_FILE="${HERE}/../Resources/lib/gdk-pixbuf-2.0/2.10.0/loaders/loaders.cache"
-export XDG_DATA_HOME="${HERE}/../Resources/share"
-exec coqide
+
+# Check if $0 is a link
+if [ -L "$0" ]
+then
+  LINKTARGET="$(readlink "$0")"
+  # Check if $0 is a an absolute or relative link
+  if [[ "$LINKTARGET" == '/'* ]]
+  then
+    BINDIR="$(dirname "$LINKTARGET")"
+  else  
+    BINDIR="$(dirname "$0")/$(dirname "$LINKTARGET")"
+  fi
+else
+  BINDIR="$(dirname "$0")"
+fi
+
+# Normalize path
+BINDIR="$(cd "$BINDIR" ; pwd)"
+ROOTDIR="$(cd "$BINDIR/.." ; pwd)"
+  
+export PATH="${BINDIR}:${PATH}"
+
+# This setting is required to find the image file format handlers
+# Note: these docs are contradicting on the default path for the "loaders.cache" file
+# https://developer.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-query-loaders.html
+# https://developer.gnome.org/gtk3/stable/gtk-running.html
+# Setting GTK_EXE_PREFIX to ROOTDIR and putting the file into lib/gtk-3.0/3.0.0/loaders.cache doesn't work.
+export GDK_PIXBUF_MODULE_FILE="${ROOTDIR}/lib/gdk-pixbuf-2.0/2.10.0/loaders/loaders.cache"
+
+# This setting is required to find the "Input Method" handlers
+# ToDo: the cache file links to locales, but we don't install locales
+# ToDo: the selection of input methods seems questionable (with MacPorts)
+# ToDo: not sure if this is needed at all on Mac (which should have its own IME)
+export GTK_IM_MODULE_FILE="${ROOTDIR}/lib/3.0/3.0.0/immodules.cache"
+
+# This setting is required to find the adwaita icon theme
+export XDG_DATA_HOME="${ROOTDIR}/share"
+
+exec ${BINDIR}/coqide.exe
 EOT
-chmod a+x ${APP_ABSDIR}/Contents/MacOS/coqide
+chmod a+x ${BIN_ABSDIR}/coqide
+
+# Create a symlink in Contents/MacOS
+
+ln -sf ../Resources/bin/coqide ${APP_ABSDIR}/Contents/MacOS/coqide
 
 # Icons
 
@@ -521,32 +608,35 @@ cp coq/ide/coqide/MacOS/*.icns ${RSRC_ABSDIR}
 
 ln -sf /Applications _dmg/Applications
 
-# Description
+##### Create README.html #####
+
+echo '##### Create README.html #####'
+
 cat > _dmg/README.html <<EOT
 <html>
 <head>
 <title>The Coq platform - $COQ_PLATFORM_VERSION</title>
 <style>
 body {
-   width : 40em;
+   width : 50em;
    margin-left : auto;   
    margin-right : auto;   
 }
-h1 {
+h1,h2 {
   text-align : center;
   font-family : sans-serif;
-}
-dd { 
-  margin-bottom : 1em;
 }
 dt {
   font-family : sans-serif;
   font-weight : bold;
 }
+dd { 
+  margin-bottom : 1em;
+}
 </style>
 </head>
 <body>
-<h1>The Coq platform</h1>
+<h1>The Coq Platform $COQ_PLATFORM_VERSION</h1>
 <p>
   The <a href="https://coq.inria.fr">Coq interactive prover</a> provides
   a formal language to write
@@ -555,10 +645,27 @@ dt {
   proofs.
 </p>
 <p>
-  The <a href="https://github.com/coq/platform">Coq platform</a>
+  The <a href="https://github.com/coq/platform">Coq Platform</a>
   is a distribution of the Coq interactive prover together
   with a selection of Coq libraries.
 </p>
+EOT
+
+if list_contains_prefix "$PRIMARY_PACKAGES" 'coq-compcert'
+then
+echo "Added license note for CompCert"
+cat >> _dmg/README.html <<EOT
+<p>
+  Please note that this release of the Coq Platform contains software with
+  <b>non-free licenses which do not allow commercial use</b>, notably the
+  <b>coq-compcert</b> package. Please study the package licenses given
+  below and verify that they are compatible with your intended use.
+</p>
+EOT
+fi
+
+cat >> _dmg/README.html <<EOT
+<h2>Coq Platform $COQ_PLATFORM_VERSION packages</h2>
 <p>
   The Coq platform version $COQ_PLATFORM_VERSION
   contains the following packages:
@@ -566,16 +673,119 @@ dt {
 <dl>
 EOT
 
-for package in $(echo $PRIMARY_PACKAGES | sort)
-do
-  pversion="$(opam show $package -f version: | tr -d \")"
-  plicense="$(opam show $package -f license: | tr -d \")"
-  pdescr="$(opam show $package -f synopsis: | tr -d \")"
-  phomepage="$(opam show $package -f homepage: | tr -d \")"
+# Create an readme entry for an opam package
+# $1 = opam package name
+# $2 = true for primary, false for secondary packages
 
-  printf "<dt><a href='%s'>%s</a></dt><dd>%s (version: %s, license: %s)</dd>" \
-    "${phomepage}" "${package}" "${pdescr}" "${pversion}" "${plicense}" \
-    >> _dmg/README.html
+function html_package_opam {
+  echo "Create README for $1"
+
+  # Get package informatop from opam
+  # Example output (with 2 license fields ...)
+  # opam show "conf-adwaita-icon-theme" -f version:,license:,synopsis:,homepage:
+  # version:  "1"
+  # license:  "LGPL-3.0-only" "CC-BY-SA-3.0"
+  # synopsis: "Virtual package relying on adwaita-icon-theme"
+  # homepage: "https://github.com/GNOME/adwaita-icon-theme"
+  # Note: the process substition (rather than pipe) avoids a subshell, so that variables can be set.
+  # Note: the declare -a var="(list)" makes it possible to convert a list of quoted strings to an array
+  unset pversion plicense psynopsis phomepage
+  while read var value
+  do
+    case "${var}" in
+      version:)  pversion="${value//\"}" ;;
+      license:)  declare -a plicense="(${value})" ;;
+      synopsis:) psynopsis="${value//\"}" ;;
+      homepage:) phomepage="${value//\"}" ;;
+      *) echo "Unexpected result from opam show: $var $value"; exit 1 ;;
+    esac
+  done < <(opam show "$1" -f version:,license:,synopsis:,homepage:)
+  
+  # Remove conf- prefix for printing of package name
+  package_pretty=${package/conf-}
+
+  # Do basic HTML escaping for synposis
+  # I used 'recode' for this, but it is rather fragile, and this should be good enough
+  psynopsis="${psynopsis//&/&amp;}"
+  psynopsis="${psynopsis//</&lt;}"
+  psynopsis="${psynopsis//>/&gt;}"
+  psynopsis="${psynopsis//\"/&quot;}"
+  psynopsis="${psynopsis//\'/&apos;}"
+
+  # Elaborate license information
+  if [ ${#plicense[@]} -eq 0 ]
+  then
+    echo "License for package '${package}' is unspecified" >> WARNINGS.log
+    licensehtml="unknown - please clarify with <a href=\"${phomepage}\" target=\"_blank\">homepage</a>"
+  else
+    licensehtml=""
+    for license in "${plicense[@]}"
+    do
+      license="${license//\"}"
+      license=${license/CeCILL/CECILL}
+      if [[ "${license}" == 'https://'* ]] || [[ "${license}" == 'http://'* ]]
+      then
+        licensehtml="${licensehtml} <a href=\"${license}\" target=\"_blank\">link</a>"
+      elif check_spdx_license "${license}" "${package}"
+      then
+        licensehtml="${licensehtml} <a href=\"https://spdx.org/licenses/${license}.html\" target=\"_blank\">${license}</a>"
+      else
+        licensehtml="${licensehtml} ${license} - see <a href=\"${phomepage}\" target=\"_blank\">homepage</a> for details"
+      fi
+    done
+  fi
+
+  # Look up the opam package
+  if [[ "$1" == "coq-"* ]]
+  then
+    popam_url="https://github.com/coq/opam-coq-archive/tree/master/released/packages/${package}/${package}.${pversion}/opam"
+  else
+    popam_url="https://github.com/ocaml/opam-repository/tree/master/packages/${package}/${package}.${pversion}/opam"
+  fi
+  if [ "${CHECKOPAMLINKS}" == 'Y' ] && ! check_url "${popam_url}"
+  then
+    echo "Opam url '${popam_url}' for package '${package}' does not exist!" >> WARNINGS.log
+  fi
+
+  # Create final HTML text for package
+  if $2
+  then
+    printf "<dt><a href='%s'>%s</a> (%s)</dt><dd>%s (license: %s, package: <a href='%s'>opam</a>)</dd>\n" \
+      "${phomepage}" "${package_pretty}" "${pversion}" "${psynopsis}" "${licensehtml}" "${popam_url}" \
+      >> _dmg/README.html
+  else
+    printf "<p><a href='%s'>%s</a> (opam-version: %s, license: %s, package: <a href='%s'>opam</a>)</p>\n" \
+      "${phomepage}" "${package_pretty}" "${pversion}" "${licensehtml}" "${popam_url}" \
+      >> _dmg/README.html
+  fi
+}
+
+for package in $(echo ${PRIMARY_PACKAGES} | tr -s ' ' '\n' | sort)
+do
+  html_package_opam "${package}" true
+done
+
+cat >> _dmg/README.html <<EOT
+</dl>
+<h2>Dependecy packages</h2>
+<p>
+  In addition the dependencies listed below are partially or fully included.
+  Please note, that the version numbers given are the versions of opam packages,
+  which do not always match with the version of the supplied packages.
+  E.g. some opam packages just refer to packages e.g. installed by MacPorts or Homebrew.
+  Please refer to the linked opam package for details on what software is used.
+</p>
+<dl>
+EOT
+
+# sort packages by name, but ignore a "conf-" prefix
+for package in $(echo $PACKAGES_DONE | tr -s ' ' '\n' | sed -E 's/(.*)/\1 \1/' | sed 's/^conf-//' | sort | cut -d ' ' -f2)
+do
+  # Note: we do not ignore "IGNORED_PACKAGES" here, because they might still be linked in
+  if ! list_contains "${PRIMARY_PACKAGES}" "${package}"
+  then
+    html_package_opam "${package}" false
+  fi
 done
 
 cat >> _dmg/README.html <<'EOT'
@@ -603,11 +813,20 @@ hdiutil create "${hdi_opts[@]}" "${DMG_NAME}.dmg"
 
 echo "##### Finished installer '${DMG_NAME}.dmg' #####"
 
+##### Show wanrings #####
+
+if [ -f WARNINGS.log ]
+then
+  echo "##### WARNINGS for '${DMG_NAME}.dmg' #####"
+  cat WARNINGS.log
+  echo "##### END OF WARNINGS for '${DMG_NAME}.dmg' #####"
+fi
+
 ##### Simply copy the folder over to the Applications folder #####
 
 if [ "${INSTALL}" == 'Y' ]
 then
   echo '##### Copying to /Applications folder #####'
   rm -rf "/Applications/${APP_NAME}"
-  cp -r "${APP_ABSDIR}" '/Applications/'
+  cp -R "${APP_ABSDIR}" '/Applications/'
 fi
