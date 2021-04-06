@@ -2,7 +2,7 @@
 # Runners spec: https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners
 # Glob expressions: https://github.com/actions/toolkit/tree/main/packages/glob
 
-name: Coq Platform CI
+name: Windows
 
 ###############################################################################
 # Schedule:
@@ -19,6 +19,12 @@ on:
       - '**'
   schedule:
     - cron: "0 0 * * *"
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Arguments for the platform script:'
+        required: true
+        default: '-extent=f -parallel=p -jobs=2 -vst=y -compcert=f'
 
 ###############################################################################
 # Platform script options shared among all jobs
@@ -27,7 +33,6 @@ env:
   PLATFORM_ARGS: -extent=f -parallel=p -jobs=2 -vst=y -compcert=f
   COQREGTESTING: y
 
-jobs:
 ###############################################################################
 # Windows
 #
@@ -36,6 +41,7 @@ jobs:
 # CAVEATS:
 # - git is misconfigured, by default it puts \r in between \n\n
 ###############################################################################
+jobs:
   Windows_platform:
     name: Windows
     runs-on: windows-latest
@@ -54,6 +60,10 @@ jobs:
 
       - name: Git checkout
         uses: actions/checkout@v2
+
+      - name: Set PLATFORM
+        if: ${{ github.event.inputs.platform != '' }}
+        run: echo "PLATFORM=${{ github.event.inputs.platform }}" >> $GITHUB_ENV
 
       - name: Run common platform script
         shell: cmd
@@ -77,12 +87,12 @@ jobs:
       - name: 'Upload smoke test kit'
         uses: actions/upload-artifact@v2
         with:
-          name: 'Smoke Test Kit'
+          name: 'Smoke Test Kit Windows ${{matrix.architecture}} bits'
           path: C:\smoke\
           retention-days: 5
 
   Windows_smoke:
-    name: Smoke test
+    name: Smoke test Windows
     needs: Windows_platform
     runs-on: windows-latest
     strategy:
@@ -103,7 +113,7 @@ jobs:
         uses: actions/download-artifact@v2
         id: download-smoke
         with:
-          name: 'Smoke Test Kit'
+          name: 'Smoke Test Kit Windows ${{matrix.architecture}} bits'
 
       - name: 'Run Installer'
         shell: cmd
@@ -115,87 +125,10 @@ jobs:
         shell: cmd
         run: C:\Coq\bin\coqc.exe -v
 
-      - name: 'Run smoke test kit'
+      - name: 'Run Windows smoke test kit'
         shell: cmd
         run: |
           CD ${{steps.download-smoke.outputs.download-path}}
           DIR
           SET PATH=C:\Coq\bin\;%PATH%
           CALL run-smoke-test.bat
-
-###############################################################################
-# Ubuntu
-#
-# CAVEATS:
-# - you need bubblewrap or the script fails
-# - build-essential pulls in the C toolchain
-###############################################################################
-  Ubuntu_platform:
-    name: Ubuntu
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Git checkout
-        uses: actions/checkout@v2
-
-      - name: Install bubblewrap and build-essential
-        run: |
-          sudo apt-get update
-          sudo apt-get install bubblewrap build-essential
-
-      - name: Run common platform script
-        shell: bash
-        run: ./coq_platform_make.sh $PLATFORM_ARGS
-
-      - name: Create smoke test kit
-        shell: bash
-        run: |
-          eval $(opam env)
-          shell_scripts/create_smoke_test_kit.sh
-
-      - name: 'Run smoke test kit'
-        shell: bash
-        run: |
-          eval $(opam env)
-          smoke-test-kit/run-smoke-test.sh
-
-
-###############################################################################
-# Macos
-#
-# CAVEATS:
-# - COQREGTESTING broken, it makes the script loop, so we install opam by hand
-###############################################################################
-  Macos_platform:
-    name: Macos
-    runs-on: macos-latest
-
-    steps:
-      - name: Git checkout
-        uses: actions/checkout@v2
-
-      - name: Install opam
-        env:
-          OPAM_VERSION: 2.0.7
-        run: |
-          curl -L https://github.com/ocaml/opam/releases/download/${OPAM_VERSION}/opam-${OPAM_VERSION}-x86_64-macos > opam.${OPAM_VERSION}
-          chmod a+x opam.${OPAM_VERSION}
-          sudo cp opam.${OPAM_VERSION} /usr/local/bin/opam.${OPAM_VERSION}
-          sudo ln -s /usr/local/bin/opam.${OPAM_VERSION} /usr/local/bin/opam
-
-      - name: Run common platform script
-        shell: bash
-        run: ./coq_platform_make.sh $PLATFORM_ARGS
-
-      - name: Create smoke test kit
-        shell: bash
-        run: |
-          eval $(opam env)
-          brew install bash
-          shell_scripts/create_smoke_test_kit.sh
-
-      - name: 'Run smoke test kit'
-        shell: bash
-        run: |
-          eval $(opam env)
-          smoke-test-kit/run-smoke-test.sh
