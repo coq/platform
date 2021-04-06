@@ -36,6 +36,9 @@ PACKAGES="${PACKAGES} coq-mtac2.1.4+8.13"
 PACKAGES="${PACKAGES} coq-simple-io.1.5.0"
 PACKAGES="${PACKAGES} coq-quickchick.1.5.0"
 
+# Homotopy Type Theory (HoTT)
+PACKAGES="${PACKAGES} coq-hott.8.13"
+
 # Analysis and numerics
 PACKAGES="${PACKAGES} coq-flocq.3.3.1"
 PACKAGES="${PACKAGES} coq-coquelicot.3.1.0"
