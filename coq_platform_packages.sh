@@ -15,12 +15,12 @@
 # ATTENTION: The packages are given in an oeder so that dependencies are built
 #            first - important fo sequential builds!
 
-PACKAGES="coq.8.13.1"
+PACKAGES="coq.8.13.2"
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfF] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.13.1 lablgtk3.3.1.1"
+PACKAGES="${PACKAGES} coqide.8.13.2 lablgtk3.3.1.1"
 fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fF] ]]
@@ -63,13 +63,13 @@ PACKAGES="${PACKAGES} coq-menhirlib.20200624 menhir.20200624"
 # Todo: there is no mutex between coq platform and coq platform open source
 case "$COQ_PLATFORM_COMPCERT" in
   [fF]) PACKAGES="${PACKAGES} coq-compcert.3.8" ;;
-  [oO]) echo "The open source variant of CompCert is not supported in 2021.02.0"; exit 1 ;;
+  [oO]) echo "The open source variant of CompCert is not supported in 2021.02.1"; exit 1 ;;
   [nN]) true ;;
   *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
 esac
 
 case "$COQ_PLATFORM_VST" in
-  [yY]) PACKAGES="${PACKAGES} coq-vst.2.7" ;;
+  [yY]) PACKAGES="${PACKAGES} coq-vst.2.7.1" ;;
   [nN]) true ;;
   *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
 esac
