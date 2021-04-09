@@ -5,3 +5,4 @@ opam64/
 cygwin_cache/
 macos_installer/
 .DS_Store
+smoke-test-kit/
