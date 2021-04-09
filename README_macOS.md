@@ -1,5 +1,29 @@
 # Installation
 
+## Using the macOS DMG package
+
+This method is intended for beginners.
+For advanced users it is recommended to compile Coq from sources via opam (see next section).
+
+In case you want to use the fast path:
+
+- Download the DMG package from https://github.com/coq/platform/releases (click on "Assets" at the end of a release section).
+- Open the downloaded DMG package with a double click.
+- Drag and drop the "Coq_Platform_2021.02.1.app" icon on the link to the "Applications" folder.
+- CoqIDE appears under `/Applications` in Finder and in Launcher.
+- Beta releases of Coq Platform might contain unsigned packages, which macOS does not start by default. In case you get an error message
+stating "Coq_Platform.app cannot be opened because the developer cannot be verified" either download a release package, or alternatively
+right click the `Coq_Platform` app in `/Applications` in Finder and select `open`. You will see the same error message as before, but it will have an `Open` button now.
+- In case you want to use the installed `coqc` from the command line, please add the folder `/Applications/Coq_Platform_2021.02.1.app/Contents/Resources/bin` to your `PATH`.
+- If you want to inspect the installed content, right click the `Coq_Platform` app in `/Applications` in Finder and select `Show Package Contents`.
+
+A note to lecturers: it is easy to create a customized Windows installer from an opam switch - see [Customized Installers](#customized-installers)
+
+## Compiling from Sources via opam
+
+This method is intended for advanced users who need additional flexibility and/or an advanced working environment.
+For beginners it is recommended to use the macOS DMG installer (see previous section).
+
 - Install XCode command line tools
   - On macOS Catalina & BigSur: open a console and enter `xcode-select --install` (takes about 5 minutes)
   - Earlier OS variants: Try if `xcode-select --install` works.
