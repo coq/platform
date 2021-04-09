@@ -28,11 +28,11 @@ inspect the licenses of such packages.
 - fully opam based, also on Windows
 - single script call to install system dependencies, opam (if not there), a fresh opam switch and the coq platform
 - interactive (well script based) guidance of the user through the few parameters
-- includes all packages provided in the 8.13 windows installer. The list of included packages is:
+- The list of included packages is:
 ```
-coq                      8.13.1      Formal proof management system
-coqide                   8.13.1      IDE of the Coq formal proof management system
-coq-aac-tactics          8.13.0      Coq plugin providing tactics for rewriting universally quantified equations, modulo 
+coq                      8.13.2      Formal proof management system
+coqide                   8.13.2      IDE of the Coq formal proof management system
+coq-aac-tactics          8.13.0      Coq plugin providing tactics for rewriting universally quantified equations, modulo associative (and possibly commutative) operators
 coq-bignums              8.13.0      Bignums, the Coq library of arbitrary large numbers
 coq-compcert             3.8         The CompCert C compiler (64 bit)
 coq-coquelicot           3.1.0       A Coq formalization of real analysis compatible with the standard library
@@ -40,8 +40,9 @@ coq-elpi                 1.8.1       Elpi extension language for Coq
 coq-equations            1.2.3+8.13  A function definition package for Coq
 coq-ext-lib              0.11.3      A library of Coq definitions, theorems, and tactics
 coq-flocq                3.3.1       A formalization of floating-point arithmetic for the Coq system
-coq-gappa                1.4.6       A Coq tactic for discharging goals about floating-point arithmetic and round-off err
+coq-gappa                1.4.6       A Coq tactic for discharging goals about floating-point arithmetic and round-off errors using the Gappa prover
 coq-hierarchy-builder    1.0.0       High level commands to declare and evolve a hierarchy based on packed classes
+coq-hott                 8.13        The Homotopy Type Theory library
 coq-interval             4.1.1       A Coq tactic for proving bounds on real-valued expressions automatically
 coq-mathcomp-algebra     1.12.0      Mathematical Components Library on Algebra
 coq-mathcomp-bigenough   1.0.0       A small library to do epsilon - N reasonning
@@ -57,9 +58,8 @@ coq-mtac2                1.4+8.13    Mtac2: Typed Tactics for Coq
 coq-quickchick           1.5.0       Randomized Property-Based Testing Plugin for Coq
 coq-simple-io            1.5.0       IO monad for Coq
 coq-unicoq               1.5+8.13    An enhanced unification algorithm for Coq
-coq-vst                  2.7         Verified Software Toolchain
-elpi                     1.12.0      ELPI - Embeddable λProlog Interpreter
-gappa                    1.3.5       Tool intended for formally proving properties on numerical programs dealing
+coq-vst                  2.7.1       Verified Software Toolchain
+gappa                    1.3.5       Tool intended for formally proving properties on numerical programs dealing with floating-point or fixed-point arithmetic
 menhir                   20200624    An LR(1) parser generator
 ```
 - one unified setup script for Windows, macOS and Linux with few OS dependent sections only
@@ -71,9 +71,12 @@ menhir                   20200624    An LR(1) parser generator
 - the script can be restarted if it fails - e.g cause of internet issues - it will not redo things it already did
 - the scripts are modular and easy to configure for specific needs, e.g. a reduced or extended setup for a lecture - see [`variants.md`](/variants.md)
 
-## Nonfeatures
+## Changes from 2021.02.0 to 2021.02.1
 
-- an installer for OSX is not yet provided - this is work in progress
+- Added DMG package / installer for macOS
+- Coq and CoqIDE update to version 8.13.2 (bugfix release)
+- VST updated to version 2.7.1 (bugfix release)
+- New package `coq-hott` *The Homotopy Type Theory library*
 
 # Usage of the 2021.02.1 release
 
@@ -108,14 +111,14 @@ You can change the selection of packages any time later by issuing `opam install
 ```
 opam install coq-compcert.3.8~open_source (not yet supported by 2021.02.1)
 opam install coq-compcert.3.8
-opam install coq-vst.2.7
+opam install coq-vst.2.7.1
 ```
 
 Besides the open source and non open source variant of CompCert, there is also a 32 bit variant of CompCert and VST, which can
 be installed by running these commands:
 ```
 opam install coq-compcert-64.3.8
-opam install coq-vst-64.2.7
+opam install coq-vst-64.2.7.1
 ```
 or by adjusting [`coq_platform_packages.sh`](/coq_platform_packages.sh) accordingly.
 Please note that since both variants can be installed in parallel, only one, the 32 bit variant, is immediately available to Coq
