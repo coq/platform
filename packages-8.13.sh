@@ -8,17 +8,24 @@
 # Creative Commons CC0 1.0 Universal License
 # See https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt
 
-###################### PACKAGE SELECTION #####################
-
-COQ_PLATFORM_PACKAGELIST="8.13"
+###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
 # DESCRIPTION Coq 8.13.2 04/2021 (latest release version, default)
 # SORTORDER 1
 
-# HINT: Comment packages you do not want
-# HINT: Packages with system dependencies should be given first
-#       This avoids multiple sudo password requests
+# The package list name is the final part of the opam switch name
+COQ_PLATFORM_PACKAGELIST_NAME='8.12'
+# This controls if opam repositories for development packages are selected
+COQ_PLATFORM_USE_DEV_REPOSITORY='N'
+
+###################### PACKAGE SELECTION #####################
+
+# - Comment out packages you do not want.
+# - Packages with system dependencies should be given first.
+#   This avoids multiple sudo password requests
+# - Packages which take a long time to build should be given last.
+#   There is some evidence that they are built early then.
 
 PACKAGES="coq.8.13.2"
 
@@ -83,7 +90,3 @@ case "$COQ_PLATFORM_VST" in
 esac
 
 fi
-
-# Note: there is some experimental evidence that the in a parallel build
-# package given last is tried to build first (after its dependencies).
-# Since VST takes longest, give it last.
