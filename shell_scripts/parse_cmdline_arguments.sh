@@ -51,6 +51,22 @@ do
   esac
 done
 
+# allow short form names for packages
+for prefix1 in "" "versions/"
+do
+  for prefix2 in "" "packages-"
+  do
+    for postfix in "" ".sh"
+    do
+      testname="${prefix1}${prefix2}${COQ_PLATFORM_PACKAGELIST}${postfix}"
+      if [ -f "${testname}" ]
+      then
+        COQ_PLATFORM_PACKAGELIST="${testname}"
+      fi
+    done
+  done
+done
+
 check_value_enumeraton  "${COQ_PLATFORM_EXTENT:-__unset__}"   "[fbi]" "-extent/COQ_PLATFORM_EXTENT"
 check_value_enumeraton  "${COQ_PLATFORM_PARALLEL:-__unset__}" "[ps]"  "-parallel/COQ_PLATFORM_PARALLEL"
 check_value_range       "${COQ_PLATFORM_JOBS:-__unset__}"     1 16    "-jobs/COQ_PLATFORM_JOBS"
