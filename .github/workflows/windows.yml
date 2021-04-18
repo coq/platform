@@ -51,6 +51,10 @@ jobs:
         architecture:
           - '32'
           - '64'
+        variant:
+          - '8.13'
+          - '8.12'
+          - 'dev'
 
     steps:
       - name: Set git to use LF
@@ -67,7 +71,7 @@ jobs:
 
       - name: Run common platform script
         shell: cmd
-        run: coq_platform_make_windows.bat -destcyg=C:\cygwin_coq_platform -arch=${{matrix.architecture}} %PLATFORM_ARGS%
+        run: coq_platform_make_windows.bat -destcyg=C:\cygwin_coq_platform -arch=${{matrix.architecture}} -packages=${{matrix.variant}} %PLATFORM_ARGS%
 
       - name: Create installer
         shell: cmd
