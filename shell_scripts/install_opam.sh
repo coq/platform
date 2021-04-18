@@ -9,6 +9,7 @@
 # See https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt
 
 ###################### INSTALL OPAM #####################
+
 function run_opam_installer {
   check_command_available curl
   curl -sL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh > opam_installer.sh
@@ -20,6 +21,17 @@ function run_opam_installer {
     ./opam_installer.sh
   fi
   rm opam_installer.sh
+}
+
+# Register a Coq Platform specific patch repo
+# This repo shall always be specific to this switch - if it exists, the URL will be set to the require value
+# $1 - patch repo subfolder (a subfolder under opam)
+# $2 - patch repo name (a postfix to the repo name)
+function create_opam_repo {
+  if ! opam repo set-url "patch_$2_${COQ_PLATFORM_REPO_NAME}" "file://$OPAMPACKAGES/$1" 2>/dev/null
+  then
+    $COQ_PLATFORM_TIME opam repo add --dont-select "patch_$2_${COQ_PLATFORM_REPO_NAME}" "file://$OPAMPACKAGES/$1"
+  fi
 }
 
 if ! command -v opam &> /dev/null
@@ -99,7 +111,7 @@ cat <<EOH
 
 Updating or installing the bubblewrap sandbox on your system might be
 difficult. Opam uses bubblewrap to make sure that make files access their
-clocal build folders only, so that a gone wild "cd .. && rm -rf" in a
+local build folders only, so that a gone wild "cd .. && rm -rf" in a
 "make clean" does not erase your home folder. This is an extra sefety measure
 and it is not strictly required. You have probably run "make" in some open
 source software build folder before without using a sandbox. Opam has this
@@ -148,16 +160,21 @@ then
   else
     COQ_PLATFORM_OCAML_VERSION='ocaml-base-compiler.4.07.1'
   fi
-  # Register switch specific repo
-  # This repo shall always be specific to this switch - so delete it if it exists
-  $COQ_PLATFORM_TIME opam repo remove --all "patch$COQ_PLATFORM_SWITCH_NAME" || true
-  $COQ_PLATFORM_TIME opam repo add --dont-select "patch$COQ_PLATFORM_SWITCH_NAME" "file://$OPAMPACKAGES"
 
-  # Add the Coq repo - not a repo can be added many times as long as the URL is the same
-  $COQ_PLATFORM_TIME opam repo add --dont-select coq-released "https://coq.inria.fr/opam/released"
+  # Register Coq Platform specific patch repos
+  create_opam_repo opam-repository ocaml
+  create_opam_repo opam-coq-archive/released coq-released
+  create_opam_repo opam-coq-archive/extra-dev coq-dev
+
+  # Prepare list of patch repos
+  COQ_PLATFORM_OPAM_PATCH_REPOS="patch_coq-released_${COQ_PLATFORM_REPO_NAME},patch_ocaml_${COQ_PLATFORM_REPO_NAME}"
+  if [ "${COQ_PLATFORM_USE_DEV_REPOSITORY}" == 'Y' ]
+  then
+    COQ_PLATFORM_OPAM_PATCH_REPOS="patch_coq-dev_${COQ_PLATFORM_REPO_NAME},${COQ_PLATFORM_OPAM_PATCH_REPOS}"
+  fi
 
   # Create switch with the patch repo registered right away in case we need to patch OCaml
-  $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME $COQ_PLATFORM_OCAML_VERSION --repositories="patch$COQ_PLATFORM_SWITCH_NAME",coq-released,default
+  $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME $COQ_PLATFORM_OCAML_VERSION --repositories="${COQ_PLATFORM_OPAM_PATCH_REPOS},coq-released,default"
 else
   echo "===== opam switch already exists ====="
 fi
