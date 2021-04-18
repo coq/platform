@@ -24,7 +24,7 @@ developments. You can use "opam switch" to switch between Coq versions.
 The follwoing versions / package lists are supported:
 EOH
 
-  packagefile_list="$( (for file in packages-*.sh; do echo "$(grep "# SORTORDER" $file) $file"; done) | sed 's/  */ /g' | sort -n | cut -d ' ' -f 4)"
+  packagefile_list="$( (for file in versions/packages-*.sh; do echo "$(grep "# SORTORDER" $file) $file"; done) | sed 's/  */ /g' | sort -n | cut -d ' ' -f 4)"
 
   packageindex=0
   for packagefile in ${packagefile_list}
