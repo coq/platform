@@ -149,9 +149,11 @@ fi
 
 # Prepare list of patch repos
 COQ_PLATFORM_OPAM_PATCH_REPOS="${COQ_PLATFORM_REPO_NAME}.patch_coq-released,${COQ_PLATFORM_REPO_NAME}.patch_ocaml"
+COQ_PLATFORM_OPAM_MAIN_REPOS="coq-released,default"
 if [ "${COQ_PLATFORM_USE_DEV_REPOSITORY}" == 'Y' ]
 then
   COQ_PLATFORM_OPAM_PATCH_REPOS="${COQ_PLATFORM_REPO_NAME}.patch_coq-dev,${COQ_PLATFORM_OPAM_PATCH_REPOS}"
+  COQ_PLATFORM_OPAM_MAIN_REPOS="coq-core-dev,coq-extra-dev,${COQ_PLATFORM_OPAM_MAIN_REPOS}"
 fi
 
 if ! opam switch $COQ_PLATFORM_SWITCH_NAME 2>/dev/null
@@ -173,11 +175,13 @@ then
   create_opam_repo opam-coq-archive/released coq-released
   create_opam_repo opam-coq-archive/extra-dev coq-dev
 
-  # Register the Coq repo - note: a repo can be added many times as long as the URL is the same
+  # Register the Coq repos - note: a repo can be added many times as long as the URL is the same
   $COQ_PLATFORM_TIME opam repo add --dont-select coq-released "https://coq.inria.fr/opam/released"
+  $COQ_PLATFORM_TIME opam repo add --dont-select coq-core-dev "https://coq.inria.fr/opam/core-dev"
+  $COQ_PLATFORM_TIME opam repo add --dont-select coq-extra-dev "https://coq.inria.fr/opam/extra-dev"
 
   # Create switch with the patch repo registered right away in case we need to patch OCaml
-  $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME $COQ_PLATFORM_OCAML_VERSION --repositories="${COQ_PLATFORM_OPAM_PATCH_REPOS},coq-released,default"
+  $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME $COQ_PLATFORM_OCAML_VERSION --repositories="${COQ_PLATFORM_OPAM_PATCH_REPOS},${COQ_PLATFORM_OPAM_MAIN_REPOS}"
 else
   echo "===== opam switch already exists ====="
 fi
@@ -220,7 +224,7 @@ then
   $COQ_PLATFORM_TIME opam update
   touch "$HOME/.opam_update_timestamp"
 else
-  $COQ_PLATFORM_TIME opam update ${COQ_PLATFORM_OPAM_PATCH_REPOS/,/ }
+  $COQ_PLATFORM_TIME opam update ${COQ_PLATFORM_OPAM_PATCH_REPOS//,/ }
 fi
 
 ###################### snap ######################
