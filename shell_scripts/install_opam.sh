@@ -28,9 +28,9 @@ function run_opam_installer {
 # $1 - patch repo subfolder (a subfolder under opam)
 # $2 - patch repo name (a postfix to the repo name)
 function create_opam_repo {
-  if ! opam repo set-url "patch_$2_${COQ_PLATFORM_REPO_NAME}" "file://$OPAMPACKAGES/$1" 2>/dev/null
+  if ! opam repo set-url "${COQ_PLATFORM_REPO_NAME}.patch_$2" "file://$OPAMPACKAGES/$1" 2>/dev/null
   then
-    $COQ_PLATFORM_TIME opam repo add --dont-select "patch_$2_${COQ_PLATFORM_REPO_NAME}" "file://$OPAMPACKAGES/$1"
+    $COQ_PLATFORM_TIME opam repo add --dont-select "${COQ_PLATFORM_REPO_NAME}.patch_$2" "file://$OPAMPACKAGES/$1"
   fi
 }
 
@@ -147,6 +147,13 @@ fi
 
 ###################### CREATE OPAM SWITCH #####################
 
+# Prepare list of patch repos
+COQ_PLATFORM_OPAM_PATCH_REPOS="${COQ_PLATFORM_REPO_NAME}.patch_coq-released,${COQ_PLATFORM_REPO_NAME}.patch_ocaml"
+if [ "${COQ_PLATFORM_USE_DEV_REPOSITORY}" == 'Y' ]
+then
+  COQ_PLATFORM_OPAM_PATCH_REPOS="${COQ_PLATFORM_REPO_NAME}.patch_coq-dev,${COQ_PLATFORM_OPAM_PATCH_REPOS}"
+fi
+
 if ! opam switch $COQ_PLATFORM_SWITCH_NAME 2>/dev/null
 then
   echo "===== CREATE OPAM SWITCH ====="
@@ -166,12 +173,8 @@ then
   create_opam_repo opam-coq-archive/released coq-released
   create_opam_repo opam-coq-archive/extra-dev coq-dev
 
-  # Prepare list of patch repos
-  COQ_PLATFORM_OPAM_PATCH_REPOS="patch_coq-released_${COQ_PLATFORM_REPO_NAME},patch_ocaml_${COQ_PLATFORM_REPO_NAME}"
-  if [ "${COQ_PLATFORM_USE_DEV_REPOSITORY}" == 'Y' ]
-  then
-    COQ_PLATFORM_OPAM_PATCH_REPOS="patch_coq-dev_${COQ_PLATFORM_REPO_NAME},${COQ_PLATFORM_OPAM_PATCH_REPOS}"
-  fi
+  # Register the Coq repo - note: a repo can be added many times as long as the URL is the same
+  $COQ_PLATFORM_TIME opam repo add --dont-select coq-released "https://coq.inria.fr/opam/released"
 
   # Create switch with the patch repo registered right away in case we need to patch OCaml
   $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME $COQ_PLATFORM_OCAML_VERSION --repositories="${COQ_PLATFORM_OPAM_PATCH_REPOS},coq-released,default"
@@ -217,6 +220,6 @@ then
   $COQ_PLATFORM_TIME opam update
   touch "$HOME/.opam_update_timestamp"
 else
-  $COQ_PLATFORM_TIME opam update "patch$COQ_PLATFORM_SWITCH_NAME"
+  $COQ_PLATFORM_TIME opam update ${COQ_PLATFORM_OPAM_PATCH_REPOS/,/ }
 fi
 
