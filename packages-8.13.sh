@@ -10,10 +10,15 @@
 
 ###################### PACKAGE SELECTION #####################
 
-# HINT: Comment packages you do not want
+COQ_PLATFORM_PACKAGELIST="8.13"
 
-# ATTENTION: The packages are given in an oeder so that dependencies are built
-#            first - important fo sequential builds!
+# The two lines below are used by the package selection script
+# DESCRIPTION Coq 8.13.2 04/2021 (latest release version, default)
+# SORTORDER 1
+
+# HINT: Comment packages you do not want
+# HINT: Packages with system dependencies should be given first
+#       This avoids multiple sudo password requests
 
 PACKAGES="coq.8.13.2"
 
@@ -36,9 +41,6 @@ PACKAGES="${PACKAGES} coq-mtac2.1.4+8.13"
 PACKAGES="${PACKAGES} coq-simple-io.1.5.0"
 PACKAGES="${PACKAGES} coq-quickchick.1.5.0"
 
-# Homotopy Type Theory (HoTT)
-PACKAGES="${PACKAGES} coq-hott.8.13"
-
 # Analysis and numerics
 PACKAGES="${PACKAGES} coq-flocq.3.3.1"
 PACKAGES="${PACKAGES} coq-coquelicot.3.1.0"
@@ -60,6 +62,9 @@ PACKAGES="${PACKAGES} coq-mathcomp-character.1.12.0"
 PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.0"
 PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"
 PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
+
+# Homotopy Type Theory (HoTT)
+PACKAGES="${PACKAGES} coq-hott.8.13"
 
 # Menhir, CompCert and Princeton VST - these take longer to compile !
 PACKAGES="${PACKAGES} coq-menhirlib.20200624 menhir.20200624"
