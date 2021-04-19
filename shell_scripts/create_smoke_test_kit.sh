@@ -30,6 +30,18 @@ set -o errexit
 rm -rf smoke-test-kit
 mkdir smoke-test-kit
 
+###### Get package list name #####
+
+# This is used below as postfix for package names in case the file names depend on the version
+
+# First get COQ_PLATFORM_SWITCH_NAME with the COQ_PLATFORM_PACKAGELIST_NAME part beeing empty
+COQ_PLATFORM_PACKAGELIST_NAME=''
+source "$(dirname "$0")/../versions/coq_platform_version.sh"
+source "$(dirname "$0")/../versions/coq_platform_switch_name.sh"
+# Then get the current full switch name and remove the partial name from it, so that the extension remains
+current_switch="$(opam switch show)"
+COQ_PLATFORM_PACKAGELIST_NAME="${current_switch/${COQ_PLATFORM_SWITCH_NAME}/}"
+
 ###### Get filtered list of explicitly installed packages #####
 
 echo "Create package list"
@@ -48,6 +60,7 @@ TEST_FILES[coq-compcert-32]='lib/Coqlib.v'
 COQ_OPTION[coq-compcert-32]='-Q $COQLIB/../coq-variant/compcert32/compcert compcert'
 TEST_FILES[coq-coquelicot]='examples/BacS2013.v'
 TEST_FILES[coq-elpi]='examples/tutorial_coq_elpi.v examples/tutorial_elpi_lang.v'
+TEST_FILES[coq-elpi.8.12]='theories/examples/example_reflexive_tactic.v'
 TEST_FILES[coq-equations]='examples/Fin.v examples/STLC.v'
 TEST_FILES[coq-ext-lib]='examples/MonadReasoning.v examples/Printing.v'
 TEST_FILES[coq-flocq]='examples/Average.v' # In fixing: examples/Cody_Waite.v
@@ -65,10 +78,12 @@ TEST_FILES[coq-mathcomp-solvable]='mathcomp/solvable/abelian.v'
 TEST_FILES[coq-mathcomp-ssreflect]='mathcomp/ssreflect/ssrbool.v'
 TEST_FILES[coq-menhirlib]='coq-menhirlib/src/Alphabet.v'
 TEST_FILES[coq-mtac2]='examples/basics_tutorial.v examples/tauto.v'
+TEST_FILES[coq-mtac2.8.12]='examples/tactics.v examples/tauto.v'
 TEST_FILES[coq-quickchick]='examples/PluginTest.v' # Check: BSTTest.v
 TEST_FILES[coq-simple-io]='test/Example.v test/TestExtraction.v'
 TEST_FILES[coq-unicoq]='test-suite/microtests.v'
 TEST_FILES[coq-vst]='progs64/reverse.v progs64/verif_reverse2.v'
+TEST_FILES[coq-vst.8.12]='progs/reverse.v progs/verif_reverse2.v'
 TEST_FILES[coq-vst-32]='progs/reverse.v progs/verif_reverse2.v'
 COQ_OPTION[coq-vst-32]='-Q $COQLIB/../coq-variant/VST32/VST VST -Q $COQLIB/../coq-variant/compcert32/compcert compcert'
 TEST_FILES[coq-hott]='theories/Analysis/Locator.v'
@@ -179,19 +194,24 @@ cat <<-'EOH' | sed 's/$/\r/' > $smoke_batch
 
 ##### Get the test/example file(s) for each package #####
 
-for package in $packages
+for package in ${packages}
 do
-  if [ -n "${TEST_FILES[$package]+_undef_}" ]
+  # First check if a version sepcific entry exists
+  if [ -n "${TEST_FILES[${package}.${COQ_PLATFORM_PACKAGELIST_NAME}]+_undef_}" ]
   then
-    files="${TEST_FILES[$package]}"
+    files="${TEST_FILES[${package}.${COQ_PLATFORM_PACKAGELIST_NAME}]}"
+  # If not check if a generic entry exists
+  elif [ -n "${TEST_FILES[${package}]+_undef_}" ]
+  then
+    files="${TEST_FILES[${package}]}"
   else
-    echo "No file list defined for package $package"
+    echo "No file list defined for package ${package}"
     exit 1
   fi
 
-  if [ -n "${COQ_OPTION[$package]+_undef_}" ]
+  if [ -n "${COQ_OPTION[${package}]+_undef_}" ]
   then
-    options='"'"${COQ_OPTION[$package]}"'"'
+    options='"'"${COQ_OPTION[${package}]}"'"'
   else
     options=""
   fi
@@ -199,23 +219,23 @@ do
   if [ -n "$files" ]
   then
     # get installed version of package (otherwise opam source gives the latest)
-    packagefull=$(opam list --installed-roots --short --columns=name,version $package | sed 's/ /./')
-    echo "Extracting from $packagefull the files $files"
-    opam source --dir=smoke-test-kit/$package-src $packagefull
-    mkdir smoke-test-kit/$package
+    packagefull=$(opam list --installed-roots --short --columns=name,version ${package} | sed 's/ /./')
+    echo "Extracting from ${packagefull} the files $files"
+    opam source --dir=smoke-test-kit/${package}-src ${packagefull}
+    mkdir smoke-test-kit/${package}
     for file in $files
     do
       filename=${file##*/}
       # coqc does not accept file names with -
       filename=${filename/-/_}
-      cp "smoke-test-kit/$package-src/$file" "smoke-test-kit/$package/${filename}"
-      patch_file "smoke-test-kit/$package/${filename}"
-      echo "run_test $package/${filename} $options" >> $smoke_script
-      echo "CALL :run_test $package/${filename} ${options//\$COQLIB/%COQLIB%}"$'\r' >> $smoke_batch
+      cp "smoke-test-kit/${package}-src/$file" "smoke-test-kit/${package}/${filename}"
+      patch_file "smoke-test-kit/${package}/${filename}"
+      echo "run_test ${package}/${filename} $options" >> $smoke_script
+      echo "CALL :run_test ${package}/${filename} ${options//\$COQLIB/%COQLIB%}"$'\r' >> $smoke_batch
     done
-    rm -rf smoke-test-kit/$package-src
+    rm -rf smoke-test-kit/${package}-src
   else
-    echo "File list for $package is set empty"
+    echo "File list for ${package} is set empty"
   fi
 done
 
