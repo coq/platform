@@ -32,15 +32,7 @@ mkdir smoke-test-kit
 
 ###### Get package list name #####
 
-# This is used below as postfix for package names in case the file names depend on the version
-
-# First get COQ_PLATFORM_SWITCH_NAME with the COQ_PLATFORM_PACKAGELIST_NAME part beeing empty
-COQ_PLATFORM_PACKAGELIST_NAME=''
-source "$(dirname "$0")/../versions/coq_platform_version.sh"
-source "$(dirname "$0")/../versions/coq_platform_switch_name.sh"
-# Then get the current full switch name and remove the partial name from it, so that the extension remains
-current_switch="$(opam switch show)"
-COQ_PLATFORM_PACKAGELIST_NAME="${current_switch/${COQ_PLATFORM_SWITCH_NAME}/}"
+source "$(dirname "$0")/get_names_from_switch.sh"
 
 ###### Get filtered list of explicitly installed packages #####
 
