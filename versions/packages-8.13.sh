@@ -15,7 +15,7 @@
 # SORTORDER 1
 
 # The package list name is the final part of the opam switch name
-COQ_PLATFORM_PACKAGELIST_NAME='8.12'
+COQ_PLATFORM_PACKAGELIST_NAME='8.13'
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
