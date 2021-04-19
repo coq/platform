@@ -52,20 +52,23 @@ do
 done
 
 # allow short form names for packages
-for prefix1 in "" "versions/"
-do
-  for prefix2 in "" "packages-"
+if [ -n "${COQ_PLATFORM_PACKAGELIST:+x}" ]
+then
+  for prefix1 in "" "versions/"
   do
-    for postfix in "" ".sh"
+    for prefix2 in "" "packages-"
     do
-      testname="${prefix1}${prefix2}${COQ_PLATFORM_PACKAGELIST}${postfix}"
-      if [ -f "${testname}" ]
-      then
-        COQ_PLATFORM_PACKAGELIST="${testname}"
-      fi
+      for postfix in "" ".sh"
+      do
+        testname="${prefix1}${prefix2}${COQ_PLATFORM_PACKAGELIST}${postfix}"
+        if [ -f "${testname}" ]
+        then
+          COQ_PLATFORM_PACKAGELIST="${testname}"
+        fi
+      done
     done
   done
-done
+fi
 
 check_value_enumeraton  "${COQ_PLATFORM_EXTENT:-__unset__}"   "[fbi]" "-extent/COQ_PLATFORM_EXTENT"
 check_value_enumeraton  "${COQ_PLATFORM_PARALLEL:-__unset__}" "[ps]"  "-parallel/COQ_PLATFORM_PARALLEL"
