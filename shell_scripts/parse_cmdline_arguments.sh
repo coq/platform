@@ -33,7 +33,7 @@ OPTIONS:
   -vst=n       Do not build Verified Software Toolchain
   -switch=k    In case the opam switch already exists, keep it
   -switch=d    In case the opam switch already exists, delete it
-  -override-dev-pkg=<name>=<url>
+  -override-dev-pkg=name=url To override the url of a .dev package
 EOH
 }
 

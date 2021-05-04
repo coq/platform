@@ -61,6 +61,10 @@ SET CYGWIN_FORCE=n
 REM If y, automatically run the coq-platform setup after cygwin setup
 SET BUILD_COQ_PLATFORM=y
 
+REM See -override-dev-pkg
+SET "COQ_PLATFORM_OVERRIDE_DEV= "
+
+
 REM ========== PARSE COMMAND LINE PARAMETERS ==========
 
 SHIFT
@@ -200,6 +204,13 @@ IF "%~0" == "-vst" (
 
 IF "%~0" == "-switch" (
   SET COQ_PLATFORM_SWITCH=%~1
+  SHIFT
+  SHIFT
+  GOTO Parse
+)
+
+IF "%~0" == "-override-dev-pkg" (
+  SET "COQ_PLATFORM_OVERRIDE_DEV=%COQ_PLATFORM_OVERRIDE_DEV% %~1"
   SHIFT
   SHIFT
   GOTO Parse
@@ -470,6 +481,7 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -vst=n       Do not build Verified Software Toolchain
   ECHO -switch=k    In case the opam switch already exists, keep it
   ECHO -switch=d    In case the opam switch already exists, delete it
+  ECHO -override-dev-pkg=name=url To override the url of a .dev package
   REM  01234567890123456789012345678901234567890123456789012345678901234567890123456789
   GOTO :EOF
 
@@ -491,6 +503,7 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -compcert = %COQ_PLATFORM_COMPCERT%
   ECHO -vst      = %COQ_PLATFORM_VST%
   ECHO -switch   = %COQ_PLATFORM_SWITCH%
+  ECHO -override-dev-pkg = %COQ_PLATFORM_OVERRIDE_DEV%
   GOTO :EOF
 
 :CheckYN

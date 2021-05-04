@@ -1,5 +1,5 @@
 
-for override in ${COQ_PLATFORM_OVERRIDE_DEV}
+for override in ${COQ_PLATFORM_OVERRIDE_DEV:-}
 do
     pkg="${override%%=*}"
     url="${override#*=}"
