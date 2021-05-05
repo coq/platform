@@ -53,6 +53,7 @@ source shell_scripts/ask_delete_opam_switch.sh
 source shell_scripts/install_opam.sh
 source shell_scripts/check_opam_sandbox.sh
 source shell_scripts/install_opam_depext.sh
+source shell_scripts/coq_platform_override_dev_pkg.sh
 
 ###################### INSTALL PREREQUISITES #####################
 
