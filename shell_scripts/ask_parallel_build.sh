@@ -29,7 +29,7 @@ build takes less than 14GB of RAM with 15 parallel make jobs.
 With 32 GB or RAM a parallel package build with 16 make jobs is recommended.
 With 16 GB of RAM a parallel package build with 4 make jobs is recommended.
 With 8 GB of RAM a sequential package build with 4 make jobs is recommended.
-With 4 GB+1GB swap a sequential packahge build with 2 make jobs is recommended.
+With 4 GB+1GB swap a sequential package build with 2 make jobs is recommended.
 With less RAM, you might have to remove failing packages, e.g. VST.
 In order to remove packages, just edit this script at "PACKAGE SELECTION".
 
