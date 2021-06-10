@@ -6,11 +6,12 @@
 export COQBIN="$(cd $(dirname $0); pwd)"
 export COQLIB="$(cd $(dirname $0)/../lib/coq/; pwd)"
 
-THIS="$(basename $0)"
-SELF="${THIS##coq_wrapper_}"
+SELF="$(basename $1)"
+
+shift # drop $1
 
 if [ "$SELF" == "coq_makefile" ]; then
-  exec $(dirname $0)/$SELF COQBIN = "$COQBIN/" "$@"
+  exec $COQBIN/$SELF COQBIN = "$COQBIN/" "$@"
 else
-  exec $(dirname $0)/$SELF "$@"
+  exec $COQBIN/$SELF "$@"
 fi

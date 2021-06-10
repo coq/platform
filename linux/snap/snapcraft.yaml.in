@@ -37,25 +37,29 @@ parts:
     override-build: |
       # install wrapper for apps
       mkdir -p $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/bin/
-      cp linux/snap/coq_wrapper_* $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/bin/
+      cp linux/snap/coq_wrapper $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/bin/
 
 apps:
   coqide:
-    command: coq-platform/@@COQ_VERSION@@/bin/coq_wrapper_coqide
+    command-chain: [ coq-platform/@@COQ_VERSION@@/bin/coq_wrapper ]
+    command: coq-platform/@@COQ_VERSION@@/bin/coqide
     plugs: [desktop, home]
     extensions: [gnome-3-28]
-    desktop: ../project/snap/gui/coqide.desktop
   coqtop:
     plugs: [home]
-    command: coq-platform/@@COQ_VERSION@@/bin/coq_wrapper_coqtop
+    command-chain: [ coq-platform/@@COQ_VERSION@@/bin/coq_wrapper ]
+    command: coq-platform/@@COQ_VERSION@@/bin/coqtop
   coqc:
     plugs: [home]
-    command: coq-platform/@@COQ_VERSION@@/bin/coq_wrapper_coqc
+    command-chain: [ coq-platform/@@COQ_VERSION@@/bin/coq_wrapper ]
+    command: coq-platform/@@COQ_VERSION@@/bin/coqc
   coq-makefile:
     plugs: [home]
-    command: coq-platform/@@COQ_VERSION@@/bin/coq_wrapper_coq_makefile
+    command-chain: [ coq-platform/@@COQ_VERSION@@/bin/coq_wrapper ]
+    command: coq-platform/@@COQ_VERSION@@/bin/coq_makefile
   coqidetop:
     plugs: [home,network-bind]
-    command: coq-platform/@@COQ_VERSION@@/bin/coq_wrapper_coqidetop.opt
+    command-chain: [ coq-platform/@@COQ_VERSION@@/bin/coq_wrapper ]
+    command: coq-platform/@@COQ_VERSION@@/bin/coqidetop.opt
 
 
