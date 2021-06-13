@@ -212,6 +212,12 @@ IF "%~0" == "-switch" (
   GOTO Parse
 )
 
+IF "%~0" == "-dumplogs" (
+  SET COQ_PLATFORM_DUMP_LOGS=y
+  SHIFT
+  GOTO Parse
+)
+
 IF NOT "%~0" == "" (
   ECHO Install cygwin and download, compile and install OCaml and Coq for MinGW
   ECHO !!! Illegal parameter %~0
@@ -499,6 +505,7 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -compcert = %COQ_PLATFORM_COMPCERT%
   ECHO -vst      = %COQ_PLATFORM_VST%
   ECHO -switch   = %COQ_PLATFORM_SWITCH%
+  ECHO -dumplogs = %COQ_PLATFORM_DUMP_LOGS%
   GOTO :EOF
 
 :CheckYN
