@@ -81,10 +81,10 @@ case "$COQ_PLATFORM_COMPCERT" in
   *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
 esac
 
-# case "$COQ_PLATFORM_VST" in
-#   [yY]) PACKAGES="${PACKAGES} coq-vst.dev" ;;
-#   [nN]) true ;;
-#   *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
-# esac
+case "$COQ_PLATFORM_VST" in
+  [yY]) PACKAGES="${PACKAGES} coq-vst.dev" ;;
+  [nN]) true ;;
+  *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
+esac
 
 fi
