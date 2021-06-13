@@ -50,7 +50,7 @@ mkdir -p snap/gui/
 
 sed \
    -e "s/@@COQ_VERSION@@/$COQ_VERSION/g" \
-   linux/snap/coqide.desktop.in > snap/gui/coqide.desktop
+   linux/snap/coq-prover.desktop.in > snap/gui/coq-prover.desktop
 
 echo "INFO: filled in snap/gui/coqide.desktop"
 
