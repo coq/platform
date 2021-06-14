@@ -557,7 +557,7 @@ fi
 
 # Create Info.plist file
 
-sed -e "s/VERSION/${COQ_VERSION_MACOS}/g" ${coqidefolder}/MacOS/Info.plist.template > \
+sed -e "s/VERSION/${COQ_VERSION_MACOS}/g" ../macos/Info.plist.template > \
     ${APP_ABSDIR}/Contents/Info.plist
 
 # Rename coqide to coqide.exe
