@@ -49,7 +49,7 @@ command -v macpack  &> /dev/null || ( echo "Please install macpack (eg. sudo por
 
 source shell_scripts/get_names_from_switch.sh
 
-echo "##### Coq platform version = ${COQ_PLATFORM_VERSION}_${COQ_PLATFORM_PACKAGELIST_NAME} #####" 
+echo "##### Coq platform version = ${COQ_PLATFORM_VERSION}${COQ_PLATFORM_PACKAGELIST_NAME} #####" 
 
 ###### Create working folder and cd #####
 

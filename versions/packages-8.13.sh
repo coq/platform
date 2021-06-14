@@ -11,11 +11,15 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-# DESCRIPTION Coq 8.13.2 04/2021 (latest release version, default)
+# DESCRIPTION Coq 8.13.2 04/2021 with package pick 02/2021
 # SORTORDER 1
 
-# The package list name is the final part of the opam switch name
-COQ_PLATFORM_PACKAGELIST_NAME='8.13'
+# The package list name is the final part of the opam switch name.
+# It is usually either empty ot starts with ~.
+# It might also be used for installer package names, but with ~ replaced by _
+# It is also used for version specific file selections in the smoke test kit.
+COQ_PLATFORM_PACKAGELIST_NAME=''
+
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
