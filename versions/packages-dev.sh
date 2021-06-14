@@ -14,8 +14,12 @@
 # DESCRIPTION Coq dev (latest master of all packages)
 # SORTORDER 9999
 
-# The package list name is the final part of the opam switch name
-COQ_PLATFORM_PACKAGELIST_NAME='dev'
+# The package list name is the final part of the opam switch name.
+# It is usually either empty ot starts with ~.
+# It might also be used for installer package names, but with ~ replaced by _
+# It is also used for version specific file selections in the smoke test kit.
+COQ_PLATFORM_PACKAGELIST_NAME='~dev'
+
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 
