@@ -60,8 +60,7 @@ PACKAGES="${PACKAGES} coq-interval.dev"
 
 # Elpi, Coq-elpi and hierarchy builder
 PACKAGES="${PACKAGES} coq-elpi.dev"
-# DISABLED - see https://coq.zulipchat.com/#narrow/stream/237868-Hierarchy-Builder.20devs.20.26.20users/topic/HB.20dev.20fails.20in.20Coq.20Platform
-# PACKAGES="${PACKAGES} coq-hierarchy-builder.dev"
+PACKAGES="${PACKAGES} coq-hierarchy-builder.dev"
 
 # The standard set of mathcomp modules
 PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.dev"
