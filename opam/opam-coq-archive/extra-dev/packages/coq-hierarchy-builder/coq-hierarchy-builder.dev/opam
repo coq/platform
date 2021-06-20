@@ -20,3 +20,6 @@ and abbreviation that let the hierarchy developer describe an actual interface f
 Behind that interface the developer can provide appropriate code to ensure retro compatibility.
 """
 tags: [ "logpath:HB" ]
+url {
+      src: "git+https://github.com/math-comp/hierarchy-builder#coq-master"
+}
