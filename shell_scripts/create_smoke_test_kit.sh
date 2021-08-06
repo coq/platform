@@ -73,6 +73,8 @@ TEST_FILES[coq-vst-32]='progs/reverse.v progs/verif_reverse2.v'
 COQ_OPTION[coq-vst-32]='-Q $COQLIB/../coq-variant/VST32/VST VST -Q $COQLIB/../coq-variant/compcert32/compcert compcert'
 TEST_FILES[coq-hott]='theories/Analysis/Locator.v'
 COQ_OPTION[coq-hott]='-noinit -indices-matter'
+TEST_FILES[coq-unimath]='UniMath/Foundations/Tests.v'
+COQ_OPTION[coq-unimath]='-noinit -indices-matter -type-in-type -w -notation-overridden '
 
 ##### Hacks for files #####
 

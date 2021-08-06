@@ -39,6 +39,9 @@ PACKAGES="${PACKAGES} coq-quickchick.1.5.0"
 # Homotopy Type Theory (HoTT)
 PACKAGES="${PACKAGES} coq-hott.8.13"
 
+# Univalent Mathematics (UniMath)
+PACKAGES="${PACKAGES} coq-unimath.20210805"
+
 # Analysis and numerics
 PACKAGES="${PACKAGES} coq-flocq.3.3.1"
 PACKAGES="${PACKAGES} coq-coquelicot.3.1.0"
