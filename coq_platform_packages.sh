@@ -40,7 +40,7 @@ PACKAGES="${PACKAGES} coq-quickchick.1.5.0"
 PACKAGES="${PACKAGES} coq-hott.8.13"
 
 # Univalent Mathematics (UniMath)
-PACKAGES="${PACKAGES} coq-unimath.20210805"
+PACKAGES="${PACKAGES} coq-unimath.20210807"
 
 # Analysis and numerics
 PACKAGES="${PACKAGES} coq-flocq.3.3.1"
