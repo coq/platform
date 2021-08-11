@@ -62,7 +62,7 @@ else
   then
     echo "Your installed opam version $(opam --version) is older than 2.0.5."
     echo "This version of opam is not supported."
-    echo "If you ininstall opam, this script will install the latest version."
+    echo "If you uninstall opam, this script will install the latest version."
     return 1
   else
     echo "Found opam $(opam --version) - good!"
