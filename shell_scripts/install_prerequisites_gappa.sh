@@ -16,5 +16,5 @@
 
 if [ $(opam var "gappa:installed") == "false" ]
 then
-  opam depext gappa
+  opam ${COQ_PLATFORM_OPAM_DEPEXT_COMMAND} gappa
 fi

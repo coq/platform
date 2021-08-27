@@ -17,5 +17,5 @@
 # install pkg-config if it is not there
 if ! command -v pkg-config &> /dev/null
 then
-  $COQ_PLATFORM_TIME opam depext conf-pkg-config
+  $COQ_PLATFORM_TIME opam ${COQ_PLATFORM_OPAM_DEPEXT_COMMAND} conf-pkg-config
 fi
