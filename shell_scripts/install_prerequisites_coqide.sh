@@ -13,17 +13,17 @@
 # install gtk3 if not there (CoqIDE)
 if ! pkg-config --short-errors --print-errors --atleast-version 3.18 gtk+-3.0
 then
-  $COQ_PLATFORM_TIME opam depext conf-gtk3
+  $COQ_PLATFORM_TIME opam ${COQ_PLATFORM_OPAM_DEPEXT_COMMAND} conf-gtk3
 fi
 
 # install gtksourceview3 if not there (CoqIDE)
 if ! pkg-config --short-errors --print-errors gtksourceview-3.0
 then
-  $COQ_PLATFORM_TIME opam depext conf-gtksourceview3
+  $COQ_PLATFORM_TIME opam ${COQ_PLATFORM_OPAM_DEPEXT_COMMAND} conf-gtksourceview3
 fi
 
 # install adwaita-icon-theme if not there (CoqIDE)
 if ! pkg-config --short-errors --print-errors adwaita-icon-theme
 then
-  $COQ_PLATFORM_TIME opam depext conf-adwaita-icon-theme
+  $COQ_PLATFORM_TIME opam ${COQ_PLATFORM_OPAM_DEPEXT_COMMAND} conf-adwaita-icon-theme
 fi

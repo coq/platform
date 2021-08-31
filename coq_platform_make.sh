@@ -21,7 +21,7 @@ source shell_scripts/init_cygwin_fixes.sh
 
 source coq_platform_switch_name.sh
 
-export OPAMYES=yes
+export OPAMYES=1
 export OPAMCOLOR=never
 
 ###################### PARAMETERS #####################
