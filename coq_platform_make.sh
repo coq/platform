@@ -54,17 +54,13 @@ source shell_scripts/install_opam.sh
 source shell_scripts/check_opam_sandbox.sh
 source shell_scripts/install_opam_depext.sh
 
-###################### INSTALL PREREQUISITES #####################
-
-echo "===== INSTALL PREREQUISITES ====="
-
-source shell_scripts/install_pkg-config.sh
-source shell_scripts/install_prerequisites_coqide.sh
-source shell_scripts/install_prerequisites_gappa.sh
-
 ###################### PACKAGE SELECTION #####################
 
 source coq_platform_packages.sh
+
+###################### INSTALL PREREQUISITES #####################
+
+source shell_scripts/install_system_prerequisites.sh
 
 ###################### BUILD ALL PACKAGES #####################
 
