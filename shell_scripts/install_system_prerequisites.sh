@@ -28,6 +28,13 @@ fi
 
 COQ_PLATFORM_SYSTEM_PACKAGES=''
 
+# System packages required by Coq
+
+if ! pkg-config --short-errors --print-errors gmp
+then
+  COQ_PLATFORM_SYSTEM_PACKAGES="${COQ_PLATFORM_SYSTEM_PACKAGES} conf-gmp"
+fi
+
 # System packages required by CoqIDE
 
 if  [[ "${PACKAGES}"  =~ ' coqide.' ]]
@@ -62,6 +69,8 @@ then
   fi
 fi
 
-echo "opam system packages to install: ${COQ_PLATFORM_SYSTEM_PACKAGES}"
-
-$COQ_PLATFORM_TIME opam ${COQ_PLATFORM_OPAM_DEPEXT_COMMAND} ${COQ_PLATFORM_SYSTEM_PACKAGES}
+if [ -n "${COQ_PLATFORM_SYSTEM_PACKAGES}" ]
+then
+  echo "opam system pre-requisites to install: ${COQ_PLATFORM_SYSTEM_PACKAGES}"
+  $COQ_PLATFORM_TIME opam ${COQ_PLATFORM_OPAM_DEPEXT_COMMAND} ${COQ_PLATFORM_SYSTEM_PACKAGES}
+fi
