@@ -28,5 +28,5 @@ then
   fi
 
 else
-  COQ_PLATFORM_OPAM_DEPEXT_COMMAND='install --confirm-level=unsafe-yes'
+  COQ_PLATFORM_OPAM_DEPEXT_COMMAND='install --confirm-level=unsafe-yes --depext-only'
 fi
