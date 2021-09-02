@@ -24,7 +24,7 @@ parts:
       # cleanup
       OPAMROOT=$SNAPCRAFT_PART_INSTALL/coq-platform/ opam clean
       find $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/ \( -name '*.byte.exe' -o -name '*.byte' -o -name '*.cm[aioxt]' -o -name '*.cmxa' -o -name '*.[oa]' -o -name '*.cmti' -o -name '*.glob' \) -type f  -delete
-      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/bin/ -maxdepth 1 -mindepth 1 \! \( -name 'coq*' -o -name 'clight*' \) -exec rm -f {} \;
+      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/bin/ -maxdepth 1 -mindepth 1 \! \( -name 'coq*' -o -name 'clight*' -o -name 'gappa' \) -exec rm -f {} \;
       find $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/lib/ -maxdepth 1 -mindepth 1 \! \( -name 'coq' -o -name 'stublibs' \) -exec rm -rf {} \;
       rm -rf $SNAPCRAFT_PART_INSTALL/coq-platform/@@COQ_VERSION@@/share/ocaml-secondary-compiler
       rm -rf $SNAPCRAFT_PART_INSTALL/coq-platform/repo/

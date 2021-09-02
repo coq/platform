@@ -5,6 +5,7 @@
 
 export COQBIN="$(cd $(dirname $0); pwd)"
 export COQLIB="$(cd $(dirname $0)/../lib/coq/; pwd)"
+export PATH=$COQBIN:$PATH
 
 SELF="$(basename $1)"
 
