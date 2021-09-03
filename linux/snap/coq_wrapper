@@ -11,7 +11,9 @@ SELF="$(basename $1)"
 
 shift # drop $1
 
-if [ "$SELF" == "coq_makefile" ]; then
+if [ "$SELF" == "bash" -o "$SELF" == "sh" ]; then # for debugging the snap
+  exec $SELF "$@"
+elif [ "$SELF" == "coq_makefile" ]; then
   exec $COQBIN/$SELF COQBIN = "$COQBIN/" "$@"
 else
   exec $COQBIN/$SELF "$@"
