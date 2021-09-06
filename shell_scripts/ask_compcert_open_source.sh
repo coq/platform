@@ -25,19 +25,20 @@ evaluation purposes. Please clarify the license at:
 
 https://github.com/AbsInt/CompCert/blob/master/LICENSE
 
-Parts of CompCert are required for the Princeton C verification tool VST.
-Some parts of CompCert are open source and for exploring or learning VST
-using the supplied example programs, this open source part is sufficient.
-If you want to use VST with your own C code, you need the non open source
-variant of CompCert. Before you install the full non-free version of CompCert,
-please make sure that your intended usage conforms to the above license.
+In case you intend to use CompCert and your intended usage is in compliance
+with the above license, please select "y" below, otherwise "n".
 
-If you answer n=no below to skip CompCert, VST will also not be installed.
-
-You can also change this later using opam commands.
+Please note that CompCert is required for the (open source) C verification
+tool chain VST. If you don't install CompCert, you can't install VST.
+If you want to use VST with the provided VST examples only, you require only
+parts of CompCert, which are dual licensed and open source. In case you want
+to verify your own C code with VST, you need non open source parts of
+CompCert, notably the clightgen program. CompCert does not support
+installing only its open source parts, since evaluation usage is explicitly
+allowed in the license (see link above).
 ================================== COMPCERT ==================================
 EOH
-    ask_user_opt3_cancel "Install full (f), open source (o) or no (n) CompCert?" fF "full" oO "open source" nN "none"
+    ask_user_opt2_cancel "Install non open source SW CompCert (y) or (n)?" yY "install CompCert" nN "do not install CompCert"
     COQ_PLATFORM_COMPCERT=$ANSWER
   else
     COQ_PLATFORM_COMPCERT=n

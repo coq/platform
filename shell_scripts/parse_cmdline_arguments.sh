@@ -26,7 +26,7 @@ OPTIONS:
   -parallel=p  Build several opam packages in parallel
   -parallel=s  Build opam packages sequentially
   -jobs=1..16  Number of make threads per package
-  -compcert=f  Build full non-free version of CompCert
+  -compcert=y  Build full non-free version of CompCert
   -compcert=o  Build only open source part of CompCert
   -compcert=n  Do not build CompCert and VST
   -vst=y       Build Verified Software Toolchain (takes a while)
@@ -53,6 +53,6 @@ done
 check_value_enumeraton "${COQ_PLATFORM_EXTENT:-__unset__}"   "[fbi]" "-extent/COQ_PLATFORM_EXTENT"
 check_value_enumeraton "${COQ_PLATFORM_PARALLEL:-__unset__}" "[ps]"  "-parallel/COQ_PLATFORM_PARALLEL"
 check_value_range      "${COQ_PLATFORM_JOBS:-__unset__}"     1 16    "-jobs/COQ_PLATFORM_JOBS"
-check_value_enumeraton "${COQ_PLATFORM_COMPCERT:-__unset__}" "[fon]" "-compcert/COQ_PLATFORM_COMPCERT"
+check_value_enumeraton "${COQ_PLATFORM_COMPCERT:-__unset__}" "[yn]"  "-compcert/COQ_PLATFORM_COMPCERT"
 check_value_enumeraton "${COQ_PLATFORM_VST:-__unset__}"      "[yn]"  "-vst/COQ_PLATFORM_VST"
 check_value_enumeraton "${COQ_PLATFORM_SWITCH:-__unset__}"   "[kd]"  "-switch/COQ_PLATFORM_SWITCH"

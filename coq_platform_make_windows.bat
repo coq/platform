@@ -463,8 +463,7 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -parallel=p  Build several opam packages in parallel
   ECHO -parallel=s  Build opam packages sequentially
   ECHO -jobs=1..16  Number of make threads per package
-  ECHO -compcert=f  Build full non-free version of CompCert
-  ECHO -compcert=o  Build only open source part of CompCert
+  ECHO -compcert=y  Build the non ioen source software CompCert
   ECHO -compcert=n  Do not build CompCert and VST
   ECHO -vst=y       Build Verified Software Toolchain (takes a while)
   ECHO -vst=n       Do not build Verified Software Toolchain

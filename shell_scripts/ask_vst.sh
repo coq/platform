@@ -14,7 +14,7 @@
 
 if [ -z "${COQ_PLATFORM_VST:+x}" ]
 then
-  if  [[ "${COQ_PLATFORM_COMPCERT}"  =~ ^[fFoO] ]]
+  if  [[ "${COQ_PLATFORM_COMPCERT}"  =~ ^[yY] ]]
   then
 cat <<EOH
 ======================= VERIFIED SOFTWARE TOOLCHAIN VST =======================
