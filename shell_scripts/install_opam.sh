@@ -203,3 +203,9 @@ else
   $COQ_PLATFORM_TIME opam update "patch$COQ_PLATFORM_SWITCH_NAME"
 fi
 
+###################### snap ######################
+
+if [ ! -z ${SNAPCRAFT_PROJECT_NAME+x} ]
+then
+  opam var --switch $COQ_PLATFORM_SWITCH_NAME snap=true
+fi
