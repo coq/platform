@@ -32,7 +32,7 @@ on:
       platform:
         description: 'Arguments for the platform script:'
         required: true
-        default: '-extent=f -parallel=p -jobs=2 -vst=y -compcert=f'
+        default: '-extent=f -parallel=p -jobs=2 -vst=y -compcert=y'
 
 ###############################################################################
 # Platform script options shared among all jobs

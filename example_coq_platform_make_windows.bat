@@ -8,7 +8,7 @@ CALL coq_platform_make_windows.bat ^
   -destcyg=C:\cygwin64_coq_platform ^
   -cygcache=C:\bin\cygwin_cache ^
   -cygrepo=https://mirrors.kernel.org/sourceware/cygwin ^
-  -extent=f -parallel=p -jobs=16 -switch=k -compcert=o -vst=y
+  -extent=f -parallel=p -jobs=16 -switch=k -compcert=y -vst=y
 
 REM NOTE: You can also call coq_platform_make_windows.bat from a cygwin prompt
 REM (e.g. in case you use cygwin for GIT) but please remember to quote paths with
