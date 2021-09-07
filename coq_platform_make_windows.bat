@@ -41,7 +41,9 @@ REM THIS MUST NOT INCLUDE THE TRAILING /
 SET CYGWIN_REPOSITORY=https://mirrors.kernel.org/sourceware/cygwin
 
 REM A local folder (in Windows path syntax) where cygwin packages are cached
-IF EXIST %TEMP%\NUL (
+IF EXIST %LOCALAPPDATA%\Temp\NUL (
+  SET CYGWIN_LOCAL_CACHE_WFMT=%LOCALAPPDATA%\Temp\coq_platform_cygwin_cache
+) ELSE IF EXIST %TEMP%\NUL (
   SET CYGWIN_LOCAL_CACHE_WFMT=%TEMP%\coq_platform_cygwin_cache
 ) ELSE IF EXIST %TMP%\NUL (
   SET CYGWIN_LOCAL_CACHE_WFMT=%TMP%\coq_platform_cygwin_cache
