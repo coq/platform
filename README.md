@@ -23,7 +23,7 @@ Please note that some opam packages require and install system packages with man
 These dependencies might have various licenses. You need to refer to your system package manager to
 inspect the licenses of such packages.
 
-# Features of the 2021.02.1 release
+# Features of the 2021.02.2 release
 
 - fully opam based, also on Windows
 - single script call to install system dependencies, opam (if not there), a fresh opam switch and the coq platform
@@ -71,14 +71,23 @@ menhir                   20200624    An LR(1) parser generator
 - the script can be restarted if it fails - e.g cause of internet issues - it will not redo things it already did
 - the scripts are modular and easy to configure for specific needs, e.g. a reduced or extended setup for a lecture - see [`variants.md`](/variants.md)
 
+## Changes from 2021.02.1 to 2021.02.2
+
+- support for opam 2.1.0 (which integrates the opam system dependency manager *depext* - this needed a few adjustments)
+- fix issues with Cygwin binutils
+- various minor fixes for the Snap package (support gappa, clightgen, ...)
+- various minor fixes to the Windows installer (add icon for CoqIDE, ...)
+- minor cleanup and improvements of the Coq Platform scripts
+- the versions of provided Coq packages are identical to 2021.02.1
+
 ## Changes from 2021.02.0 to 2021.02.1
 
-- Added DMG package / installer for macOS
+- added DMG package / installer for macOS
 - Coq and CoqIDE update to version 8.13.2 (bugfix release)
 - VST updated to version 2.7.1 (bugfix release)
-- New package `coq-hott` *The Homotopy Type Theory library*
+- new package `coq-hott` *The Homotopy Type Theory library*
 
-# Usage of the 2021.02.1 release
+# Usage of the 2021.02.2 release
 
 Please refer to the ReadMe file for your OS.
 
@@ -96,36 +105,36 @@ By default the 64 bit variant of CompCert and the 64 bit variant of VST are inst
 CompCert is **not** free / open source software, but may be used for research and
 evaluation purposes. Please clarify the license at [CompCert License](https://github.com/AbsInt/CompCert/blob/master/LICENSE).
 
-Parts of CompCert are required for the Princeton C verification tool VST.
-Some parts of CompCert are open source and for exploring or learning VST
-using the supplied example programs, this open source part is sufficient.
-If you want to use VST with your own C code, you need the non open source
-variant of CompCert. Before you install the full non-free version of CompCert,
-please make sure that your intended usage conforms to the above license.
+Please note that CompCert is required for the (open source) C verification
+tool chain VST. If you don't install CompCert, you can't install VST.
+If you want to use VST with the provided VST examples only, you require only
+parts of CompCert, which are dual licensed and open source. In case you want
+to verify your own C code with VST, you need non open source parts of
+CompCert, notably the `clightgen` program. CompCert does not support
+installing only its open source parts, since evaluation usage is explicitly
+allowed in the license (see link above).
 
-The script will ask which variant of CompCert you want to install.
+The script will ask if you want to install CompCert.
 
 The compilation of VST takes quite a while on slow / small RAM PCs. For this reason the script also asks if you want to install VST.
 
 You can change the selection of packages any time later by issuing `opam install` commands, e.g.
 ```
-opam install coq-compcert.3.8~open_source (not yet supported by 2021.02.1)
 opam install coq-compcert.3.8
 opam install coq-vst.2.7.1
 ```
 
-Besides the open source and non open source variant of CompCert, there is also a 32 bit variant of CompCert and VST, which can
-be installed by running these commands:
+There is also a 32 bit variant of CompCert and VST, which can be installed by running these commands:
 ```
-opam install coq-compcert-64.3.8
-opam install coq-vst-64.2.7.1
+opam install coq-compcert-32.3.8
+opam install coq-vst-32.2.7.1
 ```
 or by adjusting [`coq_platform_packages.sh`](/coq_platform_packages.sh) accordingly.
-Please note that since both variants can be installed in parallel, only one, the 32 bit variant, is immediately available to Coq
-without -Q and -R options. If you want to work with the 64 bit variants, please use these options in your Coq project:
+Please note that since both variants can be installed in parallel, only one, the 64 bit variant, is immediately available to Coq
+without -Q and -R options. If you want to work with the 32 bit variants, please use these options in your Coq project:
 ```
--Q $(coqc -where)/../coq-variant/compcert64/compcert compcert
--Q $(coqc -where)/../coq-variant/VST64/VST VST
+-Q $(coqc -where)/../coq-variant/compcert32/compcert compcert
+-Q $(coqc -where)/../coq-variant/VST32/VST VST
 ```
 
 ### Installation of other packages
@@ -134,7 +143,7 @@ without -Q and -R options. If you want to work with the 64 bit variants, please 
 - On Linux or macOS open a shell in the usual way.
 - Run these commands:
     ```
-    opam switch _coq-platform_.2021.02.1
+    opam switch _coq-platform_.2021.02.2
     eval $(opam env)
     ```
 - Install additional packages with `opam install "package"`
