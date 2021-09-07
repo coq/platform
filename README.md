@@ -23,7 +23,7 @@ Please note that some opam packages require and install system packages with man
 These dependencies might have various licenses. You need to refer to your system package manager to
 inspect the licenses of such packages.
 
-# Features of the 2021.02.2 release
+# Features of the 2021.09.0 release
 
 - fully opam based, also on Windows
 - single script call to install system dependencies, opam (if not there), a fresh opam switch and the coq platform
@@ -71,23 +71,23 @@ menhir                   20200624    An LR(1) parser generator
 - the script can be restarted if it fails - e.g cause of internet issues - it will not redo things it already did
 - the scripts are modular and easy to configure for specific needs, e.g. a reduced or extended setup for a lecture - see [`variants.md`](/variants.md)
 
-## Changes from 2021.02.1 to 2021.02.2
+## Changes from 2021.09.0 to 2021.09.0
 
 - support for opam 2.1.0 (which integrates the opam system dependency manager *depext* - this needed a few adjustments)
 - fix issues with Cygwin binutils
 - various minor fixes for the Snap package (support gappa, clightgen, ...)
 - various minor fixes to the Windows installer (add icon for CoqIDE, ...)
 - minor cleanup and improvements of the Coq Platform scripts
-- the versions of provided Coq packages are identical to 2021.02.1
+- the versions of provided Coq packages are identical to 2021.09.0
 
-## Changes from 2021.02.0 to 2021.02.1
+## Changes from 2021.09.0 to 2021.09.0
 
 - added DMG package / installer for macOS
 - Coq and CoqIDE update to version 8.13.2 (bugfix release)
 - VST updated to version 2.7.1 (bugfix release)
 - new package `coq-hott` *The Homotopy Type Theory library*
 
-# Usage of the 2021.02.2 release
+# Usage of the 2021.09.0 release
 
 Please refer to the ReadMe file for your OS.
 
@@ -143,7 +143,7 @@ without -Q and -R options. If you want to work with the 32 bit variants, please 
 - On Linux or macOS open a shell in the usual way.
 - Run these commands:
     ```
-    opam switch __coq-platform.2021.02.1.8.13
+    opam switch __coq-platform.2021.09.0.8.13
     eval $(opam env)
     ```
     (note: the switch name might vary if you choose a different version of Coq - please use `opam switch` to see a list of switch names)

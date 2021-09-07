@@ -10,4 +10,4 @@
 
 ###################### SET THE PLATFORM VERSION NAME #####################
 
-COQ_PLATFORM_VERSION="2021.02.1"
+COQ_PLATFORM_VERSION="2021.09.0"
