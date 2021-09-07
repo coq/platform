@@ -26,7 +26,7 @@ The script uses opam, the OCaml package manager, to do all the work.
 In case opam is not yet installed, it will install opam.
 A new opam switch will be created unless a Coq Platform switch already exists.
 
-This script is tested on Windows 10, macOS Catalina and many Linux variants.
+This script is tested on Windows 10, macOS and many Linux variants.
 
 The script compiles everything from sources, which might takes less than one
 hour on a fast machine with lot's of RAM, or up to 6 hours with little RAM.
