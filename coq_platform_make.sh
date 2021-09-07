@@ -59,10 +59,6 @@ source shell_scripts/install_opam.sh
 source shell_scripts/check_opam_sandbox.sh
 source shell_scripts/install_opam_depext.sh
 
-###################### PACKAGE SELECTION #####################
-
-source coq_platform_packages.sh
-
 ###################### INSTALL PREREQUISITES #####################
 
 source shell_scripts/install_system_prerequisites.sh
