@@ -401,7 +401,7 @@ cd $DIR_TARGET
 
 # NSIS 2.51 has the bug that $0 is not set in .onSelChange, so use the latest version 3.06.1
 
-wget --no-clobber --progress=dot:giga http://downloads.sourceforge.net/project/nsis/NSIS%203/3.06.1/nsis-3.06.1.zip
+wget --no-clobber --progress=dot:giga https://sourceforge.net/projects/nsis/files/NSIS%203/3.06.1/nsis-3.06.1.zip/download -O nsis-3.06.1.zip
 unzip -o nsis-3.06.1
 # Unzipping this results in very strange permissions - fix this
 chmod -R 700 nsis-3.06.1
