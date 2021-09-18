@@ -93,7 +93,7 @@ jobs:
         run: cat snap/snapcraft.yaml
 
       - name: Run snapcraft
-        uses: snapcore/action-build@v1
+        uses: snapcore/action-build@v1.0.9
         id: build
 
       - name: Save Artifact
