@@ -49,9 +49,8 @@ jobs:
       fail-fast: false
       matrix:
         variant:
+          - '8.14'
           - '8.13'
-          - '8.12'
-          - 'dev'
 
     steps:
       - name: Git checkout

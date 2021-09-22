@@ -122,7 +122,7 @@ function ask_user_opt3_cancel {
 
 function ask_user_mumber {
   while true; do
-    read -p "$1 (number in $2..$3) " answer
+    read -p "$1 (number in $2..$3, c=cancel) " answer
     case "$answer" in
         [cC] ) return 1 ;;
     esac

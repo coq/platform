@@ -53,9 +53,8 @@ jobs:
           - '32'
           - '64'
         variant:
+          - '8.14'
           - '8.13'
-          - '8.12'
-          - 'dev'
 
     steps:
       - name: Set git to use LF
@@ -107,9 +106,8 @@ jobs:
           - '32'
           - '64'
         variant:
+          - '8.14'
           - '8.13'
-          - '8.12'
-          - 'dev'
 
     steps:
       - name: 'Download Artifact'
