@@ -13,19 +13,12 @@
 ###################### Notify Coq Platform Maintainers ######################
 
 # This script interactively creates upstream issues to notify coq platform
-# package maintainers that we need a tag for a new Coq Platform release
+# package maintainers that while their current tag works, they might want to update.
 
 # $1: Path of Coq Platform package list file
 
 set -o nounset
 set -o errexit
-
-case $BASH_VERSION in
-  1*|2*|3*)
-    echo "Bash version 4 or greater required"
-    exit 1
-  ;;
-esac
 
 ##### Settings #####
 
@@ -39,34 +32,6 @@ DATE_PLATFORM_LATEST="January 31, 2022"
 
 CC="CC: https://github.com/coq/platform/issues/139"
 #CC="\n@coqbot column:...."
-
-##### Shell functions for translating Coq Platform (Opam) package names to Coq CI package names ####
-
-# This function expects $package to be set to a Coq Platform package name and
-# Sets package_ci to the corresponding Coq CI package name
-# In addition sets package_main to the opam package name without version
-
-function package_platform_to_ci() {
-  package_main=${package%%.*}
-  package_ci=''
-  case $package_main in
-    coq)                    ;;
-    coqide)                 ;;
-    coq-interval)           ;;
-    coq-mathcomp-ssreflect) package_ci='mathcomp' ;; 
-    coq-mathcomp-*)         ;; 
-    coq-*)                  package_ci="${package_main#coq-}" ;;
-    *)                      ;;
-  esac
-  package_ci=${package_ci//-/_}
-}
-
-##### Shell functions for reading ci-basic-overlay.sh #####
-
-# reads a variable value from a ci-basic-overlay.sh file
-function read_from() {
-  ( . $1; varname="$2"; echo ${!varname} )
-}
 
 ##### Shell functions for reading opam status for a package #####
 
@@ -100,13 +65,19 @@ function opam_get_installed_source_repo() {
   esac
 }
 
+# Get issue reporting URL for package $1
+
+function opam_get_installed_issue_url() {
+  opam show -f bug-reports "$1" | tr -d '"'
+}
+
 ##### Shell functions for creating GIT server issue URL #####
 
 # https://gist.github.com/cdown/1163649
 function urlencode() {
     # urlencode <string>
 
-    old_lc_collate=$LC_COLLATE
+    old_lc_collate=${LC_COLLATE:-}
     LC_COLLATE=C
 
     local length="${#1}"
@@ -124,22 +95,23 @@ function urlencode() {
 }
 
 function template {
-  TITLE="Please create a tag for the upcoming release of Coq ${COQ_PLATFORM_COQ_BASE_VERSION}"
+  TITLE="Informative: pick of tag for upcoming release of Coq Platform for Coq ${COQ_PLATFORM_COQ_BASE_VERSION}"
   BODY="The Coq team released Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_PRE} on ${DATE_PRE}
 and plans to release Coq ${COQ_PLATFORM_COQ_BASE_VERSION}.0 before ${DATE_FINAL}.
 A corresponding Coq Platform releases should be released before ${DATE_PLATFORM_EXPECTED}.
 It can be dealyed in case of difficulties until ${DATE_PLATFORM_LATEST}, but this should be an exception.
 
-Coq CI is currently testing commit $3
-on branch $1/tree/$2
-but we would like to ship a released version instead (a tag in git's slang).
+This issue is to inform you that your latest tag does work fine with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_PRE}.
 
-${COQ_PLATFORM_MESSAGE}
+Coq Platform currently uses the opam package '$2'
+from $(opam_get_installed_source_repo "$2").
 
-Could you please create a tag, or communicate us any existing tag that works with
-Coq branch ${COQ_PLATFORM_COQ_BRANCH}, preferably 15 days before ${DATE_PLATFORM_EXPECTED}
-or earlier? In case we might have to delay the Coq Platform release cause of issues with
-your project, we would prefer to be informed about the situation as early as possible.
+Note: if the package version ends with ~flex, this means that we had to patch the opam package and
+possibly the make file to accept the new version of Coq, but no other changes were required.
+
+In case this is the version you want to see in Coq Platform, there is nothing to do for you - just close this issue.
+
+In case you would prefer to see an updated version in the upcoming Coq Platform, please inform as as soon as possible!
 
 Thanks!
 
@@ -187,50 +159,24 @@ echo COQ_PLATFORM_COQ_BRANCH       = "${COQ_PLATFORM_COQ_BRANCH}"
 echo COQ_PLATFORM_COQ_TAG          = "${COQ_PLATFORM_COQ_TAG}"
 echo PACKAGES                      = "${PACKAGES}"
 
-##### Get ci-basic-overlay.sh file from the branch corresponding to the version #####
-
-wget https://raw.githubusercontent.com/coq/coq/${COQ_PLATFORM_COQ_BRANCH}/dev/ci/ci-basic-overlay.sh -O /tmp/branch-ci-basic-overlay.sh
-wget https://raw.githubusercontent.com/coq/coq/master/dev/ci/ci-basic-overlay.sh -O /tmp/master-ci-basic-overlay.sh
-
 ##### Main loop #####
-
-set +o nounset
 
 for package in ${PACKAGES}
 do
-  package_platform_to_ci
-  if [ -n "${package_ci}" ]
-  then
-    if opam_check_installed "$package_main"
-    then
-      COQ_PLATFORM_MESSAGE="Coq Platform is currently testing opam version $(opam_get_installed_version "$package_main")"$'\n'"from $(opam_get_installed_source_repo "$package_main")."
-    else
-      COQ_PLATFORM_MESSAGE="Coq Platform is currently *not testing* this package!"
-    fi
+  package_main="${package%%.*}"
+  case $package_main in
+    coq-*)   ;;
+    *)       continue;
+  esac
 
+  if opam_check_installed "$package_main"
+  then
     echo -e "\n----------------------------------------------"
-    url=`read_from /tmp/master-ci-basic-overlay.sh "${package_ci}_CI_GITURL"`
-    ref=`read_from /tmp/master-ci-basic-overlay.sh "${package_ci}_CI_REF"`
-    pin=`read_from /tmp/branch-ci-basic-overlay.sh "${package_ci}_CI_REF"`
+    issue_url="$(opam_get_installed_issue_url "$package_main")"
+    git_url="${issue_url%/issues}"
+    echo $issue_url $git_url
     echo "Available tags for ${package} are:"
-    git -c 'versionsort.suffix=-' ls-remote --refs --tags --sort='v:refname' "${url}" | sed 's|.*refs/tags/||'
-    if [ "${#pin}" = "40" ]
-    then
-      echo -e "Package ${package} is pinned to a hash in Coq CI, to open an issue open the following url:\n"
-      template ${url} $ref $pin
-    elif [ "${#pin}" = "0" ]
-    then
-      echo "=================================================="
-      echo "ERROR: Package ${package} has no pin!"
-      echo "=================================================="
-    else
-      echo "Package ${package} is already pinned to version $pin"
-      echo 
-    fi
+    git -c 'versionsort.suffix=-' ls-remote --refs --tags --sort='v:refname' "${git_url}" | sed 's|.*refs/tags/||'
+    template "${git_url}" "${package}"
   fi
 done
-
-##### Clean up #####
-
-rm /tmp/branch-ci-basic-overlay.sh
-rm /tmp/master-ci-basic-overlay.sh
