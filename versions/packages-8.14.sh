@@ -11,14 +11,14 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-# DESCRIPTION Coq 8.14.dev (unreleased preview)
+# DESCRIPTION Coq 8.14+rc1 (release candidate 1)
 # SORTORDER 9000
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGELIST_NAME='~8.14.dev'
+COQ_PLATFORM_PACKAGELIST_NAME='~8.14+rc1'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
@@ -31,12 +31,12 @@ COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 # - Packages which take a long time to build should be given last.
 #   There is some evidence that they are built early then.
 
-PACKAGES="coq.8.14.dev"
+PACKAGES="coq.8.14+rc1"
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfF] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.14.dev lablgtk3.3.1.1"
+PACKAGES="${PACKAGES} coqide.8.14+rc1 lablgtk3.3.1.1"
 fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fF] ]]
