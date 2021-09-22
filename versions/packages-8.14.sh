@@ -77,7 +77,7 @@ PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
 
 # Packages depending on mathcomp
 PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
-#PACKAGES="${PACKAGES} coq-interval.4.1.1"          # passes opam checks but does not compile
+PACKAGES="${PACKAGES} coq-interval.4.3.0"
 #PACKAGES="${PACKAGES} coq-quickchick.1.5.0"        # coq-quickchick.1.5.0~flex does not compile
 
 # # Homotopy Type Theory (HoTT)
