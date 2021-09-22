@@ -20,6 +20,10 @@
 # It is also used for version specific file selections in the smoke test kit.
 COQ_PLATFORM_PACKAGELIST_NAME='~dev'
 
+# The corresponding Coq development branch and tag
+COQ_PLATFORM_COQ_BRANCH='dev'
+COQ_PLATFORM_COQ_TAG='dev'
+
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 

@@ -20,6 +20,10 @@
 # It is also used for version specific file selections in the smoke test kit.
 COQ_PLATFORM_PACKAGELIST_NAME='~8.14+rc1'
 
+# The corresponding Coq development branch and tag
+COQ_PLATFORM_COQ_BRANCH='v8.14'
+COQ_PLATFORM_COQ_TAG='8.14+rc1'
+
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 
