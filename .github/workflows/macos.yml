@@ -50,7 +50,6 @@ jobs:
         variant:
           - '8.13'
           - '8.12'
-          - 'dev'
 
     steps:
       - name: Git checkout
