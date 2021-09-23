@@ -137,8 +137,8 @@ but we would like to ship a released version instead (a tag in git's slang).
 ${COQ_PLATFORM_MESSAGE}
 
 Could you please create a tag, or communicate us any existing tag that works with
-Coq branch ${COQ_PLATFORM_COQ_BRANCH}, preferably 15 days before ${DATE_PLATFORM_EXPECTED}
-or earlier? In case we might have to delay the Coq Platform release cause of issues with
+Coq branch ${COQ_PLATFORM_COQ_BRANCH}, preferably 15 days before ${DATE_PLATFORM_EXPECTED}?
+In case we might have to delay the Coq Platform release cause of issues with
 your project, we would prefer to be informed about the situation as early as possible.
 
 Thanks!
