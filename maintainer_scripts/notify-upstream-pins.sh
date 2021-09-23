@@ -52,7 +52,7 @@ function package_platform_to_ci() {
   case $package_main in
     coq)                    ;;
     coqide)                 ;;
-    coq-interval)           ;;
+    coq-interval)           ;; # Not present in Coq CI
     coq-mathcomp-ssreflect) package_ci='mathcomp' ;; 
     coq-mathcomp-*)         ;; 
     coq-*)                  package_ci="${package_main#coq-}" ;;
@@ -140,6 +140,8 @@ Could you please create a tag, or communicate us any existing tag that works wit
 Coq branch ${COQ_PLATFORM_COQ_BRANCH}, preferably 15 days before ${DATE_PLATFORM_EXPECTED}?
 In case we might have to delay the Coq Platform release cause of issues with
 your project, we would prefer to be informed about the situation as early as possible.
+
+Please **don't** close this issue, even after creating the new tag and/or opam package. We will close the issue after updating Coq Platform.
 
 Thanks!
 
