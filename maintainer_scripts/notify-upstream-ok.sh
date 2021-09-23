@@ -166,6 +166,8 @@ do
   package_main="${package%%.*}"
   case ${package_main} in
     coq-*)   ;;
+    gappa*)  ;;
+    elpi*)   ;;
     *)       continue;
   esac
 

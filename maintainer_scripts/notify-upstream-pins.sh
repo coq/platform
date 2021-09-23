@@ -52,7 +52,7 @@ function package_platform_to_ci() {
   case $package_main in
     coq)                    ;;
     coqide)                 ;;
-    coq-interval)           ;;
+    coq-interval)           ;; # Not present in Coq CI
     coq-mathcomp-ssreflect) package_ci='mathcomp' ;; 
     coq-mathcomp-*)         ;; 
     coq-*)                  package_ci="${package_main#coq-}" ;;
