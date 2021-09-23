@@ -104,14 +104,14 @@ It can be dealyed in case of difficulties until ${DATE_PLATFORM_LATEST}, but thi
 This issue is to inform you that your latest tag does work fine with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_PRE}.
 
 Coq Platform currently uses the opam package '$2'
-from $(opam_get_installed_source_repo "$2").
-
-Note: if the package version ends with ~flex, this means that we had to patch the opam package and
-possibly the make file to accept the new version of Coq, but no other changes were required.
+from $(opam_get_installed_source_repo "$2").${flex_message}
 
 In case this is the version you want to see in Coq Platform, there is nothing to do for you - just close this issue.
 
 In case you would prefer to see an updated version in the upcoming Coq Platform, please inform as as soon as possible!
+In this case please **don't** close this issue, even after creating the new tag and/or opam package. We will close the issue after updating Coq Platform.
+
+In any case, Coq Platform won't be released before this issue is closed!
 
 Thanks!
 
@@ -164,9 +164,17 @@ echo PACKAGES                      = "${PACKAGES}"
 for package in ${PACKAGES}
 do
   package_main="${package%%.*}"
-  case $package_main in
+  case ${package_main} in
     coq-*)   ;;
     *)       continue;
+  esac
+
+  case ${package} in
+    coq-*~flex) flex_message=$'\n
+__Note:__ We had to patch version restrictions in the opam package and possibly the make file to accept the new version of Coq, but no other changes were required.'
+      ;;
+    coq-*.dev)  continue ;; # This needs a new tag
+    *) flex_message=''
   esac
 
   if opam_check_installed "$package_main"

@@ -141,6 +141,8 @@ Coq branch ${COQ_PLATFORM_COQ_BRANCH}, preferably 15 days before ${DATE_PLATFORM
 In case we might have to delay the Coq Platform release cause of issues with
 your project, we would prefer to be informed about the situation as early as possible.
 
+Please **don't** close this issue, even after creating the new tag and/or opam package. We will close the issue after updating Coq Platform.
+
 Thanks!
 
 P.S.: this issue has been created semi-automatically.
