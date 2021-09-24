@@ -50,7 +50,7 @@ jobs:
       matrix:
         variant:
           - '8.14'
-          - '8.13'
+          - '8.13~2021.09'
 
     steps:
       - name: Git checkout

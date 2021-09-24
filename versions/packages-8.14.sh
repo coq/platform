@@ -87,7 +87,6 @@ PACKAGES="${PACKAGES} coq-hott.8.13~flex"
 # Menhir, CompCert and Princeton VST - these take longer to compile !
 PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419" # pick confirmed https://gitlab.inria.fr/fpottier/menhir/-/issues/55
 
-# Todo: there is no mutex between coq platform and coq platform open source
 case "$COQ_PLATFORM_COMPCERT" in
   [yY]) PACKAGES="${PACKAGES} coq-compcert.3.9~flex" ;;
   [nN]) true ;;
