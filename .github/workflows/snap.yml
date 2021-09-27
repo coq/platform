@@ -33,7 +33,7 @@ on:
       platform:
         description: 'Arguments for the platform script:'
         required: true
-        default: '-packages=dev -extent=f -parallel=p -jobs=2 -vst=y -compcert=y'
+        default: '-packages=8.13 -extent=x -parallel=p -jobs=2 -vst=y -compcert=y'
 
 ###############################################################################
 # Platform script options shared among all jobs
@@ -42,7 +42,7 @@ on:
 ###############################################################################
 env:
   COQREGTESTING: y
-  PLATFORM: -packages=dev -extent=i -parallel=p -jobs=2
+  PLATFORM_ARGS: -packages=8.13 -extent=x -parallel=p -jobs=2 -vst=y -compcert=y
   SAVE_ARTIFACT: true
 
 jobs:
@@ -62,35 +62,16 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v2
 
-      - name: Set PLATFORM
+      - name: Set PLATFORM_ARGS
         if: ${{ github.event.inputs.platform != '' }}
-        run: echo "PLATFORM=${{ github.event.inputs.platform }}" >> $GITHUB_ENV
+        run: echo "PLATFORM_ARGS=${{ github.event.inputs.platform }}" >> $GITHUB_ENV
 
       - name: Set SAVE_ARTIFACT
         if: ${{ github.event.inputs.save != '' }}
         run: echo "SAVE_ARTIFACT=${{ github.event.inputs.save }}" >> $GITHUB_ENV
 
-      - name: Install opam
-        env:
-          OPAM_VERSION: 2.0.7
-        run: |
-          curl -L https://github.com/ocaml/opam/releases/download/${OPAM_VERSION}/opam-${OPAM_VERSION}-x86_64-linux > opam.${OPAM_VERSION}
-          chmod a+x opam.${OPAM_VERSION}
-          sudo cp opam.${OPAM_VERSION} /usr/local/bin/opam.${OPAM_VERSION}
-          sudo ln -s /usr/local/bin/opam.${OPAM_VERSION} /usr/local/bin/opam
-          opam init --bare --disable-sandboxing -y
-          opam switch create default --empty -y
-          opam repo add coq-released https://coq.inria.fr/opam/released
-          opam repo add coq-dev https://coq.inria.fr/opam/core-dev
-          opam repo add coq-extra https://coq.inria.fr/opam/extra-dev
-          opam repo add coq-platform-coq file://$PWD/opam/opam-coq-archive/released
-          opam repo add coq-platform-coq-dev file://$PWD/opam/opam-coq-archive/extra-dev
-          opam repo add coq-platform-ocaml file://$PWD/opam/opam-repository
-          opam repo set-repos coq-platform-coq coq-platform-coq-dev coq-platform-ocaml coq-released coq-dev coq-extra default
-          opam update
-
       - name: Generate snapcraft file
-        run: linux/create_linux_installer.sh $PLATFORM
+        run: linux/create_snapcraft_yaml.sh $PLATFORM_ARGS
 
       - name: Print snapcraft file
         run: cat snap/snapcraft.yaml
