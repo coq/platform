@@ -208,6 +208,7 @@ function analyze_package {
     echo "SectionEnd" >> "$FILE_SEC_VISIBLE"
 
     descr="$(opam show --field=synopsis "$1")"
+    descr="${descr//\"/\'}"
     echo 'LangString DESC_'"${1//-/_}"' ${LANG_ENGLISH} "'"$descr"'"' >> "$FILE_STRINGS"
     echo '!insertmacro MUI_DESCRIPTION_TEXT ${Sec_'"${1//-/_}"'} $(DESC_'"${1//-/_}"')' >> "$FILE_SEC_DESCRIPTIONS"
   else
