@@ -20,6 +20,7 @@ Except for expert users this is the recommended way to run this script.
 OPTIONS:
   -h, -help    Print this help message
   -extent=f    Setup opam and build full Coq platform
+  -extent=x    Setup opam and build extended Coq platform
   -extent=b    Just setup opam and build Coq
   -extent=i    Just setup opam and build Coq+CoqIDE
   -packages=file  Select the package list / version file
@@ -72,7 +73,7 @@ then
   done
 fi
 
-check_value_enumeraton  "${COQ_PLATFORM_EXTENT:-__unset__}"   "[fbi]" "-extent/COQ_PLATFORM_EXTENT"
+check_value_enumeraton  "${COQ_PLATFORM_EXTENT:-__unset__}"   "[xfbi]" "-extent/COQ_PLATFORM_EXTENT"
 check_value_enumeraton  "${COQ_PLATFORM_PARALLEL:-__unset__}" "[ps]"  "-parallel/COQ_PLATFORM_PARALLEL"
 check_value_range       "${COQ_PLATFORM_JOBS:-__unset__}"     1 16    "-jobs/COQ_PLATFORM_JOBS"
 check_value_enumeraton  "${COQ_PLATFORM_COMPCERT:-__unset__}" "[yn]"  "-compcert/COQ_PLATFORM_COMPCERT"

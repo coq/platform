@@ -70,7 +70,7 @@ In case you have advice or experience reports for other virus scanner products, 
 
 Especially for lecturers it might be useful to create customized installers with additional packages or a reduced package set. The scripts used to create the released Installer essentially create an installer from the current opam switch. So one can easily add or remove packages and then run the installer script. A few notes on this:
 
-- The installer distinguishes between user selectable packages and packages which are automatically selected if needed. Dependencies between user selectable packages are also taken care of - this is done because otherwise the package list becomes much too long. The selection is done with a positive and a negative regexp filter. If the results don't match, the script aborts. In this case just adjust one or the other filter.
+- The installer distinguishes between user selectable packages and packages which are automatically selected if needed. Dependencies between user selectable packages are also taken care of - this is done because otherwise the package list becomes much too long. The selection is done with an exclusion regexp filter.
 - This method is only tested with the full platform package set. It is likely to work with many other packages, but we cannot guarantee this, since this is not testable. Please file a ticket in case a configuration does not work.
 - Creating an installer only works with Cygwin as build host, not with WSL.
 - You should always test the resulting installer.

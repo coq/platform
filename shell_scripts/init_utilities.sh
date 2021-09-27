@@ -48,8 +48,10 @@ function check_command_available {
 # Set environment variable ANSWER to the result
 #
 # $1 message
-# $2 option 1 keys (only first is shown - this is also the retuen value)
+# $2 option 1 keys (only first is shown - this is also the return value)
 # $3 option 1 text
+#
+# Example: ask_user_opt1_cancel "Disable sandbox (d) or cancel (c)?" dD "dsiable sandbox"
 # ------------------------------------------------------------------------------
 
 function ask_user_opt1_cancel {
@@ -68,10 +70,12 @@ function ask_user_opt1_cancel {
 # Set environment variable ANSWER to the result
 #
 # $1 message
-# $2 option 1 keys (only first is shown - this is also the retuen value)
+# $2 option 1 keys (only first is shown - this is also the return value)
 # $3 option 1 text
-# $4 option 2 keys (only first is shown - this is also the retuen value)
+# $4 option 2 keys (only first is shown - this is also the return value)
 # $5 option 2 text
+#
+# Example: ask_user_opt2_cancel "Shall the existing switch be kept (k) or deleted (d) ?" kK "keep" dD "delete"
 # ------------------------------------------------------------------------------
 
 function ask_user_opt2_cancel {
@@ -91,12 +95,14 @@ function ask_user_opt2_cancel {
 # Set environment variable ANSWER to the result
 #
 # $1 message
-# $2 option 1 keys (only first is shown - this is also the retuen value)
+# $2 option 1 keys (only first is shown - this is also the return value)
 # $3 option 1 text
-# $4 option 2 keys (only first is shown - this is also the retuen value)
+# $4 option 2 keys (only first is shown - this is also the return value)
 # $5 option 2 text
-# $6 option 3 keys (only first is shown - this is also the retuen value)
+# $6 option 3 keys (only first is shown - this is also the return value)
 # $7 option 3 text
+#
+# Example: see ask_user_opt2_cancel and add 2 more arguments
 # ------------------------------------------------------------------------------
 
 function ask_user_opt3_cancel {
@@ -108,6 +114,37 @@ function ask_user_opt3_cancel {
         [$6] ) ANSWER=${6:0:1}; echo; return 0 ;;
         [cC] ) return 1 ;;
         * ) echo "Please answer '${2:0:1}'=$3, ${4:0:1}'=$5, ${6:0:1}'=$7 or 'c'=cancel/exit.";;
+    esac
+  done
+}
+
+# ------------------------------------------------------------------------------
+# Ask a four option + cancel question
+# Set environment variable ANSWER to the result
+#
+# $1 message
+# $2 option 1 keys (only first is shown - this is also the return value)
+# $3 option 1 text
+# $4 option 2 keys (only first is shown - this is also the return value)
+# $5 option 2 text
+# $6 option 3 keys (only first is shown - this is also the return value)
+# $7 option 3 text
+# $8 option 4 keys (only first is shown - this is also the return value)
+# $9 option 4 text
+#
+# Example: see ask_user_opt2_cancel and add 2x2 more arguments
+# ------------------------------------------------------------------------------
+
+function ask_user_opt4_cancel {
+  while true; do
+    read -p "$1 (${2:0:1}/${4:0:1}/${6:0:1}/${8:0:1}/c=cancel) " answer
+    case "$answer" in
+        [$2] ) ANSWER=${2:0:1}; echo; return 0 ;;
+        [$4] ) ANSWER=${4:0:1}; echo; return 0 ;;
+        [$6] ) ANSWER=${6:0:1}; echo; return 0 ;;
+        [$8] ) ANSWER=${8:0:1}; echo; return 0 ;;
+        [cC] ) return 1 ;;
+        * ) echo "Please answer '${2:0:1}'=$3, ${4:0:1}'=$5, ${6:0:1}'=$7, ${8:0:1}'=$9 or 'c'=cancel/exit.";;
     esac
   done
 }
