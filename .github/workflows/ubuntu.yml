@@ -51,6 +51,8 @@ jobs:
         variant:
           - '8.14'
           - '8.13'
+          - '8.13~2021.02'
+          - '8.12'
 
     steps:
       - name: Git checkout
