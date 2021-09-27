@@ -151,23 +151,9 @@ function add_single_file {
 
 ###### Get filtered list of explicitly installed packages #####
 
-# Note: since both positive and negative filtering makes sense, we do both and require that the result is identical.
-# This ensures people get what they expect.
-
 echo "Create package list"
 
-packages_pos="$(opam list --installed-roots --short --columns=name | grep '^coq\|^menhir\|^gappa')"
-packages_neg="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^elpi')"
-
-if [ "$packages_pos" != "$packages_neg" ]
-then
-  echo "The positive and negative list of opam packages deferes. Please adjust the package filters!"
-  echo "Positive list = $packages_pos"
-  echo "Negative list = $packages_neg"
-  exit 1
-fi
-
-SELECTABLE_PACKAGES=$packages_pos
+SELECTABLE_PACKAGES="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^elpi')"
 
 ###### Associative array with package name -> file filter (regexp pattern) #####
 
