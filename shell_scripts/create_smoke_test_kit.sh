@@ -2,7 +2,7 @@
 
 ###################### COPYRIGHT/COPYLEFT ######################
 
-# (C) 2020 Michael Soegtrop
+# (C) 2020..2021 Michael Soegtrop
 
 # Released to the public under the
 # Creative Commons CC0 1.0 Universal License
@@ -25,6 +25,10 @@ esac
 set -o nounset
 set -o errexit
 
+###### The scripts supports a regexp package name pattern as $1 #####
+
+pattern="${1:-^coq-}"
+
 ###### Clear and create smoke test folder #####
 
 rm -rf smoke-test-kit
@@ -38,7 +42,7 @@ source "$(dirname "$0")/get_names_from_switch.sh"
 
 echo "Create package list"
 
-packages="$(opam list --installed-roots --short --columns=name | grep '^coq-' | cat)"
+packages="$(opam list --installed-roots --short --columns=name | grep "${pattern}" | cat)"
 
 ##### Associate package name with test/example file(s) #####
 
@@ -107,6 +111,9 @@ cat <<-'EOH' > $smoke_script
 	set -o nounset
 	set -o errexit
 
+	# The scripts supports a regexp package name pattern as $1
+	pattern="${1:-.*}"
+
 	# Check if coqc is available
 	if ! command -v coqc &> /dev/null
 	then
@@ -125,6 +132,8 @@ cat <<-'EOH' > $smoke_script
 	# $1: relative path of file to run
 	# $2: coqc options
 	function run_test {
+	  if [[ "$1" =~ ${pattern} ]]
+	  then
 	    echo "====================== Running test file $1 ======================"
 	      here="$(pwd)"
 	      cd "${1%/*}"
@@ -132,6 +141,7 @@ cat <<-'EOH' > $smoke_script
 	      coqc ${2:-} "${1##*/}"
 	      cd "$here"
 	    echo $'\n\n'
+	  fi
 	}
 
 	# Run coqc for all smoke test files
@@ -248,7 +258,7 @@ echo 'ECHO "====================== SMOKE TEST SUCCESS ======================"'$'
 ##### Run bash runner script #####
 
 chmod u+x $smoke_script
-echo "On unix you can now run " $smoke_script
+echo "On macOS, Linux or unix you can now run " $smoke_script
 
 ##### Run batch runner script #####
 
