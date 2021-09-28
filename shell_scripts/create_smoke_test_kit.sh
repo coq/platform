@@ -105,6 +105,7 @@ TEST_FILES[coq-coqeal]='refinements/examples/irred.v'
 TEST_FILES[coq-coqprime]=''
 TEST_FILES[coq-libhyps]='Demo/demo.v'
 TEST_FILES[coq-deriving]='tests/tree.v'
+TEST_FILES[coq-mathcomp-zify]='examples.v'
 
 ##### Hacks for files #####«
 
