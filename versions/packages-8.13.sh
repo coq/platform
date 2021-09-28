@@ -106,7 +106,7 @@ then
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.1+8.13"
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.13"
   PACKAGES="${PACKAGES} coq-coqeal.1.0.6"
-  PACKAGES="${PACKAGES} coq-libhyps.2.0.2"
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.3"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419"
