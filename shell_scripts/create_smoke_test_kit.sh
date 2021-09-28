@@ -106,6 +106,7 @@ TEST_FILES[coq-coqprime]=''
 TEST_FILES[coq-libhyps]='Demo/demo.v'
 TEST_FILES[coq-deriving]='tests/tree.v'
 TEST_FILES[coq-mathcomp-zify]='examples.v'
+TEST_FILES[coq-serapi]=''
 
 ##### Hacks for files #####«
 

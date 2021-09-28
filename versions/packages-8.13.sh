@@ -148,6 +148,9 @@ then
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.2"
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"
 
+  # Communication with coqtop
+  PACKAGES="${PACKAGES} coq-serapi.8.13.0+0.13.0"
+
   # Proof analysis and other tools
   PACKAGES="${PACKAGES} coq-dpdgraph.0.6.9"
   PACKAGES="${PACKAGES} coq-coq2html.1.2"
