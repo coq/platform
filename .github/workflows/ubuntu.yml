@@ -14,7 +14,7 @@ on:
     branches:
       - 2021.02
       - 2021.09
-      - master
+      - main
   pull_request:
     branches:
       - '**'

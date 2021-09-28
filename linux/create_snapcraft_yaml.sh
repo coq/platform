@@ -47,7 +47,7 @@ for p in $(echo ${PACKAGES} | sed -e 's/ /\n/g' | sort); do
   if [ "${pname##coq-}" == "$pname" ]; then continue; fi
   pversion="$(opam show $p -f version: | tr -d \")"
   pdescr="$(opam show $p -f synopsis: | tr -d \")"
-  pdescr_short="${pdescr:0:80}"
+  pdescr_short="${pdescr:0:60}"
   if [ "$pdescr" != "$pdescr_short" ]
   then
     pdescr_short="${pdescr_short}..."

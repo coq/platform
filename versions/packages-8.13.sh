@@ -43,10 +43,6 @@ PACKAGES=""
 
 ########## BASE PACKAGES ##########
 
-# Build tools - this is selected early to avoid the version is changed later
-# and everything has to be recompiled.
-PACKAGES="${PACKAGES} dune.2.9.1"
-
 # The Coq compiler coqc and the Coq standard library
 PACKAGES="${PACKAGES} coq.8.13.2"
 
@@ -78,6 +74,7 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
+  PACKAGES="${PACKAGES} coq-mathcomp-zify.1.0.0+1.12+8.13"
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
 
   # Number theory
@@ -104,15 +101,15 @@ then
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.0"
   PACKAGES="${PACKAGES} coq-quickchick.1.5.1"
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.1+8.13"
-  PACKAGES="${PACKAGES} coq-hammer.1.3.1+8.13 z3.4.8.11 eprover.2.6"
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.13"
   PACKAGES="${PACKAGES} coq-coqeal.1.0.6"
-  PACKAGES="${PACKAGES} coq-libhyps.2.0.2"
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.3"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419"
   PACKAGES="${PACKAGES} coq-reglang.1.1.2"
   PACKAGES="${PACKAGES} coq-iris.3.4.0"
+  PACKAGES="${PACKAGES} coq-iris-heap-lang.3.4.0"
 
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.9" ;;
@@ -146,6 +143,9 @@ then
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.2"
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"
+
+  # Communication with coqtop
+  PACKAGES="${PACKAGES} coq-serapi.8.13.0+0.13.0"
 
   # Proof analysis and other tools
   PACKAGES="${PACKAGES} coq-dpdgraph.0.6.9"
