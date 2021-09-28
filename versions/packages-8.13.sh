@@ -113,6 +113,7 @@ then
   PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419"
   PACKAGES="${PACKAGES} coq-reglang.1.1.2"
   PACKAGES="${PACKAGES} coq-iris.3.4.0"
+  PACKAGES="${PACKAGES} coq-iris-heap-lang.3.4.0"
 
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.9" ;;
