@@ -43,10 +43,6 @@ PACKAGES=""
 
 ########## BASE PACKAGES ##########
 
-# Build tools - this is selected early to avoid the version is changed later
-# and everything has to be recompiled.
-PACKAGES="${PACKAGES} dune.2.9.1"
-
 # The Coq compiler coqc and the Coq standard library
 PACKAGES="${PACKAGES} coq.8.13.2"
 
