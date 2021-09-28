@@ -146,7 +146,7 @@ $CC
 
 ##### Read package list file #####
 
-COQ_PLATFORM_EXTENT=f
+COQ_PLATFORM_EXTENT=x
 COQ_PLATFORM_COMPCERT=y
 COQ_PLATFORM_VST=y
 

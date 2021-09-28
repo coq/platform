@@ -2,7 +2,7 @@
 
 ###################### COPYRIGHT/COPYLEFT ######################
 
-# (C) 2020 Michael Soegtrop
+# (C) 2020..2021 Michael Soegtrop
 
 # Released to the public under the
 # Creative Commons CC0 1.0 Universal License
@@ -25,6 +25,10 @@ esac
 set -o nounset
 set -o errexit
 
+###### The scripts supports a regexp package name pattern as $1 #####
+
+pattern="${1:-^coq-}"
+
 ###### Clear and create smoke test folder #####
 
 rm -rf smoke-test-kit
@@ -38,7 +42,7 @@ source "$(dirname "$0")/get_names_from_switch.sh"
 
 echo "Create package list"
 
-packages="$(opam list --installed-roots --short --columns=name | grep '^coq-' | cat)"
+packages="$(opam list --installed-roots --short --columns=name | grep "${pattern}" | cat)"
 
 ##### Associate package name with test/example file(s) #####
 
@@ -51,15 +55,16 @@ TEST_FILES[coq-compcert]='lib/Coqlib.v'
 TEST_FILES[coq-compcert-32]='lib/Coqlib.v'
 COQ_OPTION[coq-compcert-32]='-Q $COQLIB/../coq-variant/compcert32/compcert compcert'
 TEST_FILES[coq-coquelicot]='examples/BacS2013.v'
-TEST_FILES[coq-elpi]='examples/tutorial_coq_elpi.v examples/tutorial_elpi_lang.v'
+TEST_FILES[coq-elpi]='examples/tutorial_coq_elpi_command.v examples/tutorial_elpi_lang.v'
+TEST_FILES[coq-elpi~8.13~2021.02]='examples/tutorial_coq_elpi.v examples/tutorial_elpi_lang.v'
 TEST_FILES[coq-elpi~8.12]='theories/examples/example_reflexive_tactic.v'
 TEST_FILES[coq-equations]='examples/Fin.v examples/STLC.v'
 TEST_FILES[coq-ext-lib]='examples/MonadReasoning.v examples/Printing.v'
 TEST_FILES[coq-flocq]='examples/Average.v' # In fixing: examples/Cody_Waite.v
 TEST_FILES[coq-gappa]='testsuite/example-20101018.v testsuite/example-20090706.v testsuite/example-20080417.v'
-TEST_FILES[coq-hierarchy-builder]='demo2/classical.v demo2/stage10.v demo2/stage11.v'
+TEST_FILES[coq-hierarchy-builder]='examples/demo2/classical.v examples/demo2/stage10.v examples/demo2/stage11.v'
+TEST_FILES[coq-hierarchy-builder~8.13~2021.02]='demo2/classical.v demo2/stage10.v demo2/stage11.v'
 TEST_FILES[coq-hierarchy-builder~8.12]='demo2/classical.v demo2/stage10.v demo2/stage11.v'
-TEST_FILES[coq-hierarchy-builder~dev]='examples/demo2/classical.v examples/demo2/stage10.v examples/demo2/stage11.v'
 TEST_FILES[coq-interval]='testsuite/example-20071016.v testsuite/example-20120205.v testsuite/example-20140221.v'
 TEST_FILES[coq-mathcomp-algebra]='mathcomp/algebra/finalg.v'
 TEST_FILES[coq-mathcomp-bigenough]='bigenough.v'
@@ -83,7 +88,26 @@ COQ_OPTION[coq-vst-32]='-Q $COQLIB/../coq-variant/VST32/VST VST -Q $COQLIB/../co
 TEST_FILES[coq-hott]='theories/Analysis/Locator.v'
 COQ_OPTION[coq-hott]='-noinit -indices-matter'
 
-##### Hacks for files #####
+TEST_FILES[coq-reduction-effects]='tests/PrintEffect.v'
+TEST_FILES[coq-corn]=''
+TEST_FILES[coq-math-classes]=''
+TEST_FILES[coq-iris]='tests/heapprop.v'
+TEST_FILES[coq-stdpp]='tests/sets.v'
+TEST_FILES[coq-record-update]='/tests/RecordSetTests.v'
+TEST_FILES[coq-hammer-tactics]='/examples/tutorial/sauto/isort.v'
+TEST_FILES[coq-hammer]='examples/tutorial/hammer/demo.v'
+TEST_FILES[coq-dpdgraph]='tests/Test.v'
+TEST_FILES[coq-paramcoq]='test-suite/Parametricity.v'
+TEST_FILES[coq-reglang]='theories/regexp.v'
+TEST_FILES[coq-mathcomp-analysis]=''
+TEST_FILES[coq-mathcomp-multinomials]=''
+TEST_FILES[coq-coq2html]=''
+TEST_FILES[coq-coqeal]='refinements/examples/irred.v'
+TEST_FILES[coq-coqprime]=''
+TEST_FILES[coq-libhyps]='Demo/demo.v'
+TEST_FILES[coq-deriving]='tests/tree.v'
+
+##### Hacks for files #####«
 
 function patch_file() {
   awk '
@@ -107,6 +131,9 @@ cat <<-'EOH' > $smoke_script
 	set -o nounset
 	set -o errexit
 
+	# The scripts supports a regexp package name pattern as $1
+	pattern="${1:-.*}"
+
 	# Check if coqc is available
 	if ! command -v coqc &> /dev/null
 	then
@@ -125,6 +152,8 @@ cat <<-'EOH' > $smoke_script
 	# $1: relative path of file to run
 	# $2: coqc options
 	function run_test {
+	  if [[ "$1" =~ ${pattern} ]]
+	  then
 	    echo "====================== Running test file $1 ======================"
 	      here="$(pwd)"
 	      cd "${1%/*}"
@@ -132,6 +161,7 @@ cat <<-'EOH' > $smoke_script
 	      coqc ${2:-} "${1##*/}"
 	      cd "$here"
 	    echo $'\n\n'
+	  fi
 	}
 
 	# Run coqc for all smoke test files
@@ -248,7 +278,7 @@ echo 'ECHO "====================== SMOKE TEST SUCCESS ======================"'$'
 ##### Run bash runner script #####
 
 chmod u+x $smoke_script
-echo "On unix you can now run " $smoke_script
+echo "On macOS, Linux or unix you can now run " $smoke_script
 
 ##### Run batch runner script #####
 

@@ -11,7 +11,7 @@
 ###################### PATHS #####################
 
 # The folder of the main script (*not* this script!)
-SCRIPTDIR="$(cd "$(dirname "$0")" >/dev/null 2>&1 && pwd)"
+SCRIPTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." >/dev/null 2>&1 && pwd)"
 
 if [[ "$OSTYPE" == cygwin ]]
 then

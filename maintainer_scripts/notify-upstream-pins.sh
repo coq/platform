@@ -27,6 +27,14 @@ case $BASH_VERSION in
   ;;
 esac
 
+###### Parameters #####
+
+# $1 is mandatory and is the package list file from the versions folder
+package_list="$1"
+
+# $2 is optional and a package name regexp
+pattern="${2:-^.*}"
+
 ##### Settings #####
 
 EXT_PRE="+rc1"
@@ -176,11 +184,11 @@ $CC
 
 ##### Read package list file #####
 
-COQ_PLATFORM_EXTENT=f
+COQ_PLATFORM_EXTENT=x
 COQ_PLATFORM_COMPCERT=y
 COQ_PLATFORM_VST=y
 
-source $1
+source ${package_list}
 
 COQ_PLATFORM_COQ_BASE_VERSION=${COQ_PLATFORM_COQ_BRANCH#v}
 
@@ -200,34 +208,38 @@ set +o nounset
 
 for package in ${PACKAGES}
 do
-  package_platform_to_ci
-  if [ -n "${package_ci}" ]
+  echo "${package}" "${pattern}"
+  if [[ "${package}" =~ ${pattern} ]]
   then
-    if opam_check_installed "$package_main"
+    package_platform_to_ci
+    if [ -n "${package_ci}" ]
     then
-      COQ_PLATFORM_MESSAGE="Coq Platform is currently testing opam version $(opam_get_installed_version "$package_main")"$'\n'"from $(opam_get_installed_source_repo "$package_main")."
-    else
-      COQ_PLATFORM_MESSAGE="Coq Platform is currently *not testing* this package!"
-    fi
+      if opam_check_installed "$package_main"
+      then
+        COQ_PLATFORM_MESSAGE="Coq Platform is currently testing opam version $(opam_get_installed_version "$package_main")"$'\n'"from $(opam_get_installed_source_repo "$package_main")."
+      else
+        COQ_PLATFORM_MESSAGE="Coq Platform is currently *not testing* this package!"
+      fi
 
-    echo -e "\n----------------------------------------------"
-    url=`read_from /tmp/master-ci-basic-overlay.sh "${package_ci}_CI_GITURL"`
-    ref=`read_from /tmp/master-ci-basic-overlay.sh "${package_ci}_CI_REF"`
-    pin=`read_from /tmp/branch-ci-basic-overlay.sh "${package_ci}_CI_REF"`
-    echo "Available tags for ${package} are:"
-    git -c 'versionsort.suffix=-' ls-remote --refs --tags --sort='v:refname' "${url}" | sed 's|.*refs/tags/||'
-    if [ "${#pin}" = "40" ]
-    then
-      echo -e "Package ${package} is pinned to a hash in Coq CI, to open an issue open the following url:\n"
-      template ${url} $ref $pin
-    elif [ "${#pin}" = "0" ]
-    then
-      echo "=================================================="
-      echo "ERROR: Package ${package} has no pin!"
-      echo "=================================================="
-    else
-      echo "Package ${package} is already pinned to version $pin"
-      echo 
+      echo -e "\n----------------------------------------------"
+      url=`read_from /tmp/master-ci-basic-overlay.sh "${package_ci}_CI_GITURL"`
+      ref=`read_from /tmp/master-ci-basic-overlay.sh "${package_ci}_CI_REF"`
+      pin=`read_from /tmp/branch-ci-basic-overlay.sh "${package_ci}_CI_REF"`
+      echo "Available tags for ${package} are:"
+      git -c 'versionsort.suffix=-' ls-remote --refs --tags --sort='v:refname' "${url}" | sed 's|.*refs/tags/||'
+      if [ "${#pin}" = "40" ]
+      then
+        echo -e "Package ${package} is pinned to a hash in Coq CI, to open an issue open the following url:\n"
+        template ${url} $ref $pin
+      elif [ "${#pin}" = "0" ]
+      then
+        echo "=================================================="
+        echo "ERROR: Package ${package} has no pin!"
+        echo "=================================================="
+      else
+        echo "Package ${package} is already pinned to version $pin"
+        echo 
+      fi
     fi
   fi
 done

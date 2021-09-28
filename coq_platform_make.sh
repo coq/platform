@@ -10,7 +10,7 @@
 
 ###################### SCRIPT INITIALIZATION #####################
 
-cd "$(dirname "$0")"
+cd "$(dirname "${BASH_SOURCE[0]}")"
 source shell_scripts/init_safety_debug.sh
 source shell_scripts/init_paths.sh
 source shell_scripts/init_utilities.sh
@@ -58,6 +58,8 @@ source shell_scripts/ask_delete_opam_switch.sh
 source shell_scripts/install_opam.sh
 source shell_scripts/check_opam_sandbox.sh
 source shell_scripts/install_opam_depext.sh
+
+if [ "${COQ_PLATFORM_OPAM_ONLY:-n}" == "y" ]; then return 0; fi
 
 ###################### INSTALL PREREQUISITES #####################
 

@@ -38,12 +38,12 @@ COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 PACKAGES="coq.dev~ltacdebug"
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
-if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfF] ]]
+if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
 PACKAGES="${PACKAGES} coqide.dev~ltacdebug lablgtk3.3.1.1"
 fi
 
-if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fF] ]]
+if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
 
 # # Some generally useful packages

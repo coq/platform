@@ -1,0 +1,24 @@
+opam-version: "2.0"
+maintainer: "7895506+MSoegtropIMC@users.noreply.github.com"
+authors: "DHBW Stuttgart, Professor Dr. Stephan Schulz"
+homepage: "https://wwwlehre.dhbw-stuttgart.de/~sschulz/E/E.html"
+license: ["LGPL-2.1-or-later" "GPL-2.0-or-later"]
+dev-repo: "git+https://github.com/eprover/eprover.git"
+build: [
+  [ "./configure" "--bindir=%{bin}%" ]
+  [ make "-j" "%{jobs}%" ]
+]
+install: [
+  [ make "install" ]
+]
+depends: [
+  "conf-gcc"
+]
+synopsis: "E Theorem Prover"
+url {
+  src:
+    "https://github.com/eprover/eprover/archive/refs/tags/E-2.6.tar.gz"
+  checksum: [
+    "sha512=8fe5f2d4f7d16ff0230219b9649f7a572b76b0d98aa283a80f8e9d5dcd9477475504a5e2acd63e6779956a7895b3421ac54e0589e13292d9e13aeaef80a69512"
+  ]
+}

@@ -473,6 +473,7 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO Except for expert users this is the recommended way to run this script.
   ECHO(
   ECHO -extent=f    Setup opam and build full Coq platform
+  ECHO -extent=x    Setup opam and build extended Coq platform
   ECHO -extent=b    Just setup opam and build Coq (basic)
   ECHO -extent=i    Just setup opam and build Coq + CoqIDE
   ECHO -parallel=p  Build several opam packages in parallel

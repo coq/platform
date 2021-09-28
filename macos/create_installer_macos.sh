@@ -324,23 +324,9 @@ function check_spdx_license {
 
 ###### Get filtered list of explicitly installed packages #####
 
-# Note: since both positive and negative filtering makes sense, we do both and require that the result is identical.
-# This ensures people get what they expect.
-
 echo "Create primary package list"
 
-packages_pos="$(opam list --installed-roots --short --columns=name | grep '^coq\|^menhir\|^gappa' | tr -s '\n' ' ')"
-packages_neg="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^elpi' | tr -s '\n' ' ')"
-
-if [ "$packages_pos" != "$packages_neg" ]
-then
-  echo "The positive and negative list of opam packages differs. Please adjust the package filters!"
-  echo "Positive list = $packages_pos"
-  echo "Negative list = $packages_neg"
-  exit 1
-fi
-
-PRIMARY_PACKAGES="$packages_pos"
+PRIMARY_PACKAGES="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^elpi' | tr -s '\n' ' ')"
 
 ###### Associative array with package name -> file filter (regexp pattern) #####
 

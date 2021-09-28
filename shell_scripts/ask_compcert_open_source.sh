@@ -14,7 +14,7 @@
 
 if [ -z "${COQ_PLATFORM_COMPCERT:+x}" ]
 then
-  if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fF] ]]
+  if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
   then
 cat <<EOH
 ================================== COMPCERT ==================================
