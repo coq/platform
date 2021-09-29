@@ -149,6 +149,5 @@ then
 
   # Proof analysis and other tools
   PACKAGES="${PACKAGES} coq-dpdgraph.0.6.9"
-  PACKAGES="${PACKAGES} coq-coq2html.1.2"
 
 fi
