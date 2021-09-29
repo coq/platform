@@ -94,7 +94,7 @@ then
   PACKAGES="${PACKAGES} coq-hott.8.13~flex"           # TO BE UPDATED !!! See https://github.com/HoTT/HoTT/issues/1581
 
   # Proof automation / generation / helpers
-  #PACKAGES="${PACKAGES} coq-equations.1.2.3+8.13"    # coq-equations.1.2.4+8.13~flex does not compile
+  PACKAGES="${PACKAGES} coq-equations.1.3+8.14"       # pick confirmed https://github.com/mattam82/Coq-Equations/issues/427 (does not include HoTT support)
   PACKAGES="${PACKAGES} coq-aac-tactics.8.14.0"       # pick confirmed https://github.com/coq-community/aac-tactics/issues/87
   PACKAGES="${PACKAGES} coq-unicoq.1.5+8.14"          # untagged pre release
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.14"           # pick confirmed https://github.com/Mtac2/Mtac2/issues/344
