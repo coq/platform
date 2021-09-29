@@ -102,6 +102,7 @@ then
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.0"  # pick confirmed https://github.com/math-comp/hierarchy-builder/issues/265
   PACKAGES="${PACKAGES} coq-quickchick.1.5.1"         # pick confirmed https://github.com/QuickChick/QuickChick/issues/236
   # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.1+8.13~flex" # coq-hammer-tactics.1.3.1+8.13~flex does not compile
+  PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.14"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419" # pick confirmed https://gitlab.inria.fr/fpottier/menhir/-/issues/55
