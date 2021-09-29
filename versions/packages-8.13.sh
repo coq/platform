@@ -59,7 +59,7 @@ fi
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
 
-  # General standard library extensions 
+  # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.13.0"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.4"
   PACKAGES="${PACKAGES} coq-stdpp.1.5.0"
@@ -76,6 +76,7 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.0.0+1.12+8.13"
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.10"
+  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.4"
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
 
   # Number theory
@@ -133,9 +134,6 @@ fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
-
-  # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.4"
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.0"
