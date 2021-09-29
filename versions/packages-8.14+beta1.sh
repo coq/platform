@@ -36,6 +36,8 @@ PACKAGES=""
 #   This avoids multiple sudo password requests
 # - Packages which take a long time to build should be given last.
 #   There is some evidence that they are built early then.
+# - Versions ending with ~flex are identical to the opam package without the
+#   ~flex extension, except that version restrictions have been relaxed.
 # - The picking tracker issue is https://github.com/coq/platform/issues/139
 
 ########## BASE PACKAGES ##########
@@ -83,6 +85,10 @@ then
   PACKAGES="${PACKAGES} coq-interval.4.3.0"           # pick confirmed https://gitlab.inria.fr/coqinterval/interval/-/issues/7
   PACKAGES="${PACKAGES} coq-flocq.3.4.2"              # pick confirmed https://gitlab.inria.fr/flocq/flocq/-/issues/17
   PACKAGES="${PACKAGES} coq-gappa.1.5.0 gappa.1.4.0"  # pick confirmed https://gitlab.inria.fr/gappa/coq/-/issues/9
+
+  # Constructive mathematics
+  PACKAGES="${PACKAGES} coq-math-classes.8.13.0~flex"
+  PACKAGES="${PACKAGES} coq-corn.8.13.0"
 
   # Homotopy Type Theory (HoTT)
   PACKAGES="${PACKAGES} coq-hott.8.13~flex"           # TO BE UPDATED !!! See https://github.com/HoTT/HoTT/issues/1581
