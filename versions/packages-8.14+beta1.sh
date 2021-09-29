@@ -104,6 +104,7 @@ then
   # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.1+8.13~flex" # coq-hammer-tactics.1.3.1+8.13~flex does not compile
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.14"
   PACKAGES="${PACKAGES} coq-coqeal.1.0.6"
+  # PACKAGES="${PACKAGES} coq-libhyps.2.0.3~flex"     # coq-libhyps.2.0.3~flex does not compile
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419" # pick confirmed https://gitlab.inria.fr/fpottier/menhir/-/issues/55
