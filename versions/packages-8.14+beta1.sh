@@ -137,4 +137,7 @@ then
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.0~flex"
 
+  # Gallina extensions
+  PACKAGES="${PACKAGES} coq-reduction-effects.0.1.2"
+
 fi
