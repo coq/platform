@@ -11,14 +11,14 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-# DESCRIPTION Coq 8.14+rc1 (release candidate 1)
+# DESCRIPTION Coq 8.14+beta1 (with Coq 8.14+rc1)
 # SORTORDER 9000
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGELIST_NAME='~8.14+rc1'
+COQ_PLATFORM_PACKAGELIST_NAME='~8.14+beta1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.14'
