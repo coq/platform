@@ -76,6 +76,9 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.4"
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"         # pick confirmed https://gitlab.inria.fr/coquelicot/coquelicot/-/issues/4
 
+  # Number theory
+  # PACKAGES="${PACKAGES} coq-coqprime.1.0.6"         # passes opam tests but does not compile
+
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-interval.4.3.0"           # pick confirmed https://gitlab.inria.fr/coqinterval/interval/-/issues/7
   PACKAGES="${PACKAGES} coq-flocq.3.4.2"              # pick confirmed https://gitlab.inria.fr/flocq/flocq/-/issues/17
