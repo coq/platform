@@ -75,6 +75,7 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.0.0+1.12+8.13"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.10"
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
 
   # Number theory
@@ -134,7 +135,6 @@ if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.10"
   PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.4"
 
   # Proof automation / generation / helpers
