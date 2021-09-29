@@ -56,9 +56,10 @@ fi
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
 
-  # General standard library extensions 
+  # Standard library extensions 
   PACKAGES="${PACKAGES} coq-bignums.8.14.0"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.4"           # pick confirmed https://github.com/coq-community/coq-ext-lib/issues/116
+  # PACKAGES="${PACKAGES} coq-stdpp.1.5.0"            # coq-stdpp.1.5.0~flex does not compile
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.12.0"
@@ -91,6 +92,8 @@ then
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419" # pick confirmed https://gitlab.inria.fr/fpottier/menhir/-/issues/55
+  # PACKAGES="${PACKAGES} coq-iris.3.4.0"             # depends on coq-stdpp
+  # PACKAGES="${PACKAGES} coq-iris-heap-lang.3.4.0"   # depends on coq-stdpp
 
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.9~flex" ;;       # pick confirmed https://github.com/AbsInt/CompCert/issues/414
