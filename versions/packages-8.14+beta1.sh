@@ -139,5 +139,6 @@ then
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.2"
+  PACKAGES="${PACKAGES} coq-record-update.0.3.0"
 
 fi
