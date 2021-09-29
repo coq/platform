@@ -108,6 +108,7 @@ then
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419" # pick confirmed https://gitlab.inria.fr/fpottier/menhir/-/issues/55
+  PACKAGES="${PACKAGES} coq-reglang.1.1.2"
   # PACKAGES="${PACKAGES} coq-iris.3.4.0"             # depends on coq-stdpp
   # PACKAGES="${PACKAGES} coq-iris-heap-lang.3.4.0"   # depends on coq-stdpp
 
