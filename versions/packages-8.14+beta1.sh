@@ -131,6 +131,10 @@ fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
 
-# if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
-# then
-# fi
+if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
+then
+
+  # Proof automation / generation / helpers
+  PACKAGES="${PACKAGES} coq-deriving.0.1.0~flex"
+
+fi
