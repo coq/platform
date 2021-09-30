@@ -141,4 +141,7 @@ then
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.2"
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"
 
+  # Communication with coqtop
+  PACKAGES="${PACKAGES} coq-serapi.8.14+rc1+0.14.0"
+
 fi
