@@ -144,4 +144,7 @@ then
   # Communication with coqtop
   PACKAGES="${PACKAGES} coq-serapi.8.14+rc1+0.14.0"
 
+  # Proof analysis and other tools
+  # PACKAGES="${PACKAGES} coq-dpdgraph.0.6.9~flex" # coq-dpdgraph.0.6.9~flex does not compile
+
 fi
