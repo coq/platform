@@ -93,6 +93,9 @@ then
   # Homotopy Type Theory (HoTT)
   PACKAGES="${PACKAGES} coq-hott.8.13~flex"           # TO BE UPDATED !!! See https://github.com/HoTT/HoTT/issues/1581
 
+  # Univalent Mathematics (UniMath)
+  PACKAGES="${PACKAGES} coq-unimath.20210807"
+
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-equations.1.3+8.14"       # pick confirmed https://github.com/mattam82/Coq-Equations/issues/427 (does not include HoTT support)
   PACKAGES="${PACKAGES} coq-aac-tactics.8.14.0"       # pick confirmed https://github.com/coq-community/aac-tactics/issues/87
