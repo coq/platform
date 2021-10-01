@@ -95,7 +95,8 @@ then
   PACKAGES="${PACKAGES} coq-hott.8.13"
 
   # Univalent Mathematics (UniMath)
-  PACKAGES="${PACKAGES} coq-unimath.20210807"
+  # Note: coq-unimath requires too much memory for 32 bit architectures
+  if [ "${BITSIZE}" == "64" ]; then PACKAGES="${PACKAGES} coq-unimath.20210807"; fi
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-equations.1.2.3+8.13"
