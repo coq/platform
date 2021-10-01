@@ -74,7 +74,7 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
-  PACKAGES="${PACKAGES} coq-mathcomp-zify.1.0.0+1.12+8.13"
+  PACKAGES="${PACKAGES} coq-mathcomp-zify.1.1.0+1.12+8.13"
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.10"
   PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.4"
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
@@ -93,6 +93,10 @@ then
 
   # Homotopy Type Theory (HoTT)
   PACKAGES="${PACKAGES} coq-hott.8.13"
+
+  # Univalent Mathematics (UniMath)
+  # Note: coq-unimath requires too much memory for 32 bit architectures
+  if [ "${BITSIZE}" == "64" ]; then PACKAGES="${PACKAGES} coq-unimath.20210807"; fi
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-equations.1.2.3+8.13"
@@ -128,6 +132,9 @@ then
   # Code extraction
   PACKAGES="${PACKAGES} coq-simple-io.1.5.0"
 
+  # Proof analysis and other tools
+  PACKAGES="${PACKAGES} coq-dpdgraph.0.6.9"
+
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
@@ -144,8 +151,5 @@ then
 
   # Communication with coqtop
   PACKAGES="${PACKAGES} coq-serapi.8.13.0+0.13.0"
-
-  # Proof analysis and other tools
-  PACKAGES="${PACKAGES} coq-dpdgraph.0.6.9"
 
 fi

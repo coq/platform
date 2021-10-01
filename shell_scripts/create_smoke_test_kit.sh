@@ -104,10 +104,12 @@ TEST_FILES[coq-coqeal]='refinements/examples/irred.v'
 TEST_FILES[coq-coqprime]=''
 TEST_FILES[coq-libhyps]='Demo/demo.v'
 TEST_FILES[coq-deriving]='tests/tree.v'
-TEST_FILES[coq-mathcomp-zify]='examples.v'
+TEST_FILES[coq-mathcomp-zify]='examples/divmod.v examples/boolean.v'
 TEST_FILES[coq-serapi]=''
+TEST_FILES[coq-unimath]='UniMath/Foundations/Tests.v'
+COQ_OPTION[coq-unimath]='-noinit -indices-matter -type-in-type -w -notation-overridden '
 
-##### Hacks for files #####«
+##### Hacks for files #####
 
 function patch_file() {
   awk '

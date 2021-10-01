@@ -12,7 +12,7 @@
 
 # The two lines below are used by the package selection script
 # DESCRIPTION Coq 8.12.2 12/2020 (previous release version)
-# SORTORDER 2
+# SORTORDER 3
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
