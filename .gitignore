@@ -1,8 +1,9 @@
 Notes.md
+.DS_Store
 windows/ReadMe.txt
 windows_installer/
 opam64/
 cygwin_cache/
 macos_installer/
-.DS_Store
 smoke-test-kit/
+source-statistics/
