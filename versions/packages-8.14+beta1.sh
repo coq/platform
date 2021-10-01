@@ -131,6 +131,9 @@ then
   # Code extraction
   PACKAGES="${PACKAGES} coq-simple-io.1.5.0~flex"
 
+  # Proof analysis and other tools
+  # PACKAGES="${PACKAGES} coq-dpdgraph.0.6.9~flex" # coq-dpdgraph.0.6.9~flex does not compile
+
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
@@ -147,8 +150,5 @@ then
 
   # Communication with coqtop
   PACKAGES="${PACKAGES} coq-serapi.8.14+rc1+0.14.0"
-
-  # Proof analysis and other tools
-  # PACKAGES="${PACKAGES} coq-dpdgraph.0.6.9~flex" # coq-dpdgraph.0.6.9~flex does not compile
 
 fi

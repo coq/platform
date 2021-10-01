@@ -132,6 +132,9 @@ then
   # Code extraction
   PACKAGES="${PACKAGES} coq-simple-io.1.5.0"
 
+  # Proof analysis and other tools
+  PACKAGES="${PACKAGES} coq-dpdgraph.0.6.9"
+
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
@@ -148,8 +151,5 @@ then
 
   # Communication with coqtop
   PACKAGES="${PACKAGES} coq-serapi.8.13.0+0.13.0"
-
-  # Proof analysis and other tools
-  PACKAGES="${PACKAGES} coq-dpdgraph.0.6.9"
 
 fi
