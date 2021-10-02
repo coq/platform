@@ -100,7 +100,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-equations.1.2.3+8.13"
-  PACKAGES="${PACKAGES} coq-aac-tactics.8.13.0"
+  PACKAGES="${PACKAGES} coq-aac-tactics.8.13.1"
   PACKAGES="${PACKAGES} coq-unicoq.1.5+8.13"
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.13"
   PACKAGES="${PACKAGES} coq-elpi.1.11.1 elpi.1.13.7" # Note: coq-elpi 1.11.2 is >=8.14
