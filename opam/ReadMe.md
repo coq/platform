@@ -1,4 +1,4 @@
-# Coq Platform Opam patch repositories
+# Coq Platform opam patch repositories
 
 This folder contains opam patches for the Coq Platform. The sub folder are
 intended for patches for the following three opam repositories:

@@ -1,6 +1,6 @@
 # Coq Platform 2021.09.0 providing Coq 8.14+rc1 with a beta package pick
 
-The [Coq interactive prover](https://coq.inria.fr) provides a formal language
+The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
 with an environment for semi-interactive development of machine-checked proofs.
 
@@ -8,8 +8,8 @@ The [Coq Platform](https://github.com/coq/platform) is a distribution of the Coq
 interactive prover together with a selection of Coq libraries and plugins.
 
 The Coq Platform supports to install several versions of Coq (also in parallel).
-This ReadMe file is for **Coq Platform 2021.09.0 with Coq 8.14+rc1**.
-The ReadMe files for other versions are linked in the main [ReadMe](../ReadMe.md).
+This README file is for **Coq Platform 2021.09.0 with Coq 8.14+rc1**.
+The README files for other versions are linked in the main [README](../README.md).
 
 This version of Coq Platform 2021.09.0 includes Coq 8.14+rc1 from 09/2021. While the bundled Coq version is a **release candidate**, Coq Platform is still **beta**. Several packages do not yet have a compatible version or might change. This version of Coq Platform is mostly intended for package maintainers. 
 

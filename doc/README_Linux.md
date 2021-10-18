@@ -1,18 +1,28 @@
 This README presents the two standard methods to install the platform on Linux:
-- as a binary Snap package,
+- as a binary snap package,
 - from sources, using the platform scripts.
 
 The first method is recommended for beginners and the second one is recommended for experienced users, who may want to use opam to install additional packages, beyond the standard set provided by the platform.
 
-# Installation using Snap package
+# Installation using snap package
 
 URL: https://snapcraft.io/coq-prover
 
 Maintainer: Enrico Tassi
 
+To install the Coq Platform on a Linux machine which has snap already installed -
+which is default on Ubuntu since version 16 and some other but not all Linux distributions -
+use the following command:
+
+```
+sudo snap install coq-prover
+```
+
+In case you don't have snap installed yet, please refer to [installing-snapd](https://snapcraft.io/docs/installing-snapd)
+
 ## Package name
 The name of the package is `coq-prover` since `coq` was considered
-unacceptable by the snap store admins (too short and non informative).
+unacceptable by the Snap Store admins (too short and non informative).
 
 ## Aliases
 The snap package can install binaries in the path, but they are all called
@@ -49,7 +59,7 @@ one.
 
 ## See also
 - linux/snap/github_actions for a script to trigger a CI build for a platform
-  branch also uploading to the snap store
+  branch also uploading to the Snap Store
 
 ## Snap doc
 
@@ -64,7 +74,7 @@ one.
   - CentOS, RHEL, Fedora: sudo dnf groupinstall "Development Tools"
   - OpenSuse:             sudo zypper in -t pattern devel_C_C++
 - For CentOS and possibly RHEL some additional steps are required, see [CentOS](#centos) below.
-- Get the coq platform scripts via either of these methods
+- Get the Coq Platform scripts via either of these methods
   - `git clone --branch 2021.02 https://github.com/coq/platform.git`
   - download and extract `https://github.com/coq/platform/archive/2021.02.zip`
 - Open a shell, navigate to the download folder and execute `coq_platform_make.sh`.
@@ -82,7 +92,7 @@ one.
 
 ## CentOS: Enable sudo for current user
 
-CentOS requires two additional steps. First sudo should be enabled, so that opam depext can work. opam depext automatically installs required system dependencies, which requires sudo rights. Since one cannot run the complete script as super user, there is no easy way around using sudo. The only method is to make sure that all prerequisites are installed upfront. One way to do this is to run the coq platform script until it asks for the sudo password and then see what it want's to do and do this as super user.
+CentOS requires two additional steps. First sudo should be enabled, so that opam depext can work. opam depext automatically installs required system dependencies, which requires sudo rights. Since one cannot run the complete script as super user, there is no easy way around using sudo. The only method is to make sure that all prerequisites are installed upfront. One way to do this is to run the Coq Platform script until it asks for the sudo password and then see what it want's to do and do this as super user.
 
 Sudo can be enabled for the current user as follows:
 ```

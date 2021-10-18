@@ -15,7 +15,7 @@ REM see https://cygwin.com/faq/faq.html#faq.setup.cli
 
 REM ========== DEFAULT VALUES FOR PARAMETERS ==========
 
-REM For a description of all parameters, see ReadMe.txt
+REM For a description of all parameters, see README.txt
 
 SET BATCHFILE=%~0
 SET BATCHDIR=%~dp0
@@ -238,7 +238,7 @@ IF "%DESTCYG%" == "" (
   ECHO path for the Cygwin root folder.
   ECHO You can use one cygwin installation for several different variants of the Coq
   ECHO platform, so there is no need to give a version specific name. But the name
-  ECHO should indicate that the cygwin is specialized for Coq platform builds.
+  ECHO should indicate that the cygwin is specialized for Coq Platform builds.
   ECHO(
   ECHO The following recommended paths can be chosen by entering a number:
   ECHO 1  C:\cygwin%BITS%_coq.
@@ -269,7 +269,7 @@ IF "%DESTCYG%" == "1" (
   REM CHECK PATH
   IF EXIST %DESTCYG%\NUL (
     IF NOT EXIST %DESTCYG%\home\%USERNAME%\coq-platform\NUL (
-      ECHO ERROR: The folder %DESTCYG% exists and is not a coq platform cygwin folder!
+      ECHO ERROR: The folder %DESTCYG% exists and is not a Coq Platform cygwin folder!
       EXIT 1
     )
   )
@@ -422,14 +422,14 @@ IF "%BUILD_COQ_PLATFORM%" == "y" (
   %BASH% --login "%CYGWIN_INSTALLDIR_CFMT%/%USER_HOME_DIR_CFMT%/coq-platform/coq_platform_make.sh" || GOTO ErrorExit
 
 ) ELSE (
-  ECHO Note: Automatic Coq platform build has been disabled with -build=n
+  ECHO Note: Automatic Coq Platform build has been disabled with -build=n
 )
 
 REM  01234567890123456789012345678901234567890123456789012345678901234567890123456789
 ECHO(
 ECHO ========== FINISHED ==========
 ECHO(
-ECHO You can now start your freshly created Coq platform Cygwin via:
+ECHO You can now start your freshly created Coq Platform Cygwin via:
 ECHO(
 ECHO   %CYGWIN_INSTALLDIR_WFMT%/cygwin.bat
 ECHO(
@@ -451,14 +451,14 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO(
   ECHO First install a fresh Cygwin with all required prerequisites.
   ECHO Then run a script in this Cygwin which creates a new opam switch
-  ECHO and makes and installs the Coq platform in this switch.
+  ECHO and makes and installs the Coq Platform in this switch.
   ECHO(
   ECHO Cygwin setup parameters:
   ECHO(
   ECHO -h, -help  Print this help message and exit
   ECHO -arch      ^<32 or 64^> Set cygwin, ocaml and coq to 32 or 64 bit
-  ECHO -build=y   Setup cygwin and build Coq platform
-  ECHO -build=n   Just setup cygin - don't build Coq platform
+  ECHO -build=y   Setup cygwin and build Coq Platform
+  ECHO -build=n   Just setup cygin - don't build Coq Platform
   ECHO -destcyg   ^<path to cygwin destination folder^>
   ECHO -proxy     ^<internet proxy^>
   ECHO -cygrepo   ^<cygwin download repository^>
@@ -467,13 +467,13 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -cygquiet  ^<y or n^> install cygwin without user interaction
   ECHO -cygforce  ^<y or n^> run cygwin setup even if destination is already installed
   ECHO(
-  ECHO Coq platform setup parameters:
+  ECHO Coq Platform setup parameters:
   ECHO(
   ECHO If an option is not given, the option is explained and asked for interactively.
   ECHO Except for expert users this is the recommended way to run this script.
   ECHO(
-  ECHO -extent=f    Setup opam and build full Coq platform
-  ECHO -extent=x    Setup opam and build extended Coq platform
+  ECHO -extent=f    Setup opam and build full Coq Platform
+  ECHO -extent=x    Setup opam and build extended Coq Platform
   ECHO -extent=b    Just setup opam and build Coq (basic)
   ECHO -extent=i    Just setup opam and build Coq + CoqIDE
   ECHO -parallel=p  Build several opam packages in parallel

@@ -18,7 +18,7 @@ then
 	then
 		cat <<-EOH
 			================================ OPAM SWITCH =================================
-			The Coq platform creates the opam switch $COQ_PLATFORM_SWITCH_NAME.
+			The Coq Platform creates the opam switch $COQ_PLATFORM_SWITCH_NAME.
 
 			Apparently this switch already exists. It is recommended to delete the switch,
 			so that you get a clean and well defined result.

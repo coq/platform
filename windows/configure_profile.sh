@@ -36,7 +36,7 @@ if [ ! -f $donefile ] ; then
   # Other installations of OCaml will mess up things
   echo unset OCAMLLIB
 
-  # Set a marker that this is a cygwin inteded for Coq platform compilation
+  # Set a marker that this is a cygwin inteded for Coq Platform compilation
   echo export COQ_PLATFORM_CYGWIN_OK=Y
 
   exec 1>&6 6>&-       # Restore stdout from file descriptor 6 and close file descriptor #6

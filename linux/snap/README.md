@@ -1,4 +1,4 @@
 Snap package for Coq
 ====================
 
-See: [README_Linux](/README_Linux.md)
+See: [README_Linux](/doc/README_Linux.md)

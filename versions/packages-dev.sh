@@ -80,7 +80,6 @@ PACKAGES="${PACKAGES} coq-mathcomp-real-closed.dev"
 
 # Menhir, CompCert and Princeton VST - these take longer to compile !
 PACKAGES="${PACKAGES} coq-menhirlib.dev menhir.dev"
-# Todo: there is no mutex between coq platform and coq platform open source
 case "$COQ_PLATFORM_COMPCERT" in
   [yY]) PACKAGES="${PACKAGES} coq-compcert.dev" ;;
   [nN]) true ;;

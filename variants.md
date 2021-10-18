@@ -1,4 +1,4 @@
-# Creating variants of the Coq platform
+# Creating variants of the Coq Platform
 
 The script is modular and should be easy to adopt to specific needs, e.g. a special setup for a lecture.
 

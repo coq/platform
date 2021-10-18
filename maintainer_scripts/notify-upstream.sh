@@ -12,7 +12,7 @@
 
 ###################### Notify Coq Platform Maintainers ######################
 
-# This script interactively creates upstream issues to notify coq platform
+# This script interactively creates upstream issues to notify Coq Platform
 # package maintainers about the status of their package in Coq Platform.
 
 ##### Initialization #####
@@ -80,7 +80,7 @@ function coq_ci_get_ref() {
   grep "project  *$1" "${CI_PACKAGE_LIST}" | cut -d ' ' -f 4 | tr -d "'\"" || true
 }
 
-########## Opam interface functions ##########
+########## opam interface functions ##########
 
 # Get installation status of package (true/false)
 

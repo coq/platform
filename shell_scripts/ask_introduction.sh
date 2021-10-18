@@ -32,7 +32,7 @@ This script is tested on Windows 10, macOS and many Linux variants.
 The script compiles everything from sources, which might takes less than one
 hour on a fast machine with lot's of RAM, or up to 6 hours with little RAM.
 
-Instead of installing the full or extended Coq platform now, you can install
+Instead of installing the full or extended Coq Platform now, you can install
 just Coq (+ CoqIDE) and install additional packages via opam later as needed.
 You should install CoqIDE unless you know what VSCoq or Proof General is.
 ====================== JUST COQ OR COMPLETE PLATFORM ? =======================

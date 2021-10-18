@@ -11,7 +11,7 @@
 
 ###################### Create Readme.md ######################
 
-# This script creates from an opam installation a ReadMe.md file with:
+# This script creates from an opam installation a README.md file with:
 # - name, version, synopsis and description of each primary package
 # - name, version, synopsis and description of each dependency package
 # - information about liceses, project homepages, ...
@@ -205,7 +205,7 @@ package_list_notes="$(grep '# DESCRIPTION'  "${COQ_PLATFORM_PACKAGELIST}" | sed 
 ##### Determine name of output files #####
 
 VERSION_EXTENSION="${COQ_PLATFORM_VERSION}_${COQ_PLATFORM_PACKAGELIST_NAME#\~}"
-RESULT_FILE_MD="${RESULT_FILE_MD:-${DOC_PATH}/ReadMe_${VERSION_EXTENSION}.md}"
+RESULT_FILE_MD="${RESULT_FILE_MD:-${DOC_PATH}/README_${VERSION_EXTENSION}.md}"
 RESULT_FILE_CSV="${RESULT_FILE_CSV:-${DOC_PATH}/PackageTable_${VERSION_EXTENSION}.csv}"
 
 ##### Get list of all installed packages from opam #####
@@ -252,7 +252,7 @@ echo PACKAGES_ALL="${PACKAGES_ALL}"
 
 # Create Html (suitable for MD) and CSV entry for package
 # $1 = package name (may or may not include version)
-# $2 = Coq platform level
+# $2 = Coq Platform level
 
 function html_package_opam {
   echo "Create README for $1"
@@ -332,7 +332,7 @@ function html_package_opam {
   popam_url="$(opam_get_installed_opam_repo "${preporsitory}" "$1")"
   if [ "${CHECKOPAMLINKS}" == 'Y' ] && ! check_url "${popam_url}"
   then
-    echo "Opam url '${popam_url}' for package '${package}' does not exist!" >> WARNINGS.log
+    echo "opam url '${popam_url}' for package '${package}' does not exist!" >> WARNINGS.log
   fi
 
   # Create final HTML text for package
@@ -375,7 +375,7 @@ echo "package,version,license,level" > ${RESULT_FILE_CSV}
 cat > ${RESULT_FILE_MD} <<EOT
 # Coq Platform ${COQ_PLATFORM_VERSION} providing ${COQ_PLATFORM_VERSION_TITLE}
 
-The [Coq interactive prover](https://coq.inria.fr) provides a formal language
+The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
 with an environment for semi-interactive development of machine-checked proofs.
 
@@ -383,8 +383,8 @@ The [Coq Platform](https://github.com/coq/platform) is a distribution of the Coq
 interactive prover together with a selection of Coq libraries and plugins.
 
 The Coq Platform supports to install several versions of Coq (also in parallel).
-This ReadMe file is for **Coq Platform ${COQ_PLATFORM_VERSION} with Coq ${COQ_PLATFORM_COQ_TAG}**.
-The ReadMe files for other versions are linked in the main [ReadMe](../ReadMe.md).
+This README file is for **Coq Platform ${COQ_PLATFORM_VERSION} with Coq ${COQ_PLATFORM_COQ_TAG}**.
+The README files for other versions are linked in the main [README](../README.md).
 
 ${COQ_PLATFORM_VERSION_DESCRIPTION}
 

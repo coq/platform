@@ -84,7 +84,6 @@ PACKAGES="${PACKAGES} coq-flocq.3.4.2"
 # Menhir, CompCert and Princeton VST - these take longer to compile !
 PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419"                   # This is the latest tag
 
-# Todo: there is no mutex between coq platform and coq platform open source
 case "$COQ_PLATFORM_COMPCERT" in
   [yY]) PACKAGES="${PACKAGES} coq-compcert.3.9~flex" ;;
   [nN]) true ;;

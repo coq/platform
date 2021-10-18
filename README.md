@@ -1,32 +1,32 @@
 # Coq Platform 2021.09.0
 
-The [Coq interactive prover](https://coq.inria.fr) provides a formal language
+The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
 with an environment for semi-interactive development of machine-checked proofs.
 
-The **Coq Platform** is a distribution of the Coq interactive prover together
+The **Coq Platform** is a distribution of the Coq proof assistant together
 with a selection of Coq libraries and plugins.
 The main goal of the Coq Platform is to provide a system independent, dependable
 and easy to install platform for developments based on the Coq proof assistant
 and for teaching Coq.
-See [Charter](charter.md) for the coq platform concept.
+See [Charter](charter.md) for the Coq Platform concept.
 
-The Coq Platform is based on the OCaml package manager **Opam** and provides a set
+The Coq Platform is based on the OCaml package manager **opam** and provides a set
 of scripts to compile and install OPAM, Coq and the platform contents on macOS,
 Windows and many Linux distributions in a reliable way with consistent results.
 In addition **pre-compiled binary packages** or **installers** are provided for **macOS**,
-**Windows** and **Snap** for Linux (Docker is in preparation).
+**Windows** and **snap** for Linux (Docker is in preparation).
 
 The Coq Platform supports to install several versions of Coq - also in parallel,
 e.g. for porting developments from one version of Coq to another.
-The table below contains links to the ReadMe files for the supported versions
-of Coq and libraries. Each ReadMe file contains a list of included packages with
+The table below contains links to the README files for the supported versions
+of Coq and libraries. Each README file contains a list of included packages with
 detailed information for each package.
 
-- [Coq 8.13.2 04/2021 with updated/extended package pick 09/2021](doc/ReadMe_2021.09.0_8.13.md)
-- [Coq 8.13.2 04/2021 with original package pick 02/2021](doc/ReadMe_2021.09.0_8.13~2021.02.md)
-- [Coq 8.12.2 12/2020 (previous release version)](doc/ReadMe_2021.09.0_8.12.md)
-- [Coq 8.14+rc1 with a beta package pick](doc/ReadMe_2021.09.0_8.14+beta1.md)
+- [Coq 8.13.2 04/2021 with updated/extended package pick 09/2021](doc/README_2021.09.0_8.13.md)
+- [Coq 8.13.2 04/2021 with original package pick 02/2021](doc/README_2021.09.0_8.13~2021.02.md)
+- [Coq 8.12.2 12/2020 (previous release version)](doc/README_2021.09.0_8.12.md)
+- [Coq 8.14+rc1 with a beta package pick](doc/README_2021.09.0_8.14+beta1.md)
 
 It is an intended use case of the Coq Platform to create custom variants, e.g.
 for projects or lectures, by creating additional files in the [versions](versions)
@@ -37,7 +37,7 @@ e.g. for a lecture.
 
 ## Usage of the Coq Platform
 
-Please refer to the ReadMe file for your OS.
+Please refer to the README file for your OS.
 
 - macOS: see [README_macOS](doc/README_macOS.md).
 - Windows: see [README_Windows](doc/README_Windows.md)
@@ -47,9 +47,9 @@ Please refer to the ReadMe file for your OS.
 
 <details><summary><font size="+1">Licenses</font></summary>
 
-The Coq platform setup scripts and the selection of packages and patches are licensed Creative Commons CC0.
-This license does **not** apply to the packages installed by the Coq platform.
-The ReadMe files linked above provide license information for each package.
+The Coq Platform setup scripts and the selection of packages and patches are licensed Creative Commons CC0.
+This license does **not** apply to the packages installed by the Coq Platform.
+The README files linked above provide license information for each package.
 This information is also available as .CSV files here [doc](doc).
 Please note that the license information is obtianed from opam.
 The Coq Platform team does no double check this information.
@@ -69,7 +69,7 @@ The Coq Platform team does no double check this information.
 
 - support for opam 2.1.0 (which integrates the opam system dependency manager *depext* - this needed a few adjustments)
 - fix issues with Cygwin binutils
-- various minor fixes for the Snap package (support gappa, clightgen, ...)
+- various minor fixes for the snap package (support gappa, clightgen, ...)
 - various minor fixes to the Windows installer (add icon for CoqIDE, ...)
 - minor cleanup and improvements of the Coq Platform scripts
 - the versions of provided Coq packages are identical to 2021.09.0
@@ -85,14 +85,14 @@ The Coq Platform team does no double check this information.
 
 <details><summary><font size="+1">Features of the Coq Platform</font></summary>
 
-- fully Opam based, also on Windows
-- single script call to install system dependencies, Opam (if not there), a fresh Opam switch and the Coq Platform
+- fully opam based, also on Windows
+- single script call to install system dependencies, opam (if not there), a fresh opam switch and the Coq Platform
 - interactive (well script based) guidance of the user through the few parameters
 - one unified setup script for Windows, macOS and Linux with few OS dependent sections only
 - for Windows there is an additional wrapper batch script to setup Cygwin as build and working environment
 - for Windows there is in addition a classic Windows installer mostly intended for quick installation by beginners
 - for macOS a signed (but currently not yet notarized) DMG package is provided, also mostly intended for beginners
-- for Linux Snap packages are provided via the snap store
+- for Linux snap packages are provided via the Snap Store
 - it is easy to build variants of the provided installers with modified content
 - it is supported to install several versions of Coq in parallel - each will create a separate opam switch - this is intended e.g. for porting Coq developments from older versions of Coq
 - system prerequisites are installed using opam depext in a system independent manner

@@ -16,7 +16,7 @@ if [ -z "${COQ_PLATFORM_PARALLEL:+x}" ] || [ -z "${COQ_PLATFORM_JOBS:+x}" ]
 then
 cat <<EOH
 =============================== PARALLEL BUILD ===============================
-The Coq platform opam build has two levels of parallelism:
+The Coq Platform opam build has two levels of parallelism:
 
 - parallel build of (independent) opam packages
 - parallel build inside the make of each opam package

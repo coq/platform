@@ -33,7 +33,7 @@ PLATFORM_VERSION=${COQ_PLATFORM_VERSION//[.+]/-}
 # Description of the snap
 COQ_DESCRIPTION=`mktemp`
 cat > $COQ_DESCRIPTION <<EOT
-  The Coq interactive prover provides a formal language to write
+  The Coq proof assistant provides a formal language to write
   mathematical definitions, executable algorithms, and theorems, together
   with an environment for semi-interactive development of machine-checked
   proofs.

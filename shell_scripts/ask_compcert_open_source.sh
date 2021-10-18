@@ -18,7 +18,7 @@ then
   then
 cat <<EOH
 ================================== COMPCERT ==================================
-The Coq platform installs the formally verified C compiler CompCert.
+The Coq Platform installs the formally verified C compiler CompCert.
 
 CompCert is *not* free / open source software, but may be used for research and
 evaluation purposes. Please clarify the license at:
