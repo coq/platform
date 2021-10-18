@@ -12,20 +12,20 @@ and for teaching Coq.
 See [Charter](charter.md) for the Coq Platform concept.
 
 The Coq Platform is based on the OCaml package manager **opam** and provides a set
-of scripts to compile and install OPAM, Coq and the platform contents on macOS,
+of scripts to compile and install opam, Coq and the platform contents on macOS,
 Windows and many Linux distributions in a reliable way with consistent results.
 In addition **pre-compiled binary packages** or **installers** are provided for **macOS**,
 **Windows** and **snap** for Linux (Docker is in preparation).
 
-The Coq Platform supports to install several versions of Coq - also in parallel,
-e.g. for porting developments from one version of Coq to another.
+The Coq Platform supports installing several versions of Coq - also in parallel,
+e.g., for porting developments from one version of Coq to another.
 The table below contains links to the README files for the supported versions
 of Coq and libraries. Each README file contains a list of included packages with
 detailed information for each package.
 
-- [Coq 8.13.2 04/2021 with updated/extended package pick 09/2021](doc/README_2021.09.0_8.13.md)
-- [Coq 8.13.2 04/2021 with original package pick 02/2021](doc/README_2021.09.0_8.13~2021.02.md)
-- [Coq 8.12.2 12/2020 (previous release version)](doc/README_2021.09.0_8.12.md)
+- [Coq 8.13.2 (released Apr 2021) with updated/extended package pick 2021.09](doc/README_2021.09.0_8.13.md)
+- [Coq 8.13.2 (released Apr 2021) with original package pick 2021.02](doc/README_2021.09.0_8.13~2021.02.md)
+- [Coq 8.12.2 (released Dec 2020)](doc/README_2021.09.0_8.12.md)
 - [Coq 8.14+rc1 with a beta package pick](doc/README_2021.09.0_8.14+beta1.md)
 
 It is an intended use case of the Coq Platform to create custom variants, e.g.
@@ -47,7 +47,7 @@ Please refer to the README file for your OS.
 
 <details><summary><font size="+1">Licenses</font></summary>
 
-The Coq Platform setup scripts and the selection of packages and patches are licensed Creative Commons CC0.
+The Coq Platform setup scripts and the selection of package recipes and patches are licensed Creative Commons CC0.
 This license does **not** apply to the packages installed by the Coq Platform.
 The README files linked above provide license information for each package.
 This information is also available as .CSV files here [doc](doc).
@@ -56,7 +56,7 @@ The Coq Platform team does no double check this information.
 
 </details>
 
-<details><summary><font size="+1">Release notes / change lists</font></summary>
+<details><summary><font size="+1">Release notes / changelog</font></summary>
 
 ## Changes in 2021.09.0
 
@@ -87,7 +87,7 @@ The Coq Platform team does no double check this information.
 
 - fully opam based, also on Windows
 - single script call to install system dependencies, opam (if not there), a fresh opam switch and the Coq Platform
-- interactive (well script based) guidance of the user through the few parameters
+- interactive (well, script based) guidance of the user through the few parameters
 - one unified setup script for Windows, macOS and Linux with few OS dependent sections only
 - for Windows there is an additional wrapper batch script to setup Cygwin as build and working environment
 - for Windows there is in addition a classic Windows installer mostly intended for quick installation by beginners
@@ -96,8 +96,8 @@ The Coq Platform team does no double check this information.
 - it is easy to build variants of the provided installers with modified content
 - it is supported to install several versions of Coq in parallel - each will create a separate opam switch - this is intended e.g. for porting Coq developments from older versions of Coq
 - system prerequisites are installed using opam depext in a system independent manner
-- the script should be fairly robust and safe - it will immediately abort an all errors not explicitly handled
-- the script can be restarted if it fails - e.g cause of internet or memory issues - it will not redo things it already did
+- the script should be fairly robust and safe - it will immediately abort on all errors not explicitly handled
+- the script can be restarted if it fails - e.g because of internet or memory issues - it will not redo things it already did
 
 </details>
 
@@ -143,7 +143,9 @@ Please clarify the license at [CompCert License](https://github.com/AbsInt/CompC
     opam switch __coq-platform.2021.09.0~8.13
     eval $(opam env)
     ```
-- Install additional packages with `opam install "package"`
-- You can find packages with `opam list --all | grep "some keyword"`
+- You can find packages with `opam list --all | grep "some keyword"`.
+- You can show the description and further details on a package with `opam show "package"`.
+- Install additional packages with `opam install "package"`.
+- You can find some additional information on managing Coq installation with opam at [Install Coq with opam](https://coq.inria.fr/opam-using.html).
 
 </details>

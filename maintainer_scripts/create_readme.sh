@@ -502,7 +502,11 @@ The **extended level** contains packages which are in a beta stage or otherwise
 don't yet have the level of maturity or support required for inclusion in the
 full level, but there are plans to move them to the full level in a future
 release of Coq Platform. The main point of the extended level is advertisement:
-useres are important to bring a development from a beta to a release state.
+users are important to bring a development from a beta to a release state.
+
+The interactive installation script explicitly asks if you want to install these packages.
+The macOS and snap installation bundles always include these packages.
+The Windows installer also includes them, and they are selected by default.
 
 The **extended level** contains the following packages:
 
