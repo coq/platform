@@ -24,15 +24,15 @@ developments. You can use "opam switch" to switch between Coq versions.
 The follwoing versions / package lists are supported:
 EOH
 
-  packagefile_list="$( (for file in versions/packages-*.sh; do echo "$(grep "# SORTORDER" $file) $file"; done) | sed 's/  */ /g' | sort -n | cut -d ' ' -f 4)"
+  packagefile_list="$( (for file in versions/packages-*.sh; do echo "$(grep "COQ_PLATFORM_VERSION_SORTORDER=" $file) $file"; done) | tr '=' ' ' | sed 's/  */ /g' | sort -n | cut -d ' ' -f 3)"
 
   packageindex=0
   for packagefile in ${packagefile_list}
   do
-      if ! grep -q "# SORTORDER" "$packagefile"; then echo "ERROR: package file '$packagefile' does not contain 'SORTORDER' field."; fail; fi
-      if ! grep -q "# DESCRIPTION" "$packagefile"; then echo "ERROR: package file '$packagefile' does not contain 'DESCRIPTION' field."; fail; fi
+      if ! grep -q "COQ_PLATFORM_VERSION_SORTORDER=" "$packagefile"; then echo "ERROR: package file '$packagefile' does not contain 'COQ_PLATFORM_VERSION_SORTORDER' definition."; fail; fi
+      if ! grep -q "COQ_PLATFORM_VERSION_TITLE=" "$packagefile"; then echo "ERROR: package file '$packagefile' does not contain 'COQ_PLATFORM_VERSION_TITLE' definition."; fail; fi
       packageindex=$((${packageindex} + 1))
-      notes="$(grep '# DESCRIPTION'  "${packagefile}" | sed 's/  */ /g' | cut -d ' ' -f 3-)"
+      notes="$(grep 'COQ_PLATFORM_VERSION_TITLE=' "${packagefile}" | tr '=' ' ' | tr -d '"' | sed 's/  */ /g' | cut -d ' ' -f 2-)"
       echo "(${packageindex}): $notes"
   done
 

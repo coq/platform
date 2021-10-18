@@ -11,8 +11,8 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-# DESCRIPTION Coq 8.14+beta1 (with Coq 8.14+rc1)
-# SORTORDER 9000
+COQ_PLATFORM_VERSION_TITLE="Coq 8.14+rc1 with a beta package pick"
+COQ_PLATFORM_VERSION_SORTORDER=9000
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
@@ -26,6 +26,12 @@ COQ_PLATFORM_COQ_TAG='8.14+rc1'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
+
+# This extended descriptions is used for readme files
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2021.09.0 includes Coq 8.14+rc1 from 09/2021. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='While the bundled Coq version is a **release candidate**, Coq Platform is still **beta**. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='Several packages do not yet have a compatible version or might change. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='This version of Coq Platform is mostly intended for package maintainers. '
 
 ###################### PACKAGE SELECTION #####################
 
@@ -95,7 +101,7 @@ then
 
   # Univalent Mathematics (UniMath)
   # Note: coq-unimath requires too much memory for 32 bit architectures
-  if [ "${BITSIZE}" == "64" ]; then PACKAGES="${PACKAGES} coq-unimath.20210807"; fi
+  if [ "${BITSIZE}" == "64" ]; then PACKAGES="${PACKAGES} coq-unimath.20210807"; fi
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-equations.1.3+8.14"       # pick confirmed https://github.com/mattam82/Coq-Equations/issues/427 (does not include HoTT support)

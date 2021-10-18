@@ -11,8 +11,8 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-# DESCRIPTION Coq 8.13.2 04/2021 with original package pick 02/2021
-# SORTORDER 2
+COQ_PLATFORM_VERSION_TITLE="Coq 8.13.2 04/2021 with original package pick 02/2021"
+COQ_PLATFORM_VERSION_SORTORDER=2
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
@@ -26,6 +26,13 @@ COQ_PLATFORM_COQ_TAG='8.13.2'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
+
+# This extended descriptions is used for readme files
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2021.09.0 includes Coq 8.13.2 from 04/2021 '
+COQ_PLATFORM_VERSION_DESCRIPTION+='with the original package pick from 04/2021. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='An updated and extended package pick for Coq 8.13.2 is available and'
+COQ_PLATFORM_VERSION_DESCRIPTION+='it is recommended to use this updated package pick.'
+COQ_PLATFORM_VERSION_DESCRIPTION+='The original package pick is provided for compatibility.'
 
 ###################### PACKAGE SELECTION #####################
 
