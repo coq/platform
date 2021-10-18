@@ -28,12 +28,7 @@ detailed information for each package.
 - [Coq 8.12.2 (released Dec 2020)](doc/README_2021.09.0_8.12.md)
 - [Coq 8.14+rc1 with a beta package pick](doc/README_2021.09.0_8.14+beta1.md)
 
-It is an intended use case of the Coq Platform to create custom variants, e.g.
-for projects or lectures, by creating additional files in the [versions](versions)
-folder.
-The scripts for creating binary packages and installers should be able to
-handle such variants, so that it should be easy to create a custom installer
-e.g. for a lecture.
+If you have questions on the Coq Platform, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
 
 ## Usage of the Coq Platform
 
@@ -149,3 +144,30 @@ Please clarify the license at [CompCert License](https://github.com/AbsInt/CompC
 - You can find some additional information on managing Coq installation with opam at [Install Coq with opam](https://coq.inria.fr/opam-using.html).
 
 </details>
+
+<details><summary><font size="+1">Creating variants of the Coq Platform</font></summary>
+
+It is an intended use case of the Coq Platform to create custom variants, e.g.
+for projects or lectures, by creating additional files in the [versions](versions)
+folder.
+
+The scripts for creating binary packages and installers should be able to
+handle such variants, so that it should be easy to create a custom installer
+e.g. for a lecture.
+
+A few notes on the process:
+
+- create a new file in the [versions](versions) folder by copying one of the existing files as template
+- add or remove packages according to your requirements
+- you should include specific versions to get a reproducible result - the opam database changes daily and unless you specify a
+version you get different results and possibly the build will fail.
+- **please always change the opam switch name**, that is the variable `COQ_PLATFORM_PACKAGELIST_NAME`
+- the scripts for creating binary packages/installers for macOS, Windows and snap are in the specific system sub folders
+  - **macOS**: (macos/create_installer_macos.sh)
+  - **Windows**: (windows/create_installer_windows.sh)
+  - **snap**: (linux/create_snapcraft_yaml.sh)
+  - the macOS and Windows script are intended to be run locally and require that the specific Coq Platform version has been installed and that **the opam switch is selected**
+  - the snap package is intended to be created via a CI action - see (linux/snap/github_actions/README.md)
+  - the scripts don't take required parameters (some have debug parameters)
+
+If you have issues, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
