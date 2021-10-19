@@ -1,151 +1,173 @@
-# Coq platform
+# Coq Platform 2021.09.0
 
-The Coq platform is a distribution of the Coq proof assistant together with a selection of Coq libraries.
-It provides a set of scripts to compile and install OPAM, Coq, Coq libraries and Coq plugins on MacOS,
+The [Coq proof assistant](https://coq.inria.fr) provides a formal language
+to write mathematical definitions, executable algorithms, and theorems, together
+with an environment for semi-interactive development of machine-checked proofs.
+
+The **Coq Platform** is a distribution of the Coq proof assistant together
+with a selection of Coq libraries and plugins.
+The main goal of the Coq Platform is to provide a system independent, dependable
+and easy to install platform for developments based on the Coq proof assistant
+and for teaching Coq.
+See [Charter](charter.md) for the Coq Platform concept.
+
+The Coq Platform is based on the OCaml package manager **opam** and provides a set
+of scripts to compile and install opam, Coq and the platform contents on macOS,
 Windows and many Linux distributions in a reliable way with consistent results.
+In addition **pre-compiled binary packages** or **installers** are provided for **macOS**,
+**Windows** and **snap** for Linux (Docker is in preparation).
 
-See [Charter](charter.md) for the coq platform concept.
+The Coq Platform supports installing several versions of Coq - also in parallel,
+e.g., for porting developments from one version of Coq to another.
+The table below contains links to the README files for the supported versions
+of Coq and libraries. Each README file contains a list of included packages with
+detailed information for each package.
 
-# Note on Licenses
+- [Coq 8.13.2 (released Apr 2021) with updated/extended package pick 2021.09](doc/README_2021.09.0_8.13.md)
+- [Coq 8.13.2 (released Apr 2021) with original package pick 2021.02](doc/README_2021.09.0_8.13~2021.02.md)
+- [Coq 8.12.2 (released Dec 2020)](doc/README_2021.09.0_8.12.md)
+- [Coq 8.14+rc1 with a beta package pick](doc/README_2021.09.0_8.14+beta1.md)
 
-The Coq platform setup scripts and the selection of packages and patches are licensed Creative Commons CC0.
-This license does **not** apply to the packages installed by the Coq platform.
-You can get an overview over the licenses of the installed software (after installing it)
-with the command:
-```
-opam list --columns=name,license:
-```
-In case no license is given please clarify on the homepage of the software:
-```
-opam list --columns=name,homepage:
-```
-Please note that some opam packages require and install system packages with many dependencies (e.g GTK3).
-These dependencies might have various licenses. You need to refer to your system package manager to
-inspect the licenses of such packages.
+If you have questions on the Coq Platform, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
 
-# Features of the 2021.09.0 release
+## Usage of the Coq Platform
 
-- fully opam based, also on Windows
-- single script call to install system dependencies, opam (if not there), a fresh opam switch and the coq platform
-- interactive (well script based) guidance of the user through the few parameters
-- The list of included packages is:
-```
-coq                      8.13.2      Formal proof management system
-coqide                   8.13.2      IDE of the Coq formal proof management system
-coq-aac-tactics          8.13.0      Coq plugin providing tactics for rewriting universally quantified equations, modulo associative (and possibly commutative) operators
-coq-bignums              8.13.0      Bignums, the Coq library of arbitrary large numbers
-coq-compcert             3.8         The CompCert C compiler (64 bit)
-coq-coquelicot           3.1.0       A Coq formalization of real analysis compatible with the standard library
-coq-elpi                 1.8.1       Elpi extension language for Coq
-coq-equations            1.2.3+8.13  A function definition package for Coq
-coq-ext-lib              0.11.3      A library of Coq definitions, theorems, and tactics
-coq-flocq                3.3.1       A formalization of floating-point arithmetic for the Coq system
-coq-gappa                1.4.6       A Coq tactic for discharging goals about floating-point arithmetic and round-off errors using the Gappa prover
-coq-hierarchy-builder    1.0.0       High level commands to declare and evolve a hierarchy based on packed classes
-coq-hott                 8.13        The Homotopy Type Theory library
-coq-interval             4.1.1       A Coq tactic for proving bounds on real-valued expressions automatically
-coq-mathcomp-algebra     1.12.0      Mathematical Components Library on Algebra
-coq-mathcomp-bigenough   1.0.0       A small library to do epsilon - N reasonning
-coq-mathcomp-character   1.12.0      Mathematical Components Library on character theory
-coq-mathcomp-field       1.12.0      Mathematical Components Library on Fields
-coq-mathcomp-fingroup    1.12.0      Mathematical Components Library on finite groups
-coq-mathcomp-finmap      1.5.1       Finite sets, finite maps, finitely supported functions
-coq-mathcomp-real-closed 1.1.2       Mathematical Components Library on real closed fields
-coq-mathcomp-solvable    1.12.0      Mathematical Components Library on finite groups (II)
-coq-mathcomp-ssreflect   1.12.0      Small Scale Reflection
-coq-menhirlib            20200624    A support library for verified Coq parsers produced by Menhir
-coq-mtac2                1.4+8.13    Mtac2: Typed Tactics for Coq
-coq-quickchick           1.5.0       Randomized Property-Based Testing Plugin for Coq
-coq-simple-io            1.5.0       IO monad for Coq
-coq-unicoq               1.5+8.13    An enhanced unification algorithm for Coq
-coq-vst                  2.7.1       Verified Software Toolchain
-gappa                    1.3.5       Tool intended for formally proving properties on numerical programs dealing with floating-point or fixed-point arithmetic
-menhir                   20200624    An LR(1) parser generator
-```
-- one unified setup script for Windows, macOS and Linux with few OS dependent sections only
-- on Windows there is an additional wrapper batch script to setup Cygwin as build and working environment
-- on Windows there is in addition a classic Windows installer mostly intended for quick installation by beginners
-- it is easy to build variants of the Windows installer with modified content from an existing opam switch
-- system prerequisites are installed using opam depext in a system independent manner
-- the script should be fairly robust and safe - it will immediately abort an all errors not explicitly handled
-- the script can be restarted if it fails - e.g cause of internet issues - it will not redo things it already did
-- the scripts are modular and easy to configure for specific needs, e.g. a reduced or extended setup for a lecture - see [`variants.md`](/variants.md)
+Please refer to the README file for your OS.
 
-## Changes from 2021.09.0 to 2021.09.0
+- macOS: see [README_macOS](doc/README_macOS.md).
+- Windows: see [README_Windows](doc/README_Windows.md)
+- Linux: see [README_Linux](doc/README_Linux.md).
+
+## Additional information
+
+<details><summary><font size="+1">Licenses</font></summary>
+
+The Coq Platform setup scripts and the selection of package recipes and patches are licensed Creative Commons CC0.
+This license does **not** apply to the packages installed by the Coq Platform.
+The README files linked above provide license information for each package.
+This information is also available as .CSV files here [doc](doc).
+Please note that the license information is obtianed from opam.
+The Coq Platform team does no double check this information.
+
+</details>
+
+<details><summary><font size="+1">Release notes / changelog</font></summary>
+
+## Changes in 2021.09.0
+
+- support for multiple versions of Coq (currently 8.12.2, 8.13.2, 8.14+rc1, dev)
+- parallel installation of several versions of Coq is possible - each version creates a separate opam switch
+- new substantially extended package pick for Coq 8.13.2 (the original pick from 2021.02 is also available)
+- new beta pick for Coq 8.14+rc1 - as close as possible to the updated pick for Coq 8.13.2
+
+## Changes in 2021.02.2
 
 - support for opam 2.1.0 (which integrates the opam system dependency manager *depext* - this needed a few adjustments)
 - fix issues with Cygwin binutils
-- various minor fixes for the Snap package (support gappa, clightgen, ...)
+- various minor fixes for the snap package (support gappa, clightgen, ...)
 - various minor fixes to the Windows installer (add icon for CoqIDE, ...)
 - minor cleanup and improvements of the Coq Platform scripts
 - the versions of provided Coq packages are identical to 2021.09.0
 
-## Changes from 2021.09.0 to 2021.09.0
+## Changes in 2021.02.1
 
 - added DMG package / installer for macOS
 - Coq and CoqIDE update to version 8.13.2 (bugfix release)
 - VST updated to version 2.7.1 (bugfix release)
 - new package `coq-hott` *The Homotopy Type Theory library*
 
-# Usage of the 2021.09.0 release
+</details>
 
-Please refer to the ReadMe file for your OS.
+<details><summary><font size="+1">Features of the Coq Platform</font></summary>
 
-- macOS: see [README_macOS](README_macOS.md).
-- Windows: see [README_Windows](README_Windows.md)
-- Linux: see [README_Linux](README_Linux.md).
+- fully opam based, also on Windows
+- single script call to install system dependencies, opam (if not there), a fresh opam switch and the Coq Platform
+- interactive (well, script based) guidance of the user through the few parameters
+- one unified setup script for Windows, macOS and Linux with few OS dependent sections only
+- for Windows there is an additional wrapper batch script to setup Cygwin as build and working environment
+- for Windows there is in addition a classic Windows installer mostly intended for quick installation by beginners
+- for macOS a signed (but currently not yet notarized) DMG package is provided, also mostly intended for beginners
+- for Linux snap packages are provided via the Snap Store
+- it is easy to build variants of the provided installers with modified content
+- it is supported to install several versions of Coq in parallel - each will create a separate opam switch - this is intended e.g. for porting Coq developments from older versions of Coq
+- system prerequisites are installed using opam depext in a system independent manner
+- the script should be fairly robust and safe - it will immediately abort on all errors not explicitly handled
+- the script can be restarted if it fails - e.g because of internet or memory issues - it will not redo things it already did
 
-## Installation of additional packages or package variants
+</details>
 
-### CompCert and VST variants
+<details><summary><font size="+1">Installation of additional packages or package variants</font></summary>
+
+## CompCert and VST variants
 
 For some packages, notably CompCert and VST (the Princeton tool-chain for verification of C code), exist various variants.
+
 By default the 64 bit variant of CompCert and the 64 bit variant of VST are installed.
 
-CompCert is **not** free / open source software, but may be used for research and
-evaluation purposes. Please clarify the license at [CompCert License](https://github.com/AbsInt/CompCert/blob/master/LICENSE).
-
-Please note that CompCert is required for the (open source) C verification
-tool chain VST. If you don't install CompCert, you can't install VST.
-If you want to use VST with the provided VST examples only, you require only
-parts of CompCert, which are dual licensed and open source. In case you want
-to verify your own C code with VST, you need non open source parts of
-CompCert, notably the `clightgen` program. CompCert does not support
-installing only its open source parts, since evaluation usage is explicitly
-allowed in the license (see link above).
-
-The script will ask if you want to install CompCert.
-
-The compilation of VST takes quite a while on slow / small RAM PCs. For this reason the script also asks if you want to install VST.
-
-You can change the selection of packages any time later by issuing `opam install` commands, e.g.
+You can install the 32 bit variants in addition any time later by issuing `opam install` commands, e.g.
 ```
-opam install coq-compcert.3.8
-opam install coq-vst.2.7.1
+opam install coq-compcert-32.3.9
+opam install coq-vst-32.2.8
 ```
-
-There is also a 32 bit variant of CompCert and VST, which can be installed by running these commands:
-```
-opam install coq-compcert-32.3.8
-opam install coq-vst-32.2.7.1
-```
-or by adjusting [`coq_platform_packages.sh`](/coq_platform_packages.sh) accordingly.
 Please note that since both variants can be installed in parallel, only one, the 64 bit variant, is immediately available to Coq
-without -Q and -R options. If you want to work with the 32 bit variants, please use these options in your Coq project:
+without -Q and -R options.
+If you want to work with the 32 bit variants, please use these options in your Coq project:
 ```
 -Q $(coqc -where)/../coq-variant/compcert32/compcert compcert
 -Q $(coqc -where)/../coq-variant/VST32/VST VST
 ```
 
-### Installation of other packages
+**Important note:** CompCert is **not** free / open source software, but may be used for research and evaluation purposes.
+Please clarify the license at [CompCert License](https://github.com/AbsInt/CompCert/blob/master/LICENSE).
+
+## Installation of other packages
 
 - On Windows open a shell with `C:\<your_coq_platform_cygwin_path>\cygwin.bat`.
 - On Linux or macOS open a shell in the usual way.
-- Run these commands:
+- Run the command `opam switch` which will show the list of available switches:
     ```
-    opam switch __coq-platform.2021.09.0.8.13
+    #   switch                                 compiler                    description
+        __coq-platform.2021.09.0~8.12          ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.12
+        __coq-platform.2021.09.0~8.13          ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.13
+        __coq-platform.2021.09.0~8.13~2021.02  ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.13~2021.02
+    ->  __coq-platform.2021.09.0~8.14+beta1    ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.14+beta1
+        _coq-platform_.2021.02.1               ocaml-base-compiler.4.07.1  _coq-platform_.2021.02.1
+    ```
+- Choose the switch you want to change with this command (example):
+    ```
+    opam switch __coq-platform.2021.09.0~8.13
     eval $(opam env)
     ```
-    (note: the switch name might vary if you choose a different version of Coq - please use `opam switch` to see a list of switch names)
-- Install additional packages with `opam install "package"`
-- You can find packages with `opam list --all | grep "some keyword"`
+- You can find packages with `opam list --all | grep "some keyword"`.
+- You can show the description and further details on a package with `opam show "package"`.
+- Install additional packages with `opam install "package"`.
+- You can find some additional information on managing Coq installation with opam at [Install Coq with opam](https://coq.inria.fr/opam-using.html).
+
+</details>
+
+<details><summary><font size="+1">Creating variants of the Coq Platform</font></summary>
+
+It is an intended use case of the Coq Platform to create custom variants, e.g.
+for projects or lectures, by creating additional files in the [versions](versions)
+folder.
+
+The scripts for creating binary packages and installers should be able to
+handle such variants, so that it should be easy to create a custom installer
+e.g. for a lecture.
+
+A few notes on the process:
+
+- create a new file in the [versions](versions) folder by copying one of the existing files as template
+- add or remove packages according to your requirements
+- you should include specific versions to get a reproducible result - the opam database changes daily and unless you specify a
+version you get different results and possibly the build will fail.
+- **please always change the opam switch name**, that is the variable `COQ_PLATFORM_PACKAGELIST_NAME`
+- the scripts for creating binary packages/installers for macOS, Windows and snap are in the specific system sub folders
+  - **macOS**: (macos/create_installer_macos.sh)
+  - **Windows**: (windows/create_installer_windows.sh)
+  - **snap**: (linux/create_snapcraft_yaml.sh)
+  - the macOS and Windows script are intended to be run locally and require that the specific Coq Platform version has been installed and that **the opam switch is selected**
+  - the snap package is intended to be created via a CI action - see (linux/snap/github_actions/README.md)
+  - the scripts don't take required parameters (some have debug parameters)
+
+If you have issues, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)

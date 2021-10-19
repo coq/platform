@@ -19,8 +19,8 @@ Except for expert users this is the recommended way to run this script.
 
 OPTIONS:
   -h, -help    Print this help message
-  -extent=f    Setup opam and build full Coq platform
-  -extent=x    Setup opam and build extended Coq platform
+  -extent=f    Setup opam and build full Coq Platform
+  -extent=x    Setup opam and build extended Coq Platform
   -extent=b    Just setup opam and build Coq
   -extent=i    Just setup opam and build Coq+CoqIDE
   -packages=file  Select the package list / version file

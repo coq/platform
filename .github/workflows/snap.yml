@@ -28,7 +28,7 @@ on:
         description: 'Save artifact for download? (true/false, default false)'
         default: false
       upload:
-        description: 'Upload artifact to snap store? (true/false, default false)'
+        description: 'Upload artifact to Snap Store? (true/false, default false)'
         default: false
       platform:
         description: 'Arguments for the platform script:'
@@ -87,7 +87,7 @@ jobs:
           name: 'Snap package'
           path: ${{ steps.build.outputs.snap }}
 
-      - name: Upload Artifact to the Snap store
+      - name: Upload Artifact to the Snap Store
         if: ${{ github.event.inputs.upload }}
         uses: snapcore/action-publish@v1
         with:

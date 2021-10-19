@@ -11,8 +11,8 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-# DESCRIPTION Coq Ltac debugger (unreleased preview)
-# SORTORDER 9100
+COQ_PLATFORM_VERSION_TITLE="Coq Ltac debugger (unreleased preview)"
+COQ_PLATFORM_VERSION_SORTORDER=9100
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
@@ -84,7 +84,6 @@ PACKAGES="${PACKAGES} coq-flocq.3.4.2"
 # Menhir, CompCert and Princeton VST - these take longer to compile !
 PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419"                   # This is the latest tag
 
-# Todo: there is no mutex between coq platform and coq platform open source
 case "$COQ_PLATFORM_COMPCERT" in
   [yY]) PACKAGES="${PACKAGES} coq-compcert.3.9~flex" ;;
   [nN]) true ;;

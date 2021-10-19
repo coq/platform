@@ -126,7 +126,7 @@ SectionEnd
 ;OCAML   !insertmacro StrRep $INSTDIR_DBS      $INSTDIR        "\" "\\"
 ;OCAML
 ;OCAML   ; Replace absolute paths in some OCaml config files
-;OCAML   ; These are not all, see ReadMe.txt
+;OCAML   ; These are not all, see README.txt
 ;OCAML   !insertmacro ReplaceInFile "$INSTDIR\libocaml\ld.conf" "/"  "\"
 ;OCAML   !insertmacro ReplaceInFile "$INSTDIR\libocaml\ld.conf" "$COQ_SRC_PATH_BS"  "$INSTDIR"
 ;OCAML   !insertmacro ReplaceInFile "$INSTDIR\etc\findlib.conf" "$COQ_SRC_PATH_DBS" "$INSTDIR_DBS"

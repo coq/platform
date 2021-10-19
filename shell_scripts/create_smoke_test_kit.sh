@@ -127,7 +127,7 @@ smoke_script=smoke-test-kit/run-smoke-test.sh
 
 cat <<-'EOH' > $smoke_script
 	#/bin/bash
-	# This script runs a small "smoke-test" for all Coq platform components
+	# This script runs a small "smoke-test" for all Coq Platform components
 
 	# Exit on all errors
 	set -o nounset
@@ -175,7 +175,7 @@ smoke_batch=smoke-test-kit/run-smoke-test.bat
 
 cat <<-'EOH' | sed 's/$/\r/' > $smoke_batch
 	@ECHO OFF
-	REM This script runs a small "smoke-test" for all Coq platform components
+	REM This script runs a small "smoke-test" for all Coq Platform components
 	
 	REM Check if coqc is in the path
 	WHERE coqc

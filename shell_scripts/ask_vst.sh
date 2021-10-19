@@ -18,7 +18,7 @@ then
   then
 cat <<EOH
 ======================= VERIFIED SOFTWARE TOOLCHAIN VST =======================
-The Coq platform installs the Verified Software Toolchain VST.
+The Coq Platform installs the Verified Software Toolchain VST.
 
 Unfortunately VST takes a while to compile - on a fast machine with 32GB RAM it
 may be just 20 minutes, but on a slow machine with 4GB RAM it is more likely

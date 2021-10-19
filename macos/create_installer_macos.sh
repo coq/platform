@@ -49,7 +49,7 @@ command -v macpack  &> /dev/null || ( echo "Please install macpack (eg. sudo por
 
 source shell_scripts/get_names_from_switch.sh
 
-echo "##### Coq platform version = ${COQ_PLATFORM_VERSION}${COQ_PLATFORM_PACKAGELIST_NAME} #####" 
+echo "##### Coq Platform version = ${COQ_PLATFORM_VERSION}${COQ_PLATFORM_PACKAGELIST_NAME} #####" 
 
 ###### Create working folder and cd #####
 
@@ -92,7 +92,7 @@ mkdir ${APP_ABSDIR}/Contents/MacOS  # The top level executable shown in launcher
 mkdir -p ${RSRC_ABSDIR}             # Most files go here
 mkdir -p ${DYNLIB_ABSDIR}           # System shared libraries
 
-##### Opam folder variables #####
+##### opam folder variables #####
 
 # The opam prefix - stripped from absolute paths to create relative paths
 OPAM_PREFIX="$(opam conf var prefix)"
@@ -431,7 +431,7 @@ function process_package {
 
 ###### Go through selected packages and recursively analyze dependencies #####
 
-echo '##### Copy Opam packages #####'
+echo '##### Copy opam packages #####'
 
 # The initial list of already processed, otherwise processed or ignored packages
 PACKAGES_DONE="$PRIMARY_PACKAGES $IGNORED_PACKAGES"
@@ -658,7 +658,7 @@ echo '##### Create README.html #####'
 cat > _dmg/README.html <<EOT
 <html>
 <head>
-<title>The Coq platform - $COQ_PLATFORM_VERSION</title>
+<title>The Coq Platform - $COQ_PLATFORM_VERSION</title>
 <style>
 body {
    width : 50em;
@@ -681,7 +681,7 @@ dd {
 <body>
 <h1>The Coq Platform $COQ_PLATFORM_VERSION</h1>
 <p>
-  The <a href="https://coq.inria.fr">Coq interactive prover</a> provides
+  The <a href="https://coq.inria.fr">Coq proof assistant</a> provides
   a formal language to write
   mathematical definitions, executable algorithms, and theorems, together
   with an environment for semi-interactive development of machine-checked
@@ -689,7 +689,7 @@ dd {
 </p>
 <p>
   The <a href="https://github.com/coq/platform">Coq Platform</a>
-  is a distribution of the Coq interactive prover together
+  is a distribution of the Coq proof assistant together
   with a selection of Coq libraries.
 </p>
 EOT
@@ -710,7 +710,7 @@ fi
 cat >> _dmg/README.html <<EOT
 <h2>Coq Platform $COQ_PLATFORM_VERSION packages</h2>
 <p>
-  The Coq platform version $COQ_PLATFORM_VERSION
+  The Coq Platform version $COQ_PLATFORM_VERSION
   contains the following packages:
 </p>
 <dl>
@@ -787,7 +787,7 @@ function html_package_opam {
   fi
   if [ "${CHECKOPAMLINKS}" == 'Y' ] && ! check_url "${popam_url}"
   then
-    echo "Opam url '${popam_url}' for package '${package}' does not exist!" >> WARNINGS.log
+    echo "opam url '${popam_url}' for package '${package}' does not exist!" >> WARNINGS.log
   fi
 
   # Create final HTML text for package
