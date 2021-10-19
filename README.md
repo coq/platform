@@ -26,7 +26,7 @@ detailed information for each package.
 - [Coq 8.13.2 (released Apr 2021) with updated/extended package pick 2021.09](doc/README_2021.09.0_8.13.md)
 - [Coq 8.13.2 (released Apr 2021) with original package pick 2021.02](doc/README_2021.09.0_8.13~2021.02.md)
 - [Coq 8.12.2 (released Dec 2020)](doc/README_2021.09.0_8.12.md)
-- [Coq 8.14+rc1 with a beta package pick](doc/README_2021.09.0_8.14+beta1.md)
+- [Coq 8.14.0 (released Oct 2021) with a beta package pick](doc/README_2021.09.0_8.14+beta2.md)
 
 If you have questions on the Coq Platform, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
 
