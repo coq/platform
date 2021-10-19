@@ -35,9 +35,10 @@ PACKAGE_FILTER_RE="${2:-.}"
 
 ########## Settings ##########
 
-EXT_PRE="+rc1"
-DATE_PRE="September 17, 2021"
-DATE_FINAL="October 31, 2021"
+EXT_RELEASE=".0"
+DATE_RELEASE="October 14, 2021"
+EXT_FINAL=""
+DATE_FINAL=""
 VERSION_PLATFORM="2021.11"
 DATE_PLATFORM_NOTIFY="November 15, 2021"
 DATE_PLATFORM_EXPECTED="November 30, 2021"
@@ -144,11 +145,11 @@ function ask_user {
 
 function open_issue_tag() {
   TITLE="Please create a tag for Coq ${COQ_PLATFORM_COQ_BASE_VERSION} in Coq Platform ${VERSION_PLATFORM}"
-  BODY="The Coq team released Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_PRE} on ${DATE_PRE} and plans to release Coq ${COQ_PLATFORM_COQ_BASE_VERSION}.0 before ${DATE_FINAL}.
+  BODY="The Coq team released Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE} on ${DATE_RELEASE}${DATE_FINAL:+and plans to release Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_FINAL} before ${DATE_FINAL}}.
 The corresponding Coq Platform release ${VERSION_PLATFORM} should be released before ${DATE_PLATFORM_EXPECTED}.
 It can be delayed in case of difficulties until ${DATE_PLATFORM_LATEST}, but this should be an exception.
 
-This issue is to inform you that to our (possibly a few days old) best knoweldege the latest released version of your project (${LATEST_OPAM_VERSION}) does not work with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_PRE}.
+This issue is to inform you that to our (possibly a few days old) best knoweldege the latest released version of your project (${LATEST_OPAM_VERSION}) does not work with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}.
 We tried to remove version restrictions in opam files and possibly make or configure files, but this did not suffice.
 
 Please note that in Coq Platform CI (unlike Coq CI) we test only released / tagged versions. ${COQ_CI_TEST_INFO}
@@ -156,7 +157,7 @@ Please note that in Coq Platform CI (unlike Coq CI) we test only released / tagg
 Could you please create a tag, or communicate us any existing tag that works with Coq branch ${COQ_PLATFORM_COQ_BRANCH}, preferably before ${DATE_PLATFORM_NOTIFY}?
 In case we might have to delay the Coq Platform release cause of issues with your project, we would prefer to be informed about the situation as early as possible.
 
-The working branch of Coq Platform, which already supports Coq version ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_PRE}, can be found here ${PLATFORM_MAIN_BRANCH}.
+The working branch of Coq Platform, which already supports Coq version ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}, can be found here ${PLATFORM_MAIN_BRANCH}.
 
 Please **don't** close this issue, even after creating the new tag and/or opam package.
 We will close the issue after updating Coq Platform.
@@ -179,11 +180,11 @@ $CC
 
 function open_issue_inform() {
   TITLE="Please pick the version you prefer for Coq ${COQ_PLATFORM_COQ_BASE_VERSION} in Coq Platform ${VERSION_PLATFORM}"
-  BODY="The Coq team released Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_PRE} on ${DATE_PRE} and plans to release Coq ${COQ_PLATFORM_COQ_BASE_VERSION}.0 before ${DATE_FINAL}.
+  BODY="The Coq team released Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE} on ${DATE_RELEASE}${DATE_FINAL:+and plans to release Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_FINAL} before ${DATE_FINAL}}.
 The corresponding Coq Platform release ${VERSION_PLATFORM} should be released before ${DATE_PLATFORM_EXPECTED}.
 It can be delayed in case of difficulties until ${DATE_PLATFORM_LATEST}, but this should be an exception.
 
-This issue is to inform you that the opam package we are currently testing in Coq Platform CI works fine with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_PRE}.
+This issue is to inform you that the opam package we are currently testing in Coq Platform CI works fine with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}.
 
 ${COQ_PLATFORM_TEST_INFO}
 
@@ -191,7 +192,7 @@ In case this is the version you want to see in Coq Platform, there is nothing to
 
 In case you would prefer to see an updated or an older version in the upcoming Coq Platform ${VERSION_PLATFORM}, please inform us as soon as possible and before ${DATE_PLATFORM_NOTIFY}!
 
-The working branch of Coq Platform, which already supports Coq version ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_PRE}, can be found here ${PLATFORM_MAIN_BRANCH}.
+The working branch of Coq Platform, which already supports Coq version ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}, can be found here ${PLATFORM_MAIN_BRANCH}.
 
 In case you want to select a different version, please **don't** close this issue, even after creating the new tag and/or opam package.
 We will close the issue after updating Coq Platform.
