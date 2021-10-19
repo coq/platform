@@ -193,17 +193,17 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://github.com/karmaki/coq-dpdgraph'>coq-dpdgraph.0.6.9</a>
-(0.6.9) Compute dependencies between Coq objects (definitions, theorems) and produce graphs</summary>
+  <summary><a href='https://github.com/coq-community/coq-dpdgraph'>coq-dpdgraph.1.0+8.13</a>
+(1.0+8.13) Compute dependencies between Coq objects (definitions, theorems) and produce graphs</summary>
   <dl>
-    <dt><b>authors</b></dt><dd>Anne Pacalet Yves Bertot</dd>
+    <dt><b>authors</b></dt><dd>Anne Pacalet Yves Bertot Olivier Pons</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
-      (<a href='https://github.com/karmaki/coq-dpdgraph'>homepage</a>)
-      (<a href='https://github.com/karmaki/coq-dpdgraph/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-dpdgraph/coq-dpdgraph.0.6.9/opam'>opam package</a>)
+      (<a href='https://github.com/coq-community/coq-dpdgraph'>homepage</a>)
+      (<a href='https://github.com/coq-community/coq-dpdgraph/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-dpdgraph/coq-dpdgraph.1.0+8.13/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd></dd>
+    <dt><b>description</b></dt><dd>Coq plugin that extracts the dependencies between Coq objects,nand produces files with dependency information. Includes toolsnto visualize dependency graphs and find unused definitions.</dd>
   </dl>
 </details>
 
@@ -321,7 +321,7 @@ The **full level** contains the following packages:
     <dt><b>links</b></dt><dd>
       (<a href='http://homotopytypetheory.org/'>homepage</a>)
       (<a href='https://github.com/HoTT/HoTT/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-hott/coq-hott.8.13/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-hott/coq-hott.8.13/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>To use the HoTT library, the following flags must be passed to coqc:n   -noinit -indices-matternTo use the HoTT library in a project, add the following to _CoqProject:n   -arg -noinitn   -arg -indices-matter</dd>
   </dl>
@@ -396,7 +396,7 @@ The **full level** contains the following packages:
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/math-classes'>homepage</a>)
       (<a href='https://github.com/coq-community/math-classes/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-math-classes/coq-math-classes.8.13.0/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-math-classes/coq-math-classes.8.13.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Math classes is a library of abstract interfaces for mathematicalnstructures, such as:nn*  Algebraic hierarchy (groups, rings, fields, …)n*  Relations, orders, …n*  Categories, functors, universal algebra, …n*  Numbers: N, Z, Q, …n*  Operations, (shift, power, abs, …)nnIt is heavily based on Coq’s new type classes in order to provide:nstructure inference, multiple inheritance/sharing, convenientnalgebraic manipulation (e.g. rewriting) and idiomatic use ofnnotations.</dd>
   </dl>
@@ -426,7 +426,7 @@ The **full level** contains the following packages:
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/math-comp/analysis'>homepage</a>)
       (<a href='https://github.com/math-comp/analysis/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-analysis/coq-mathcomp-analysis.0.3.10/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-mathcomp-analysis/coq-mathcomp-analysis.0.3.10/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This repository contains an experimental library for real analysis fornthe Coq proof-assistant and using the Mathematical Components library.</dd>
   </dl>
@@ -658,15 +658,15 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://github.com/Lysxia/coq-simple-io'>coq-simple-io.1.5.0</a>
-(1.5.0) IO monad for Coq</summary>
+  <summary><a href='https://github.com/Lysxia/coq-simple-io'>coq-simple-io.1.6.0</a>
+(1.6.0) IO monad for Coq</summary>
   <dl>
-    <dt><b>authors</b></dt><dd>Li-yao Xia</dd>
+    <dt><b>authors</b></dt><dd>Li-yao Xia Yishuai Li</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/Lysxia/coq-simple-io'>homepage</a>)
       (<a href='https://github.com/Lysxia/coq-simple-io/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-simple-io/coq-simple-io.1.5.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-simple-io/coq-simple-io.1.6.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library provides tools to implement IO programs directly in Coq, in ansimilar style to Haskell. Facilities for formal verification are not included.nnIO is defined as a parameter with a purely functional interface in Coq,nto be extracted to OCaml. Some wrappers for the basic types and functions innthe OCaml Pervasives module are provided. Users are free to define their ownnAPIs on top of this IO type.</dd>
   </dl>
@@ -771,7 +771,7 @@ The following packages are **optional**:
     <dt><b>links</b></dt><dd>
       (<a href='http://compcert.inria.fr/'>homepage</a>)
       (<a href='https://github.com/AbsInt/CompCert/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-compcert/coq-compcert.3.9/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-compcert/coq-compcert.3.9/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -786,7 +786,7 @@ The following packages are **optional**:
     <dt><b>links</b></dt><dd>
       (<a href='http://vst.cs.princeton.edu/'>homepage</a>)
       (<a href='https://github.com/PrincetonUniversity/VST/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-vst/coq-vst.2.8/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-vst/coq-vst.2.8/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>The software toolchain includes static analyzers to check assertions about your program; optimizing compilers to translate your program to machine language; operating systems and libraries to supply context for your program. The Verified Software Toolchain project assures with machine-checked proofs that the assertions claimed at the top of the toolchain really hold in the machine-language program, running in the operating-system context.</dd>
   </dl>
@@ -800,7 +800,7 @@ The **extended level** contains packages which are in a beta stage or otherwise
 don't yet have the level of maturity or support required for inclusion in the
 full level, but there are plans to move them to the full level in a future
 release of Coq Platform. The main point of the extended level is advertisement:
-useres are important to bring a development from a beta to a release state.
+users are important to bring a development from a beta to a release state.
 
 The interactive installation script explicitly asks if you want to install these packages.
 The macOS and snap installation bundles always include these packages.
@@ -817,7 +817,7 @@ The **extended level** contains the following packages:
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/arthuraa/deriving'>homepage</a>)
       (<a href='https://github.com/arthuraa/deriving/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-deriving/coq-deriving.0.1.0/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-deriving/coq-deriving.0.1.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Deriving provides generic instances of MathComp classes forninductive data types.  It includes native support for eqType,nchoiceType, countType and finType instances, and it allows users tondefine their own instances for other classes.</dd>
   </dl>
@@ -839,15 +839,15 @@ The **extended level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://github.com/coq-community/reduction-effects'>coq-reduction-effects.0.1.2</a>
-(0.1.2) A Coq plugin to add reduction side effects to some Coq reduction strategies</summary>
+  <summary><a href='https://github.com/coq-community/reduction-effects'>coq-reduction-effects.0.1.3</a>
+(0.1.3) A Coq plugin to add reduction side effects to some Coq reduction strategies</summary>
   <dl>
-    <dt><b>authors</b></dt><dd>Hugo Herbelin &lt;Hugo.Herbelin@inria.fr&gt;</dd>
-    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1.html" target="_blank">LGPL-2.1</a></dd>
+    <dt><b>authors</b></dt><dd>Hugo Herbelin</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MPL-2.0.html" target="_blank">MPL-2.0</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/reduction-effects'>homepage</a>)
       (<a href='https://github.com/coq-community/reduction-effects/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-reduction-effects/coq-reduction-effects.0.1.2/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-reduction-effects/coq-reduction-effects.0.1.3/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
