@@ -37,8 +37,6 @@ COQ_PLATFORM_VERSION_DESCRIPTION+='The original package pick is provided for com
 ###################### PACKAGE SELECTION #####################
 
 # - Comment out packages you do not want.
-# - Packages with system dependencies should be given first.
-#   This avoids multiple sudo password requests
 # - Packages which take a long time to build should be given last.
 #   There is some evidence that they are built early then.
 
