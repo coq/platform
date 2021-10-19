@@ -1,4 +1,4 @@
-# Coq Platform 2021.09.0 providing Coq 8.13.2 04/2021 with updated/extended package pick 09/2021
+# Coq Platform 2021.09.0 providing Coq 8.13.2 (released Apr 2021) with updated/extended package pick Nov 2021
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together

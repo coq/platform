@@ -1,4 +1,4 @@
-# Coq Platform 2021.09.0 providing Coq 8.13.2 04/2021 with original package pick 02/2021
+# Coq Platform 2021.09.0 providing Coq 8.13.2 (released Apr 2021) with original package pick from Feb 2021
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
@@ -246,7 +246,7 @@ The **full level** contains the following packages:
     <dt><b>links</b></dt><dd>
       (<a href='http://homotopytypetheory.org/'>homepage</a>)
       (<a href='https://github.com/HoTT/HoTT/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-hott/coq-hott.8.13/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-hott/coq-hott.8.13/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>To use the HoTT library, the following flags must be passed to coqc:n   -noinit -indices-matternTo use the HoTT library in a project, add the following to _CoqProject:n   -arg -noinitn   -arg -indices-matter</dd>
   </dl>
@@ -560,7 +560,7 @@ The **extended level** contains packages which are in a beta stage or otherwise
 don't yet have the level of maturity or support required for inclusion in the
 full level, but there are plans to move them to the full level in a future
 release of Coq Platform. The main point of the extended level is advertisement:
-useres are important to bring a development from a beta to a release state.
+users are important to bring a development from a beta to a release state.
 
 The interactive installation script explicitly asks if you want to install these packages.
 The macOS and snap installation bundles always include these packages.

@@ -11,7 +11,7 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.13.2 04/2021 with updated/extended package pick 09/2021"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.13.2 (released Apr 2021) with updated/extended package pick Nov 2021"
 COQ_PLATFORM_VERSION_SORTORDER=1
 
 # The package list name is the final part of the opam switch name.
