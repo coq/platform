@@ -53,7 +53,7 @@ jobs:
           - '32'
           - '64'
         variant:
-          - '8.14+beta1'
+          - '8.14+beta2'
           - '8.13'
 
     steps:
@@ -106,7 +106,7 @@ jobs:
           - '32'
           - '64'
         variant:
-          - '8.14+beta1'
+          - '8.14+beta2'
           - '8.13'
 
     steps:

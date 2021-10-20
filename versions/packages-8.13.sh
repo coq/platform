@@ -11,7 +11,7 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.13.2 04/2021 with updated/extended package pick 09/2021"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.13.2 (released Apr 2021) with updated/extended package pick Nov 2021"
 COQ_PLATFORM_VERSION_SORTORDER=1
 
 # The package list name is the final part of the opam switch name.
@@ -38,8 +38,6 @@ COQ_PLATFORM_VERSION_DESCRIPTION+='This is the **latest release version** of the
 PACKAGES=""
 
 # - Comment out packages you do not want.
-# - Packages with system dependencies should be given first.
-#   This avoids multiple sudo password requests
 # - Packages which take a long time to build should be given last.
 #   There is some evidence that they are built early then.
 # - The picking is as much as possible identical to the 8.14 picking
@@ -136,10 +134,10 @@ then
   esac
 
   # Code extraction
-  PACKAGES="${PACKAGES} coq-simple-io.1.5.0"
+  PACKAGES="${PACKAGES} coq-simple-io.1.6.0"
 
   # Proof analysis and other tools
-  PACKAGES="${PACKAGES} coq-dpdgraph.0.6.9"
+  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.13"
 
 fi
 
@@ -152,7 +150,7 @@ then
   PACKAGES="${PACKAGES} coq-deriving.0.1.0"
 
   # Gallina extensions
-  PACKAGES="${PACKAGES} coq-reduction-effects.0.1.2"
+  PACKAGES="${PACKAGES} coq-reduction-effects.0.1.3"
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"
 
   # Communication with coqtop

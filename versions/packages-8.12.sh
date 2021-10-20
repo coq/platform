@@ -11,7 +11,7 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.12.2 12/2020 (previous release version)"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.12.2 (released Dec 2020)"
 COQ_PLATFORM_VERSION_SORTORDER=3
 
 # The package list name is the final part of the opam switch name.
@@ -34,11 +34,8 @@ COQ_PLATFORM_VERSION_DESCRIPTION+='The package pick is the original package pick
 ###################### PACKAGE SELECTION #####################
 
 # - Comment out packages you do not want.
-# - Packages with system dependencies should be given first.
-#   This avoids multiple sudo password requests
 # - Packages which take a long time to build should be given last.
 #   There is some evidence that they are built early then.
-
 
 PACKAGES="coq.8.12.2"
 

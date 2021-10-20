@@ -20,17 +20,17 @@ homepage: "http://vst.cs.princeton.edu/"
 dev-repo: "git+https://github.com/PrincetonUniversity/VST.git"
 bug-reports: "https://github.com/PrincetonUniversity/VST/issues"
 license: "https://raw.githubusercontent.com/PrincetonUniversity/VST/master/LICENSE"
-patches: [ "0001-Fix-issue-485-make-install-with-IGNORECOQVERSION.patch" ]
+patches: [ "0001-Allow-Coq-8.14.0.patch" ]
 build: [
-  [make "-j%{jobs}%" "BITSIZE=64" "IGNORECOQVERSION=true"]
+  [make "-j%{jobs}%" "BITSIZE=64"]
 ]
 install: [
-  [make "install" "BITSIZE=64" "IGNORECOQVERSION=true"]
+  [make "install" "BITSIZE=64"]
 ]
 depends: [
   "ocaml"
-  "coq" {>= "8.12"}
-  "coq-compcert" {(= "3.9") | (= "3.9~flex")}
+  "coq" {>= "8.12" & < "8.15~"}
+  "coq-compcert" {= "3.9"}
   "coq-flocq" {>= "3.2.1"}
 ]
 tags: [
