@@ -1,0 +1,23 @@
+From c88db6e0b5054a3f76fe1e77c4a722882248df1e Mon Sep 17 00:00:00 2001
+From: Michael Soegtrop <7895506+MSoegtropIMC@users.noreply.github.com>
+Date: Tue, 15 Jun 2021 14:28:19 +0200
+Subject: [PATCH] Fix issue #485: make install with IGNORECOQVERSION
+
+---
+ util/calc_install_files | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/util/calc_install_files b/util/calc_install_files
+index 785a0bfd..739dc38d 100755
+--- a/util/calc_install_files
++++ b/util/calc_install_files
+@@ -1,5 +1,5 @@
+ #!/bin/bash
+ #  The $1 argument of this script should be $(PROGSDIR)
+ make depend >& /dev/null
+-make CLIGHTGEN="CLIGHTGEN" -Bn veric floyd $1 2>/dev/null | \
++make CLIGHTGEN="CLIGHTGEN" IGNORECOQVERSION=true -Bn veric floyd $1 2>/dev/null | \
+  awk '/^echo COQC /{print $NF}/^CLIGHTGEN/{print $NF}'
+-- 
+2.30.1 (Apple Git-130)
+

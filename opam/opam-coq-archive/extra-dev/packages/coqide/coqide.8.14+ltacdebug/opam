@@ -7,9 +7,7 @@ dev-repo: "git+https://github.com/coq/coq.git"
 license: "LGPL-2.1-only"
 synopsis: "IDE of the Coq formal proof management system"
 description: """
-CoqIDE is a graphical user interface for interactive development
-of mathematical definitions, executable algorithms, and proofs of theorems
-using the Coq proof assistant.
+This version of CoqIDE is a preview release of an interactive debugger for Ltac in CoqIDE.
 """
 
 depends: [
@@ -35,5 +33,6 @@ build: [
 ]
 
 url {
-  src: "git+https://github.com/jfehrle/coq#debugger_gui"
+  src: "https://github.com/jfehrle/coq/archive/8.14+debugger_preview.tar.gz"
+  checksum: "sha512=0c91ee6b2e633aedb5fb19d67081b8bf6bd322e973eb8113e3356978b00c2f2557aff935c91f361a98da1e21a1faa5b17c4c6377739a196bdf03233eae0550a2"
 }

@@ -1,0 +1,37 @@
+opam-version: "2.0"
+maintainer: "Enrico Tassi <enrico.tassi@inria.fr>"
+authors: [ "Enrico Tassi" ]
+license: "LGPL-2.1-or-later"
+homepage: "https://github.com/LPCIC/coq-elpi"
+bug-reports: "https://github.com/LPCIC/coq-elpi/issues"
+dev-repo: "git+https://github.com/LPCIC/coq-elpi"
+patches: [ "0001-Overlay-for-Coq-PR-14354.patch" ]
+build: [ [ make "build"   "COQBIN=%{bin}%/" "ELPIDIR=%{prefix}%/lib/elpi" "OCAMLWARN=" ]
+         [ make "test"    "COQBIN=%{bin}%/" "ELPIDIR=%{prefix}%/lib/elpi" ] {with-test}
+       ]
+install: [ make "install" "COQBIN=%{bin}%/" "ELPIDIR=%{prefix}%/lib/elpi" ]
+depends: [
+  "stdlib-shims"
+  "ocaml" {>= "4.07.0"}
+  "elpi" {>= "1.13.6" & < "1.14.0~"}
+  "coq" {>= "8.14" & < "8.15~" }
+]
+tags: [ "logpath:elpi" ]
+synopsis: "Elpi extension language for Coq"
+description: """
+Coq-elpi provides a Coq plugin that embeds ELPI.
+It also provides a way to embed Coq's terms into λProlog using
+the Higher-Order Abstract Syntax approach
+and a way to read terms back.  In addition to that it exports to ELPI a
+set of Coq's primitives, e.g. printing a message, accessing the
+environment of theorems and data types, defining a new constant and so on.
+For convenience it also provides a quotation and anti-quotation for Coq's
+syntax in λProlog.  E.g. `{{nat}}` is expanded to the type name of natural
+numbers, or `{{A -> B}}` to the representation of a product by unfolding
+ the `->` notation. Finally it provides a way to define new vernacular commands
+and
+new tactics."""
+url {
+src: "https://github.com/LPCIC/coq-elpi/archive/v1.11.2.tar.gz"
+checksum: "sha256=9a2d86ef36a6a54f0d8ea5e3a2902793a8a9d48deaf049052ea17faea750ff34"
+}
