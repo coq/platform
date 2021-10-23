@@ -27,6 +27,9 @@ detailed information for each package.
 - [Coq 8.13.2 (released Apr 2021) with original package pick 2021.02](doc/README_2021.09.0_8.13~2021.02.md)
 - [Coq 8.12.2 (released Dec 2020)](doc/README_2021.09.0_8.12.md)
 - [Coq 8.14.0 (released Oct 2021) with a beta package pick](doc/README_2021.09.0_8.14+beta2.md)
+- Coq 8.14+ltacdebug: A preview for the new CoqIDE Ltac debugger - see [Ltac-Debugger-Preview](https://github.com/coq/coq/wiki/Ltac-Debugger-Preview);
+  the package pick is the same as for [Coq 8.14.0](doc/README_2021.09.0_8.14+beta2.md) except that two packages required minor (one liner) patches
+- Coq developer version: this build points to the latest developer branches of Coq and all packages and is intended for package maintainers - there is no guarantee that all packages build
 
 If you have questions on the Coq Platform, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
 

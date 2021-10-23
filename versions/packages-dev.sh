@@ -27,6 +27,9 @@ COQ_PLATFORM_COQ_TAG='dev'
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 
+# This extended descriptions is used for readme files
+COQ_PLATFORM_VERSION_DESCRIPTION='This is the latest development version of Coq and all packages.'
+
 ###################### PACKAGE SELECTION #####################
 
 # - Comment out packages you do not want.

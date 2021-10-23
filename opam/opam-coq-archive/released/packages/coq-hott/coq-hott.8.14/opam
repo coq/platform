@@ -4,7 +4,7 @@ homepage: "http://homotopytypetheory.org/"
 bug-reports: "https://github.com/HoTT/HoTT/issues"
 license: "BSD-2-Clause"
 build: [
-  [make "-j1"]
+  [make "-j%{jobs}%"]
 ]
 install: [make "install"]
 depends: [
@@ -25,5 +25,5 @@ To use the HoTT library in a project, add the following to _CoqProject:
 tags: [ "logpath:HoTT" ]
 url {
   src: "https://github.com/HoTT/HoTT/archive/refs/tags/V8.14.tar.gz"
-  checksum: "sha512=213c909ce04290f885b7605b1b7777a6552c2a4642e7d289a0e1e4b737c625867ad73c6a56c824eba952ff95e8e98a9d78061d8a3c7a8420f7ad3beab62ad87e"
+  checksum: "sha512=dfdc9360da69ff4aa78b425c3393de4fc824f6cdb522d7c147dac8e8f14ebda2882170aa3eae28d8c60135e44610cddc135e6d9093a7d6da06b8cd0395d8a812"
 }

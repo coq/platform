@@ -53,6 +53,7 @@ jobs:
           - '8.13'
           - '8.13~2021.02'
           - '8.12'
+          - 'ltacdebug'
 
     steps:
       - name: Git checkout
