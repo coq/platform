@@ -34,5 +34,5 @@ build: [
 
 url {
   src: "https://github.com/jfehrle/coq/archive/8.14+debugger_preview.tar.gz"
-  checksum: "sha512=0c91ee6b2e633aedb5fb19d67081b8bf6bd322e973eb8113e3356978b00c2f2557aff935c91f361a98da1e21a1faa5b17c4c6377739a196bdf03233eae0550a2"
+  checksum: "sha512=fb5b7bf746035fa6a1a5527ad9f7f4cfeb85f68233811293e091eb3bc74ccb8e3e1bc9c836dc2788744e4b2f0115b58eb8f2a6759f0dc870ae1f9febc29151e4"
 }
