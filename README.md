@@ -1,4 +1,4 @@
-# Coq Platform 2021.09.0
+# Overview
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
@@ -12,7 +12,7 @@ and for teaching Coq.
 See [Charter](charter.md) for the Coq Platform concept.
 
 The Coq Platform is based on the OCaml package manager **opam** and provides a set
-of scripts to compile and install opam, Coq and the platform contents on macOS,
+of scripts to compile and/or install opam, Coq and the platform contents on macOS,
 Windows and many Linux distributions in a reliable way with consistent results.
 In addition **pre-compiled binary packages** or **installers** are provided for **macOS**,
 **Windows** and **snap** for Linux (Docker is in preparation).
@@ -33,9 +33,11 @@ detailed information for each package.
 
 If you have questions on the Coq Platform, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
 
-## Usage of the Coq Platform
+## Installation
 
-Please refer to the README file for your OS.
+The Coq platform is the recommended way to install Coq for both beginners and experts.
+Beginners are encouraged to use one of the binary installers. Experienced users are advised to run the scripts provided by the Coq platform to install from sources as this will allow them to install additional packages with opam.
+Please refer to the ReadMe file for your OS, which contains information on both methods respectively.
 
 - macOS: see [README_macOS](doc/README_macOS.md).
 - Windows: see [README_Windows](doc/README_Windows.md)
