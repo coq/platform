@@ -6,6 +6,25 @@ Windows and many Linux distributions in a reliable way with consistent results.
 
 See [Charter](charter.md) for the coq platform concept.
 
+### Table of Contents
+
+- [Installation](#installation)
+- [Note on Licenses](#note-on-licenses)
+- [Features](#features-of-the-2021022-release)
+- [Customization](#customization)
+
+# Installation
+
+The Coq platform is the recommended way to install Coq for both beginners and experts.
+Beginners are encouraged to use one of the binary installers. Experienced users are advised to run the scripts provided by the Coq platform to install from sources as this will allow them to install additional packages with opam.
+Please refer to the ReadMe file for your OS, which contains information on both methods respectively.
+
+- macOS: see [README_macOS](README_macOS.md).
+- Windows: see [README_Windows](README_Windows.md)
+- Linux: see [README_Linux](README_Linux.md).
+
+See the [Customization](#customization) section on how to obtain a custom setup with more or less packages installed.
+
 # Note on Licenses
 
 The Coq platform setup scripts and the selection of packages and patches are licensed Creative Commons CC0.
@@ -87,13 +106,7 @@ menhir                   20200624    An LR(1) parser generator
 - VST updated to version 2.7.1 (bugfix release)
 - new package `coq-hott` *The Homotopy Type Theory library*
 
-# Usage of the 2021.02.2 release
-
-Please refer to the ReadMe file for your OS.
-
-- macOS: see [README_macOS](README_macOS.md).
-- Windows: see [README_Windows](README_Windows.md)
-- Linux: see [README_Linux](README_Linux.md).
+# Customization
 
 ## Installation of additional packages or package variants
 
