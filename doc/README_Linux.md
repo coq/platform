@@ -1,14 +1,12 @@
-This README presents the two standard methods to install the platform on Linux:
-- as a binary snap package,
-- from sources, using the platform scripts.
+This README presents the two standard methods to install the Coq Platform on Linux:
+- as a [binary snap package](installation-using-snap-package),
+- [from sources](installation-by-compiling-from-sources-using-opam), using the platform scripts.
 
-The first method is recommended for beginners and the second one is recommended for experienced users, who may want to use opam to install additional packages, beyond the standard set provided by the platform.
+The first method is recommended for beginners and the second one is recommended for experienced users, who may want to use opam to install additional packages, beyond the standard set provided by the Coq Platform.
 
 # Installation using snap package
 
-URL: https://snapcraft.io/coq-prover
-
-Maintainer: Enrico Tassi
+This method is intended for beginners.
 
 To install the Coq Platform on a Linux machine which has snap already installed -
 which is default on Ubuntu since version 16 and some other but not all Linux distributions -
@@ -19,6 +17,10 @@ sudo snap install coq-prover
 ```
 
 In case you don't have snap installed yet, please refer to [installing-snapd](https://snapcraft.io/docs/installing-snapd)
+
+The snap URL is https://snapcraft.io/coq-prover.
+
+This install method is maintained by Enrico Tassi.
 
 ## Package name
 The name of the package is `coq-prover` since `coq` was considered
@@ -49,7 +51,7 @@ make a new release the package installed by a user *silently* upgrades, no
 questions asked!
 
 A user can install from `latest/edge` to test the very last upload, but also,
-and more interestingly, from `2021.02/stable` to *never* move to e.g. 2021.07 without
+and more interestingly, from `2021.09/stable` to *never* move to a later version without
 consent. This last option makes snap package also usable by developers (and
 indeed one finds stuff like `node` or `go` distributed via snap).
 
@@ -67,7 +69,9 @@ one.
 - [Process for manual store actions (tracks, aliases)](https://forum.snapcraft.io/t/process-for-aliases-auto-connections-and-tracks/455)
 
 
-# Installation by compiling from sources (using opam)
+# Installation by compiling from sources using opam
+
+This method is intended for experienced users, who may want to use opam to install additional packages, beyond the standard set provided by the Coq Platform.
 
 - Install buildtools
   - Debian, Ubuntu:       sudo apt-get install build-essential
@@ -75,14 +79,14 @@ one.
   - OpenSuse:             sudo zypper in -t pattern devel_C_C++
 - For CentOS and possibly RHEL some additional steps are required, see [CentOS](#centos) below.
 - Get the Coq Platform scripts via either of these methods
-  - `git clone --branch 2021.02 https://github.com/coq/platform.git`
-  - download and extract `https://github.com/coq/platform/archive/2021.02.zip`
+  - Most users should download and extract `https://github.com/coq/platform/archive/2021.09.zip`.
+  - Users which intend to contribute to Coq Platform should use `git clone --branch 2021.09 https://github.com/coq/platform.git`.
 - Open a shell, navigate to the download folder and execute `coq_platform_make.sh`.
 - The system will ask for sudo permissions to install prerequisites *several times* so the script is not fully unattended but all installations of dependencies are done directly after the initialization of the opam switch.
 - In case the script aborts e.g. cause of internet issues, just rerun the script.
-- The script creates a new opam switch named e.g. `__coq-platform.2021.09.0.8.13` - this means the script does not touch your existing opam setup unless you already have a switch of this name.
+- The script creates a new opam switch named e.g. __coq-platform.2021.09.0~8.13 - this means the script does not touch your existing opam setup unless you already have a switch of this name.
 - Use the following commands to activate this switch after opening a new shell:
-  - `opam switch __coq-platform.2021.09.0.8.13` (note: the switch name might vary if you choose a different version of Coq - please use `opam switch` to see a list of switch names)
+  - `opam switch __coq-platform.2021.09.0~8.13` (note: the switch name might vary if you choose a different version of Coq - please use `opam switch` to see a list of switch names)
   - `eval $(opam env)`
   - The second step can be automated by rerunning `opam init`
 - The main opam repositories for Coq and OCaml developments are already added to the created opam switch, so it should be easy to install additional Coq (or OCaml) packages.
