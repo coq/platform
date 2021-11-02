@@ -83,6 +83,28 @@ The Coq Platform team does no double check this information.
 
 </details>
 
+<details><summary><font size="+1">Maintaining an installation</font></summary>
+
+It is **not** recommended to `opam upgrage` a Coq Platform opam switch, although this is possible.
+The Coq Platform script does not pin any packages - not even Coq.
+It just requests to install a specific version, so `opam upgrage` might change a lot of packages
+and you end up with something which is no longer an "official" Coq Platform.
+
+Instead it is recommended to wait for the next release of Coq Platform and install it, which will create a new opam switch -
+or if you use a binary installer on macOS or Windows, you can choose a different installation folder.
+This also has the advantage that you still have the Coq Platform version you have been working with so far available,
+which is useful in case you need to port some proofs from the older to the new version - which might happen.
+You can remove the opam switch or uninstall an installed Coq Platform as soon as you no longer need it.
+
+In general the Coq Platform team recommends to use the concept of opam switches generously.
+If you want to do experiments, create a new switch following the instructions for creating Coq Platform variants below.
+You can easily switch between opam switches and do tests.
+Also if you follow the variants approach, you can easily share your setup with other people just by sharing the Coq Platform version file you created.
+A Coq Platform switch requires between 1 and 3 GByte of disk space.
+The current Coq 8.13.2 distribution requires 2.3 GByte on macOS.
+
+</details>
+
 <details><summary><font size="+1">Features of the Coq Platform</font></summary>
 
 - fully opam based, also on Windows
