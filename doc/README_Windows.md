@@ -1,43 +1,46 @@
-# Installation
+This README presents the two standard methods to install the Coq Platform on Windows:
+- using a [Windows installer](#installation-using-the-windows-installer),
+- [from sources](#installation-by-compiling-from-sources-using-opam-on-cygwin), using the platform scripts.
 
-## Using the installer
+The first method is recommended for beginners and the second one is recommended for experienced users.
+
+# Installation using the Windows installer
 
 This method is intended for beginners.
-For advanced users it is recommended to compile Coq from sources via opam (see next section).
-
-In case you want to use the fast path:
 
 - Download the installer from https://github.com/coq/platform/releases (click on "Assets" at the end of a release section)
 - Run the installer and follow the instructions
 
 A note to lecturers: it is easy to create a customized Windows installer from an opam switch - see [Customized Installers](#customized-installers)
 
-## Compiling from sources with Cygwin as build host
+# Installation by compiling from sources using opam on cygwin
 
-This method is intended for advanced users who need additional flexibility and/or an advanced working environment.
-For beginners it is recommended to use the Windows installer (see previous section).
+This method is intended for experienced users, who may want to use opam to install additional packages, beyond the standard set provided by the Coq Platform, or who need an advanced working environment with a posix shell, make, dune, ...
 
 - Get the Coq Platform scripts via either of these methods
-  - `git clone --branch 2021.02 https://github.com/coq/platform.git`
-  - download and extract `https://github.com/coq/platform/archive/2021.02.zip`
+  - Most users should download and extract `https://github.com/coq/platform/archive/2021.09.zip`.
+  - Users which intend to contribute to Coq Platform should use `git clone --branch 2021.09 https://github.com/coq/platform.git`.
+    Please note that the scripts are CR/LF sensitive, so if you use a Windows git client (not a Cygwin git) you should set `git config --global core.autocrlf false` - which is anyway a good idea.
 - Open a command window, navigate to the download folder and execute `coq_platform_make_windows.bat`
 - This will ask for the Cygwin installation path and setup a fresh Cygwin as build host (the created Coq is MinGW and runs without Cygwin).
-- After the Cygwin setup, the script will automatically execute the common setup shell script `coq_platform_make.sh`.
+- After the Cygwin setup - which takes a few minutes - the script will automatically execute the common setup shell script `coq_platform_make.sh`.
 - The script will ask a few questions if no parameters are given and then run fully unattended.
 - The build time is between 1..5 hours, depending on CPU speed and RAM size.
+- In case the script aborts e.g. cause of internet issues, just rerun the batch file - it won't install Cygwin again (assuming you specify the same Cygwin destination folder).
 - The script has various options for configuring paths and proxies; see `example_coq_platform_make.bat` for an example command line.
 - The resulting Coq installation is opam based and best used from the Cygwin prompt (started via `C:\<your_coq_platform_Cygwin_path>\Cygwin.bat`)
-- The script creates a new opam switch named e.g. `__coq-platform.2021.09.0.8.13` - this means the script does not touch your existing opam setup unless you already have a switch of this name.
+- The script creates a new opam switch named e.g. __coq-platform.2021.09.0~8.13 - the exact name depends on the Coq version you selected.
+  This means the script does not touch your existing opam setup unless you already have a switch of this name.
 - Use the following commands at the Cygwin prompt to activate this switch after opening a new shell:
-  - `opam switch __coq-platform.2021.09.0.8.13` (note: the switch name might vary if you choose a different version of Coq - please use `opam switch` to see a list of switch names)
+  - `opam switch __coq-platform.2021.09.0~8.13` (note: the switch name might vary if you choose a different version of Coq - please use `opam switch` to see a list of switch names)
   - `eval $(opam env)`
   - The second step can be automated by rerunning `opam init`
-- The main opam repository for Coq developments is already added to the created opam switch, so it should be easy to install additional coq packages.
+- The main opam repositories for Coq and OCaml developments are already added to the created opam switch, so it should be easy to install additional Coq (or OCaml) packages.
 - For OCaml packages a specially patched opam repo for Windows is added which offers a rich but reduced set of packages (not everything builds on Windows)
-- CoqIDE can be started from the shell prompt with `coqide`.
+- CoqIDE can be started from the Cygwin shell prompt with `coqide`.
 - The full installation might require up to 5 GB of disk space.
 - It is possible to install several versions of the Coq Platform in one Cygwin, as long as the pre-requisites are met. This is best achieved
-by running the additional `coq_platform_make.sh` directly from the coq platfiorm created Cygwin.
+by running the additional `coq_platform_make.sh` directly from the Coq Platform created Cygwin.
 
 ## Compiling from sources with Windows Subsystem for Linux - WSL)
 
@@ -58,9 +61,17 @@ If a virus scanner does its work it has files and/or directories open which on W
 ```
 In case this happens, it might help to simply retry and if this does not help to pause the virus scanner during the build or to exclude the Cygwin destination folder from scans. This might also help another issue with virus scanners: they can take considerable amounts of CPU time and RAM during a highly parallel build. A virus scanner from GData took about 3..4 cores (6..8 threads) of a Xeon CPU and almost 2.0 GB RAM during Coq Platform build tests. And GData seems to be on the better side - much worse resource usage slowing down a build by a factor of ten is not unheard of.
 
-## Notes for GData
+## Notes for "Windows real-time protection"
+
+As far as we can tell this is only active if no other virus scanner is installed. If this is the case, it might be required to disable it. See [Issue #66](https://github.com/coq/platform/issues/66) for settings which did work for a user.
+
+## Notes for "GData"
 
 A GData virus scanner with standard settings took about 3..4 cores (6..8 threads) of a Xeon CPU and almost 2.0 GB RAM during Coq Platform build tests. For GData virus scanners it helps to disable `BEAST (Behavior Monitoring)` and `Deep Ray` in the real time protection - the resource usage is reasonable then.
+
+## Notes on "HP Sure Sense"
+
+The `HP Sure Sense` system has been reported to deny the download of the opam executable. See [Issue #66](https://github.com/coq/platform/issues/66) for settings which did work for a user.
 
 ## Notes on other virus scanners
 

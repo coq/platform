@@ -1,4 +1,4 @@
-# Coq Platform 2021.09.0
+# Overview
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
@@ -12,7 +12,7 @@ and for teaching Coq.
 See [Charter](charter.md) for the Coq Platform concept.
 
 The Coq Platform is based on the OCaml package manager **opam** and provides a set
-of scripts to compile and install opam, Coq and the platform contents on macOS,
+of scripts to compile and/or install opam, Coq and the platform contents on macOS,
 Windows and many Linux distributions in a reliable way with consistent results.
 In addition **pre-compiled binary packages** or **installers** are provided for **macOS**,
 **Windows** and **snap** for Linux (Docker is in preparation).
@@ -33,9 +33,11 @@ detailed information for each package.
 
 If you have questions on the Coq Platform, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
 
-## Usage of the Coq Platform
+## Installation
 
-Please refer to the README file for your OS.
+The Coq platform is the recommended way to install Coq for both beginners and experts.
+Beginners are encouraged to use one of the binary installers. Experienced users are advised to run the scripts provided by the Coq platform to install from sources as this will allow them to install additional packages with opam.
+Please refer to the ReadMe file for your OS, which contains information on both methods respectively.
 
 - macOS: see [README_macOS](doc/README_macOS.md).
 - Windows: see [README_Windows](doc/README_Windows.md)
@@ -78,6 +80,28 @@ The Coq Platform team does no double check this information.
 - Coq and CoqIDE update to version 8.13.2 (bugfix release)
 - VST updated to version 2.7.1 (bugfix release)
 - new package `coq-hott` *The Homotopy Type Theory library*
+
+</details>
+
+<details><summary><font size="+1">Maintaining an installation</font></summary>
+
+It is **not** recommended to `opam upgrage` a Coq Platform opam switch, although this is possible.
+The Coq Platform script does not pin any packages - not even Coq.
+It just requests to install a specific version, so `opam upgrage` might change a lot of packages
+and you end up with something which is no longer an "official" Coq Platform.
+
+Instead it is recommended to wait for the next release of Coq Platform and install it, which will create a new opam switch -
+or if you use a binary installer on macOS or Windows, you can choose a different installation folder.
+This also has the advantage that you still have the Coq Platform version you have been working with so far available,
+which is useful in case you need to port some proofs from the older to the new version - which might happen.
+You can remove the opam switch or uninstall an installed Coq Platform as soon as you no longer need it.
+
+In general the Coq Platform team recommends to use the concept of opam switches generously.
+If you want to do experiments, create a new switch following the instructions for creating Coq Platform variants below.
+You can easily switch between opam switches and do tests.
+Also if you follow the variants approach, you can easily share your setup with other people just by sharing the Coq Platform version file you created.
+A Coq Platform switch requires between 1 and 3 GByte of disk space.
+The current Coq 8.13.2 distribution requires 2.3 GByte on macOS.
 
 </details>
 
