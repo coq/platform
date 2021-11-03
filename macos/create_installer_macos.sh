@@ -42,7 +42,7 @@ done
 ###### Check if required system utilities are installed #####
 
 command -v gfind &> /dev/null || ( echo "Please install gfind (eg. sudo port install findutils)" ; exit 1)
-command -v grealpath &> /dev/null || ( echo "Please install gfind (eg. sudo port install coreutils)" ; exit 1)
+command -v grealpath &> /dev/null || ( echo "Please install grealpath (eg. sudo port install coreutils)" ; exit 1)
 command -v macpack  &> /dev/null || ( echo "Please install macpack (eg. sudo port install py38-pip; port select --set pip3 pip38; pip3 install macpack)" ; exit 1)
 
 ##### Get the version of the Coq Platform #####
@@ -450,7 +450,7 @@ echo '##### Copy system shared libraries #####'
 PIXBUF_LOADER_ABSDIR="$RSRC_ABSDIR/lib/gdk-pixbuf-2.0/2.10.0/loaders"
 mkdir -p "$PIXBUF_LOADER_ABSDIR"
 PIXBUF_LOADER_RELDIR="$(grealpath --relative-to="$PIXBUF_LOADER_ABSDIR" "$RSRC_ABSDIR")"
-for file in $(gdk-pixbuf-query-loaders | grep pixbufloader | sed s/\"//g); do
+for file in $(gdk-pixbuf-query-loaders | grep '/loaders/libpixbufloader-' | sed s/\"//g); do
   cp ${file} "$PIXBUF_LOADER_ABSDIR/"
 done
 # the paths are absolue and need to be adjustes to APP_NAME
