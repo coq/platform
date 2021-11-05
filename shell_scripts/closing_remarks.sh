@@ -21,7 +21,7 @@ Use the following opam commands to switch to the Coq Platform opam switch:
 
 Or to just use this opam switch in the current shell (not setting the default):
 
-    eval \$(opam config env --switch ${COQ_PLATFORM_SWITCH_NAME})  
+    eval \$(opam config env --set-switch --switch ${COQ_PLATFORM_SWITCH_NAME})
 
 After switching you can list the installed packages with:
 
