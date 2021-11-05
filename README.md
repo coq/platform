@@ -123,6 +123,40 @@ The current Coq 8.13.2 distribution requires 2.3 GByte on macOS.
 
 </details>
 
+<details><summary><font size="+1">Using different Coq versions in parallel</font></summary>
+
+Especially for porting projects from an older to a newer version of Coq, Coq Platform supports to install several Coq versions in parallel.
+You can also use a Coq version from a previous version of Coq Platform in parallel with a Coq version from a newer version of Coq Platform.
+Each Coq version you install via the Coq Platform scripts will create a separate opam switch.
+
+You can list the available switches with:
+```
+~$ opam switch
+#   switch                                   compiler                    description
+    __coq-platform.2021.09.0~8.12            ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.12
+->  __coq-platform.2021.09.0~8.13            ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.13
+    __coq-platform.2021.09.0~8.13~2021.02    ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.13~2021.02
+    __coq-platform.2021.09.0~8.14+beta1      ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.14+beta1
+    __coq-platform.2021.09.0~8.14+beta2      ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.14+beta2
+    __coq-platform.2021.09.0~8.14~ltacdebug  ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.14~ltacdebug
+    __coq-platform.2021.09.0~dev             ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~dev
+    _coq-platform_.2021.02.1                 ocaml-base-compiler.4.07.1  _coq-platform_.2021.02.1
+```
+
+You can select the opam switch for **all shells** with e.g.:
+```
+~$ opam switch __coq-platform.2021.09.0~8.14+beta2
+```
+
+You can select the opam switch for **just the current shell** with e.g.:
+```
+eval $(opam config env --set-switch --switch __coq-platform.2021.09.0~8.13)
+```
+
+So you can easily open two separate shell windows, select different opam switches and start e.g. two CoqIDE instances to step through the same file with two different versions of Coq.
+
+</details>
+
 <details><summary><font size="+1">Installation of additional packages or package variants</font></summary>
 
 ## CompCert and VST variants
