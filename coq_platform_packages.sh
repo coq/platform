@@ -2,7 +2,7 @@
 
 ###################### COPYRIGHT/COPYLEFT ######################
 
-# (C) 2020 Michael Soegtrop
+# (C) 2021 guanlong huang
 
 # Released to the public under the
 # Creative Commons CC0 1.0 Universal License
