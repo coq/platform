@@ -4,12 +4,18 @@ The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
 with an environment for semi-interactive development of machine-checked proofs.
 
-The **Coq Platform** is a distribution of the Coq proof assistant together
-with a selection of Coq libraries and plugins.
-The main goal of the Coq Platform is to provide a system independent, dependable
-and easy to install platform for developments based on the Coq proof assistant
-and for teaching Coq.
-See [Charter](charter.md) for the Coq Platform concept.
+The **Coq Platform** is a distribution of Coq together with a selection of
+libraries and plugins. The main goal of the Coq Platform is to provide a
+distribution for developing and teaching with Coq that is:
+
+- operating system independent
+- dependable
+- easy to install
+- comprehensive
+
+See the [Charter](charter.md) for more on the Platform concept, and
+[CEP 52](https://github.com/coq/ceps/blob/master/text/052-platform-release-cycle.md)
+for more on how the Platform is related to the Coq release cycle.
 
 The Coq Platform is based on the OCaml package manager **opam** and provides a set
 of scripts to compile and/or install opam, Coq and the platform contents on macOS,
@@ -37,7 +43,7 @@ If you have questions on the Coq Platform, please contact us on zulip chat [Coq-
 
 The Coq platform is the recommended way to install Coq for both beginners and experts.
 Beginners are encouraged to use one of the binary installers. Experienced users are advised to run the scripts provided by the Coq platform to install from sources as this will allow them to install additional packages with opam.
-Please refer to the ReadMe file for your OS, which contains information on both methods respectively.
+Please refer to the ReadMe file for your operating system, which contains information on both methods respectively.
 
 - macOS: see [README_macOS](doc/README_macOS.md).
 - Windows: see [README_Windows](doc/README_Windows.md)
@@ -110,7 +116,7 @@ The current Coq 8.13.2 distribution requires 2.3 GByte on macOS.
 - fully opam based, also on Windows
 - single script call to install system dependencies, opam (if not there), a fresh opam switch and the Coq Platform
 - interactive (well, script based) guidance of the user through the few parameters
-- one unified setup script for Windows, macOS and Linux with few OS dependent sections only
+- one unified setup script for Windows, macOS and Linux with few operating system dependent sections only
 - for Windows there is an additional wrapper batch script to setup Cygwin as build and working environment
 - for Windows there is in addition a classic Windows installer mostly intended for quick installation by beginners
 - for macOS a signed (but currently not yet notarized) DMG package is provided, also mostly intended for beginners
