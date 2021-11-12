@@ -25,6 +25,11 @@ case $(uname -m) in
       HYPHEN32=
       HYPHEN64=-64
       ;;
+    arm64)
+      BITSIZE=64
+      HYPHEN32=
+      HYPHEN64=-64
+      ;;
     *)
       echo "Cannot interpret result of 'uname -m' ($(uname -m))"
       exit 1
