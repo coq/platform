@@ -111,7 +111,7 @@ then
   PACKAGES="${PACKAGES} coq-quickchick.1.5.1"         # pick confirmed https://github.com/QuickChick/QuickChick/issues/236
   # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.1+8.13~flex" # coq-hammer-tactics.1.3.1+8.13~flex does not compile
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.14"
-  PACKAGES="${PACKAGES} coq-coqeal.1.0.6"
+  PACKAGES="${PACKAGES} coq-coqeal.1.1.0"             # Pick confirmed https://github.com/coq-community/coqeal/issues/51
   # PACKAGES="${PACKAGES} coq-libhyps.2.0.3~flex"     # coq-libhyps.2.0.3~flex does not compile
 
   # Formal languages, compilers and code verification
