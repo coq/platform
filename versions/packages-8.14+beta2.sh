@@ -68,12 +68,12 @@ then
   # PACKAGES="${PACKAGES} coq-stdpp.1.5.0"            # coq-stdpp.1.5.0~flex does not compile
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.12.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.12.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.12.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.12.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-field.1.12.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-character.1.12.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.13.0" # pick confirmed https://github.com/math-comp/math-comp/issues/787
+  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.13.0"  # pick confirmed https://github.com/math-comp/math-comp/issues/787
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.13.0"   # pick confirmed https://github.com/math-comp/math-comp/issues/787
+  PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.13.0"  # pick confirmed https://github.com/math-comp/math-comp/issues/787
+  PACKAGES="${PACKAGES} coq-mathcomp-field.1.13.0"     # pick confirmed https://github.com/math-comp/math-comp/issues/787
+  PACKAGES="${PACKAGES} coq-mathcomp-character.1.13.0" # pick confirmed https://github.com/math-comp/math-comp/issues/787
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
