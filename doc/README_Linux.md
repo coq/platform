@@ -1,6 +1,6 @@
 This README presents the two standard methods to install the Coq Platform on Linux:
-- as a [binary snap package](installation-using-snap-package),
-- [from sources](installation-by-compiling-from-sources-using-opam), using the platform scripts.
+- as a [binary snap package](#installation-using-snap-package),
+- [from sources](#installation-by-compiling-from-sources-using-opam), using the platform scripts.
 
 The first method is recommended for beginners and the second one is recommended for experienced users, who may want to use opam to install additional packages, beyond the standard set provided by the Coq Platform.
 
