@@ -63,7 +63,7 @@ then
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.14.0"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.4"           # pick confirmed https://github.com/coq-community/coq-ext-lib/issues/116
-  # PACKAGES="${PACKAGES} coq-stdpp.1.5.0"            # coq-stdpp.1.5.0~flex does not compile
+  PACKAGES="${PACKAGES} coq-stdpp.1.6.0"              # pick confirmed https://gitlab.mpi-sws.org/iris/stdpp/-/issues/119
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.13.0" # pick confirmed https://github.com/math-comp/math-comp/issues/787
@@ -115,8 +115,8 @@ then
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419" # pick confirmed https://gitlab.inria.fr/fpottier/menhir/-/issues/55
   PACKAGES="${PACKAGES} coq-reglang.1.1.2"            # TODO: update for mathcomp 1.13
-  # PACKAGES="${PACKAGES} coq-iris.3.4.0"             # TODO: depends on coq-stdpp
-  # PACKAGES="${PACKAGES} coq-iris-heap-lang.3.4.0"   # TODO: depends on coq-stdpp
+  PACKAGES="${PACKAGES} coq-iris.3.5.0"               # pick confirmed https://gitlab.mpi-sws.org/iris/iris/-/issues/435
+  PACKAGES="${PACKAGES} coq-iris-heap-lang.3.5.0"     # pick confirmed https://gitlab.mpi-sws.org/iris/iris/-/issues/435
 
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.9" ;;  # pick confirmed https://github.com/AbsInt/CompCert/issues/414
