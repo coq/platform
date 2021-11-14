@@ -18,8 +18,8 @@ A note to lecturers: it is easy to create a customized Windows installer from an
 This method is intended for experienced users, who may want to use opam to install additional packages, beyond the standard set provided by the Coq Platform, or who need an advanced working environment with a posix shell, make, dune, ...
 
 - Get the Coq Platform scripts via either of these methods
-  - Most users should download and extract `https://github.com/coq/platform/archive/2021.09.zip`.
-  - Users which intend to contribute to Coq Platform should use `git clone --branch 2021.09 https://github.com/coq/platform.git`.
+  - Most users should download and extract `https://github.com/coq/platform/archive/refs/tags/2021.09.0.zip`.
+  - Users which intend to contribute to Coq Platform should use `git clone --branch 2021.09.0 https://github.com/coq/platform.git`.
     Please note that the scripts are CR/LF sensitive, so if you use a Windows git client (not a Cygwin git) you should set `git config --global core.autocrlf false` - which is anyway a good idea.
 - Open a command window, navigate to the download folder and execute `coq_platform_make_windows.bat`
 - This will ask for the Cygwin installation path and setup a fresh Cygwin as build host (the created Coq is MinGW and runs without Cygwin).
