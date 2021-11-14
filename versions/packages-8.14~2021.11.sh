@@ -101,7 +101,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-equations.1.3+8.14"       # pick confirmed https://github.com/mattam82/Coq-Equations/issues/427
-  PACKAGES="${PACKAGES} coq-aac-tactics.8.14.0"       # pick confirmed https://github.com/coq-community/aac-tactics/issues/87
+  PACKAGES="${PACKAGES} coq-aac-tactics.8.14.1"       # pick confirmed https://github.com/coq-community/aac-tactics/issues/87
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.14"          # pick confirmed https://github.com/unicoq/unicoq/issues/61
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.14"           # pick confirmed https://github.com/Mtac2/Mtac2/issues/344
   PACKAGES="${PACKAGES} coq-elpi.1.11.2 elpi.1.13.7"  # pick confirmed https://github.com/LPCIC/coq-elpi/issues/291
