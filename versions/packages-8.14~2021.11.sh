@@ -89,8 +89,8 @@ then
   PACKAGES="${PACKAGES} coq-gappa.1.5.0 gappa.1.4.0"  # pick confirmed https://gitlab.inria.fr/gappa/coq/-/issues/9
 
   # Constructive mathematics
-  PACKAGES="${PACKAGES} coq-math-classes.8.13.0"
-  PACKAGES="${PACKAGES} coq-corn.8.13.0"
+  PACKAGES="${PACKAGES} coq-math-classes.8.13.0"      # pick confirmed https://github.com/coq-community/math-classes/issues/108
+  PACKAGES="${PACKAGES} coq-corn.8.13.0"              # pick confirmed https://github.com/coq-community/corn/issues/163
 
   # Homotopy Type Theory (HoTT)
   PACKAGES="${PACKAGES} coq-hott.8.14"                # pick confirmed https://github.com/HoTT/HoTT/issues/1581
