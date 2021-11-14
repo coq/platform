@@ -27,7 +27,7 @@ After switching you can list the installed packages with:
 
     opam list
 
-You can install additionalpackages with:
+You can install additional packages with:
 
     opam install <package>
 

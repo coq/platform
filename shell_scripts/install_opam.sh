@@ -123,7 +123,7 @@ version 0.2.1, or you can run opam without sandbox.
 EOH
     if [[ "${COQREGTESTING:-n}" == n ]]
     then
-      ask_user_opt1_cancel "Disable sandbox (d) or cancel (c)?" dD "dsiable sandbox"
+      ask_user_opt1_cancel "Disable sandbox (d) or cancel (c)?" dD "disable sandbox"
     fi
     COQ_PLATFORM_OPAM_INIT_EXTRA=--disable-sandboxing
   fi

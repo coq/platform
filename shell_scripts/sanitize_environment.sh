@@ -10,7 +10,7 @@
 
 ###################### Clear unwanted environment variables #####################
 
-# Site setings for configure are likely never what we want since opam installs in
+# Site settings for configure are likely never what we want since opam installs in
 # its own folders. See discussion at
 # https://coq.zulipchat.com/#narrow/stream/237977-Coq-users/topic/flocq.20installation.20error
 # This is an issue e.g. on OpenSuse 15.2 Leap

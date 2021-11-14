@@ -157,7 +157,7 @@ function ask_user_opt4_cancel {
 # $3 upper
 # ------------------------------------------------------------------------------
 
-function ask_user_mumber {
+function ask_user_number {
   while true; do
     read -p "$1 (number in $2..$3, c=cancel) " answer
     case "$answer" in
