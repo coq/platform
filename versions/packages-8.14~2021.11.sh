@@ -59,6 +59,8 @@ fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
+  # Some dependencies for which we need specific versions
+  PACKAGES="${PACKAGES} ppxlib.0.15.0"                # coq-serapi requires this old version
 
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.14.0"
@@ -100,6 +102,7 @@ then
   if [ "${BITSIZE}" == "64" ]; then PACKAGES="${PACKAGES} coq-unimath.20210807"; fi
 
   # Proof automation / generation / helpers
+  PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419" # pick confirmed https://gitlab.inria.fr/fpottier/menhir/-/issues/55
   PACKAGES="${PACKAGES} coq-equations.1.3+8.14"       # pick confirmed https://github.com/mattam82/Coq-Equations/issues/427
   PACKAGES="${PACKAGES} coq-aac-tactics.8.14.1"       # pick confirmed https://github.com/coq-community/aac-tactics/issues/87
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.14"          # pick confirmed https://github.com/unicoq/unicoq/issues/61
@@ -113,7 +116,6 @@ then
   # PACKAGES="${PACKAGES} coq-libhyps.2.0.3~flex"     # coq-libhyps.2.0.3~flex does not compile
 
   # Formal languages, compilers and code verification
-  PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419" # pick confirmed https://gitlab.inria.fr/fpottier/menhir/-/issues/55
   PACKAGES="${PACKAGES} coq-reglang.1.1.2"            # TODO: update for mathcomp 1.13
   PACKAGES="${PACKAGES} coq-iris.3.5.0"               # pick confirmed https://gitlab.mpi-sws.org/iris/iris/-/issues/435
   PACKAGES="${PACKAGES} coq-iris-heap-lang.3.5.0"     # pick confirmed https://gitlab.mpi-sws.org/iris/iris/-/issues/435
