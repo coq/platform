@@ -11,14 +11,14 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.13.2 (released Apr 2021) with updated/extended package pick Nov 2021"
-COQ_PLATFORM_VERSION_SORTORDER=1
+COQ_PLATFORM_VERSION_TITLE="Coq 8.13.2 (released Apr 2021) with updated 8.14.0 compatible package pick"
+COQ_PLATFORM_VERSION_SORTORDER=2
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGELIST_NAME='~8.13'
+COQ_PLATFORM_PACKAGELIST_NAME='~8.13~2021.11'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.13'
@@ -28,10 +28,9 @@ COQ_PLATFORM_COQ_TAG='8.13.2'
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2021.09.0 includes Coq 8.13.2 from 04/2021. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='The original Coq Platform package pick for Coq 8.13.2 was from 02/2021. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='This is a substantially extended package pick with many new and updated packages. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='This is the **latest release version** of the Coq Platform and recommended for general application. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2021.11.0 includes Coq 8.13.2 from 04/2021. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='There are three package picks for Coq 8.13.2: the original from 02/2021, a substantially extended one from 09/2021 and an updated one from 11/2021. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='This is the latest package pick for Coq 8.13.2 with some package updates with the goal to make it as compatible as possible to the Coq 8.14.0 packahe pick. '
 
 ###################### PACKAGE SELECTION #####################
 
@@ -69,12 +68,12 @@ then
   PACKAGES="${PACKAGES} coq-stdpp.1.5.0"
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.12.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.12.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.12.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.12.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-field.1.12.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-character.1.12.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.13.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.13.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.13.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.13.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-field.1.13.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-character.1.13.0"
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
@@ -84,7 +83,7 @@ then
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
 
   # Number theory
-  PACKAGES="${PACKAGES} coq-coqprime.1.0.6"
+  PACKAGES="${PACKAGES} coq-coqprime.1.1.0"
 
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-interval.4.3.0"
@@ -112,7 +111,7 @@ then
   PACKAGES="${PACKAGES} coq-quickchick.1.5.1"
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.13"
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.13"
-  PACKAGES="${PACKAGES} coq-coqeal.1.0.6"
+  PACKAGES="${PACKAGES} coq-coqeal.1.1.0"
   PACKAGES="${PACKAGES} coq-libhyps.2.0.3"
 
   # Formal languages, compilers and code verification

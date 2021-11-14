@@ -11,14 +11,14 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.14.0 (released Oct 2021) with a beta package pick"
-COQ_PLATFORM_VERSION_SORTORDER=9000
+COQ_PLATFORM_VERSION_TITLE="Coq 8.14.0 (released Oct 2021) with the release package pick"
+COQ_PLATFORM_VERSION_SORTORDER=1
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGELIST_NAME='~8.14+beta2'
+COQ_PLATFORM_PACKAGELIST_NAME='~8.14~2021.11'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.14'
@@ -28,10 +28,8 @@ COQ_PLATFORM_COQ_TAG='8.14.0'
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2021.09.0 includes Coq 8.14.0 from  10/2021. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='While the bundled Coq version is a **release**, Coq Platform is still **beta**. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='Several packages do not yet have a compatible version or might change. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='This version of Coq Platform is mostly intended for package maintainers. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2021.11.0 includes Coq 8.14.0 from  10/2021. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='This is the **latest release version** of the Coq Platform and recommended for general application. '
 
 ###################### PACKAGE SELECTION #####################
 
