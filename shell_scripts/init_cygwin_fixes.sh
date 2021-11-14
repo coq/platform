@@ -8,7 +8,7 @@
 # Creative Commons CC0 1.0 Universal License
 # See https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt
 
-###################### Select a python interperter #####################
+###################### Select a python interpreter #####################
 
 # Cygwin stopped to have a /usr/bin/python symlink, but some build scripts
 # expect that there is *a* python.

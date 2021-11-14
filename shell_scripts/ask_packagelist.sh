@@ -21,7 +21,7 @@ packages, but also older versions or development versions of Coq. You can
 install several versions of Coq in parallel, which simplifies porting of
 developments. You can use "opam switch" to switch between Coq versions.
 
-The follwoing versions / package lists are supported:
+The following versions / package lists are supported:
 EOH
 
   packagefile_list="$( (for file in versions/packages-*.sh; do echo "$(grep "COQ_PLATFORM_VERSION_SORTORDER=" $file) $file"; done) | tr '=' ' ' | sed 's/  */ /g' | sort -n | cut -d ' ' -f 3)"
@@ -41,12 +41,12 @@ cat <<EOH
 Pleas select a version by entering the number shown at the begin of a line.
 ========================= SELECT PACKAGELIST VERSION ==========================
 EOH
-  ask_user_mumber "Select package list" 1 "${packageindex}"
+  ask_user_number "Select package list" 1 "${packageindex}"
   packageindex=0
   for packagefile in ${packagefile_list}
   do
     packageindex=$((${packageindex} + 1))
-    if [ "${packageindex}" -eq "${ANSWER}" ] 
+    if [ "${packageindex}" -eq "${ANSWER}" ]
     then
       COQ_PLATFORM_PACKAGELIST="${packagefile}"
     fi

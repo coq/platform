@@ -8,9 +8,9 @@
 # Creative Commons CC0 1.0 Universal License
 # See https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt
 
-###################### Get plaform name info from an opam switch #####################
+###################### Get platform name info from an opam switch #####################
 
-# First get COQ_PLATFORM_SWITCH_NAME with the COQ_PLATFORM_PACKAGELIST_NAME part beeing empty
+# First get COQ_PLATFORM_SWITCH_NAME with the COQ_PLATFORM_PACKAGELIST_NAME part being empty
 COQ_PLATFORM_PACKAGELIST_NAME=''
 source versions/coq_platform_version.sh
 source versions/coq_platform_switch_name.sh

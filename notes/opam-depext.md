@@ -1,7 +1,7 @@
 # Depext and opam versions
 
 From opam 2.1.0 on, depext is integrated into opam.
-Depext depedencies are treated in the same way as any other dependency.
+Depext dependencies are treated in the same way as any other dependency.
 
 The Coq Platforms scripts define a shell variable COQ_PLATFORM_OPAM_DEPEXT_COMMAND,
 which is 'depext' for opam < 2.1.0 and 'install --confirm-level=unsafe-yes --depext-only'

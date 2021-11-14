@@ -23,10 +23,10 @@ The Coq Platform opam build has two levels of parallelism:
 
 Since a single coqc call can take more than 1 GB of RAM and since the two
 above kinds of parallelism multiply, the total amount of memory can be large.
-But it is not as bad as one might expect: test show that a full parallel
+But it is not as bad as one might expect: tests show that a full parallel
 build takes less than 14GB of RAM with 15 parallel make jobs.
 
-With 32 GB or RAM a parallel package build with 16 make jobs is recommended.
+With 32 GB of RAM a parallel package build with 16 make jobs is recommended.
 With 16 GB of RAM a parallel package build with 4 make jobs is recommended.
 With 8 GB of RAM a sequential package build with 4 make jobs is recommended.
 With 4 GB+1GB swap a sequential package build with 2 make jobs is recommended.
@@ -39,6 +39,6 @@ https://github.com/coq/platform/issues
 EOH
   ask_user_opt2_cancel "Build opam packages parallel (p) or sequential (s)?" pP "parallel" sS "sequential"
   COQ_PLATFORM_PARALLEL=$ANSWER
-  ask_user_mumber "Number of parallel make jobs" 1 16
+  ask_user_number "Number of parallel make jobs" 1 16
   COQ_PLATFORM_JOBS=$ANSWER
 fi
