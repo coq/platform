@@ -116,7 +116,7 @@ then
   # PACKAGES="${PACKAGES} coq-libhyps.2.0.3~flex"     # coq-libhyps.2.0.3~flex does not compile
 
   # Formal languages, compilers and code verification
-  PACKAGES="${PACKAGES} coq-reglang.1.1.2"            # TODO: update for mathcomp 1.13
+  PACKAGES="${PACKAGES} coq-reglang.1.1.2"            # pick confirmed https://github.com/coq-community/reglang/issues/34
   PACKAGES="${PACKAGES} coq-iris.3.5.0"               # pick confirmed https://gitlab.mpi-sws.org/iris/iris/-/issues/435
   PACKAGES="${PACKAGES} coq-iris-heap-lang.3.5.0"     # pick confirmed https://gitlab.mpi-sws.org/iris/iris/-/issues/435
 
