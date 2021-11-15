@@ -74,11 +74,11 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.13.0"  # pick confirmed https://github.com/math-comp/math-comp/issues/787
   PACKAGES="${PACKAGES} coq-mathcomp-field.1.13.0"     # pick confirmed https://github.com/math-comp/math-comp/issues/787
   PACKAGES="${PACKAGES} coq-mathcomp-character.1.13.0" # pick confirmed https://github.com/math-comp/math-comp/issues/787
-  PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"
-  PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
+  PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.0"  # pick confirmed https://github.com/math-comp/bigenough/issues/4
+  PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"     # pick confirmed https://github.com/math-comp/finmap/issues/86
+  PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2" # pick confirmed https://github.com/math-comp/real-closed/issues/36
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.1.0+1.12+8.13" # pick confirmed https://github.com/coq/opam-coq-archive/pull/1838
-  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.4"
+  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.4" # pick confirmed https://github.com/math-comp/multinomials/issues/46
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"         # pick confirmed https://gitlab.inria.fr/coquelicot/coquelicot/-/issues/4
 
   # Number theory
@@ -98,7 +98,10 @@ then
 
   # Univalent Mathematics (UniMath)
   # Note: coq-unimath requires too much memory for 32 bit architectures
-  if [ "${BITSIZE}" == "64" ]; then PACKAGES="${PACKAGES} coq-unimath.20210807"; fi
+  if [ "${BITSIZE}" == "64" ]
+  then
+    PACKAGES="${PACKAGES} coq-unimath.20210807"       # pick confirmed https://github.com/UniMath/UniMath/issues/1398
+  fi 
 
   # Code extraction
   PACKAGES="${PACKAGES} coq-simple-io.1.6.0"          # pick confirmed https://github.com/Lysxia/coq-simple-io/issues/32
@@ -132,7 +135,7 @@ then
   esac
 
   case "$COQ_PLATFORM_VST" in
-    [yY]) PACKAGES="${PACKAGES} coq-vst.2.8" ;;
+    [yY]) PACKAGES="${PACKAGES} coq-vst.2.8" ;;       # pick confirmed https://github.com/PrincetonUniversity/VST/issues/520
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
   esac
@@ -148,7 +151,7 @@ if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
 
   # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-deriving.0.1.0"
+  PACKAGES="${PACKAGES} coq-deriving.0.1.0"           # pick confirmed https://github.com/arthuraa/deriving/issues/16
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.3"  # pick confirmed https://github.com/coq-community/reduction-effects/issues/12 (TODO: close)
