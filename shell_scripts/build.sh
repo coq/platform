@@ -32,13 +32,25 @@ opam config set jobs $COQ_PLATFORM_JOBS
 case "$COQ_PLATFORM_PARALLEL" in
   [pP]) 
     echo "===== INSTALL OPAM PACKAGES (PARALLEL) ====="
-    if ! $COQ_PLATFORM_TIME opam install ${PACKAGES}; then dump_opam_logs; fi
+    if ! $COQ_PLATFORM_TIME opam install ${PACKAGES//PIN.}; then dump_opam_logs; fi
     ;;
   [sS]) 
     echo "===== INSTALL OPAM PACKAGES (SEQUENTIAL) ====="
     for package in ${PACKAGES}
     do
-      if ! $COQ_PLATFORM_TIME opam install ${package}; then dump_opam_logs; fi
+      echo PROCESSING $package
+      case $package in
+      PIN.*)
+        echo PROCESSING 1 $package
+        package_name="$(echo "$package" | cut -d '.' -f 2)"
+        package_version="$(echo "$package" | cut -d '.' -f 3-)"
+        if ! $COQ_PLATFORM_TIME opam pin ${package_name} ${package_version}; then dump_opam_logs; fi
+        ;;
+      *)
+        echo PROCESSING 2 $package
+        if ! $COQ_PLATFORM_TIME opam install ${package}; then dump_opam_logs; fi
+        ;;
+      esac
     done
     ;;
   *)
