@@ -60,7 +60,7 @@ fi
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
   # Some dependencies for which we need specific versions
-  PACKAGES="${PACKAGES} ppxlib.0.15.0"                # coq-serapi requires this old version
+  PACKAGES="${PACKAGES} PIN.ppxlib.0.15.0"            # coq-serapi requires this old version
 
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.14.0"
@@ -78,7 +78,6 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.1.0+1.12+8.13" # pick confirmed https://github.com/coq/opam-coq-archive/pull/1838
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.10"
   PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.4"
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"         # pick confirmed https://gitlab.inria.fr/coquelicot/coquelicot/-/issues/4
 
@@ -86,8 +85,8 @@ then
   PACKAGES="${PACKAGES} coq-coqprime.1.1.0"           # pick confirmed https://github.com/thery/coqprime/issues/29 (TODO: CLOSE)
 
   # Numerical mathematics
-  PACKAGES="${PACKAGES} coq-interval.4.3.0"           # pick confirmed https://gitlab.inria.fr/coqinterval/interval/-/issues/7
   PACKAGES="${PACKAGES} coq-flocq.3.4.2"              # pick confirmed https://gitlab.inria.fr/flocq/flocq/-/issues/17
+  PACKAGES="${PACKAGES} coq-interval.4.3.0"           # pick confirmed https://gitlab.inria.fr/coqinterval/interval/-/issues/7
   PACKAGES="${PACKAGES} coq-gappa.1.5.0 gappa.1.4.0"  # pick confirmed https://gitlab.inria.fr/gappa/coq/-/issues/9
 
   # Constructive mathematics
@@ -100,6 +99,9 @@ then
   # Univalent Mathematics (UniMath)
   # Note: coq-unimath requires too much memory for 32 bit architectures
   if [ "${BITSIZE}" == "64" ]; then PACKAGES="${PACKAGES} coq-unimath.20210807"; fi
+
+  # Code extraction
+  PACKAGES="${PACKAGES} coq-simple-io.1.6.0"          # pick confirmed https://github.com/Lysxia/coq-simple-io/issues/32
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20211012 menhir.20211012" # pick confirmed https://gitlab.inria.fr/fpottier/menhir/-/issues/55
@@ -114,6 +116,9 @@ then
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.14"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.0"             # Pick confirmed https://github.com/coq-community/coqeal/issues/51
   # PACKAGES="${PACKAGES} coq-libhyps.2.0.3~flex"     # coq-libhyps.2.0.3~flex does not compile
+
+  # General mathematics (which requires one of the above tools)
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.10"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.2"            # pick confirmed https://github.com/coq-community/reglang/issues/34
@@ -131,9 +136,6 @@ then
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
   esac
-
-  # Code extraction
-  PACKAGES="${PACKAGES} coq-simple-io.1.6.0"          # pick confirmed https://github.com/Lysxia/coq-simple-io/issues/32
 
   # Proof analysis and other tools
   PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.14"        # pick confirmed https://github.com/coq-community/coq-dpdgraph/issues/88

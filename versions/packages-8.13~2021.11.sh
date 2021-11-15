@@ -11,7 +11,7 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.13.2 (released Apr 2021) with updated 8.14.0 compatible package pick"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.13.2 (released Apr 2021) with updated package pick Nov 2011"
 COQ_PLATFORM_VERSION_SORTORDER=2
 
 # The package list name is the final part of the opam switch name.
@@ -61,11 +61,14 @@ fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
+  # Some dependencies for which some packages require a version upper bound
+  # In sequential builds pin these packages - in parallel builds not pinning is fine
+  PACKAGES="${PACKAGES} PIN.ppxlib.0.15.0"            # coq-serapi requires this old version
 
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.13.0"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.4"
-  PACKAGES="${PACKAGES} coq-stdpp.1.5.0"
+  PACKAGES="${PACKAGES} coq-stdpp.1.6.0"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.13.0"
@@ -78,7 +81,6 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.1.0+1.12+8.13"
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.10"
   PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.4"
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
 
@@ -86,8 +88,8 @@ then
   PACKAGES="${PACKAGES} coq-coqprime.1.1.0"
 
   # Numerical mathematics
-  PACKAGES="${PACKAGES} coq-interval.4.3.0"
   PACKAGES="${PACKAGES} coq-flocq.3.4.2"
+  PACKAGES="${PACKAGES} coq-interval.4.3.0"
   PACKAGES="${PACKAGES} coq-gappa.1.5.0 gappa.1.4.0"
 
   # Constructive mathematics
@@ -101,9 +103,13 @@ then
   # Note: coq-unimath requires too much memory for 32 bit architectures
   if [ "${BITSIZE}" == "64" ]; then PACKAGES="${PACKAGES} coq-unimath.20210807"; fi
 
+  # Code extraction
+  PACKAGES="${PACKAGES} coq-simple-io.1.6.0"
+
   # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-equations.1.2.3+8.13"
-  PACKAGES="${PACKAGES} coq-aac-tactics.8.13.1"
+  PACKAGES="${PACKAGES} coq-menhirlib.20211012 menhir.20211012"
+  PACKAGES="${PACKAGES} coq-equations.1.2.4+8.13"
+  PACKAGES="${PACKAGES} coq-aac-tactics.8.13.2"
   PACKAGES="${PACKAGES} coq-unicoq.1.5+8.13"
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.13"
   PACKAGES="${PACKAGES} coq-elpi.1.11.1 elpi.1.13.7" # Note: coq-elpi 1.11.2 is >=8.14
@@ -114,11 +120,13 @@ then
   PACKAGES="${PACKAGES} coq-coqeal.1.1.0"
   PACKAGES="${PACKAGES} coq-libhyps.2.0.3"
 
+  # General mathematics (which requires one of the above tools)
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.10"
+
   # Formal languages, compilers and code verification
-  PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419"
   PACKAGES="${PACKAGES} coq-reglang.1.1.2"
-  PACKAGES="${PACKAGES} coq-iris.3.4.0"
-  PACKAGES="${PACKAGES} coq-iris-heap-lang.3.4.0"
+  PACKAGES="${PACKAGES} coq-iris.3.5.0"
+  PACKAGES="${PACKAGES} coq-iris-heap-lang.3.5.0"
 
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.9" ;;
@@ -131,9 +139,6 @@ then
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
   esac
-
-  # Code extraction
-  PACKAGES="${PACKAGES} coq-simple-io.1.6.0"
 
   # Proof analysis and other tools
   PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.13"
