@@ -53,8 +53,8 @@ jobs:
           - '32'
           - '64'
         variant:
-          - '8.14+beta2'
-          - '8.13'
+          - '8.14~2021.11'
+          - '8.13~2021.11'
 
     steps:
       - name: Set git to use LF
