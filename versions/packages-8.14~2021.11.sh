@@ -102,7 +102,7 @@ then
   if [ "${BITSIZE}" == "64" ]; then PACKAGES="${PACKAGES} coq-unimath.20210807"; fi
 
   # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-menhirlib.20210419 menhir.20210419" # pick confirmed https://gitlab.inria.fr/fpottier/menhir/-/issues/55
+  PACKAGES="${PACKAGES} coq-menhirlib.20211012 menhir.20211012" # pick confirmed https://gitlab.inria.fr/fpottier/menhir/-/issues/55
   PACKAGES="${PACKAGES} coq-equations.1.3+8.14"       # pick confirmed https://github.com/mattam82/Coq-Equations/issues/427
   PACKAGES="${PACKAGES} coq-aac-tactics.8.14.1"       # pick confirmed https://github.com/coq-community/aac-tactics/issues/87
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.14"          # pick confirmed https://github.com/unicoq/unicoq/issues/61
