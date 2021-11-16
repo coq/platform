@@ -111,7 +111,7 @@ then
   PACKAGES="${PACKAGES} coq-aac-tactics.8.14.1"       # pick confirmed https://github.com/coq-community/aac-tactics/issues/87
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.14"          # pick confirmed https://github.com/unicoq/unicoq/issues/61
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.14"           # pick confirmed https://github.com/Mtac2/Mtac2/issues/344
-  PACKAGES="${PACKAGES} coq-elpi.1.11.2 elpi.1.13.7"  # pick confirmed https://github.com/LPCIC/coq-elpi/issues/291
+  PACKAGES="${PACKAGES} coq-elpi.1.11.2~ltacdebug elpi.1.13.7"  # pick confirmed https://github.com/LPCIC/coq-elpi/issues/291
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.0"  # pick confirmed https://github.com/math-comp/hierarchy-builder/issues/265
   PACKAGES="${PACKAGES} coq-quickchick.1.5.1"         # pick confirmed https://github.com/QuickChick/QuickChick/issues/236
   # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.1+8.13~flex" # coq-hammer-tactics.1.3.1+8.13~flex does not compile
