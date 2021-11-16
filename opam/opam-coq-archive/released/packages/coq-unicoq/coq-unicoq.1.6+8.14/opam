@@ -22,6 +22,6 @@ tags: [
   "date:2021-09-24"
 ]
 url {
-  src: "https://github.com/unicoq/unicoq/archive/b4fbb61c53e7cb3260287b99ff84709b653301d6.tar.gz"
-  checksum: "sha512=80ff936a1252b44a47478f9b7f895899a6ddd565c0ab97c333d2b3cea99d3ff0af02dc08ae80091eae9f4cc2474e31408551de428bef342cca4ee9c83d505f3f"
+  src: "https://github.com/unicoq/unicoq/archive/v1.6-8.14.tar.gz"
+  checksum: "sha512=57c3c93b33c15ed7b80bd903d778ac157681f0fd2eee42aeea00c0154826da9e235e58d5746440b32105a8525a08b9590a5afdf0f42483b34a4266279e819a14"
 }

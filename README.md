@@ -237,4 +237,6 @@ version you get different results and possibly the build will fail.
   - the snap package is intended to be created via a CI action - see (linux/snap/github_actions/README.md)
   - the scripts don't take required parameters (some have debug parameters)
 
+A note on debugging `Sorry, no solution found: there seems to be a problem with your request.`: this happens mostly in a parallel build, when you request e.g. package versions which have incompatible dependencies. The best way to debug this is to set in [coq_platform_make.sh](https://github.com/coq/platform/blob/0895c3cc0d69837ed7a80d882d4348d90e4a609a/coq_platform_make.sh#L22) `export OPAMYES=0` and then do a sequential build (select 's' when the scripts asks). opam will stop then whenever additional dependencies need to be installed and especially if the version of an already installed packages needs to be changed.
+
 If you have issues, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
