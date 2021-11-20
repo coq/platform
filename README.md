@@ -71,7 +71,8 @@ The Coq Platform team does no double check this information.
 
 ## Changes in 2021.11.0
 
-- Release package pick for Coq 8.14.0 + updated mostly compatible package pick for Coq 8.13.2
+- release package pick for Coq 8.14.0 + updated mostly compatible package pick for Coq 8.13.2
+- added prime number certificate generator `coq-coqprime-generator` including `gmp-ecm`
 
 ## Changes in 2021.09.0
 

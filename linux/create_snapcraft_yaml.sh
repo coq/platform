@@ -15,7 +15,8 @@
 
 ###################### GATHER INFORMATION #####################
 
-# Run the Coq Platform setup scripts but stop just after opam install.
+# Run the Coq Platform setup scripts but stop just after the installation of
+# opam and setting up the switch but before installing packages.
 # The purpose of this is not to setup the Coq Platform - this is done when
 # the snapcraft.yaml file is run - but to gather information about the
 # Coq Platform, e.g. the package lists.

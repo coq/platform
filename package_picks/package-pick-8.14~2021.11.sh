@@ -82,7 +82,11 @@ then
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"         # pick confirmed https://gitlab.inria.fr/coquelicot/coquelicot/-/issues/4
 
   # Number theory
-  PACKAGES="${PACKAGES} coq-coqprime.1.1.0"           # pick confirmed https://github.com/thery/coqprime/issues/29 (TODO: CLOSE)
+  PACKAGES="${PACKAGES} coq-coqprime.1.1.0"           # pick confirmed https://github.com/thery/coqprime/issues/29
+  if [[ ! "$OSTYPE" == cygwin ]]
+  then
+    PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.0" # pick confirmed https://github.com/thery/coqprime/issues/29
+  fi
 
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.3.4.2"              # pick confirmed https://gitlab.inria.fr/flocq/flocq/-/issues/17
