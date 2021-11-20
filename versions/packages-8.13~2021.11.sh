@@ -11,7 +11,7 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.13.2 (released Apr 2021) with updated package pick Nov 2011"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.13.2 (released Apr 2021) with an updated package pick from Nov 2011"
 COQ_PLATFORM_VERSION_SORTORDER=2
 
 # The package list name is the final part of the opam switch name.
@@ -118,10 +118,10 @@ then
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.13"
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.13"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.0"
-  PACKAGES="${PACKAGES} coq-libhyps.2.0.3"
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.4"
 
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.10"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.11"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.2"
