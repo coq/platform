@@ -1,6 +1,6 @@
 name: coq-prover
 base: core18
-version: '@@PLATFORM_VERSION@@'
+version: '@@PLATFORM_RELEASE@@'
 summary: Coq
 description: |
   @@COQ_DESCRIPTION@@
@@ -16,18 +16,18 @@ parts:
     source: .
     source-type: local
     override-build: |
-      if [ -d $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_VERSION@@/ ]; then exit 0; fi
+      if [ -d $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/ ]; then exit 0; fi
       # build
-      echo "COQ_PLATFORM_VERSION=@@PLATFORM_VERSION@@" >> versions/coq_platform_version.sh
-      echo "COQ_PLATFORM_SWITCH_NAME=@@PLATFORM_VERSION@@" >> versions/coq_platform_switch_name.sh
-      echo "COQ_PLATFORM_REPO_NAME=@@PLATFORM_VERSION@@" >> versions/coq_platform_switch_name.sh
+      echo "COQ_PLATFORM_RELEASE=@@PLATFORM_RELEASE@@" >> package_picks/coq_platform_release.sh
+      echo "COQ_PLATFORM_SWITCH_NAME=@@PLATFORM_RELEASE@@" >> package_picks/coq_platform_switch_name.sh
+      echo "COQ_PLATFORM_REPO_NAME=@@PLATFORM_RELEASE@@" >> package_picks/coq_platform_switch_name.sh
       COQREGTESTING=y OPAMROOT=$SNAPCRAFT_PART_INSTALL/coq-platform/ ./coq_platform_make.sh @@PLATFORM_ARGS@@
       # cleanup
       OPAMROOT=$SNAPCRAFT_PART_INSTALL/coq-platform/ opam clean
-      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_VERSION@@/ \( -name '*.byte.exe' -o -name '*.byte' -o -name '*.cm[aioxt]' -o -name '*.cmxa' -o -name '*.[oa]' -o -name '*.cmti' -o -name '*.glob' \) -type f  -delete
-      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_VERSION@@/bin/ -maxdepth 1 -mindepth 1 \! \( -name 'coq*' -o -name 'clight*' -o -name 'gappa' \) -exec rm -f {} \;
-      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_VERSION@@/lib/ -maxdepth 1 -mindepth 1 \! \( -name 'coq' -o -name 'stublibs' \) -exec rm -rf {} \;
-      rm -rf $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_VERSION@@/share/ocaml-secondary-compiler
+      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/ \( -name '*.byte.exe' -o -name '*.byte' -o -name '*.cm[aioxt]' -o -name '*.cmxa' -o -name '*.[oa]' -o -name '*.cmti' -o -name '*.glob' \) -type f  -delete
+      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/bin/ -maxdepth 1 -mindepth 1 \! \( -name 'coq*' -o -name 'clight*' -o -name 'gappa' \) -exec rm -f {} \;
+      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/lib/ -maxdepth 1 -mindepth 1 \! \( -name 'coq' -o -name 'stublibs' \) -exec rm -rf {} \;
+      rm -rf $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/share/ocaml-secondary-compiler
       rm -rf $SNAPCRAFT_PART_INSTALL/coq-platform/repo/
 
   wrapper:
@@ -37,30 +37,30 @@ parts:
     source-type: local
     override-build: |
       # install wrapper for apps
-      mkdir -p $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_VERSION@@/bin/
-      cp linux/snap/coq_wrapper $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_VERSION@@/bin/
+      mkdir -p $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/bin/
+      cp linux/snap/coq_wrapper $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/bin/
 
 apps:
   coqide:
-    command-chain: [ coq-platform/@@PLATFORM_VERSION@@/bin/coq_wrapper ]
-    command: coq-platform/@@PLATFORM_VERSION@@/bin/coqide
+    command-chain: [ coq-platform/@@PLATFORM_RELEASE@@/bin/coq_wrapper ]
+    command: coq-platform/@@PLATFORM_RELEASE@@/bin/coqide
     plugs: [desktop, home]
     extensions: [gnome-3-28]
   coqtop:
     plugs: [home]
-    command-chain: [ coq-platform/@@PLATFORM_VERSION@@/bin/coq_wrapper ]
-    command: coq-platform/@@PLATFORM_VERSION@@/bin/coqtop
+    command-chain: [ coq-platform/@@PLATFORM_RELEASE@@/bin/coq_wrapper ]
+    command: coq-platform/@@PLATFORM_RELEASE@@/bin/coqtop
   coqc:
     plugs: [home]
-    command-chain: [ coq-platform/@@PLATFORM_VERSION@@/bin/coq_wrapper ]
-    command: coq-platform/@@PLATFORM_VERSION@@/bin/coqc
+    command-chain: [ coq-platform/@@PLATFORM_RELEASE@@/bin/coq_wrapper ]
+    command: coq-platform/@@PLATFORM_RELEASE@@/bin/coqc
   coq-makefile:
     plugs: [home]
-    command-chain: [ coq-platform/@@PLATFORM_VERSION@@/bin/coq_wrapper ]
-    command: coq-platform/@@PLATFORM_VERSION@@/bin/coq_makefile
+    command-chain: [ coq-platform/@@PLATFORM_RELEASE@@/bin/coq_wrapper ]
+    command: coq-platform/@@PLATFORM_RELEASE@@/bin/coq_makefile
   coqidetop:
     plugs: [home,network-bind]
-    command-chain: [ coq-platform/@@PLATFORM_VERSION@@/bin/coq_wrapper ]
-    command: coq-platform/@@PLATFORM_VERSION@@/bin/coqidetop.opt
+    command-chain: [ coq-platform/@@PLATFORM_RELEASE@@/bin/coq_wrapper ]
+    command: coq-platform/@@PLATFORM_RELEASE@@/bin/coqidetop.opt
 
 

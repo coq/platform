@@ -173,7 +173,14 @@ IF "%~0" == "-extent" (
 )
 
 IF "%~0" == "-packages" (
-  SET COQ_PLATFORM_PACKAGELIST=%~1
+  SET COQ_PLATFORM_PACKAGE_PICK_NAME=%~1
+  SHIFT
+  SHIFT
+  GOTO Parse
+)
+
+IF "%~0" == "-pick" (
+  SET COQ_PLATFORM_PACKAGE_PICK_NAME=%~1
   SHIFT
   SHIFT
   GOTO Parse
@@ -236,9 +243,10 @@ IF "%DESTCYG%" == "" (
   ECHO The Coq Platform uses Cygwin, a light weight Posix emulator for Windows, as
   ECHO build environment for the Coq Platform. Please enter below the installation
   ECHO path for the Cygwin root folder.
-  ECHO You can use one cygwin installation for several different variants of the Coq
-  ECHO platform, so there is no need to give a version specific name. But the name
-  ECHO should indicate that the cygwin is specialized for Coq Platform builds.
+  ECHO You can use one cygwin installation for several different releases of the Coq
+  ECHO platform, different versions of Coq and different package picks, so there is
+  ECHO no need to give a release, version or pick specific name. But the installation
+  ECHO path should indicate that the cygwin is specialized for Coq Platform builds.
   ECHO(
   ECHO The following recommended paths can be chosen by entering a number:
   ECHO 1  C:\cygwin%BITS%_coq.
@@ -476,6 +484,7 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -extent=x    Setup opam and build extended Coq Platform
   ECHO -extent=b    Just setup opam and build Coq (basic)
   ECHO -extent=i    Just setup opam and build Coq + CoqIDE
+  ECHO -pick=file/postfix Select the package pick / version file
   ECHO -parallel=p  Build several opam packages in parallel
   ECHO -parallel=s  Build opam packages sequentially
   ECHO -jobs=1..16  Number of make threads per package
@@ -501,7 +510,7 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -cygquiet = %CYGWIN_QUIET%
   ECHO -cygforce = %CYGWIN_FORCE%
   ECHO -extent   = %COQ_PLATFORM_EXTENT%
-  ECHO -packages = %COQ_PLATFORM_PACKAGES%
+  ECHO -pick     = %COQ_PLATFORM_PACKAGE_PICK_NAME%
   ECHO -parallel = %COQ_PLATFORM_PARALLEL%
   ECHO -jobs     = %COQ_PLATFORM_JOBS%
   ECHO -compcert = %COQ_PLATFORM_COMPCERT%

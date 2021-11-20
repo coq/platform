@@ -1,5 +1,5 @@
 REM This is a test / example call for coq_platform_make_windows.bat.
-REM Please note that it is no problem to install several coq-platform versions into one cygwin.
+REM Please note that it is no problem to install several coq-platform releases into one cygwin.
 REM Each coq-platform will create its own opam switch.
 REM But you do need separate cygwin folders for compiling a 64 bit and 32 bit Coq (-arch=32).
 

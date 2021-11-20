@@ -281,7 +281,7 @@ COQ_PLATFORM_VST=y
 BITSIZE=64
 
 source ${PATCHED_PACKAGE_LIST}
-source ${ROOT_PATH}/versions/coq_platform_version.sh
+source ${ROOT_PATH}/package_picks/coq_platform_release.sh
 
 COQ_PLATFORM_COQ_BASE_VERSION=${COQ_PLATFORM_COQ_BRANCH#v}
 

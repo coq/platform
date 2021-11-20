@@ -10,14 +10,14 @@
 
 ###################### Get platform name info from an opam switch #####################
 
-# First get COQ_PLATFORM_SWITCH_NAME with the COQ_PLATFORM_PACKAGELIST_NAME part being empty
-COQ_PLATFORM_PACKAGELIST_NAME=''
-source versions/coq_platform_version.sh
-source versions/coq_platform_switch_name.sh
+# First get COQ_PLATFORM_SWITCH_NAME with the COQ_PLATFORM_PACKAGE_PICK_POSTFIX part being empty
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX=''
+source package_picks/coq_platform_release.sh
+source package_picks/coq_platform_switch_name.sh
 
 # Then get the current full switch name and remove the partial name from it, so that the extension remains
 current_switch="$(opam switch show)"
-COQ_PLATFORM_PACKAGELIST_NAME="${current_switch/${COQ_PLATFORM_SWITCH_NAME}/}"
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX="${current_switch/${COQ_PLATFORM_SWITCH_NAME}/}"
 
 # Now include coq_platform_switch_name again to get the full names
-source versions/coq_platform_switch_name.sh
+source package_picks/coq_platform_switch_name.sh
