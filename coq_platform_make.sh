@@ -40,7 +40,7 @@ source shell_scripts/sanitize_environment.sh
 # NOTE: If you comment some questions for a custom setup, please assign
 #       the variable set in the script a default value.
 
-source versions/coq_platform_version.sh
+source package_picks/coq_platform_release.sh
 source shell_scripts/ask_introduction.sh
 source shell_scripts/ask_packagelist.sh
 source shell_scripts/ask_parallel_build.sh
@@ -49,8 +49,8 @@ source shell_scripts/ask_vst.sh
 
 ###################### PACKAGE SELECTION #####################
 
-source ${COQ_PLATFORM_PACKAGELIST}
-source versions/coq_platform_switch_name.sh
+source ${COQ_PLATFORM_PACKAGE_PICK_FILE}
+source package_picks/coq_platform_switch_name.sh
 
 ###################### INSTALL/INIT OPAM #####################
 

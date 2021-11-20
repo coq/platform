@@ -222,10 +222,10 @@ cat <<-'EOH' | sed 's/$/\r/' > $smoke_batch
 
 for package in ${packages}
 do
-  # First check if a version sepcific entry exists
-  if [ -n "${TEST_FILES[${package}${COQ_PLATFORM_PACKAGELIST_NAME}]+_undef_}" ]
+  # First check if a package pick sepcific entry exists
+  if [ -n "${TEST_FILES[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]+_undef_}" ]
   then
-    files="${TEST_FILES[${package}${COQ_PLATFORM_PACKAGELIST_NAME}]}"
+    files="${TEST_FILES[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]}"
   # If not check if a generic entry exists
   elif [ -n "${TEST_FILES[${package}]+_undef_}" ]
   then

@@ -24,7 +24,12 @@ In addition **pre-compiled binary packages** or **installers** are provided for 
 **Windows** and **snap** for Linux (Docker is in preparation).
 
 The Coq Platform supports installing several versions of Coq - also in parallel,
-e.g., for porting developments from one version of Coq to another.
+e.g., for porting developments from one version of Coq to another. For the
+previous release version of Coq, Coq Platform provides extended and updated
+package picks which are as much as possible compatible to the pick of the latest
+release version of Coq. For this reason for some Coq versions several different
+package picks are provided.
+
 The table below contains links to the README files for the supported versions
 of Coq and libraries. Each README file contains a list of included packages with
 detailed information for each package.
@@ -63,6 +68,10 @@ The Coq Platform team does no double check this information.
 </details>
 
 <details><summary><font size="+1">Release notes / changelog</font></summary>
+
+## Changes in 2021.11.0
+
+- Release package pick for Coq 8.14.0 + updated mostly compatible package pick for Coq 8.13.2
 
 ## Changes in 2021.09.0
 
@@ -103,9 +112,9 @@ which is useful in case you need to port some proofs from the older to the new v
 You can remove the opam switch or uninstall an installed Coq Platform as soon as you no longer need it.
 
 In general the Coq Platform team recommends to use the concept of opam switches generously.
-If you want to do experiments, create a new switch following the instructions for creating Coq Platform variants below.
+If you want to do experiments, create a new switch following the instructions for creating Coq Platform package pick variants below.
 You can easily switch between opam switches and do tests.
-Also if you follow the variants approach, you can easily share your setup with other people just by sharing the Coq Platform version file you created.
+Also if you follow the package pick variants approach, you can easily share your setup with other people just by sharing the Coq Platform package pick file you created.
 A Coq Platform switch requires between 1 and 3 GByte of disk space.
 The current Coq 8.13.2 distribution requires 2.3 GByte on macOS.
 
@@ -212,10 +221,10 @@ Please clarify the license at [CompCert License](https://github.com/AbsInt/CompC
 
 </details>
 
-<details><summary><font size="+1">Creating variants of the Coq Platform</font></summary>
+<details><summary><font size="+1">Creating package pick variants</font></summary>
 
 It is an intended use case of the Coq Platform to create custom variants, e.g.
-for projects or lectures, by creating additional files in the [versions](versions)
+for projects or lectures, by creating additional files in the [package_picks](package_picks)
 folder.
 
 The scripts for creating binary packages and installers should be able to
@@ -224,16 +233,20 @@ e.g. for a lecture.
 
 A few notes on the process:
 
-- create a new file in the [versions](versions) folder by copying one of the existing files as template
-- add or remove packages according to your requirements
-- you should include specific versions to get a reproducible result - the opam database changes daily and unless you specify a
-version you get different results and possibly the build will fail.
-- **please always change the opam switch name**, that is the variable `COQ_PLATFORM_PACKAGELIST_NAME`
-- the scripts for creating binary packages/installers for macOS, Windows and snap are in the specific system sub folders
+- Create a new file in the [package_picks](package_picks) folder by copying one of the existing files as template.
+- Add or remove packages or change package versions according to your requirements.
+- You should include specific versions for all packages to get a reproducible result.
+  The opam database changes daily and unless you specify a version for each package you get different results and possibly the build will fail.
+- In case you want to include pre release packages, which don't have a published opam package as yet, you can add opam packages in the folders under [opam](opam).
+  opam packages in thes folder take precedence over packages from the published repositories.
+- You can set the variable `COQ_PLATFORM_USE_DEV_REPOSITORY` in the header of the package pick file to `Y` in case you want to include the public and local `extra-dev` opam repositories in the opam package search.
+- **Please always change the opam switch name**, that is the variable `COQ_PLATFORM_PACKAGE_PICK_POSTFIX`!
+- The scripts for creating binary packages/installers for macOS, Windows and snap are in the specific system sub folders:
   - **macOS**: (macos/create_installer_macos.sh)
   - **Windows**: (windows/create_installer_windows.sh)
   - **snap**: (linux/create_snapcraft_yaml.sh)
-  - the macOS and Windows script are intended to be run locally and require that the specific Coq Platform version has been installed and that **the opam switch is selected**
+  - the macOS and Windows script are intended to be run locally and require that the specific Coq Platform version has been installed and that **the opam switch is selected**,
+    but the CI actions also create the installers for macOS and Windows.
   - the snap package is intended to be created via a CI action - see (linux/snap/github_actions/README.md)
   - the scripts don't take required parameters (some have debug parameters)
 

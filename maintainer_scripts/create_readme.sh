@@ -29,13 +29,13 @@ cd "${ROOT_PATH}"
 ##### Parameters #####
 
 CHECKOPAMLINKS='Y'
-COQ_PLATFORM_PACKAGELIST=''
+COQ_PLATFORM_PACKAGE_PICK_NAME=''
 
 for arg in "$@"
 do
   case "${arg}" in
     -quick|-q)             CHECKOPAMLINKS='N' ;;
-    -packages=*|-p=*|-v=*) COQ_PLATFORM_PACKAGELIST="${arg#*=}";;
+    -packages=*|-p=*|-v=*) COQ_PLATFORM_PACKAGE_PICK_NAME="${arg#*=}";;
     -output=*|-o=*)        RESULT_FILE_MD="${arg#*=}";;
     -table=*|-t=*)         RESULT_FILE_CSV="${arg#*=}";;
     *) echo "Illegal option ${arg}"; exit 1 ;;
@@ -43,21 +43,21 @@ do
 done
 
 # allow short form names for packages
-if [ -z "${COQ_PLATFORM_PACKAGELIST}" ]
+if [ -z "${COQ_PLATFORM_PACKAGE_PICK_NAME}" ]
 then
   echo "Please specify a package list file with the -packages=<package-file> option"
   exit 1
 else
-  for prefix1 in "" "versions/"
+  for prefix1 in "" "package_picks/"
   do
-    for prefix2 in "" "packages-"
+    for prefix2 in "" "package-pick-"
     do
       for postfix in "" ".sh"
       do
-        testname="${prefix1}${prefix2}${COQ_PLATFORM_PACKAGELIST}${postfix}"
+        testname="${prefix1}${prefix2}${COQ_PLATFORM_PACKAGE_PICK_NAME}${postfix}"
         if [ -f "${testname}" ]
         then
-          COQ_PLATFORM_PACKAGELIST="${testname}"
+          COQ_PLATFORM_PACKAGE_PICK_FILE="${testname}"
         fi
       done
     done
@@ -173,44 +173,44 @@ function opam_get_installed_opam_repo() {
 BITSIZE=64
 
 COQ_PLATFORM_EXTENT=b
-source ${COQ_PLATFORM_PACKAGELIST}
+source ${COQ_PLATFORM_PACKAGE_PICK_FILE}
 PACKAGES_BASE="${PACKAGES}"
 
 COQ_PLATFORM_EXTENT=i
-source ${COQ_PLATFORM_PACKAGELIST}
+source ${COQ_PLATFORM_PACKAGE_PICK_FILE}
 PACKAGES_IDE="${PACKAGES}"
 
 COQ_PLATFORM_EXTENT=f
 COQ_PLATFORM_COMPCERT=n
 COQ_PLATFORM_VST=n
-source ${COQ_PLATFORM_PACKAGELIST}
+source ${COQ_PLATFORM_PACKAGE_PICK_FILE}
 PACKAGES_FULL="${PACKAGES}"
 
 COQ_PLATFORM_EXTENT=f
 COQ_PLATFORM_COMPCERT=y
 COQ_PLATFORM_VST=y
-source ${COQ_PLATFORM_PACKAGELIST}
+source ${COQ_PLATFORM_PACKAGE_PICK_FILE}
 PACKAGES_OPTIONAL="${PACKAGES}"
 
 COQ_PLATFORM_EXTENT=x
 COQ_PLATFORM_COMPCERT=y
 COQ_PLATFORM_VST=y
-source ${COQ_PLATFORM_PACKAGELIST}
+source ${COQ_PLATFORM_PACKAGE_PICK_FILE}
 PACKAGES_EXTENDED="${PACKAGES}"
 
-source ${ROOT_PATH}/versions/coq_platform_version.sh
+source ${ROOT_PATH}/package_picks/coq_platform_release.sh
 
-package_list_notes="$(grep '# DESCRIPTION'  "${COQ_PLATFORM_PACKAGELIST}" | sed 's/  */ /g' | cut -d ' ' -f 3-)"
+package_list_notes="$(grep '# DESCRIPTION'  "${COQ_PLATFORM_PACKAGE_PICK_FILE}" | sed 's/  */ /g' | cut -d ' ' -f 3-)"
 
 ##### Determine name of output files #####
 
-VERSION_EXTENSION="${COQ_PLATFORM_VERSION}_${COQ_PLATFORM_PACKAGELIST_NAME#\~}"
+VERSION_EXTENSION="${COQ_PLATFORM_RELEASE}_${COQ_PLATFORM_PACKAGE_PICK_NAME#\~}"
 RESULT_FILE_MD="${RESULT_FILE_MD:-${DOC_PATH}/README_${VERSION_EXTENSION}.md}"
 RESULT_FILE_CSV="${RESULT_FILE_CSV:-${DOC_PATH}/PackageTable_${VERSION_EXTENSION}.csv}"
 
 ##### Get list of all installed packages from opam #####
 
-source ${ROOT_PATH}/versions/coq_platform_switch_name.sh
+source ${ROOT_PATH}/package_picks/coq_platform_switch_name.sh
 
 opam switch "${COQ_PLATFORM_SWITCH_NAME}"
 
@@ -373,7 +373,7 @@ echo "package,version,license,level" > ${RESULT_FILE_CSV}
 # Write MD header
 
 cat > ${RESULT_FILE_MD} <<EOT
-# Coq Platform ${COQ_PLATFORM_VERSION} providing ${COQ_PLATFORM_VERSION_TITLE}
+# Coq Platform ${COQ_PLATFORM_RELEASE} providing ${COQ_PLATFORM_VERSION_TITLE}
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
@@ -383,7 +383,7 @@ The [Coq Platform](https://github.com/coq/platform) is a distribution of the Coq
 interactive prover together with a selection of Coq libraries and plugins.
 
 The Coq Platform supports to install several versions of Coq (also in parallel).
-This README file is for **Coq Platform ${COQ_PLATFORM_VERSION} with Coq ${COQ_PLATFORM_COQ_TAG}**.
+This README file is for **Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG}**.
 The README files for other versions are linked in the main [README](../README.md).
 
 ${COQ_PLATFORM_VERSION_DESCRIPTION}
@@ -416,7 +416,7 @@ Please clarify the details with the homepage of the package.
 
 <br>
 
-## **Coq Platform ${COQ_PLATFORM_VERSION} with Coq ${COQ_PLATFORM_COQ_TAG} "base level"**
+## **Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "base level"**
 
 The **base level** is mostly intended as a basis for custom installations using
 opam and contains the following package(s):
@@ -431,7 +431,7 @@ done
 cat >> ${RESULT_FILE_MD} <<EOT
 <br>
 
-## **Coq Platform ${COQ_PLATFORM_VERSION} with Coq ${COQ_PLATFORM_COQ_TAG} "IDE level"**
+## **Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "IDE level"**
 
 The **IDE level** adds an interactive development environment to the **base level**.
 
@@ -452,7 +452,7 @@ done
 cat >> ${RESULT_FILE_MD} <<EOT
 <br>
 
-## **Coq Platform ${COQ_PLATFORM_VERSION} with Coq ${COQ_PLATFORM_COQ_TAG} "full level"**
+## **Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "full level"**
 
 The **full level** adds many commonly used coq libraries, plug-ins and
 developments.
@@ -473,7 +473,7 @@ done
 cat >> ${RESULT_FILE_MD} <<EOT
 <br>
 
-## **Coq Platform ${COQ_PLATFORM_VERSION} with Coq ${COQ_PLATFORM_COQ_TAG} "optional packages"**
+## **Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "optional packages"**
 
 The **optional** packages have the same maturity and maintenance level as the
 packages in the full level, but either have a **non open source license** or
@@ -496,7 +496,7 @@ done
 cat >> ${RESULT_FILE_MD} <<EOT
 <br>
 
-## **Coq Platform ${COQ_PLATFORM_VERSION} with Coq ${COQ_PLATFORM_COQ_TAG} "extended level"**
+## **Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "extended level"**
 
 The **extended level** contains packages which are in a beta stage or otherwise
 don't yet have the level of maturity or support required for inclusion in the

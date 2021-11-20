@@ -45,11 +45,11 @@ command -v gfind &> /dev/null || ( echo "Please install gfind (eg. sudo port ins
 command -v grealpath &> /dev/null || ( echo "Please install grealpath (eg. sudo port install coreutils)" ; exit 1)
 command -v macpack  &> /dev/null || ( echo "Please install macpack (eg. sudo port install py38-pip; port select --set pip3 pip38; pip3 install macpack)" ; exit 1)
 
-##### Get the version of the Coq Platform #####
+##### Get the release and package pick of the Coq Platform #####
 
 source shell_scripts/get_names_from_switch.sh
 
-echo "##### Coq Platform version = ${COQ_PLATFORM_VERSION}${COQ_PLATFORM_PACKAGELIST_NAME} #####" 
+echo "##### Coq Platform version = ${COQ_PLATFORM_RELEASE}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX} #####" 
 
 ###### Create working folder and cd #####
 
@@ -77,8 +77,8 @@ echo "##### Coq version = ${COQ_VERSION} (Mac app version=${COQ_VERSION_MACOS}) 
 
 # Folder and image names
 
-APP_NAME="Coq_Platform_${COQ_PLATFORM_VERSION}.app"
-DMG_NAME="coq-platform-${COQ_PLATFORM_VERSION}-installer-macos"
+APP_NAME="Coq_Platform_${COQ_PLATFORM_RELEASE}.app"
+DMG_NAME="coq-platform-${COQ_PLATFORM_RELEASE}-installer-macos"
 APP_ABSDIR="_dmg/${APP_NAME}"
 RSRC_ABSDIR="${APP_ABSDIR}/Contents/Resources"
 BIN_ABSDIR="$RSRC_ABSDIR/bin"
@@ -658,7 +658,7 @@ echo '##### Create README.html #####'
 cat > _dmg/README.html <<EOT
 <html>
 <head>
-<title>The Coq Platform - $COQ_PLATFORM_VERSION</title>
+<title>The Coq Platform - $COQ_PLATFORM_RELEASE</title>
 <style>
 body {
    width : 50em;
@@ -679,7 +679,7 @@ dd {
 </style>
 </head>
 <body>
-<h1>The Coq Platform $COQ_PLATFORM_VERSION</h1>
+<h1>The Coq Platform $COQ_PLATFORM_RELEASE</h1>
 <p>
   The <a href="https://coq.inria.fr">Coq proof assistant</a> provides
   a formal language to write
@@ -708,9 +708,9 @@ EOT
 fi
 
 cat >> _dmg/README.html <<EOT
-<h2>Coq Platform $COQ_PLATFORM_VERSION packages</h2>
+<h2>Coq Platform $COQ_PLATFORM_RELEASE packages</h2>
 <p>
-  The Coq Platform version $COQ_PLATFORM_VERSION
+  The Coq Platform version $COQ_PLATFORM_RELEASE
   contains the following packages:
 </p>
 <dl>

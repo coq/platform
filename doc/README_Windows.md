@@ -29,7 +29,7 @@ This method is intended for experienced users, who may want to use opam to insta
 - In case the script aborts e.g. cause of internet issues, just rerun the batch file - it won't install Cygwin again (assuming you specify the same Cygwin destination folder).
 - The script has various options for configuring paths and proxies; see `example_coq_platform_make.bat` for an example command line.
 - The resulting Coq installation is opam based and best used from the Cygwin prompt (started via `C:\<your_coq_platform_Cygwin_path>\Cygwin.bat`)
-- The script creates a new opam switch named e.g. __coq-platform.2021.09.0~8.13 - the exact name depends on the Coq version you selected.
+- The script creates a new opam switch named e.g. __coq-platform.2021.09.0~8.13 - the exact name depends on the Coq version and package pick you selected you selected.
   This means the script does not touch your existing opam setup unless you already have a switch of this name.
 - Use the following commands at the Cygwin prompt to activate this switch after opening a new shell:
   - `opam switch __coq-platform.2021.09.0~8.13` (note: the switch name might vary if you choose a different version of Coq - please use `opam switch` to see a list of switch names)

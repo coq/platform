@@ -12,19 +12,23 @@
 
 # package list
 
-if [ -z "${COQ_PLATFORM_PACKAGELIST:+x}" ]
+if [ -z "${COQ_PLATFORM_PACKAGE_PICK_FILE:+x}" ]
 then
 cat <<EOH
-========================= SELECT PACKAGELIST VERSION ==========================
-The Coq Platform allows to install the latest release version of Coq and
-packages, but also older versions or development versions of Coq. You can
-install several versions of Coq in parallel, which simplifies porting of
+========================= SELECT PACKAGE_PICK VERSION ==========================
+The Coq Platform allows to install the latest release version of Coq, but also
+older or development versions of Coq. Besides the Coq version, you can choose
+a 'package pick', that is a selection of specific versions of Coq libraries,
+plugins and tools. For some versions of Coq several package picks are available.
+Package picks with the same release date for different Coq versions are made
+as compatible as possible.
+You can install several versions of Coq in parallel, which simplifies porting of
 developments. You can use "opam switch" to switch between Coq versions.
 
-The following versions / package lists are supported:
+The following Coq versions and package picks are available:
 EOH
 
-  packagefile_list="$( (for file in versions/packages-*.sh; do echo "$(grep "COQ_PLATFORM_VERSION_SORTORDER=" $file) $file"; done) | tr '=' ' ' | sed 's/  */ /g' | sort -n | cut -d ' ' -f 3)"
+  packagefile_list="$( (for file in package_picks/package-pick-*.sh; do echo "$(grep "COQ_PLATFORM_VERSION_SORTORDER=" $file) $file"; done) | tr '=' ' ' | sed 's/  */ /g' | sort -n | cut -d ' ' -f 3)"
 
   packageindex=0
   for packagefile in ${packagefile_list}
@@ -38,8 +42,8 @@ EOH
 
 cat <<EOH
 
-Pleas select a version by entering the number shown at the begin of a line.
-========================= SELECT PACKAGELIST VERSION ==========================
+Please select a package pick by entering the number shown at the begin of a line.
+========================= SELECT PACKAGE_PICK VERSION ==========================
 EOH
   ask_user_number "Select package list" 1 "${packageindex}"
   packageindex=0
@@ -48,10 +52,10 @@ EOH
     packageindex=$((${packageindex} + 1))
     if [ "${packageindex}" -eq "${ANSWER}" ]
     then
-      COQ_PLATFORM_PACKAGELIST="${packagefile}"
+      COQ_PLATFORM_PACKAGE_PICK_FILE="${packagefile}"
     fi
   done
-  if [ -z "${COQ_PLATFORM_PACKAGELIST:+x}" ]
+  if [ -z "${COQ_PLATFORM_PACKAGE_PICK_FILE:+x}" ]
   then
     echo "INTERNAL ERROR: not package list file selected!"
     false

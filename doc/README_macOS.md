@@ -38,7 +38,7 @@ This method is intended for experienced users, who may want to use opam to insta
 - Open a shell, navigate to the download folder and execute `coq_platform_make.sh`.
 - If you are using MacPorts, the system will ask once for sudo permissions to install prerequisites after installing OCaml (5..20 minutes after script start).
 - In case the script aborts e.g. cause of internet issues, just rerun the script.
-- The script creates a new opam switch named e.g. __coq-platform.2021.09.0~8.13 - the exact name depends on the Coq version you selected.
+- The script creates a new opam switch named e.g. __coq-platform.2021.09.0~8.13 - the exact name depends on the Coq version and package pick you selected.
   This means the script does not touch your existing opam setup unless you already have a switch of this name.
 - Use the following commands to activate this switch after opening a new shell:
   - `opam switch __coq-platform.2021.09.0~8.13` (note: the switch name might vary if you choose a different version of Coq - please use `opam switch` to see a list of switch names)

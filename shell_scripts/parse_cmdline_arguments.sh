@@ -23,12 +23,11 @@ OPTIONS:
   -extent=x    Setup opam and build extended Coq Platform
   -extent=b    Just setup opam and build Coq
   -extent=i    Just setup opam and build Coq+CoqIDE
-  -packages=file  Select the package list / version file
+  -pick=file/postfix Select the package pick / version file
   -parallel=p  Build several opam packages in parallel
   -parallel=s  Build opam packages sequentially
   -jobs=1..16  Number of make threads per package
-  -compcert=y  Build full non-free version of CompCert
-  -compcert=o  Build only open source part of CompCert
+  -compcert=y  Build CompCert
   -compcert=n  Do not build CompCert and VST
   -vst=y       Build Verified Software Toolchain (takes a while)
   -vst=n       Do not build Verified Software Toolchain
@@ -44,7 +43,8 @@ do
   case "$arg" in
     -help|-h)     print_usage; false;;
     -extent=*)    COQ_PLATFORM_EXTENT="${arg#*=}";;
-    -packages=*)  COQ_PLATFORM_PACKAGELIST="${arg#*=}";;
+    -packages=*)  COQ_PLATFORM_PACKAGE_PICK_NAME="${arg#*=}";;
+    -pick=*)      COQ_PLATFORM_PACKAGE_PICK_NAME="${arg#*=}";;
     -parallel=*)  COQ_PLATFORM_PARALLEL="${arg#*=}";;
     -jobs=*)      COQ_PLATFORM_JOBS="${arg#*=}";;
     -compcert=*)  COQ_PLATFORM_COMPCERT="${arg#*=}";;
@@ -57,18 +57,18 @@ do
 done
 
 # allow short form names for packages
-if [ -n "${COQ_PLATFORM_PACKAGELIST:+x}" ]
+if [ -n "${COQ_PLATFORM_PACKAGE_PICK_NAME:+x}" ]
 then
-  for prefix1 in "" "versions/"
+  for prefix1 in "" "package_picks/"
   do
-    for prefix2 in "" "packages-"
+    for prefix2 in "" "package-pick-"
     do
       for postfix in "" ".sh"
       do
-        testname="${prefix1}${prefix2}${COQ_PLATFORM_PACKAGELIST}${postfix}"
+        testname="${prefix1}${prefix2}${COQ_PLATFORM_PACKAGE_PICK_NAME}${postfix}"
         if [ -f "${testname}" ]
         then
-          COQ_PLATFORM_PACKAGELIST="${testname}"
+          COQ_PLATFORM_PACKAGE_PICK_FILE="${testname}"
         fi
       done
     done
@@ -83,4 +83,4 @@ check_value_enumeraton  "${COQ_PLATFORM_VST:-__unset__}"      "[yn]"  "-vst/COQ_
 check_value_enumeraton  "${COQ_PLATFORM_SWITCH:-__unset__}"   "[kd]"  "-switch/COQ_PLATFORM_SWITCH"
 check_value_enumeraton  "${COQ_PLATFORM_DUMP_LOGS:-__unset__}" "[yn]"  "-dumplogs/COQ_PLATFORM_DUMP_LOGS"
 check_value_enumeraton  "${COQ_PLATFORM_OPAM_ONLY:-__unset__}" "[yn]"  "-opamonly/COQ_PLATFORM_OPAM_ONLY"
-check_value_file_exists "${COQ_PLATFORM_PACKAGELIST:-__unset__}" "-packages/COQ_PLATFORM_PACKAGELIST"
+check_value_file_exists "${COQ_PLATFORM_PACKAGE_PICK_FILE:-__unset__}" "-packages/COQ_PLATFORM_PACKAGE_PICK_FILE"

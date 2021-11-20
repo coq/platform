@@ -26,7 +26,7 @@ COQ_PLATFORM_OPAM_ONLY=y
 source coq_platform_make.sh
 
 # Snap versions cannot contain . nor +
-PLATFORM_VERSION=${COQ_PLATFORM_VERSION//[.+]/-}
+PLATFORM_RELEASE=${COQ_PLATFORM_RELEASE//[.+]/-}
 
 ###################### CREATE SNAPCRAFT.YAML #####################
 
@@ -71,7 +71,7 @@ fi
 mkdir -p snap/
 
 sed \
-   -e "s/@@PLATFORM_VERSION@@/$PLATFORM_VERSION/g" \
+   -e "s/@@PLATFORM_RELEASE@@/$PLATFORM_RELEASE/g" \
    -e "s/@@PLATFORM_ARGS@@/$*/g" \
    -e "/@@COQ_DESCRIPTION@@/r $COQ_DESCRIPTION" -e "/@@COQ_DESCRIPTION@@/d" \
    linux/snap/snapcraft.yaml.in > snap/snapcraft.yaml
@@ -81,7 +81,7 @@ echo "INFO: filled in snap/snapcraft.yaml"
 mkdir -p snap/gui/
 
 sed \
-   -e "s/@@PLATFORM_VERSION@@/$PLATFORM_VERSION/g" \
+   -e "s/@@PLATFORM_RELEASE@@/$PLATFORM_RELEASE/g" \
    linux/snap/coq-prover.desktop.in > snap/gui/coq-prover.desktop
 
 echo "INFO: filled in snap/gui/coqide.desktop"
