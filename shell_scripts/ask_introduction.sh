@@ -18,10 +18,10 @@ cat <<EOH
 ====================== JUST COQ OR COMPLETE PLATFORM ? =======================
 This script installs the Coq Platform release $COQ_PLATFORM_RELEASE, that is:
 
-- the Coq compiler and Coq's standard library
-- optionally CoqIDE, a GTK3 based graphical user interface
-- optionally various widely used Coq libraries and plugins
-- optionally an extended set of Coq libraries and plugins
+- the Coq compiler and Coq's standard library (b)
+- optionally CoqIDE, a GTK3 based graphical user interface (i)
+- optionally various widely used Coq libraries and plugins (f)
+- optionally an extended set of Coq libraries and plugins (x)
 
 The script uses opam, the OCaml package manager, to do all the work.
 In case opam is not yet installed, it will install opam.
