@@ -1,0 +1,183 @@
+From cb84d8346c9e2519296870ea7cff1f11c9035070 Mon Sep 17 00:00:00 2001
+From: Michael Soegtrop <7895506+MSoegtropIMC@users.noreply.github.com>
+Date: Sat, 20 Nov 2021 17:54:32 +0100
+Subject: [PATCH] Added configure.ac file for platform independent builds of
+ gencertif
+
+---
+ .gitignore             |  6 ++++++
+ gencertif/Makefile     | 37 -------------------------------------
+ gencertif/Makefile.in  | 30 ++++++++++++++++++++++++++++++
+ gencertif/README       | 26 ++++++++++++++++++++++++--
+ gencertif/configure.ac | 29 +++++++++++++++++++++++++++++
+ 5 files changed, 89 insertions(+), 39 deletions(-)
+ delete mode 100644 gencertif/Makefile
+ create mode 100644 gencertif/Makefile.in
+ create mode 100644 gencertif/configure.ac
+
+diff --git a/.gitignore b/.gitignore
+index 313ea0b..8ab987f 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -15,3 +15,9 @@
+ /Makefile.coq.conf
+ /Makefile.coq
+ *~
++gencertif/autom4te.cache
++gencertif/aclocal.m4
++gencertif/config.log
++gencertif/config.status
++gencertif/configure
++gencertif/Makefile
+diff --git a/gencertif/Makefile b/gencertif/Makefile
+deleted file mode 100644
+index 434b5da..0000000
+--- a/gencertif/Makefile
++++ /dev/null
+@@ -1,37 +0,0 @@
+-ECMDIR=/usr/lib/
+-
+-OPT=
+-CC=gcc
+-
+-CFIRSTPRIMES=certif.c factorize.c firstprimes.c
+-OFIRSTPRIMES=$(CFIRSTPRIMES:.c=.o)
+-
+-CPOCK=certif.c factorize.c pocklington.c
+-
+-OPOCK=$(CPOCK:.c=.o)
+-
+-all:   
+-	make pock
+-	make first
+-	make o2v
+-
+-pock: $(OPOCK)
+-	$(CC) -g -O2  -o pocklington $(OPOCK) -lecm -lgmp -lm 
+-
+-first: $(OFIRSTPRIMES)
+-	$(CC) -g -O2 -o firstprimes $(OFIRSTPRIMES) -lecm -lgmp -lm
+-
+-
+-clean:
+-	rm -f *~ *.o *.cmo *.cmi pocklington firstprimes o2v 
+-
+-
+-.SUFFIXES: .v .vo .c .o
+-
+-.c.o:
+-	$(CC) -I$(GMPDIR) -I$(ECMDIR) -Wall -pedantic -c $<
+-
+-o2v: parser.ml
+-	ocamlc -o o2v nums.cma str.cma parser.ml
+-
+-
+diff --git a/gencertif/Makefile.in b/gencertif/Makefile.in
+new file mode 100644
+index 0000000..23c5421
+--- /dev/null
++++ b/gencertif/Makefile.in
+@@ -0,0 +1,30 @@
++CFIRSTPRIMES=certif.c factorize.c firstprimes.c
++OFIRSTPRIMES=$(CFIRSTPRIMES:.c=.o)
++
++CPOCK=certif.c factorize.c pocklington.c
++OPOCK=$(CPOCK:.c=.o)
++
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++
++all: pock first o2v
++
++pock: $(OPOCK)
++	@CC@ @CPPFLAGS@ @LDFLAGS@ @CFLAGS@ -o pocklington $(OPOCK) @LIBS@
++
++first: $(OFIRSTPRIMES)
++	@CC@ @CPPFLAGS@ @LDFLAGS@ @CFLAGS@ -o firstprimes $(OFIRSTPRIMES) @LIBS@
++
++clean:
++	rm -f *~ *.o *.cmo *.cmi pocklington firstprimes o2v 
++
++.SUFFIXES: .c .o
++
++.c.o:
++	@CC@ @CPPFLAGS@ @CFLAGS@ -I$(GMPDIR) -I$(ECMDIR) -Wall -pedantic -c $<
++
++o2v: parser.ml
++	ocamlc -o o2v nums.cma str.cma parser.ml
++
++install: pocklington firstprimes o2v
++	cp pocklington firstprimes o2v @bindir@
+diff --git a/gencertif/README b/gencertif/README
+index 2df3efc..4ed636f 100644
+--- a/gencertif/README
++++ b/gencertif/README
+@@ -27,5 +27,27 @@ options are:
+         -o file : set the output in file "file"
+ 	-o name : set the name of the final theorem "name"
+ 
+-WARNING : pocklington makes use of the gmp-ecm library. So you need
+-   to have gmp-ecm-devel installed on your machine
+\ No newline at end of file
++BUILD / INSTALL :
++
++The certificate generator is included in Coq Platform, which also contains
++opam files for the certificate generator and its dependencies. So installing
++Coq Platform might be the easiest way to install this.
++
++Otherwise please install these dependencies:
++
++	gmp     (version 6.2.1 or later)
++	gmp-ecm (version 7.0 or later)
++
++Please note that the gmp-ecm package provided by MacPorts is too old.
++
++After installing the dependencies, these commands should work:
++
++	cd gencertif
++	autoreconf -i -s
++	./configure --prefix <install-prefix> CPPFLAGS=-I%<include path> LDFLAGS=-L<library path>
++	make -j 4
++	make install
++
++The CPPFLAGS and LDFLAGS options to configure are only required if the headers/library
++for gmp and gmp-ecm are not in the default system include / library path.
++This is e.g. the case for macOS MacPorts.
+diff --git a/gencertif/configure.ac b/gencertif/configure.ac
+new file mode 100644
+index 0000000..a96ba79
+--- /dev/null
++++ b/gencertif/configure.ac
+@@ -0,0 +1,29 @@
++# USAGE NOTES
++# OS specific include and library paths can be given on the configure command line with e.g.
++# ./configure CPPFLAGS=-I/opt/local/include LDFLAGS=-L/opt/local/lib
++# We can't use automakes pkg-config interface because ecm usually doesn't have a pkgconfig gile.
++
++# Initialize autoconf(name, version, bugreports)
++AC_INIT([CoqPrime], [8.14], [https://github.com/thery/coqprime/issues])
++
++# Find C compiler
++AC_PROG_CC
++
++# Check for libraries using the C compiler for checks
++AC_LANG(C)
++
++# GCC requires -lm for math functions like "log", other compilers don't.
++# So check for -lm but don't throw an error if it is not there.
++AC_CHECK_LIB(m, log)
++
++# Check for the GNU multiple precision arithmetic library.
++# Use th emethod recommended here: https://gmplib.org/manual/Autoconf
++AC_CHECK_LIB(gmp, __gmpz_init, , AC_MSG_ERROR([Unable to find library 'gmp']))
++
++# Check for the availablitiy of the Elliptic Curve Method library from
++# https://gitlab.inria.fr/zimmerma/ecm
++AC_CHECK_LIB(ecm, ecm_init, , AC_MSG_ERROR([Unable to find library 'gmp-ecm']))
++
++# Write make file
++AC_CONFIG_FILES([Makefile])
++AC_OUTPUT
+-- 
+2.30.1 (Apple Git-130)
+
