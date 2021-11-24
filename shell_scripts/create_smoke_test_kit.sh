@@ -117,7 +117,6 @@ function patch_file() {
     /^Require Import Gappa_tactic.$/ {print "From Gappa "$0; next}
     /^Require Import .*Rcomplements.*.$/ {print "From Coquelicot "$0; next}
     /^Require Import PocklingtonRefl.$/ {print "From Coqprime "$0; next}
-	/^Open Local Scope/ {$1=$2=$3=""; print "Local Open Scope "$0; next}
     /^From HB.demo2 / {sub("From HB.demo2 ", "", $0); print $0; next}
     {print $0}
     ' $1 > $1.tmp
