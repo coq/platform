@@ -81,8 +81,9 @@ then
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"         # pick confirmed https://gitlab.inria.fr/coquelicot/coquelicot/-/issues/4
 
   # Number theory
-  PACKAGES="${PACKAGES} coq-coqprime.1.1.0"           # pick confirmed https://github.com/thery/coqprime/issues/29 (TODO: CLOSE)
-
+  PACKAGES="${PACKAGES} coq-coqprime.1.1.1"           # pick confirmed https://github.com/thery/coqprime/issues/29 + PRs to make it work
+  PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1" # pick confirmed https://github.com/thery/coqprime/issues/29 + PRs to make it work
+  
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.3.4.2"              # pick confirmed https://gitlab.inria.fr/flocq/flocq/-/issues/17
   PACKAGES="${PACKAGES} coq-interval.4.3.0"           # pick confirmed https://gitlab.inria.fr/coqinterval/interval/-/issues/7
@@ -117,10 +118,10 @@ then
   # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.1+8.13~flex" # coq-hammer-tactics.1.3.1+8.13~flex does not compile
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.14"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.0"             # Pick confirmed https://github.com/coq-community/coqeal/issues/51
-  # PACKAGES="${PACKAGES} coq-libhyps.2.0.3~flex"     # coq-libhyps.2.0.3~flex does not compile
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.4"            # Pick confirmed https://github.com/Matafou/LibHyps/issues/6
 
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.10"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.11" # pick confirmed https://github.com/math-comp/analysis/issues/442
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.2"            # pick confirmed https://github.com/coq-community/reglang/issues/34

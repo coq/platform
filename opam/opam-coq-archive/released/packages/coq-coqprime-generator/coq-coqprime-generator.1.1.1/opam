@@ -5,7 +5,6 @@ bug-reports: "https://github.com/thery/coqprime/issues"
 dev-repo: "git+https://github.com/thery/coqprime.git"
 license: "LGPL-2.1-only"
 authors: ["Laurent Théry"]
-patches: [ "0001-Added-configure.ac-file-for-platform-independent-bui.patch" ]
 build: [
   # cd to a subfolder in opam is tricky, so just move gencertif to the root folder
   [ "find" "gencertif" "-type" "f" "-exec" "mv" "{}" "." ";" ]
@@ -38,6 +37,6 @@ depends: [
 ]
 synopsis: "Certificate generator for prime numbers in Coq"
 url {
-  src: "https://github.com/thery/coqprime/archive/v8.14.zip"
-  checksum: "md5=dae09ead7beab4ee29819d56a9e6ddd7"
+  src: "https://github.com/thery/coqprime/archive/v8.14.1.tar.gz"
+  checksum: "sha512=cd5d4ff31a2ac3039e5c49e9da627a0f4722ff7d9269bbe521531a162c0f0dfc190779eeafa8749d563c65dc787d17e9193fdd0664b273d01220272f3abb17ca"
 }
