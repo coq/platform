@@ -24,7 +24,7 @@ build: [
     "CPPFLAGS=-I/opt/local/include" { os-distribution = "macports" & os = "macos" }
     "LDFLAGS=-L/opt/local/lib" { os-distribution = "macports" & os = "macos" }
     # Options for homebrew on Apple silicon (overwriting the above)
-    "CXXFLAGS=-I/opt/homebrew/include" { os-distribution = "homebrew" & os = "macos" & arch = "arm64"}
+    "CPPFLAGS=-I/opt/homebrew/include" { os-distribution = "homebrew" & os = "macos" & arch = "arm64"}
     "LDFLAGS=-L/opt/homebrew/lib" { os-distribution = "homebrew" & os = "macos" & arch = "arm64"}
     # Options for Windows cygwin
     "--build=%{arch}%-pc-cygwin" { os = "win32" & os-distribution = "cygwinports" }
