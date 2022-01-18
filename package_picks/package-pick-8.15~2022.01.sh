@@ -60,12 +60,12 @@ fi
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
   # Some dependencies for which we need specific versions
-  PACKAGES="${PACKAGES} PIN.ppxlib.0.15.0"            # coq-serapi requires this old version
+  PACKAGES="${PACKAGES} PIN.ppxlib.0.15.0" # coq-serapi requires this old version
 
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.15.0"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.5"
-  # PACKAGES="${PACKAGES} coq-stdpp.1.6.0" # requires 8.14
+  # PACKAGES="${PACKAGES} coq-stdpp.1.6.0" # requires 8.14, build error with version patch
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.13.0"
@@ -74,7 +74,7 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.13.0"
   PACKAGES="${PACKAGES} coq-mathcomp-field.1.13.0"
   PACKAGES="${PACKAGES} coq-mathcomp-character.1.13.0"
-  # PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.0" # requires 8.14
+  PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.2.0+1.12+8.13"
@@ -88,14 +88,14 @@ then
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.3.4.3"
   PACKAGES="${PACKAGES} coq-interval.4.4.0"
-  # PACKAGES="${PACKAGES} coq-gappa.1.5.0 gappa.1.4.0" # requires 8.14
+  # PACKAGES="${PACKAGES} coq-gappa.1.5.0 gappa.1.4.0" # requires 8.14, build error with version patch
 
   # Constructive mathematics
-  # PACKAGES="${PACKAGES} coq-math-classes.8.13.0" # requires 8.14
-  # PACKAGES="${PACKAGES} coq-corn.8.13.0" # requires 8.14
+  # PACKAGES="${PACKAGES} coq-math-classes.8.13.0" # requires 8.14, build error with version patch
+  # PACKAGES="${PACKAGES} coq-corn.8.13.0" # requires 8.14 and coq-math-classes
 
   # Homotopy Type Theory (HoTT)
-  # PACKAGES="${PACKAGES} coq-hott.8.14" # requires 8.14
+  # PACKAGES="${PACKAGES} coq-hott.8.14" # requires 8.14, build error with version patch
 
   # Univalent Mathematics (UniMath)
   # Note: coq-unimath requires too much memory for 32 bit architectures
@@ -105,37 +105,37 @@ then
   fi 
 
   # Code extraction
-  # PACKAGES="${PACKAGES} coq-simple-io.1.6.0" # requires 8.14
+  PACKAGES="${PACKAGES} coq-simple-io.1.6.0" # works with 8.14 version patch
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20211230 menhir.20211230"
-  # PACKAGES="${PACKAGES} coq-equations.1.3+8.14" # requires 8.14
+  # PACKAGES="${PACKAGES} coq-equations.1.3+8.14" # requires 8.14, build error with version patch
   PACKAGES="${PACKAGES} coq-aac-tactics.8.15.0"
-  # PACKAGES="${PACKAGES} coq-unicoq.1.6+8.14" # requires 8.14
-  # PACKAGES="${PACKAGES} coq-mtac2.1.4+8.14" # requires 8.14
+  # PACKAGES="${PACKAGES} coq-unicoq.1.6+8.14" # requires 8.14, build error with version patch
+  # PACKAGES="${PACKAGES} coq-mtac2.1.4+8.14" # requires 8.14 and coq-unicoq
   PACKAGES="${PACKAGES} coq-elpi.1.12.0 elpi.1.13.8"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"
-  # PACKAGES="${PACKAGES} coq-quickchick.1.6.0" # requires 8.14
+  PACKAGES="${PACKAGES} coq-quickchick.1.6.0" # works with 8.14 version patch
   # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.1+8.13~flex" # coq-hammer-tactics.1.3.1+8.13~flex does not compile
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.15"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.0"
-  # PACKAGES="${PACKAGES} coq-libhyps.2.0.4" # requires 8.14
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.4" # works with 8.14 version patch
 
   # General mathematics (which requires one of the above tools)
-  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.12" # requires 8.14
+  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.12" # requires 8.14, build error with version patch
 
   # Formal languages, compilers and code verification
-  # PACKAGES="${PACKAGES} coq-reglang.1.1.2" # requires 8.14
-  # PACKAGES="${PACKAGES} coq-iris.3.5.0" # requires 8.14
-  # PACKAGES="${PACKAGES} coq-iris-heap-lang.3.5.0" # requires 8.14
+  PACKAGES="${PACKAGES} coq-reglang.1.1.2" # works with 8.14 version patch
+  # PACKAGES="${PACKAGES} coq-iris.3.5.0" # requires 8.14 and coq-stdpp
+  # PACKAGES="${PACKAGES} coq-iris-heap-lang.3.5.0" # requires 8.14 and coq-iris
 
-#   case "$COQ_PLATFORM_COMPCERT" in # requires 8.14
+#   case "$COQ_PLATFORM_COMPCERT" in # requires 8.14, build error with version patch
 #     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.9" ;;
 #     [nN]) true ;;
 #     *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
 #   esac
 
-#   case "$COQ_PLATFORM_VST" in # requires 8.14
+#   case "$COQ_PLATFORM_VST" in # requires 8.14 and coq-compcert
 #     [yY]) PACKAGES="${PACKAGES} coq-vst.2.8" ;;
 #     [nN]) true ;;
 #     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
@@ -152,11 +152,11 @@ if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
 
   # Proof automation / generation / helpers
-  # PACKAGES="${PACKAGES} coq-deriving.0.1.0"  # requires 8.14
+  PACKAGES="${PACKAGES} coq-deriving.0.1.0"  # works with 8.14 version patch
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.3"
-  # PACKAGES="${PACKAGES} coq-record-update.0.3.0"  # requires 8.14
+  PACKAGES="${PACKAGES} coq-record-update.0.3.0"  # works with 8.14 version patch
 
   # Communication with coqtop
   PACKAGES="${PACKAGES} coq-serapi.8.15.0+0.15.0"
