@@ -40,7 +40,7 @@ PACKAGES=""
 #   There is some evidence that they are built early then.
 # - Versions ending with ~flex are identical to the opam package without the
 #   ~flex extension, except that version restrictions have been relaxed.
-# - The picking tracker issue is https://github.com/coq/platform/issues/139
+# - The picking tracker issue is https://github.com/coq/platform/issues/193
 
 ########## BASE PACKAGES ##########
 
@@ -109,7 +109,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20211230 menhir.20211230"
-  # PACKAGES="${PACKAGES} coq-equations.1.3+8.14" # requires 8.14, build error with version patch
+  PACKAGES="${PACKAGES} coq-equations.1.3+8.15"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.15.0"
   # PACKAGES="${PACKAGES} coq-unicoq.1.6+8.14" # requires 8.14, build error with version patch
   # PACKAGES="${PACKAGES} coq-mtac2.1.4+8.14" # requires 8.14 and coq-unicoq
