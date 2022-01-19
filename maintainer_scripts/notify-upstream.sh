@@ -36,16 +36,17 @@ PACKAGE_FILTER_RE="${2:-.}"
 ########## Settings ##########
 
 EXT_RELEASE=".0"
-DATE_RELEASE="October 14, 2021"
+DATE_RELEASE="January 13, 2022"
 EXT_FINAL=""
 DATE_FINAL=""
-VERSION_PLATFORM="2021.11"
-DATE_PLATFORM_NOTIFY="November 15, 2021"
-DATE_PLATFORM_EXPECTED="November 30, 2021"
-DATE_PLATFORM_LATEST="January 31, 2022"
+VERSION_PLATFORM="2022.02"
+DATE_PLATFORM_BETA="January 25, 2022"
+DATE_PLATFORM_NOTIFY="February 14, 2022"
+DATE_PLATFORM_EXPECTED="February 28, 2022"
+DATE_PLATFORM_LATEST="April 11, 2022"
 PLATFORM_MAIN_BRANCH="https://github.com/coq/platform/tree/main"
 
-CC="CC: https://github.com/coq/platform/issues/139"
+CC="CC: https://github.com/coq/platform/issues/193"
 #CC="\n@coqbot column:...."
 
 ########## Coq CI interface functions ##########
@@ -154,8 +155,10 @@ We tried to remove version restrictions in opam files and possibly make or confi
 
 Please note that in Coq Platform CI (unlike Coq CI) we test only released / tagged versions. ${COQ_CI_TEST_INFO}
 
-Could you please create a tag, or communicate us any existing tag that works with Coq branch ${COQ_PLATFORM_COQ_BRANCH}, preferably before ${DATE_PLATFORM_NOTIFY}?
+Could you please create a tag and opam package, or communicate us any existing tag that works with Coq branch ${COQ_PLATFORM_COQ_BRANCH}, preferably before ${DATE_PLATFORM_NOTIFY}?
 In case we might have to delay the Coq Platform release cause of issues with your project, we would prefer to be informed about the situation as early as possible.
+
+In case the tag and opam package are available before ${DATE_PLATFORM_BETA}, it will be included in an early Coq Platform beta release of the for Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}.
 
 The working branch of Coq Platform, which already supports Coq version ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}, can be found here ${PLATFORM_MAIN_BRANCH}.
 
@@ -271,7 +274,7 @@ function open_url {
 
 PATCHED_PACKAGE_LIST=${SCRIPT_PATH}/patched_package_list.sh
 
-sed -e 's/# *PACKAGES=/PACKAGES=/' ${PACKAGE_LIST} > ${PATCHED_PACKAGE_LIST}
+sed -e 's/#.*PACKAGES=/PACKAGES=/' ${PACKAGE_LIST} | sed -e 's/ *;;$//' > ${PATCHED_PACKAGE_LIST}
 
 # Read package list file
 
