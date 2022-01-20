@@ -88,7 +88,7 @@ then
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.3.4.3"
   PACKAGES="${PACKAGES} coq-interval.4.4.0"
-  # PACKAGES="${PACKAGES} coq-gappa.1.5.0 gappa.1.4.0" # requires 8.14, build error with version patch
+  PACKAGES="${PACKAGES} coq-gappa.1.5.1 gappa.1.4.0"
 
   # Constructive mathematics
   # PACKAGES="${PACKAGES} coq-math-classes.8.13.0" # requires 8.14, build error with version patch
