@@ -109,13 +109,13 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20211012 menhir.20211012"
-  PACKAGES="${PACKAGES} coq-equations.1.2.4+8.13"
+  PACKAGES="${PACKAGES} coq-equations.1.3+8.13"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.13.2"
   PACKAGES="${PACKAGES} coq-unicoq.1.5+8.13"
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.13"
   PACKAGES="${PACKAGES} coq-elpi.1.11.1 elpi.1.13.7" # Note: coq-elpi 1.11.2 is >=8.14
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.0"
-  PACKAGES="${PACKAGES} coq-quickchick.1.5.1"
+  PACKAGES="${PACKAGES} coq-quickchick.1.6.0"
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.13"
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.13"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.0"
