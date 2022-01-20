@@ -33,7 +33,7 @@ on:
       platform:
         description: 'Arguments for the platform script:'
         required: true
-        default: '-packages=8.14~2021.11 -extent=x -parallel=p -jobs=2 -vst=y -compcert=y'
+        default: '-packages=8.14~2022.01 -extent=x -parallel=p -jobs=2 -vst=y -compcert=y'
 
 ###############################################################################
 # Platform script options shared among all jobs
@@ -42,7 +42,7 @@ on:
 ###############################################################################
 env:
   COQREGTESTING: y
-  PLATFORM_ARGS: -packages=8.14~2021.11 -extent=x -parallel=p -jobs=2 -vst=y -compcert=y
+  PLATFORM_ARGS: -packages=8.14~2022.01 -extent=x -parallel=p -jobs=2 -vst=y -compcert=y
   SAVE_ARTIFACT: true
 
 jobs:

@@ -48,8 +48,8 @@ jobs:
       fail-fast: false
       matrix:
         variant:
-          - '8.14~2021.11'
-          - '8.13~2021.11'
+          - '8.14~2022.01'
+          - '8.13~2022.01'
 
     steps:
       - name: Git checkout
@@ -123,8 +123,8 @@ jobs:
       fail-fast: false
       matrix:
         variant:
-          - '8.14~2021.11'
-          - '8.13~2021.11'
+          - '8.14~2022.01'
+          - '8.13~2022.01'
 
     steps:
       - name: Install bash
