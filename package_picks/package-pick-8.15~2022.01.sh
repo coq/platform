@@ -129,17 +129,17 @@ then
   # PACKAGES="${PACKAGES} coq-iris.3.5.0" # requires 8.14 and coq-stdpp
   # PACKAGES="${PACKAGES} coq-iris-heap-lang.3.5.0" # requires 8.14 and coq-iris
 
-#   case "$COQ_PLATFORM_COMPCERT" in # requires 8.14, build error with version patch
-#     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.9" ;;
-#     [nN]) true ;;
-#     *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
-#   esac
+  case "$COQ_PLATFORM_COMPCERT" in
+    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.10" ;;
+    [nN]) true ;;
+    *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
+  esac
 
-#   case "$COQ_PLATFORM_VST" in # requires 8.14 and coq-compcert
-#     [yY]) PACKAGES="${PACKAGES} coq-vst.2.8" ;;
-#     [nN]) true ;;
-#     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
-#   esac
+  case "$COQ_PLATFORM_VST" in
+    [yY]) PACKAGES="${PACKAGES} coq-vst.2.9" ;;
+    [nN]) true ;;
+    *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
+  esac
 
   # Proof analysis and other tools
   # PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.14"  # requires 8.14
