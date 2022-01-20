@@ -34,10 +34,10 @@ The table below contains links to the README files for the supported versions
 of Coq and libraries. Each README file contains a list of included packages with
 detailed information for each package.
 
-- [Coq 8.13.2 (released Apr 2021) with updated/extended package pick 2021.09](doc/README_2021.09.0_8.13.md)
+- [Coq 8.14.1 (released Nov 2021) with the first package pick from Nov 2021](doc/README_2021.11.0_8.14~2021.11.md)
+- [Coq 8.13.2 (released Apr 2021) with updated/extended package from Nov 2021](doc/README_2021.09.0_8.13.md)
 - [Coq 8.13.2 (released Apr 2021) with original package pick 2021.02](doc/README_2021.09.0_8.13~2021.02.md)
 - [Coq 8.12.2 (released Dec 2020)](doc/README_2021.09.0_8.12.md)
-- [Coq 8.14.0 (released Oct 2021) with a beta package pick](doc/README_2021.09.0_8.14+beta2.md)
 - [Coq 8.15.0 (released Jan 2022) with a preview (still incomplete) package pick](doc/README_2021.11.0_8.15~2022.01.md)
 - Coq 8.14+ltacdebug: A preview for the new CoqIDE Ltac debugger - see [Ltac-Debugger-Preview](https://github.com/coq/coq/wiki/Ltac-Debugger-Preview);
   the package pick is the same as for [Coq 8.14.0](doc/README_2021.09.0_8.14+beta2.md) except that two packages required minor (one liner) patches
