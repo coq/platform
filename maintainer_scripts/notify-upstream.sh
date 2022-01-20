@@ -150,12 +150,12 @@ function open_issue_tag() {
 The corresponding Coq Platform release ${VERSION_PLATFORM} should be released before ${DATE_PLATFORM_EXPECTED}.
 It can be delayed in case of difficulties until ${DATE_PLATFORM_LATEST}, but this should be an exception.
 
-This issue is to inform you that to our (possibly a few days old) best knowledge the latest released version of your project (${LATEST_OPAM_VERSION}) does not work with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}.
+This issue is to inform you that to our (possibly a few days old) best knowledge the latest released version of your project (${LATEST_OPAM_VERSION}) **does not work** with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}.
 We tried to remove version restrictions in opam files and possibly make or configure files, but this did not suffice.
 
 Please note that in Coq Platform CI (unlike Coq CI) we test only released / tagged versions. ${COQ_CI_TEST_INFO}
 
-Could you please create a tag and opam package, or communicate us any existing tag that works with Coq branch ${COQ_PLATFORM_COQ_BRANCH}, preferably before ${DATE_PLATFORM_NOTIFY}?
+Could you please create a tag and opam package, or communicate us any existing tag that works with Coq branch ${COQ_PLATFORM_COQ_BRANCH}, **preferably before ${DATE_PLATFORM_NOTIFY}**?
 In case we might have to delay the Coq Platform release cause of issues with your project, we would prefer to be informed about the situation as early as possible.
 
 In case the tag and opam package are available before ${DATE_PLATFORM_BETA}, it will be included in an early Coq Platform beta release of the for Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}.
@@ -187,11 +187,11 @@ function open_issue_inform() {
 The corresponding Coq Platform release ${VERSION_PLATFORM} should be released before ${DATE_PLATFORM_EXPECTED}.
 It can be delayed in case of difficulties until ${DATE_PLATFORM_LATEST}, but this should be an exception.
 
-This issue is to inform you that the opam package we are currently testing in Coq Platform CI works fine with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}.
+This issue is to inform you that the opam package we are currently testing in Coq Platform CI **works fine** with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}.
 
 ${COQ_PLATFORM_TEST_INFO}
 
-In case this is the version you want to see in Coq Platform, there is nothing to do for you - please just close this issue.
+**In case this is the version you want to see in Coq Platform, there is nothing to do for you - please just close this issue.**
 
 In case you would prefer to see an updated or an older version in the upcoming Coq Platform ${VERSION_PLATFORM}, please inform us as soon as possible and before ${DATE_PLATFORM_NOTIFY}!
 
