@@ -18,7 +18,7 @@ COQ_PLATFORM_VERSION_SORTORDER=9000
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.15.preview~2022.01'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.15.preview1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.15'
@@ -88,7 +88,7 @@ then
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.3.4.3"
   PACKAGES="${PACKAGES} coq-interval.4.4.0"
-  # PACKAGES="${PACKAGES} coq-gappa.1.5.0 gappa.1.4.0" # requires 8.14, build error with version patch
+  PACKAGES="${PACKAGES} coq-gappa.1.5.1 gappa.1.4.0"
 
   # Constructive mathematics
   # PACKAGES="${PACKAGES} coq-math-classes.8.13.0" # requires 8.14, build error with version patch
@@ -129,17 +129,17 @@ then
   # PACKAGES="${PACKAGES} coq-iris.3.5.0" # requires 8.14 and coq-stdpp
   # PACKAGES="${PACKAGES} coq-iris-heap-lang.3.5.0" # requires 8.14 and coq-iris
 
-#   case "$COQ_PLATFORM_COMPCERT" in # requires 8.14, build error with version patch
-#     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.9" ;;
-#     [nN]) true ;;
-#     *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
-#   esac
+  case "$COQ_PLATFORM_COMPCERT" in
+    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.10" ;;
+    [nN]) true ;;
+    *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
+  esac
 
-#   case "$COQ_PLATFORM_VST" in # requires 8.14 and coq-compcert
-#     [yY]) PACKAGES="${PACKAGES} coq-vst.2.8" ;;
-#     [nN]) true ;;
-#     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
-#   esac
+  case "$COQ_PLATFORM_VST" in
+    [yY]) PACKAGES="${PACKAGES} coq-vst.2.9" ;;
+    [nN]) true ;;
+    *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
+  esac
 
   # Proof analysis and other tools
   # PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.14"  # requires 8.14

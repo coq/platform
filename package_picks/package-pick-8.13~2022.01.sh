@@ -18,7 +18,7 @@ COQ_PLATFORM_VERSION_SORTORDER=2
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.13~2021.11'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.13~2022.01'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.13'
@@ -28,7 +28,7 @@ COQ_PLATFORM_COQ_TAG='8.13.2'
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2021.11.0 includes Coq 8.13.2 from 04/2021. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.01.0 includes Coq 8.13.2 from 04/2021. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='There are three package picks for Coq 8.13.2: the original from 02/2021, a substantially extended one from 09/2021 and an updated one from 11/2021. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is the latest package pick for Coq 8.13.2 with some package updates with the goal to make it as compatible as possible to the Coq 8.14.0 packahe pick. '
 
@@ -109,13 +109,13 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20211012 menhir.20211012"
-  PACKAGES="${PACKAGES} coq-equations.1.2.4+8.13"
+  PACKAGES="${PACKAGES} coq-equations.1.3+8.13"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.13.2"
   PACKAGES="${PACKAGES} coq-unicoq.1.5+8.13"
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.13"
   PACKAGES="${PACKAGES} coq-elpi.1.11.1 elpi.1.13.7" # Note: coq-elpi 1.11.2 is >=8.14
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.0"
-  PACKAGES="${PACKAGES} coq-quickchick.1.5.1"
+  PACKAGES="${PACKAGES} coq-quickchick.1.6.0"
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.13"
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.13"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.0"

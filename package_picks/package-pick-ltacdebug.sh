@@ -28,7 +28,7 @@ COQ_PLATFORM_COQ_TAG='v8.14'
 COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2021.11.0 includes a preview release for an interactive Ltac debugger in CoqIDE based on Coq 8.14.'
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.01.0 includes a preview release for an interactive Ltac debugger in CoqIDE based on Coq 8.14.'
 
 ###################### PACKAGE SELECTION #####################
 
