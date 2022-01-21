@@ -91,7 +91,7 @@ then
   PACKAGES="${PACKAGES} coq-gappa.1.5.1 gappa.1.4.0"
 
   # Constructive mathematics
-  # PACKAGES="${PACKAGES} coq-math-classes.8.13.0" # requires 8.14, build error with version patch
+  PACKAGES="${PACKAGES} coq-math-classes.8.15.0"
   # PACKAGES="${PACKAGES} coq-corn.8.13.0" # requires 8.14 and coq-math-classes
 
   # Homotopy Type Theory (HoTT)
@@ -112,8 +112,8 @@ then
   PACKAGES="${PACKAGES} coq-equations.1.3+8.15"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.15.0"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.15"
-  # PACKAGES="${PACKAGES} coq-mtac2.1.4+8.14" # requires 8.14 and coq-unicoq
-  PACKAGES="${PACKAGES} coq-elpi.1.12.0 elpi.1.13.8"
+  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"
+  PACKAGES="${PACKAGES} coq-elpi.1.12.1 elpi.1.13.8"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"
   PACKAGES="${PACKAGES} coq-quickchick.1.6.0" # works with 8.14 version patch
   # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.1+8.13~flex" # coq-hammer-tactics.1.3.1+8.13~flex does not compile
@@ -125,7 +125,7 @@ then
   # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.12" # requires 8.14, build error with version patch
 
   # Formal languages, compilers and code verification
-  PACKAGES="${PACKAGES} coq-reglang.1.1.2" # works with 8.14 version patch
+  PACKAGES="${PACKAGES} coq-reglang.1.1.3"
   # PACKAGES="${PACKAGES} coq-iris.3.5.0" # requires 8.14 and coq-stdpp
   # PACKAGES="${PACKAGES} coq-iris-heap-lang.3.5.0" # requires 8.14 and coq-iris
 
