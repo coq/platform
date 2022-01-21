@@ -142,7 +142,7 @@ then
   esac
 
   # Proof analysis and other tools
-  # PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.14"  # requires 8.14
+  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.15"
 
 fi
 
