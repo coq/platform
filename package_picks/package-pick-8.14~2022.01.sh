@@ -117,9 +117,12 @@ then
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.0"  # pick confirmed https://github.com/math-comp/hierarchy-builder/issues/265
   PACKAGES="${PACKAGES} coq-quickchick.1.6.0"         # pick confirmed https://github.com/QuickChick/QuickChick/issues/236
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.14" # pick confirmed https://github.com/lukaszcz/coqhammer/issues/110
-  PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.14"        # pick confirmed https://github.com/lukaszcz/coqhammer/issues/110
-  PACKAGES="${PACKAGES} eprover.2.6"                  # ATP for coq-hammer (latest version)
-  PACKAGES="${PACKAGES} z3_tptp.4.8.13"               # ATP for coq-hammer (latest version)
+  if [[ "$OSTYPE" != cygwin ]]
+  then
+    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.14"        # pick confirmed https://github.com/lukaszcz/coqhammer/issues/110
+    PACKAGES="${PACKAGES} eprover.2.6"                  # ATP for coq-hammer (latest version)
+    PACKAGES="${PACKAGES} z3_tptp.4.8.13"               # ATP for coq-hammer (latest version)
+  fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.14"   # pick confirmed https://github.com/coq-community/paramcoq/issues/82
   PACKAGES="${PACKAGES} coq-coqeal.1.1.0"             # Pick confirmed https://github.com/coq-community/coqeal/issues/51
   PACKAGES="${PACKAGES} coq-libhyps.2.0.4"            # Pick confirmed https://github.com/Matafou/LibHyps/issues/6
