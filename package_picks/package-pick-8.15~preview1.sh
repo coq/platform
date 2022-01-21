@@ -125,7 +125,7 @@ then
   # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.12" # requires 8.14, build error with version patch
 
   # Formal languages, compilers and code verification
-  PACKAGES="${PACKAGES} coq-reglang.1.1.2" # works with 8.14 version patch
+  PACKAGES="${PACKAGES} coq-reglang.1.1.3"
   # PACKAGES="${PACKAGES} coq-iris.3.5.0" # requires 8.14 and coq-stdpp
   # PACKAGES="${PACKAGES} coq-iris-heap-lang.3.5.0" # requires 8.14 and coq-iris
 
