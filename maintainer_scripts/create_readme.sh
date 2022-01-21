@@ -14,7 +14,7 @@
 # This script creates from an opam installation a README.md file with:
 # - name, version, synopsis and description of each primary package
 # - name, version, synopsis and description of each dependency package
-# - information about liceses, project homepages, ...
+# - information about licenses, project homepages, ...
 
 ##### Initialization #####
 
@@ -257,16 +257,16 @@ echo PACKAGES_ALL="${PACKAGES_ALL}"
 function html_package_opam {
   echo "Create README for $1"
 
-  # Get package informatop from opam
+  # Get package information from opam
   # Example output (with 2 license fields ...)
   # opam show "conf-adwaita-icon-theme" -f version:,license:,synopsis:,homepage:
   # version:  "1"
   # license:  "LGPL-3.0-only" "CC-BY-SA-3.0"
   # synopsis: "Virtual package relying on adwaita-icon-theme"
   # homepage: "https://github.com/GNOME/adwaita-icon-theme"
-  # Note: the process substition (rather than pipe) avoids a subshell, so that variables can be set.
+  # Note: the process substitution (rather than pipe) avoids a subshell, so that variables can be set.
   # Note: the declare -a var="(list)" makes it possible to convert a list of quoted strings to an array
-  unset pversion plicense psynopsis phomepage pbugreports pdescription pauthors preporsitory
+  unset pversion plicense psynopsis phomepage pbugreports pdescription pauthors prepository
   multiline=''
   while read var value
   do
@@ -278,7 +278,7 @@ function html_package_opam {
       bug-reports:) pbugreports="${value//\"}"; multiline='' ;;
       description:) pdescription="${value//\"}"; multiline='' ;;
       authors:)     pauthors="${value//\"}"; multiline=pauthors ;;
-      repository)   preporsitory="${value//\"}"; multiline='' ;;
+      repository)   prepository="${value//\"}"; multiline='' ;;
       *)
         if [ -n "$multiline" ] 
         then
@@ -329,7 +329,7 @@ function html_package_opam {
   fi
 
   # Look up the opam package URL
-  popam_url="$(opam_get_installed_opam_repo "${preporsitory}" "$1")"
+  popam_url="$(opam_get_installed_opam_repo "${prepository}" "$1")"
   if [ "${CHECKOPAMLINKS}" == 'Y' ] && ! check_url "${popam_url}"
   then
     echo "opam url '${popam_url}' for package '${package}' does not exist!" >> WARNINGS.log
@@ -401,7 +401,7 @@ below and verify that they are compatible with your intended use in case you
 plan to use these packages.
 
 **Note on license information:**
-The license information given below is obtianed from opam.
+The license information given below is obtained from opam.
 The Coq Platform team does no double check this information.
 
 **Note on multiple licenses:** 
@@ -459,7 +459,7 @@ developments.
 
 The packages in the **full level** are mature, well maintained
 and suitable as basis for your own developments.
-See the Coq Platform [charter](charter.md) for deatils.
+See the Coq Platform [charter](charter.md) for details.
 
 The **full level** contains the following packages:
 
@@ -520,7 +520,7 @@ done
 cat >> ${RESULT_FILE_MD} <<EOT
 <br>
 
-## **Dependecy packages**
+## **Dependency packages**
 
 In addition the dependencies listed below are partially or fully included or required during build time.
 Please note, that the version numbers given are the versions of opam packages,

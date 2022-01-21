@@ -161,7 +161,7 @@ SectionEnd
 ; Inform user when sections are selected
 
 ; Parameters on the stack:
-; top-0 : section B on which section A dependends
+; top-0 : section B on which section A depends
 ; top-1 : section A, which depends on section B
 ; top-2 : name of section B
 ; top-3 : name of section A

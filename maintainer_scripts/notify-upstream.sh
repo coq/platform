@@ -122,7 +122,7 @@ function opam_get_issue_url() {
 
 ########## User interaction ##########
 
-# Ask user for confirmationa multi option + cancel question
+# Ask user for confirmation multi option + cancel question
 # $1 message
 # $2 set of options as character sequence
 # The choice is stored in ${ANSWER}
@@ -150,7 +150,7 @@ function open_issue_tag() {
 The corresponding Coq Platform release ${VERSION_PLATFORM} should be released before ${DATE_PLATFORM_EXPECTED}.
 It can be delayed in case of difficulties until ${DATE_PLATFORM_LATEST}, but this should be an exception.
 
-This issue is to inform you that to our (possibly a few days old) best knoweldege the latest released version of your project (${LATEST_OPAM_VERSION}) does not work with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}.
+This issue is to inform you that to our (possibly a few days old) best knowledge the latest released version of your project (${LATEST_OPAM_VERSION}) does not work with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}.
 We tried to remove version restrictions in opam files and possibly make or configure files, but this did not suffice.
 
 Please note that in Coq Platform CI (unlike Coq CI) we test only released / tagged versions. ${COQ_CI_TEST_INFO}
@@ -264,7 +264,7 @@ function open_url {
     linux*)  xdg-open "$1" ;;
     darwin*) open "$1" ;;
     cygwin*) echo "TODO: unimplemented" ; return 1 ;;
-    *)       echo "ERROR: unsopported OS type '$OSTYPE'"; return 1 ;;
+    *)       echo "ERROR: unsupported OS type '$OSTYPE'"; return 1 ;;
   esac
 }
 
@@ -368,7 +368,7 @@ do
     fi
   fi
 
-  # Show avaliable versions in opam
+  # Show available versions in opam
   opam_versions="$(opam show -f all-versions ${package_main})"
   LATEST_OPAM_VERSION="$(echo "${opam_versions}" | sed 's/  */\n/g' | grep -v 'dev' | tail -n 1)"
   echo "OPAM versions:    ${opam_versions} [${LATEST_OPAM_VERSION}]"

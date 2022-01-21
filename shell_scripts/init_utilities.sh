@@ -51,7 +51,7 @@ function check_command_available {
 # $2 option 1 keys (only first is shown - this is also the return value)
 # $3 option 1 text
 #
-# Example: ask_user_opt1_cancel "Disable sandbox (d) or cancel (c)?" dD "dsiable sandbox"
+# Example: ask_user_opt1_cancel "Disable sandbox (d) or cancel (c)?" dD "disable sandbox"
 # ------------------------------------------------------------------------------
 
 function ask_user_opt1_cancel {
