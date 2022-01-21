@@ -112,7 +112,7 @@ then
   PACKAGES="${PACKAGES} coq-equations.1.3+8.15"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.15.0"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.15"
-  # PACKAGES="${PACKAGES} coq-mtac2.1.4+8.14" # requires 8.14 and coq-unicoq
+  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"
   PACKAGES="${PACKAGES} coq-elpi.1.12.0 elpi.1.13.8"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"
   PACKAGES="${PACKAGES} coq-quickchick.1.6.0" # works with 8.14 version patch
