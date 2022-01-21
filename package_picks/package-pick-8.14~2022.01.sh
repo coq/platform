@@ -63,7 +63,7 @@ then
   PACKAGES="${PACKAGES} PIN.ppxlib.0.15.0"            # coq-serapi requires this old version
 
   # Standard library extensions
-  PACKAGES="${PACKAGES} coq-bignums.8.14.0"
+  PACKAGES="${PACKAGES} coq-bignums.8.14.0"           # this is tightly coupled to Coq, so there was no discussion on the version to pick
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.4"           # pick confirmed https://github.com/coq-community/coq-ext-lib/issues/116
   PACKAGES="${PACKAGES} coq-stdpp.1.6.0"              # pick confirmed https://gitlab.mpi-sws.org/iris/stdpp/-/issues/119
 
@@ -116,8 +116,11 @@ then
   PACKAGES="${PACKAGES} coq-elpi.1.11.2 elpi.1.13.7"  # pick confirmed https://github.com/LPCIC/coq-elpi/issues/291
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.0"  # pick confirmed https://github.com/math-comp/hierarchy-builder/issues/265
   PACKAGES="${PACKAGES} coq-quickchick.1.6.0"         # pick confirmed https://github.com/QuickChick/QuickChick/issues/236
-  # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.1+8.13~flex" # coq-hammer-tactics.1.3.1+8.13~flex does not compile
-  PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.14"
+  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.14" # pick confirmed https://github.com/lukaszcz/coqhammer/issues/110
+  PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.14"        # pick confirmed https://github.com/lukaszcz/coqhammer/issues/110
+  PACKAGES="${PACKAGES} eprover.2.6"                  # ATP for coq-hammer (latest version)
+  PACKAGES="${PACKAGES} z3_tptp.4.8.13"               # ATP for coq-hammer (latest version)
+  PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.14"   # pick confirmed https://github.com/coq-community/paramcoq/issues/82
   PACKAGES="${PACKAGES} coq-coqeal.1.1.0"             # Pick confirmed https://github.com/coq-community/coqeal/issues/51
   PACKAGES="${PACKAGES} coq-libhyps.2.0.4"            # Pick confirmed https://github.com/Matafou/LibHyps/issues/6
 
