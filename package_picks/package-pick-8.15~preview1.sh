@@ -91,7 +91,7 @@ then
   PACKAGES="${PACKAGES} coq-gappa.1.5.1 gappa.1.4.0"
 
   # Constructive mathematics
-  # PACKAGES="${PACKAGES} coq-math-classes.8.13.0" # requires 8.14, build error with version patch
+  PACKAGES="${PACKAGES} coq-math-classes.8.15.0"
   # PACKAGES="${PACKAGES} coq-corn.8.13.0" # requires 8.14 and coq-math-classes
 
   # Homotopy Type Theory (HoTT)
