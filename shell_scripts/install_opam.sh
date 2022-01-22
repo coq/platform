@@ -188,8 +188,7 @@ fi
 
 ###################### SELECT OPAM SWITCH #####################
 
-opam switch $COQ_PLATFORM_SWITCH_NAME
-eval $(opam env)
+eval $(opam env --set-switch --switch ${COQ_PLATFORM_SWITCH_NAME})
 
 echo === OPAM REPOSITORIES ===
 opam repo list
