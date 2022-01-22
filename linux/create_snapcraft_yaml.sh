@@ -29,6 +29,8 @@ source coq_platform_make.sh
 # Snap versions cannot contain . nor +
 PLATFORM_RELEASE=${COQ_PLATFORM_RELEASE//[.+]/-}
 
+VERSION_EXTENSION="${COQ_PLATFORM_RELEASE}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}"
+
 ###################### CREATE SNAPCRAFT.YAML #####################
 
 # Description of the snap
@@ -40,24 +42,14 @@ cat > $COQ_DESCRIPTION <<EOT
   proofs.
   
   This snap contains the Coq prover version $COQ_PLATFORM_COQ_TAG
-  along with CoqIDE and the following packages:
-EOT
+  along with CoqIDE and a collection of packages.
 
-for p in $(echo ${PACKAGES} | sed -e 's/ /\n/g' | sort); do
-  pname=`echo $p | sed 's/\..*//'`
-  if [ "${pname##coq-}" == "$pname" ]; then continue; fi
-  pversion="$(opam show $p -f version: | tr -d \")"
-  pdescr="$(opam show $p -f synopsis: | tr -d \")"
-  pdescr_short="${pdescr:0:60}"
-  if [ "$pdescr" != "$pdescr_short" ]
-  then
-    pdescr_short="${pdescr_short}..."
-    echo "INFO: description for package $pname is too long and was truncated!"
-    printf "ORIGINAL:  %s\n" "$pdescr"
-    printf "TRUNCATED: %s\n" "$pdescr_short"
-  fi
-  printf "  * **%s**: %s (%s)\n" ${pname##coq-} "$pdescr_short" "$pversion" >> $COQ_DESCRIPTION
-done
+  Details on the included packages can be found here:
+  https://github.com/coq/platform/blob/main/doc/README_${VERSION_EXTENSION}.md
+
+  Part of this information is also available in table form here:
+  https://github.com/coq/platform/blob/main/doc/PackageTable_${VERSION_EXTENSION}.csv
+EOT
 
 COQ_DESCRIPTION_LEN="$(wc -m < $COQ_DESCRIPTION)"
 if [ "$COQ_DESCRIPTION_LEN" -gt 4096 ]
