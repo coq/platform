@@ -145,7 +145,7 @@ then
 
 
   # Proof analysis and other tools
-  # PACKAGES="${PACKAGES} coq-dpdgraph.dev" # no .dev package
+  PACKAGES="${PACKAGES} coq-dpdgraph.dev"
 
 fi
 
@@ -153,7 +153,6 @@ fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
-
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.dev"
 
