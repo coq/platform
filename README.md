@@ -39,8 +39,6 @@ detailed information for each package.
 - [Coq 8.13.2 (released Apr 2021) with original package pick from Feb 2021](doc/README_2021.09.0_8.13~2021.02.md)
 - [Coq 8.12.2 (released Dec 2020)](doc/README_2021.09.0_8.12.md)
 - [Coq 8.15.0 (released Jan 2022) with a preview (still incomplete) package pick](doc/README_2022.01.0_8.15~preview1.md)
-- Coq 8.14+ltacdebug: A preview for the new CoqIDE Ltac debugger - see [Ltac-Debugger-Preview](https://github.com/coq/coq/wiki/Ltac-Debugger-Preview);
-  the package pick is the same as for [Coq 8.14.0](doc/README_2021.09.0_8.14+beta2.md) except that two packages required minor (one liner) patches
 - Coq developer version: this build points to the latest developer branches of Coq and all packages and is intended for package maintainers - there is no guarantee that all packages build
 
 If you have questions on the Coq Platform, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
@@ -151,14 +149,13 @@ You can list the available switches with:
 ```
 ~$ opam switch
 #   switch                                   compiler                    description
-    __coq-platform.2021.09.0~8.12            ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.12
-->  __coq-platform.2021.09.0~8.13            ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.13
-    __coq-platform.2021.09.0~8.13~2021.02    ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.13~2021.02
-    __coq-platform.2021.09.0~8.14+beta1      ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.14+beta1
-    __coq-platform.2021.09.0~8.14+beta2      ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.14+beta2
-    __coq-platform.2021.09.0~8.14~ltacdebug  ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~8.14~ltacdebug
-    __coq-platform.2021.09.0~dev             ocaml-base-compiler.4.10.0  __coq-platform.2021.09.0~dev
-    _coq-platform_.2021.02.1                 ocaml-base-compiler.4.07.1  _coq-platform_.2021.02.1
+    __coq-platform.2022.01.0~8.12            ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.12
+    __coq-platform.2022.01.0~8.13~2021.02    ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.13~2021.02
+    __coq-platform.2022.01.0~8.13~2021.09    ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.13~2021.09
+    __coq-platform.2022.01.0~8.13~2022.01    ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.13~2022.01
+    __coq-platform.2022.01.0~8.14~2022.01    ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.14~2022.01
+    __coq-platform.2022.01.0~8.15~preview1   ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.15~preview1
+->  __coq-platform.2022.01.0~dev             ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~dev
 ```
 
 You can select the opam switch for **all shells** with e.g.:
