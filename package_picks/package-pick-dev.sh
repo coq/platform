@@ -128,8 +128,8 @@ then
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.dev"
-  # PACKAGES="${PACKAGES} coq-iris.dev" # no .dev package
-  # PACKAGES="${PACKAGES} coq-iris-heap-lang.dev" # no .dev package
+  PACKAGES="${PACKAGES} coq-iris.dev"
+  PACKAGES="${PACKAGES} coq-iris-heap-lang.dev"
 
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.dev" ;;
