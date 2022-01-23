@@ -34,12 +34,13 @@ The table below contains links to the README files for the supported versions
 of Coq and libraries. Each README file contains a list of included packages with
 detailed information for each package.
 
-- [Coq 8.14.1 (released Nov 2021) with the first package pick from Jan 2022](doc/README_2022.01.0~8.14~2022.01.md)
-- [Coq 8.13.2 (released Apr 2021) with an updated package pick from Jan 2022](doc/README_2022.01.0~8.13~2022.01.md)
-- [Coq 8.13.2 (released Apr 2021) with original package pick from Feb 2021](doc/README_2021.09.0_8.13~2021.02.md)
-- [Coq 8.12.2 (released Dec 2020)](doc/README_2021.09.0_8.12.md)
-- [Coq 8.15.0 (released Jan 2022) with a preview (still incomplete) package pick](doc/README_2022.01.0_8.15~preview1.md)
-- Coq developer version: this build points to the latest developer branches of Coq and all packages and is intended for package maintainers - there is no guarantee that all packages build
+- [Coq 8.14.1 (released Nov 2021) with the first package pick from Jan 2022](doc/README~8.14~2022.01.md)
+- [Coq 8.13.2 (released Apr 2021) with an updated package pick from Jan 2022](doc/README~8.13~2022.01.md)
+- [Coq 8.13.2 (released Apr 2021) with an updated package pick from Sep 2021](doc/README~8.13~2021.09.md)
+- [Coq 8.13.2 (released Apr 2021) with original package pick from Feb 2021](doc/README~8.13~2021.02.md)
+- [Coq 8.12.2 (released Dec 2020)](doc/README~8.12.md)
+- [Coq 8.15.0 (released Jan 2022) with a preview (still incomplete) package pick](doc/README~8.15~preview1.md)
+- [Coq Developer (latest developer branch)](doc/README~dev.md)
 
 If you have questions on the Coq Platform, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
 

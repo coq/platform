@@ -1,4 +1,4 @@
-# Coq Platform 2021.09.0 providing Coq 8.13.2 (released Apr 2021) with original package pick from Feb 2021
+# Coq Platform 2022.01.0 providing Coq 8.13.2 (released Apr 2021) with the first package pick from Feb 2021
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
@@ -8,10 +8,10 @@ The [Coq Platform](https://github.com/coq/platform) is a distribution of the Coq
 interactive prover together with a selection of Coq libraries and plugins.
 
 The Coq Platform supports to install several versions of Coq (also in parallel).
-This README file is for **Coq Platform 2021.09.0 with Coq 8.13.2**.
+This README file is for **Coq Platform 2022.01.0 with Coq 8.13.2**.
 The README files for other versions are linked in the main [README](../README.md).
 
-This version of Coq Platform 2021.09.0 includes Coq 8.13.2 from 04/2021 with the original package pick from 04/2021. An updated and extended package pick for Coq 8.13.2 is available andit is recommended to use this updated package pick.The original package pick is provided for compatibility.
+This version of Coq Platform 2022.01.0 includes Coq 8.13.2 from 04/2021. There are three package picks for Coq 8.13.2: the original from 02/2021, a substantially extended one from 09/2021 and an updated one from 11/2021. This is the original package pick from 02/2021. The 02/2021 and 09/2021 package picks are provided for compatibility and it is recommended to use the 11/2021 pick - or Coq 8.14.0.
 
 The Coq Platform supports four levels of installation extent:
 **base**, **IDE**, **full** and **extended** and a few **optional** packages.
@@ -26,7 +26,7 @@ below and verify that they are compatible with your intended use in case you
 plan to use these packages.
 
 **Note on license information:**
-The license information given below is obtianed from opam.
+The license information given below is obtained from opam.
 The Coq Platform team does no double check this information.
 
 **Note on multiple licenses:** 
@@ -35,13 +35,13 @@ It could mean that parts of the software use one license while other parts use a
 It could also mean that you can choose between the given licenses.
 Please clarify the details with the homepage of the package.
 
-**Note:** The package list is also available as [CSV](PackageTable_2021.09.0_8.13~2021.02.csv).
+**Note:** The package list is also available as [CSV](PackageTable~8.13~2021.02.csv).
 
 **Note:** Click on the triangle to show additional information for a package!
 
 <br>
 
-## **Coq Platform 2021.09.0 with Coq 8.13.2 "base level"**
+## **Coq Platform 2022.01.0 with Coq 8.13.2 "base level"**
 
 The **base level** is mostly intended as a basis for custom installations using
 opam and contains the following package(s):
@@ -55,7 +55,7 @@ opam and contains the following package(s):
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/coq/coq.8.13.2/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq/coq.8.13.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>The Coq proof assistant provides a formal language to writenmathematical definitions, executable algorithms, and theorems, togethernwith an environment for semi-interactive development of machine-checkednproofs. Typical applications include the certification of properties of programmingnlanguages (e.g., the CompCert compiler certification project and thenBedrock verified low-level programming library), the formalization ofnmathematics (e.g., the full formalization of the Feit-Thompson theoremnand homotopy type theory) and teaching.</dd>
   </dl>
@@ -63,7 +63,7 @@ opam and contains the following package(s):
 
 <br>
 
-## **Coq Platform 2021.09.0 with Coq 8.13.2 "IDE level"**
+## **Coq Platform 2022.01.0 with Coq 8.13.2 "IDE level"**
 
 The **IDE level** adds an interactive development environment to the **base level**.
 
@@ -91,14 +91,14 @@ The **IDE level** contains the following package(s):
 
 <br>
 
-## **Coq Platform 2021.09.0 with Coq 8.13.2 "full level"**
+## **Coq Platform 2022.01.0 with Coq 8.13.2 "full level"**
 
 The **full level** adds many commonly used coq libraries, plug-ins and
 developments.
 
 The packages in the **full level** are mature, well maintained
 and suitable as basis for your own developments.
-See the Coq Platform [charter](charter.md) for deatils.
+See the Coq Platform [charter](charter.md) for details.
 
 The **full level** contains the following packages:
 
@@ -246,7 +246,7 @@ The **full level** contains the following packages:
     <dt><b>links</b></dt><dd>
       (<a href='http://homotopytypetheory.org/'>homepage</a>)
       (<a href='https://github.com/HoTT/HoTT/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-hott/coq-hott.8.13/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-hott/coq-hott.8.13/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>To use the HoTT library, the following flags must be passed to coqc:n   -noinit -indices-matternTo use the HoTT library in a project, add the following to _CoqProject:n   -arg -noinitn   -arg -indices-matter</dd>
   </dl>
@@ -509,7 +509,7 @@ The **full level** contains the following packages:
 
 <br>
 
-## **Coq Platform 2021.09.0 with Coq 8.13.2 "optional packages"**
+## **Coq Platform 2022.01.0 with Coq 8.13.2 "optional packages"**
 
 The **optional** packages have the same maturity and maintenance level as the
 packages in the full level, but either have a **non open source license** or
@@ -554,7 +554,7 @@ The following packages are **optional**:
 
 <br>
 
-## **Coq Platform 2021.09.0 with Coq 8.13.2 "extended level"**
+## **Coq Platform 2022.01.0 with Coq 8.13.2 "extended level"**
 
 The **extended level** contains packages which are in a beta stage or otherwise
 don't yet have the level of maturity or support required for inclusion in the
@@ -570,7 +570,7 @@ The **extended level** contains the following packages:
 
 <br>
 
-## **Dependecy packages**
+## **Dependency packages**
 
 In addition the dependencies listed below are partially or fully included or required during build time.
 Please note, that the version numbers given are the versions of opam packages,
@@ -619,15 +619,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/janestreet/base'>base.v0.14.1</a>
-(v0.14.1) Full standard library replacement for OCaml</summary>
+  <summary><a href='https://github.com/janestreet/base'>base.v0.14.2</a>
+(v0.14.2) Full standard library replacement for OCaml</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/janestreet/base'>homepage</a>)
       (<a href='https://github.com/janestreet/base/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/base/base.v0.14.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/base/base.v0.14.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Full standard library replacement for OCamlnnBase is a complete and portable alternative to the OCaml standardnlibrary. It provides all standard functionalities one would expectnfrom a language standard library. It uses consistent conventionsnacross all of its module.nnBase aims to be usable in any context. As a result system dependentnfeatures such as I/O are not offered by Base. They are insteadnprovided by companion libraries such as stdio:nn  https://github.com/janestreet/stdio</dd>
   </dl>
@@ -799,15 +799,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='http://gmplib.org/'>gmp.3</a>
-(3) Virtual package relying on a GMP lib system installation</summary>
+  <summary><a href='http://gmplib.org/'>gmp.4</a>
+(4) Virtual package relying on a GMP lib system installation</summary>
   <dl>
     <dt><b>authors</b></dt><dd>nbraud</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/GPL-1.0-or-later.html" target="_blank">GPL-1.0-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://gmplib.org/'>homepage</a>)
       (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/conf-gmp/conf-gmp.3/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/conf-gmp/conf-gmp.4/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package can only install if the GMP lib is installed on the system.</dd>
   </dl>
@@ -859,15 +859,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://www.perl.org/'>perl.1</a>
-(1) Virtual package relying on perl</summary>
+  <summary><a href='https://www.perl.org/'>perl.2</a>
+(2) Virtual package relying on perl</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Larry Wall</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/GPL-1.0-or-later.html" target="_blank">GPL-1.0-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://www.perl.org/'>homepage</a>)
       (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/conf-perl/conf-perl.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/conf-perl/conf-perl.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package can only install if the perl program is installed on the system.</dd>
   </dl>
@@ -1024,15 +1024,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://ocaml.org'>ocaml-base-compiler.4.10.0</a>
-(4.10.0) Official release 4.10.0</summary>
+  <summary><a href='https://ocaml.org'>ocaml-base-compiler.4.10.2</a>
+(4.10.2) Official release 4.10.2</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Xavier Leroy and many contributors</dd>
     <dt><b>license</b></dt><dd> LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://ocaml.org" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://ocaml.org'>homepage</a>)
       (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocaml-base-compiler/ocaml-base-compiler.4.10.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ocaml-base-compiler/ocaml-base-compiler.4.10.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -1084,15 +1084,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://ocaml.org'>ocaml.4.10.0</a>
-(4.10.0) The OCaml compiler (virtual package)</summary>
+  <summary><a href='https://ocaml.org'>ocaml.4.10.2</a>
+(4.10.2) The OCaml compiler (virtual package)</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Xavier Leroy - Damien Doligez - Alain Frisch - Jacques Garrigue - Didier Rémy - Jérôme Vouillon</dd>
     <dt><b>license</b></dt><dd> LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://ocaml.org" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://ocaml.org'>homepage</a>)
       (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocaml/ocaml.4.10.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ocaml/ocaml.4.10.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package requires a matching implementation of OCaml,nand polls it to initialise specific variables like `ocaml:native-dynlink`</dd>
   </dl>
@@ -1114,15 +1114,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='http://projects.camlcity.org/projects/findlib.html'>ocamlfind.1.9.1</a>
-(1.9.1) A library manager for OCaml</summary>
+  <summary><a href='http://projects.camlcity.org/projects/findlib.html'>ocamlfind.1.9.2</a>
+(1.9.2) A library manager for OCaml</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Gerd Stolpmann &lt;gerd@gerd-stolpmann.de&gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://projects.camlcity.org/projects/findlib.html'>homepage</a>)
       (<a href='https://github.com/ocaml/ocamlfind/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocamlfind/ocamlfind.1.9.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ocamlfind/ocamlfind.1.9.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Findlib is a library manager for OCaml. It provides a convention hownto store libraries, and a file format (META) to describe thenproperties of libraries. There is also a tool (ocamlfind) forninterpreting the META files, so that it is very easy to use librariesnin programs and scripts.</dd>
   </dl>

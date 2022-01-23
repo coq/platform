@@ -35,7 +35,7 @@ It could mean that parts of the software use one license while other parts use a
 It could also mean that you can choose between the given licenses.
 Please clarify the details with the homepage of the package.
 
-**Note:** The package list is also available as [CSV](PackageTable_2022.01.0~8.13~2022.01.csv).
+**Note:** The package list is also available as [CSV](PackageTable~8.13~2022.01.csv).
 
 **Note:** Click on the triangle to show additional information for a package!
 
@@ -1362,7 +1362,7 @@ Please refer to the linked opam package and/or your system package manager for d
     <dt><b>links</b></dt><dd>
       (<a href='https://gitlab.inria.fr/zimmerma/ecm'>homepage</a>)
       (<a href='https://gitlab.inria.fr/zimmerma/ecm/-/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/gmp-ecm/gmp-ecm.7.0.3/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/gmp-ecm/gmp-ecm.7.0.3/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
