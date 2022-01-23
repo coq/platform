@@ -121,7 +121,7 @@ then
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.dev"
   PACKAGES="${PACKAGES} coq-coqeal.dev"
-  # PACKAGES="${PACKAGES} coq-libhyps.dev" # no .dev package
+  PACKAGES="${PACKAGES} coq-libhyps.dev"
 
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.dev"
