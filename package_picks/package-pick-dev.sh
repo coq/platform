@@ -79,7 +79,7 @@ then
 
   # Number theory
   PACKAGES="${PACKAGES} coq-coqprime.dev"
-  # PACKAGES="${PACKAGES} coq-coqprime-generator.dev" # no .dev package
+  PACKAGES="${PACKAGES} coq-coqprime-generator.dev"
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.3.dev"
