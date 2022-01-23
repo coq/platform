@@ -53,6 +53,7 @@ jobs:
           - '8.13~2022.01'
           - '8.12'
           - '8.15~preview1'
+          - 'dev'
 
     steps:
       - name: Git checkout
