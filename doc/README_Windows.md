@@ -17,13 +17,30 @@ A note to lecturers: it is easy to create a customized Windows installer from an
 
 This method is intended for experienced users, who may want to use opam to install additional packages, beyond the standard set provided by the Coq Platform, or who need an advanced working environment with a posix shell, make, dune, ...
 
-- Get the Coq Platform scripts via either of these methods
-  - Most users should download and extract `https://github.com/coq/platform/archive/refs/tags/2021.09.0.zip`.
-  - Users which intend to contribute to Coq Platform should use `git clone --branch 2021.09.0 https://github.com/coq/platform.git`.
-    Please note that the scripts are CR/LF sensitive, so if you use a Windows git client (not a Cygwin git) you should set `git config --global core.autocrlf false` - which is anyway a good idea.
-- Open a command window, navigate to the download folder and execute `coq_platform_make_windows.bat`
-- This will ask for the Cygwin installation path and setup a fresh Cygwin as build host (the created Coq is MinGW and runs without Cygwin).
-- After the Cygwin setup - which takes a few minutes - the script will automatically execute the common setup shell script `coq_platform_make.sh`.
+- In case you install **Coq Platform for the first time**:
+  - Get the Coq Platform scripts via either of these methods
+    - Most users should download and extract `https://github.com/coq/platform/archive/refs/tags/2021.09.0.zip`.
+    - Users which intend to contribute to Coq Platform should use `git clone --branch 2021.09.0 https://github.com/coq/platform.git`.
+      Please note that the scripts are CR/LF sensitive, so if you use a Windows git client (not a Cygwin git) you should set `git config --global core.autocrlf false` - which is anyway a good idea.
+  - Open a DOS command window, navigate to the download folder and execute `coq_platform_make_windows.bat`.
+  - This will ask for the Cygwin installation path and setup a fresh Cygwin as build host (the created Coq is MinGW and runs without Cygwin).
+  - After the Cygwin setup - which takes a few minutes - the script will automatically execute the common setup shell script `coq_platform_make.sh`.
+- In case you already have an **existing Coq Platform Cygwin** installation:
+  - Note that it is no problem to install several version of Coq Platform in one Cygwin, as long as the Cygwin was originally
+    created by the Coq Platform scripts
+  - Start a cygwin shell via `C:\<your_coq_platform_Cygwin_path>\Cygwin.bat`
+  - Download, clone or pull the Coq Platform:
+    - Download zip and expand:
+      - `wget https://github.com/coq/platform/archive/refs/tags/2021.09.0.zip`
+      - `unzip 2021.09.0.zip`
+      - `cd platform-2021.09.0`
+    - Git clone:
+      - `git clone --branch 2021.09.0 https://github.com/coq/platform.git`
+      - `cd platform`
+    - Git update (with existing git Coq Platform repo):
+      - `cd platform`
+      - `git fetch & git checkout 2021.09.0`
+  - Run the main Coq Platform installation script `coq_platform_make.sh`
 - The script will ask a few questions if no parameters are given and then run fully unattended.
 - The build time is between 1..5 hours, depending on CPU speed and RAM size.
 - In case the script aborts e.g. cause of internet issues, just rerun the batch file - it won't install Cygwin again (assuming you specify the same Cygwin destination folder).
@@ -39,8 +56,6 @@ This method is intended for experienced users, who may want to use opam to insta
 - For OCaml packages a specially patched opam repo for Windows is added which offers a rich but reduced set of packages (not everything builds on Windows)
 - CoqIDE can be started from the Cygwin shell prompt with `coqide`.
 - The full installation might require up to 5 GB of disk space.
-- It is possible to install several versions of the Coq Platform in one Cygwin, as long as the pre-requisites are met. This is best achieved
-by running the additional `coq_platform_make.sh` directly from the Coq Platform created Cygwin.
 
 ## Compiling from sources with Windows Subsystem for Linux - WSL)
 

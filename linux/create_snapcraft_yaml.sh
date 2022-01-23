@@ -29,8 +29,6 @@ source coq_platform_make.sh
 # Snap versions cannot contain . nor +
 PLATFORM_RELEASE=${COQ_PLATFORM_RELEASE//[.+]/-}
 
-VERSION_EXTENSION="${COQ_PLATFORM_RELEASE}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}"
-
 ###################### CREATE SNAPCRAFT.YAML #####################
 
 # Description of the snap
@@ -45,10 +43,10 @@ cat > $COQ_DESCRIPTION <<EOT
   along with CoqIDE and a collection of packages.
 
   Details on the included packages can be found here:
-  https://github.com/coq/platform/blob/main/doc/README_${VERSION_EXTENSION}.md
+  https://github.com/coq/platform/blob/main/doc/README${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.md
 
   Part of this information is also available in table form here:
-  https://github.com/coq/platform/blob/main/doc/PackageTable_${VERSION_EXTENSION}.csv
+  https://github.com/coq/platform/blob/main/doc/PackageTable${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.csv
 EOT
 
 COQ_DESCRIPTION_LEN="$(wc -m < $COQ_DESCRIPTION)"

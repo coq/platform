@@ -35,7 +35,7 @@ It could mean that parts of the software use one license while other parts use a
 It could also mean that you can choose between the given licenses.
 Please clarify the details with the homepage of the package.
 
-**Note:** The package list is also available as [CSV](PackageTable_2022.01.0~8.15.preview1.csv).
+**Note:** The package list is also available as [CSV](PackageTable~8.15~preview1.csv).
 
 **Note:** Click on the triangle to show additional information for a package!
 
@@ -193,6 +193,21 @@ The **full level** contains the following packages:
 </details>
 
 <details>
+  <summary><a href='https://github.com/coq-community/corn'>coq-corn.8.13.0</a>
+(8.13.0) The Coq Constructive Repository at Nijmegen</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Evgeny Makarov - Robbert Krebbers - Eelis van der Weegen - Bas Spitters - Jelle Herold - Russell O&apos;Connor - Cezary Kaliszyk - Dan Synek - Luís Cruz-Filipe - Milad Niqui - Iris Loeb - Herman Geuvers - Randy Pollack - Freek Wiedijk - Jan Zwanenburg - Dimitri Hendriks - Henk Barendregt - Mariusz Giero - Rik van Ginneken - Dimitri Hendriks - Sébastien Hinderer - Bart Kirkels - Pierre Letouzey - Lionel Mamane - Nickolay Shmyrev - Vincent Semeria</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/GPL-2.0-only.html" target="_blank">GPL-2.0-only</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/coq-community/corn'>homepage</a>)
+      (<a href='https://github.com/coq-community/corn/issues'>bug reports</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-corn/coq-corn.8.13.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>CoRN includes the following parts:nn- Algebraic Hierarchynn  An axiomatic formalization of the most common algebraicn  structures, including setoids, monoids, groups, rings,n  fields, ordered fields, rings of polynomials, real andn  complex numbersnn- Model of the Real Numbersnn  Construction of a concrete real number structuren  satisfying the previously defined axiomsnn- Fundamental Theorem of Algebrann  A proof that every non-constant polynomial on the complexn  plane has at least one rootnn- Real Calculusnn  A collection of elementary results on real analysis,n  including continuity, differentiability, integration,n  Taylor&apos;s theorem and the Fundamental Theorem of Calculusnn- Exact Real Computationnn  Fast verified computation inside Coq. This includes: real numbers, functions,n  integrals, graphs of functions, differential equations.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://github.com/coq-community/coq-dpdgraph'>coq-dpdgraph.1.0+8.15</a>
 (1.0+8.15) Compute dependencies between Coq objects (definitions, theorems) and produce graphs</summary>
   <dl>
@@ -294,6 +309,21 @@ The **full level** contains the following packages:
       (<a href='https://coq.inria.fr/opam/released/packages/coq-hierarchy-builder/coq-hierarchy-builder.1.2.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Hierarchy Builder is a high level language to build hierarchies of algebraic structures and make thesenhierarchies evolve without breaking user code. The key concepts are the ones of factory, buildernand abbreviation that let the hierarchy developer describe an actual interface for their library.nBehind that interface the developer can provide appropriate code to ensure retro compatibility.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='http://homotopytypetheory.org/'>coq-hott.8.15</a>
+(8.15) The Homotopy Type Theory library</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>The Coq-HoTT Development Team</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-2-Clause.html" target="_blank">BSD-2-Clause</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='http://homotopytypetheory.org/'>homepage</a>)
+      (<a href='https://github.com/HoTT/HoTT/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-hott/coq-hott.8.15/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>To use the HoTT library, the following flags must be passed to coqc:n   -noinit -indices-matternTo use the HoTT library in a project, add the following to _CoqProject:n   -arg -noinitn   -arg -indices-matter</dd>
   </dl>
 </details>
 
@@ -1129,15 +1159,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://www.perl.org/'>perl.1</a>
-(1) Virtual package relying on perl</summary>
+  <summary><a href='https://www.perl.org/'>perl.2</a>
+(2) Virtual package relying on perl</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Larry Wall</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/GPL-1.0-or-later.html" target="_blank">GPL-1.0-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://www.perl.org/'>homepage</a>)
       (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/conf-perl/conf-perl.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/conf-perl/conf-perl.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package can only install if the perl program is installed on the system.</dd>
   </dl>
@@ -1155,21 +1185,6 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://opam.ocaml.org/packages/conf-pkg-config/conf-pkg-config.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package can only install if the pkg-config package is installednon the system.</dd>
-  </dl>
-</details>
-
-<details>
-  <summary><a href='https://www.python.org/download/releases/3.6'>python-3.1.0.0</a>
-(1.0.0) Virtual package relying on Python-3 installation</summary>
-  <dl>
-    <dt><b>authors</b></dt><dd>Python Software Foundation</dd>
-    <dt><b>license</b></dt><dd> PSF - see <a href="https://www.python.org/download/releases/3.6" target="_blank">homepage</a> for details</dd>
-    <dt><b>links</b></dt><dd>
-      (<a href='https://www.python.org/download/releases/3.6'>homepage</a>)
-      (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/conf-python-3/conf-python-3.1.0.0/opam'>opam package</a>)
-    </dd>
-    <dt><b>description</b></dt><dd>This package can only install if a Python-3 interpreter is availablenon the system.nIf a minor version needs to be specified for your operating system, thennpython-3.6 will be used.</dd>
   </dl>
 </details>
 
@@ -1272,7 +1287,7 @@ Please refer to the linked opam package and/or your system package manager for d
     <dt><b>links</b></dt><dd>
       (<a href='https://gitlab.inria.fr/zimmerma/ecm'>homepage</a>)
       (<a href='https://gitlab.inria.fr/zimmerma/ecm/-/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/gmp-ecm/gmp-ecm.7.0.3/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/gmp-ecm/gmp-ecm.7.0.3/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -1429,15 +1444,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='http://projects.camlcity.org/projects/findlib.html'>ocamlfind.1.9.1</a>
-(1.9.1) A library manager for OCaml</summary>
+  <summary><a href='http://projects.camlcity.org/projects/findlib.html'>ocamlfind.1.9.2</a>
+(1.9.2) A library manager for OCaml</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Gerd Stolpmann &lt;gerd@gerd-stolpmann.de&gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://projects.camlcity.org/projects/findlib.html'>homepage</a>)
       (<a href='https://github.com/ocaml/ocamlfind/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocamlfind/ocamlfind.1.9.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ocamlfind/ocamlfind.1.9.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Findlib is a library manager for OCaml. It provides a convention hownto store libraries, and a file format (META) to describe thenproperties of libraries. There is also a tool (ocamlfind) forninterpreting the META files, so that it is very easy to use librariesnin programs and scripts.</dd>
   </dl>
@@ -1665,21 +1680,6 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://opam.ocaml.org/packages/yojson/yojson.1.7.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Yojson is an optimized parsing and printing library for the JSON format.nnIt addresses a few shortcomings of json-wheel including 2x speedup,npolymorphic variants and optional syntax for tuples and variants.nnydump is a pretty-printing command-line program provided with thenyojson package.nnThe program atdgen can be used to derive OCaml-JSON serializers andndeserializers from type definitions.</dd>
-  </dl>
-</details>
-
-<details>
-  <summary><a href='https://github.com/Z3prover/z3'>z3.4.8.13</a>
-(4.8.13) Z3 solver</summary>
-  <dl>
-    <dt><b>authors</b></dt><dd>MSR</dd>
-    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
-    <dt><b>links</b></dt><dd>
-      (<a href='https://github.com/Z3prover/z3'>homepage</a>)
-      (<a href='https://github.com/Z3prover/z3/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/z3/z3.4.8.13/opam'>opam package</a>)
-    </dd>
-    <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
