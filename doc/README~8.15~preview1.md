@@ -298,6 +298,36 @@ The **full level** contains the following packages:
 </details>
 
 <details>
+  <summary><a href='https://github.com/lukaszcz/coqhammer'>coq-hammer-tactics.1.3.2+8.15</a>
+(1.3.2+8.15) Reconstruction tactics for the hammer for Coq</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Lukasz Czajka &lt;lukaszcz@mimuw.edu.pl&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/lukaszcz/coqhammer'>homepage</a>)
+      (<a href='https://github.com/lukaszcz/coqhammer/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-hammer-tactics/coq-hammer-tactics.1.3.2+8.15/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Collection of tactics that are used by the hammer for Coqnto reconstruct proofs found by automated theorem provers. When the hammernhas been successfully applied to a project, only this package needsnto be installed; the hammer plugin is not required.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/lukaszcz/coqhammer'>coq-hammer.1.3.2+8.15</a>
+(1.3.2+8.15) General-purpose automated reasoning hammer tool for Coq</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Lukasz Czajka &lt;lukaszcz@mimuw.edu.pl&gt; - Cezary Kaliszyk &lt;cezary.kaliszyk@uibk.ac.at&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/lukaszcz/coqhammer'>homepage</a>)
+      (<a href='https://github.com/lukaszcz/coqhammer/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-hammer/coq-hammer.1.3.2+8.15/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>A general-purpose automated reasoning hammer tool for Coq that combinesnlearning from previous proofs with the translation of problems to thenlogics of automated systems and the reconstruction of successfully found proofs.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://github.com/math-comp/hierarchy-builder'>coq-hierarchy-builder.1.2.1</a>
 (1.2.1) High level commands to declare and evolve a hierarchy based on packed classes</summary>
   <dl>
@@ -703,6 +733,21 @@ The **full level** contains the following packages:
 </details>
 
 <details>
+  <summary><a href='https://wwwlehre.dhbw-stuttgart.de/~sschulz/E/E.html'>eprover.2.6</a>
+(2.6) E Theorem Prover</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Stephan Schulz - Simon Cruanes - Petar Vukmirovic - Mohamed Bassem - Martin Moehrmann</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-or-later.html" target="_blank">LGPL-2.1-or-later</a> <a href="https://spdx.org/licenses/GPL-2.0-or-later.html" target="_blank">GPL-2.0-or-later</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://wwwlehre.dhbw-stuttgart.de/~sschulz/E/E.html'>homepage</a>)
+      (<a href='Stephan Schulz (see homepage for email)'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/eprover/eprover.2.6/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>E is a theorem prover for full first-order logic with equality. It accepts a problem specification, typically consisting of a number of first-order clauses or formulas, and a conjecture, again either in clausal or full first-order form. The system will then try to find a formal proof for the conjecture, assuming the axioms.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://gitlab.inria.fr/gappa/gappa'>gappa.1.4.0</a>
 (1.4.0) Tool intended for formally proving properties on numerical programs dealing with floating-point or fixed-point arithmetic</summary>
   <dl>
@@ -744,6 +789,21 @@ The **full level** contains the following packages:
       (<a href='https://opam.ocaml.org/packages/ppxlib/ppxlib.0.15.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Ppxlib is the standard library for ppx rewriters and other programsnthat manipulate the in-memory reprensation of OCaml programs, a.k.anthe Parsetree.nnIt also comes bundled with two ppx rewriters that are commonly used tonwrite tools that manipulate and/or generate Parsetree values;n`ppxlib.metaquot` which allows to construct Parsetree values using thenOCaml syntax directly and `ppxlib.traverse` which provides variousnways of automatically traversing values of a given type, in particularnallowing to inject a complex structured value into generated code.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/Z3prover/z3'>z3_tptp.4.8.13</a>
+(4.8.13) TPTP front end for Z3 solver</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>MSR</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/Z3prover/z3'>homepage</a>)
+      (<a href='https://github.com/Z3prover/z3/issues'>bug reports</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/z3_tptp/z3_tptp.4.8.13/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
@@ -1129,6 +1189,21 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
+  <summary><a href='https://github.com/ocaml/opam-repository'>gcc.1.0</a>
+(1.0) Virtual package relying on the gcc compiler (for C)</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Francois Berenger Francois Bobot</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/GPL-2.0-or-later.html" target="_blank">GPL-2.0-or-later</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/ocaml/opam-repository'>homepage</a>)
+      (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/conf-gcc/conf-gcc.1.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>This package can only install if the gcc compiler is installed on the system.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='http://gmplib.org/'>gmp.4</a>
 (4) Virtual package relying on a GMP lib system installation</summary>
   <dl>
@@ -1230,6 +1305,21 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://opam.ocaml.org/packages/conf-pkg-config/conf-pkg-config.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package can only install if the pkg-config package is installednon the system.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://www.python.org/downloads/release/python-3910/'>python-3.9.0.0</a>
+(9.0.0) Virtual package relying on Python-3 installation</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Python Software Foundation</dd>
+    <dt><b>license</b></dt><dd> PSF - see <a href="https://www.python.org/downloads/release/python-3910/" target="_blank">homepage</a> for details</dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://www.python.org/downloads/release/python-3910/'>homepage</a>)
+      (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/conf-python-3/conf-python-3.9.0.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>This package can only install if a Python-3 interpreter is availablenon the system.nIf a minor version needs to be specified for your operating system, thennpython-3.9 will be used.</dd>
   </dl>
 </details>
 
@@ -1725,6 +1815,21 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://opam.ocaml.org/packages/yojson/yojson.1.7.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Yojson is an optimized parsing and printing library for the JSON format.nnIt addresses a few shortcomings of json-wheel including 2x speedup,npolymorphic variants and optional syntax for tuples and variants.nnydump is a pretty-printing command-line program provided with thenyojson package.nnThe program atdgen can be used to derive OCaml-JSON serializers andndeserializers from type definitions.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/Z3prover/z3'>z3.4.8.13</a>
+(4.8.13) Z3 solver</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>MSR</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/Z3prover/z3'>homepage</a>)
+      (<a href='https://github.com/Z3prover/z3/issues'>bug reports</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/z3/z3.4.8.13/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 

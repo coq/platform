@@ -116,8 +116,13 @@ then
   PACKAGES="${PACKAGES} coq-elpi.1.12.1 elpi.1.13.8"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"
   PACKAGES="${PACKAGES} coq-quickchick.1.6.0"                 # works with 8.14 version patch
-  # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.14"      # requires 8.14, build error with version patch
-  # PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.14"              # requires 8.14, build error with version patch
+  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"
+  if [[ "$OSTYPE" != cygwin ]]
+  then
+    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.15"
+    PACKAGES="${PACKAGES} eprover.2.6"
+    PACKAGES="${PACKAGES} z3_tptp.4.8.13"
+  fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.15"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.0"
   PACKAGES="${PACKAGES} coq-libhyps.2.0.4"                    # works with 8.14 version patch
