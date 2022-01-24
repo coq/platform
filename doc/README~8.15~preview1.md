@@ -201,7 +201,7 @@ The **full level** contains the following packages:
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/corn'>homepage</a>)
       (<a href='https://github.com/coq-community/corn/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-corn/coq-corn.8.13.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-corn/coq-corn.8.13.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>CoRN includes the following parts:nn- Algebraic Hierarchynn  An axiomatic formalization of the most common algebraicn  structures, including setoids, monoids, groups, rings,n  fields, ordered fields, rings of polynomials, real andn  complex numbersnn- Model of the Real Numbersnn  Construction of a concrete real number structuren  satisfying the previously defined axiomsnn- Fundamental Theorem of Algebrann  A proof that every non-constant polynomial on the complexn  plane has at least one rootnn- Real Calculusnn  A collection of elementary results on real analysis,n  including continuity, differentiability, integration,n  Taylor&apos;s theorem and the Fundamental Theorem of Calculusnn- Exact Real Computationnn  Fast verified computation inside Coq. This includes: real numbers, functions,n  integrals, graphs of functions, differential equations.</dd>
   </dl>
@@ -253,15 +253,15 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://github.com/coq-community/coq-ext-lib'>coq-ext-lib.0.11.5</a>
-(0.11.5) A library of Coq definitions, theorems, and tactics</summary>
+  <summary><a href='https://github.com/coq-community/coq-ext-lib'>coq-ext-lib.0.11.6</a>
+(0.11.6) A library of Coq definitions, theorems, and tactics</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Gregory Malecha</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-2-Clause.html" target="_blank">BSD-2-Clause</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/coq-ext-lib'>homepage</a>)
       (<a href='https://github.com/coq-community/coq-ext-lib/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-ext-lib/coq-ext-lib.0.11.5/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-ext-lib/coq-ext-lib.0.11.6/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>A collection of theories and plugins that may be useful in other Coq developments.</dd>
   </dl>
@@ -294,6 +294,36 @@ The **full level** contains the following packages:
       (<a href='https://coq.inria.fr/opam/released/packages/coq-gappa/coq-gappa.1.5.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/lukaszcz/coqhammer'>coq-hammer-tactics.1.3.2+8.15</a>
+(1.3.2+8.15) Reconstruction tactics for the hammer for Coq</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Lukasz Czajka &lt;lukaszcz@mimuw.edu.pl&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/lukaszcz/coqhammer'>homepage</a>)
+      (<a href='https://github.com/lukaszcz/coqhammer/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-hammer-tactics/coq-hammer-tactics.1.3.2+8.15/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Collection of tactics that are used by the hammer for Coqnto reconstruct proofs found by automated theorem provers. When the hammernhas been successfully applied to a project, only this package needsnto be installed; the hammer plugin is not required.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/lukaszcz/coqhammer'>coq-hammer.1.3.2+8.15</a>
+(1.3.2+8.15) General-purpose automated reasoning hammer tool for Coq</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Lukasz Czajka &lt;lukaszcz@mimuw.edu.pl&gt; - Cezary Kaliszyk &lt;cezary.kaliszyk@uibk.ac.at&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/lukaszcz/coqhammer'>homepage</a>)
+      (<a href='https://github.com/lukaszcz/coqhammer/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-hammer/coq-hammer.1.3.2+8.15/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>A general-purpose automated reasoning hammer tool for Coq that combinesnlearning from previous proofs with the translation of problems to thenlogics of automated systems and the reconstruction of successfully found proofs.</dd>
   </dl>
 </details>
 
@@ -339,6 +369,36 @@ The **full level** contains the following packages:
       (<a href='https://coq.inria.fr/opam/released/packages/coq-interval/coq-interval.4.4.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://iris-project.org/'>coq-iris-heap-lang.3.6.0</a>
+(3.6.0) The canonical example language for Iris</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>The Iris Team</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://iris-project.org/'>homepage</a>)
+      (<a href='https://gitlab.mpi-sws.org/iris/iris/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-iris-heap-lang/coq-iris-heap-lang.3.6.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>This package defines HeapLang, a concurrent lambda calculus with references, andnuses Iris to build a program logic for HeapLang programs.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://iris-project.org/'>coq-iris.3.6.0</a>
+(3.6.0) A Higher-Order Concurrent Separation Logic Framework with support for interactive proofs</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>The Iris Team</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://iris-project.org/'>homepage</a>)
+      (<a href='https://gitlab.mpi-sws.org/iris/iris/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-iris/coq-iris.3.6.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Iris is a framework for reasoning about the safety of concurrent programs usingnconcurrent separation logic. It can be used to develop a program logic, forndefining logical relations, and for reasoning about type systems, among othernapplications. This package includes the base logic, Iris Proof Mode (IPM) /nMoSeL, and a general language-independent program logic; see coq-iris-heap-langnfor an instantiation of the program logic to a particular programming language.</dd>
   </dl>
 </details>
 
@@ -628,6 +688,21 @@ The **full level** contains the following packages:
 </details>
 
 <details>
+  <summary><a href='https://gitlab.mpi-sws.org/iris/stdpp'>coq-stdpp.1.7.0</a>
+(1.7.0) An extended Standard Library for Coq</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>The std++ team</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://gitlab.mpi-sws.org/iris/stdpp'>homepage</a>)
+      (<a href='https://gitlab.mpi-sws.org/iris/stdpp/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-stdpp/coq-stdpp.1.7.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>The key features of this library are as follows:nn- It provides a great number of definitions and lemmas for common datan  structures such as lists, finite maps, finite sets, and finite multisets.n- It uses type classes for common notations (like `∅`, `∪`, and Haskell-stylen  monad notations) so that these can be overloaded for different data structures.n- It uses type classes to keep track of common properties of types, like itn  having decidable equality or being countable or finite.n- Most data structures are represented in canonical ways so that Leibnizn  equality can be used as much as possible (for example, for maps we haven  `m1 = m2` iff `∀ i, m1 !! i = m2 !! i`). On top of that, the library providesn  setoid instances for most types and operations.n- It provides various tactics for common tasks, like an ssreflect inspiredn  `done` tactic for finishing trivial goals, a simple breadth-first solvern  `naive_solver`, an equality simplifier `simplify_eq`, a solver `solve_proper`n  for proving compatibility of functions with respect to relations, and a solvern  `set_solver` for goals involving set operations.n- It is entirely dependency- and axiom-free.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://github.com/unicoq/unicoq'>coq-unicoq.1.6+8.15</a>
 (1.6+8.15) An enhanced unification algorithm for Coq</summary>
   <dl>
@@ -654,6 +729,21 @@ The **full level** contains the following packages:
       (<a href='https://coq.inria.fr/opam/released/packages/coq-unimath/coq-unimath.20210807/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://wwwlehre.dhbw-stuttgart.de/~sschulz/E/E.html'>eprover.2.6</a>
+(2.6) E Theorem Prover</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Stephan Schulz - Simon Cruanes - Petar Vukmirovic - Mohamed Bassem - Martin Moehrmann</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-or-later.html" target="_blank">LGPL-2.1-or-later</a> <a href="https://spdx.org/licenses/GPL-2.0-or-later.html" target="_blank">GPL-2.0-or-later</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://wwwlehre.dhbw-stuttgart.de/~sschulz/E/E.html'>homepage</a>)
+      (<a href='Stephan Schulz (see homepage for email)'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/eprover/eprover.2.6/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>E is a theorem prover for full first-order logic with equality. It accepts a problem specification, typically consisting of a number of first-order clauses or formulas, and a conjecture, again either in clausal or full first-order form. The system will then try to find a formal proof for the conjecture, assuming the axioms.</dd>
   </dl>
 </details>
 
@@ -699,6 +789,21 @@ The **full level** contains the following packages:
       (<a href='https://opam.ocaml.org/packages/ppxlib/ppxlib.0.15.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Ppxlib is the standard library for ppx rewriters and other programsnthat manipulate the in-memory reprensation of OCaml programs, a.k.anthe Parsetree.nnIt also comes bundled with two ppx rewriters that are commonly used tonwrite tools that manipulate and/or generate Parsetree values;n`ppxlib.metaquot` which allows to construct Parsetree values using thenOCaml syntax directly and `ppxlib.traverse` which provides variousnways of automatically traversing values of a given type, in particularnallowing to inject a complex structured value into generated code.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/Z3prover/z3'>z3_tptp.4.8.13</a>
+(4.8.13) TPTP front end for Z3 solver</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>MSR</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/Z3prover/z3'>homepage</a>)
+      (<a href='https://github.com/Z3prover/z3/issues'>bug reports</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/z3_tptp/z3_tptp.4.8.13/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
@@ -1084,6 +1189,21 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
+  <summary><a href='https://github.com/ocaml/opam-repository'>gcc.1.0</a>
+(1.0) Virtual package relying on the gcc compiler (for C)</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Francois Berenger Francois Bobot</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/GPL-2.0-or-later.html" target="_blank">GPL-2.0-or-later</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/ocaml/opam-repository'>homepage</a>)
+      (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/conf-gcc/conf-gcc.1.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>This package can only install if the gcc compiler is installed on the system.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='http://gmplib.org/'>gmp.4</a>
 (4) Virtual package relying on a GMP lib system installation</summary>
   <dl>
@@ -1185,6 +1305,21 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://opam.ocaml.org/packages/conf-pkg-config/conf-pkg-config.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package can only install if the pkg-config package is installednon the system.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://www.python.org/downloads/release/python-3910/'>python-3.9.0.0</a>
+(9.0.0) Virtual package relying on Python-3 installation</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Python Software Foundation</dd>
+    <dt><b>license</b></dt><dd> PSF - see <a href="https://www.python.org/downloads/release/python-3910/" target="_blank">homepage</a> for details</dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://www.python.org/downloads/release/python-3910/'>homepage</a>)
+      (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/conf-python-3/conf-python-3.9.0.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>This package can only install if a Python-3 interpreter is availablenon the system.nIf a minor version needs to be specified for your operating system, thennpython-3.9 will be used.</dd>
   </dl>
 </details>
 
@@ -1680,6 +1815,21 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://opam.ocaml.org/packages/yojson/yojson.1.7.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Yojson is an optimized parsing and printing library for the JSON format.nnIt addresses a few shortcomings of json-wheel including 2x speedup,npolymorphic variants and optional syntax for tuples and variants.nnydump is a pretty-printing command-line program provided with thenyojson package.nnThe program atdgen can be used to derive OCaml-JSON serializers andndeserializers from type definitions.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/Z3prover/z3'>z3.4.8.13</a>
+(4.8.13) Z3 solver</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>MSR</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/Z3prover/z3'>homepage</a>)
+      (<a href='https://github.com/Z3prover/z3/issues'>bug reports</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/z3/z3.4.8.13/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 

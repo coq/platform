@@ -35,7 +35,8 @@ for arg in "$@"
 do
   case "${arg}" in
     -quick|-q)             CHECKOPAMLINKS='N' ;;
-    -packages=*|-p=*|-v=*) COQ_PLATFORM_PACKAGE_PICK_NAME="${arg#*=}";;
+    -pick=*|-p=*|-v=*)     COQ_PLATFORM_PACKAGE_PICK_NAME="${arg#*=}";;
+    -packages=*)           COQ_PLATFORM_PACKAGE_PICK_NAME="${arg#*=}";;
     -output=*|-o=*)        RESULT_FILE_MD="${arg#*=}";;
     -table=*|-t=*)         RESULT_FILE_CSV="${arg#*=}";;
     *) echo "Illegal option ${arg}"; exit 1 ;;
