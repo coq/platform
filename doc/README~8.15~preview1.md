@@ -201,7 +201,7 @@ The **full level** contains the following packages:
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/corn'>homepage</a>)
       (<a href='https://github.com/coq-community/corn/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-corn/coq-corn.8.13.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-corn/coq-corn.8.13.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>CoRN includes the following parts:nn- Algebraic Hierarchynn  An axiomatic formalization of the most common algebraicn  structures, including setoids, monoids, groups, rings,n  fields, ordered fields, rings of polynomials, real andn  complex numbersnn- Model of the Real Numbersnn  Construction of a concrete real number structuren  satisfying the previously defined axiomsnn- Fundamental Theorem of Algebrann  A proof that every non-constant polynomial on the complexn  plane has at least one rootnn- Real Calculusnn  A collection of elementary results on real analysis,n  including continuity, differentiability, integration,n  Taylor&apos;s theorem and the Fundamental Theorem of Calculusnn- Exact Real Computationnn  Fast verified computation inside Coq. This includes: real numbers, functions,n  integrals, graphs of functions, differential equations.</dd>
   </dl>
@@ -253,15 +253,15 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://github.com/coq-community/coq-ext-lib'>coq-ext-lib.0.11.5</a>
-(0.11.5) A library of Coq definitions, theorems, and tactics</summary>
+  <summary><a href='https://github.com/coq-community/coq-ext-lib'>coq-ext-lib.0.11.6</a>
+(0.11.6) A library of Coq definitions, theorems, and tactics</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Gregory Malecha</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-2-Clause.html" target="_blank">BSD-2-Clause</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/coq-ext-lib'>homepage</a>)
       (<a href='https://github.com/coq-community/coq-ext-lib/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-ext-lib/coq-ext-lib.0.11.5/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-ext-lib/coq-ext-lib.0.11.6/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>A collection of theories and plugins that may be useful in other Coq developments.</dd>
   </dl>

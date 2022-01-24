@@ -64,7 +64,7 @@ then
 
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.15.0"
-  PACKAGES="${PACKAGES} coq-ext-lib.0.11.5"
+  PACKAGES="${PACKAGES} coq-ext-lib.0.11.6"
   PACKAGES="${PACKAGES} coq-stdpp.1.7.0"
 
   # General mathematics

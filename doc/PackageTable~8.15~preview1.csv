@@ -11,7 +11,7 @@ package,version,license,level
 "coq-dpdgraph","1.0+8.15","https://spdx.org/licenses/LGPL-2.1-only.html","full"
 "coq-elpi","1.12.1","https://spdx.org/licenses/LGPL-2.1-or-later.html","full"
 "coq-equations","1.3+8.15","https://spdx.org/licenses/LGPL-2.1-or-later.html","full"
-"coq-ext-lib","0.11.5","https://spdx.org/licenses/BSD-2-Clause.html","full"
+"coq-ext-lib","0.11.6","https://spdx.org/licenses/BSD-2-Clause.html","full"
 "coq-flocq","3.4.3","https://spdx.org/licenses/LGPL-3.0-or-later.html","full"
 "coq-gappa","1.5.1","https://spdx.org/licenses/LGPL-3.0-or-later.html","full"
 "coq-hierarchy-builder","1.2.1","https://spdx.org/licenses/MIT.html","full"
