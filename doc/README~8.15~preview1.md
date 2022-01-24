@@ -343,6 +343,36 @@ The **full level** contains the following packages:
 </details>
 
 <details>
+  <summary><a href='https://iris-project.org/'>coq-iris-heap-lang.3.6.0</a>
+(3.6.0) The canonical example language for Iris</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>The Iris Team</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://iris-project.org/'>homepage</a>)
+      (<a href='https://gitlab.mpi-sws.org/iris/iris/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-iris-heap-lang/coq-iris-heap-lang.3.6.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>This package defines HeapLang, a concurrent lambda calculus with references, andnuses Iris to build a program logic for HeapLang programs.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://iris-project.org/'>coq-iris.3.6.0</a>
+(3.6.0) A Higher-Order Concurrent Separation Logic Framework with support for interactive proofs</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>The Iris Team</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://iris-project.org/'>homepage</a>)
+      (<a href='https://gitlab.mpi-sws.org/iris/iris/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-iris/coq-iris.3.6.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Iris is a framework for reasoning about the safety of concurrent programs usingnconcurrent separation logic. It can be used to develop a program logic, forndefining logical relations, and for reasoning about type systems, among othernapplications. This package includes the base logic, Iris Proof Mode (IPM) /nMoSeL, and a general language-independent program logic; see coq-iris-heap-langnfor an instantiation of the program logic to a particular programming language.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://github.com/Matafou/LibHyps'>coq-libhyps.2.0.4</a>
 (2.0.4) Hypotheses manipulation library</summary>
   <dl>
@@ -624,6 +654,21 @@ The **full level** contains the following packages:
       (<a href='https://coq.inria.fr/opam/released/packages/coq-simple-io/coq-simple-io.1.6.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library provides tools to implement IO programs directly in Coq, in ansimilar style to Haskell. Facilities for formal verification are not included.nnIO is defined as a parameter with a purely functional interface in Coq,nto be extracted to OCaml. Some wrappers for the basic types and functions innthe OCaml Pervasives module are provided. Users are free to define their ownnAPIs on top of this IO type.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://gitlab.mpi-sws.org/iris/stdpp'>coq-stdpp.1.7.0</a>
+(1.7.0) An extended Standard Library for Coq</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>The std++ team</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://gitlab.mpi-sws.org/iris/stdpp'>homepage</a>)
+      (<a href='https://gitlab.mpi-sws.org/iris/stdpp/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-stdpp/coq-stdpp.1.7.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>The key features of this library are as follows:nn- It provides a great number of definitions and lemmas for common datan  structures such as lists, finite maps, finite sets, and finite multisets.n- It uses type classes for common notations (like `∅`, `∪`, and Haskell-stylen  monad notations) so that these can be overloaded for different data structures.n- It uses type classes to keep track of common properties of types, like itn  having decidable equality or being countable or finite.n- Most data structures are represented in canonical ways so that Leibnizn  equality can be used as much as possible (for example, for maps we haven  `m1 = m2` iff `∀ i, m1 !! i = m2 !! i`). On top of that, the library providesn  setoid instances for most types and operations.n- It provides various tactics for common tasks, like an ssreflect inspiredn  `done` tactic for finishing trivial goals, a simple breadth-first solvern  `naive_solver`, an equality simplifier `simplify_eq`, a solver `solve_proper`n  for proving compatibility of functions with respect to relations, and a solvern  `set_solver` for goals involving set operations.n- It is entirely dependency- and axiom-free.</dd>
   </dl>
 </details>
 

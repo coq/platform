@@ -65,7 +65,7 @@ then
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.15.0"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.5"
-  # PACKAGES="${PACKAGES} coq-stdpp.1.6.0" # requires 8.14, build error with version patch
+  PACKAGES="${PACKAGES} coq-stdpp.1.7.0"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.13.0"
@@ -105,7 +105,7 @@ then
   fi 
 
   # Code extraction
-  PACKAGES="${PACKAGES} coq-simple-io.1.6.0" # works with 8.14 version patch
+  PACKAGES="${PACKAGES} coq-simple-io.1.6.0"                  # works with 8.14 version patch
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20211230 menhir.20211230"
@@ -115,19 +115,20 @@ then
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"
   PACKAGES="${PACKAGES} coq-elpi.1.12.1 elpi.1.13.8"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"
-  PACKAGES="${PACKAGES} coq-quickchick.1.6.0" # works with 8.14 version patch
-  # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.1+8.13~flex" # coq-hammer-tactics.1.3.1+8.13~flex does not compile
+  PACKAGES="${PACKAGES} coq-quickchick.1.6.0"                 # works with 8.14 version patch
+  # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.14"      # requires 8.14, build error with version patch
+  # PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.14"              # requires 8.14, build error with version patch
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.15"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.0"
-  PACKAGES="${PACKAGES} coq-libhyps.2.0.4" # works with 8.14 version patch
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.4"                    # works with 8.14 version patch
 
   # General mathematics (which requires one of the above tools)
-  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.12" # requires 8.14, build error with version patch
+  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.12"       # requires 8.14, build error with version patch
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.3"
-  # PACKAGES="${PACKAGES} coq-iris.3.5.0" # requires 8.14 and coq-stdpp
-  # PACKAGES="${PACKAGES} coq-iris-heap-lang.3.5.0" # requires 8.14 and coq-iris
+  PACKAGES="${PACKAGES} coq-iris.3.6.0"
+  PACKAGES="${PACKAGES} coq-iris-heap-lang.3.6.0"
 
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.10" ;;
@@ -152,11 +153,11 @@ if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
 
   # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-deriving.0.1.0"  # works with 8.14 version patch
+  PACKAGES="${PACKAGES} coq-deriving.0.1.0"                   # works with 8.14 version patch
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.3"
-  PACKAGES="${PACKAGES} coq-record-update.0.3.0"  # works with 8.14 version patch
+  PACKAGES="${PACKAGES} coq-record-update.0.3.0"              # works with 8.14 version patch
 
   # Communication with coqtop
   PACKAGES="${PACKAGES} coq-serapi.8.15.0+0.15.0"
