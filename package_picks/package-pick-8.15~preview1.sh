@@ -128,7 +128,7 @@ then
   PACKAGES="${PACKAGES} coq-libhyps.2.0.4"                    # works with 8.14 version patch
 
   # General mathematics (which requires one of the above tools)
-  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.12"       # requires 8.14, build error with version patch
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.13"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.3"
