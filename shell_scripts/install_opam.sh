@@ -188,10 +188,15 @@ fi
 
 ###################### SELECT OPAM SWITCH #####################
 
+# This sets the switch only locally - in case several picks are built in parallel
 eval $(opam env --set-switch --switch ${COQ_PLATFORM_SWITCH_NAME})
+
+echo === OPAM SWITECHES ===
+opam switch
 
 echo === OPAM REPOSITORIES ===
 opam repo list
+
 echo === OPAM PACKAGES ===
 opam list
 
