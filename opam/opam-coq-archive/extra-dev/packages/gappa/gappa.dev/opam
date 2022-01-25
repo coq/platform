@@ -3,6 +3,7 @@ maintainer: "7895506+MSoegtropIMC@users.noreply.github.com"
 authors: "Guillaume Melquiond"
 bug-reports: "https://gitlab.inria.fr/gappa/gappa/-/issues"
 homepage: "https://gitlab.inria.fr/gappa/gappa"
+dev-repo: "git+https://gitlab.inria.fr/gappa/gappa.git"
 license: "CeCILL"
 patches: [
   "0001-Added-configure-for-c-11.patch"
@@ -13,11 +14,12 @@ build: [
   [ "touch" "stamp-config_h.in" ]
   [ "./configure"
     # If someone knows how to ask MacPorts for the usual include and lib path, please tell me
-    "CPPFLAGS=-I/opt/local/include" { os-distribution = "macports" & os = "macos" }
+    "CXXFLAGS=-I/opt/local/include" { os-distribution = "macports" & os = "macos" }
     "LDFLAGS=-L/opt/local/lib" { os-distribution = "macports" & os = "macos" }
     # Support installing on Apple Silicon with Homebrew
-    "CPPFLAGS=-I/opt/homebrew/include" { os-distribution = "homebrew" & os = "macos" }
-    "LDFLAGS=-L/opt/homebrew/lib" { os-distribution = "homebrew" & os = "macos" }
+    "CXXFLAGS=-I/opt/homebrew/include" { os-distribution = "homebrew" & os = "macos" & arch = "arm64"}
+    "LDFLAGS=-L/opt/homebrew/lib" { os-distribution = "homebrew" & os = "macos" & arch = "arm64"}
+    # Support for windows
     "--build=%{arch}%-pc-cygwin" { os = "win32" & os-distribution = "cygwinports" }
     "--host=%{arch}%-w64-mingw32" { os = "win32" & os-distribution = "cygwinports" }
     "--target=%{arch}%-w64-mingw32" { os = "win32" & os-distribution = "cygwinports" }
@@ -33,8 +35,8 @@ depends: [
   "conf-gmp"
   "conf-mpfr"
   "conf-boost"
-  "conf-bison"
-  "conf-flex"
+  "conf-bison" {build}
+  "conf-flex" {build}
 ]
 synopsis: "Tool intended for formally proving properties on numerical programs dealing with floating-point or fixed-point arithmetic"
 url {

@@ -16,7 +16,6 @@ MoSeL, and a general language-independent program logic; see coq-iris-heap-lang
 for an instantiation of the program logic to a particular programming language.
 """
 tags: [
-  "date:2021-11-05"
   "logpath:iris.prelude"
   "logpath:iris.algebra"
   "logpath:iris.si_logic"
@@ -27,8 +26,8 @@ tags: [
 ]
 
 depends: [
-  "coq" { (>= "8.12" & < "8.15~") | (= "dev") }
-  "coq-stdpp" { (= "1.6.0") | (= "dev") }
+  "coq" { (>= "8.13" & < "8.16~") | (= "dev") }
+  "coq-stdpp" { (= "1.7.0") | (= "dev") }
 ]
 
 build: ["./make-package" "iris" "-j%{jobs}%"]

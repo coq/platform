@@ -28,12 +28,11 @@ The key features of this library are as follows:
 - It is entirely dependency- and axiom-free.
 """
 tags: [
-  "date:2022-01-22"
   "logpath:stdpp"
 ]
 
 depends: [
-  "coq" { (>= "8.10.2" & < "8.16~") | (= "dev") }
+  "coq" { (>= "8.11" & < "8.16~") | (= "dev") }
 ]
 
 build: [make "-j%{jobs}%"]

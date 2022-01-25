@@ -12,7 +12,6 @@ This package defines HeapLang, a concurrent lambda calculus with references, and
 uses Iris to build a program logic for HeapLang programs.
 """
 tags: [
-  "date:2021-11-05"
   "logpath:iris.heap_lang"
 ]
 
