@@ -56,7 +56,11 @@ PACKAGES="${PACKAGES} coq-bignums.8.12.0"
 PACKAGES="${PACKAGES} coq-aac-tactics.8.12.0"
 PACKAGES="${PACKAGES} coq-mtac2.1.3+8.12"
 PACKAGES="${PACKAGES} coq-simple-io.1.4.0"
-PACKAGES="${PACKAGES} coq-quickchick.1.4.0"
+if [[ "$OSTYPE" != cygwin ]]
+then
+  # coq-quickchick does not work on Windows because it requires ocamlc and other tools
+  PACKAGES="${PACKAGES} coq-quickchick.1.4.0"
+fi
 
 # Analysis and numerics
 PACKAGES="${PACKAGES} coq-flocq.3.3.1"

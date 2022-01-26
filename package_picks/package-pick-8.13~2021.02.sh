@@ -82,7 +82,11 @@ PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
 # Packages depending on mathcomp
 PACKAGES="${PACKAGES} coq-coquelicot.3.1.0"
 PACKAGES="${PACKAGES} coq-interval.4.1.1"
-PACKAGES="${PACKAGES} coq-quickchick.1.5.0"
+if [[ "$OSTYPE" != cygwin ]]
+then
+  # coq-quickchick does not work on Windows because it requires ocamlc and other tools
+  PACKAGES="${PACKAGES} coq-quickchick.1.5.0"
+fi
 
 # Homotopy Type Theory (HoTT)
 PACKAGES="${PACKAGES} coq-hott.8.13"

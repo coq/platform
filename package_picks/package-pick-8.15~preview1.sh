@@ -115,10 +115,15 @@ then
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"
   PACKAGES="${PACKAGES} coq-elpi.1.12.1 elpi.1.13.8"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"
-  PACKAGES="${PACKAGES} coq-quickchick.1.6.0"                 # works with 8.14 version patch
+  if [[ "$OSTYPE" != cygwin ]]
+  then
+    # coq-quickchick does not work on Windows because it requires ocamlc and other tools
+    PACKAGES="${PACKAGES} coq-quickchick.1.6.0"                 # works with 8.14 version patch
+  fi
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"
   if [[ "$OSTYPE" != cygwin ]]
   then
+    # coq-hammer does not work on Windows because it heavily relies on fork
     PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.15"
     PACKAGES="${PACKAGES} eprover.2.6"
     PACKAGES="${PACKAGES} z3_tptp.4.8.13"
