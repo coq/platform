@@ -115,10 +115,15 @@ then
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.14"           # pick confirmed https://github.com/Mtac2/Mtac2/issues/344
   PACKAGES="${PACKAGES} coq-elpi.1.11.2 elpi.1.13.7"  # pick confirmed https://github.com/LPCIC/coq-elpi/issues/291
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.0"  # pick confirmed https://github.com/math-comp/hierarchy-builder/issues/265
-  PACKAGES="${PACKAGES} coq-quickchick.1.6.0"         # pick confirmed https://github.com/QuickChick/QuickChick/issues/236
+  if [[ "$OSTYPE" != cygwin ]]
+  then
+    # coq-quickchick does not work on Windows because it requires ocamlc and other tools
+    PACKAGES="${PACKAGES} coq-quickchick.1.6.0"         # pick confirmed https://github.com/QuickChick/QuickChick/issues/236
+  fi
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.14" # pick confirmed https://github.com/lukaszcz/coqhammer/issues/110
   if [[ "$OSTYPE" != cygwin ]]
   then
+    # coq-hammer does not work on Windows because it heavily relies on fork
     PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.14"        # pick confirmed https://github.com/lukaszcz/coqhammer/issues/110
     PACKAGES="${PACKAGES} eprover.2.6"                  # ATP for coq-hammer (latest version)
     PACKAGES="${PACKAGES} z3_tptp.4.8.13"               # ATP for coq-hammer (latest version)

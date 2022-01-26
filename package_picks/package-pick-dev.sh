@@ -111,10 +111,15 @@ then
   PACKAGES="${PACKAGES} coq-mtac2.dev"
   PACKAGES="${PACKAGES} coq-elpi.dev"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.dev"
-  PACKAGES="${PACKAGES} coq-quickchick.dev"
+  if [[ "$OSTYPE" != cygwin ]]
+  then
+    # coq-quickchick does not work on Windows because it requires ocamlc and other tools
+    PACKAGES="${PACKAGES} coq-quickchick.dev"
+  fi
   PACKAGES="${PACKAGES} coq-hammer-tactics.dev"
   if [[ "$OSTYPE" != cygwin ]]
   then
+    # coq-hammer does not work on Windows because it heavily relies on fork
     PACKAGES="${PACKAGES} coq-hammer.dev"
     PACKAGES="${PACKAGES} eprover.2.6"
     PACKAGES="${PACKAGES} z3_tptp.4.8.13"

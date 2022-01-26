@@ -11,14 +11,14 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.15.0 (released Jan 2022) with preview package pick"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.15.0 (released Jan 2022) with a beta package pick"
 COQ_PLATFORM_VERSION_SORTORDER=9000
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.15~preview1'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.15~beta1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.15'
@@ -29,7 +29,8 @@ COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
 COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.01.0 includes Coq 8.15.0 from  01/2022. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='This is **preview release** of Coq Platform for Coq 8.15.0 mostly intended for package maintainers. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='This is a **beta release** of Coq Platform for Coq 8.15.0. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='It includes all packages, but some package versions might still change.'
 
 ###################### PACKAGE SELECTION #####################
 
@@ -68,12 +69,12 @@ then
   PACKAGES="${PACKAGES} coq-stdpp.1.7.0"
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.13.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.13.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.13.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.13.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-field.1.13.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-character.1.13.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.14.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.14.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.14.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.14.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-field.1.14.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-character.1.14.0"
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
@@ -115,10 +116,15 @@ then
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"
   PACKAGES="${PACKAGES} coq-elpi.1.12.1 elpi.1.13.8"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"
-  PACKAGES="${PACKAGES} coq-quickchick.1.6.0"                 # works with 8.14 version patch
+  if [[ "$OSTYPE" != cygwin ]]
+  then
+    # coq-quickchick does not work on Windows because it requires ocamlc and other tools
+    PACKAGES="${PACKAGES} coq-quickchick.1.6.0"                 # works with 8.14 version patch
+  fi
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"
   if [[ "$OSTYPE" != cygwin ]]
   then
+    # coq-hammer does not work on Windows because it heavily relies on fork
     PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.15"
     PACKAGES="${PACKAGES} eprover.2.6"
     PACKAGES="${PACKAGES} z3_tptp.4.8.13"
