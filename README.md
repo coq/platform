@@ -39,7 +39,7 @@ detailed information for each package.
 - [Coq 8.13.2 (released Apr 2021) with an updated package pick from Sep 2021](doc/README~8.13~2021.09.md)
 - [Coq 8.13.2 (released Apr 2021) with original package pick from Feb 2021](doc/README~8.13~2021.02.md)
 - [Coq 8.12.2 (released Dec 2020)](doc/README~8.12.md)
-- [Coq 8.15.0 (released Jan 2022) with a preview (still incomplete) package pick](doc/README~8.15~preview1.md)
+- [Coq 8.15.0 (released Jan 2022) with a beta package pick](doc/README~8.15~beta1.md)
 - [Coq Developer (latest developer branch)](doc/README~dev.md)
 
 If you have questions on the Coq Platform, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
@@ -157,7 +157,7 @@ You can list the available switches with:
     __coq-platform.2022.01.0~8.13~2021.09    ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.13~2021.09
     __coq-platform.2022.01.0~8.13~2022.01    ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.13~2022.01
     __coq-platform.2022.01.0~8.14~2022.01    ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.14~2022.01
-    __coq-platform.2022.01.0~8.15~preview1   ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.15~preview1
+    __coq-platform.2022.01.0~8.15~beta1   ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.15~beta1
 ->  __coq-platform.2022.01.0~dev             ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~dev
 ```
 
@@ -212,7 +212,7 @@ Please clarify the license at [CompCert License](https://github.com/AbsInt/CompC
         __coq-platform.2022.01.0~8.13~2021.09    ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.13~2021.09
         __coq-platform.2022.01.0~8.13~2022.01    ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.13~2022.01
         __coq-platform.2022.01.0~8.14~2022.01    ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.14~2022.01
-        __coq-platform.2022.01.0~8.15~preview1   ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.15~preview1
+        __coq-platform.2022.01.0~8.15~beta1   ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~8.15~beta1
     ->  __coq-platform.2022.01.0~dev             ocaml-base-compiler.4.10.2  __coq-platform.2022.01.0~dev
     ```
 - Choose the switch you want to change with this command (example):

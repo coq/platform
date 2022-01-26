@@ -1,4 +1,4 @@
-# Coq Platform 2022.01.0 providing Coq 8.15.0 (released Jan 2022) with preview package pick
+# Coq Platform 2022.01.0 providing Coq 8.15.0 (released Jan 2022) with a beta package pick
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
@@ -11,7 +11,7 @@ The Coq Platform supports to install several versions of Coq (also in parallel).
 This README file is for **Coq Platform 2022.01.0 with Coq 8.15.0**.
 The README files for other versions are linked in the main [README](../README.md).
 
-This version of Coq Platform 2022.01.0 includes Coq 8.15.0 from  01/2022. This is **preview release** of Coq Platform for Coq 8.15.0 mostly intended for package maintainers. 
+This version of Coq Platform 2022.01.0 includes Coq 8.15.0 from  01/2022. This is a **beta release** of Coq Platform for Coq 8.15.0. It includes all packages, but some package versions might still change.
 
 The Coq Platform supports four levels of installation extent:
 **base**, **IDE**, **full** and **extended** and a few **optional** packages.
@@ -35,7 +35,7 @@ It could mean that parts of the software use one license while other parts use a
 It could also mean that you can choose between the given licenses.
 Please clarify the details with the homepage of the package.
 
-**Note:** The package list is also available as [CSV](PackageTable~8.15~preview1.csv).
+**Note:** The package list is also available as [CSV](PackageTable~8.15~beta1.csv).
 
 **Note:** Click on the triangle to show additional information for a package!
 
