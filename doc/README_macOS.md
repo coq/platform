@@ -12,12 +12,12 @@ In case you want to use the fast path:
 
 - Download the DMG package from https://github.com/coq/platform/releases (click on "Assets" at the end of a release section).
 - Open the downloaded DMG package with a double click.
-- Drag and drop the "Coq_Platform_2021.09.0.app" icon on the link to the "Applications" folder.
+- Drag and drop the "Coq_Platform_2022.01.0.app" icon on the link to the "Applications" folder.
 - CoqIDE appears under `/Applications` in Finder and in Launcher.
 - Beta releases of Coq Platform might contain unsigned packages, which macOS does not start by default. In case you get an error message
 stating "Coq_Platform.app cannot be opened because the developer cannot be verified" either download a release package, or alternatively
 right click the `Coq_Platform` app in `/Applications` in Finder and select `open`. You will see the same error message as before, but it will have an `Open` button now.
-- In case you want to use the installed `coqc` from the command line, please add the folder `/Applications/Coq_Platform_2021.09.0.app/Contents/Resources/bin` to your `PATH`.
+- In case you want to use the installed `coqc` from the command line, please add the folder `/Applications/Coq_Platform_2022.01.0.app/Contents/Resources/bin` to your `PATH`.
 - If you want to inspect the installed content, right click the `Coq_Platform` app in `/Applications` in Finder and select `Show Package Contents`.
 
 A note to lecturers: it is easy to create a customized Windows installer from an opam switch - see [Customized Installers](#customized-installers)
@@ -33,15 +33,15 @@ This method is intended for experienced users, who may want to use opam to insta
 - If you have neither Homebrew nor MacPorts installed, read the section [Homebrew and MacPorts](#homebrew-and-macports) below.
 - If you have Homebrew installed, read the section [Homebrew issues and workarounds](#homebrew-issues-and-workarounds) below.
 - Get the Coq Platform scripts via either of these methods
-  - Most users should download and extract `https://github.com/coq/platform/archive/refs/tags/2021.09.0.zip`.
-  - Users which intend to contribute to Coq Platform should use `git clone --branch 2021.09.0 https://github.com/coq/platform.git`.
+  - Most users should download and extract `https://github.com/coq/platform/archive/refs/tags/2022.01.0.zip`.
+  - Users which intend to contribute to Coq Platform should use `git clone --branch 2022.01.0 https://github.com/coq/platform.git`.
 - Open a shell, navigate to the download folder and execute `coq_platform_make.sh`.
 - If you are using MacPorts, the system will ask once for sudo permissions to install prerequisites after installing OCaml (5..20 minutes after script start).
 - In case the script aborts e.g. cause of internet issues, just rerun the script.
-- The script creates a new opam switch named e.g. __coq-platform.2021.09.0~8.13 - the exact name depends on the Coq version and package pick you selected.
+- The script creates a new opam switch named e.g. __coq-platform.2022.01.0~8.14~2022.01 - the exact name depends on the Coq version and package pick you selected.
   This means the script does not touch your existing opam setup unless you already have a switch of this name.
 - Use the following commands to activate this switch after opening a new shell:
-  - `opam switch __coq-platform.2021.09.0~8.13` (note: the switch name might vary if you choose a different version of Coq - please use `opam switch` to see a list of switch names)
+  - `opam switch __coq-platform.2022.01.0~8.14~2022.01` (note: the switch name might vary if you choose a different version of Coq - please use `opam switch` to see a list of switch names)
   - `eval $(opam env)`
   - The second step can be automated by rerunning `opam init`
 - The main opam repositories for Coq and OCaml developments are already added to the created opam switch, so it should be easy to install additional Coq (or OCaml) packages.
