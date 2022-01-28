@@ -84,7 +84,7 @@ then
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.3.dev"
   PACKAGES="${PACKAGES} coq-interval.dev"
-  PACKAGES="${PACKAGES} coq-gappa.dev"
+  PACKAGES="${PACKAGES} coq-gappa.dev gappa.dev"
 
   # Constructive mathematics
   PACKAGES="${PACKAGES} coq-math-classes.dev"
