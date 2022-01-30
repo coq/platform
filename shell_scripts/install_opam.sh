@@ -156,7 +156,7 @@ then
   COQ_PLATFORM_OPAM_MAIN_REPOS="coq-core-dev,coq-extra-dev,${COQ_PLATFORM_OPAM_MAIN_REPOS}"
 fi
 
-if ! opam switch $COQ_PLATFORM_SWITCH_NAME 2>/dev/null
+if ! opam switch list | grep -q $COQ_PLATFORM_SWITCH_NAME 2>/dev/null
 then
   echo "===== CREATE OPAM SWITCH ====="
   if [[ "$OSTYPE" == cygwin ]]
@@ -181,7 +181,7 @@ then
   $COQ_PLATFORM_TIME opam repo add --dont-select coq-extra-dev "https://coq.inria.fr/opam/extra-dev"
 
   # Create switch with the patch repo registered right away in case we need to patch OCaml
-  $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME $COQ_PLATFORM_OCAML_VERSION --repositories="${COQ_PLATFORM_OPAM_PATCH_REPOS},${COQ_PLATFORM_OPAM_MAIN_REPOS}"
+  $COQ_PLATFORM_TIME opam switch create --no-switch $COQ_PLATFORM_SWITCH_NAME $COQ_PLATFORM_OCAML_VERSION --repositories="${COQ_PLATFORM_OPAM_PATCH_REPOS},${COQ_PLATFORM_OPAM_MAIN_REPOS}"
 else
   echo "===== opam switch already exists ====="
 fi
@@ -191,7 +191,7 @@ fi
 # This sets the switch only locally - in case several picks are built in parallel
 eval $(opam env --set-switch --switch ${COQ_PLATFORM_SWITCH_NAME})
 
-echo === OPAM SWITECHES ===
+echo === OPAM SWITCHES ===
 opam switch
 
 echo === OPAM REPOSITORIES ===
