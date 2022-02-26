@@ -62,7 +62,7 @@ The Coq Platform setup scripts and the selection of package recipes and patches 
 This license does **not** apply to the packages installed by the Coq Platform.
 The README files linked above provide license information for each package.
 This information is also available as .CSV files here [doc](doc).
-Please note that the license information is obtianed from opam.
+Please note that the license information is obtained from opam.
 The Coq Platform team does no double check this information.
 
 </details>
