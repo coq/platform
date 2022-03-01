@@ -34,6 +34,7 @@ OPTIONS:
   -switch=k    In case the opam switch already exists, keep it
   -switch=d    In case the opam switch already exists, delete it
   -dumplogs    Dump all log files in case of an error (intended for CI)
+  -override-dev-pkg=name=url To override the url of a .dev package
   -opamonly    Stop the script after installing opam
 EOH
 }
@@ -51,6 +52,7 @@ do
     -vst=*)       COQ_PLATFORM_VST="${arg#*=}";;
     -switch=*)    COQ_PLATFORM_SWITCH="${arg#*=}";;
     -dumplogs)    COQ_PLATFORM_DUMP_LOGS=y;;
+    -override-dev-pkg=*) COQ_PLATFORM_OVERRIDE_DEV="${COQ_PLATFORM_OVERRIDE_DEV} ${arg#*=}";;
     -opamonly)    COQ_PLATFORM_OPAM_ONLY=y;;
     *) echo "ERROR: Unknown command line argument $arg!"; print_usage; false;;
   esac
