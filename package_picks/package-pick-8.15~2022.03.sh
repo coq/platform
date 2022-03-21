@@ -115,7 +115,7 @@ then
   if [[ "$OSTYPE" != cygwin ]]
   then
     # coq-quickchick does not work on Windows because it requires ocamlc and other tools
-    PACKAGES="${PACKAGES} coq-quickchick.1.6.0"                 # works with 8.14 version patch
+    PACKAGES="${PACKAGES} coq-quickchick.1.6.0"
   fi
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"
   if [[ "$OSTYPE" != cygwin ]]
@@ -163,11 +163,11 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.0.3.0"
   
     # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-deriving.0.1.0"                   # works with 8.14 version patch
+  PACKAGES="${PACKAGES} coq-deriving.0.1.0"
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.3"
-  PACKAGES="${PACKAGES} coq-record-update.0.3.0"              # works with 8.14 version patch
+  PACKAGES="${PACKAGES} coq-record-update.0.3.0"
 
   # Communication with coqtop
   PACKAGES="${PACKAGES} coq-serapi.8.15.0+0.15.0"
