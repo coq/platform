@@ -112,11 +112,7 @@ then
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"
   PACKAGES="${PACKAGES} coq-elpi.1.13.0 elpi.1.14.1"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    # coq-quickchick does not work on Windows because it requires ocamlc and other tools
-    PACKAGES="${PACKAGES} coq-quickchick.1.6.0"
-  fi
+  PACKAGES="${PACKAGES} coq-quickchick.1.6.1"
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"
   if [[ "$OSTYPE" != cygwin ]]
   then
