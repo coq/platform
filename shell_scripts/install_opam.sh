@@ -162,12 +162,12 @@ then
   if [[ "$OSTYPE" == cygwin ]]
   then
     if [ "`uname -m`" = "x86_64" ]; then
-      COQ_PLATFORM_OCAML_VERSION="ocaml-variants.4.13.1+flambda+mingw64c"
+      COQ_PLATFORM_OCAML_VERSION="ocaml-variants.4.12.1+flambda+mingw64c"
     else
-      COQ_PLATFORM_OCAML_VERSION="ocaml-variants.4.13.1+flambda+mingw32c"
+      COQ_PLATFORM_OCAML_VERSION="ocaml-variants.4.12.1+flambda+mingw32c"
     fi
   else
-    COQ_PLATFORM_OCAML_VERSION='ocaml-variants.4.13.1+options,ocaml-option-flambda'
+    COQ_PLATFORM_OCAML_VERSION='ocaml-variants.4.12.1+options,ocaml-option-flambda'
   fi
 
   # Register Coq Platform specific patch repos
