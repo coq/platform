@@ -110,7 +110,7 @@ then
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20211230 menhir.20211230"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.15"
-  PACKAGES="${PACKAGES} coq-aac-tactics.8.15.0"
+  PACKAGES="${PACKAGES} coq-aac-tactics.8.15.1"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.15"
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"
   PACKAGES="${PACKAGES} coq-elpi.1.12.1 elpi.1.13.8"
