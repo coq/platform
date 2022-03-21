@@ -59,9 +59,6 @@ fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
-  # Some dependencies for which we need specific versions
-  PACKAGES="${PACKAGES} PIN.ppxlib.0.15.0" # coq-serapi requires this old version
-
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.15.0"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.6"
