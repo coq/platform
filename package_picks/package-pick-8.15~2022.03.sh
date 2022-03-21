@@ -159,7 +159,10 @@ fi
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
 
-  # Proof automation / generation / helpers
+  # General mathematics
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.0.3.0"
+  
+    # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.0"                   # works with 8.14 version patch
 
   # Gallina extensions
