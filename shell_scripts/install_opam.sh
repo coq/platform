@@ -167,7 +167,7 @@ then
       COQ_PLATFORM_OCAML_VERSION="ocaml-variants.4.13.1+flambda+mingw32c"
     fi
   else
-    COQ_PLATFORM_OCAML_VERSION='ocaml-base-compiler.4.13.1+flambda'
+    COQ_PLATFORM_OCAML_VERSION='ocaml-variants.4.13.1+options,ocaml-option-flambda'
   fi
 
   # Register Coq Platform specific patch repos
@@ -181,7 +181,8 @@ then
   $COQ_PLATFORM_TIME opam repo add --dont-select coq-extra-dev "https://coq.inria.fr/opam/extra-dev"
 
   # Create switch with the patch repo registered right away in case we need to patch OCaml
-  $COQ_PLATFORM_TIME opam switch create $COQ_PLATFORM_SWITCH_NAME $COQ_PLATFORM_OCAML_VERSION \
+  $COQ_PLATFORM_TIME opam switch create "${COQ_PLATFORM_SWITCH_NAME}" \
+    --package="${COQ_PLATFORM_OCAML_VERSION}" \
     --repositories="${COQ_PLATFORM_OPAM_PATCH_REPOS},${COQ_PLATFORM_OPAM_MAIN_REPOS}" \
     --description="${COQ_PLATFORM_VERSION_TITLE}"
 
