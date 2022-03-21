@@ -162,12 +162,24 @@ then
   if [[ "$OSTYPE" == cygwin ]]
   then
     if [ "`uname -m`" = "x86_64" ]; then
-      COQ_PLATFORM_OCAML_VERSION="ocaml-variants.4.12.1+flambda+mingw64c"
+      case "${COQ_PLATFORM_OCAML_VERSION}" in
+        4.10.2) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+mingw64c";;
+        4.12.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw64c";;
+        *) echo "Unsupported OCaml version ${COQ_PLATFORM_OCAML_VERSION}"; return 1;;
+      esac
     else
-      COQ_PLATFORM_OCAML_VERSION="ocaml-variants.4.12.1+flambda+mingw32c"
+      case "${COQ_PLATFORM_OCAML_VERSION}" in
+        4.10.2) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+mingw32c";;
+        4.12.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw32c";;
+        *) echo "Unsupported OCaml version ${COQ_PLATFORM_OCAML_VERSION}"; return 1;;
+      esac
     fi
   else
-    COQ_PLATFORM_OCAML_VERSION='ocaml-variants.4.12.1+options,ocaml-option-flambda'
+    case "${COQ_PLATFORM_OCAML_VERSION}" in
+      4.10.2) COQ_PLATFORM_OCAML_VARIANT="ocaml-base-compiler.${COQ_PLATFORM_OCAML_VERSION}";;
+      4.12.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+options,ocaml-option-flambda";;
+      *) echo "Unsupported OCaml version ${COQ_PLATFORM_OCAML_VERSION}"; return 1;;
+    esac
   fi
 
   # Register Coq Platform specific patch repos
@@ -182,7 +194,7 @@ then
 
   # Create switch with the patch repo registered right away in case we need to patch OCaml
   $COQ_PLATFORM_TIME opam switch create "${COQ_PLATFORM_SWITCH_NAME}" \
-    --package="${COQ_PLATFORM_OCAML_VERSION}" \
+    --package="${COQ_PLATFORM_OCAML_VARIANT}" \
     --repositories="${COQ_PLATFORM_OPAM_PATCH_REPOS},${COQ_PLATFORM_OPAM_MAIN_REPOS}" \
     --description="${COQ_PLATFORM_VERSION_TITLE}"
 

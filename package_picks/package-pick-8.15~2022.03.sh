@@ -31,6 +31,9 @@ COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.03.0 includes Coq 8.15.0 from  2/2022. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is the **latest release version** of the Coq Platform and recommended for general application. '
 
+# The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
+COQ_PLATFORM_OCAML_VERSION='4.12.1'
+
 ###################### PACKAGE SELECTION #####################
 
 PACKAGES=""

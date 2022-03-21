@@ -33,6 +33,9 @@ COQ_PLATFORM_VERSION_DESCRIPTION+='There are three package picks for Coq 8.13.2:
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is the substantially extended and updated package pick from 09/2021. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='The 02/2021 and 09/2021 package picks are provided for compatibility and it is recommended to use the 11/2021 pick - or Coq 8.14.0.'
 
+# The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
+COQ_PLATFORM_OCAML_VERSION='4.10.2'
+
 ###################### PACKAGE SELECTION #####################
 
 PACKAGES=""
