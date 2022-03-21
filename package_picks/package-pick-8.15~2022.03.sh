@@ -127,7 +127,7 @@ then
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.15"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.0"
-  PACKAGES="${PACKAGES} coq-libhyps.2.0.4"                    # works with 8.14 version patch
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.5"
 
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.13"
