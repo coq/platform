@@ -12,7 +12,7 @@
 
 # The two lines below are used by the package selection script
 COQ_PLATFORM_VERSION_TITLE="Coq 8.13.2 (released Apr 2021) with the first package pick from Feb 2021"
-COQ_PLATFORM_VERSION_SORTORDER=4
+COQ_PLATFORM_VERSION_SORTORDER=5
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
@@ -32,6 +32,9 @@ COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.01.0 include
 COQ_PLATFORM_VERSION_DESCRIPTION+='There are three package picks for Coq 8.13.2: the original from 02/2021, a substantially extended one from 09/2021 and an updated one from 11/2021. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is the original package pick from 02/2021. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='The 02/2021 and 09/2021 package picks are provided for compatibility and it is recommended to use the 11/2021 pick - or Coq 8.14.0.'
+
+# The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
+COQ_PLATFORM_OCAML_VERSION='4.10.2'
 
 ###################### PACKAGE SELECTION #####################
 

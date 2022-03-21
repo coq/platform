@@ -11,14 +11,14 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.15.0 (released Jan 2022) with a beta package pick"
-COQ_PLATFORM_VERSION_SORTORDER=9000
+COQ_PLATFORM_VERSION_TITLE="Coq 8.15.0 (released Jan 2022) with the first package pick from Mar 2022"
+COQ_PLATFORM_VERSION_SORTORDER=1
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.15~beta1'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.15~2022.03'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.15'
@@ -28,9 +28,11 @@ COQ_PLATFORM_COQ_TAG='8.15.0'
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.01.0 includes Coq 8.15.0 from  01/2022. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='This is a **beta release** of Coq Platform for Coq 8.15.0. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='It includes all packages, but some package versions might still change.'
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.03.0 includes Coq 8.15.0 from  2/2022. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='This is the **latest release version** of the Coq Platform and recommended for general application. '
+
+# The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
+COQ_PLATFORM_OCAML_VERSION='4.12.1'
 
 ###################### PACKAGE SELECTION #####################
 
@@ -60,9 +62,6 @@ fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
-  # Some dependencies for which we need specific versions
-  PACKAGES="${PACKAGES} PIN.ppxlib.0.15.0" # coq-serapi requires this old version
-
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.15.0"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.6"
@@ -102,25 +101,21 @@ then
   # Note: coq-unimath requires too much memory for 32 bit architectures
   if [ "${BITSIZE}" == "64" ]
   then
-    PACKAGES="${PACKAGES} coq-unimath.20210807"
+    PACKAGES="${PACKAGES} coq-unimath.20220204"
   fi 
 
   # Code extraction
-  PACKAGES="${PACKAGES} coq-simple-io.1.6.0"                  # works with 8.14 version patch
+  PACKAGES="${PACKAGES} coq-simple-io.1.7.0"
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20211230 menhir.20211230"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.15"
-  PACKAGES="${PACKAGES} coq-aac-tactics.8.15.0"
+  PACKAGES="${PACKAGES} coq-aac-tactics.8.15.1"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.15"
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"
-  PACKAGES="${PACKAGES} coq-elpi.1.12.1 elpi.1.13.8"
+  PACKAGES="${PACKAGES} coq-elpi.1.13.0 elpi.1.14.1"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    # coq-quickchick does not work on Windows because it requires ocamlc and other tools
-    PACKAGES="${PACKAGES} coq-quickchick.1.6.0"                 # works with 8.14 version patch
-  fi
+  PACKAGES="${PACKAGES} coq-quickchick.1.6.1"
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"
   if [[ "$OSTYPE" != cygwin ]]
   then
@@ -131,7 +126,7 @@ then
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.15"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.0"
-  PACKAGES="${PACKAGES} coq-libhyps.2.0.4"                    # works with 8.14 version patch
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.5"
 
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.13"
@@ -148,7 +143,7 @@ then
   esac
 
   case "$COQ_PLATFORM_VST" in
-    [yY]) PACKAGES="${PACKAGES} coq-vst.2.9" ;;
+    [yY]) PACKAGES="${PACKAGES} coq-vst.2.9.1" ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
   esac
@@ -163,12 +158,15 @@ fi
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
 
-  # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-deriving.0.1.0"                   # works with 8.14 version patch
+  # General mathematics
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.0.3.0"
+  
+    # Proof automation / generation / helpers
+  PACKAGES="${PACKAGES} coq-deriving.0.1.0"
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.3"
-  PACKAGES="${PACKAGES} coq-record-update.0.3.0"              # works with 8.14 version patch
+  PACKAGES="${PACKAGES} coq-record-update.0.3.0"
 
   # Communication with coqtop
   PACKAGES="${PACKAGES} coq-serapi.8.15.0+0.15.0"
