@@ -60,7 +60,6 @@ jobs:
           - '8.14~2022.01'
           - '8.13~2021.02'
           - '8.12'
-          - 'dev'
 
     steps:
       - name: Git checkout
