@@ -77,6 +77,8 @@ int main (int argc, char* argv[])
         newargs[0] = coqide_path;
         newargs[argc] = 0;
         execv(coqide_path, newargs);
-        // Execution transfers to CoqIDE here - no need to clean up
+        // Execution transfers to CoqIDE here - if not it is an error
+        fprintf(stderr, "execv failed calling %s\n", coqide_path);
+        perror("Error message: ");
     }
 }
