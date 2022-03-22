@@ -34,12 +34,12 @@ The table below contains links to the README files for the supported versions
 of Coq and libraries. Each README file contains a list of included packages with
 detailed information for each package.
 
+- [Coq 8.15.0 (released Jan 2022) with the first packahe pick from Mar 2022](doc/README~8.15~2022.03.md)
 - [Coq 8.14.1 (released Nov 2021) with the first package pick from Jan 2022](doc/README~8.14~2022.01.md)
 - [Coq 8.13.2 (released Apr 2021) with an updated package pick from Jan 2022](doc/README~8.13~2022.01.md)
 - [Coq 8.13.2 (released Apr 2021) with an updated package pick from Sep 2021](doc/README~8.13~2021.09.md)
 - [Coq 8.13.2 (released Apr 2021) with original package pick from Feb 2021](doc/README~8.13~2021.02.md)
 - [Coq 8.12.2 (released Dec 2020)](doc/README~8.12.md)
-- [Coq 8.15.0 (released Jan 2022) with a beta package pick](doc/README~8.15~beta1.md)
 - [Coq Developer (latest developer branch)](doc/README~dev.md)
 
 If you have questions on the Coq Platform, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
@@ -68,6 +68,12 @@ The Coq Platform team does no double check this information.
 </details>
 
 <details><summary><font size="+1">Release notes / changelog</font></summary>
+
+## Changes in 2022.03.0
+
+- release package pick for Coq 8.15.0
+- re-enabled QuickChick on Windows
+- added coq-mathcomp-algebra-tactics to the extended section
 
 ## Changes in 2022.01.0
 
