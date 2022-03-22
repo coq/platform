@@ -550,97 +550,15 @@ sed -e "s/VERSION/${COQ_VERSION_MACOS}/g" ../macos/Info.plist.template > \
 
 mv ${BIN_ABSDIR}/coqide ${BIN_ABSDIR}/coqide.exe
 
-# Create a shell script to start CoqIDE with correct environmant
+# Create a wrapper executable to start CoqIDE with correct environmant
+# Note: a shell script does not work - users can't access the documents folder then
 
-cat> ${BIN_ABSDIR}/coqide <<'EOT'
-#!/bin/sh
-
-# Check if $0 is a link
-if [ -L "$0" ]
-then
-  LINKTARGET="$(readlink "$0")"
-  # Check if $0 is a an absolute or relative link
-  if [[ "$LINKTARGET" == '/'* ]]
-  then
-    BINDIR="$(dirname "$LINKTARGET")"
-  else  
-    BINDIR="$(dirname "$0")/$(dirname "$LINKTARGET")"
-  fi
-else
-  BINDIR="$(dirname "$0")"
-fi
-
-# Normalize path
-BINDIR="$(cd "$BINDIR" ; pwd)"
-ROOTDIR="$(cd "$BINDIR/.." ; pwd)"
-  
-export PATH="${BINDIR}:${PATH}"
-
-# This setting is required to find the image file format handlers
-# Note: these docs are contradicting on the default path for the "loaders.cache" file
-# https://developer.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-query-loaders.html
-# https://developer.gnome.org/gtk3/stable/gtk-running.html
-# Setting GTK_EXE_PREFIX to ROOTDIR and putting the file into lib/gtk-3.0/3.0.0/loaders.cache doesn't work.
-export GDK_PIXBUF_MODULE_FILE="${ROOTDIR}/lib/gdk-pixbuf-2.0/2.10.0/loaders/loaders.cache"
-
-# This setting is required to find the "Input Method" handlers
-# ToDo: the cache file links to locales, but we don't install locales
-# ToDo: the selection of input methods seems questionable (with MacPorts)
-# ToDo: not sure if this is needed at all on Mac (which should have its own IME)
-export GTK_IM_MODULE_FILE="${ROOTDIR}/lib/3.0/3.0.0/immodules.cache"
-
-# This setting is required to find the adwaita icon theme
-export XDG_DATA_HOME="${ROOTDIR}/share"
-
-exec ${BINDIR}/coqide.exe
-EOT
+cc ../macos/wrapper_bin_folder.c -o ${BIN_ABSDIR}/coqide
 chmod a+x ${BIN_ABSDIR}/coqide
 
-# Create a similar (but not identical!) shell script in Contents/MacOS
+# Create a similar (but not identical!) wrapper in Contents/MacOS
 
-cat> ${APP_ABSDIR}/Contents/MacOS/coqide <<'EOT'
-#!/bin/sh
-
-# Check if $0 is a link
-if [ -L "$0" ]
-then
-  LINKTARGET="$(readlink "$0")"
-  # Check if $0 is a an absolute or relative link
-  if [[ "$LINKTARGET" == '/'* ]]
-  then
-    MACOSDIR="$(dirname "$LINKTARGET")"
-  else  
-    MACOSDIR="$(dirname "$0")/$(dirname "$LINKTARGET")"
-  fi
-else
-  MACOSDIR="$(dirname "$0")"
-fi
-
-# Normalize path
-BINDIR="$MACOSDIR/../Resources/bin"
-BINDIR="$(cd "$BINDIR" ; pwd)"
-ROOTDIR="$(cd "$BINDIR/.." ; pwd)"
-  
-export PATH="${BINDIR}:${PATH}"
-
-# This setting is required to find the image file format handlers
-# Note: these docs are contradicting on the default path for the "loaders.cache" file
-# https://developer.gnome.org/gdk-pixbuf/stable/gdk-pixbuf-query-loaders.html
-# https://developer.gnome.org/gtk3/stable/gtk-running.html
-# Setting GTK_EXE_PREFIX to ROOTDIR and putting the file into lib/gtk-3.0/3.0.0/loaders.cache doesn't work.
-export GDK_PIXBUF_MODULE_FILE="${ROOTDIR}/lib/gdk-pixbuf-2.0/2.10.0/loaders/loaders.cache"
-
-# This setting is required to find the "Input Method" handlers
-# ToDo: the cache file links to locales, but we don't install locales
-# ToDo: the selection of input methods seems questionable (with MacPorts)
-# ToDo: not sure if this is needed at all on Mac (which should have its own IME)
-export GTK_IM_MODULE_FILE="${ROOTDIR}/lib/3.0/3.0.0/immodules.cache"
-
-# This setting is required to find the adwaita icon theme
-export XDG_DATA_HOME="${ROOTDIR}/share"
-
-exec ${BINDIR}/coqide.exe
-EOT
+cc ../macos/wrapper_macos_folder.c -o ${APP_ABSDIR}/Contents/MacOS/coqide
 chmod a+x ${APP_ABSDIR}/Contents/MacOS/coqide
 
 # Icons
