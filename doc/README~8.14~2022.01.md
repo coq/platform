@@ -1,4 +1,4 @@
-# Coq Platform 2022.01.0 providing Coq 8.14.1 (released Nov 2021) with the first package pick from Jan 2022
+# Coq Platform 2022.03.0 providing Coq 8.14.1 (released Nov 2021) with the first package pick from Jan 2022
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
@@ -8,10 +8,10 @@ The [Coq Platform](https://github.com/coq/platform) is a distribution of the Coq
 interactive prover together with a selection of Coq libraries and plugins.
 
 The Coq Platform supports to install several versions of Coq (also in parallel).
-This README file is for **Coq Platform 2022.01.0 with Coq 8.14.1**.
+This README file is for **Coq Platform 2022.03.0 with Coq 8.14.1**.
 The README files for other versions are linked in the main [README](../README.md).
 
-This version of Coq Platform 2022.01.0 includes Coq 8.14.1 from  11/2021. This is the **latest release version** of the Coq Platform and recommended for general application. 
+This version of Coq Platform 2022.01.0 includes Coq 8.14.1 from  11/2021. 
 
 The Coq Platform supports four levels of installation extent:
 **base**, **IDE**, **full** and **extended** and a few **optional** packages.
@@ -41,7 +41,7 @@ Please clarify the details with the homepage of the package.
 
 <br>
 
-## **Coq Platform 2022.01.0 with Coq 8.14.1 "base level"**
+## **Coq Platform 2022.03.0 with Coq 8.14.1 "base level"**
 
 The **base level** is mostly intended as a basis for custom installations using
 opam and contains the following package(s):
@@ -57,13 +57,13 @@ opam and contains the following package(s):
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/coq/coq.8.14.1/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>The Coq proof assistant provides a formal language to writenmathematical definitions, executable algorithms, and theorems, togethernwith an environment for semi-interactive development of machine-checkednproofs. Typical applications include the certification of properties of programmingnlanguages (e.g., the CompCert compiler certification project and thenBedrock verified low-level programming library), the formalization ofnmathematics (e.g., the full formalization of the Feit-Thompson theoremnand homotopy type theory) and teaching.</dd>
+    <dt><b>description</b></dt><dd>The Coq proof assistant provides a formal language to write<br>mathematical definitions, executable algorithms, and theorems, together<br>with an environment for semi-interactive development of machine-checked<br>proofs. Typical applications include the certification of properties of programming<br>languages (e.g., the CompCert compiler certification project and the<br>Bedrock verified low-level programming library), the formalization of<br>mathematics (e.g., the full formalization of the Feit-Thompson theorem<br>and homotopy type theory) and teaching.</dd>
   </dl>
 </details>
 
 <br>
 
-## **Coq Platform 2022.01.0 with Coq 8.14.1 "IDE level"**
+## **Coq Platform 2022.03.0 with Coq 8.14.1 "IDE level"**
 
 The **IDE level** adds an interactive development environment to the **base level**.
 
@@ -85,13 +85,13 @@ The **IDE level** contains the following package(s):
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/coqide/coqide.8.14.1/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>CoqIDE is a graphical user interface for interactive developmentnof mathematical definitions, executable algorithms, and proofs of theoremsnusing the Coq proof assistant.</dd>
+    <dt><b>description</b></dt><dd>CoqIDE is a graphical user interface for interactive development<br>of mathematical definitions, executable algorithms, and proofs of theorems<br>using the Coq proof assistant.</dd>
   </dl>
 </details>
 
 <br>
 
-## **Coq Platform 2022.01.0 with Coq 8.14.1 "full level"**
+## **Coq Platform 2022.03.0 with Coq 8.14.1 "full level"**
 
 The **full level** adds many commonly used coq libraries, plug-ins and
 developments.
@@ -113,7 +113,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/coq-community/aac-tactics/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-aac-tactics/coq-aac-tactics.8.14.1/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This Coq plugin provides tactics for rewriting and proving universallynquantified equations modulo associativity and commutativity of some operator,nwith idempotent commutative operators enabling additional simplifications.nThe tactics can be applied for custom operators by registering the operators andntheir properties as type class instances. Instances for many commonly used operators,nsuch as for binary integer arithmetic and booleans, are provided with the plugin.</dd>
+    <dt><b>description</b></dt><dd>This Coq plugin provides tactics for rewriting and proving universally<br>quantified equations modulo associativity and commutativity of some operator,<br>with idempotent commutative operators enabling additional simplifications.<br>The tactics can be applied for custom operators by registering the operators and<br>their properties as type class instances. Instances for many commonly used operators,<br>such as for binary integer arithmetic and booleans, are provided with the plugin.</dd>
   </dl>
 </details>
 
@@ -143,7 +143,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/coq-community/coqeal/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-coqeal/coq-coqeal.1.1.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This Coq library contains a subset of the work that was developed in the contextnof the ForMath EU FP7 project (2009-2013). It has two parts:n- theory, which contains developments in algebra including normal forms of matrices,n  and optimized algorithms on MathComp data structures.n- refinements, which is a framework to ease change of data representations during a proof.</dd>
+    <dt><b>description</b></dt><dd>This Coq library contains a subset of the work that was developed in the context<br>of the ForMath EU FP7 project (2009-2013). It has two parts:<br>- theory, which contains developments in algebra including normal forms of matrices,<br>  and optimized algorithms on MathComp data structures.<br>- refinements, which is a framework to ease change of data representations during a proof.</dd>
   </dl>
 </details>
 
@@ -203,7 +203,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/coq-community/corn/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-corn/coq-corn.8.13.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>CoRN includes the following parts:nn- Algebraic Hierarchynn  An axiomatic formalization of the most common algebraicn  structures, including setoids, monoids, groups, rings,n  fields, ordered fields, rings of polynomials, real andn  complex numbersnn- Model of the Real Numbersnn  Construction of a concrete real number structuren  satisfying the previously defined axiomsnn- Fundamental Theorem of Algebrann  A proof that every non-constant polynomial on the complexn  plane has at least one rootnn- Real Calculusnn  A collection of elementary results on real analysis,n  including continuity, differentiability, integration,n  Taylor&apos;s theorem and the Fundamental Theorem of Calculusnn- Exact Real Computationnn  Fast verified computation inside Coq. This includes: real numbers, functions,n  integrals, graphs of functions, differential equations.</dd>
+    <dt><b>description</b></dt><dd>CoRN includes the following parts:<br><br>- Algebraic Hierarchy<br><br>  An axiomatic formalization of the most common algebraic<br>  structures, including setoids, monoids, groups, rings,<br>  fields, ordered fields, rings of polynomials, real and<br>  complex numbers<br><br>- Model of the Real Numbers<br><br>  Construction of a concrete real number structure<br>  satisfying the previously defined axioms<br><br>- Fundamental Theorem of Algebra<br><br>  A proof that every non-constant polynomial on the complex<br>  plane has at least one root<br><br>- Real Calculus<br><br>  A collection of elementary results on real analysis,<br>  including continuity, differentiability, integration,<br>  Taylor&apos;s theorem and the Fundamental Theorem of Calculus<br><br>- Exact Real Computation<br><br>  Fast verified computation inside Coq. This includes: real numbers, functions,<br>  integrals, graphs of functions, differential equations.</dd>
   </dl>
 </details>
 
@@ -218,7 +218,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/coq-community/coq-dpdgraph/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-dpdgraph/coq-dpdgraph.1.0+8.14/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Coq plugin that extracts the dependencies between Coq objects,nand produces files with dependency information. Includes toolsnto visualize dependency graphs and find unused definitions.</dd>
+    <dt><b>description</b></dt><dd>Coq plugin that extracts the dependencies between Coq objects,<br>and produces files with dependency information. Includes tools<br>to visualize dependency graphs and find unused definitions.</dd>
   </dl>
 </details>
 
@@ -233,7 +233,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/LPCIC/coq-elpi/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-elpi/coq-elpi.1.11.2/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Coq-elpi provides a Coq plugin that embeds ELPI.nIt also provides a way to embed Coq&apos;s terms into λProlog usingnthe Higher-Order Abstract Syntax approachnand a way to read terms back.  In addition to that it exports to ELPI anset of Coq&apos;s primitives, e.g. printing a message, accessing thenenvironment of theorems and data types, defining a new constant and so on.nFor convenience it also provides a quotation and anti-quotation for Coq&apos;snsyntax in λProlog.  E.g. `{{nat}}` is expanded to the type name of naturalnnumbers, or `{{A -&gt; B}}` to the representation of a product by unfoldingn the `-&gt;` notation. Finally it provides a way to define new vernacular commandsnandnnew tactics.</dd>
+    <dt><b>description</b></dt><dd>Coq-elpi provides a Coq plugin that embeds ELPI.<br>It also provides a way to embed Coq&apos;s terms into λProlog using<br>the Higher-Order Abstract Syntax approach<br>and a way to read terms back.  In addition to that it exports to ELPI a<br>set of Coq&apos;s primitives, e.g. printing a message, accessing the<br>environment of theorems and data types, defining a new constant and so on.<br>For convenience it also provides a quotation and anti-quotation for Coq&apos;s<br>syntax in λProlog.  E.g. `{{nat}}` is expanded to the type name of natural<br>numbers, or `{{A -&gt; B}}` to the representation of a product by unfolding<br> the `-&gt;` notation. Finally it provides a way to define new vernacular commands<br>and<br>new tactics.</dd>
   </dl>
 </details>
 
@@ -248,7 +248,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/mattam82/Coq-Equations/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-equations/coq-equations.1.3+8.14/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Equations is a function definition plugin for Coq, that allows thendefinition of functions by dependent pattern-matching and well-founded,nmutual or nested structural recursion and compiles them into corenterms. It automatically derives the clauses equations, the graph of thenfunction and its associated elimination principle.</dd>
+    <dt><b>description</b></dt><dd>Equations is a function definition plugin for Coq, that allows the<br>definition of functions by dependent pattern-matching and well-founded,<br>mutual or nested structural recursion and compiles them into core<br>terms. It automatically derives the clauses equations, the graph of the<br>function and its associated elimination principle.</dd>
   </dl>
 </details>
 
@@ -308,7 +308,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/lukaszcz/coqhammer/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-hammer-tactics/coq-hammer-tactics.1.3.2+8.14/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Collection of tactics that are used by the hammer for Coqnto reconstruct proofs found by automated theorem provers. When the hammernhas been successfully applied to a project, only this package needsnto be installed; the hammer plugin is not required.</dd>
+    <dt><b>description</b></dt><dd>Collection of tactics that are used by the hammer for Coq<br>to reconstruct proofs found by automated theorem provers. When the hammer<br>has been successfully applied to a project, only this package needs<br>to be installed; the hammer plugin is not required.</dd>
   </dl>
 </details>
 
@@ -323,7 +323,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/lukaszcz/coqhammer/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-hammer/coq-hammer.1.3.2+8.14/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>A general-purpose automated reasoning hammer tool for Coq that combinesnlearning from previous proofs with the translation of problems to thenlogics of automated systems and the reconstruction of successfully found proofs.</dd>
+    <dt><b>description</b></dt><dd>A general-purpose automated reasoning hammer tool for Coq that combines<br>learning from previous proofs with the translation of problems to the<br>logics of automated systems and the reconstruction of successfully found proofs.</dd>
   </dl>
 </details>
 
@@ -338,7 +338,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/math-comp/hierarchy-builder/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-hierarchy-builder/coq-hierarchy-builder.1.2.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Hierarchy Builder is a high level language to build hierarchies of algebraic structures and make thesenhierarchies evolve without breaking user code. The key concepts are the ones of factory, buildernand abbreviation that let the hierarchy developer describe an actual interface for their library.nBehind that interface the developer can provide appropriate code to ensure retro compatibility.</dd>
+    <dt><b>description</b></dt><dd>Hierarchy Builder is a high level language to build hierarchies of algebraic structures and make these<br>hierarchies evolve without breaking user code. The key concepts are the ones of factory, builder<br>and abbreviation that let the hierarchy developer describe an actual interface for their library.<br>Behind that interface the developer can provide appropriate code to ensure retro compatibility.</dd>
   </dl>
 </details>
 
@@ -353,7 +353,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/HoTT/HoTT/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-hott/coq-hott.8.14/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>To use the HoTT library, the following flags must be passed to coqc:n   -noinit -indices-matternTo use the HoTT library in a project, add the following to _CoqProject:n   -arg -noinitn   -arg -indices-matter</dd>
+    <dt><b>description</b></dt><dd>To use the HoTT library, the following flags must be passed to coqc:<br>   -noinit -indices-matter<br>To use the HoTT library in a project, add the following to _CoqProject:<br>   -arg -noinit<br>   -arg -indices-matter</dd>
   </dl>
 </details>
 
@@ -383,7 +383,7 @@ The **full level** contains the following packages:
       (<a href='https://gitlab.mpi-sws.org/iris/iris/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-iris-heap-lang/coq-iris-heap-lang.3.5.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This package defines HeapLang, a concurrent lambda calculus with references, andnuses Iris to build a program logic for HeapLang programs.</dd>
+    <dt><b>description</b></dt><dd>This package defines HeapLang, a concurrent lambda calculus with references, and<br>uses Iris to build a program logic for HeapLang programs.</dd>
   </dl>
 </details>
 
@@ -398,7 +398,7 @@ The **full level** contains the following packages:
       (<a href='https://gitlab.mpi-sws.org/iris/iris/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-iris/coq-iris.3.5.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Iris is a framework for reasoning about the safety of concurrent programs usingnconcurrent separation logic. It can be used to develop a program logic, forndefining logical relations, and for reasoning about type systems, among othernapplications. This package includes the base logic, Iris Proof Mode (IPM) /nMoSeL, and a general language-independent program logic; see coq-iris-heap-langnfor an instantiation of the program logic to a particular programming language.</dd>
+    <dt><b>description</b></dt><dd>Iris is a framework for reasoning about the safety of concurrent programs using<br>concurrent separation logic. It can be used to develop a program logic, for<br>defining logical relations, and for reasoning about type systems, among other<br>applications. This package includes the base logic, Iris Proof Mode (IPM) /<br>MoSeL, and a general language-independent program logic; see coq-iris-heap-lang<br>for an instantiation of the program logic to a particular programming language.</dd>
   </dl>
 </details>
 
@@ -413,7 +413,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/Matafou/LibHyps/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-libhyps/coq-libhyps.2.0.4/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This library defines a set of tactics to manipulate hypothesisnindividually or by group. In particular it allows applying a tactic onneach hypothesis of a goal, or only on *new* hypothesis after somentactic. Examples of manipulations: automatic renaming, subst, revert,nor any tactic expecting a hypothesis name as argument.nnIt also provides the especialize tactic to ease forward reasoning byninstantianting one, several or all premisses of a hypothesis.</dd>
+    <dt><b>description</b></dt><dd>This library defines a set of tactics to manipulate hypothesis<br>individually or by group. In particular it allows applying a tactic on<br>each hypothesis of a goal, or only on *new* hypothesis after some<br>tactic. Examples of manipulations: automatic renaming, subst, revert,<br>or any tactic expecting a hypothesis name as argument.<br><br>It also provides the especialize tactic to ease forward reasoning by<br>instantianting one, several or all premisses of a hypothesis.</dd>
   </dl>
 </details>
 
@@ -428,7 +428,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/coq-community/math-classes/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-math-classes/coq-math-classes.8.13.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Math classes is a library of abstract interfaces for mathematicalnstructures, such as:nn*  Algebraic hierarchy (groups, rings, fields, …)n*  Relations, orders, …n*  Categories, functors, universal algebra, …n*  Numbers: N, Z, Q, …n*  Operations, (shift, power, abs, …)nnIt is heavily based on Coq’s new type classes in order to provide:nstructure inference, multiple inheritance/sharing, convenientnalgebraic manipulation (e.g. rewriting) and idiomatic use ofnnotations.</dd>
+    <dt><b>description</b></dt><dd>Math classes is a library of abstract interfaces for mathematical<br>structures, such as:<br><br>*  Algebraic hierarchy (groups, rings, fields, …)<br>*  Relations, orders, …<br>*  Categories, functors, universal algebra, …<br>*  Numbers: N, Z, Q, …<br>*  Operations, (shift, power, abs, …)<br><br>It is heavily based on Coq’s new type classes in order to provide:<br>structure inference, multiple inheritance/sharing, convenient<br>algebraic manipulation (e.g. rewriting) and idiomatic use of<br>notations.</dd>
   </dl>
 </details>
 
@@ -443,7 +443,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/math-comp/math-comp/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-algebra/coq-mathcomp-algebra.1.13.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This library contains definitions and theorems about discreten(i.e. with decidable equality) algebraic structures : ring, fields,nordered fields, real fields,  modules, algebras, integers, rationalnnumbers, polynomials, matrices, vector spaces...</dd>
+    <dt><b>description</b></dt><dd>This library contains definitions and theorems about discrete<br>(i.e. with decidable equality) algebraic structures : ring, fields,<br>ordered fields, real fields,  modules, algebras, integers, rational<br>numbers, polynomials, matrices, vector spaces...</dd>
   </dl>
 </details>
 
@@ -458,7 +458,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/math-comp/analysis/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-analysis/coq-mathcomp-analysis.0.3.11/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This repository contains an experimental library for real analysis fornthe Coq proof-assistant and using the Mathematical Components library.</dd>
+    <dt><b>description</b></dt><dd>This repository contains an experimental library for real analysis for<br>the Coq proof-assistant and using the Mathematical Components library.</dd>
   </dl>
 </details>
 
@@ -473,7 +473,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/math-comp/bigenough/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-bigenough/coq-mathcomp-bigenough.1.0.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>The package contains a package to reasoning with big enough objectsn(mostly natural numbers). This package is essentially for backwardncompatibility purposes as `bigenough` will be subsumed by the nearntactics. The formalization is based on the Mathematical Componentsnlibrary.</dd>
+    <dt><b>description</b></dt><dd>The package contains a package to reasoning with big enough objects<br>(mostly natural numbers). This package is essentially for backward<br>compatibility purposes as `bigenough` will be subsumed by the near<br>tactics. The formalization is based on the Mathematical Components<br>library.</dd>
   </dl>
 </details>
 
@@ -488,7 +488,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/math-comp/math-comp/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-character/coq-mathcomp-character.1.13.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This library contains definitions and theorems about groupnrepresentations, characters and class functions.</dd>
+    <dt><b>description</b></dt><dd>This library contains definitions and theorems about group<br>representations, characters and class functions.</dd>
   </dl>
 </details>
 
@@ -503,7 +503,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/math-comp/math-comp/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-field/coq-mathcomp-field.1.13.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This library contains definitions and theorems about field extensions,ngalois theory, algebraic numbers, cyclotomic polynomials...</dd>
+    <dt><b>description</b></dt><dd>This library contains definitions and theorems about field extensions,<br>galois theory, algebraic numbers, cyclotomic polynomials...</dd>
   </dl>
 </details>
 
@@ -518,7 +518,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/math-comp/math-comp/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-fingroup/coq-mathcomp-fingroup.1.13.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This library contains definitions and theorems about finite groups,ngroup quotients, group morphisms, group presentation, group action...</dd>
+    <dt><b>description</b></dt><dd>This library contains definitions and theorems about finite groups,<br>group quotients, group morphisms, group presentation, group action...</dd>
   </dl>
 </details>
 
@@ -533,7 +533,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/math-comp/finmap/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-finmap/coq-mathcomp-finmap.1.5.1/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This library is an extension of mathematical component in order tonsupport finite sets and finite maps on choicetypes (rather that finitentypes). This includes support for functions with finite support andnmultisets. The library also contains a generic order and set libary,nwhich will be used to subsume notations for finite sets, eventually.</dd>
+    <dt><b>description</b></dt><dd>This library is an extension of mathematical component in order to<br>support finite sets and finite maps on choicetypes (rather that finite<br>types). This includes support for functions with finite support and<br>multisets. The library also contains a generic order and set libary,<br>which will be used to subsume notations for finite sets, eventually.</dd>
   </dl>
 </details>
 
@@ -563,7 +563,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/math-comp/real-closed/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-real-closed/coq-mathcomp-real-closed.1.1.2/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This library contains definitions and theorems about real closednfields, with a construction of the real closure and the algebraicnclosure (including a proof of the fundamental theorem ofnalgebra). It also contains a proof of decidability of the firstnorder theory of real closed field, through quantifier elimination.</dd>
+    <dt><b>description</b></dt><dd>This library contains definitions and theorems about real closed<br>fields, with a construction of the real closure and the algebraic<br>closure (including a proof of the fundamental theorem of<br>algebra). It also contains a proof of decidability of the first<br>order theory of real closed field, through quantifier elimination.</dd>
   </dl>
 </details>
 
@@ -593,7 +593,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/math-comp/math-comp/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-ssreflect/coq-mathcomp-ssreflect.1.13.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This library includes the small scale reflection proof languagenextension and the minimal set of libraries to take advantage of it.nThis includes libraries on lists (seq), boolean and booleannpredicates, natural numbers and types with decidable equality,nfinite types, finite sets, finite functions, finite graphs, basic arithmeticsnand prime numbers, big operators</dd>
+    <dt><b>description</b></dt><dd>This library includes the small scale reflection proof language<br>extension and the minimal set of libraries to take advantage of it.<br>This includes libraries on lists (seq), boolean and boolean<br>predicates, natural numbers and types with decidable equality,<br>finite types, finite sets, finite functions, finite graphs, basic arithmetics<br>and prime numbers, big operators</dd>
   </dl>
 </details>
 
@@ -608,7 +608,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/math-comp/mczify/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-zify/coq-mathcomp-zify.1.1.0+1.12+8.13/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This small library enables the use of the Micromega arithmetic solvers of Coqnfor goals stated with the definitions of the Mathematical Components librarynby extending the zify tactic.</dd>
+    <dt><b>description</b></dt><dd>This small library enables the use of the Micromega arithmetic solvers of Coq<br>for goals stated with the definitions of the Mathematical Components library<br>by extending the zify tactic.</dd>
   </dl>
 </details>
 
@@ -653,7 +653,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/coq-community/paramcoq/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-paramcoq/coq-paramcoq.1.1.3+coq8.14/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>A Coq plugin providing commands for generating parametricity statements.nTypical applications of such statements are in data refinement proofs.nNote that the plugin is still in an experimental state - it is not very usernfriendly (lack of good error messages) and still contains bugs. But itnis usable enough to translate a large chunk of the standard library.</dd>
+    <dt><b>description</b></dt><dd>A Coq plugin providing commands for generating parametricity statements.<br>Typical applications of such statements are in data refinement proofs.<br>Note that the plugin is still in an experimental state - it is not very user<br>friendly (lack of good error messages) and still contains bugs. But it<br>is usable enough to \translate\ a large chunk of the standard library.</dd>
   </dl>
 </details>
 
@@ -683,7 +683,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/coq-community/reglang/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-reglang/coq-reglang.1.1.2/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This library provides definitions and verified translations betweenndifferent representations of regular languages: various forms ofnautomata (deterministic, nondeterministic, one-way, two-way),nregular expressions, and the logic WS1S. It also contains variousndecidability results and closure properties of regular languages.</dd>
+    <dt><b>description</b></dt><dd>This library provides definitions and verified translations between<br>different representations of regular languages: various forms of<br>automata (deterministic, nondeterministic, one-way, two-way),<br>regular expressions, and the logic WS1S. It also contains various<br>decidability results and closure properties of regular languages.</dd>
   </dl>
 </details>
 
@@ -698,13 +698,13 @@ The **full level** contains the following packages:
       (<a href='https://github.com/Lysxia/coq-simple-io/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-simple-io/coq-simple-io.1.6.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This library provides tools to implement IO programs directly in Coq, in ansimilar style to Haskell. Facilities for formal verification are not included.nnIO is defined as a parameter with a purely functional interface in Coq,nto be extracted to OCaml. Some wrappers for the basic types and functions innthe OCaml Pervasives module are provided. Users are free to define their ownnAPIs on top of this IO type.</dd>
+    <dt><b>description</b></dt><dd>This library provides tools to implement IO programs directly in Coq, in a<br>similar style to Haskell. Facilities for formal verification are not included.<br><br>IO is defined as a parameter with a purely functional interface in Coq,<br>to be extracted to OCaml. Some wrappers for the basic types and functions in<br>the OCaml Pervasives module are provided. Users are free to define their own<br>APIs on top of this IO type.</dd>
   </dl>
 </details>
 
 <details>
   <summary><a href='https://gitlab.mpi-sws.org/iris/stdpp'>coq-stdpp.1.6.0</a>
-(1.6.0) An extended Standard Library for Coq</summary>
+(1.6.0) An extended \Standard Library\ for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The std++ team</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
@@ -713,7 +713,7 @@ The **full level** contains the following packages:
       (<a href='https://gitlab.mpi-sws.org/iris/stdpp/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-stdpp/coq-stdpp.1.6.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>The key features of this library are as follows:nn- It provides a great number of definitions and lemmas for common datan  structures such as lists, finite maps, finite sets, and finite multisets.n- It uses type classes for common notations (like `∅`, `∪`, and Haskell-stylen  monad notations) so that these can be overloaded for different data structures.n- It uses type classes to keep track of common properties of types, like itn  having decidable equality or being countable or finite.n- Most data structures are represented in canonical ways so that Leibnizn  equality can be used as much as possible (for example, for maps we haven  `m1 = m2` iff `∀ i, m1 !! i = m2 !! i`). On top of that, the library providesn  setoid instances for most types and operations.n- It provides various tactics for common tasks, like an ssreflect inspiredn  `done` tactic for finishing trivial goals, a simple breadth-first solvern  `naive_solver`, an equality simplifier `simplify_eq`, a solver `solve_proper`n  for proving compatibility of functions with respect to relations, and a solvern  `set_solver` for goals involving set operations.n- It is entirely dependency- and axiom-free.</dd>
+    <dt><b>description</b></dt><dd>The key features of this library are as follows:<br><br>- It provides a great number of definitions and lemmas for common data<br>  structures such as lists, finite maps, finite sets, and finite multisets.<br>- It uses type classes for common notations (like `∅`, `∪`, and Haskell-style<br>  monad notations) so that these can be overloaded for different data structures.<br>- It uses type classes to keep track of common properties of types, like it<br>  having decidable equality or being countable or finite.<br>- Most data structures are represented in canonical ways so that Leibniz<br>  equality can be used as much as possible (for example, for maps we have<br>  `m1 = m2` iff `∀ i, m1 !! i = m2 !! i`). On top of that, the library provides<br>  setoid instances for most types and operations.<br>- It provides various tactics for common tasks, like an ssreflect inspired<br>  `done` tactic for finishing trivial goals, a simple breadth-first solver<br>  `naive_solver`, an equality simplifier `simplify_eq`, a solver `solve_proper`<br>  for proving compatibility of functions with respect to relations, and a solver<br>  `set_solver` for goals involving set operations.<br>- It is entirely dependency- and axiom-free.</dd>
   </dl>
 </details>
 
@@ -803,7 +803,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/ocaml-ppx/ppxlib/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/ppxlib/ppxlib.0.15.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Ppxlib is the standard library for ppx rewriters and other programsnthat manipulate the in-memory reprensation of OCaml programs, a.k.anthe Parsetree.nnIt also comes bundled with two ppx rewriters that are commonly used tonwrite tools that manipulate and/or generate Parsetree values;n`ppxlib.metaquot` which allows to construct Parsetree values using thenOCaml syntax directly and `ppxlib.traverse` which provides variousnways of automatically traversing values of a given type, in particularnallowing to inject a complex structured value into generated code.</dd>
+    <dt><b>description</b></dt><dd>Ppxlib is the standard library for ppx rewriters and other programs<br>that manipulate the in-memory reprensation of OCaml programs, a.k.a<br>the \Parsetree\.<br><br>It also comes bundled with two ppx rewriters that are commonly used to<br>write tools that manipulate and/or generate Parsetree values;<br>`ppxlib.metaquot` which allows to construct Parsetree values using the<br>OCaml syntax directly and `ppxlib.traverse` which provides various<br>ways of automatically traversing values of a given type, in particular<br>allowing to inject a complex structured value into generated code.</dd>
   </dl>
 </details>
 
@@ -824,7 +824,7 @@ The **full level** contains the following packages:
 
 <br>
 
-## **Coq Platform 2022.01.0 with Coq 8.14.1 "optional packages"**
+## **Coq Platform 2022.03.0 with Coq 8.14.1 "optional packages"**
 
 The **optional** packages have the same maturity and maintenance level as the
 packages in the full level, but either have a **non open source license** or
@@ -869,7 +869,7 @@ The following packages are **optional**:
 
 <br>
 
-## **Coq Platform 2022.01.0 with Coq 8.14.1 "extended level"**
+## **Coq Platform 2022.03.0 with Coq 8.14.1 "extended level"**
 
 The **extended level** contains packages which are in a beta stage or otherwise
 don't yet have the level of maturity or support required for inclusion in the
@@ -894,7 +894,7 @@ The **extended level** contains the following packages:
       (<a href='https://github.com/arthuraa/deriving/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-deriving/coq-deriving.0.1.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Deriving provides generic instances of MathComp classes forninductive data types.  It includes native support for eqType,nchoiceType, countType and finType instances, and it allows users tondefine their own instances for other classes.</dd>
+    <dt><b>description</b></dt><dd>Deriving provides generic instances of MathComp classes for<br>inductive data types.  It includes native support for eqType,<br>choiceType, countType and finType instances, and it allows users to<br>define their own instances for other classes.</dd>
   </dl>
 </details>
 
@@ -909,7 +909,7 @@ The **extended level** contains the following packages:
       (<a href='https://github.com/tchajed/coq-record-update/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-record-update/coq-record-update.0.3.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>While Coq provides projections for each field of a record, it has nonconvenient way to update a single field of a record. This library provides angeneric way to update a field by name, where the user only has to implement ansimple typeclass that lists out the record fields.</dd>
+    <dt><b>description</b></dt><dd>While Coq provides projections for each field of a record, it has no<br>convenient way to update a single field of a record. This library provides a<br>generic way to update a field by name, where the user only has to implement a<br>simple typeclass that lists out the record fields.</dd>
   </dl>
 </details>
 
@@ -939,7 +939,7 @@ The **extended level** contains the following packages:
       (<a href='https://github.com/ejgallego/coq-serapi/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/coq-serapi/coq-serapi.8.14.0+0.14.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>SerAPI is a library for machine-to-machine interaction with thenCoq proof assistant, with particular emphasis on applications in IDEs,ncode analysis tools, and machine learning. SerAPI provides automaticnserialization of Coq&apos;s internal OCaml datatypes from/to JSON ornS-expressions (sexps).</dd>
+    <dt><b>description</b></dt><dd>SerAPI is a library for machine-to-machine interaction with the<br>Coq proof assistant, with particular emphasis on applications in IDEs,<br>code analysis tools, and machine learning. SerAPI provides automatic<br>serialization of Coq&apos;s internal OCaml datatypes from/to JSON or<br>S-expressions (sexps).</dd>
   </dl>
 </details>
 
@@ -994,17 +994,17 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/janestreet/base'>base.v0.14.2</a>
-(v0.14.2) Full standard library replacement for OCaml</summary>
+  <summary><a href='https://github.com/janestreet/base'>base.v0.14.3</a>
+(v0.14.3) Full standard library replacement for OCaml</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/janestreet/base'>homepage</a>)
       (<a href='https://github.com/janestreet/base/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/base/base.v0.14.2/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/base/base.v0.14.3/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Full standard library replacement for OCamlnnBase is a complete and portable alternative to the OCaml standardnlibrary. It provides all standard functionalities one would expectnfrom a language standard library. It uses consistent conventionsnacross all of its module.nnBase aims to be usable in any context. As a result system dependentnfeatures such as I/O are not offered by Base. They are insteadnprovided by companion libraries such as stdio:nn  https://github.com/janestreet/stdio</dd>
+    <dt><b>description</b></dt><dd>Full standard library replacement for OCaml<br><br>Base is a complete and portable alternative to the OCaml standard<br>library. It provides all standard functionalities one would expect<br>from a language standard library. It uses consistent conventions<br>across all of its module.<br><br>Base aims to be usable in any context. As a result system dependent<br>features such as I/O are not offered by Base. They are instead<br>provided by companion libraries such as stdio:<br><br>  https://github.com/janestreet/stdio</dd>
   </dl>
 </details>
 
@@ -1019,7 +1019,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/mjambon/biniou/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/biniou/biniou.1.2.1/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Biniou (pronounced be new) is a binary data format designed for speed, safety,nease of use and backward compatibility as protocols evolve. Biniou is vastlynequivalent to JSON in terms of functionality but allows implementations severalntimes faster (4 times faster than yojson), with 25-35% space savings.nnBiniou data can be decoded into human-readable form without knowledge of typendefinitions except for field and variant names which are represented by 31-bitnhashes. A program named bdump is provided for routine visualization of binioundata files.nnThe program atdgen is used to derive OCaml-Biniou serializers and deserializersnfrom type definitions.nnBiniou format specification: mjambon.github.io/atdgen-doc/biniou-format.txt</dd>
+    <dt><b>description</b></dt><dd>Biniou (pronounced \be new\) is a binary data format designed for speed, safety,<br>ease of use and backward compatibility as protocols evolve. Biniou is vastly<br>equivalent to JSON in terms of functionality but allows implementations several<br>times faster (4 times faster than yojson), with 25-35% space savings.<br><br>Biniou data can be decoded into human-readable form without knowledge of type<br>definitions except for field and variant names which are represented by 31-bit<br>hashes. A program named bdump is provided for routine visualization of biniou<br>data files.<br><br>The program atdgen is used to derive OCaml-Biniou serializers and deserializers<br>from type definitions.<br><br>Biniou format specification: mjambon.github.io/atdgen-doc/biniou-format.txt</dd>
   </dl>
 </details>
 
@@ -1034,7 +1034,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/Chris00/ocaml-cairo/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/cairo2/cairo2.0.6.2/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This is a binding to Cairo, a 2D graphics library with support fornmultiple output devices. Currently supported output targets includenthe X Window System, Quartz, Win32, image buffers, PostScript, PDF,nand SVG file output.</dd>
+    <dt><b>description</b></dt><dd>This is a binding to Cairo, a 2D graphics library with support for<br>multiple output devices. Currently supported output targets include<br>the X Window System, Quartz, Win32, image buffers, PostScript, PDF,<br>and SVG file output.</dd>
   </dl>
 </details>
 
@@ -1049,35 +1049,35 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/camlp5/camlp5/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/camlp5/camlp5.7.14/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Camlp5 is a preprocessor and pretty-printer for OCaml programs. It also provides parsing and printing tools.nnAs a preprocessor, it allows to:nnextend the syntax of OCaml,nredefine the whole syntax of the language.nAs a pretty printer, it allows to:nndisplay OCaml programs in an elegant way,nconvert from one syntax to another,ncheck the results of syntax extensions.nCamlp5 also provides some parsing and pretty printing tools:nnextensible grammarsnextensible printersnstream parsers and lexersnpretty print modulenIt works as a shell command and can also be used in the OCaml toplevel.</dd>
+    <dt><b>description</b></dt><dd>Camlp5 is a preprocessor and pretty-printer for OCaml programs. It also provides parsing and printing tools.<br><br>As a preprocessor, it allows to:<br><br>extend the syntax of OCaml,<br>redefine the whole syntax of the language.<br>As a pretty printer, it allows to:<br><br>display OCaml programs in an elegant way,<br>convert from one syntax to another,<br>check the results of syntax extensions.<br>Camlp5 also provides some parsing and pretty printing tools:<br><br>extensible grammars<br>extensible printers<br>stream parsers and lexers<br>pretty print module<br>It works as a shell command and can also be used in the OCaml toplevel.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='http://erratique.ch/software/cmdliner'>cmdliner.1.0.4</a>
-(1.0.4) Declarative definition of command line interfaces for OCaml</summary>
+  <summary><a href='https://erratique.ch/software/cmdliner'>cmdliner.1.1.0</a>
+(1.1.0) Declarative definition of command line interfaces for OCaml</summary>
   <dl>
-    <dt><b>authors</b></dt><dd>Daniel Bünzli &lt;daniel.buenzl i@erratique.ch&gt;</dd>
+    <dt><b>authors</b></dt><dd>The cmdliner programmers</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/ISC.html" target="_blank">ISC</a></dd>
     <dt><b>links</b></dt><dd>
-      (<a href='http://erratique.ch/software/cmdliner'>homepage</a>)
+      (<a href='https://erratique.ch/software/cmdliner'>homepage</a>)
       (<a href='https://github.com/dbuenzli/cmdliner/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/cmdliner/cmdliner.1.0.4/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/cmdliner/cmdliner.1.1.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Cmdliner allows the declarative definition of command line interfacesnfor OCaml.nnIt provides a simple and compositional mechanism to convert commandnline arguments to OCaml values and pass them to your functions. Thenmodule automatically handles syntax errors, help messages and UNIX mannpage generation. It supports programs with single or multiple commandsnand respects most of the [POSIX][1] and [GNU][2] conventions.nnCmdliner has no dependencies and is distributed under the ISC license.nn[1]: http://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap12.htmln[2]: http://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html</dd>
+    <dt><b>description</b></dt><dd>Cmdliner allows the declarative definition of command line interfaces<br>for OCaml.<br><br>It provides a simple and compositional mechanism to convert command<br>line arguments to OCaml values and pass them to your functions. The<br>module automatically handles syntax errors, help messages and UNIX man<br>page generation. It supports programs with single or multiple commands<br>and respects most of the [POSIX][1] and [GNU][2] conventions.<br><br>Cmdliner has no dependencies and is distributed under the ISC license.<br><br>[1]: http://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap12.html<br>[2]: http://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html<br><br>Home page: http://erratique.ch/software/cmdliner</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/GNOME/adwaita-icon-theme'>adwaita-icon-theme.1</a>
-(1) Virtual package relying on adwaita-icon-theme</summary>
+  <summary><a href='https://github.com/GNOME/adwaita-icon-theme'>adwaita-icon-theme.2</a>
+(2) Virtual package relying on adwaita-icon-theme</summary>
   <dl>
     <dt><b>authors</b></dt><dd>GNOME devs</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-3.0-only.html" target="_blank">LGPL-3.0-only</a> <a href="https://spdx.org/licenses/CC-BY-SA-3.0.html" target="_blank">CC-BY-SA-3.0</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/GNOME/adwaita-icon-theme'>homepage</a>)
       (<a href='https://gitlab.gnome.org/GNOME/adwaita-icon-theme/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/conf-adwaita-icon-theme/conf-adwaita-icon-theme.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/conf-adwaita-icon-theme/conf-adwaita-icon-theme.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package can only install if the adwaita-icon-theme package is installed on the system.</dd>
   </dl>
@@ -1094,7 +1094,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/conf-autoconf/conf-autoconf.0.1/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This package can only install if the autoconf commandnis available on the system.</dd>
+    <dt><b>description</b></dt><dd>This package can only install if the autoconf command<br>is available on the system.</dd>
   </dl>
 </details>
 
@@ -1274,7 +1274,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/conf-libtool/conf-libtool.1/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This package can only install if the libtool commandnis available on the system.</dd>
+    <dt><b>description</b></dt><dd>This package can only install if the libtool command<br>is available on the system.</dd>
   </dl>
 </details>
 
@@ -1319,7 +1319,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/conf-pkg-config/conf-pkg-config.2/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This package can only install if the pkg-config package is installednon the system.</dd>
+    <dt><b>description</b></dt><dd>This package can only install if the pkg-config package is installed<br>on the system.</dd>
   </dl>
 </details>
 
@@ -1334,7 +1334,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
       (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/conf-python-3/conf-python-3.9.0.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This package can only install if a Python-3 interpreter is availablenon the system.nIf a minor version needs to be specified for your operating system, thennpython-3.9 will be used.</dd>
+    <dt><b>description</b></dt><dd>This package can only install if a Python-3 interpreter is available<br>on the system.<br>If a minor version needs to be specified for your operating system, then<br>python-3.9 will be used.</dd>
   </dl>
 </details>
 
@@ -1364,7 +1364,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/ocaml-community/cppo/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/cppo/cppo.1.6.8/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Cppo is an equivalent of the C preprocessor for OCaml programs.nIt allows the definition of simple macros and file inclusion.nnCppo is:nn* more OCaml-friendly than cppn* easy to learn without consulting a manualn* reasonably fastn* simple to install and to maintain</dd>
+    <dt><b>description</b></dt><dd>Cppo is an equivalent of the C preprocessor for OCaml programs.<br>It allows the definition of simple macros and file inclusion.<br><br>Cppo is:<br><br>* more OCaml-friendly than cpp<br>* easy to learn without consulting a manual<br>* reasonably fast<br>* simple to install and to maintain</dd>
   </dl>
 </details>
 
@@ -1379,37 +1379,37 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/ocaml-dune/csexp/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/csexp/csexp.1.5.1/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This library provides minimal support for Canonical S-expressionsn[1]. Canonical S-expressions are a binary encoding of S-expressionsnthat is super simple and well suited for communication betweennprograms.nnThis library only provides a few helpers for simple applications. Ifnyou need more advanced support, such as parsing from more fancy inputnsources, you should consider copying the code of this library givennhow simple parsing S-expressions in canonical form is.nnTo avoid a dependency on a particular S-expression library, the onlynmodule of this library is parameterised by the type of S-expressions.nn[1] https://en.wikipedia.org/wiki/Canonical_S-expressions</dd>
+    <dt><b>description</b></dt><dd>This library provides minimal support for Canonical S-expressions<br>[1]. Canonical S-expressions are a binary encoding of S-expressions<br>that is super simple and well suited for communication between<br>programs.<br><br>This library only provides a few helpers for simple applications. If<br>you need more advanced support, such as parsing from more fancy input<br>sources, you should consider copying the code of this library given<br>how simple parsing S-expressions in canonical form is.<br><br>To avoid a dependency on a particular S-expression library, the only<br>module of this library is parameterised by the type of S-expressions.<br><br>[1] https://en.wikipedia.org/wiki/Canonical_S-expressions</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml/dune'>dune-configurator.2.9.1</a>
-(2.9.1) Helper library for gathering system configuration</summary>
+  <summary><a href='https://github.com/ocaml/dune'>dune-configurator.2.9.3</a>
+(2.9.3) Helper library for gathering system configuration</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Jane Street Group, LLC &lt;opensource@janestreet.com&gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml/dune'>homepage</a>)
       (<a href='https://github.com/ocaml/dune/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/dune-configurator/dune-configurator.2.9.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/dune-configurator/dune-configurator.2.9.3/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>dune-configurator is a small library that helps writing OCaml scripts thatntest features available on the system, in order to generate config.hnfiles for instance.nAmong other things, dune-configurator allows one to:n- test if a C program compilesn- query pkg-confign- import #define from OCaml header filesn- generate config.h file</dd>
+    <dt><b>description</b></dt><dd>dune-configurator is a small library that helps writing OCaml scripts that<br>test features available on the system, in order to generate config.h<br>files for instance.<br>Among other things, dune-configurator allows one to:<br>- test if a C program compiles<br>- query pkg-config<br>- import #define from OCaml header files<br>- generate config.h file</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml/dune'>dune.2.9.1</a>
-(2.9.1) Fast, portable, and opinionated build system</summary>
+  <summary><a href='https://github.com/ocaml/dune'>dune.2.9.3</a>
+(2.9.3) Fast, portable, and opinionated build system</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Jane Street Group, LLC &lt;opensource@janestreet.com&gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml/dune'>homepage</a>)
       (<a href='https://github.com/ocaml/dune/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/dune/dune.2.9.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/dune/dune.2.9.3/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>dune is a build system that was designed to simplify the release ofnJane Street packages. It reads metadata from dune files following anvery simple s-expression syntax.nndune is fast, has very low-overhead, and supports parallel builds onnall platforms. It has no system dependencies; all you need to buildndune or packages using dune is OCaml. You don&apos;t need make or bashnas long as the packages themselves don&apos;t use bash explicitly.nndune supports multi-package development by simply dropping multiplenrepositories into the same directory.nnIt also supports multi-context builds, such as building againstnseveral opam roots/switches simultaneously. This helps maintainingnpackages across several versions of OCaml and gives cross-compilationnfor free.</dd>
+    <dt><b>description</b></dt><dd>dune is a build system that was designed to simplify the release of<br>Jane Street packages. It reads metadata from \dune\ files following a<br>very simple s-expression syntax.<br><br>dune is fast, has very low-overhead, and supports parallel builds on<br>all platforms. It has no system dependencies; all you need to build<br>dune or packages using dune is OCaml. You don&apos;t need make or bash<br>as long as the packages themselves don&apos;t use bash explicitly.<br><br>dune supports multi-package development by simply dropping multiple<br>repositories into the same directory.<br><br>It also supports multi-context builds, such as building against<br>several opam roots/switches simultaneously. This helps maintaining<br>packages across several versions of OCaml and gives cross-compilation<br>for free.</dd>
   </dl>
 </details>
 
@@ -1424,7 +1424,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/mjambon/easy-format/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/easy-format/easy-format.1.3.2/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This module offers a high-level and functional interface to the Format module ofnthe OCaml standard library. It is a pretty-printing facility, i.e. it takes asninput some code represented as a tree and formats this code into the mostnvisually satisfying result, breaking and indenting lines of code wherenappropriate.nnInput data must be first modelled and converted into a tree using 3 kinds ofnnodes:nn* atomsn* listsn* labelled nodesnnAtoms represent any text that is guaranteed to be printed as-is. Lists can modelnany sequence of items such as arrays of data or lists of definitions that arenlabelled with something like int main, let x = or x:.</dd>
+    <dt><b>description</b></dt><dd>This module offers a high-level and functional interface to the Format module of<br>the OCaml standard library. It is a pretty-printing facility, i.e. it takes as<br>input some code represented as a tree and formats this code into the most<br>visually satisfying result, breaking and indenting lines of code where<br>appropriate.<br><br>Input data must be first modelled and converted into a tree using 3 kinds of<br>nodes:<br><br>* atoms<br>* lists<br>* labelled nodes<br><br>Atoms represent any text that is guaranteed to be printed as-is. Lists can model<br>any sequence of items such as arrays of data or lists of definitions that are<br>labelled with something like \int main\, \let x =\ or \x:\.</dd>
   </dl>
 </details>
 
@@ -1454,7 +1454,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/garrigue/lablgtk/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/lablgtk3-sourceview3/lablgtk3-sourceview3.3.1.1/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>OCaml interface to GTK+3, gtksourceview3 library.nnSee https://garrigue.github.io/lablgtk/ for more information.</dd>
+    <dt><b>description</b></dt><dd>OCaml interface to GTK+3, gtksourceview3 library.<br><br>See https://garrigue.github.io/lablgtk/ for more information.</dd>
   </dl>
 </details>
 
@@ -1504,21 +1504,6 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://ocaml.org'>ocaml-base-compiler.4.10.2</a>
-(4.10.2) Official release 4.10.2</summary>
-  <dl>
-    <dt><b>authors</b></dt><dd>Xavier Leroy and many contributors</dd>
-    <dt><b>license</b></dt><dd> LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://ocaml.org" target="_blank">homepage</a> for details</dd>
-    <dt><b>links</b></dt><dd>
-      (<a href='https://ocaml.org'>homepage</a>)
-      (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocaml-base-compiler/ocaml-base-compiler.4.10.2/opam'>opam package</a>)
-    </dd>
-    <dt><b>description</b></dt><dd></dd>
-  </dl>
-</details>
-
-<details>
   <summary><a href='https://github.com/janestreet/ocaml-compiler-libs'>ocaml-compiler-libs.v0.12.4</a>
 (v0.12.4) OCaml compiler libraries repackaged</summary>
   <dl>
@@ -1529,20 +1514,20 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/janestreet/ocaml-compiler-libs/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/ocaml-compiler-libs/ocaml-compiler-libs.v0.12.4/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This packages exposes the OCaml compiler libraries repackages undernthe toplevel names Ocaml_common, Ocaml_bytecomp, Ocaml_optcomp, ...</dd>
+    <dt><b>description</b></dt><dd>This packages exposes the OCaml compiler libraries repackages under<br>the toplevel names Ocaml_common, Ocaml_bytecomp, Ocaml_optcomp, ...</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://opam.ocaml.org/'>ocaml-config.1</a>
-(1) OCaml Switch Configuration</summary>
+  <summary><a href='https://opam.ocaml.org/'>ocaml-config.2</a>
+(2) OCaml Switch Configuration</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Louis Gesbert &lt;louis.gesbert@ocamlpro.com&gt; - David Allsopp &lt;david.allsopp@metastack.com&gt;</dd>
     <dt><b>license</b></dt><dd>unknown - please clarify with <a href="https://opam.ocaml.org/" target="_blank">homepage</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://opam.ocaml.org/'>homepage</a>)
       (<a href='https://github.com/ocaml/opam/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocaml-config/ocaml-config.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ocaml-config/ocaml-config.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package is used by the OCaml package to set-up its variables.</dd>
   </dl>
@@ -1559,52 +1544,80 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/ocaml-ppx/ocaml-migrate-parsetree/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/ocaml-migrate-parsetree/ocaml-migrate-parsetree.1.8.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Convert OCaml parsetrees between different versionsnnThis library converts parsetrees, outcometree and ast mappers betweenndifferent OCaml versions.  High-level functions help making PPXnrewriters independent of a compiler version.</dd>
+    <dt><b>description</b></dt><dd>Convert OCaml parsetrees between different versions<br><br>This library converts parsetrees, outcometree and ast mappers between<br>different OCaml versions.  High-level functions help making PPX<br>rewriters independent of a compiler version.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://ocaml.org'>ocaml.4.10.2</a>
-(4.10.2) The OCaml compiler (virtual package)</summary>
+  <summary><a href=''>ocaml-option-flambda.1</a>
+(1) Set OCaml to be compiled with flambda activated</summary>
   <dl>
-    <dt><b>authors</b></dt><dd>Xavier Leroy - Damien Doligez - Alain Frisch - Jacques Garrigue - Didier Rémy - Jérôme Vouillon</dd>
-    <dt><b>license</b></dt><dd> LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://ocaml.org" target="_blank">homepage</a> for details</dd>
+    <dt><b>authors</b></dt><dd></dd>
+    <dt><b>license</b></dt><dd>unknown - please clarify with <a href="" target="_blank">homepage</a></dd>
     <dt><b>links</b></dt><dd>
-      (<a href='https://ocaml.org'>homepage</a>)
-      (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocaml/ocaml.4.10.2/opam'>opam package</a>)
-    </dd>
-    <dt><b>description</b></dt><dd>This package requires a matching implementation of OCaml,nand polls it to initialise specific variables like `ocaml:native-dynlink`</dd>
-  </dl>
-</details>
-
-<details>
-  <summary><a href='https://github.com/ocaml/ocamlbuild/'>ocamlbuild.0.14.0</a>
-(0.14.0) OCamlbuild is a build system with builtin rules to easily build most OCaml projects.</summary>
-  <dl>
-    <dt><b>authors</b></dt><dd>Nicolas Pouillard Berke Durak</dd>
-    <dt><b>license</b></dt><dd> LGPL-2.1-only WITH OCaml-LGPL-linking-exception - see <a href="https://github.com/ocaml/ocamlbuild/" target="_blank">homepage</a> for details</dd>
-    <dt><b>links</b></dt><dd>
-      (<a href='https://github.com/ocaml/ocamlbuild/'>homepage</a>)
-      (<a href='https://github.com/ocaml/ocamlbuild/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocamlbuild/ocamlbuild.0.14.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ocaml-option-flambda/ocaml-option-flambda.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='http://projects.camlcity.org/projects/findlib.html'>ocamlfind.1.9.2</a>
-(1.9.2) A library manager for OCaml</summary>
+  <summary><a href='https://ocaml.org'>ocaml-variants.4.12.1+options</a>
+(4.12.1+options) Official release of OCaml 4.12.1</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Xavier Leroy - Damien Doligez - Alain Frisch - Jacques Garrigue - Didier Rémy - Jérôme Vouillon</dd>
+    <dt><b>license</b></dt><dd> LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://ocaml.org" target="_blank">homepage</a> for details</dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://ocaml.org'>homepage</a>)
+      (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ocaml-variants/ocaml-variants.4.12.1+options/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://ocaml.org'>ocaml.4.12.1</a>
+(4.12.1) The OCaml compiler (virtual package)</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Xavier Leroy - Damien Doligez - Alain Frisch - Jacques Garrigue - Didier Rémy - Jérôme Vouillon</dd>
+    <dt><b>license</b></dt><dd> LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://ocaml.org" target="_blank">homepage</a> for details</dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://ocaml.org'>homepage</a>)
+      (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ocaml/ocaml.4.12.1/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>This package requires a matching implementation of OCaml,<br>and polls it to initialise specific variables like `ocaml:native-dynlink`</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/ocaml/ocamlbuild/'>ocamlbuild.0.14.1</a>
+(0.14.1) OCamlbuild is a build system with builtin rules to easily build most OCaml projects</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Nicolas Pouillard Berke Durak</dd>
+    <dt><b>license</b></dt><dd> LGPL-2.0-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://github.com/ocaml/ocamlbuild/" target="_blank">homepage</a> for details</dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/ocaml/ocamlbuild/'>homepage</a>)
+      (<a href='https://github.com/ocaml/ocamlbuild/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ocamlbuild/ocamlbuild.0.14.1/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='http://projects.camlcity.org/projects/findlib.html'>ocamlfind.1.9.3</a>
+(1.9.3) A library manager for OCaml</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Gerd Stolpmann &lt;gerd@gerd-stolpmann.de&gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://projects.camlcity.org/projects/findlib.html'>homepage</a>)
       (<a href='https://github.com/ocaml/ocamlfind/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocamlfind/ocamlfind.1.9.2/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ocamlfind/ocamlfind.1.9.3/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Findlib is a library manager for OCaml. It provides a convention hownto store libraries, and a file format (META) to describe thenproperties of libraries. There is also a tool (ocamlfind) forninterpreting the META files, so that it is very easy to use librariesnin programs and scripts.</dd>
+    <dt><b>description</b></dt><dd>Findlib is a library manager for OCaml. It provides a convention how<br>to store libraries, and a file format (\META\) to describe the<br>properties of libraries. There is also a tool (ocamlfind) for<br>interpreting the META files, so that it is very easy to use libraries<br>in programs and scripts.</dd>
   </dl>
 </details>
 
@@ -1634,7 +1647,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/janestreet/parsexp/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/parsexp/parsexp.v0.14.2/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This library provides generic parsers for parsing S-expressions fromnstrings or other medium.nnThe library is focused on performances but still provide full genericnparsers that can be used with strings, bigstrings, lexing buffers,ncharacter streams or any other sources effortlessly.nnIt provides three different class of parsers:n- the normal parsers, producing [Sexp.t] or [Sexp.t list] valuesn- the parsers with positions, building compact position sequences son  that one can recover original positions in order to report properlyn  located errors at little costn- the Concrete Syntax Tree parsers, produce values of typen  [Parsexp.Cst.t] which record the concrete layout of the s-expressionn  syntax, including commentsnnThis library is portable and doesn&apos;t provide IO functions. To readns-expressions from files or other external sources, you should usenparsexp_io.</dd>
+    <dt><b>description</b></dt><dd>This library provides generic parsers for parsing S-expressions from<br>strings or other medium.<br><br>The library is focused on performances but still provide full generic<br>parsers that can be used with strings, bigstrings, lexing buffers,<br>character streams or any other sources effortlessly.<br><br>It provides three different class of parsers:<br>- the normal parsers, producing [Sexp.t] or [Sexp.t list] values<br>- the parsers with positions, building compact position sequences so<br>  that one can recover original positions in order to report properly<br>  located errors at little cost<br>- the Concrete Syntax Tree parsers, produce values of type<br>  [Parsexp.Cst.t] which record the concrete layout of the s-expression<br>  syntax, including comments<br><br>This library is portable and doesn&apos;t provide IO functions. To read<br>s-expressions from files or other external sources, you should use<br>parsexp_io.</dd>
   </dl>
 </details>
 
@@ -1649,37 +1662,37 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/ocaml-ppx/ppx_derivers/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/ppx_derivers/ppx_derivers.1.2.1/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Ppx_derivers is a tiny package whose sole purpose is to allownppx_deriving and ppx_type_conv to inter-operate gracefully when linkednas part of the same ocaml-migrate-parsetree driver.</dd>
+    <dt><b>description</b></dt><dd>Ppx_derivers is a tiny package whose sole purpose is to allow<br>ppx_deriving and ppx_type_conv to inter-operate gracefully when linked<br>as part of the same ocaml-migrate-parsetree driver.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml-ppx/ppx_deriving'>ppx_deriving.5.1</a>
-(5.1) Type-driven code generation for OCaml</summary>
+  <summary><a href='https://github.com/ocaml-ppx/ppx_deriving'>ppx_deriving.4.5</a>
+(4.5) Type-driven code generation for OCaml &gt;=4.02.2</summary>
   <dl>
     <dt><b>authors</b></dt><dd>whitequark &lt;whitequark@whitequark.org&gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml-ppx/ppx_deriving'>homepage</a>)
       (<a href='https://github.com/ocaml-ppx/ppx_deriving/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ppx_deriving/ppx_deriving.5.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_deriving/ppx_deriving.4.5/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>ppx_deriving provides common infrastructure for generatingncode based on type definitions, and a set of useful pluginsnfor common tasks.</dd>
+    <dt><b>description</b></dt><dd>ppx_deriving provides common infrastructure for generating<br>code based on type definitions, and a set of useful plugins<br>for common tasks.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml-ppx/ppx_deriving_yojson'>ppx_deriving_yojson.3.6.1</a>
-(3.6.1) JSON codec generator for OCaml</summary>
+  <summary><a href='https://github.com/ocaml-ppx/ppx_deriving_yojson'>ppx_deriving_yojson.3.5.3</a>
+(3.5.3) JSON codec generator for OCaml</summary>
   <dl>
     <dt><b>authors</b></dt><dd>whitequark &lt;whitequark@whitequark.org&gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml-ppx/ppx_deriving_yojson'>homepage</a>)
       (<a href='https://github.com/ocaml-ppx/ppx_deriving_yojson/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ppx_deriving_yojson/ppx_deriving_yojson.3.6.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_deriving_yojson/ppx_deriving_yojson.3.5.3/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>ppx_deriving_yojson is a ppx_deriving plugin that providesna JSON codec generator.</dd>
+    <dt><b>description</b></dt><dd>ppx_deriving_yojson is a ppx_deriving plugin that provides<br>a JSON codec generator.</dd>
   </dl>
 </details>
 
@@ -1714,6 +1727,21 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
+  <summary><a href='https://github.com/ocaml-ppx/ppx_tools'>ppx_tools.6.5</a>
+(6.5) Tools for authors of ppx rewriters and other syntactic tools</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Alain Frisch &lt;alain.frisch@lexifi.com&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/ocaml-ppx/ppx_tools'>homepage</a>)
+      (<a href='https://github.com/ocaml-ppx/ppx_tools/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_tools/ppx_tools.6.5/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://github.com/ocaml-ppx/ppx_tools_versioned'>ppx_tools_versioned.5.4.0</a>
 (5.4.0) A variant of ppx_tools based on ocaml-migrate-parsetree</summary>
   <dl>
@@ -1729,6 +1757,21 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
+  <summary><a href='https://github.com/jeremiedimino/ppxfind'>ppxfind.1.4</a>
+(1.4) Tool combining ocamlfind and ppx</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jérémie Dimino &lt;jeremie@dimino.org&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/jeremiedimino/ppxfind'>homepage</a>)
+      (<a href='https://github.com/jeremiedimino/ppxfind/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ppxfind/ppxfind.1.4/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Ppxfind is a small command line tool that among other things allows<br>to use old style ppx rewriters with jbuilder.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://github.com/ocaml/ocaml-re'>re.1.10.3</a>
 (1.10.3) RE is a regular expression library for OCaml</summary>
   <dl>
@@ -1739,7 +1782,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/ocaml/ocaml-re/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/re/re.1.10.3/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Pure OCaml regular expressions with:n* Perl-style regular expressions (module Re.Perl)n* Posix extended regular expressions (module Re.Posix)n* Emacs-style regular expressions (module Re.Emacs)n* Shell-style file globbing (module Re.Glob)n* Compatibility layer for OCaml&apos;s built-in Str module (module Re.Str)</dd>
+    <dt><b>description</b></dt><dd>Pure OCaml regular expressions with:<br>* Perl-style regular expressions (module Re.Perl)<br>* Posix extended regular expressions (module Re.Posix)<br>* Emacs-style regular expressions (module Re.Emacs)<br>* Shell-style file globbing (module Re.Glob)<br>* Compatibility layer for OCaml&apos;s built-in Str module (module Re.Str)</dd>
   </dl>
 </details>
 
@@ -1754,7 +1797,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/janestreet/result/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/result/result.1.5/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Projects that want to use the new result type defined in OCaml &gt;= 4.03nwhile staying compatible with older version of OCaml should use thenResult module defined in this library.</dd>
+    <dt><b>description</b></dt><dd>Projects that want to use the new result type defined in OCaml &gt;= 4.03<br>while staying compatible with older version of OCaml should use the<br>Result module defined in this library.</dd>
   </dl>
 </details>
 
@@ -1784,7 +1827,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/janestreet/sexplib/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/sexplib/sexplib.v0.14.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Part of Jane Street&apos;s Core librarynThe Core suite of libraries is an industrial strength alternative tonOCaml&apos;s standard library that was developed by Jane Street, thenlargest industrial user of OCaml.</dd>
+    <dt><b>description</b></dt><dd>Part of Jane Street&apos;s Core library<br>The Core suite of libraries is an industrial strength alternative to<br>OCaml&apos;s standard library that was developed by Jane Street, the<br>largest industrial user of OCaml.</dd>
   </dl>
 </details>
 
@@ -1799,7 +1842,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/janestreet/sexplib0/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/sexplib0/sexplib0.v0.14.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Part of Jane Street&apos;s Core librarynThe Core suite of libraries is an industrial strength alternative tonOCaml&apos;s standard library that was developed by Jane Street, thenlargest industrial user of OCaml.</dd>
+    <dt><b>description</b></dt><dd>Part of Jane Street&apos;s Core library<br>The Core suite of libraries is an industrial strength alternative to<br>OCaml&apos;s standard library that was developed by Jane Street, the<br>largest industrial user of OCaml.</dd>
   </dl>
 </details>
 
@@ -1808,13 +1851,13 @@ Please refer to the linked opam package and/or your system package manager for d
 (0.3.0) Backport some of the new stdlib features to older compiler</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The stdlib-shims programmers</dd>
-    <dt><b>license</b></dt><dd> typeof OCaml system - see <a href="https://github.com/ocaml/stdlib-shims" target="_blank">homepage</a> for details</dd>
+    <dt><b>license</b></dt><dd> LGPL-2.1-only WITH OCaml-LGPL-linking-exception - see <a href="https://github.com/ocaml/stdlib-shims" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml/stdlib-shims'>homepage</a>)
       (<a href='https://github.com/ocaml/stdlib-shims/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/stdlib-shims/stdlib-shims.0.3.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Backport some of the new stdlib features to older compiler,nsuch as the Stdlib module.nnThis allows projects that require compatibility with older compiler tonuse these new features in their code.</dd>
+    <dt><b>description</b></dt><dd>Backport some of the new stdlib features to older compiler,<br>such as the Stdlib module.<br><br>This allows projects that require compatibility with older compiler to<br>use these new features in their code.</dd>
   </dl>
 </details>
 
@@ -1829,7 +1872,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/ocaml-community/yojson/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/yojson/yojson.1.7.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Yojson is an optimized parsing and printing library for the JSON format.nnIt addresses a few shortcomings of json-wheel including 2x speedup,npolymorphic variants and optional syntax for tuples and variants.nnydump is a pretty-printing command-line program provided with thenyojson package.nnThe program atdgen can be used to derive OCaml-JSON serializers andndeserializers from type definitions.</dd>
+    <dt><b>description</b></dt><dd>Yojson is an optimized parsing and printing library for the JSON format.<br><br>It addresses a few shortcomings of json-wheel including 2x speedup,<br>polymorphic variants and optional syntax for tuples and variants.<br><br>ydump is a pretty-printing command-line program provided with the<br>yojson package.<br><br>The program atdgen can be used to derive OCaml-JSON serializers and<br>deserializers from type definitions.</dd>
   </dl>
 </details>
 
@@ -1859,7 +1902,7 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/ocaml/Zarith/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/zarith/zarith.1.12/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>The Zarith library implements arithmetic and logical operations overnarbitrary-precision integers. It uses GMP to efficiently implementnarithmetic over big integers. Small integers are represented as Camlnunboxed integers, for speed and space economy.</dd>
+    <dt><b>description</b></dt><dd>The Zarith library implements arithmetic and logical operations over<br>arbitrary-precision integers. It uses GMP to efficiently implement<br>arithmetic over big integers. Small integers are represented as Caml<br>unboxed integers, for speed and space economy.</dd>
   </dl>
 </details>
 
