@@ -9,9 +9,12 @@
 ###################### CREATE MAC DMG INSTALLER ######################
 
 # Options:
-# -quick|-q   : disable BZIP compression of DMG + disable opam link check
+# -quick|-q   : disable BZIP compression of DMG + disable readme generation
 # -install|-i : install package to /Application after creating it
 # -otooldump  : provide the output of otool -L for all executables
+# -sign       : sign the application (requires -signcert and -signid)
+# -signcert=<prefix> : Path prefix or certificate <prefix>.cer/<prefix>.p12
+# -signd=<id> : Signing identity in the certificate
 
 ###################### PRELIMINARIES ######################
 
@@ -25,16 +28,23 @@ set -o errexit
 ###### Parse command line ######
 
 ZIPCOMPR='-format UDBZ' # bzip
+CREATEREADME='Y'
 CHECKOPAMLINKS='Y'
 INSTALL='N'
 OTOOLDUMP='N'
+SIGN='N'
+SIGN_CERT=''
+SIGN_ID=''
 
 for arg in "$@"
 do
   case "${arg}" in
-    -quick|-q) ZIPCOMPR='-format UDRO'; CHECKOPAMLINKS='N' ;;
+    -quick|-q) ZIPCOMPR='-format UDRO'; CHECKOPAMLINKS='N'; CREATEREADME='N' ;;
     -install|-i) INSTALL='Y' ;;
     -otooldump) OTOOLDUMP='Y' ;;
+    -sign) SIGN='Y' ;;
+    -signcert=*) SIGN_CERT="${arg#*=}" ;;
+    -signid=*) SIGN_ID="${arg#*=}" ;;
     *) echo "ERROR: Unknown command line argument ${arg}!"; false;;
   esac
 done
@@ -49,7 +59,7 @@ command -v macpack  &> /dev/null || ( echo "Please install macpack (eg. sudo por
 
 source shell_scripts/get_names_from_switch.sh
 
-echo "##### Coq Platform version = ${COQ_PLATFORM_RELEASE}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX} #####" 
+echo "##### Coq Platform release = ${COQ_PLATFORM_RELEASE} version = ${COQ_PLATFORM_PACKAGE_PICK_POSTFIX} #####" 
 
 ###### Create working folder and cd #####
 
@@ -68,8 +78,9 @@ opam source --dir=coq/ ${coqpackagefull}
 
 COQ_VERSION=$(coqc --print-version | cut -d ' ' -f 1)
 
-# The MacOS version needs to be purely numeric (no +beta) and is set separately in configure.ml
-COQ_VERSION_MACOS=$(egrep -o 'coq_macos_version *= *"[0-9.]+"' coq/configure.ml | cut -d '=' -f 2 | tr -d ' "')
+# The MacOS version needs to be purely numeric (no +beta)
+# As it looks in current Coq releases beta versions are called .0
+COQ_VERSION_MACOS=$COQ_VERSION
 
 echo "##### Coq version = ${COQ_VERSION} (Mac app version=${COQ_VERSION_MACOS}) #####"
 
@@ -77,8 +88,8 @@ echo "##### Coq version = ${COQ_VERSION} (Mac app version=${COQ_VERSION_MACOS}) 
 
 # Folder and image names
 
-APP_NAME="Coq_Platform_${COQ_PLATFORM_RELEASE}.app"
-DMG_NAME="coq-platform-${COQ_PLATFORM_RELEASE}-installer-macos"
+APP_NAME="Coq-Platform${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.app"
+DMG_NAME="Coq-Platform-release-${COQ_PLATFORM_RELEASE}-version${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}"
 APP_ABSDIR="_dmg/${APP_NAME}"
 RSRC_ABSDIR="${APP_ABSDIR}/Contents/Resources"
 BIN_ABSDIR="$RSRC_ABSDIR/bin"
@@ -571,6 +582,9 @@ ln -sf /Applications _dmg/Applications
 
 ##### Create README.html #####
 
+if [ "${CREATEREADME}" == "Y" ]
+then
+
 echo '##### Create README.html #####'
 
 cat > _dmg/README.html <<EOT
@@ -755,8 +769,42 @@ cat >> _dmg/README.html <<'EOT'
 </html>
 EOT
 
+fi
 
 ###################### CREATE INSTALLER ######################
+
+##### Sign application #####
+
+if [ "${SIGN}" == "Y" ]
+then
+  echo '##### Sign application #####'
+
+  echo "### Create temporary keychain ###"
+  read  -n 1 -p "Please have the certificate password ready! - as soon as the dialog box opens, the system is locked!" waitinput
+  KEYCHAIN=coq-macos-sign.keychain
+  security create-keychain -p temporary_pw "${KEYCHAIN}"
+  security unlock-keychain -p temporary_pw "${KEYCHAIN}"
+  security set-keychain-settings -t 3600 -u "${KEYCHAIN}"
+  security import "${SIGN_CERT}.cer" -k ~/Library/Keychains/"${KEYCHAIN}" -T /usr/bin/codesign
+  security import "${SIGN_CERT}.p12" -k ~/Library/Keychains/"${KEYCHAIN}" -T /usr/bin/codesign
+  security set-key-partition-list -S apple-tool:,apple: -s -k temporary_pw ~/Library/Keychains/"${KEYCHAIN}"
+
+  echo "### Add temporary keychain to active keychains ###"
+  ACTIVE_KEYCHAINS="$(security list-keychains -d user | sed -e s/\"//g)"
+  echo ${ACTIVE_KEYCHAINS}
+  security list-keychains -d user -s ${ACTIVE_KEYCHAINS} ~/Library/Keychains/"${KEYCHAIN}"
+  security list-keychains
+
+  echo "### Codesign ###"
+  codesign -f -v --keychain ~/Library/Keychains/"${KEYCHAIN}" -s "${SIGN_ID}" "_dmg/${APP_NAME}"
+
+  echo "### Remove temporary keychain from active keychains ###"
+  security list-keychains -d user -s ${ACTIVE_KEYCHAINS}
+  security list-keychains
+
+  echo "### Delete temporary keychain ###"
+  security delete-keychain "${KEYCHAIN}"
+fi
 
 ##### Create DMG image from folder #####
 
@@ -774,7 +822,7 @@ hdiutil create "${hdi_opts[@]}" "${DMG_NAME}.dmg"
 
 echo "##### Finished installer '${DMG_NAME}.dmg' #####"
 
-##### Show wanrings #####
+##### Show warnings #####
 
 if [ -f WARNINGS.log ]
 then
