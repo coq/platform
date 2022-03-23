@@ -350,7 +350,7 @@ The **full level** contains the following packages:
       (<a href='https://github.com/HoTT/HoTT/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/extra-dev/packages/coq-hott/coq-hott.dev/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>To use the HoTT library, the following flags must be passed to coqc:n   -noinit -indices-matternnTo use the HoTT library in a project, add the following to `_CoqProject`:n   -arg -noinitn   -arg -indices-mattern`</dd>
+    <dt><b>description</b></dt><dd>To use the HoTT library, the following flags must be passed to coqc:n   -noinit -indices-matternnTo use the HoTT library in a project, add the following to <code>_CoqProject</code>:n   -arg -noinitn   -arg -indices-mattern`</dd>
   </dl>
 </details>
 
