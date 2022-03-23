@@ -111,7 +111,7 @@ then
   PACKAGES="${PACKAGES} coq-simple-io.1.7.0"
 
   # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-menhirlib.20211230 menhir.20211230"
+  PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.15"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.15.1"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.15"
