@@ -77,7 +77,7 @@ This method is intended for experienced users, who may want to use opam to insta
   - Debian, Ubuntu:       sudo apt-get install build-essential
   - CentOS, RHEL, Fedora: sudo dnf groupinstall "Development Tools"
   - OpenSuse:             sudo zypper in -t pattern devel_C_C++
-- For CentOS and possibly RHEL some additional steps are required, see [CentOS](#centos) below.
+- For CentOS and possibly RHEL some additional steps are required, see [CentOS](#centos-enable-sudo-for-current-user) below.
 - Get the Coq Platform scripts via either of these methods
   - Most users should download and extract `https://github.com/coq/platform/archive/refs/tags/2022.01.0.zip`.
   - Users which intend to contribute to Coq Platform should use `git clone --branch 2022.01.0 https://github.com/coq/platform.git`.
