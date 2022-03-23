@@ -121,6 +121,9 @@ function patch_file() {
     /^Require Import .*Rcomplements.*.$/ {print "From Coquelicot "$0; next}
     /^Require Import PocklingtonRefl.$/ {print "From Coqprime "$0; next}
     /^From HB.demo2 / {sub("From HB.demo2 ", "", $0); print $0; next}
+    /^Require Import Gappa_tactic.$/ {print "From Gappa "$0; next}
+	/^Require Import VST.progs64.reverse.$/ {print "Require Import reverse. "; next}
+	/^Require Import VST.progs.reverse.$/ {print "Require Import reverse. "; next}
     {print $0}
     ' $1 > $1.tmp
   mv -f $1.tmp $1

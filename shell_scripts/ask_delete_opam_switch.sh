@@ -12,7 +12,7 @@
 
 # Delete opam switch
 
-if command -v opam &> /dev/null && opam switch $COQ_PLATFORM_SWITCH_NAME >/dev/null 2>&1
+if command -v opam &> /dev/null && opam switch list --short | fgrep -qx "${COQ_PLATFORM_SWITCH_NAME}" &> /dev/null
 then
 	if [ -z "${COQ_PLATFORM_SWITCH:+x}" ]
 	then

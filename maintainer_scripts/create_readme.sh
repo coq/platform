@@ -147,6 +147,7 @@ function html_escape {
   string="${string//>/&gt;}"
   string="${string//\"/&quot;}"
   string="${string//\'/&apos;}"
+  string="${string//\\n/<br>}"
   echo "${string}"
 }
 
@@ -268,7 +269,7 @@ function html_package_opam {
   # Note: the declare -a var="(list)" makes it possible to convert a list of quoted strings to an array
   unset pversion plicense psynopsis phomepage pbugreports pdescription pauthors prepository
   multiline=''
-  while read var value
+  while read -r var value
   do
       case "${var}" in
       version:)     pversion="${value//\"}"; multiline='' ;;

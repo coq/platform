@@ -18,42 +18,45 @@ If an option is not given, the option is explained and asked for interactively.
 Except for expert users this is the recommended way to run this script.
 
 OPTIONS:
-  -h, -help    Print this help message
-  -extent=f    Setup opam and build full Coq Platform
-  -extent=x    Setup opam and build extended Coq Platform
-  -extent=b    Just setup opam and build Coq
-  -extent=i    Just setup opam and build Coq+CoqIDE
+  -h, -help     Print this help message
+  -extent=f     Setup opam and build full Coq Platform
+  -extent=x     Setup opam and build extended Coq Platform
+  -extent=b     Just setup opam and build Coq
+  -extent=i     Just setup opam and build Coq+CoqIDE
   -pick=file/postfix Select the package pick / version file
-  -parallel=p  Build several opam packages in parallel
-  -parallel=s  Build opam packages sequentially
-  -jobs=1..16  Number of make threads per package
-  -compcert=y  Build CompCert
-  -compcert=n  Do not build CompCert and VST
-  -vst=y       Build Verified Software Toolchain (takes a while)
-  -vst=n       Do not build Verified Software Toolchain
-  -switch=k    In case the opam switch already exists, keep it
-  -switch=d    In case the opam switch already exists, delete it
-  -dumplogs    Dump all log files in case of an error (intended for CI)
+  -parallel=p   Build several opam packages in parallel
+  -parallel=s   Build opam packages sequentially
+  -jobs=1..16   Number of make threads per package
+  -compcert=y   Build CompCert
+  -compcert=n   Do not build CompCert and VST
+  -vst=y        Build Verified Software Toolchain (takes a while)
+  -vst=n        Do not build Verified Software Toolchain
+  -switch=k     In case the opam switch already exists, keep it
+  -switch=d     In case the opam switch already exists, delete it
+  -set-switch=y Select the newly created opam switch
+  -set-switch=n Do not select the newly created opam switch
+  -dumplogs     Dump all log files in case of an error (intended for CI)
+  -opamonly     Stop the script after installing opam
   -override-dev-pkg=name=url To override the url of a .dev package
-  -opamonly    Stop the script after installing opam
 EOH
 }
 
 for arg in "$@"
 do
   case "$arg" in
-    -help|-h)     print_usage; false;;
-    -extent=*)    COQ_PLATFORM_EXTENT="${arg#*=}";;
-    -packages=*)  COQ_PLATFORM_PACKAGE_PICK_NAME="${arg#*=}";;
-    -pick=*)      COQ_PLATFORM_PACKAGE_PICK_NAME="${arg#*=}";;
-    -parallel=*)  COQ_PLATFORM_PARALLEL="${arg#*=}";;
-    -jobs=*)      COQ_PLATFORM_JOBS="${arg#*=}";;
-    -compcert=*)  COQ_PLATFORM_COMPCERT="${arg#*=}";;
-    -vst=*)       COQ_PLATFORM_VST="${arg#*=}";;
-    -switch=*)    COQ_PLATFORM_SWITCH="${arg#*=}";;
-    -dumplogs)    COQ_PLATFORM_DUMP_LOGS=y;;
+    -help|-h)      print_usage; false;;
+    -extent=*)     COQ_PLATFORM_EXTENT="${arg#*=}";;
+    -packages=*)   COQ_PLATFORM_PACKAGE_PICK_NAME="${arg#*=}";;
+    -pick=*)       COQ_PLATFORM_PACKAGE_PICK_NAME="${arg#*=}";;
+    -parallel=*)   COQ_PLATFORM_PARALLEL="${arg#*=}";;
+    -jobs=*)       COQ_PLATFORM_JOBS="${arg#*=}";;
+    -compcert=*)   COQ_PLATFORM_COMPCERT="${arg#*=}";;
+    -vst=*)        COQ_PLATFORM_VST="${arg#*=}";;
+    -switch=*)     COQ_PLATFORM_SWITCH="${arg#*=}";;
+    -set-switch=*) COQ_PLATFORM_SET_SWITCH="${arg#*=}";;
+    -dumplogs)     COQ_PLATFORM_DUMP_LOGS=y;;
+    -opamonly)     COQ_PLATFORM_OPAM_ONLY=y;;
     -override-dev-pkg=*) COQ_PLATFORM_OVERRIDE_DEV="${COQ_PLATFORM_OVERRIDE_DEV} ${arg#*=}";;
-    -opamonly)    COQ_PLATFORM_OPAM_ONLY=y;;
     *) echo "ERROR: Unknown command line argument $arg!"; print_usage; false;;
   esac
 done

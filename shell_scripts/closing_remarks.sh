@@ -14,16 +14,18 @@ cat <<EOH
 ============================== CLOSING REMARKS ===============================
 The Coq Platform installation script finished successfully!
 
-Use the following opam commands to switch to the Coq Platform opam switch:
+A new opam switch with name "${COQ_PLATFORM_SWITCH_NAME}" has been created.
+You can list all available opam switches with "opam switch".
+You can change the default opam switch to the newly created switch with:
 
     opam switch ${COQ_PLATFORM_SWITCH_NAME}
     eval \$(opam env)
 
-Or to just use this opam switch in the current shell (not setting the default):
+Or to just use an opam switch in the current shell (not setting the default):
 
     eval \$(opam config env --set-switch --switch ${COQ_PLATFORM_SWITCH_NAME})
 
-After switching you can list the installed packages with:
+You can list the packages in the currently selected opam switch with:
 
     opam list
 
@@ -36,3 +38,16 @@ There is a dedicated Zulip stream for the Coq Platform:
 https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users
 ============================== CLOSING REMARKS ===============================
 EOH
+
+if [ -z "${COQ_PLATFORM_SET_SWITCH:+x}" ]
+then
+	ask_user_opt2_cancel "Set the new opam switch as default now (y/n)?" yY "switch" nN "don't"
+	COQ_PLATFORM_SET_SWITCH=$ANSWER
+fi
+
+if [ "${COQ_PLATFORM_SET_SWITCH:-y}" == "y" ]
+then
+  opam switch "${COQ_PLATFORM_SWITCH_NAME}"
+  eval $(opam env)
+  echo "Opam switch ${COQ_PLATFORM_SWITCH_NAME} set as default!"
+fi
