@@ -112,7 +112,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: 'Macos installer ${{matrix.variant}}'
-          path: macos_installer/coq-*-installer-macos.dmg
+          path: macos_installer/Coq-Platform-*.dmg
           retention-days: 5
 
   Macos_smoke:
@@ -146,7 +146,7 @@ jobs:
         shell: bash
         run: |
           cd ${{steps.download.outputs.download-path}}
-          DMG=$(ls coq-*-installer-macos.dmg)
+          DMG=$(ls Coq-Platform-*.dmg)
           hdiutil attach $DMG
           cp -r /Volumes/${DMG%%.dmg}/Coq_*.app /Applications/
           hdiutil detach /Volumes/${DMG%%.dmg}/
