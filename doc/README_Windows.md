@@ -1,8 +1,9 @@
 This README presents the two standard methods to install the Coq Platform on Windows:
 - using a [Windows installer](#installation-using-the-windows-installer),
+- using a [package manager](#installation-using-a-package-manager),
 - [from sources](#installation-by-compiling-from-sources-using-opam-on-cygwin), using the platform scripts.
 
-The first method is recommended for beginners and the second one is recommended for experienced users.
+The first method is recommended for beginners, the second one for those who prefer a terminal, while the final method is recommended for experienced users.
 
 # Installation using the Windows installer
 
@@ -12,6 +13,13 @@ This method is intended for beginners.
 - Run the installer and follow the instructions
 
 A note to lecturers: it is easy to create a customized Windows installer from an opam switch - see [Customized Installers](#customized-installers)
+
+# Installation using a package manager
+
+This method is intended for users who prefer using a terminal and already have a package manager installed.
+
+- If you have [Scoop](https://scoop.sh/) installed, run `scoop install coq`.
+- If you have [Chocolatey](https://chocolatey.org/) installed, run `choco install coq`.
 
 # Installation by compiling from sources using opam on cygwin
 
