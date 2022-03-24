@@ -22,7 +22,7 @@ COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.15~2022.03'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.15'
-COQ_PLATFORM_COQ_TAG='8.15.0'
+COQ_PLATFORM_COQ_TAG='8.15.1'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
@@ -48,14 +48,14 @@ PACKAGES=""
 ########## BASE PACKAGES ##########
 
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} coq.8.15.1"
+PACKAGES="${PACKAGES} coq.8.15.0"
 
 ########## IDE PACKAGES ##########
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.15.1 lablgtk3.3.1.2"
+PACKAGES="${PACKAGES} coqide.8.15.0 lablgtk3.3.1.2"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
