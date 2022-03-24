@@ -113,6 +113,7 @@ TEST_FILES[coq-serapi]=''
 TEST_FILES[coq-unimath]='UniMath/Foundations/Tests.v'
 COQ_OPTION[coq-unimath]='-noinit -indices-matter -type-in-type -w -notation-overridden'
 TEST_FILES[coq-relation-algebra]='compiler_opts.v imp.v'
+TEST_FILES[coq-ott]=''
 
 ##### Hacks for files #####
 
