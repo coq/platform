@@ -138,6 +138,7 @@ then
   PACKAGES="${PACKAGES} coq-reglang.1.1.3"
   PACKAGES="${PACKAGES} coq-iris.3.6.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.3.6.0"
+  PACKAGES="${PACKAGES} coq-ott.0.32 ott.0.32"
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.10" ;;
@@ -166,9 +167,6 @@ then
   
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.0"
-
-  # Formal languages, compilers and code verification
-  PACKAGES="${PACKAGES} coq-ott.0.32 ott.0.32"
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.3"
