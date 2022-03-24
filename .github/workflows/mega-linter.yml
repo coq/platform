@@ -27,6 +27,9 @@ jobs:
       # Git Checkout
       - name: Checkout Code
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT_LINT_SPELL || secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       # MegaLinter
       - name: MegaLinter
