@@ -81,6 +81,9 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.5"
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
 
+  # Algebra
+  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.7"
+
   # Number theory
   PACKAGES="${PACKAGES} coq-coqprime.1.1.1"
   PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1"
@@ -108,7 +111,7 @@ then
   PACKAGES="${PACKAGES} coq-simple-io.1.7.0"
 
   # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-menhirlib.20211230 menhir.20211230"
+  PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.15"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.15.1"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.15"
@@ -129,7 +132,7 @@ then
   PACKAGES="${PACKAGES} coq-libhyps.2.0.5"
 
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.3.13"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.0"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.3"

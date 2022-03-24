@@ -111,7 +111,8 @@ TEST_FILES[coq-deriving]='tests/tree.v'
 TEST_FILES[coq-mathcomp-zify]='examples/divmod.v examples/boolean.v'
 TEST_FILES[coq-serapi]=''
 TEST_FILES[coq-unimath]='UniMath/Foundations/Tests.v'
-COQ_OPTION[coq-unimath]='-noinit -indices-matter -type-in-type -w -notation-overridden '
+COQ_OPTION[coq-unimath]='-noinit -indices-matter -type-in-type -w -notation-overridden'
+TEST_FILES[coq-relation-algebra]='compiler_opts.v imp.v'
 
 ##### Hacks for files #####
 
@@ -124,6 +125,7 @@ function patch_file() {
     /^Require Import Gappa_tactic.$/ {print "From Gappa "$0; next}
 	/^Require Import VST.progs64.reverse.$/ {print "Require Import reverse. "; next}
 	/^Require Import VST.progs.reverse.$/ {print "Require Import reverse. "; next}
+	/^Require Import kat .*$/ {print "From RelationAlgebra "$0; next}
     {print $0}
     ' $1 > $1.tmp
   mv -f $1.tmp $1

@@ -123,8 +123,8 @@ jobs:
       fail-fast: false
       matrix:
         variant:
+          - '8.15~2022.03'
           - '8.14~2022.01'
-          - '8.15~beta1'
 
     steps:
       - name: Install bash

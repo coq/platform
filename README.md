@@ -73,7 +73,8 @@ The Coq Platform team does no double check this information.
 
 - release package pick for Coq 8.15.0
 - re-enabled QuickChick on Windows
-- added coq-mathcomp-algebra-tactics to the extended section
+- added coq-relation-algebra to the "full" section
+- added coq-mathcomp-algebra-tactics to the "extended" section
 
 ## Changes in 2022.01.0
 
