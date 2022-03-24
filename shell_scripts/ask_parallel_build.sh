@@ -26,12 +26,12 @@ above kinds of parallelism multiply, the total amount of memory can be large.
 But it is not as bad as one might expect: tests show that a full parallel
 build takes less than 14GB of RAM with 15 parallel make jobs.
 
-With 32 GB of RAM a parallel package build with 16 make jobs is recommended.
+With 32 GB of RAM a parallel package build with 12 make jobs is recommended.
 With 16 GB of RAM a parallel package build with 4 make jobs is recommended.
 With 8 GB of RAM a sequential package build with 4 make jobs is recommended.
 With 4 GB+1GB swap a sequential package build with 2 make jobs is recommended.
 With less RAM, you might have to remove failing packages, e.g. VST.
-In order to remove packages, just edit this script at "PACKAGE SELECTION".
+In order to remove packages, just edit the file in the package_picks folder.
 
 In case these recommendations don't work for you, please report an issue at:
 https://github.com/coq/platform/issues
