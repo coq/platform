@@ -22,8 +22,6 @@ right click the `Coq_Platform` app in `/Applications` in Finder and select `open
 - In case you want to use the installed `coqc` from the command line, please add the folder `/Applications/Coq_Platform_2022.01.0.app/Contents/Resources/bin` to your `PATH`.
 - If you want to inspect the installed content, right click the `Coq_Platform` app in `/Applications` in Finder and select `Show Package Contents`.
 
-A note to lecturers: it is easy to create a customized Windows installer from an opam switch - see [Customized Installers](#customized-installers)
-
 # Installation by compiling from Sources using opam
 
 This method is intended for experienced users, who may want to use opam to install additional packages, beyond the standard set provided by the Coq Platform.
