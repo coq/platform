@@ -27,6 +27,8 @@ jobs:
       # Git Checkout
       - name: Checkout Code
         uses: actions/checkout@v2
+        env:
+          PAT: ${{ secrets.PAT_LINT_SPELL }}
         with:
           token: ${{ secrets.PAT_LINT_SPELL || secrets.GITHUB_TOKEN }}
           fetch-depth: 0
