@@ -18,8 +18,8 @@ A note to lecturers: it is easy to create a customized Windows installer from an
 
 This method is intended for users who prefer using a terminal and already have a package manager installed.
 
-- If you have [Scoop](https://scoop.sh/) installed, run `scoop install coq`.
-- If you have [Chocolatey](https://chocolatey.org/) installed, run `choco install coq`.
+- If you use [Scoop](https://scoop.sh/), run `scoop install coq`.
+- If you use [winget](https://github.com/microsoft/winget-cli), run `winget install Coq.CoqPlatform`.
 
 # Installation by compiling from sources using opam on cygwin
 
