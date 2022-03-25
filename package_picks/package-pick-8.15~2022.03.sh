@@ -89,7 +89,8 @@ then
   PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1"
   
   # Numerical mathematics
-  PACKAGES="${PACKAGES} coq-flocq.3.4.3"
+  PACKAGES="${PACKAGES} coq-flocq3.3.4.3"
+  PACKAGES="${PACKAGES} coq-flocq.4.0.0"
   PACKAGES="${PACKAGES} coq-interval.4.4.0"
   PACKAGES="${PACKAGES} coq-gappa.1.5.1 gappa.1.4.0"
 
@@ -145,7 +146,7 @@ then
   fi
   
   case "$COQ_PLATFORM_COMPCERT" in
-    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.10" ;;
+    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.10~flocq3" ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
   esac
