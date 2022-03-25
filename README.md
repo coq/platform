@@ -34,7 +34,7 @@ The table below contains links to the README files for the supported versions
 of Coq and libraries. Each README file contains a list of included packages with
 detailed information for each package.
 
-- [Coq 8.15.0 (released Jan 2022) with the first packahe pick from Mar 2022](doc/README~8.15~2022.03.md)
+- [Coq 8.15.0 (released Jan 2022) with the first package pick from Mar 2022](doc/README~8.15~2022.03.md)
 - [Coq 8.14.1 (released Nov 2021) with the first package pick from Jan 2022](doc/README~8.14~2022.01.md)
 - [Coq 8.13.2 (released Apr 2021) with an updated package pick from Jan 2022](doc/README~8.13~2022.01.md)
 - [Coq 8.13.2 (released Apr 2021) with an updated package pick from Sep 2021](doc/README~8.13~2021.09.md)

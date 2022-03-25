@@ -5,6 +5,12 @@
 set -o nounset
 set -o errexit
 
+##### Get the release and package pick of the Coq Platform #####
+
+source shell_scripts/get_names_from_switch.sh
+
+echo "##### Coq Platform release = ${COQ_PLATFORM_RELEASE} version = ${COQ_PLATFORM_PACKAGE_PICK_POSTFIX} #####" 
+
 ##### Files and folders #####
 
 # The opam prefix - stripped from absolute paths to create relative paths
@@ -413,10 +419,11 @@ echo "==========================================================================
 echo "NOTE: The creation of the installer can take 10 minutes"
 echo "(cause of the CPU heavy but effective LZMA compression used)"
 echo "==============================================================================="
-COQ_VERSION=$(coqc --print-version | cut -d ' ' -f 1 | tr -d '\r')
-"$NSIS" -DVERSION="$COQ_VERSION" -DARCH="$COQ_ARCH" Coq.nsi
+
+"$NSIS" -DRELEASE="${COQ_PLATFORM_RELEASE}" -DVERSION="${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}" -DARCH="$COQ_ARCH" Coq.nsi
 
 echo "==============================================================================="
-echo "Created installer: $DIR_TARGET/coq-$COQ_VERSION-installer-windows-$COQ_ARCH.exe"
+echo "Created installer:"
+echo "$DIR_TARGET/Coq-Platform-release-${COQ_PLATFORM_RELEASE}-version${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}-arch-${COQ_ARCH}.exe"
 echo "==============================================================================="
 cd ..

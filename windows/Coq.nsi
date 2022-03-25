@@ -9,11 +9,11 @@
 ; ARCH         The target architecture, either x86_64 or i686
 
 ; Enable compression after debugging.
-; SetCompress off
-SetCompressor lzma
+SetCompress off
+; SetCompressor lzma
 
-!define MY_PRODUCT "Coq" ;Define your own software name here
-!define OUTFILE "coq-${VERSION}-installer-windows-${ARCH}.exe"
+!define MY_PRODUCT "Coq-Platform${VERSION}" ;Define your own software name here
+!define OUTFILE "Coq-Platform-release-${RELEASE}-version${VERSION}-arch-${ARCH}.exe"
 
 !include "MUI2.nsh"
 !include "FileAssociation.nsh"
@@ -81,19 +81,19 @@ Section "-CoqWinStuff" Sec_CoqWinStuff
 
   ;Create uninstaller
   WriteUninstaller "$INSTDIR\Uninstall.exe"
-  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
-      "DisplayName" "Coq Version ${VERSION}"
-  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
+  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MY_PRODUCT}" \
+      "DisplayName" "${MY_PRODUCT}"
+  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MY_PRODUCT}" \
       "UninstallString" '"$INSTDIR\Uninstall.exe"'
-  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
+  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MY_PRODUCT}" \
       "DisplayVersion" "${VERSION}"
-  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
+  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MY_PRODUCT}" \
       "Publisher" "The Coq Team"
-  WriteRegDWORD HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
+  WriteRegDWORD HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MY_PRODUCT}" \
       "NoModify" "1"
-  WriteRegDWORD HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
+  WriteRegDWORD HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MY_PRODUCT}" \
       "NoRepair" "1"
-  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\Coq" \
+  WriteRegStr HKEY_LOCAL_MACHINE "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MY_PRODUCT}" \
       "URLInfoAbout" "http://coq.inria.fr"
 
   ; Create start menu entries
