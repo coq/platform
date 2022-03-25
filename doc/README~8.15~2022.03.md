@@ -1,4 +1,4 @@
-# Coq Platform 2022.03.0 providing Coq 8.15.0 (released Jan 2022) with the first package pick from Mar 2022
+# Coq Platform 2022.03.0 providing Coq 8.15.1 (released Mar 2022) with the first package pick from Mar 2022
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
@@ -8,10 +8,10 @@ The [Coq Platform](https://github.com/coq/platform) is a distribution of the Coq
 interactive prover together with a selection of Coq libraries and plugins.
 
 The Coq Platform supports to install several versions of Coq (also in parallel).
-This README file is for **Coq Platform 2022.03.0 with Coq 8.15.0**.
+This README file is for **Coq Platform 2022.03.0 with Coq 8.15.1**.
 The README files for other versions are linked in the main [README](../README.md).
 
-This version of Coq Platform 2022.03.0 includes Coq 8.15.0 from  2/2022. This is the **latest release version** of the Coq Platform and recommended for general application. 
+This version of Coq Platform 2022.03.0 includes Coq 8.15.1 from  3/2022. This is the **latest release version** of the Coq Platform and recommended for general application. 
 
 The Coq Platform supports four levels of installation extent:
 **base**, **IDE**, **full** and **extended** and a few **optional** packages.
@@ -41,21 +41,21 @@ Please clarify the details with the homepage of the package.
 
 <br>
 
-## **Coq Platform 2022.03.0 with Coq 8.15.0 "base level"**
+## **Coq Platform 2022.03.0 with Coq 8.15.1 "base level"**
 
 The **base level** is mostly intended as a basis for custom installations using
 opam and contains the following package(s):
 
 <details>
-  <summary><a href='https://coq.inria.fr/'>coq.8.15.0</a>
-(8.15.0) Formal proof management system</summary>
+  <summary><a href='https://coq.inria.fr/'>coq.8.15.1</a>
+(8.15.1) Formal proof management system</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Coq development team, INRIA, CNRS, and contributors.</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/coq/coq.8.15.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/coq/coq.8.15.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>The Coq proof assistant provides a formal language to write<br>mathematical definitions, executable algorithms, and theorems, together<br>with an environment for semi-interactive development of machine-checked<br>proofs. Typical applications include the certification of properties of programming<br>languages (e.g., the CompCert compiler certification project and the<br>Bedrock verified low-level programming library), the formalization of<br>mathematics (e.g., the full formalization of the Feit-Thompson theorem<br>and homotopy type theory) and teaching.</dd>
   </dl>
@@ -63,7 +63,7 @@ opam and contains the following package(s):
 
 <br>
 
-## **Coq Platform 2022.03.0 with Coq 8.15.0 "IDE level"**
+## **Coq Platform 2022.03.0 with Coq 8.15.1 "IDE level"**
 
 The **IDE level** adds an interactive development environment to the **base level**.
 
@@ -75,15 +75,15 @@ and choose the full or extended level.
 The **IDE level** contains the following package(s):
 
 <details>
-  <summary><a href='https://coq.inria.fr/'>coqide.8.15.0</a>
-(8.15.0) IDE of the Coq formal proof management system</summary>
+  <summary><a href='https://coq.inria.fr/'>coqide.8.15.1</a>
+(8.15.1) IDE of the Coq formal proof management system</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Coq development team, INRIA, CNRS, and contributors.</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/coqide/coqide.8.15.0/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/coqide/coqide.8.15.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>CoqIDE is a graphical user interface for interactive development<br>of mathematical definitions, executable algorithms, and proofs of theorems<br>using the Coq proof assistant.</dd>
   </dl>
@@ -91,7 +91,7 @@ The **IDE level** contains the following package(s):
 
 <br>
 
-## **Coq Platform 2022.03.0 with Coq 8.15.0 "full level"**
+## **Coq Platform 2022.03.0 with Coq 8.15.1 "full level"**
 
 The **full level** adds many commonly used coq libraries, plug-ins and
 developments.
@@ -268,7 +268,22 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://flocq.gitlabpages.inria.fr/'>coq-flocq.3.4.3</a>
+  <summary><a href='https://flocq.gitlabpages.inria.fr/'>coq-flocq.4.0.0</a>
+(4.0.0) A formalization of floating-point arithmetic for the Coq system</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Sylvie Boldo &lt;sylvie.boldo@inria.fr&gt; - Guillaume Melquiond &lt;guillaume.melquiond@inria.fr&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-3.0-or-later.html" target="_blank">LGPL-3.0-or-later</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://flocq.gitlabpages.inria.fr/'>homepage</a>)
+      (<a href='https://gitlab.inria.fr/flocq/flocq/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-flocq/coq-flocq.4.0.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://flocq.gitlabpages.inria.fr/'>coq-flocq3.3.4.3</a>
 (3.4.3) A formalization of floating-point arithmetic for the Coq system</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Sylvie Boldo &lt;sylvie.boldo@inria.fr&gt; - Guillaume Melquiond &lt;guillaume.melquiond@inria.fr&gt;</dd>
@@ -276,7 +291,7 @@ The **full level** contains the following packages:
     <dt><b>links</b></dt><dd>
       (<a href='https://flocq.gitlabpages.inria.fr/'>homepage</a>)
       (<a href='https://gitlab.inria.fr/flocq/flocq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-flocq/coq-flocq.3.4.3/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-flocq3/coq-flocq3.3.4.3/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -643,6 +658,21 @@ The **full level** contains the following packages:
 </details>
 
 <details>
+  <summary><a href='http://www.cl.cam.ac.uk/~pes20/ott/'>coq-ott.0.32</a>
+(0.32) Auxiliary Coq library for Ott, a tool for writing definitions of programming languages and calculi</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Peter Sewell Francesco Zappa Nardelli Scott Owens</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='http://www.cl.cam.ac.uk/~pes20/ott/'>homepage</a>)
+      (<a href='https://github.com/ott-lang/ott/issues'>bug reports</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-ott/coq-ott.0.32/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Ott takes as input a definition of a language syntax and semantics, in a concise<br>and readable ASCII notation that is close to what one would write in informal<br>mathematics. It can then generate a Coq version of the definition, which requires<br>this library.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://github.com/coq-community/paramcoq'>coq-paramcoq.1.1.3+coq8.15</a>
 (1.1.3+coq8.15) Plugin for generating parametricity statements to perform refinement proofs</summary>
   <dl>
@@ -808,6 +838,21 @@ The **full level** contains the following packages:
 </details>
 
 <details>
+  <summary><a href='http://www.cl.cam.ac.uk/~pes20/ott/'>ott.0.32</a>
+(0.32) A tool for writing definitions of programming languages and calculi</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Peter Sewell Francesco Zappa Nardelli Scott Owens</dd>
+    <dt><b>license</b></dt><dd> part BSD3, part LGPL 2.1 - see <a href="http://www.cl.cam.ac.uk/~pes20/ott/" target="_blank">homepage</a> for details</dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='http://www.cl.cam.ac.uk/~pes20/ott/'>homepage</a>)
+      (<a href='https://github.com/ott-lang/ott/issues'>bug reports</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/ott/ott.0.32/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Ott takes as input a definition of a language syntax and semantics, in a<br>concise and readable ASCII notation that is close to what one would write in<br>informal mathematics.  It generates output:<br>- a LaTeX source file that defines commands to build a typeset version of the definition;<br>- a Coq version of the definition;<br>- a HOL version of the definition;<br>- an Isabelle/HOL version of the definition;<br>- a Lem version of the definition;<br>- an OCaml version of the syntax of the definition.<br>Additionally, it can be run as a filter, taking a<br>LaTeX/Coq/Isabelle/HOL/Lem/OCaml source file<br>with embedded (symbolic) terms of the defined language, parsing them and<br>replacing them by typeset terms.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://github.com/Z3prover/z3'>z3_tptp.4.8.13</a>
 (4.8.13) TPTP front end for Z3 solver</summary>
   <dl>
@@ -824,7 +869,7 @@ The **full level** contains the following packages:
 
 <br>
 
-## **Coq Platform 2022.03.0 with Coq 8.15.0 "optional packages"**
+## **Coq Platform 2022.03.0 with Coq 8.15.1 "optional packages"**
 
 The **optional** packages have the same maturity and maintenance level as the
 packages in the full level, but either have a **non open source license** or
@@ -838,15 +883,15 @@ The macOS and snap installation bundles always include these packages.
 The following packages are **optional**:
 
 <details>
-  <summary><a href='http://compcert.inria.fr/'>coq-compcert.3.10</a>
-(3.10) The CompCert C compiler (64 bit)</summary>
+  <summary><a href='http://compcert.inria.fr/'>coq-compcert.3.10~flocq3</a>
+(3.10~flocq3) The CompCert C compiler (64 bit)</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Xavier Leroy &lt;xavier.leroy@inria.fr&gt;</dd>
     <dt><b>license</b></dt><dd> INRIA Non-Commercial License Agreement - see <a href="http://compcert.inria.fr/" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://compcert.inria.fr/'>homepage</a>)
       (<a href='https://github.com/AbsInt/CompCert/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-compcert/coq-compcert.3.10/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-compcert/coq-compcert.3.10~flocq3/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -861,7 +906,7 @@ The following packages are **optional**:
     <dt><b>links</b></dt><dd>
       (<a href='http://vst.cs.princeton.edu/'>homepage</a>)
       (<a href='https://github.com/PrincetonUniversity/VST/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-vst/coq-vst.2.9.1/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-vst/coq-vst.2.9.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>The software toolchain includes static analyzers to check assertions about your program; optimizing compilers to translate your program to machine language; operating systems and libraries to supply context for your program. The Verified Software Toolchain project assures with machine-checked proofs that the assertions claimed at the top of the toolchain really hold in the machine-language program, running in the operating-system context.</dd>
   </dl>
@@ -869,7 +914,7 @@ The following packages are **optional**:
 
 <br>
 
-## **Coq Platform 2022.03.0 with Coq 8.15.0 "extended level"**
+## **Coq Platform 2022.03.0 with Coq 8.15.1 "extended level"**
 
 The **extended level** contains packages which are in a beta stage or otherwise
 don't yet have the level of maturity or support required for inclusion in the
@@ -1444,6 +1489,21 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
+  <summary><a href='https://github.com/LPCIC/elpi'>elpi.1.14.1</a>
+(1.14.1) ELPI - Embeddable λProlog Interpreter</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Claudio Sacerdoti Coen Enrico Tassi</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-or-later.html" target="_blank">LGPL-2.1-or-later</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/LPCIC/elpi'>homepage</a>)
+      (<a href='https://github.com/LPCIC/elpi/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/elpi/elpi.1.14.1/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>ELPI implements a variant of λProlog enriched with Constraint Handling Rules,<br>a programming language well suited to manipulate syntax trees with binders.<br><br>ELPI is designed to be embedded into larger applications written in OCaml as<br>an extension language. It comes with an API to drive the interpreter and <br>with an FFI for defining built-in predicates and data types, as well as<br>quotations and similar goodies that are handy to adapt the language to the host<br>application.<br><br>This package provides both a command line interpreter (elpi) and a library to<br>be linked in other applications (eg by passing -package elpi to ocamlfind).<br><br>The ELPI programming language has the following features:<br><br>- Native support for variable binding and substitution, via an Higher Order<br>  Abstract Syntax (HOAS) embedding of the object language. The programmer needs<br>  not to care about De Bruijn indexes.<br><br>- Native support for hypothetical context. When moving under a binder one can<br>  attach to the bound variable extra information that is collected when the<br>  variable gets out of scope. For example when writing a type-checker the<br>  programmer needs not to care about managing the typing context.<br><br>- Native support for higher order unification variables, again via HOAS.<br>  Unification variables of the meta-language (λProlog) can be reused to<br>  represent the unification variables of the object language. The programmer<br>  does not need to care about the unification-variable assignment map and<br>  cannot assign to a unification variable a term containing variables out of<br>  scope, or build a circular assignment.<br><br>- Native support for syntactic constraints and their meta-level handling rules.<br>  The generative semantics of Prolog can be disabled by turning a goal into a<br>  syntactic constraint (suspended goal). A syntactic constraint is resumed as<br>  soon as relevant variables gets assigned. Syntactic constraints can be<br>  manipulated by constraint handling rules (CHR).<br><br>- Native support for backtracking. To ease implementation of search.<br><br>- The constraint store is extensible.  The host application can declare<br>  non-syntactic constraints and use custom constraint solvers to check their<br>  consistency.<br><br>- Clauses are graftable. The user is free to extend an existing program by<br>  inserting/removing clauses, both at runtime (using implication) and at<br>  \compilation\ time by accumulating files.<br><br>ELPI is free software released under the terms of LGPL 2.1 or above.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://gitlab.inria.fr/zimmerma/ecm'>gmp-ecm.7.0.3</a>
 (7.0.3) GMP-ECM library for the Elliptic Curve Method (ECM) for integer factorization</summary>
   <dl>
@@ -1470,6 +1530,21 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://opam.ocaml.org/packages/lablgtk3-sourceview3/lablgtk3-sourceview3.3.1.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>OCaml interface to GTK+3, gtksourceview3 library.<br><br>See https://garrigue.github.io/lablgtk/ for more information.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/garrigue/lablgtk'>lablgtk3.3.1.2</a>
+(3.1.2) OCaml interface to GTK+3</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jacques Garrigue et al., Nagoya University</dd>
+    <dt><b>license</b></dt><dd> LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://github.com/garrigue/lablgtk" target="_blank">homepage</a> for details</dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/garrigue/lablgtk'>homepage</a>)
+      (<a href='https://github.com/garrigue/lablgtk/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/lablgtk3/lablgtk3.3.1.2/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>OCaml interface to GTK+3<br><br>See https://garrigue.github.io/lablgtk/ for more information.</dd>
   </dl>
 </details>
 

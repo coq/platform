@@ -39,15 +39,20 @@ https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20user
 ============================== CLOSING REMARKS ===============================
 EOH
 
-if [ -z "${COQ_PLATFORM_SET_SWITCH:+x}" ]
+# Ask to set switch if the default switch (when OPAMSWITCH="") does not match
+OPAMSWITCH=""
+if [ ! "$(opam switch show)" == "${COQ_PLATFORM_SWITCH_NAME}" ]
 then
-	ask_user_opt2_cancel "Set the new opam switch as default now (y/n)?" yY "switch" nN "don't"
-	COQ_PLATFORM_SET_SWITCH=$ANSWER
-fi
+  if [ -z "${COQ_PLATFORM_SET_SWITCH:+x}" ]
+  then
+    ask_user_opt2_cancel "Set the new opam switch as default now (y/n)?" yY "switch" nN "don't"
+    COQ_PLATFORM_SET_SWITCH=$ANSWER
+  fi
 
-if [ "${COQ_PLATFORM_SET_SWITCH:-y}" == "y" ]
-then
-  opam switch "${COQ_PLATFORM_SWITCH_NAME}"
-  eval $(opam env)
-  echo "Opam switch ${COQ_PLATFORM_SWITCH_NAME} set as default!"
+  if [ "${COQ_PLATFORM_SET_SWITCH:-y}" == "y" ]
+  then
+    opam switch "${COQ_PLATFORM_SWITCH_NAME}"
+    eval $(opam env)
+    echo "Opam switch ${COQ_PLATFORM_SWITCH_NAME} set as default!"
+  fi
 fi
