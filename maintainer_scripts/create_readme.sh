@@ -2,7 +2,7 @@
 
 ###################### COPYRIGHT/COPYLEFT ######################
 
-# (C) 2021 Michael Soegtrop
+# (C) 2021..2022 Michael Soegtrop
 # (C) 2020 Enrico Tassi
 
 # Released to the public under the
@@ -90,14 +90,18 @@ function list_contains_prefix {
 
 function filter_package_list() {
   local packages="$1"
+  local exclude="$2"
   if $3
   then
-    packages="$(echo "$packages" | tr -s ' ' '\n' | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^elpi' | tr -s '\n' ' ')"
+    packages="$(echo "${packages}" | tr -s ' ' '\n' | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^elpi' | tr -s '\n' ' ')"
+  else
+    # exclude gets filtered, so don't exclude packages which get filtered
+    exclude="$(echo "${exclude}" | tr -s ' ' '\n' | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^elpi' | tr -s '\n' ' ')"
   fi
   packages_filtered=''
   for package in $packages
   do
-    if ! list_contains "$2" "${package}"
+    if ! list_contains "${exclude}" "${package}"
     then
       packages_filtered="${packages_filtered} ${package}"
     fi
@@ -234,6 +238,13 @@ do
 done
 
 ##### Filter package lists #####
+
+echo PACKAGES_BASE="${PACKAGES_BASE}"
+echo PACKAGES_IDE="${PACKAGES_IDE}"
+echo PACKAGES_FULL="${PACKAGES_FULL}"
+echo PACKAGES_OPTIONAL="${PACKAGES_OPTIONAL}"
+echo PACKAGES_EXTENDED="${PACKAGES_EXTENDED}"
+echo PACKAGES_ALL="${PACKAGES_ALL}"
 
 PACKAGES_ALL="$(filter_package_list "${PACKAGES_ALL}" "${PACKAGES_EXTENDED}" false)"
 PACKAGES_EXTENDED="$(filter_package_list "${PACKAGES_EXTENDED}" "${PACKAGES_OPTIONAL}" true)"
