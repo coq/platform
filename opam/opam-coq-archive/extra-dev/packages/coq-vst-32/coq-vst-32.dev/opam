@@ -29,9 +29,7 @@ install: [
 depends: [
   "ocaml"
   "coq" {>= "8.11" | = "dev"}
-  # Note: the dev version of VST requires clightgen, so no open source
-  "coq-compcert-32" {= "3.8" | = "dev"}
-  "coq-flocq" {>= "3.2.1" | = "dev"}
+  "coq-compcert-32" {= "3.10" | = "3.10~flocq3" | = "dev" | = "dev~flocq3"}
 ]
 tags: [
   "category:CS/Semantics and Compilation/Semantics"

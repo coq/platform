@@ -30,6 +30,9 @@ COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 # This extended descriptions is used for readme files
 COQ_PLATFORM_VERSION_DESCRIPTION='This is the latest development version of Coq and all packages.'
 
+# The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
+COQ_PLATFORM_OCAML_VERSION='4.12.1'
+
 ###################### PACKAGE SELECTION #####################
 
 PACKAGES=""
@@ -82,7 +85,8 @@ then
   PACKAGES="${PACKAGES} coq-coqprime-generator.dev"
   
   # Numerical mathematics
-  PACKAGES="${PACKAGES} coq-flocq.3.dev"
+  PACKAGES="${PACKAGES} coq-flocq.dev"
+  PACKAGES="${PACKAGES} coq-flocq3"
   PACKAGES="${PACKAGES} coq-interval.dev"
   PACKAGES="${PACKAGES} coq-gappa.dev gappa.dev"
 
@@ -137,7 +141,7 @@ then
   PACKAGES="${PACKAGES} coq-iris-heap-lang.dev"
 
   case "$COQ_PLATFORM_COMPCERT" in
-    [yY]) PACKAGES="${PACKAGES} coq-compcert.dev" ;;
+    [yY]) PACKAGES="${PACKAGES} coq-compcert.dev~flocq3" ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
   esac
