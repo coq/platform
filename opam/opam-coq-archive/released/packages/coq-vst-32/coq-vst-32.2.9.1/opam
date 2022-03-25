@@ -28,18 +28,18 @@ license: "BSD-2-Clause"
 
 patches: [ "0001-Fix-issue-that-make-install-does-not-install-anythin.patch" ]
 build: [
-  [make "-j%{jobs}%" "vst" "IGNORECOQVERSION=true" "BITSIZE=64"]
+  [make "-j%{jobs}%" "vst" "IGNORECOQVERSION=true" "BITSIZE=32"]
 ]
 install: [
-  [make "install" "IGNORECOQVERSION=true" "BITSIZE=64"]
+  [make "install" "IGNORECOQVERSION=true" "BITSIZE=32"]
 ]
 run-test: [
-  [make "-j%{jobs}%" "test" "IGNORECOQVERSION=true" "BITSIZE=64"]
+  [make "-j%{jobs}%" "test" "IGNORECOQVERSION=true" "BITSIZE=32"]
 ]
 depends: [
   "ocaml"
   "coq" {>= "8.12" & < "8.16~"}
-  "coq-compcert" {= "3.10"}
+  "coq-compcert-32" {= "3.10"}
   "coq-flocq" {>= "3.2.1"}
 ]
 tags: [

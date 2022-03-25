@@ -146,7 +146,7 @@ then
   fi
   
   case "$COQ_PLATFORM_COMPCERT" in
-    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.10~flocq3" ;;
+    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.10" ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
   esac
