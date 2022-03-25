@@ -86,7 +86,7 @@ then
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.dev"
-  PACKAGES="${PACKAGES} coq-flocq3"
+  PACKAGES="${PACKAGES} coq-flocq3.dev"
   PACKAGES="${PACKAGES} coq-interval.dev"
   PACKAGES="${PACKAGES} coq-gappa.dev gappa.dev"
 
@@ -101,7 +101,7 @@ then
   # Note: coq-unimath requires too much memory for 32 bit architectures
   # if [ "${BITSIZE}" == "64" ]
   # then
-     PACKAGES="${PACKAGES} coq-unimath.dev"
+    # PACKAGES="${PACKAGES} coq-unimath.dev"
   # fi 
 
   # Code extraction
@@ -141,7 +141,7 @@ then
   PACKAGES="${PACKAGES} coq-iris-heap-lang.dev"
 
   case "$COQ_PLATFORM_COMPCERT" in
-    [yY]) PACKAGES="${PACKAGES} coq-compcert.dev~flocq3" ;;
+    [yY]) PACKAGES="${PACKAGES} coq-compcert.dev" ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
   esac
