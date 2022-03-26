@@ -62,6 +62,7 @@ TEST_FILES[coq-elpi~8.12]='theories/examples/example_reflexive_tactic.v'
 TEST_FILES[coq-equations]='examples/Fin.v examples/STLC.v'
 TEST_FILES[coq-ext-lib]='examples/MonadReasoning.v examples/Printing.v'
 TEST_FILES[coq-flocq]='examples/Average.v' # In fixing: examples/Cody_Waite.v
+TEST_FILES[coq-flocq3]='examples/Average.v' # In fixing: examples/Cody_Waite.v
 TEST_FILES[coq-gappa]='testsuite/example-20101018.v testsuite/example-20090706.v testsuite/example-20080417.v'
 TEST_FILES[coq-hierarchy-builder]='examples/demo2/classical.v examples/demo2/stage10.v examples/demo2/stage11.v'
 TEST_FILES[coq-hierarchy-builder~8.13~2021.02]='demo2/classical.v demo2/stage10.v demo2/stage11.v'
