@@ -51,7 +51,7 @@ PACKAGES="${PACKAGES} coq.dev"
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.dev lablgtk3.3.1.1"
+PACKAGES="${PACKAGES} coqide.dev lablgtk3.3.1.2"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
