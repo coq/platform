@@ -82,7 +82,9 @@ TEST_FILES[coq-hammer-tactics]='/examples/tutorial/sauto/isort.v'
 TEST_FILES[coq-hammer]=''
 TEST_FILES[coq-hierarchy-builder]='examples/demo2/classical.v examples/demo2/stage10.v examples/demo2/stage11.v'
 TEST_FILES[coq-hierarchy-builder~8.12]='demo2/classical.v demo2/stage10.v demo2/stage11.v'
+PATCH_CMDS[coq-hierarchy-builder~8.12]='/^From HB.demo2 / {sub("From HB.demo2 ", "", $0); print $0; next}'
 TEST_FILES[coq-hierarchy-builder~8.13~2021.02]='demo2/classical.v demo2/stage10.v demo2/stage11.v'
+PATCH_CMDS[coq-hierarchy-builder~8.13~2021.02]='/^From HB.demo2 / {sub("From HB.demo2 ", "", $0); print $0; next}'
 TEST_FILES[coq-hott]='theories/Analysis/Locator.v'
 COQ_OPTION[coq-hott]='-noinit -indices-matter'
 TEST_FILES[coq-interval]='testsuite/example-20071016.v testsuite/example-20120205.v testsuite/example-20140221.v'
@@ -257,14 +259,20 @@ do
     exit 1
   fi
 
-  if [ -n "${COQ_OPTION[${package}]+_undef_}" ]
+  if [ -n "${COQ_OPTION[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]+_undef_}" ]
   then
-    options='"'"${COQ_OPTION[${package}]}"'"'
+    options="${COQ_OPTION[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]}"
+  elif [ -n "${COQ_OPTION[${package}]+_undef_}" ]
+  then
+    options="${COQ_OPTION[${package}]}"
   else
     options=""
   fi
 
-  if [ -n "${PATCH_CMDS[${package}]+_undef_}" ]
+  if [ -n "${PATCH_CMDS[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]+_undef_}" ]
+  then
+    patches="${PATCH_CMDS[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]}"
+  elif [ -n "${PATCH_CMDS[${package}]+_undef_}" ]
   then
     patches="${PATCH_CMDS[${package}]}"
   else
