@@ -261,10 +261,10 @@ do
 
   if [ -n "${COQ_OPTION[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]+_undef_}" ]
   then
-    options="${COQ_OPTION[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]}"
+    options='"'"${COQ_OPTION[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]}"'"'
   elif [ -n "${COQ_OPTION[${package}]+_undef_}" ]
   then
-    options="${COQ_OPTION[${package}]}"
+    options='"'"${COQ_OPTION[${package}]}"'"'
   else
     options=""
   fi
