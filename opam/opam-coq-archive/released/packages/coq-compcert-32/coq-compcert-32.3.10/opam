@@ -7,7 +7,6 @@ bug-reports: "https://github.com/AbsInt/CompCert/issues"
 license: "INRIA Non-Commercial License Agreement"
 available: os != "macos"
 patches: [
-  "0001-Allow-dev-version-of-Menhir.patch"
   "0001-Rename-Flocq-to-Flocq3.patch" {coq-flocq3:installed}
 ]
 build: [
@@ -33,13 +32,12 @@ install: [
   [make "install"]
 ]
 depends: [
-  "coq" {>= "8.8" | = "dev"}
-  "menhir" {>= "20190626" | = "dev"}
+  "coq" {>= "8.9.0" & < "8.16~"}
+  "menhir" {>= "20190626" }
   "ocaml" {>= "4.05.0"}
   ("coq-flocq" {>= "3.1.0" & < "4~"} | "coq-flocq3" {>= "3.4.3"})
-  "coq-menhirlib" {>= "20190626" | = "dev"}
+  "coq-menhirlib" {>= "20190626"}
 ]
-depopts: [ "coq-flocq3" ]
 synopsis: "The CompCert C compiler (32 bit)"
 description: "This package installs the 32 bit version of CompCert.
 For coexistence with the 64 bit version, the files are installed in:
@@ -54,12 +52,14 @@ supports both 32 and 64 bit versions. Otherwise all files would have to
 be duplicated with module paths compcert and compcert32.
 Please also note that the binary folder is usually not in the path."
 tags: [
-  "category:CS/Semantics and Compilation/Compilation"
-  "category:CS/Semantics and Compilation/Semantics"
+  "category:Computer Science/Semantics and Compilation/Compilation"
+  "category:Computer Science/Semantics and Compilation/Semantics"
   "keyword:C"
   "keyword:compiler"
   "logpath:compcert32"
+  "date:2021-11-19"
 ]
 url {
-  src: "git+https://github.com/AbsInt/CompCert.git"
+  src: "https://github.com/AbsInt/CompCert/archive/v3.10.tar.gz"
+  checksum: "sha512=93687fb36cdfb247d47404c8d41d84ba96d006dd3a535646337a477fd5517c7487ff1d66e83bccceb47ba2d18b187c1bbdc55b2eff00373a8a120edfc80ef11a"
 }

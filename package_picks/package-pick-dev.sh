@@ -30,6 +30,9 @@ COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 # This extended descriptions is used for readme files
 COQ_PLATFORM_VERSION_DESCRIPTION='This is the latest development version of Coq and all packages.'
 
+# The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
+COQ_PLATFORM_OCAML_VERSION='4.12.1'
+
 ###################### PACKAGE SELECTION #####################
 
 PACKAGES=""
@@ -48,7 +51,7 @@ PACKAGES="${PACKAGES} coq.dev"
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.dev lablgtk3.3.1.1"
+PACKAGES="${PACKAGES} coqide.dev lablgtk3.3.1.2"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
@@ -82,7 +85,8 @@ then
   PACKAGES="${PACKAGES} coq-coqprime-generator.dev"
   
   # Numerical mathematics
-  PACKAGES="${PACKAGES} coq-flocq.3.dev"
+  PACKAGES="${PACKAGES} coq-flocq.dev"
+  PACKAGES="${PACKAGES} coq-flocq3.dev"
   PACKAGES="${PACKAGES} coq-interval.dev"
   PACKAGES="${PACKAGES} coq-gappa.dev gappa.dev"
 
@@ -97,7 +101,7 @@ then
   # Note: coq-unimath requires too much memory for 32 bit architectures
   # if [ "${BITSIZE}" == "64" ]
   # then
-     PACKAGES="${PACKAGES} coq-unimath.dev"
+    # PACKAGES="${PACKAGES} coq-unimath.dev"
   # fi 
 
   # Code extraction
