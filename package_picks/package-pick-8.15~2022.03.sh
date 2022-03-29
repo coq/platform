@@ -81,9 +81,6 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.5"
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
 
-  # Algebra
-  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.7"
-
   # Number theory
   PACKAGES="${PACKAGES} coq-coqprime.1.1.1"
   PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1"
@@ -134,6 +131,7 @@ then
 
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.0"
+  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.7"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.3"
