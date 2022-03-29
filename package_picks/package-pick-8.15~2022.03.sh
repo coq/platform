@@ -92,6 +92,7 @@ then
   # Legacy Flocq3 compatible packages
   PACKAGES="${PACKAGES} coq-flocq3.3.4.3"
   PACKAGES="${PACKAGES} coq-interval-flocq3.4.4.0"
+  PACKAGES="${PACKAGES} coq-gappa-flocq3.1.5.1"
 
   # Constructive mathematics
   PACKAGES="${PACKAGES} coq-math-classes.8.15.0"
