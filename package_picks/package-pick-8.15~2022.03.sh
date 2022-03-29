@@ -117,7 +117,7 @@ then
   PACKAGES="${PACKAGES} coq-aac-tactics.8.15.1"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.15"
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"
-  PACKAGES="${PACKAGES} coq-elpi.1.13.0 elpi.1.14.1"
+  PACKAGES="${PACKAGES} coq-elpi.1.13.0 elpi.1.14.3"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"
   PACKAGES="${PACKAGES} coq-quickchick.1.6.1"
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"
