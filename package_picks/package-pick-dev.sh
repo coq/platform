@@ -2,7 +2,7 @@
 
 ###################### COPYRIGHT/COPYLEFT ######################
 
-# (C) 2020 Michael Soegtrop
+# (C) 2020..2022 Michael Soegtrop
 
 # Released to the public under the
 # Creative Commons CC0 1.0 Universal License
@@ -58,9 +58,6 @@ fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
-  # Some dependencies for which we need specific versions
-  PACKAGES="${PACKAGES} PIN.ppxlib.0.15.0"            # coq-serapi requires this old version
-
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.dev"
   PACKAGES="${PACKAGES} coq-ext-lib.dev"
@@ -99,10 +96,10 @@ then
 
   # Univalent Mathematics (UniMath)
   # Note: coq-unimath requires too much memory for 32 bit architectures
-  # if [ "${BITSIZE}" == "64" ]
-  # then
-    # PACKAGES="${PACKAGES} coq-unimath.dev"
-  # fi 
+  if [ "${BITSIZE}" == "64" ]
+  then
+    PACKAGES="${PACKAGES} coq-unimath.dev"
+  fi 
 
   # Code extraction
   PACKAGES="${PACKAGES} coq-simple-io.dev"
@@ -115,18 +112,14 @@ then
   PACKAGES="${PACKAGES} coq-mtac2.dev"
   PACKAGES="${PACKAGES} coq-elpi.dev"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.dev"
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    # coq-quickchick does not work on Windows because it requires ocamlc and other tools
-    PACKAGES="${PACKAGES} coq-quickchick.dev"
-  fi
+  PACKAGES="${PACKAGES} coq-quickchick.dev"
   PACKAGES="${PACKAGES} coq-hammer-tactics.dev"
   if [[ "$OSTYPE" != cygwin ]]
   then
     # coq-hammer does not work on Windows because it heavily relies on fork
     PACKAGES="${PACKAGES} coq-hammer.dev"
     PACKAGES="${PACKAGES} eprover.2.6"
-    PACKAGES="${PACKAGES} z3_tptp.4.8.13"
+    PACKAGES="${PACKAGES} z3_tptp.4.8.14"
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.dev"
   PACKAGES="${PACKAGES} coq-coqeal.dev"
@@ -134,12 +127,18 @@ then
 
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.dev"
+  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.7"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.dev"
   PACKAGES="${PACKAGES} coq-iris.dev"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.dev"
-
+  PACKAGES="${PACKAGES} coq-ott.dev"
+  if [[ "$OSTYPE" != cygwin ]]
+  then
+    PACKAGES="${PACKAGES} ott.dev"
+  fi
+  
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.dev" ;;
     [nN]) true ;;
@@ -152,7 +151,6 @@ then
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
   esac
 
-
   # Proof analysis and other tools
   PACKAGES="${PACKAGES} coq-dpdgraph.dev"
 
@@ -162,14 +160,18 @@ fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
+
+  # General mathematics
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.dev"
+  
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.dev"
 
   # Gallina extensions
-  # PACKAGES="${PACKAGES} coq-reduction-effects.dev" # no .dev package
-  # PACKAGES="${PACKAGES} coq-record-update.dev" # no .dev package
+  PACKAGES="${PACKAGES} coq-reduction-effects.dev"
+  PACKAGES="${PACKAGES} coq-record-update.dev"
 
   # Communication with coqtop
-  # PACKAGES="${PACKAGES} coq-serapi.dev" # no .dev package
+  PACKAGES="${PACKAGES} coq-serapi.dev"
 
 fi
