@@ -163,7 +163,8 @@ then
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.dev"
-  
+  PACKAGES="${PACKAGES} coq-extructures.0.3.1"
+
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.dev"
 
