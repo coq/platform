@@ -86,10 +86,12 @@ then
   PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1"
   
   # Numerical mathematics
-  PACKAGES="${PACKAGES} coq-flocq3.3.4.3"
   PACKAGES="${PACKAGES} coq-flocq.4.0.0"
   PACKAGES="${PACKAGES} coq-interval.4.4.0"
   PACKAGES="${PACKAGES} coq-gappa.1.5.1 gappa.1.4.0"
+  # Legacy Flocq3 compatible packages
+  PACKAGES="${PACKAGES} coq-flocq3.3.4.3"
+  PACKAGES="${PACKAGES} coq-interval-flocq3.4.4.0"
 
   # Constructive mathematics
   PACKAGES="${PACKAGES} coq-math-classes.8.15.0"
