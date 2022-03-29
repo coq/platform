@@ -39,7 +39,6 @@ depends: [
   ("coq-flocq" {>= "3.1.0" & < "4~"} | "coq-flocq3" {>= "3.4.3"})
   "coq-menhirlib" {>= "20190626" | = "dev"}
 ]
-depopts: [ "coq-flocq3" ]
 synopsis: "The CompCert C compiler (32 bit)"
 description: "This package installs the 32 bit version of CompCert.
 For coexistence with the 64 bit version, the files are installed in:
