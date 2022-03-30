@@ -11,7 +11,7 @@ The Coq Platform supports to install several versions of Coq (also in parallel).
 This README file is for **Coq Platform 2022.03.0 with Coq 8.13.2**.
 The README files for other versions are linked in the main [README](../README.md).
 
-This version of Coq Platform 2022.01.0 includes Coq 8.13.2 from 04/2021. There are three package picks for Coq 8.13.2: the original from 02/2021, a substantially extended one from 09/2021 and an updated one from 11/2021. This is the original package pick from 02/2021. The 02/2021 and 09/2021 package picks are provided for compatibility and it is recommended to use the 11/2021 pick - or Coq 8.14.0.
+This version of Coq Platform 2022.01.0 includes Coq 8.13.2 from 04/2021. There are three package picks for Coq 8.13.2: the original from 02/2021, a substantially extended one from 09/2021 and an updated one from 11/2021. This is the original package pick for Coq 8.13 from 02/2021. The 02/2021 and 09/2021 package picks are provided for compatibility and it is recommended to use the 11/2021 pick - or Coq 8.14.0.
 
 The Coq Platform supports four levels of installation extent:
 **base**, **IDE**, **full** and **extended** and a few **optional** packages.

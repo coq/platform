@@ -83,7 +83,7 @@ The **IDE level** contains the following package(s):
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/coqide/coqide.8.15.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/coqide/coqide.8.15.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>CoqIDE is a graphical user interface for interactive development<br>of mathematical definitions, executable algorithms, and proofs of theorems<br>using the Coq proof assistant.</dd>
   </dl>
@@ -284,7 +284,7 @@ The **full level** contains the following packages:
 
 <details>
   <summary><a href='https://flocq.gitlabpages.inria.fr/'>coq-flocq3.3.4.3</a>
-(3.4.3) A formalization of floating-point arithmetic for the Coq system</summary>
+(3.4.3) This is a version of coq-flocq which puts Flocq 3.x under the logical path Flocq3, so that 3.x and 4.x can be installed in parallel</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Sylvie Boldo &lt;sylvie.boldo@inria.fr&gt; - Guillaume Melquiond &lt;guillaume.melquiond@inria.fr&gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-3.0-or-later.html" target="_blank">LGPL-3.0-or-later</a></dd>
@@ -292,6 +292,21 @@ The **full level** contains the following packages:
       (<a href='https://flocq.gitlabpages.inria.fr/'>homepage</a>)
       (<a href='https://gitlab.inria.fr/flocq/flocq/issues'>bug reports</a>)
       (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-flocq3/coq-flocq3.3.4.3/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://gappa.gitlabpages.inria.fr/'>coq-gappa-flocq3.1.5.1</a>
+(1.5.1) This version of coq-gappa is patched to use legacy Flocq-3.x from logical path Flocq3</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Guillaume Melquiond &lt;guillaume.melquiond@inria.fr&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-3.0-or-later.html" target="_blank">LGPL-3.0-or-later</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://gappa.gitlabpages.inria.fr/'>homepage</a>)
+      (<a href='https://gitlab.inria.fr/gappa/coq/issues'>bug reports</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-gappa-flocq3/coq-gappa-flocq3.1.5.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -369,6 +384,21 @@ The **full level** contains the following packages:
       (<a href='https://coq.inria.fr/opam/released/packages/coq-hott/coq-hott.8.15/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>To use the HoTT library, the following flags must be passed to coqc:<br>   -noinit -indices-matter<br>To use the HoTT library in a project, add the following to _CoqProject:<br>   -arg -noinit<br>   -arg -indices-matter</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://coqinterval.gitlabpages.inria.fr/'>coq-interval-flocq3.4.4.0</a>
+(4.4.0) This version of coq-interval is patched to use legacy Flocq-3.x from logical path Flocq3</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Guillaume Melquiond &lt;guillaume.melquiond@inria.fr&gt; - Érik Martin-Dorel &lt;erik.martin-dorel@irit.fr&gt; - Pierre Roux &lt;pierre.roux@onera.fr&gt; - Thomas Sibut-Pinote &lt;thomas.sibut-pinote@inria.fr&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/CECILL-C.html" target="_blank">CECILL-C</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://coqinterval.gitlabpages.inria.fr/'>homepage</a>)
+      (<a href='https://gitlab.inria.fr/coqinterval/interval/issues'>bug reports</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-interval-flocq3/coq-interval-flocq3.4.4.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
@@ -853,15 +883,15 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://github.com/Z3prover/z3'>z3_tptp.4.8.13</a>
-(4.8.13) TPTP front end for Z3 solver</summary>
+  <summary><a href='https://github.com/Z3prover/z3'>z3_tptp.4.8.14</a>
+(4.8.14) TPTP front end for Z3 solver</summary>
   <dl>
     <dt><b>authors</b></dt><dd>MSR</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/Z3prover/z3'>homepage</a>)
       (<a href='https://github.com/Z3prover/z3/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/z3_tptp/z3_tptp.4.8.13/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/z3_tptp/z3_tptp.4.8.14/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -883,15 +913,15 @@ The macOS and snap installation bundles always include these packages.
 The following packages are **optional**:
 
 <details>
-  <summary><a href='http://compcert.inria.fr/'>coq-compcert.3.10~flocq3</a>
-(3.10~flocq3) The CompCert C compiler (64 bit)</summary>
+  <summary><a href='http://compcert.inria.fr/'>coq-compcert.3.10</a>
+(3.10) The CompCert C compiler (64 bit)</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Xavier Leroy &lt;xavier.leroy@inria.fr&gt;</dd>
     <dt><b>license</b></dt><dd> INRIA Non-Commercial License Agreement - see <a href="http://compcert.inria.fr/" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://compcert.inria.fr/'>homepage</a>)
       (<a href='https://github.com/AbsInt/CompCert/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-compcert/coq-compcert.3.10~flocq3/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-compcert/coq-compcert.3.10/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -906,7 +936,7 @@ The following packages are **optional**:
     <dt><b>links</b></dt><dd>
       (<a href='http://vst.cs.princeton.edu/'>homepage</a>)
       (<a href='https://github.com/PrincetonUniversity/VST/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-vst/coq-vst.2.9.1/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-vst/coq-vst.2.9.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>The software toolchain includes static analyzers to check assertions about your program; optimizing compilers to translate your program to machine language; operating systems and libraries to supply context for your program. The Verified Software Toolchain project assures with machine-checked proofs that the assertions claimed at the top of the toolchain really hold in the machine-language program, running in the operating-system context.</dd>
   </dl>
@@ -940,6 +970,21 @@ The **extended level** contains the following packages:
       (<a href='https://coq.inria.fr/opam/released/packages/coq-deriving/coq-deriving.0.1.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Deriving provides generic instances of MathComp classes for<br>inductive data types.  It includes native support for eqType,<br>choiceType, countType and finType instances, and it allows users to<br>define their own instances for other classes.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/arthuraa/extructures'>coq-extructures.0.3.1</a>
+(0.3.1) Finite sets, maps, and other data structures with extensional reasoning</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Arthur Azevedo de Amorim</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/arthuraa/extructures'>homepage</a>)
+      (<a href='https://github.com/arthuraa/extructures/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-extructures/coq-extructures.0.3.1/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
@@ -1099,30 +1144,45 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://camlp5.github.io'>camlp5.7.14</a>
-(7.14) Preprocessor-pretty-printer of OCaml</summary>
+  <summary><a href='https://github.com/ocaml/camlp-streams'>camlp-streams.5.0</a>
+(5.0) The Stream and Genlex libraries for use with Camlp4 and Camlp5</summary>
   <dl>
-    <dt><b>authors</b></dt><dd>Daniel de Rauglaudre</dd>
+    <dt><b>authors</b></dt><dd>Daniel de Rauglaudre Xavier Leroy</dd>
+    <dt><b>license</b></dt><dd> LGPL-2.1-only WITH OCaml-LGPL-linking-exception - see <a href="https://github.com/ocaml/camlp-streams" target="_blank">homepage</a> for details</dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/ocaml/camlp-streams'>homepage</a>)
+      (<a href='https://github.com/ocaml/camlp-streams/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/camlp-streams/camlp-streams.5.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>This package provides two library modules:<br>- Stream: imperative streams, with in-place update and memoization<br>  of the latest element produced.<br>- Genlex: a small parameterized lexical analyzer producing streams<br>  of tokens from streams of characters.<br><br>The two modules are designed for use with Camlp4 and Camlp5:<br>- The stream patterns and stream expressions of Camlp4/Camlp5 consume<br>  and produce data of type &apos;a Stream.t.<br>- The Genlex tokenizer can be used as a simple lexical analyzer for<br>  Camlp4/Camlp5-generated parsers.<br><br>The Stream module can also be used by hand-written recursive-descent<br>parsers, but is not very convenient for this purpose.<br><br>The Stream and Genlex modules have been part of the OCaml standard library<br>for a long time, and have been distributed as part of the core OCaml system.<br>They will be removed from the OCaml standard library at some future point,<br>but will be maintained and distributed separately in this camlpstreams package.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://camlp5.github.io'>camlp5.8.00.03</a>
+(8.00.03) Preprocessor-pretty-printer of OCaml</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Daniel de Rauglaudre Chet Murthy</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://camlp5.github.io'>homepage</a>)
       (<a href='https://github.com/camlp5/camlp5/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/camlp5/camlp5.7.14/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/camlp5/camlp5.8.00.03/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Camlp5 is a preprocessor and pretty-printer for OCaml programs. It also provides parsing and printing tools.<br><br>As a preprocessor, it allows to:<br><br>extend the syntax of OCaml,<br>redefine the whole syntax of the language.<br>As a pretty printer, it allows to:<br><br>display OCaml programs in an elegant way,<br>convert from one syntax to another,<br>check the results of syntax extensions.<br>Camlp5 also provides some parsing and pretty printing tools:<br><br>extensible grammars<br>extensible printers<br>stream parsers and lexers<br>pretty print module<br>It works as a shell command and can also be used in the OCaml toplevel.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://erratique.ch/software/cmdliner'>cmdliner.1.1.0</a>
-(1.1.0) Declarative definition of command line interfaces for OCaml</summary>
+  <summary><a href='https://erratique.ch/software/cmdliner'>cmdliner.1.1.1</a>
+(1.1.1) Declarative definition of command line interfaces for OCaml</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The cmdliner programmers</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/ISC.html" target="_blank">ISC</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://erratique.ch/software/cmdliner'>homepage</a>)
       (<a href='https://github.com/dbuenzli/cmdliner/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/cmdliner/cmdliner.1.1.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/cmdliner/cmdliner.1.1.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Cmdliner allows the declarative definition of command line interfaces<br>for OCaml.<br><br>It provides a simple and compositional mechanism to convert command<br>line arguments to OCaml values and pass them to your functions. The<br>module automatically handles syntax errors, help messages and UNIX man<br>page generation. It supports programs with single or multiple commands<br>and respects most of the [POSIX][1] and [GNU][2] conventions.<br><br>Cmdliner has no dependencies and is distributed under the ISC license.<br><br>[1]: http://pubs.opengroup.org/onlinepubs/009695399/basedefs/xbd_chap12.html<br>[2]: http://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html<br><br>Home page: http://erratique.ch/software/cmdliner</dd>
   </dl>
@@ -1354,6 +1414,36 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
+  <summary><a href='https://www.perl.org/'>perl-ipc-system-simple.3</a>
+(3) Virtual package relying on perl&apos;s IPC::System::Simple</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Larry Wall et. al.</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/GPL-1.0-or-later.html" target="_blank">GPL-1.0-or-later</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://www.perl.org/'>homepage</a>)
+      (<a href='chesky@gmail.com'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/conf-perl-ipc-system-simple/conf-perl-ipc-system-simple.3/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>This package can only install if the specified perl packages are on the system.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://www.perl.org/'>perl-string-shellquote.3</a>
+(3) Virtual package relying on perl&apos;s String::ShellQuote</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Larry Wall et. al.</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/GPL-1.0-or-later.html" target="_blank">GPL-1.0-or-later</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://www.perl.org/'>homepage</a>)
+      (<a href='chesky@gmail.com'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/conf-perl-string-shellquote/conf-perl-string-shellquote.3/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>This package can only install if the specified perl packages are on the system.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://www.perl.org/'>perl.2</a>
 (2) Virtual package relying on perl</summary>
   <dl>
@@ -1489,17 +1579,17 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/LPCIC/elpi'>elpi.1.14.1</a>
-(1.14.1) ELPI - Embeddable λProlog Interpreter</summary>
+  <summary><a href='https://github.com/LPCIC/elpi'>elpi.1.14.3</a>
+(1.14.3) ELPI - Embeddable λProlog Interpreter</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Claudio Sacerdoti Coen Enrico Tassi</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-or-later.html" target="_blank">LGPL-2.1-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/LPCIC/elpi'>homepage</a>)
       (<a href='https://github.com/LPCIC/elpi/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/elpi/elpi.1.14.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/elpi/elpi.1.14.3/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>ELPI implements a variant of λProlog enriched with Constraint Handling Rules,<br>a programming language well suited to manipulate syntax trees with binders.<br><br>ELPI is designed to be embedded into larger applications written in OCaml as<br>an extension language. It comes with an API to drive the interpreter and <br>with an FFI for defining built-in predicates and data types, as well as<br>quotations and similar goodies that are handy to adapt the language to the host<br>application.<br><br>This package provides both a command line interpreter (elpi) and a library to<br>be linked in other applications (eg by passing -package elpi to ocamlfind).<br><br>The ELPI programming language has the following features:<br><br>- Native support for variable binding and substitution, via an Higher Order<br>  Abstract Syntax (HOAS) embedding of the object language. The programmer needs<br>  not to care about De Bruijn indexes.<br><br>- Native support for hypothetical context. When moving under a binder one can<br>  attach to the bound variable extra information that is collected when the<br>  variable gets out of scope. For example when writing a type-checker the<br>  programmer needs not to care about managing the typing context.<br><br>- Native support for higher order unification variables, again via HOAS.<br>  Unification variables of the meta-language (λProlog) can be reused to<br>  represent the unification variables of the object language. The programmer<br>  does not need to care about the unification-variable assignment map and<br>  cannot assign to a unification variable a term containing variables out of<br>  scope, or build a circular assignment.<br><br>- Native support for syntactic constraints and their meta-level handling rules.<br>  The generative semantics of Prolog can be disabled by turning a goal into a<br>  syntactic constraint (suspended goal). A syntactic constraint is resumed as<br>  soon as relevant variables gets assigned. Syntactic constraints can be<br>  manipulated by constraint handling rules (CHR).<br><br>- Native support for backtracking. To ease implementation of search.<br><br>- The constraint store is extensible.  The host application can declare<br>  non-syntactic constraints and use custom constraint solvers to check their<br>  consistency.<br><br>- Clauses are graftable. The user is free to extend an existing program by<br>  inserting/removing clauses, both at runtime (using implication) and at<br>  \compilation\ time by accumulating files.<br><br>ELPI is free software released under the terms of LGPL 2.1 or above.</dd>
+    <dt><b>description</b></dt><dd>ELPI implements a variant of λProlog enriched with Constraint Handling Rules,<br>a programming language well suited to manipulate syntax trees with binders.<br><br>ELPI is designed to be embedded into larger applications written in OCaml as<br>an extension language. It comes with an API to drive the interpreter and <br>with an FFI for defining built-in predicates and data types, as well as<br>quotations and similar goodies that are handy to adapt the language to the host<br>application.<br><br>This package provides both a command line interpreter (elpi) and a library to<br>be linked in other applications (eg by passing -package elpi to ocamlfind).<br><br>The ELPI programming language has the following features:<br><br>- Native support for variable binding and substitution, via an Higher Order<br>  Abstract Syntax (HOAS) embedding of the object language. The programmer<br>  does not need to care about technical devices to handle bound variables,<br>  like De Bruijn indices.<br><br>- Native support for hypothetical context. When moving under a binder one can<br>  attach to the bound variable extra information that is collected when the<br>  variable gets out of scope. For example when writing a type-checker the<br>  programmer needs not to care about managing the typing context.<br><br>- Native support for higher order unification variables, again via HOAS.<br>  Unification variables of the meta-language (λProlog) can be reused to<br>  represent the unification variables of the object language. The programmer<br>  does not need to care about the unification-variable assignment map and<br>  cannot assign to a unification variable a term containing variables out of<br>  scope, or build a circular assignment.<br><br>- Native support for syntactic constraints and their meta-level handling rules.<br>  The generative semantics of Prolog can be disabled by turning a goal into a<br>  syntactic constraint (suspended goal). A syntactic constraint is resumed as<br>  soon as relevant variables gets assigned. Syntactic constraints can be<br>  manipulated by constraint handling rules (CHR).<br><br>- Native support for backtracking. To ease implementation of search.<br><br>- The constraint store is extensible.  The host application can declare<br>  non-syntactic constraints and use custom constraint solvers to check their<br>  consistency.<br><br>- Clauses are graftable. The user is free to extend an existing program by<br>  inserting/removing clauses, both at runtime (using implication) and at<br>  \compilation\ time by accumulating files.<br><br>ELPI is free software released under the terms of LGPL 2.1 or above.</dd>
   </dl>
 </details>
 
@@ -1637,30 +1727,30 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://ocaml.org'>ocaml-variants.4.12.1+options</a>
-(4.12.1+options) Official release of OCaml 4.12.1</summary>
+  <summary><a href='https://ocaml.org'>ocaml-variants.4.13.1+options</a>
+(4.13.1+options) Official release of OCaml 4.13.1</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Xavier Leroy - Damien Doligez - Alain Frisch - Jacques Garrigue - Didier Rémy - Jérôme Vouillon</dd>
     <dt><b>license</b></dt><dd> LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://ocaml.org" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://ocaml.org'>homepage</a>)
       (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocaml-variants/ocaml-variants.4.12.1+options/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ocaml-variants/ocaml-variants.4.13.1+options/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://ocaml.org'>ocaml.4.12.1</a>
-(4.12.1) The OCaml compiler (virtual package)</summary>
+  <summary><a href='https://ocaml.org'>ocaml.4.13.1</a>
+(4.13.1) The OCaml compiler (virtual package)</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Xavier Leroy - Damien Doligez - Alain Frisch - Jacques Garrigue - Didier Rémy - Jérôme Vouillon</dd>
     <dt><b>license</b></dt><dd> LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://ocaml.org" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://ocaml.org'>homepage</a>)
       (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocaml/ocaml.4.12.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ocaml/ocaml.4.13.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package requires a matching implementation of OCaml,<br>and polls it to initialise specific variables like `ocaml:native-dynlink`</dd>
   </dl>
@@ -1922,15 +2012,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/Z3prover/z3'>z3.4.8.13</a>
-(4.8.13) Z3 solver</summary>
+  <summary><a href='https://github.com/Z3prover/z3'>z3.4.8.14</a>
+(4.8.14) Z3 solver</summary>
   <dl>
     <dt><b>authors</b></dt><dd>MSR</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/Z3prover/z3'>homepage</a>)
       (<a href='https://github.com/Z3prover/z3/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/z3/z3.4.8.13/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/z3/z3.4.8.14/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
