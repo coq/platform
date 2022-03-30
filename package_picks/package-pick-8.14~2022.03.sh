@@ -64,6 +64,10 @@ fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
+  # Some dependencies for which we need specific versions
+  PACKAGES="${PACKAGES} PIN.ppxlib.0.25.0"            # coq-serapi requires this version
+  PACKAGES="${PACKAGES} PIN.sexplib0.v0.14.0"         # coq-serapi requires this version
+
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.14.0"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.6"
