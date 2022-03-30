@@ -27,7 +27,7 @@ authors: [
   "Sylvie Boldo <sylvie.boldo@inria.fr>"
   "Guillaume Melquiond <guillaume.melquiond@inria.fr>"
 ]
-synopsis: "A formalization of floating-point arithmetic for the Coq system"
+synopsis: "This is a version of coq-flocq which puts Flocq 3.x under the logical path Flocq3, so that 3.x and 4.x can be installed in parallel"
 url {
   src: "https://flocq.gitlabpages.inria.fr/releases/flocq-3.4.3.tar.gz"
   checksum: "sha512=10f407e91e0d601b502b2c89104a8753dfcc3d9572f0fd9d007c7692d3d6c96fd5652fb103bcf2396a64236947734ee725c01f4ba2901565f9da38667f538d5a"
