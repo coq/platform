@@ -72,16 +72,34 @@ The Coq Platform team does no double check this information.
 
 ## Changes in 2022.03.0
 
-- release package pick for Coq 8.15.0
+- release package pick for Coq 8.15.0 with many package version updates
 - re-enabled QuickChick on Windows
-- added coq-relation-algebra to the "full" section
-- added coq-mathcomp-algebra-tactics to the "extended" section
+- added `coq-ott` and `ott` to the "full" level (Ott is not available on Windows as yet)
+- added `coq-relation-algebra` to the "full" level
+- added `coq-mathcomp-algebra-tactics` to the "extended" level
+- added `coq-extructures` to the "extended" level
+- many small usability improvements and fixes
+
+Please see the [Pick Readme](doc/README~8.15~2022.03.md) for details on new and updated packages.
+
+**Note on macOS**: CoqIDE was previously wrapped in a shell script to set the environment, which had the effect that
+it could not access the `documents` folder. This script has been replaced with a simple C program, so this should work now.
+
+**Note on `coq-flocq`**: there is a new version 4.0 for `coq-flocq` which is **not compatible** with the previous 3.X versions.
+Since some packages are not yet compatible with Flocq 4.0, notably `coq-compcert`, the 2022.03 picks contain both,
+`coq-flocq.4.0.0` and `coq-flocq.3.4.3`. Since one cannot install two version of one package, a new package called `coq-flocq3`
+has been added which uses `Flocq3` rather than `Flocq` as logical path. This way Flocq 3.X can be selected by using `Flocq3`
+in the `Require` commands and Flocq 4.X can be selected by using `Flocq` in the `Require` commands.
+The package `coq-compcert` has been patched to require `Flocq3`.
+For convenience the proof automation packages used for float proofs, `coq-gappa` and `coq-interval` are also available in
+a Flocq 3.X and Flocq 4.X variant. The Flocq 4.X variants have the usual named, the 3.X variants use the logical paths
+`IntervalFlocq3` and `GappaFlocq3`.
 
 ## Changes in 2022.01.0
 
 - release package pick for Coq 8.14.0 + updated mostly compatible package pick for Coq 8.13.2
 - beta package pick for Coq 8.15.0
-- added coq-hammer (not on Windows) including the provers `z3` and `eprover`
+- added `coq-hammer` (not on Windows) including the provers `z3` and `eprover`
 - added prime number certificate generator `coq-coqprime-generator` including `gmp-ecm`
 - disabled QuickChick on Windows (it did not really work on Windows - we try to make it work in the next release)
 
