@@ -1,0 +1,37 @@
+opam-version: "2.0"
+maintainer: "guillaume.melquiond@inria.fr"
+homepage: "https://gappa.gitlabpages.inria.fr/"
+dev-repo: "git+https://gitlab.inria.fr/gappa/coq.git"
+bug-reports: "https://gitlab.inria.fr/gappa/coq/issues"
+license: "LGPL-3.0-or-later"
+patches: [
+  "0001-Rename-Flocq-to-Flocq3.patch"
+]
+build: [
+  ["autoconf"]
+  ["./configure"]
+  ["./remake" "-j%{jobs}%"]
+]
+install: ["./remake" "install"]
+depends: [
+  "ocaml"
+  "ocamlfind" {build}
+  "coq" {>= "8.8.1" & < "8.16~"}
+  "coq-flocq3" {>= "3.0"}
+  "conf-autoconf" {build & dev}
+  ("conf-g++" {build} | "conf-clang" {build})
+]
+tags: [
+  "keyword:floating-point arithmetic"
+  "keyword:interval arithmetic"
+  "keyword:decision procedure"
+  "category:Computer Science/Decision Procedures and Certified Algorithms/Decision procedures"
+  "logpath:GappaFlocq3"
+  "date:2022-01-18"
+]
+authors: [ "Guillaume Melquiond <guillaume.melquiond@inria.fr>" ]
+synopsis: "This version of coq-gappa is patched to use legacy Flocq-3.x from Logpath Flocq3"
+url {
+  src: "https://gappa.gitlabpages.inria.fr/releases/gappalib-coq-1.5.1.tar.gz"
+  checksum: "sha512=24763d44523334792ac65bf5db5b5edeb1e8e0f3d44f365353ea8d0acc277ba67c50071302c725992fc73f9213ac98b54347fe4c789f21d5ff78133b00123f9e"
+}

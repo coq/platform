@@ -37,7 +37,6 @@ depends: [
   ("coq-flocq" {>= "3.1.0" & < "4~"} | "coq-flocq3" {>= "3.4.3"})
   "coq-menhirlib" {>= "20190626"}
 ]
-depopts: [ "coq-flocq3" ]
 synopsis: "The CompCert C compiler (64 bit)"
 tags: [
   "category:Computer Science/Semantics and Compilation/Compilation"
