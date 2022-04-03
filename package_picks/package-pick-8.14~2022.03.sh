@@ -146,10 +146,7 @@ then
   PACKAGES="${PACKAGES} coq-iris.3.6.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.3.6.0"
   PACKAGES="${PACKAGES} coq-ott.0.32"
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    PACKAGES="${PACKAGES} ott.0.32"
-  fi
+  PACKAGES="${PACKAGES} ott.0.32"
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.10" ;;
