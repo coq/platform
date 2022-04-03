@@ -49,7 +49,7 @@ jobs:
       matrix:
         variant:
           - '8.15~2022.03'
-          - '8.14~2022.01'
+          - '8.14~2022.03'
 
     steps:
       - name: Git checkout
@@ -124,7 +124,7 @@ jobs:
       matrix:
         variant:
           - '8.15~2022.03'
-          - '8.14~2022.01'
+          - '8.14~2022.03'
 
     steps:
       - name: Install bash
