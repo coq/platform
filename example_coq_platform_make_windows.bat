@@ -5,10 +5,10 @@ REM But you do need separate cygwin folders for compiling a 64 bit and 32 bit Co
 
 CALL coq_platform_make_windows.bat ^
   -arch=64 ^
-  -destcyg=C:\cygwin64_coq_platform ^
+  -destcyg=C:\bin\cygwin64_coq_platform ^
   -cygcache=C:\bin\cygwin_cache ^
   -cygrepo=https://mirrors.kernel.org/sourceware/cygwin ^
-  -packages="8.14~2022.01" -extent=x -parallel=p -jobs=16 -switch=k -compcert=y -vst=y
+  -packages="8.15~2022.03" -extent=x -parallel=p -jobs=16 -switch=k -compcert=y -vst=y
 
 REM NOTE: You can also call coq_platform_make_windows.bat from a cygwin prompt
 REM (e.g. in case you use cygwin for GIT) but please remember to quote paths with
@@ -17,7 +17,7 @@ REM The above command would be at a cygwin shell prompt:
 REM
 REM   ./coq_platform_make_windows.bat \
 REM     -arch=64 \
-REM     -destcyg='C:\cygwin_coq_platform' \
+REM     -destcyg='C:\bin\cygwin64_coq_platform' \
 REM     -cygcache='C:\bin\cygwin_cache' \
 REM     -cygrepo=https://mirrors.kernel.org/sourceware/cygwin \
-REM     -packages="8.14~2022.01" -extent=x -parallel=p -jobs=16 -switch=k -compcert=y -vst=y
+REM     -packages="8.15~2022.03" -extent=x -parallel=p -jobs=16 -switch=k -compcert=y -vst=y
