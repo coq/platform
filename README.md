@@ -34,8 +34,8 @@ The table below contains links to the README files for the supported versions
 of Coq and libraries. Each README file contains a list of included packages with
 detailed information for each package.
 
-- [Coq 8.15.0 (released Jan 2022) with the first package pick from Mar 2022](doc/README~8.15~2022.03.md)
-- [Coq 8.14.1 (released Nov 2021) with an updated package pick from Jan 2022](doc/README~8.14~2022.03.md)
+- [Coq 8.15.1 (released Mar 2022) with the first package pick from Apr 2022](doc/README~8.15~2022.04.md)
+- [Coq 8.14.1 (released Nov 2021) with an updated package pick from Jan 2022](doc/README~8.14~2022.04.md)
 - [Coq 8.14.1 (released Nov 2021) with the first package pick from Jan 2022](doc/README~8.14~2022.01.md)
 - [Coq 8.13.2 (released Apr 2021) with an updated package pick from Jan 2022](doc/README~8.13~2022.01.md)
 - [Coq 8.13.2 (released Apr 2021) with an updated package pick from Sep 2021](doc/README~8.13~2021.09.md)
@@ -70,7 +70,7 @@ The Coq Platform team does no double check this information.
 
 <details><summary><font size="+1">Release notes / changelog</font></summary>
 
-## Changes in 2022.03.0
+## Changes in 2022.04.0
 
 - release package pick for Coq 8.15.0 with many package version updates
 - re-enabled QuickChick on Windows
@@ -80,13 +80,13 @@ The Coq Platform team does no double check this information.
 - added `coq-extructures` to the "extended" level
 - many small usability improvements and fixes
 
-Please see the [Pick Readme](doc/README~8.15~2022.03.md) for details on new and updated packages.
+Please see the [Pick Readme](doc/README~8.15~2022.04.md) for details on new and updated packages.
 
 **Note on macOS**: CoqIDE was previously wrapped in a shell script to set the environment, which had the effect that
 it could not access the `documents` folder. This script has been replaced with a simple C program, so this should work now.
 
 **Note on `coq-flocq`**: there is a new version 4.0 for `coq-flocq` which is **not compatible** with the previous 3.X versions.
-Since some packages are not yet compatible with Flocq 4.0, notably `coq-compcert`, the 2022.03 picks contain both,
+Since some packages are not yet compatible with Flocq 4.0, notably `coq-compcert`, the 2022.04 picks contain both,
 `coq-flocq.4.0.0` and `coq-flocq.3.4.3`. Since one cannot install two version of one package, a new package called `coq-flocq3`
 has been added which uses `Flocq3` rather than `Flocq` as logical path. This way Flocq 3.X can be selected by using `Flocq3`
 in the `Require` commands and Flocq 4.X can be selected by using `Flocq` in the `Require` commands.
@@ -178,24 +178,24 @@ You can list the available switches with:
 ```
 ~$ opam switch
 #   switch                                 compiler                                              description
-    __coq-platform.2022.03.0~8.12          ocaml-base-compiler.4.10.2                            Coq 8.12.2 (released Dec 2020) with the first package pick from Dec 2020
-    __coq-platform.2022.03.0~8.13~2021.02  ocaml-base-compiler.4.10.2                            Coq 8.13.2 (released Apr 2021) with the first package pick from Feb 2021
-    __coq-platform.2022.03.0~8.13~2021.09  ocaml-base-compiler.4.10.2                            Coq 8.13.2 (released Apr 2021) with an extended package pick from Sep 2021
-    __coq-platform.2022.03.0~8.13~2022.01  ocaml-base-compiler.4.10.2                            Coq 8.13.2 (released Apr 2021) with an updated package pick from Jan 2022
-    __coq-platform.2022.03.0~8.14~2022.01  ocaml-option-flambda.1,ocaml-variants.4.12.1+options  Coq 8.14.1 (released Nov 2021) with the first package pick from Jan 2022
-    __coq-platform.2022.03.0~8.14~2022.03  ocaml-option-flambda.1,ocaml-variants.4.12.1+options  Coq 8.14.1 (released Nov 2021) with an updated package pick from Mar 2022
-    __coq-platform.2022.03.0~8.15~2022.03  ocaml-option-flambda.1,ocaml-variants.4.13.1+options  Coq 8.15.1 (released Mar 2022) with the first package pick from Mar 2022
-->  __coq-platform.2022.03.0~dev           ocaml-option-flambda.1,ocaml-variants.4.12.1+options  Coq dev (latest master of all packages)
+    __coq-platform.2022.04.0~8.12          ocaml-base-compiler.4.10.2                            Coq 8.12.2 (released Dec 2020) with the first package pick from Dec 2020
+    __coq-platform.2022.04.0~8.13~2021.02  ocaml-base-compiler.4.10.2                            Coq 8.13.2 (released Apr 2021) with the first package pick from Feb 2021
+    __coq-platform.2022.04.0~8.13~2021.09  ocaml-base-compiler.4.10.2                            Coq 8.13.2 (released Apr 2021) with an extended package pick from Sep 2021
+    __coq-platform.2022.04.0~8.13~2022.01  ocaml-base-compiler.4.10.2                            Coq 8.13.2 (released Apr 2021) with an updated package pick from Jan 2022
+    __coq-platform.2022.04.0~8.14~2022.01  ocaml-option-flambda.1,ocaml-variants.4.12.1+options  Coq 8.14.1 (released Nov 2021) with the first package pick from Jan 2022
+    __coq-platform.2022.04.0~8.14~2022.04  ocaml-option-flambda.1,ocaml-variants.4.12.1+options  Coq 8.14.1 (released Nov 2021) with an updated package pick from Apr 2022
+    __coq-platform.2022.04.0~8.15~2022.04  ocaml-option-flambda.1,ocaml-variants.4.13.1+options  Coq 8.15.1 (released Mar 2022) with the first package pick from Apr 2022
+->  __coq-platform.2022.04.0~dev           ocaml-option-flambda.1,ocaml-variants.4.12.1+options  Coq dev (latest master of all packages)
 ```
 
 You can select the opam switch for **all shells** with e.g.:
 ```
-~$ opam switch __coq-platform.2022.03.0~8.15~2022.03
+~$ opam switch __coq-platform.2022.04.0~8.15~2022.04
 ```
 
 You can select the opam switch for **just the current shell** with e.g.:
 ```
-eval $(opam config env --set-switch --switch __coq-platform.2022.03.0~8.15~2022.03)
+eval $(opam config env --set-switch --switch __coq-platform.2022.04.0~8.15~2022.04)
 ```
 
 So you can easily open two separate shell windows, select different opam switches and start e.g. two CoqIDE instances to step through the same file with two different versions of Coq.
@@ -234,18 +234,18 @@ Please clarify the license at [CompCert License](https://github.com/AbsInt/CompC
     ```
     ~$ opam switch
     #   switch                                 compiler                                              description
-        __coq-platform.2022.03.0~8.12          ocaml-base-compiler.4.10.2                            Coq 8.12.2 (released Dec 2020) with the first package pick from Dec 2020
-        __coq-platform.2022.03.0~8.13~2021.02  ocaml-base-compiler.4.10.2                            Coq 8.13.2 (released Apr 2021) with the first package pick from Feb 2021
-        __coq-platform.2022.03.0~8.13~2021.09  ocaml-base-compiler.4.10.2                            Coq 8.13.2 (released Apr 2021) with an extended package pick from Sep 2021
-        __coq-platform.2022.03.0~8.13~2022.01  ocaml-base-compiler.4.10.2                            Coq 8.13.2 (released Apr 2021) with an updated package pick from Jan 2022
-        __coq-platform.2022.03.0~8.14~2022.01  ocaml-option-flambda.1,ocaml-variants.4.12.1+options  Coq 8.14.1 (released Nov 2021) with the first package pick from Jan 2022
-        __coq-platform.2022.03.0~8.14~2022.03  ocaml-option-flambda.1,ocaml-variants.4.12.1+options  Coq 8.14.1 (released Nov 2021) with an updated package pick from Mar 2022
-        __coq-platform.2022.03.0~8.15~2022.03  ocaml-option-flambda.1,ocaml-variants.4.13.1+options  Coq 8.15.1 (released Mar 2022) with the first package pick from Mar 2022
-    ->  __coq-platform.2022.03.0~dev           ocaml-option-flambda.1,ocaml-variants.4.12.1+options  Coq dev (latest master of all packages)
+        __coq-platform.2022.04.0~8.12          ocaml-base-compiler.4.10.2                            Coq 8.12.2 (released Dec 2020) with the first package pick from Dec 2020
+        __coq-platform.2022.04.0~8.13~2021.02  ocaml-base-compiler.4.10.2                            Coq 8.13.2 (released Apr 2021) with the first package pick from Feb 2021
+        __coq-platform.2022.04.0~8.13~2021.09  ocaml-base-compiler.4.10.2                            Coq 8.13.2 (released Apr 2021) with an extended package pick from Sep 2021
+        __coq-platform.2022.04.0~8.13~2022.01  ocaml-base-compiler.4.10.2                            Coq 8.13.2 (released Apr 2021) with an updated package pick from Jan 2022
+        __coq-platform.2022.04.0~8.14~2022.01  ocaml-option-flambda.1,ocaml-variants.4.12.1+options  Coq 8.14.1 (released Nov 2021) with the first package pick from Jan 2022
+        __coq-platform.2022.04.0~8.14~2022.04  ocaml-option-flambda.1,ocaml-variants.4.12.1+options  Coq 8.14.1 (released Nov 2021) with an updated package pick from Apr 2022
+        __coq-platform.2022.04.0~8.15~2022.04  ocaml-option-flambda.1,ocaml-variants.4.13.1+options  Coq 8.15.1 (released Mar 2022) with the first package pick from Apr 2022
+    ->  __coq-platform.2022.04.0~dev           ocaml-option-flambda.1,ocaml-variants.4.12.1+options  Coq dev (latest master of all packages)
     ```
 - Choose the switch you want to change with this command (example):
     ```
-    opam switch __coq-platform.2022.03.0~8.15~2022.03
+    opam switch __coq-platform.2022.04.0~8.15~2022.04
     eval $(opam env)
     ```
 - You can find packages with `opam list --all | grep "some keyword"`.
