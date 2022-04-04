@@ -35,7 +35,7 @@ of Coq and libraries. Each README file contains a list of included packages with
 detailed information for each package.
 
 - [Coq 8.15.1 (released Mar 2022) with the first package pick from Apr 2022](doc/README~8.15~2022.04.md)
-- [Coq 8.14.1 (released Nov 2021) with an updated package pick from Jan 2022](doc/README~8.14~2022.04.md)
+- [Coq 8.14.1 (released Nov 2021) with an updated package pick from Apr 2022](doc/README~8.14~2022.04.md)
 - [Coq 8.14.1 (released Nov 2021) with the first package pick from Jan 2022](doc/README~8.14~2022.01.md)
 - [Coq 8.13.2 (released Apr 2021) with an updated package pick from Jan 2022](doc/README~8.13~2022.01.md)
 - [Coq 8.13.2 (released Apr 2021) with an updated package pick from Sep 2021](doc/README~8.13~2021.09.md)
@@ -72,9 +72,10 @@ The Coq Platform team does no double check this information.
 
 ## Changes in 2022.04.0
 
-- release package pick for Coq 8.15.0 with many package version updates
-- re-enabled QuickChick on Windows
-- added `coq-ott` and `ott` to the "full" level (Ott is not available on Windows as yet)
+- release package pick for Coq 8.15.1 with many package version updates
+- a packahe pick for Coq 8.14.1, which is as much as possible compatible with the 8.15.1 pick
+- re-enabled QuickChick on Windows (please see notes below)
+- added `coq-ott` and `ott` to the "full" level
 - added `coq-relation-algebra` to the "full" level
 - added `coq-mathcomp-algebra-tactics` to the "extended" level
 - added `coq-extructures` to the "extended" level
@@ -92,8 +93,14 @@ has been added which uses `Flocq3` rather than `Flocq` as logical path. This way
 in the `Require` commands and Flocq 4.X can be selected by using `Flocq` in the `Require` commands.
 The package `coq-compcert` has been patched to require `Flocq3`.
 For convenience the proof automation packages used for float proofs, `coq-gappa` and `coq-interval` are also available in
-a Flocq 3.X and Flocq 4.X variant. The Flocq 4.X variants have the usual named, the 3.X variants use the logical paths
+a Flocq 3.X and Flocq 4.X variant. The Flocq 4.X variants have the usual logical path, the 3.X variants use the logical paths
 `IntervalFlocq3` and `GappaFlocq3`.
+
+**Note on `coq-quickchick`**: QuickChick requires an OCaml compiler to run. The binary installers for Coq Platform do not
+provide OCaml, so QuickChick does not work with the binary installers for macOS, Windows and Snap.
+It is recommended to use the "compile from sources" method if you want to use QuickChick.
+An alternative method is to install OCaml by other means and have it in the PATH, but this method is not supported by the Coq Platform team.
+We plan to add an OCaml compiler to the binary installers in the next release.
 
 ## Changes in 2022.01.0
 
