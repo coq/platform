@@ -11,6 +11,8 @@ depends: [
 ]
 build: [
   [make "world"]
+  ["rm" "src/ott"]
+  ["cp" "src/ott.opt" "src/ott"]
   [make "ott.install"]
 ]
 run-test: [

@@ -11,14 +11,14 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.14.1 (released Nov 2021) with an updated package pick from Mar 2022"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.14.1 (released Nov 2021) with an updated package pick from Apr 2022"
 COQ_PLATFORM_VERSION_SORTORDER=2
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.14~2022.03'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.14~2022.04'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.14'
@@ -28,7 +28,7 @@ COQ_PLATFORM_COQ_TAG='8.14.1'
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.03.0 includes Coq 8.14.1 from 11/2021. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.04.0 includes Coq 8.14.1 from 11/2021. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='There are two package picks for Coq 8.14.1: the original from 01/2022, and an updated/extended one from 03/2022. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is the latest package pick for Coq 8.14.1 with some package updates with the goal to make it as compatible as possible to the Coq 8.15.1 package pick. '
 
@@ -146,10 +146,7 @@ then
   PACKAGES="${PACKAGES} coq-iris.3.6.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.3.6.0"
   PACKAGES="${PACKAGES} coq-ott.0.32"
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    PACKAGES="${PACKAGES} ott.0.32"
-  fi
+  PACKAGES="${PACKAGES} ott.0.32"
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.10" ;;
