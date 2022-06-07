@@ -1,4 +1,4 @@
-# Coq Platform 2022.04.0 providing Coq 8.15.1 (released Mar 2022) with the first package pick from Apr 2022
+# Coq Platform 2022.04.1 providing Coq 8.15.2 (released Jun 2022) with the first package pick from Apr 2022
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
@@ -8,10 +8,10 @@ The [Coq Platform](https://github.com/coq/platform) is a distribution of the Coq
 interactive prover together with a selection of Coq libraries and plugins.
 
 The Coq Platform supports to install several versions of Coq (also in parallel).
-This README file is for **Coq Platform 2022.04.0 with Coq 8.15.1**.
+This README file is for **Coq Platform 2022.04.1 with Coq 8.15.2**.
 The README files for other versions are linked in the main [README](../README.md).
 
-This version of Coq Platform 2022.04.0 includes Coq 8.15.1 from  3/2022. This is the **latest release version** of the Coq Platform and recommended for general application. 
+This version of Coq Platform 2022.04.1 includes Coq 8.15.2 from  3/2022. This is the **latest release version** of the Coq Platform and recommended for general application. 
 
 The Coq Platform supports four levels of installation extent:
 **base**, **IDE**, **full** and **extended** and a few **optional** packages.
@@ -41,21 +41,21 @@ Please clarify the details with the homepage of the package.
 
 <br>
 
-## **Coq Platform 2022.04.0 with Coq 8.15.1 "base level"**
+## **Coq Platform 2022.04.1 with Coq 8.15.2 "base level"**
 
 The **base level** is mostly intended as a basis for custom installations using
 opam and contains the following package(s):
 
 <details>
-  <summary><a href='https://coq.inria.fr/'>coq.8.15.1</a>
-(8.15.1) Formal proof management system</summary>
+  <summary><a href='https://coq.inria.fr/'>coq.8.15.2</a>
+(8.15.2) Formal proof management system</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Coq development team, INRIA, CNRS, and contributors.</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/coq/coq.8.15.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/coq/coq.8.15.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>The Coq proof assistant provides a formal language to write<br>mathematical definitions, executable algorithms, and theorems, together<br>with an environment for semi-interactive development of machine-checked<br>proofs. Typical applications include the certification of properties of programming<br>languages (e.g., the CompCert compiler certification project and the<br>Bedrock verified low-level programming library), the formalization of<br>mathematics (e.g., the full formalization of the Feit-Thompson theorem<br>and homotopy type theory) and teaching.</dd>
   </dl>
@@ -63,7 +63,7 @@ opam and contains the following package(s):
 
 <br>
 
-## **Coq Platform 2022.04.0 with Coq 8.15.1 "IDE level"**
+## **Coq Platform 2022.04.1 with Coq 8.15.2 "IDE level"**
 
 The **IDE level** adds an interactive development environment to the **base level**.
 
@@ -75,15 +75,15 @@ and choose the full or extended level.
 The **IDE level** contains the following package(s):
 
 <details>
-  <summary><a href='https://coq.inria.fr/'>coqide.8.15.1</a>
-(8.15.1) IDE of the Coq formal proof management system</summary>
+  <summary><a href='https://coq.inria.fr/'>coqide.8.15.2</a>
+(8.15.2) IDE of the Coq formal proof management system</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Coq development team, INRIA, CNRS, and contributors.</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/coqide/coqide.8.15.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/coqide/coqide.8.15.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>CoqIDE is a graphical user interface for interactive development<br>of mathematical definitions, executable algorithms, and proofs of theorems<br>using the Coq proof assistant.</dd>
   </dl>
@@ -91,7 +91,7 @@ The **IDE level** contains the following package(s):
 
 <br>
 
-## **Coq Platform 2022.04.0 with Coq 8.15.1 "full level"**
+## **Coq Platform 2022.04.1 with Coq 8.15.2 "full level"**
 
 The **full level** adds many commonly used coq libraries, plug-ins and
 developments.
@@ -103,15 +103,15 @@ See the Coq Platform [charter](charter.md) for details.
 The **full level** contains the following packages:
 
 <details>
-  <summary><a href='https://github.com/coq-community/aac-tactics'>coq-aac-tactics.8.15.1</a>
-(8.15.1) Coq tactics for rewriting universally quantified equations, modulo associative (and possibly commutative and idempotent) operators</summary>
+  <summary><a href='https://github.com/coq-community/aac-tactics'>coq-aac-tactics.8.15.2</a>
+(8.15.2) Coq tactics for rewriting universally quantified equations, modulo associative (and possibly commutative and idempotent) operators</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Thomas Braibant Damien Pous Fabian Kunze</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-3.0-or-later.html" target="_blank">LGPL-3.0-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/aac-tactics'>homepage</a>)
       (<a href='https://github.com/coq-community/aac-tactics/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-aac-tactics/coq-aac-tactics.8.15.1/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-aac-tactics/coq-aac-tactics.8.15.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This Coq plugin provides tactics for rewriting and proving universally<br>quantified equations modulo associativity and commutativity of some operator,<br>with idempotent commutative operators enabling additional simplifications.<br>The tactics can be applied for custom operators by registering the operators and<br>their properties as type class instances. Instances for many commonly used operators,<br>such as for binary integer arithmetic and booleans, are provided with the plugin.</dd>
   </dl>
@@ -899,7 +899,7 @@ The **full level** contains the following packages:
 
 <br>
 
-## **Coq Platform 2022.04.0 with Coq 8.15.1 "optional packages"**
+## **Coq Platform 2022.04.1 with Coq 8.15.2 "optional packages"**
 
 The **optional** packages have the same maturity and maintenance level as the
 packages in the full level, but either have a **non open source license** or
@@ -944,7 +944,7 @@ The following packages are **optional**:
 
 <br>
 
-## **Coq Platform 2022.04.0 with Coq 8.15.1 "extended level"**
+## **Coq Platform 2022.04.1 with Coq 8.15.2 "extended level"**
 
 The **extended level** contains packages which are in a beta stage or otherwise
 don't yet have the level of maturity or support required for inclusion in the
