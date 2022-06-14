@@ -1,0 +1,39 @@
+opam-version: "preview"
+name: "coq-gappa"
+version: "preview"
+synopsis:
+  "A Coq tactic for discharging goals about floating-point arithmetic and round-off errors using the Gappa prover"
+maintainer: "guillaume.melquiond@inria.fr"
+authors: "Guillaume Melquiond <guillaume.melquiond@inria.fr>"
+license: "LGPL-3.0-or-later"
+tags: [
+  "keyword:floating-point arithmetic"
+  "keyword:interval arithmetic"
+  "keyword:decision procedure"
+  "category:Computer Science/Decision Procedures and Certified Algorithms/Decision procedures"
+  "logpath:Gappa"
+  "date:2022-01-18"
+]
+homepage: "https://gappa.gitlabpages.inria.fr/"
+bug-reports: "https://gitlab.inria.fr/gappa/coq/issues"
+depends: [
+  "ocaml"
+  "ocamlfind" {build}
+  "coq" {>= "8.8.1" & < "8.17~"}
+  "coq-flocq" {>= "3.0"}
+  "conf-autoconf" 
+  ("conf-g++" {build} | "conf-clang" {build})
+]
+build: [
+  ["autoconf"] 
+  ["./configure"]
+  ["./remake" "-j%{jobs}%"]
+]
+install: ["./remake" "install"]
+dev-repo: "git+https://gitlab.inria.fr/gappa/coq.git"
+url {
+  src:
+    "https://gitlab.inria.fr/gappa/coq/-/archive/8c5cc2fb439495103388019e3b2e3dd69fc0700a.tar.gz"
+  checksum:
+    "sha512=72f09d4558e86f12a48adec1210cfd0e61b10747a064b7afbe590b121000ea29f77d6c3b86392742d41418b3c50931344d7964ec5114639816ff5d2584dee8fe"
+}

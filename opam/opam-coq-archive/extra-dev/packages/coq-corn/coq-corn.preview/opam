@@ -1,0 +1,94 @@
+opam-version: "preview"
+name: "coq-corn"
+version: "preview"
+synopsis: "The Coq Constructive Repository at Nijmegen"
+description: """\
+CoRN includes the following parts:
+
+- Algebraic Hierarchy
+
+  An axiomatic formalization of the most common algebraic
+  structures, including setoids, monoids, groups, rings,
+  fields, ordered fields, rings of polynomials, real and
+  complex numbers
+
+- Model of the Real Numbers
+
+  Construction of a concrete real number structure
+  satisfying the previously defined axioms
+
+- Fundamental Theorem of Algebra
+
+  A proof that every non-constant polynomial on the complex
+  plane has at least one root
+
+- Real Calculus
+
+  A collection of elementary results on real analysis,
+  including continuity, differentiability, integration,
+  Taylor's theorem and the Fundamental Theorem of Calculus
+
+- Exact Real Computation
+
+  Fast verified computation inside Coq. This includes: real numbers, functions,
+  integrals, graphs of functions, differential equations."""
+maintainer: "b.a.w.spitters@gmail.com"
+authors: [
+  "Evgeny Makarov"
+  "Robbert Krebbers"
+  "Eelis van der Weegen"
+  "Bas Spitters"
+  "Jelle Herold"
+  "Russell O'Connor"
+  "Cezary Kaliszyk"
+  "Dan Synek"
+  "Luís Cruz-Filipe"
+  "Milad Niqui"
+  "Iris Loeb"
+  "Herman Geuvers"
+  "Randy Pollack"
+  "Freek Wiedijk"
+  "Jan Zwanenburg"
+  "Dimitri Hendriks"
+  "Henk Barendregt"
+  "Mariusz Giero"
+  "Rik van Ginneken"
+  "Dimitri Hendriks"
+  "Sébastien Hinderer"
+  "Bart Kirkels"
+  "Pierre Letouzey"
+  "Lionel Mamane"
+  "Nickolay Shmyrev"
+  "Vincent Semeria"
+]
+license: "GPL-2.0-only"
+tags: [
+  "category:Mathematics/Algebra"
+  "category:Mathematics/Real Calculus and Topology"
+  "category:Mathematics/Exact Real computation"
+  "keyword:constructive mathematics"
+  "keyword:algebra"
+  "keyword:real calculus"
+  "keyword:real numbers"
+  "keyword:Fundamental Theorem of Algebra"
+  "logpath:CoRN"
+  "date:2021-09-07"
+]
+homepage: "https://github.com/coq-community/corn"
+bug-reports: "https://github.com/coq-community/corn/issues"
+depends: [
+  "coq" {>= "8.7" & < "8.17~"}
+  "coq-math-classes" {>= "8.8.1"}
+  "coq-bignums"
+]
+build: [
+  ["./configure.sh"]
+  [make "-j%{jobs}%"]
+]
+install: [make "install"]
+dev-repo: "git+https://github.com/coq-community/corn.git"
+url {
+  src: "https://github.com/coq-community/corn/archive/e34e331fa259c18192639ef3ce9e80cbf5db99dc.tar.gz"
+  checksum:
+    "sha512=5d792d10e3f9528fc7b469630797fa3e481ee1248da43b0387efcd7d2499b811d7cfbe6e3674ffdb887b5ba8c99867b5d2d2af3c6585356fd8cec82a43f5ba3e"
+}

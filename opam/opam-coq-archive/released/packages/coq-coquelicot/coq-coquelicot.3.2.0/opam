@@ -1,0 +1,42 @@
+opam-version: "2.0"
+name: "coq-coquelicot"
+version: "3.2.0"
+synopsis:
+  "A Coq formalization of real analysis compatible with the standard library"
+maintainer: "guillaume.melquiond@inria.fr"
+authors: [
+  "Sylvie Boldo <sylvie.boldo@inria.fr>"
+  "Catherine Lelay <catherine.lelay@inria.fr>"
+  "Guillaume Melquiond <guillaume.melquiond@inria.fr>"
+]
+license: "LGPL-3.0-or-later"
+tags: [
+  "keyword:real analysis"
+  "keyword:topology"
+  "keyword:filters"
+  "keyword:metric spaces"
+  "category:Mathematics/Real Calculus and Topology"
+  "logpath:Coquelicot"
+  "date:2020-12-11"
+]
+homepage: "http://coquelicot.saclay.inria.fr/"
+bug-reports: "https://gitlab.inria.fr/coquelicot/coquelicot/issues"
+depends: [
+  "coq" {>= "8.8"}
+  "coq-mathcomp-ssreflect" {>= "1.6"}
+  "conf-autoconf" {build & dev}
+  ("conf-g++" {build} | "conf-clang" {build})
+]
+build: [
+  ["autoconf"] {dev}
+  ["./configure"]
+  ["./remake" "-j%{jobs}%"]
+]
+install: ["./remake" "install"]
+dev-repo: "git+https://gitlab.inria.fr/coquelicot/coquelicot.git"
+url {
+  src:
+    "https://coquelicot.gitlabpages.inria.fr/releases/coquelicot-3.2.0.tar.gz"
+  checksum:
+    "sha512=d7ac2dcc48499a95e73f875da0f24fec6714ad06f16c4675c764d0600034fa51c10c9eaaacef7943e1147a9412e24274228ac9d17f2c0e07eb86932bc2b264a1"
+}

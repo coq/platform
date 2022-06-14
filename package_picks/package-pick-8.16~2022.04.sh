@@ -63,62 +63,58 @@ fi
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
   # Standard library extensions
-  PACKAGES="${PACKAGES} coq-bignums.8.16.0"
-  PACKAGES="${PACKAGES} coq-ext-lib.0.11.6"
-  PACKAGES="${PACKAGES} coq-stdpp.1.7.0"
+  PACKAGES="${PACKAGES} coq-bignums.8.16.0"                   # already 8.16
+  PACKAGES="${PACKAGES} coq-ext-lib.0.11.6"                   # OK as is
+  PACKAGES="${PACKAGES} coq-stdpp.1.7.0"                      # patched to allow Coq 8.16
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.14.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.14.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.14.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.14.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-field.1.14.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-character.1.14.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"
-  PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"
-  PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.2"
-  PACKAGES="${PACKAGES} coq-mathcomp-zify.1.2.0+1.12+8.13"
-  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.5"
-  PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.preview"       # patched to latest commit on Jun 7th
+  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.preview"        # this works as is, but we create a preview version to make dependency handling easier
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra.preview"         # patched to latest commit on Jun 7th
+  PACKAGES="${PACKAGES} coq-mathcomp-solvable.preview"        # patched to latest commit on Jun 7th
+  PACKAGES="${PACKAGES} coq-mathcomp-field.preview"           # patched to latest commit on Jun 7th
+  PACKAGES="${PACKAGES} coq-mathcomp-character.preview"       # patched to latest commit on Jun 7th
+  PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"         # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.1"            # patched to allow Coq 8.16 and mathcomp preview
+  PACKAGES="${PACKAGES} coq-mathcomp-real-closed.preview"     # patched to latest commit on Jun 8th
+  PACKAGES="${PACKAGES} coq-mathcomp-zify.1.2.0+1.12+8.13"    # patched to allow Coq 8.16 and mathcomp preview
+  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.5"      # patched to allow Coq 8.16 and mathcomp preview
+  PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"                 # patched to allow Coq 8.16
 
   # Number theory
-  PACKAGES="${PACKAGES} coq-coqprime.1.1.1"
+  PACKAGES="${PACKAGES} coq-coqprime.preview"                 # patched to latest commit on Jun 8th
   PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1"
   
   # Numerical mathematics
-  PACKAGES="${PACKAGES} coq-flocq.4.0.0"
-  PACKAGES="${PACKAGES} coq-interval.4.4.0"
-  PACKAGES="${PACKAGES} coq-gappa.1.5.1 gappa.1.4.0"
-  # Legacy Flocq3 compatible packages
-  PACKAGES="${PACKAGES} coq-flocq3.3.4.3"
-  PACKAGES="${PACKAGES} coq-interval-flocq3.4.4.0"
-  PACKAGES="${PACKAGES} coq-gappa-flocq3.1.5.1"
+  PACKAGES="${PACKAGES} coq-flocq.preview"                    # patched to latest commit on Jun 8th
+  # PACKAGES="${PACKAGES} coq-interval.4.4.0"                 # master does not compile with 8.16 (Int63 module resustructuring)
+  PACKAGES="${PACKAGES} coq-gappa.1.5.1 gappa.1.4.0"          # patched to latest commit on Jun 13th
 
   # Constructive mathematics
-  PACKAGES="${PACKAGES} coq-math-classes.8.15.0"
-  PACKAGES="${PACKAGES} coq-corn.8.13.0"
+  PACKAGES="${PACKAGES} coq-math-classes.8.15.0"              # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-corn.8.13.0"                      # patched to latest commit on Jun 13th (note: mathcomp preview is allowed as is)
 
   # Homotopy Type Theory (HoTT)
-  PACKAGES="${PACKAGES} coq-hott.8.15"
+  PACKAGES="${PACKAGES} coq-hott.8.15"                        # patched to allow Coq 8.16
 
   # Univalent Mathematics (UniMath)
   # Note: coq-unimath requires too much memory for 32 bit architectures
   if [ "${BITSIZE}" == "64" ]
   then
-    PACKAGES="${PACKAGES} coq-unimath.20220204"
+    PACKAGES="${PACKAGES} coq-unimath.20220204"               # patched to latest commit on Jun 13th
   fi 
 
   # Code extraction
-  PACKAGES="${PACKAGES} coq-simple-io.1.7.0"
+  PACKAGES="${PACKAGES} coq-simple-io.1.7.0"                  # patched to allow Coq 8.16
 
   # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210"
-  PACKAGES="${PACKAGES} coq-equations.1.3+8.15"
-  PACKAGES="${PACKAGES} coq-aac-tactics.8.15.1"
-  PACKAGES="${PACKAGES} coq-unicoq.1.6+8.15"
-  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"
-  PACKAGES="${PACKAGES} coq-elpi.1.13.0 elpi.1.14.3"
-  PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"
+  PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210" # works fine as is
+  PACKAGES="${PACKAGES} coq-equations.1.3+8.15"               # patched to latest commit on Jun 14th
+  PACKAGES="${PACKAGES} coq-aac-tactics.8.15.1"               # patched to latest commit on Jun 14th
+  PACKAGES="${PACKAGES} coq-unicoq.1.6+8.15"                  # patched to latest commit on Jun 14th
+  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"                   # patched to latest commit on Jun 14th + allow unicoq preview
+  # PACKAGES="${PACKAGES} coq-elpi.1.13.0 elpi.1.14.3"        # does not work
+  # PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"        # requires elpi
   PACKAGES="${PACKAGES} coq-quickchick.1.6.1"
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"
   if [[ "$OSTYPE" != cygwin ]]
