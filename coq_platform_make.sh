@@ -19,7 +19,7 @@ source shell_scripts/init_cygwin_fixes.sh
 
 ###################### SETTINGS #####################
 
-export OPAMYES=1
+export OPAMYES=${OPAMYES:-1}
 export OPAMCOLOR=never
 
 ###################### PARAMETERS #####################
