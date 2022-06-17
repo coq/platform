@@ -1,6 +1,6 @@
 package,version,license,level
-"coq","8.15.1","https://spdx.org/licenses/LGPL-2.1-only.html","base"
-"coqide","8.15.1","https://spdx.org/licenses/LGPL-2.1-only.html","ide"
+"coq","8.15.2","https://spdx.org/licenses/LGPL-2.1-only.html","base"
+"coqide","8.15.2","https://spdx.org/licenses/LGPL-2.1-only.html","ide"
 "coq-aac-tactics","8.15.1","https://spdx.org/licenses/LGPL-3.0-or-later.html","full"
 "coq-bignums","8.15.0","https://spdx.org/licenses/LGPL-2.1-only.html","full"
 "coq-coqeal","1.1.0","https://spdx.org/licenses/MIT.html","full"

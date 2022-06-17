@@ -11,7 +11,7 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.15.1 (released Mar 2022) with the first package pick from Apr 2022"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.15.2 (released Jun 2022) with the first package pick from Apr 2022"
 COQ_PLATFORM_VERSION_SORTORDER=1
 
 # The package list name is the final part of the opam switch name.
@@ -22,13 +22,13 @@ COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.15~2022.04'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.15'
-COQ_PLATFORM_COQ_TAG='8.15.1'
+COQ_PLATFORM_COQ_TAG='8.15.2'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.04.0 includes Coq 8.15.1 from  3/2022. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.04.1 includes Coq 8.15.2 from Jun 2022. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is the **latest release version** of the Coq Platform and recommended for general application. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
@@ -48,14 +48,14 @@ PACKAGES=""
 ########## BASE PACKAGES ##########
 
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} coq.8.15.1"
+PACKAGES="${PACKAGES} coq.8.15.2"
 
 ########## IDE PACKAGES ##########
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.15.1 lablgtk3.3.1.2"
+PACKAGES="${PACKAGES} coqide.8.15.2 lablgtk3.3.1.2"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
