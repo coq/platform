@@ -1,8 +1,13 @@
-opam-version: "preview"
-name: "coq-corn"
-version: "preview"
+opam-version: "2.0"
+maintainer: "b.a.w.spitters@gmail.com"
+
+homepage: "https://github.com/coq-community/corn"
+dev-repo: "git+https://github.com/coq-community/corn.git"
+bug-reports: "https://github.com/coq-community/corn/issues"
+license: "GPL-2.0-only"
+
 synopsis: "The Coq Constructive Repository at Nijmegen"
-description: """\
+description: """
 CoRN includes the following parts:
 
 - Algebraic Hierarchy
@@ -31,8 +36,32 @@ CoRN includes the following parts:
 - Exact Real Computation
 
   Fast verified computation inside Coq. This includes: real numbers, functions,
-  integrals, graphs of functions, differential equations."""
-maintainer: "b.a.w.spitters@gmail.com"
+  integrals, graphs of functions, differential equations.
+"""
+
+build: [
+  ["./configure.sh"]
+  [make "-j%{jobs}%"]
+]
+install: [make "install"]
+depends: [
+  "coq" {>= "8.7" & < "8.17~"}
+  "coq-math-classes" {>= "8.8.1"}
+  "coq-bignums"
+]
+
+tags: [
+  "category:Mathematics/Algebra"
+  "category:Mathematics/Real Calculus and Topology"
+  "category:Mathematics/Exact Real computation"
+  "keyword:constructive mathematics"
+  "keyword:algebra"
+  "keyword:real calculus"
+  "keyword:real numbers"
+  "keyword:Fundamental Theorem of Algebra"
+  "logpath:CoRN"
+  "date:2021-09-07"
+]
 authors: [
   "Evgeny Makarov"
   "Robbert Krebbers"
@@ -61,32 +90,7 @@ authors: [
   "Nickolay Shmyrev"
   "Vincent Semeria"
 ]
-license: "GPL-2.0-only"
-tags: [
-  "category:Mathematics/Algebra"
-  "category:Mathematics/Real Calculus and Topology"
-  "category:Mathematics/Exact Real computation"
-  "keyword:constructive mathematics"
-  "keyword:algebra"
-  "keyword:real calculus"
-  "keyword:real numbers"
-  "keyword:Fundamental Theorem of Algebra"
-  "logpath:CoRN"
-  "date:2021-09-07"
-]
-homepage: "https://github.com/coq-community/corn"
-bug-reports: "https://github.com/coq-community/corn/issues"
-depends: [
-  "coq" {>= "8.7" & < "8.17~"}
-  "coq-math-classes" {>= "8.8.1"}
-  "coq-bignums"
-]
-build: [
-  ["./configure.sh"]
-  [make "-j%{jobs}%"]
-]
-install: [make "install"]
-dev-repo: "git+https://github.com/coq-community/corn.git"
+
 url {
   src: "https://github.com/coq-community/corn/archive/e34e331fa259c18192639ef3ce9e80cbf5db99dc.tar.gz"
   checksum:

@@ -90,12 +90,12 @@ then
   # PACKAGES="${PACKAGES} coq-interval.4.5.1"                   # as of Jul 6th, the latest commit does not compile
   PACKAGES="${PACKAGES} coq-gappa.1.5.2 gappa.1.4.0"
 
-  # # Constructive mathematics
-  # PACKAGES="${PACKAGES} coq-math-classes.8.15.0"              # patched to allow Coq 8.16
-  # PACKAGES="${PACKAGES} coq-corn.8.13.0"                      # patched to latest commit on Jun 13th (note: mathcomp preview is allowed as is)
+  # Constructive mathematics
+  PACKAGES="${PACKAGES} coq-math-classes.8.15.0"                # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-corn.preview"                       # patched to latest commit on Jul 6th
 
   # # Homotopy Type Theory (HoTT)
-  # PACKAGES="${PACKAGES} coq-hott.8.15"                        # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-hott.preview"                       # patched to latest commit on Jul 6th
 
   # # Univalent Mathematics (UniMath)
   # # Note: coq-unimath requires too much memory for 32 bit architectures
@@ -105,18 +105,18 @@ then
   # fi 
 
   # # Code extraction
-  # PACKAGES="${PACKAGES} coq-simple-io.1.7.0"                  # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-simple-io.1.7.0"                    # patched to allow Coq 8.16
 
   # # Proof automation / generation / helpers
-  # PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210" # works fine as is
-  # PACKAGES="${PACKAGES} coq-equations.1.3+8.15"               # patched to latest commit on Jun 14th
-  # PACKAGES="${PACKAGES} coq-aac-tactics.8.15.1"               # patched to latest commit on Jun 14th
-  # PACKAGES="${PACKAGES} coq-unicoq.1.6+8.15"                  # patched to latest commit on Jun 14th
-  # PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"                   # patched to latest commit on Jun 14th + allow unicoq preview
-  # # PACKAGES="${PACKAGES} coq-elpi.1.13.0 elpi.1.14.3"        # does not work
-  # # PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"        # requires elpi
-  # PACKAGES="${PACKAGES} coq-quickchick.1.6.1"
-  # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"
+  PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210"
+  PACKAGES="${PACKAGES} coq-equations.1.3+8.16"
+  PACKAGES="${PACKAGES} coq-aac-tactics.8.16.0"
+  PACKAGES="${PACKAGES} coq-unicoq.preview"                     # patched to latest commit on Jul 6th
+  PACKAGES="${PACKAGES} coq-mtac2.preview"                      # as of Jul 6th, the latest commit does not compile, but an older commit does
+  PACKAGES="${PACKAGES} coq-elpi.preview elpi.1.15.2"           # patched to latest commit on Jul 6th. Note that elpi is not the latest version, but the latest one supported by the latest release coq-elpi
+  PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"            # patched to allow coq-elpi.preview
+  PACKAGES="${PACKAGES} coq-quickchick.preview"                 # as of Jul 6th, the latest commit does not compile, but an older commit does
+  # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"        # as of Jul 6th, the latest commit does not compile
   # if [[ "$OSTYPE" != cygwin ]]
   # then
   #   # coq-hammer does not work on Windows because it heavily relies on fork
@@ -124,9 +124,9 @@ then
   #   PACKAGES="${PACKAGES} eprover.2.6"
   #   PACKAGES="${PACKAGES} z3_tptp.4.8.14"
   # fi
-  # PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.15"
-  # PACKAGES="${PACKAGES} coq-coqeal.1.1.0"
-  # PACKAGES="${PACKAGES} coq-libhyps.2.0.5"
+  PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.16"
+  PACKAGES="${PACKAGES} coq-coqeal.preview"                     # patched to latest commit on Jul 6th
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.5"                      # patched to allow Coq 8.16
 
   # # General mathematics (which requires one of the above tools)
   # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.0"

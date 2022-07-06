@@ -18,13 +18,18 @@ new tactics."""
 maintainer: "Enrico Tassi <enrico.tassi@inria.fr>"
 authors: "Enrico Tassi"
 license: "LGPL-2.1-or-later"
-tags: "logpath:elpi"
+tags: [
+  "category:Miscellaneous/Coq Extensions"
+  "keyword:λProlog"
+  "keyword:higher order abstract syntax"
+  "logpath:elpi"
+]
 homepage: "https://github.com/LPCIC/coq-elpi"
 bug-reports: "https://github.com/LPCIC/coq-elpi/issues"
 depends: [
   "stdlib-shims"
   "ocaml" {>= "4.07"}
-  "elpi" {>= "1.14.0" & < "1.15.0~"}
+  "elpi" {>= "1.15.0" & < "1.16.0~"}
   "coq" {>= "8.15" & < "8.17~"}
 ]
 build: [
@@ -34,7 +39,7 @@ build: [
 install: [make "install" "COQBIN=%{bin}%/" "ELPIDIR=%{prefix}%/lib/elpi"]
 dev-repo: "git+https://github.com/LPCIC/coq-elpi"
 url {
-  src: "https://github.com/LPCIC/coq-elpi/archive/9df8ecfc3cb0fed219138892d1789ef08e825f12.tar.gz"
+  src: "https://github.com/LPCIC/coq-elpi/archive/89c534330cfd225f695ad7e0731abf1477b973bd.tar.gz"
   checksum:
-    "sha512=6d647d1262520a774fa730ad8337c89f39727105843a1aae50d6c9dfe5512aaa3464f78428b5dea88c8b1491390e9bcb772873289d992dc6ddfe10d36666f461"
+    "sha512=7c73cd62e9d97bbf825d28ab95deffa6361441fa85f1f1b3c734d0d164574a1926f6d92986f5ca1880b16fb10ecbca0d8705ea9c3bf424008e0d352a77ea787c"
 }

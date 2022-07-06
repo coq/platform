@@ -1,9 +1,13 @@
 opam-version: "2.0"
-name: "coq-math-classes"
-version: "8.15.0"
-synopsis:
-  "A library of abstract interfaces for mathematical structures in Coq"
-description: """\
+maintainer: "b.a.w.spitters@gmail.com"
+
+homepage: "https://github.com/coq-community/math-classes"
+dev-repo: "git+https://github.com/coq-community/math-classes.git"
+bug-reports: "https://github.com/coq-community/math-classes/issues"
+license: "MIT"
+
+synopsis: "A library of abstract interfaces for mathematical structures in Coq"
+description: """
 Math classes is a library of abstract interfaces for mathematical
 structures, such as:
 
@@ -16,26 +20,30 @@ structures, such as:
 It is heavily based on Coq’s new type classes in order to provide:
 structure inference, multiple inheritance/sharing, convenient
 algebraic manipulation (e.g. rewriting) and idiomatic use of
-notations."""
-maintainer: "b.a.w.spitters@gmail.com"
-authors: ["Eelis van der Weegen" "Bas Spitters" "Robbert Krebbers"]
-license: "MIT"
-tags: ["logpath:MathClasses" "date:2022-01-20"]
-homepage: "https://github.com/coq-community/math-classes"
-bug-reports: "https://github.com/coq-community/math-classes/issues"
-depends: [
-  "coq" {>= "8.11" & < "8.17~"}
-  "coq-bignums"
-]
+notations.
+"""
+
 build: [
-  ["./configure.sh"]
-  [make "-j%{jobs}%"]
+  [ "./configure.sh" ]
+  [ make "-j%{jobs}%" ]
 ]
 install: [make "install"]
-dev-repo: "git+https://github.com/coq-community/math-classes.git"
+depends: [
+  "coq" {>= "8.11" & < "8.17~"}
+  "coq-bignums" 
+]
+
+tags: [
+  "logpath:MathClasses"
+  "date:2022-01-20"
+]
+authors: [
+  "Eelis van der Weegen"
+  "Bas Spitters"
+  "Robbert Krebbers"
+]
+
 url {
-  src:
-    "https://github.com/coq-community/math-classes/archive/refs/tags/8.15.0.tar.gz"
-  checksum:
-    "sha512=2c844e44294645fd5751a4e2b5a8f3ed1d7b38caa67e1b40920635d920ed8c39280363d8a755bdd653ccfa7f7253436548935bc8b266a550e05aea5a14beaec9"
+  src: "https://github.com/coq-community/math-classes/archive/refs/tags/8.15.0.tar.gz"
+  checksum: "sha512=2c844e44294645fd5751a4e2b5a8f3ed1d7b38caa67e1b40920635d920ed8c39280363d8a755bdd653ccfa7f7253436548935bc8b266a550e05aea5a14beaec9"
 }
