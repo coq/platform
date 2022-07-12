@@ -135,6 +135,7 @@ then
 
   # General mathematics (which requires one of the above tools)
   # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.2"          # version 0.5.2 which should support 8.16+rc1 does not work
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0"     # patched to allow Coq 8.16
   PACKAGES="${PACKAGES} coq-relation-algebra.preview"           # patched to latest commit on Jul 6th
 
   # Formal languages, compilers and code verification
@@ -169,7 +170,6 @@ then
   PACKAGES="${PACKAGES} coq-deriving.0.1.0"                     # patched to allow Coq 8.16
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0"     # patched to allow Coq 8.16
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"                  # patched to allow Coq 8.16 and mathcomp 1.15
 
   # Gallina extensions
