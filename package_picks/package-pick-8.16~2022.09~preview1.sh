@@ -131,6 +131,7 @@ then
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.16"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.1"                       # patched to allow coq-mathcomp-real-closed.preview
   PACKAGES="${PACKAGES} coq-libhyps.2.0.5"                      # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-itauto.8.16.0"
 
   # General mathematics (which requires one of the above tools)
   # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.2"          # version 0.5.2 which should support 8.16+rc1 does not work
