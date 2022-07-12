@@ -133,14 +133,14 @@ then
   PACKAGES="${PACKAGES} coq-libhyps.2.0.5"                      # patched to allow Coq 8.16
 
   # General mathematics (which requires one of the above tools)
-  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.preview"        # as of Jul 6th, the latest commit does not compile
+  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.2"          # version 0.5.2 which should support 8.16+rc1 does not work
   PACKAGES="${PACKAGES} coq-relation-algebra.preview"           # patched to latest commit on Jul 6th
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.3"                      # patched to allow Coq 8.16 and mathcomp 1.15
   PACKAGES="${PACKAGES} coq-iris.3.6.0"                         # patched to allow Coq 8.16
   PACKAGES="${PACKAGES} coq-iris-heap-lang.3.6.0"
-  PACKAGES="${PACKAGES} coq-ott.0.32"                           # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-ott.0.32"
   PACKAGES="${PACKAGES} ott.0.32"
   
   case "$COQ_PLATFORM_COMPCERT" in
