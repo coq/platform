@@ -62,6 +62,10 @@ fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
+  # Some dependencies for which we need specific versions
+  PACKAGES="${PACKAGES} PIN.ppxlib.0.25.1"            # coq-serapi requires this version
+  PACKAGES="${PACKAGES} PIN.sexplib0.v0.14.0"         # coq-serapi requires this version
+
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.16.0"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.6"
@@ -125,7 +129,7 @@ then
   #   PACKAGES="${PACKAGES} z3_tptp.4.8.14"
   # fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.16"
-  PACKAGES="${PACKAGES} coq-coqeal.1.1.1"
+  PACKAGES="${PACKAGES} coq-coqeal.1.1.1"                       # patched to allow coq-mathcomp-real-closed.preview
   PACKAGES="${PACKAGES} coq-libhyps.2.0.5"                      # patched to allow Coq 8.16
 
   # General mathematics (which requires one of the above tools)
@@ -146,33 +150,31 @@ then
   esac
 
   case "$COQ_PLATFORM_VST" in
-    [yY]) PACKAGES="${PACKAGES} coq-vst.2.10" ;;                # uses the latest commit on PR https://github.com/PrincetonUniversity/VST/pull/578
+    [yY]) PACKAGES="${PACKAGES} coq-vst.2.10" ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
   esac
 
   # Proof analysis and other tools
-  # PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.15"                # Enabling Coq 8.16 does not work, no commits after latest release
-
+  # PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.15"                # Error with latest commit: "dpdgraph is not a valid plugin name anymore"
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
 
-# if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
-# then
+if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
+then
 
-#   # # General mathematics
-#   # PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.0.3.0"
-#   # PACKAGES="${PACKAGES} coq-extructures.0.3.1"
+  # Proof automation / generation / helpers
+  PACKAGES="${PACKAGES} coq-deriving.0.1.0"                     # patched to allow Coq 8.16
 
-#   # # Proof automation / generation / helpers
-#   # PACKAGES="${PACKAGES} coq-deriving.0.1.0"
+  # General mathematics
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0"     # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-extructures.0.3.1"                  # patched to allow Coq 8.16 and mathcomp 1.15
 
-#   # # Gallina extensions
-#   # PACKAGES="${PACKAGES} coq-reduction-effects.0.1.3"
-#   # PACKAGES="${PACKAGES} coq-record-update.0.3.0"
+  # Gallina extensions
+  # PACKAGES="${PACKAGES} coq-reduction-effects.0.1.3"          # Error with latest commit: "redeffect_plugin is not a valid plugin name anymore"
+  PACKAGES="${PACKAGES} coq-record-update.0.3.0"                # patched to allow Coq 8.16
 
-#   # # Communication with coqtop
-#   # PACKAGES="${PACKAGES} coq-serapi.8.15.0+0.15.0"
-
-# fi
+  # Communication with coqtop
+  PACKAGES="${PACKAGES} coq-serapi.8.16+rc1+0.16.0"
+fi
