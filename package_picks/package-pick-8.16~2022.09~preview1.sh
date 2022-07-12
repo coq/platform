@@ -94,20 +94,20 @@ then
   PACKAGES="${PACKAGES} coq-math-classes.8.15.0"                # patched to allow Coq 8.16
   PACKAGES="${PACKAGES} coq-corn.preview"                       # patched to latest commit on Jul 6th
 
-  # # Homotopy Type Theory (HoTT)
+  # Homotopy Type Theory (HoTT)
   PACKAGES="${PACKAGES} coq-hott.preview"                       # patched to latest commit on Jul 6th
 
-  # # Univalent Mathematics (UniMath)
-  # # Note: coq-unimath requires too much memory for 32 bit architectures
-  # if [ "${BITSIZE}" == "64" ]
-  # then
-  #   PACKAGES="${PACKAGES} coq-unimath.20220204"               # patched to latest commit on Jun 13th
-  # fi 
+  # Univalent Mathematics (UniMath)
+  # Note: coq-unimath requires too much memory for 32 bit architectures
+  if [ "${BITSIZE}" == "64" ]
+  then
+    PACKAGES="${PACKAGES} coq-unimath.preview"                  # patched to latest commit on Jul 6th
+  fi 
 
-  # # Code extraction
+  # Code extraction
   PACKAGES="${PACKAGES} coq-simple-io.1.7.0"                    # patched to allow Coq 8.16
 
-  # # Proof automation / generation / helpers
+  # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.16"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.16.0"
@@ -125,34 +125,34 @@ then
   #   PACKAGES="${PACKAGES} z3_tptp.4.8.14"
   # fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.16"
-  PACKAGES="${PACKAGES} coq-coqeal.preview"                     # patched to latest commit on Jul 6th
+  PACKAGES="${PACKAGES} coq-coqeal.1.1.1"
   PACKAGES="${PACKAGES} coq-libhyps.2.0.5"                      # patched to allow Coq 8.16
 
-  # # General mathematics (which requires one of the above tools)
-  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.0"
-  # PACKAGES="${PACKAGES} coq-relation-algebra.1.7.7"
+  # General mathematics (which requires one of the above tools)
+  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.preview"        # as of Jul 6th, the latest commit does not compile
+  PACKAGES="${PACKAGES} coq-relation-algebra.preview"           # patched to latest commit on Jul 6th
 
-  # # Formal languages, compilers and code verification
-  # PACKAGES="${PACKAGES} coq-reglang.1.1.3"
-  # PACKAGES="${PACKAGES} coq-iris.3.6.0"
-  # PACKAGES="${PACKAGES} coq-iris-heap-lang.3.6.0"
-  # PACKAGES="${PACKAGES} coq-ott.0.32"
-  # PACKAGES="${PACKAGES} ott.0.32"
+  # Formal languages, compilers and code verification
+  PACKAGES="${PACKAGES} coq-reglang.1.1.3"                      # patched to allow Coq 8.16 and mathcomp 1.15
+  PACKAGES="${PACKAGES} coq-iris.3.6.0"                         # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-iris-heap-lang.3.6.0"
+  PACKAGES="${PACKAGES} coq-ott.0.32"                           # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} ott.0.32"
   
-  # case "$COQ_PLATFORM_COMPCERT" in
-  #   [yY]) PACKAGES="${PACKAGES} coq-compcert.3.10" ;;
-  #   [nN]) true ;;
-  #   *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
-  # esac
+  case "$COQ_PLATFORM_COMPCERT" in
+    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.11" ;;           # patched to allow Coq 8.16
+    [nN]) true ;;
+    *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
+  esac
 
-  # case "$COQ_PLATFORM_VST" in
-  #   [yY]) PACKAGES="${PACKAGES} coq-vst.2.9.1" ;;
-  #   [nN]) true ;;
-  #   *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
-  # esac
+  case "$COQ_PLATFORM_VST" in
+    [yY]) PACKAGES="${PACKAGES} coq-vst.2.10" ;;                # uses the latest commit on PR https://github.com/PrincetonUniversity/VST/pull/578
+    [nN]) true ;;
+    *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
+  esac
 
-  # # Proof analysis and other tools
-  # PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.15"
+  # Proof analysis and other tools
+  # PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.15"                # Enabling Coq 8.16 does not work, no commits after latest release
 
 fi
 
