@@ -63,8 +63,8 @@ fi
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
   # Some dependencies for which we need specific versions
-  PACKAGES="${PACKAGES} PIN.ppxlib.0.25.1"            # coq-serapi requires this version
   PACKAGES="${PACKAGES} PIN.sexplib0.v0.14.0"         # coq-serapi requires this version
+  PACKAGES="${PACKAGES} PIN.ppxlib.0.25.1"            # coq-serapi requires this version
 
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.16.0"
@@ -80,7 +80,7 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-character.1.15.0"
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"           # patched to allow Coq 8.16
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.2"              # patched to allow Coq 8.16
-  PACKAGES="${PACKAGES} coq-mathcomp-real-closed.preview"       # patched to latest commit on Jul 6th
+  PACKAGES="${PACKAGES} coq-mathcomp-real-closed.preview"       # patched to latest commit on Jul 6th, checked August 8th
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.2.0+1.12+8.13"      # patched to allow Coq 8.16
   PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.5"        # patched to allow Coq 8.16 and ssreflect 1.15
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
@@ -91,7 +91,7 @@ then
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.1.0"
-  # PACKAGES="${PACKAGES} coq-interval.4.5.1"                   # as of Jul 6th, the latest commit does not compile
+  # PACKAGES="${PACKAGES} coq-interval.4.5.1"                   # as of Jul 6th, the latest commit does not compile, checked August 8th
   PACKAGES="${PACKAGES} coq-gappa.1.5.2 gappa.1.4.0"
 
   # Constructive mathematics
@@ -117,8 +117,8 @@ then
   PACKAGES="${PACKAGES} coq-aac-tactics.8.16.0"
   PACKAGES="${PACKAGES} coq-unicoq.preview"                     # patched to latest commit on Jul 6th
   PACKAGES="${PACKAGES} coq-mtac2.preview"                      # as of Jul 6th, the latest commit does not compile, but an older commit does
-  PACKAGES="${PACKAGES} coq-elpi.preview elpi.1.15.2"           # patched to latest commit on Jul 6th. Note that elpi is not the latest version, but the latest one supported by the latest release coq-elpi
-  PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"            # patched to allow coq-elpi.preview
+  PACKAGES="${PACKAGES} coq-elpi.1.15.5 elpi.1.16.5"
+  PACKAGES="${PACKAGES} coq-hierarchy-builder.1.3.0"
   PACKAGES="${PACKAGES} coq-quickchick.preview"                 # as of Jul 6th, the latest commit does not compile, but an older commit does
   # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"        # as of Jul 6th, the latest commit does not compile
   # if [[ "$OSTYPE" != cygwin ]]
