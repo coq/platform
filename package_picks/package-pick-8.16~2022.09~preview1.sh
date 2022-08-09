@@ -134,7 +134,7 @@ then
   PACKAGES="${PACKAGES} coq-itauto.8.16.0"
 
   # General mathematics (which requires one of the above tools)
-  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.2"          # version 0.5.2 which should support 8.16+rc1 does not work
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.preview"          # patched to latest commit on Aug 9th
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0"     # patched to allow Coq 8.16
   PACKAGES="${PACKAGES} coq-relation-algebra.preview"           # patched to latest commit on Jul 6th
 
