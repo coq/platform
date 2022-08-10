@@ -173,7 +173,7 @@ then
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"                  # patched to allow Coq 8.16 and mathcomp 1.15
 
   # Gallina extensions
-  # PACKAGES="${PACKAGES} coq-reduction-effects.0.1.3"          # Error with latest commit: "redeffect_plugin is not a valid plugin name anymore"
+  PACKAGES="${PACKAGES} coq-reduction-effects.0.1.4"
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"                # patched to allow Coq 8.16
 
   # Communication with coqtop
