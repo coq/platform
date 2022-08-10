@@ -98,7 +98,7 @@ TEST_FILES[coq-iris-heap-lang]='tests/heapprop.v'
 TEST_FILES[coq-iris]='tests/heapprop.v'
 TEST_FILES[coq-libhyps]='Demo/demo.v'
 TEST_FILES[coq-math-classes]=''
-TEST_FILES[coq-mathcomp-algebra-tactics]='examples/field_examples.v examples/ring_examples.v'
+TEST_FILES[coq-mathcomp-algebra-tactics]='' # 'examples/field_examples.v examples/ring_examples.v' both do not work for 8.16
 TEST_FILES[coq-mathcomp-algebra]='mathcomp/algebra/finalg.v'
 TEST_FILES[coq-mathcomp-analysis]=''
 TEST_FILES[coq-mathcomp-bigenough]='bigenough.v'
@@ -120,7 +120,9 @@ TEST_FILES[coq-quickchick]='' # QuickChick requires OCaml, which is currently on
 TEST_FILES[coq-record-update]='/tests/RecordSetTests.v'
 TEST_FILES[coq-reduction-effects]='tests/PrintEffect.v'
 TEST_FILES[coq-reglang]='theories/dfa.v'
-TEST_FILES[coq-relation-algebra]='compiler_opts.v imp.v'
+TEST_FILES[coq-relation-algebra.1.7.6]='compiler_opts.v imp.v'
+TEST_FILES[coq-relation-algebra.1.7.7]='compiler_opts.v imp.v'
+TEST_FILES[coq-relation-algebra]='examples/compiler_opts.v examples/imp.v'
 PATCH_CMDS[coq-relation-algebra]='/^Require Import kat .*$/ {print "From RelationAlgebra "$0; next}'
 TEST_FILES[coq-serapi]=''
 TEST_FILES[coq-simple-io]='test/Example.v test/TestExtraction.v'
@@ -135,6 +137,8 @@ TEST_FILES[coq-vst]='progs64/reverse.v progs64/verif_reverse2.v'
 PATCH_CMDS[coq-vst]='/^Require Import VST.progs64.reverse.$/ {print "Require Import reverse. "; next}'
 TEST_FILES[coq-vst~8.12]='progs/reverse.v progs/verif_reverse2.v'
 PATCH_CMDS[coq-vst~8.12]='/^Require Import VST.progs.reverse.$/ {print "Require Import reverse. "; next}'
+TEST_FILES[coq-itauto]='test-suite/no_test_lia.v' # test-suite/arith.v  has issues with Int63.v
+TEST_FILES[coq-coqutil]='src/coqutil/Map/SortedList.v'
 
 ##### Hacks for files #####
 
