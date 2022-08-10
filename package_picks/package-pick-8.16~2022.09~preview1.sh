@@ -80,7 +80,7 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-character.1.15.0"
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"           # patched to allow Coq 8.16
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.2"              # patched to allow Coq 8.16
-  PACKAGES="${PACKAGES} coq-mathcomp-real-closed.preview"       # patched to latest commit on Jul 6th, checked August 8th
+  PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.3"
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.2.0+1.12+8.13"      # patched to allow Coq 8.16
   PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.5"        # patched to allow Coq 8.16 and ssreflect 1.15
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
