@@ -137,9 +137,9 @@ We plan to add an OCaml compiler to the binary installers in the next release.
 
 <details><summary><font size="+1">Maintaining an installation</font></summary>
 
-It is **not** recommended to `opam upgrage` a Coq Platform opam switch, although this is possible.
+It is **not** recommended to `opam upgrade` a Coq Platform opam switch, although this is possible.
 The Coq Platform script does not pin any packages - not even Coq.
-It just requests to install a specific version, so `opam upgrage` might change a lot of packages
+It just requests to install a specific version, so `opam upgrade` might change a lot of packages
 and you end up with something which is no longer an "official" Coq Platform.
 
 Instead it is recommended to wait for the next release of Coq Platform and install it, which will create a new opam switch -
