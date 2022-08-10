@@ -48,8 +48,8 @@ jobs:
       fail-fast: false
       matrix:
         variant:
+          - '8.16~2022.09~preview1.sh'
           - '8.15~2022.04'
-          - '8.14~2022.04'
 
     steps:
       - name: Git checkout
@@ -123,8 +123,8 @@ jobs:
       fail-fast: false
       matrix:
         variant:
+          - '8.16~2022.09~preview1.sh'
           - '8.15~2022.04'
-          - '8.14~2022.04'
 
     steps:
       - name: Install bash
