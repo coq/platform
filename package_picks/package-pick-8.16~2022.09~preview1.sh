@@ -92,7 +92,7 @@ then
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.1.0"
   # PACKAGES="${PACKAGES} coq-interval.4.5.1"                   # as of Jul 6th, the latest commit does not compile, checked August 8th
-  PACKAGES="${PACKAGES} coq-gappa.1.5.2 gappa.1.4.0"
+  PACKAGES="${PACKAGES} coq-gappa.1.5.2 gappa.1.4.1"
 
   # Constructive mathematics
   PACKAGES="${PACKAGES} coq-math-classes.8.15.0"                # patched to allow Coq 8.16
