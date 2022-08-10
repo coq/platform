@@ -3,7 +3,7 @@
 
 ###################### COPYRIGHT/COPYLEFT ######################
 
-# (C) 2021 Michael Soegtrop
+# (C) 2022 Michael Soegtrop
 # (C) 2020 Enrico Tassi
 
 # Released to the public under the
@@ -35,12 +35,12 @@ PACKAGE_FILTER_RE="${2:-.}"
 
 ########## Settings ##########
 
-EXT_RELEASE=".0"
-DATE_RELEASE="January 13, 2022"
+EXT_RELEASE="+rc1"
+DATE_RELEASE="June 01, 2022"
 EXT_FINAL=""
 DATE_FINAL=""
-VERSION_PLATFORM="2022.02"
-DATE_PLATFORM_BETA="January 25, 2022"
+VERSION_PLATFORM="2022.09"
+DATE_PLATFORM_BETA="June 21, 2022"
 DATE_PLATFORM_NOTIFY="February 14, 2022"
 DATE_PLATFORM_EXPECTED="February 28, 2022"
 DATE_PLATFORM_LATEST="April 11, 2022"
