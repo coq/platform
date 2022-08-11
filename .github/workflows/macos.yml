@@ -64,7 +64,9 @@ jobs:
         # ==> Downloading https://ghcr.io/v2/homebrew/core/harfbuzz/manifests/5.1.0
         # Error: adwaita-icon-theme: Failed to download resource "harfbuzz_bottle_manifest"
         # The downloaded GitHub Packages manifest was corrupted or modified (it is not valid JSON): 
-        run: brew cleanup
+        run: |
+          brew cleanup
+          brew update
 
       - name: Run common platform script
         shell: bash
