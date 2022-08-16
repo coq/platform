@@ -80,7 +80,7 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-character.1.15.0"
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"           # patched to allow Coq 8.16
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.2"              # patched to allow Coq 8.16
-  PACKAGES="${PACKAGES} coq-mathcomp-real-closed.preview"       # patched to latest commit on Jul 6th, checked August 8th
+  PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.3"
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.2.0+1.12+8.13"      # patched to allow Coq 8.16
   PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.5"        # patched to allow Coq 8.16 and ssreflect 1.15
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
@@ -92,7 +92,7 @@ then
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.1.0"
   # PACKAGES="${PACKAGES} coq-interval.4.5.1"                   # as of Jul 6th, the latest commit does not compile, checked August 8th
-  PACKAGES="${PACKAGES} coq-gappa.1.5.2 gappa.1.4.0"
+  PACKAGES="${PACKAGES} coq-gappa.1.5.2 gappa.1.4.1"
 
   # Constructive mathematics
   PACKAGES="${PACKAGES} coq-math-classes.8.15.0"                # patched to allow Coq 8.16
@@ -134,7 +134,7 @@ then
   PACKAGES="${PACKAGES} coq-itauto.8.16.0"
 
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.preview"          # patched to latest commit on Aug 9th
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.3"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0"     # patched to allow Coq 8.16
   PACKAGES="${PACKAGES} coq-relation-algebra.preview"           # patched to latest commit on Jul 6th
 
@@ -173,7 +173,7 @@ then
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"                  # patched to allow Coq 8.16 and mathcomp 1.15
 
   # Gallina extensions
-  # PACKAGES="${PACKAGES} coq-reduction-effects.0.1.3"          # Error with latest commit: "redeffect_plugin is not a valid plugin name anymore"
+  PACKAGES="${PACKAGES} coq-reduction-effects.0.1.4"
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"                # patched to allow Coq 8.16
 
   # Communication with coqtop

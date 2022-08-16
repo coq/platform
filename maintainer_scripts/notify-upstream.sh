@@ -28,7 +28,7 @@ ROOT_PATH="$(dirname "${SCRIPT_PATH}")"
 # $1: Path of Coq Platform package list file
 # Note: this script will make a copy of the package list with
 # commented out packages commented in!
-PACKAGE_LIST="$1"
+PACKAGE_LIST_FILE="$1"
 
 # $2: Optional package name regexp
 PACKAGE_FILTER_RE="${2:-.}"
@@ -40,14 +40,19 @@ DATE_RELEASE="June 01, 2022"
 EXT_FINAL=""
 DATE_FINAL=""
 VERSION_PLATFORM="2022.09"
-DATE_PLATFORM_BETA="June 21, 2022"
-DATE_PLATFORM_NOTIFY="February 14, 2022"
-DATE_PLATFORM_EXPECTED="February 28, 2022"
-DATE_PLATFORM_LATEST="April 11, 2022"
+DATE_PLATFORM_BETA="August 17, 2022"
+DATE_PLATFORM_NOTIFY="August 31, 2022"
+DATE_PLATFORM_EXPECTED="September 15, 2022"
+DATE_PLATFORM_LATEST="October 15, 2022"
 PLATFORM_MAIN_BRANCH="https://github.com/coq/platform/tree/main"
 
-CC="CC: https://github.com/coq/platform/issues/193"
+CC="CC: https://github.com/coq/platform/issues/274"
 #CC="\n@coqbot column:...."
+
+########## Files ##########
+
+PROCESSED_LIST_FILE="${SCRIPT_PATH}/packages_already_processed.txt"
+PATCHED_PACKAGE_LIST_FILE="${SCRIPT_PATH}/PATCHED_PACKAGE_LIST_FILE.sh"
 
 ########## Coq CI interface functions ##########
 
@@ -114,6 +119,34 @@ function opam_get_installed_opam_repo() {
   esac
 }
 
+# Get opam package repo hint of package $1
+# Only to be used if package is installed!
+
+function opam_get_installed_opam_repo_hint() {
+  repo=$(opam show -f repository "$1")
+  case $repo in
+    default)             echo '' ;;
+    coq-core-dev)        echo '' ;;
+    coq-extra-dev)       echo '' ;;
+    coq-released)        echo '' ;;
+    *patch_coq-dev)      echo ' **This means we had to do some severe patching of the opam package - e.g. pin it to a non release commit.**' ;;
+    *patch_coq-released) echo ' **This means we had to weaken some version restrictions in the opam package, but no other changes were required.**' ;;
+    *patch_ocaml)        echo ' **This means we had to do some severe patching of the opam package - e.g. pin it to a non release commit.**' ;;
+    *)                   echo '' ;;
+  esac
+}
+
+# Get opam package repo status
+# Only to be used if package is installed!
+
+function opam_is_heavily_patched() {
+  repo=$(opam show -f repository "$1")
+  case $repo in
+    *patch_coq-dev)      return 0 ;;
+    *patch_ocaml)        return 0 ;;
+    *)                   return 1 ;;
+  esac
+}
 # Get issue reporting URL for package $1
 
 function opam_get_issue_url() {
@@ -146,11 +179,11 @@ function ask_user {
 
 function open_issue_tag() {
   TITLE="Please create a tag for Coq ${COQ_PLATFORM_COQ_BASE_VERSION} in Coq Platform ${VERSION_PLATFORM}"
-  BODY="The Coq team released Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE} on ${DATE_RELEASE}${DATE_FINAL:+and plans to release Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_FINAL} before ${DATE_FINAL}}.
-The corresponding Coq Platform release ${VERSION_PLATFORM} should be released before ${DATE_PLATFORM_EXPECTED}.
+  BODY="The Coq team released Coq "'`'"${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}"'`'" on ${DATE_RELEASE}${DATE_FINAL:+and plans to release Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_FINAL} before ${DATE_FINAL}}.
+The corresponding Coq Platform release "'`'"${VERSION_PLATFORM}"'`'" should be released before **${DATE_PLATFORM_EXPECTED}**.
 It can be delayed in case of difficulties until ${DATE_PLATFORM_LATEST}, but this should be an exception.
 
-This issue is to inform you that to our (possibly a few days old) best knowledge the latest released version of your project (${LATEST_OPAM_VERSION}) **does not work** with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}.
+This issue is to inform you that to our (possibly a few days old) best knowledge the latest released version of your project (${LATEST_OPAM_VERSION}) **does not work** with Coq "'`'"${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}"'`'".
 We tried to remove version restrictions in opam files and possibly make or configure files, but this did not suffice.
 
 Please note that in Coq Platform CI (unlike Coq CI) we test only released / tagged versions. ${COQ_CI_TEST_INFO}
@@ -160,7 +193,8 @@ In case we might have to delay the Coq Platform release cause of issues with you
 
 In case the tag and opam package are available before ${DATE_PLATFORM_BETA}, it will be included in an early Coq Platform beta release of the for Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}.
 
-The working branch of Coq Platform, which already supports Coq version ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}, can be found here ${PLATFORM_MAIN_BRANCH}.
+The working branch of Coq Platform, can be found here [main](${PLATFORM_MAIN_BRANCH}).
+It contains package pick ["'`'"${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}"'`'"](${PLATFORM_MAIN_BRANCH}/package_picks/${PACKAGE_LIST_FILE##*/}) which already supports Coq version "'`'"${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}"'`'" and contains already working (possibly patched / commit pinned) Coq Platform packages.
 
 Please **don't** close this issue, even after creating the new tag and/or opam package.
 We will close the issue after updating Coq Platform.
@@ -183,19 +217,20 @@ $CC
 
 function open_issue_inform() {
   TITLE="Please pick the version you prefer for Coq ${COQ_PLATFORM_COQ_BASE_VERSION} in Coq Platform ${VERSION_PLATFORM}"
-  BODY="The Coq team released Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE} on ${DATE_RELEASE}${DATE_FINAL:+and plans to release Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_FINAL} before ${DATE_FINAL}}.
-The corresponding Coq Platform release ${VERSION_PLATFORM} should be released before ${DATE_PLATFORM_EXPECTED}.
+  BODY="The Coq team released Coq "'`'"${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}"'`'" on ${DATE_RELEASE}${DATE_FINAL:+and plans to release Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_FINAL} before ${DATE_FINAL}}.
+The corresponding Coq Platform release "'`'"${VERSION_PLATFORM}"'`'" should be released before **${DATE_PLATFORM_EXPECTED}**.
 It can be delayed in case of difficulties until ${DATE_PLATFORM_LATEST}, but this should be an exception.
 
-This issue is to inform you that the opam package we are currently testing in Coq Platform CI **works fine** with Coq ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}.
+This issue is to inform you that the opam package we are currently testing in Coq Platform CI **works fine** with Coq "'`'"${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}"'`'".
 
 ${COQ_PLATFORM_TEST_INFO}
 
 **In case this is the version you want to see in Coq Platform, there is nothing to do for you - please just close this issue.**
 
-In case you would prefer to see an updated or an older version in the upcoming Coq Platform ${VERSION_PLATFORM}, please inform us as soon as possible and before ${DATE_PLATFORM_NOTIFY}!
+In case you would prefer to see an updated or an older version in the upcoming Coq Platform "'`'"${VERSION_PLATFORM}"'`'", please inform us as soon as possible and before **${DATE_PLATFORM_NOTIFY}**!
 
-The working branch of Coq Platform, which already supports Coq version ${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}, can be found here ${PLATFORM_MAIN_BRANCH}.
+The working branch of Coq Platform, can be found here [main](${PLATFORM_MAIN_BRANCH}).
+It contains package pick ["'`'"${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}"'`'"](${PLATFORM_MAIN_BRANCH}/package_picks/${PACKAGE_LIST_FILE##*/}) which already supports Coq version "'`'"${COQ_PLATFORM_COQ_BASE_VERSION}${EXT_RELEASE}"'`'" and contains already working (possibly patched / commit pinned) Coq Platform packages.
 
 In case you want to select a different version, please **don't** close this issue, even after creating the new tag and/or opam package.
 We will close the issue after updating Coq Platform.
@@ -225,8 +260,15 @@ function open_issue() {
   ( http*github.com* )
     open_url "$1/new?title=$UUTITLE&body=$UUBODY"
     ;;
+  ( http* )
+    open_url "$1"
+    echo
+    echo -e "$TITLE"
+    echo
+    echo -e "$BODY"
+    ;;
   ( * )
-    echo "$1"
+    echo -e "$1"
     echo
     echo -e "$TITLE"
     echo
@@ -272,9 +314,7 @@ function open_url {
 
 # Make Copy of package list file with all packages enabled
 
-PATCHED_PACKAGE_LIST=${SCRIPT_PATH}/patched_package_list.sh
-
-sed -e 's/#.*PACKAGES=/PACKAGES=/' ${PACKAGE_LIST} | sed -e 's/ *;;$//' > ${PATCHED_PACKAGE_LIST}
+sed -e 's/#.*PACKAGES=/PACKAGES=/' ${PACKAGE_LIST_FILE} > ${PATCHED_PACKAGE_LIST_FILE}
 
 # Read package list file
 
@@ -283,7 +323,7 @@ COQ_PLATFORM_COMPCERT=y
 COQ_PLATFORM_VST=y
 BITSIZE=64
 
-source ${PATCHED_PACKAGE_LIST}
+source ${PATCHED_PACKAGE_LIST_FILE}
 source ${ROOT_PATH}/package_picks/coq_platform_release.sh
 
 COQ_PLATFORM_COQ_BASE_VERSION=${COQ_PLATFORM_COQ_BRANCH#v}
@@ -304,7 +344,6 @@ export projects
 
 ########## Main loop over packages ##########
 
-PROCESSED_LIST_FILE="${SCRIPT_PATH}/packages_already_processed.txt"
 PACKAGES_PROCESSED="$(cat "${PROCESSED_LIST_FILE}" || true)"
 
 for package in ${PACKAGES}
@@ -333,14 +372,16 @@ do
   then
     package_opam_version="$(opam_get_installed_version ${package_main})"
     package_opam_repo="$(opam_get_installed_opam_repo  ${package_main})"
+    package_opam_repo_hint="$(opam_get_installed_opam_repo_hint  ${package_main})"
     echo "OPAM installed:   ${package_opam_version}  (${package_opam_repo})"
     echo "OPAM issue url    ${package_opam_issue_url}"
-    COQ_PLATFORM_TEST_INFO="Coq Platform CI is currently testing opam package \`${package_main}.${package_opam_version}\`"$'\n'"from ${package_opam_repo}/packages/${package_main}/${package}/opam."
-    if [[ "${package_opam_version}" =~ ~flex$ ]]
+    COQ_PLATFORM_TEST_INFO="Coq Platform CI is currently testing opam package \`${package_main}.${package_opam_version}\`"$'\n'"from ${package_opam_repo}/packages/${package_main}/${package}/opam. ${package_opam_repo_hint}"
+    if opam_is_heavily_patched "${package_main}"
     then
-      COQ_PLATFORM_TEST_INFO="${COQ_PLATFORM_TEST_INFO}"$'\n\n'"**Note:** The ~flex extension to the opam version means that we had to patch version restrictions in the opam package and possibly the make file to accept the new version of Coq, but no other changes were required."
+      PLATFORM_CI_OK=N
+    else
+      PLATFORM_CI_OK=Y
     fi
-    PLATFORM_CI_OK=Y
   else
     echo "OPAM:             NOT INSTALLED"
     echo "OPAM issue url    ${package_opam_issue_url}"

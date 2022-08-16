@@ -48,8 +48,8 @@ jobs:
       fail-fast: false
       matrix:
         variant:
+          - '8.16~2022.09~preview1.sh'
           - '8.15~2022.04'
-          - '8.14~2022.04'
 
     steps:
       - name: Git checkout
@@ -59,14 +59,14 @@ jobs:
         if: ${{ github.event.inputs.platform != '' }}
         run: echo "PLATFORM=${{ github.event.inputs.platform }}" >> $GITHUB_ENV
 
-      - name: Install opam
-        env:
-          OPAM_VERSION: 2.0.7
+      - name: Cleanup HomeBrew caches
+        # This is to avoid errors of the kind
+        # ==> Downloading https://ghcr.io/v2/homebrew/core/harfbuzz/manifests/5.1.0
+        # Error: adwaita-icon-theme: Failed to download resource "harfbuzz_bottle_manifest"
+        # The downloaded GitHub Packages manifest was corrupted or modified (it is not valid JSON): 
         run: |
-          curl -L https://github.com/ocaml/opam/releases/download/${OPAM_VERSION}/opam-${OPAM_VERSION}-x86_64-macos > opam.${OPAM_VERSION}
-          chmod a+x opam.${OPAM_VERSION}
-          sudo cp opam.${OPAM_VERSION} /usr/local/bin/opam.${OPAM_VERSION}
-          sudo ln -s /usr/local/bin/opam.${OPAM_VERSION} /usr/local/bin/opam
+          brew cleanup
+          brew update
 
       - name: Run common platform script
         shell: bash
@@ -123,8 +123,8 @@ jobs:
       fail-fast: false
       matrix:
         variant:
+          - '8.16~2022.09~preview1.sh'
           - '8.15~2022.04'
-          - '8.14~2022.04'
 
     steps:
       - name: Install bash
