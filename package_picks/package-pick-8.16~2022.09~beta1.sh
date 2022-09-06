@@ -152,7 +152,7 @@ then
   esac
 
   case "$COQ_PLATFORM_VST" in
-    [yY]) PACKAGES="${PACKAGES} coq-vst.2.10" ;;
+    [yY]) PACKAGES="${PACKAGES} coq-vst.2.11" ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
   esac
