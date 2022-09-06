@@ -11,25 +11,25 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.16+rc1 (released Jun 2022) with a preview package pick for the 2022.09 release."
+COQ_PLATFORM_VERSION_TITLE="Coq 8.16.0 (released Sep 2022) with a beta package pick for the 2022.09 release."
 COQ_PLATFORM_VERSION_SORTORDER=9000
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.16+rc1~2022.09~preview1'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.16.0~2022.09~beta1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.16'
-COQ_PLATFORM_COQ_TAG='8.16+rc1'
+COQ_PLATFORM_COQ_TAG='8.16.0'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.04.1 includes Coq 8.16+rc1 from Jun 2022. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='This is preview release with incomplete package pcisk and intended for package maintainers and early adopters. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.04.1 includes Coq 8.16.0 from Sep 2022. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='This is beta release with complete package pick and intended for package maintainers and early adopters. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
 COQ_PLATFORM_OCAML_VERSION='4.13.1'
@@ -177,7 +177,7 @@ then
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"                # patched to allow Coq 8.16
 
   # Communication with coqtop
-  PACKAGES="${PACKAGES} coq-serapi.8.16+rc1+0.16.0"
+  PACKAGES="${PACKAGES} coq-serapi.8.16.0+0.16.0"
 
   # Bedrock2, fiat crypto, ...
   PACKAGES="${PACKAGES} coq-coqutil.0.0.1"
