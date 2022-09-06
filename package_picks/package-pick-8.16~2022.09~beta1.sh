@@ -158,7 +158,7 @@ then
   esac
 
   # Proof analysis and other tools
-  # PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.15"                # Error with latest commit: "dpdgraph is not a valid plugin name anymore"
+  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.16"
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
