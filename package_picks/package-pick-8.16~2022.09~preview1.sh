@@ -48,14 +48,14 @@ PACKAGES=""
 ########## BASE PACKAGES ##########
 
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} coq.8.16+rc1"
+PACKAGES="${PACKAGES} coq.8.16.0"
 
 ########## IDE PACKAGES ##########
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.16+rc1"
+PACKAGES="${PACKAGES} coqide.8.16.0"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
@@ -91,7 +91,7 @@ then
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.1.0"
-  # PACKAGES="${PACKAGES} coq-interval.4.5.1"                   # as of Jul 6th, the latest commit does not compile, checked August 8th
+  PACKAGES="${PACKAGES} coq-interval.4.5.2"
   PACKAGES="${PACKAGES} coq-gappa.1.5.2 gappa.1.4.1"
 
   # Constructive mathematics
