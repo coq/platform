@@ -115,7 +115,7 @@ then
   PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.16"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.16.0"
-  PACKAGES="${PACKAGES} coq-unicoq.preview"                     # patched to latest commit on Jul 6th
+  PACKAGES="${PACKAGES} coq-unicoq.1.6+8.16"
   PACKAGES="${PACKAGES} coq-mtac2.preview"                      # as of Jul 6th, the latest commit does not compile, but an older commit does
   PACKAGES="${PACKAGES} coq-elpi.1.15.5 elpi.1.16.5"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.3.0"
