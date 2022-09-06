@@ -105,7 +105,7 @@ then
   # Note: coq-unimath requires too much memory for 32 bit architectures
   if [ "${BITSIZE}" == "64" ]
   then
-    PACKAGES="${PACKAGES} coq-unimath.preview"                  # patched to latest commit on Jul 6th
+    PACKAGES="${PACKAGES} coq-unimath.20220816"
   fi 
 
   # Code extraction
