@@ -140,8 +140,8 @@ then
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.3"                      # patched to allow Coq 8.16 and mathcomp 1.15
-  PACKAGES="${PACKAGES} coq-iris.3.6.0"                         # patched to allow Coq 8.16
-  PACKAGES="${PACKAGES} coq-iris-heap-lang.3.6.0"
+  PACKAGES="${PACKAGES} coq-iris.4.0.0"
+  PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0"
   PACKAGES="${PACKAGES} coq-ott.0.32"
   PACKAGES="${PACKAGES} ott.0.32"
   
