@@ -99,7 +99,7 @@ then
   PACKAGES="${PACKAGES} coq-corn.8.16.0"
 
   # Homotopy Type Theory (HoTT)
-  PACKAGES="${PACKAGES} coq-hott.preview"                       # patched to latest commit on Jul 6th
+  PACKAGES="${PACKAGES} coq-hott.8.16"
 
   # Univalent Mathematics (UniMath)
   # Note: coq-unimath requires too much memory for 32 bit architectures
