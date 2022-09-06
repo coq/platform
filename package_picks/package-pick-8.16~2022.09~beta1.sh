@@ -96,7 +96,7 @@ then
 
   # Constructive mathematics
   PACKAGES="${PACKAGES} coq-math-classes.8.15.0"                # patched to allow Coq 8.16
-  PACKAGES="${PACKAGES} coq-corn.preview"                       # patched to latest commit on Jul 6th
+  PACKAGES="${PACKAGES} coq-corn.8.16.0"
 
   # Homotopy Type Theory (HoTT)
   PACKAGES="${PACKAGES} coq-hott.preview"                       # patched to latest commit on Jul 6th
