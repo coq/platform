@@ -14,12 +14,12 @@ install: [
 ]
 depends: [
   "ocaml"
-  "coq" {>= "8.15" & < "8.16~"}
+  "coq" {>= "8.15" & < "8.17~"}
 ]
 synopsis: "An enhanced unification algorithm for Coq"
 tags: [
   "logpath:Unicoq"
-  "date:2022-01-18"
+  "date:2022-08-19"
 ]
 url {
   src: "https://github.com/unicoq/unicoq/archive/v1.6-8.16.tar.gz"

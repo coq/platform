@@ -14,13 +14,13 @@ install: [
 ]
 depends: [
   "ocaml"
-  "coq" {>= "8.15" & < "8.16~"}
+  "coq" {>= "8.15" & < "8.17~"}
   "coq-unicoq" {>= "1.5" & < "2~"}
 ]
 synopsis: "Mtac2: Typed Tactics for Coq"
 tags: [
   "logpath:Mtac2"
-  "date:2022-01-19"
+  "date:2022-08-23"
 ]
 url {
   src: "https://github.com/Mtac2/Mtac2/archive/v1.4-coq8.16.tar.gz"
