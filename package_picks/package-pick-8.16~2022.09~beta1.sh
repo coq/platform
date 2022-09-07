@@ -25,7 +25,7 @@ COQ_PLATFORM_COQ_BRANCH='v8.16'
 COQ_PLATFORM_COQ_TAG='8.16.0'
 
 # This controls if opam repositories for development packages are selected
-COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
+COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
 COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.04.1 includes Coq 8.16.0 from Sep 2022. '
