@@ -21,11 +21,11 @@ depopts: [
   "coq-native"
 ]
 depends: [
-  "ocaml" {>= "4.05.0"}
-  "ocamlfind" {build}
+  "ocaml" {>= "4.09.0"}
+  "ocamlfind" {>= "1.8.1"}
   "dune" {>= "2.5.1"}
   "conf-findutils" {build}
-  "zarith" {>= "1.10"}
+  "zarith" {>= "1.11"}
 ]
 conflicts: [
   "base-nnp"
@@ -50,6 +50,6 @@ install: [
 ]
 
 url {
-  src: "https://github.com/coq/coq/archive/refs/tags/V8.15.2.tar.gz"
-  checksum: "sha256=13a67c0a4559ae22e9765c8fdb88957b16c2b335a2d5f47e4d6d9b4b8b299926"
+  src: "https://github.com/coq/coq/archive/refs/tags/V8.16.0.tar.gz"
+  checksum: "sha256=36577b55f4a4b1c64682c387de7abea932d0fd42fc0cd5406927dca344f53587"
 }

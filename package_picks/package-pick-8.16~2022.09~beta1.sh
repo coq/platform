@@ -11,25 +11,25 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.16+rc1 (released Jun 2022) with a preview package pick for the 2022.09 release."
+COQ_PLATFORM_VERSION_TITLE="Coq 8.16.0 (released Sep 2022) with a beta package pick for the 2022.09 release."
 COQ_PLATFORM_VERSION_SORTORDER=9000
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.16+rc1~2022.09~preview1'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.16.0~2022.09~beta1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.16'
-COQ_PLATFORM_COQ_TAG='8.16+rc1'
+COQ_PLATFORM_COQ_TAG='8.16.0'
 
 # This controls if opam repositories for development packages are selected
-COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
+COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.04.1 includes Coq 8.16+rc1 from Jun 2022. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='This is preview release with incomplete package pcisk and intended for package maintainers and early adopters. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.04.1 includes Coq 8.16.0 from Sep 2022. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='This is beta release with complete package pick and intended for package maintainers and early adopters. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
 COQ_PLATFORM_OCAML_VERSION='4.13.1'
@@ -48,14 +48,14 @@ PACKAGES=""
 ########## BASE PACKAGES ##########
 
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} coq.8.16+rc1"
+PACKAGES="${PACKAGES} coq.8.16.0"
 
 ########## IDE PACKAGES ##########
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.16+rc1"
+PACKAGES="${PACKAGES} coqide.8.16.0"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
@@ -68,8 +68,8 @@ then
 
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.16.0"
-  PACKAGES="${PACKAGES} coq-ext-lib.0.11.6"
-  PACKAGES="${PACKAGES} coq-stdpp.1.7.0"
+  PACKAGES="${PACKAGES} coq-ext-lib.0.11.7"
+  PACKAGES="${PACKAGES} coq-stdpp.1.8.0"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.15.0"
@@ -91,21 +91,21 @@ then
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.1.0"
-  # PACKAGES="${PACKAGES} coq-interval.4.5.1"                   # as of Jul 6th, the latest commit does not compile, checked August 8th
+  PACKAGES="${PACKAGES} coq-interval.4.5.2"
   PACKAGES="${PACKAGES} coq-gappa.1.5.2 gappa.1.4.1"
 
   # Constructive mathematics
   PACKAGES="${PACKAGES} coq-math-classes.8.15.0"                # patched to allow Coq 8.16
-  PACKAGES="${PACKAGES} coq-corn.preview"                       # patched to latest commit on Jul 6th
+  PACKAGES="${PACKAGES} coq-corn.8.16.0"
 
   # Homotopy Type Theory (HoTT)
-  PACKAGES="${PACKAGES} coq-hott.preview"                       # patched to latest commit on Jul 6th
+  PACKAGES="${PACKAGES} coq-hott.8.16"
 
   # Univalent Mathematics (UniMath)
   # Note: coq-unimath requires too much memory for 32 bit architectures
   if [ "${BITSIZE}" == "64" ]
   then
-    PACKAGES="${PACKAGES} coq-unimath.preview"                  # patched to latest commit on Jul 6th
+    PACKAGES="${PACKAGES} coq-unimath.20220816"
   fi 
 
   # Code extraction
@@ -115,11 +115,11 @@ then
   PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.16"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.16.0"
-  PACKAGES="${PACKAGES} coq-unicoq.preview"                     # patched to latest commit on Jul 6th
-  PACKAGES="${PACKAGES} coq-mtac2.preview"                      # as of Jul 6th, the latest commit does not compile, but an older commit does
+  PACKAGES="${PACKAGES} coq-unicoq.1.6+8.16"
+  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.16"
   PACKAGES="${PACKAGES} coq-elpi.1.15.5 elpi.1.16.5"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.3.0"
-  PACKAGES="${PACKAGES} coq-quickchick.preview"                 # as of Jul 6th, the latest commit does not compile, but an older commit does
+  PACKAGES="${PACKAGES} coq-quickchick.1.6.4"
   # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"        # as of Jul 6th, the latest commit does not compile
   # if [[ "$OSTYPE" != cygwin ]]
   # then
@@ -140,8 +140,8 @@ then
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.3"                      # patched to allow Coq 8.16 and mathcomp 1.15
-  PACKAGES="${PACKAGES} coq-iris.3.6.0"                         # patched to allow Coq 8.16
-  PACKAGES="${PACKAGES} coq-iris-heap-lang.3.6.0"
+  PACKAGES="${PACKAGES} coq-iris.4.0.0"
+  PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0"
   PACKAGES="${PACKAGES} coq-ott.0.32"
   PACKAGES="${PACKAGES} ott.0.32"
   
@@ -152,13 +152,13 @@ then
   esac
 
   case "$COQ_PLATFORM_VST" in
-    [yY]) PACKAGES="${PACKAGES} coq-vst.2.10" ;;
+    [yY]) PACKAGES="${PACKAGES} coq-vst.2.11" ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
   esac
 
   # Proof analysis and other tools
-  # PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.15"                # Error with latest commit: "dpdgraph is not a valid plugin name anymore"
+  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.16"
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
