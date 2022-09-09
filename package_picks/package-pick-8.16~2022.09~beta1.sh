@@ -117,7 +117,7 @@ then
   PACKAGES="${PACKAGES} coq-aac-tactics.8.16.0"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.16"
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.16"
-  PACKAGES="${PACKAGES} coq-elpi.1.15.5 elpi.1.16.5"
+  PACKAGES="${PACKAGES} coq-elpi.1.15.6 elpi.1.16.5"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.3.0"
   PACKAGES="${PACKAGES} coq-quickchick.1.6.4"
   # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"        # as of Jul 6th, the latest commit does not compile
@@ -134,9 +134,9 @@ then
   PACKAGES="${PACKAGES} coq-itauto.8.16.0"
 
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.3"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.4"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0"     # patched to allow Coq 8.16
-  PACKAGES="${PACKAGES} coq-relation-algebra.preview"           # patched to latest commit on Jul 6th
+  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.8"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.3"                      # patched to allow Coq 8.16 and mathcomp 1.15
