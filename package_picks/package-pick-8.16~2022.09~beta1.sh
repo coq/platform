@@ -117,7 +117,7 @@ then
   PACKAGES="${PACKAGES} coq-aac-tactics.8.16.0"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.16"
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.16"
-  PACKAGES="${PACKAGES} coq-elpi.1.15.5 elpi.1.16.5"
+  PACKAGES="${PACKAGES} coq-elpi.1.15.6 elpi.1.16.5"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.3.0"
   PACKAGES="${PACKAGES} coq-quickchick.1.6.4"
   # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"        # as of Jul 6th, the latest commit does not compile
