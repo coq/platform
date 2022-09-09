@@ -134,7 +134,7 @@ then
   PACKAGES="${PACKAGES} coq-itauto.8.16.0"
 
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.3"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.4"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0"     # patched to allow Coq 8.16
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.8"
 
