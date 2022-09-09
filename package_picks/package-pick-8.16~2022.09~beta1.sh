@@ -136,7 +136,7 @@ then
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.3"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0"     # patched to allow Coq 8.16
-  PACKAGES="${PACKAGES} coq-relation-algebra.preview"           # patched to latest commit on Jul 6th
+  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.8"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.3"                      # patched to allow Coq 8.16 and mathcomp 1.15
