@@ -177,7 +177,7 @@ then
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"                # patched to allow Coq 8.16
 
   # Communication with coqtop
-  PACKAGES="${PACKAGES} coq-serapi.8.16+rc1+0.16.0"
+  PACKAGES="${PACKAGES} coq-serapi.8.16.0+0.16.0"
 
   # Bedrock2, fiat crypto, ...
   PACKAGES="${PACKAGES} coq-coqutil.0.0.1"
