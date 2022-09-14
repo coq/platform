@@ -48,7 +48,7 @@ PACKAGES=""
 ########## BASE PACKAGES ##########
 
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} coq.8.16.0"
+PACKAGES="${PACKAGES} PIN.coq.8.16.0"
 
 ########## IDE PACKAGES ##########
 

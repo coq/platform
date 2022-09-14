@@ -40,7 +40,7 @@ COQ_PLATFORM_OCAML_VERSION='4.10.2'
 # - Packages which take a long time to build should be given last.
 #   There is some evidence that they are built early then.
 
-PACKAGES="coq.8.12.2"
+PACKAGES="PIN.coq.8.12.2"
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
