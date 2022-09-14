@@ -218,7 +218,7 @@ cat <<-'EOH' | sed 's/$/\r/' > $smoke_batch
 	WHERE coqc
 	IF ERRORLEVEL 1 (
 	    ECHO "This script expects that coqc is in the PATH"
-	    EXIT 1
+	    EXIT /B 1
 	)
 	
 	REM set COQLIB variable
@@ -243,7 +243,7 @@ cat <<-'EOH' | sed 's/$/\r/' > $smoke_batch
 	  IF ERRORLEVEL 1 (
 	    CD "%HERESUB%"
 	    ECHO "Compilation with coqc failed"
-	    EXIT 1
+	    EXIT /B 1
 	  )
 	  CD "%HERESUB%"
 	  ECHO(
