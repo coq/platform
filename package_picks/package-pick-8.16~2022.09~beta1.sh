@@ -120,33 +120,33 @@ then
   PACKAGES="${PACKAGES} coq-elpi.1.15.6 elpi.1.16.5"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.3.0"
   PACKAGES="${PACKAGES} coq-quickchick.1.6.4"
-  # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"        # as of Jul 6th, the latest commit does not compile
-  # if [[ "$OSTYPE" != cygwin ]]
-  # then
-  #   # coq-hammer does not work on Windows because it heavily relies on fork
-  #   PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.15"
-  #   PACKAGES="${PACKAGES} eprover.2.6"
-  #   PACKAGES="${PACKAGES} z3_tptp.4.8.14"
-  # fi
+  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.16"
+  if [[ "$OSTYPE" != cygwin ]]
+  then
+    # coq-hammer does not work on Windows because it heavily relies on fork
+    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.16"
+    PACKAGES="${PACKAGES} eprover.2.6"
+    PACKAGES="${PACKAGES} z3_tptp.4.11.0"
+  fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.16"
-  PACKAGES="${PACKAGES} coq-coqeal.1.1.1"                       # patched to allow coq-mathcomp-real-closed.preview
-  PACKAGES="${PACKAGES} coq-libhyps.2.0.5"                      # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-coqeal.1.1.1"
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.5"
   PACKAGES="${PACKAGES} coq-itauto.8.16.0"
 
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.4"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0"     # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.8"
 
   # Formal languages, compilers and code verification
-  PACKAGES="${PACKAGES} coq-reglang.1.1.3"                      # patched to allow Coq 8.16 and mathcomp 1.15
+  PACKAGES="${PACKAGES} coq-reglang.1.1.3"
   PACKAGES="${PACKAGES} coq-iris.4.0.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0"
   PACKAGES="${PACKAGES} coq-ott.0.32"
   PACKAGES="${PACKAGES} ott.0.32"
   
   case "$COQ_PLATFORM_COMPCERT" in
-    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.11" ;;           # patched to allow Coq 8.16
+    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.11" ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
   esac
@@ -177,7 +177,7 @@ then
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"                # patched to allow Coq 8.16
 
   # Communication with coqtop
-  PACKAGES="${PACKAGES} coq-serapi.8.16+rc1+0.16.0"
+  PACKAGES="${PACKAGES} coq-serapi.8.16.0+0.16.0"
 
   # Bedrock2, fiat crypto, ...
   PACKAGES="${PACKAGES} coq-coqutil.0.0.1"
