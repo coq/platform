@@ -44,7 +44,14 @@ apps:
   coqide:
     command-chain: [ coq-platform/@@PLATFORM_RELEASE@@/bin/coq_wrapper ]
     command: coq-platform/@@PLATFORM_RELEASE@@/bin/coqide
-    plugs: [desktop, home]
+    plugs:
+    - home
+    - desktop
+    - desktop-legacy
+    - gsettings
+    - unity7
+    - wayland
+    - x11
     extensions: [gnome-3-28]
   coqtop:
     plugs: [home]

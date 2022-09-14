@@ -400,6 +400,8 @@ The README files for other versions are linked in the main [README](../README.md
 
 ${COQ_PLATFORM_VERSION_DESCRIPTION}
 
+The OCaml version used is $(opam switch invariant | tr -d '"[]{}' | sed 's/.*= //').
+
 The Coq Platform supports four levels of installation extent:
 **base**, **IDE**, **full** and **extended** and a few **optional** packages.
 The sections below provide a short description of each level and the list of

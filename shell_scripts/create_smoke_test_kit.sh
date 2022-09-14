@@ -113,6 +113,7 @@ TEST_FILES[coq-mathcomp-multinomials]=''
 TEST_FILES[coq-mathcomp-real-closed]='theories/complex.v'
 TEST_FILES[coq-mathcomp-solvable]='mathcomp/solvable/abelian.v'
 TEST_FILES[coq-mathcomp-ssreflect]='mathcomp/ssreflect/ssrbool.v'
+TEST_FILES[coq-mathcomp-word]='../../test_files/coq-mathcomp-word/test.v'
 TEST_FILES[coq-mathcomp-zify]='examples/divmod.v examples/boolean.v'
 TEST_FILES[coq-menhirlib]='coq-menhirlib/src/Alphabet.v'
 TEST_FILES[coq-mtac2]='examples/basics_tutorial.v examples/tauto.v'
@@ -161,7 +162,7 @@ function patch_file() {
 
 smoke_script=smoke-test-kit/run-smoke-test.sh
 
-cat <<-'EOH' > $smoke_script
+cat <<-'EOH' | sed -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}/g" > $smoke_script
 	#/bin/bash
 	# This script runs a small "smoke-test" for all Coq Platform components
 
@@ -175,8 +176,15 @@ cat <<-'EOH' > $smoke_script
 	# Check if coqc is available
 	if ! command -v coqc &> /dev/null
 	then
-	  echo "This script expects that coqc is in the PATH"
-	  exit 1
+	  if ! [ -f /Applications/PRODUCTNAME.app/Contents/Resources/bin/coqc ]
+	  then
+	    echo "This script expects that coqc is in the PATH"
+	    echo "or on macOS installed under /Applications/PRODUCTNAME.app/"
+	    exit 1
+	  else
+	    echo "Using coqc from '/Applications/PRODUCTNAME.app/Contents/Resources/bin'"
+	    export PATH='/Applications/PRODUCTNAME.app/Contents/Resources/bin':"$PATH"
+	  fi
 	fi
 
 	# set COQLIB variable
@@ -209,15 +217,28 @@ cat <<-'EOH' > $smoke_script
 
 smoke_batch=smoke-test-kit/run-smoke-test.bat
 
-cat <<-'EOH' | sed 's/$/\r/' > $smoke_batch
+cat <<-'EOH' | sed -e 's/$/\r/' -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}/g" > $smoke_batch
 	@ECHO OFF
 	REM This script runs a small "smoke-test" for all Coq Platform components
 	
 	REM Check if coqc is in the path
 	WHERE coqc
 	IF ERRORLEVEL 1 (
-	    ECHO "This script expects that coqc is in the PATH"
-	    EXIT 1
+	    REM Check if coqc is in the default install location
+	    IF NOT EXISTS "C:\PRODUCTNAME\bin\coqc.exe" (
+	        IF NOT EXISTS "C:\bin\PRODUCTNAME\bin\coqc.exe" (
+	            ECHO "This script expects that coqc is in the PATH"
+	            ECHO "or in the default install location C:\PRODUCTNAME"
+	            ECHO "or in C:\bin\PRODUCTNAME"
+	            EXIT /B 1
+	        ) ELSE (
+	            ECHO "Using coqc from C:\bin\PRODUCTNAME\bin"
+	            SET PATH="C:\bin\PRODUCTNAME\bin;%PATH%"
+	        )
+	    ) ELSE (
+	        ECHO "Using coqc from C:\PRODUCTNAME\bin"
+	        SET PATH="C:\PRODUCTNAME\bin;%PATH%"
+	    )
 	)
 	
 	REM set COQLIB variable
@@ -242,7 +263,7 @@ cat <<-'EOH' | sed 's/$/\r/' > $smoke_batch
 	  IF ERRORLEVEL 1 (
 	    CD "%HERESUB%"
 	    ECHO "Compilation with coqc failed"
-	    EXIT 1
+	    EXIT /B 1
 	  )
 	  CD "%HERESUB%"
 	  ECHO(
@@ -317,13 +338,13 @@ done
 ##### Write footer of bash runner script #####
 
 echo '' >> $smoke_script
-echo 'cd $HERE' >> $smoke_script
+echo 'cd "$HERE"' >> $smoke_script
 echo 'echo "====================== SMOKE TEST SUCCESS ======================"' >> $smoke_script
 
 ##### Write footer of DOS batch runner script #####
 
 echo $'\r' >> $smoke_batch
-echo 'CD %HERE%'$'\r' >> $smoke_batch
+echo 'CD "%HERE%"'$'\r' >> $smoke_batch
 echo 'ECHO "====================== SMOKE TEST SUCCESS ======================"'$'\r' >> $smoke_batch
 
 ##### Run bash runner script #####

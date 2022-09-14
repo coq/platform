@@ -51,7 +51,7 @@ PACKAGES=""
 ########## BASE PACKAGES ##########
 
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} coq.8.13.2"
+PACKAGES="${PACKAGES} PIN.coq.8.13.2"
 
 ########## IDE PACKAGES ##########
 
