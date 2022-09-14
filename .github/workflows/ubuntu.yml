@@ -25,7 +25,7 @@ on:
       platform:
         description: 'Arguments for the platform script:'
         required: true
-        default: '-extent=f -parallel=p -jobs=2 -vst=y -compcert=y -set-switch=y'
+        default: '-extent=x -parallel=p -jobs=2 -vst=y -compcert=y -set-switch=y'
       snap_pick:
         description: 'Package pick for the snap package:'
         default: 8.15~2022.04
@@ -37,7 +37,7 @@ on:
 # Platform script options shared among all jobs
 ###############################################################################
 env:
-  PLATFORM: -extent=f -parallel=p -jobs=2 -vst=y -compcert=y -set-switch=y
+  PLATFORM: -extent=x -parallel=p -jobs=2 -vst=y -compcert=y -set-switch=y
   COQREGTESTING: y
   SNAP_PICK: 8.15~2022.04
 
