@@ -539,6 +539,17 @@ add_single_file "${PKG_MANAGER_ROOT}" "share/glib-2.0/schemas" "gschemas.compile
 
 add_folder_recursively "${PKG_MANAGER_ROOT}" "share/gtksourceview-3.0"
 
+##### Add relocated config file for OCaml findlib #####
+
+cat > "_dmg/${APP_NAME}/Contents/Resources/bin/findlib.conf" <<EOT
+destdir="/Applications/${APP_NAME}/Contents/Resources/lib"
+path="/Applications/${APP_NAME}/Contents/Resources/lib"
+ocamlc="ocamlc.opt"
+ocamlopt="ocamlopt.opt"
+ocamldep="ocamldep.opt"
+ocamldoc="ocamldoc.opt"
+EOT
+
 ##### MacOS DMG installer specific files #####
 
 # Find CoqIDE folder
