@@ -357,7 +357,7 @@ OPAM_FILE_WHITELIST[cairo2]="stubs.dll$" # we keep only the stublib DLL, the res
 
 # OCaml compiler and tools
 
-IGNORED_PACKAGES="ocaml-variants ocaml-base-compiler base ocaml-compiler-libs ocaml-secondary-compiler ocamlfind-secondary"
+IGNORED_PACKAGES="ocaml ocaml-variants ocaml-base-compiler base ocaml-compiler-libs ocaml-config ocaml-secondary-compiler ocamlfind-secondary"
 IGNORED_PACKAGES="${IGNORED_PACKAGES} dune configurator sexplib0 csexp ocamlbuild result cppo"
 
 # Packages linked into elpi
@@ -401,6 +401,7 @@ function process_package {
     echo "The package '$1' contains files which have been modified since opam installed them." >> WARNINGS.log
     files=${files//(modified since)/}
   fi
+  echo "${files}" > logs/"$1".filelist
   for file in $files
   do
     if [ -d "$file" ]
@@ -537,6 +538,17 @@ add_single_file "${PKG_MANAGER_ROOT}" "share/glib-2.0/schemas" "gschemas.compile
 # But since the complete set is compressed not that large, we add the complete set
 
 add_folder_recursively "${PKG_MANAGER_ROOT}" "share/gtksourceview-3.0"
+
+##### Add relocated config file for OCaml findlib #####
+
+cat > "_dmg/${APP_NAME}/Contents/Resources/bin/findlib.conf" <<EOT
+destdir="/Applications/${APP_NAME}/Contents/Resources/lib"
+path="/Applications/${APP_NAME}/Contents/Resources/lib"
+ocamlc="ocamlc.opt"
+ocamlopt="ocamlopt.opt"
+ocamldep="ocamldep.opt"
+ocamldoc="ocamldoc.opt"
+EOT
 
 ##### MacOS DMG installer specific files #####
 

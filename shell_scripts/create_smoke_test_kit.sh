@@ -225,8 +225,8 @@ cat <<-'EOH' | sed -e 's/$/\r/' -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PAC
 	WHERE coqc
 	IF ERRORLEVEL 1 (
 	    REM Check if coqc is in the default install location
-	    IF NOT EXISTS "C:\PRODUCTNAME\bin\coqc.exe" (
-	        IF NOT EXISTS "C:\bin\PRODUCTNAME\bin\coqc.exe" (
+	    IF NOT EXIST "C:\PRODUCTNAME\bin\coqc.exe" (
+	        IF NOT EXIST "C:\bin\PRODUCTNAME\bin\coqc.exe" (
 	            ECHO "This script expects that coqc is in the PATH"
 	            ECHO "or in the default install location C:\PRODUCTNAME"
 	            ECHO "or in C:\bin\PRODUCTNAME"
