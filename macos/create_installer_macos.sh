@@ -357,7 +357,7 @@ OPAM_FILE_WHITELIST[cairo2]="stubs.dll$" # we keep only the stublib DLL, the res
 
 # OCaml compiler and tools
 
-IGNORED_PACKAGES="ocaml-variants ocaml-base-compiler base ocaml-compiler-libs ocaml-secondary-compiler ocamlfind-secondary"
+IGNORED_PACKAGES="ocaml ocaml-variants ocaml-base-compiler base ocaml-compiler-libs ocaml-config ocaml-secondary-compiler ocamlfind-secondary"
 IGNORED_PACKAGES="${IGNORED_PACKAGES} dune configurator sexplib0 csexp ocamlbuild result cppo"
 
 # Packages linked into elpi
@@ -401,6 +401,7 @@ function process_package {
     echo "The package '$1' contains files which have been modified since opam installed them." >> WARNINGS.log
     files=${files//(modified since)/}
   fi
+  echo "${files}" > logs/"$1".filelist
   for file in $files
   do
     if [ -d "$file" ]
