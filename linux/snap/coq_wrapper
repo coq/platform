@@ -13,6 +13,9 @@ shift # drop $1
 # this path also contains coq extra utilities like gappa
 export PATH="$COQBIN:$PATH"
 
+# This is required for OCaml findlib
+export OCAMLFIND_CONF="$COQLIB/findlib.conf"
+
 if [ "$SELF" == "bash" -o "$SELF" == "sh" ]; then # for debugging the snap
   exec $SELF "$@"
 elif [ "$SELF" == "coq_makefile" ]; then
