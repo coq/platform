@@ -6,6 +6,7 @@
 
 export COQBIN="$(cd $(dirname $0); pwd)"
 export COQLIB="$(cd $(dirname $0)/../lib/coq/; pwd)"
+LIB="$(cd $(dirname $0)/../lib/; pwd)"
 SELF="$(basename $1)"
 
 shift # drop $1
@@ -14,7 +15,7 @@ shift # drop $1
 export PATH="$COQBIN:$PATH"
 
 # This is required for OCaml findlib
-export OCAMLFIND_CONF="$COQLIB/findlib.conf"
+export OCAMLFIND_CONF="$LIB/findlib.conf"
 
 if [ "$SELF" == "bash" -o "$SELF" == "sh" ]; then # for debugging the snap
   exec $SELF "$@"
