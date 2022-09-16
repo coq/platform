@@ -1,0 +1,36 @@
+From ba7dd40ea2a003b1561d39c516396c537ed58802 Mon Sep 17 00:00:00 2001
+From: Michael Soegtrop <msoegtrop@apple.com>
+Date: Thu, 15 Sep 2022 17:32:49 +0200
+Subject: [PATCH] Look for findlib.conf in folder of executable
+
+---
+ src/findlib/findlib.ml | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/src/findlib/findlib.ml b/src/findlib/findlib.ml
+index dc9b2b4..fd7a1c4 100644
+--- a/src/findlib/findlib.ml
++++ b/src/findlib/findlib.ml
+@@ -107,10 +107,15 @@ let command_names cmd_spec =
+ ;;
+ 
+ let auto_config_file() =
+-  let p =
+-    ( try Sys.getenv "OCAMLFIND_CONF" with Not_found -> "") in
+-  if p = "" then Findlib_config.config_file else p
+-                                                   
++  let p = ( try Sys.getenv "OCAMLFIND_CONF" with Not_found -> "") in
++  if p <> "" then p 
++  else
++    let exe_path = Filename.dirname Sys.executable_name in
++    let exe_path_abs = if Filename.is_relative exe_path then Filename.concat (Sys.getcwd()) exe_path else exe_path in
++    let p = Filename.concat exe_path_abs "findlib.conf" in
++    if Sys.file_exists p then p
++    else
++      Findlib_config.config_file
+   
+ let init
+       ?env_ocamlpath ?env_ocamlfind_destdir ?env_ocamlfind_metadir
+-- 
+2.37.0
+
