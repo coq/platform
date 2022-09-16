@@ -41,7 +41,7 @@ EOH
 
 # Ask to set switch if the default switch (when OPAMSWITCH="") does not match
 OPAMSWITCH=""
-if [ ! "$(opam switch show)" == "${COQ_PLATFORM_SWITCH_NAME}" ]
+if [ ! "$(opam switch show 2>/dev/null)" == "${COQ_PLATFORM_SWITCH_NAME}" ]
 then
   if [ -z "${COQ_PLATFORM_SET_SWITCH:+x}" ]
   then
