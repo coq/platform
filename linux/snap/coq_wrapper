@@ -6,7 +6,6 @@
 
 export COQBIN="$(cd $(dirname $0); pwd)"
 export COQLIB="$(cd $(dirname $0)/../lib/coq/; pwd)"
-LIB="$(cd $(dirname $0)/../lib/; pwd)"
 SELF="$(basename $1)"
 
 shift # drop $1
@@ -15,7 +14,9 @@ shift # drop $1
 export PATH="$COQBIN:$PATH"
 
 # This is required for OCaml findlib
-export OCAMLFIND_CONF="$LIB/findlib.conf"
+# Example path: /snap/coq-prover/x1/coq-platform/2022-09-0/lib/findlib.conf
+# Snap environmet variables: See https://snapcraft.io/docs/environment-variables
+export OCAMLFIND_CONF="${SNAP}/coq-platform/${SNAP_VERSION}/lib/findlib.conf"
 
 if [ "$SELF" == "bash" -o "$SELF" == "sh" ]; then # for debugging the snap
   exec $SELF "$@"
