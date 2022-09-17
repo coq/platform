@@ -337,7 +337,7 @@ function check_spdx_license {
 
 echo "Create primary package list"
 
-PRIMARY_PACKAGES="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^elpi' | tr -s '\n' ' ')"
+PRIMARY_PACKAGES="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk' | tr -s '\n' ' ')"
 
 ###### Associative array with package name -> file filter (regexp pattern) #####
 
@@ -358,11 +358,7 @@ OPAM_FILE_WHITELIST[cairo2]="stubs.dll$" # we keep only the stublib DLL, the res
 # OCaml compiler and tools
 
 IGNORED_PACKAGES="ocaml ocaml-variants ocaml-base-compiler base ocaml-compiler-libs ocaml-config ocaml-secondary-compiler ocamlfind-secondary"
-IGNORED_PACKAGES="${IGNORED_PACKAGES} dune configurator sexplib0 csexp ocamlbuild result cppo"
-
-# Packages linked into elpi
-
-IGNORED_PACKAGES="${IGNORED_PACKAGES} elpi camlp5 ppxlib ppx_deriving ocaml-migrate-parsetree re"
+IGNORED_PACKAGES="${IGNORED_PACKAGES} dune configurator sexplib0 csexp ocamlbuild cppo"
 
 # Regexp for packages to ignore
 
