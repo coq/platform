@@ -36,6 +36,7 @@ install: [
 ]
 patches: [
   "0001-Fix-bug-when-installing-with-a-system-compiler.patch"
+  "findlib-1.9.5.patch" {os = "win32"}
   "0001-Look-for-findlib.conf-in-folder-of-executable.patch"
 ]
 dev-repo: "git+https://github.com/ocaml/ocamlfind.git"
