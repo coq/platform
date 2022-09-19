@@ -32,7 +32,7 @@ COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.04.1 include
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is beta release with complete package pick and intended for package maintainers and early adopters. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
-COQ_PLATFORM_OCAML_VERSION='4.13.1'
+COQ_PLATFORM_OCAML_VERSION='4.14.0'
 
 ###################### PACKAGE SELECTION #####################
 
