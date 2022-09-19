@@ -24,9 +24,12 @@ parts:
       COQREGTESTING=y OPAMROOT=$SNAPCRAFT_PART_INSTALL/coq-platform/ ./coq_platform_make.sh @@PLATFORM_ARGS@@ -dumplogs
       # cleanup
       OPAMROOT=$SNAPCRAFT_PART_INSTALL/coq-platform/ opam clean
+      # remove byte code executables, static libraries and Coq glob files
       find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/ \( -name '*.byte.exe' -o -name '*.byte' -o -name '*.cm[aioxt]' -o -name '*.cmxa' -o -name '*.[oa]' -o -name '*.cmti' -o -name '*.glob' \) -type f -delete
+      # remove ocaml filder under OPAMROOT/bin 
       find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/bin/ \( -name 'ocaml*' -o -name 'camlp5*' -o -name 'mkcamlp5' -o -name 'ocpp5' -o -name 'cppo' -o -name 'safe_camlp4' -o -name 'ppxfind' -o -name 'gdk_pixbuf_mlsource3' -o -name 'lablgladecc3' \) -type f -delete
-      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/lib/ -maxdepth 1 -mindepth 1 \! \( -name 'coq*' -o -name 'stublibs' \) -type d -exec rm -rf {} \;
+      # remove all folders under OPAMROOT/lib, except coq*, stublibs and stdlib-shims
+      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/lib/ -maxdepth 1 -mindepth 1 \! \( -name 'coq*' -o -name 'stublibs' -o -name 'stdlib-shims' \) -type d -exec rm -rf {} \;
       rm -rf $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/share/ocaml-secondary-compiler
       rm -rf $SNAPCRAFT_PART_INSTALL/coq-platform/repo/
 
