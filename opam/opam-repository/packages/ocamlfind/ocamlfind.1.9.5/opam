@@ -21,8 +21,10 @@ build: [
     "./configure"
     "-bindir" bin
     "-sitelib" lib
+    "-sitelib_run" ".../lib"
     "-mandir" man
     "-config" "%{lib}%/findlib.conf"
+    "-config_run" ".../lib/findlib.conf"
     "-no-custom"
     "-no-camlp4" {!ocaml:preinstalled & ocaml:version >= "4.02.0"}
     "-no-topfind" {ocaml:preinstalled}
@@ -33,10 +35,11 @@ build: [
 install: [
   [make "install"]
   ["install" "-m" "0755" "ocaml-stub" "%{bin}%/ocaml"] {ocaml:preinstalled}
+  ["touch" "%{prefix}%/findlib.root"]
 ]
 patches: [
   "0001-Fix-bug-when-installing-with-a-system-compiler.patch"
-  "0001-Look-for-findlib.conf-in-folder-of-executable.patch"
+  "0001-Allow-executable-relative-paths-staring-with.patch"
 ]
 dev-repo: "git+https://github.com/ocaml/ocamlfind.git"
 url {
