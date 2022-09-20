@@ -19,7 +19,7 @@ In case you want to use the fast path:
 - Beta releases of Coq Platform might contain unsigned packages, which macOS does not start by default. In case you get an error message
 stating "Coq_Platform.app cannot be opened because the developer cannot be verified" either download a release package, or alternatively
 right click the `Coq_Platform` app in `/Applications` in Finder and select `open`. You will see the same error message as before, but it will have an `Open` button now.
-- In case you want to use the installed `coqc` from the command line, please add the folder `/Applications/Coq_Platform_2022.01.0.app/Contents/Resources/bin` to your `PATH`.
+- In case you want to use the installed `coqc` from the command line, please add the folder `/Applications/Coq-Platform~8.15~2022.04.app/Contents/Resources/bin` to your `$PATH`, e.g. by running `sudo sh -c "echo '/Applications/Coq-Platform~8.15~2022.04.app/Contents/Resources/bin' > /etc/paths.d/coq"`
 - If you want to inspect the installed content, right click the `Coq_Platform` app in `/Applications` in Finder and select `Show Package Contents`.
 
 A note to lecturers: it is easy to create a customized Windows installer from an opam switch - see [Customized Installers](#customized-installers)
