@@ -13,11 +13,6 @@ shift # drop $1
 # this path also contains coq extra utilities like gappa
 export PATH="$COQBIN:$PATH"
 
-# This is required for OCaml findlib
-# Example path: /snap/coq-prover/x1/coq-platform/2022-09-0/lib/findlib.conf
-# Snap environmet variables: See https://snapcraft.io/docs/environment-variables
-export OCAMLFIND_CONF="${SNAP}/coq-platform/${SNAP_VERSION}/lib/findlib.conf"
-
 if [ "$SELF" == "bash" -o "$SELF" == "sh" ]; then # for debugging the snap
   exec $SELF "$@"
 elif [ "$SELF" == "coq_makefile" ]; then
