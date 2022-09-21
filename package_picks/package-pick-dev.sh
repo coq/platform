@@ -44,20 +44,26 @@ PACKAGES=""
 ########## BASE PACKAGES ##########
 
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} coq.dev"
+PACKAGES="${PACKAGES} PIN.coq.dev"
+# Coq needs a patched ocamlfind to be relocatable by installers
+PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
 
 ########## IDE PACKAGES ##########
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.dev lablgtk3.3.1.2"
+PACKAGES="${PACKAGES} coqide.dev"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
+  # Some dependencies for which we need specific versions
+  PACKAGES="${PACKAGES} PIN.sexplib0.v0.14.0"         # coq-serapi requires this version
+  PACKAGES="${PACKAGES} PIN.ppxlib.0.25.1"            # coq-serapi requires this version
+
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.dev"
   PACKAGES="${PACKAGES} coq-ext-lib.dev"
@@ -83,7 +89,6 @@ then
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.dev"
-  PACKAGES="${PACKAGES} coq-flocq3.dev"
   PACKAGES="${PACKAGES} coq-interval.dev"
   PACKAGES="${PACKAGES} coq-gappa.dev gappa.dev"
 
@@ -124,20 +129,20 @@ then
   PACKAGES="${PACKAGES} coq-paramcoq.dev"
   PACKAGES="${PACKAGES} coq-coqeal.dev"
   PACKAGES="${PACKAGES} coq-libhyps.dev"
+  PACKAGES="${PACKAGES} coq-itauto.dev"
 
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.dev"
-  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.7"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.dev"
+  PACKAGES="${PACKAGES} coq-relation-algebra.dev"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.dev"
   PACKAGES="${PACKAGES} coq-iris.dev"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.dev"
   PACKAGES="${PACKAGES} coq-ott.dev"
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    PACKAGES="${PACKAGES} ott.dev"
-  fi
+  PACKAGES="${PACKAGES} ott.dev"
+  PACKAGES="${PACKAGES} coq-mathcomp-word.dev"
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.dev" ;;
@@ -161,12 +166,11 @@ fi
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
 
-  # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.dev"
-  PACKAGES="${PACKAGES} coq-extructures.0.3.1"
-
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.dev"
+
+  # General mathematics
+  PACKAGES="${PACKAGES} coq-extructures.dev"
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.dev"
@@ -175,4 +179,7 @@ then
   # Communication with coqtop
   PACKAGES="${PACKAGES} coq-serapi.dev"
 
+  # Bedrock2, fiat crypto, ...
+  PACKAGES="${PACKAGES} coq-coqutil.dev"
+  # PACKAGES="${PACKAGES} coq-bedrock2.dev"                   # Error: "sed: illegal option -- z"
 fi
