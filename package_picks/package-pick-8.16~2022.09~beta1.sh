@@ -50,7 +50,7 @@ PACKAGES=""
 # The Coq compiler coqc and the Coq standard library
 PACKAGES="${PACKAGES} PIN.coq.8.16.0"
 # Coq needs a patched ocamlfind to be relocatable by installers
-PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5"
+PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
 
 ########## IDE PACKAGES ##########
 
