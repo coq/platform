@@ -2,7 +2,7 @@
 # Runners spec: https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners
 # Glob expressions: https://github.com/actions/toolkit/tree/main/packages/glob
 
-name: Ubuntu
+name: Ubuntu_dev
 
 ###############################################################################
 # Schedule:
