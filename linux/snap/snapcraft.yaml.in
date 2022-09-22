@@ -32,6 +32,10 @@ parts:
       find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/lib/ -maxdepth 1 -mindepth 1 \! \( -name 'coq*' -o -name 'stublibs' -o -name 'stdlib-shims' -o -name 'elpi' -o -name 'z3' -name 'menhir*' \) -type d -exec rm -rf {} \;
       rm -rf $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/share/ocaml-secondary-compiler
       rm -rf $SNAPCRAFT_PART_INSTALL/coq-platform/repo/
+      ##### Patch ocamlfind META files - the exists_if lines usually reference compile time libs
+      find "$SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/lib/" -name "META" | xargs -n 1 sed -i".bak" 's/^ *exists_if.*//'
+      find "$SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/lib/" -name "META.bak" -delete
+
 
   wrapper:
     plugin: nil
