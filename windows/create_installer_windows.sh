@@ -238,7 +238,7 @@ function analyze_package {
   then
     blacklist="${OPAM_FILE_BLACKLIST[$1]}"
   else
-    blacklist="(\.byte\.exe|\.cm[aiox]|\.cmxa|\.o|\.a)$" # exclude byte code and library stuff
+    blacklist="(\.byte\.exe|\.cm[aioxt]|\.cmxa|\.cmti|\.o|\.a|\.glob|\.h)$" # exclude byte code and library stuff
   fi
 
   echo "# File list for $1 matching $whitelist excluding $blacklist" > "$DIR_TARGET"/files_$1.nsh
