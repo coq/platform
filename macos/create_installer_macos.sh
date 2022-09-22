@@ -93,6 +93,7 @@ DMG_NAME="Coq-Platform-release-${COQ_PLATFORM_RELEASE}-version${COQ_PLATFORM_PAC
 APP_ABSDIR="_dmg/${APP_NAME}"
 RSRC_ABSDIR="${APP_ABSDIR}/Contents/Resources"
 BIN_ABSDIR="$RSRC_ABSDIR/bin"
+LIB_ABSDIR="$RSRC_ABSDIR/lib"
 DYNLIB_ABSDIR="$RSRC_ABSDIR/lib/dylib"
 
 # Sub folders
@@ -534,6 +535,11 @@ add_single_file "${PKG_MANAGER_ROOT}" "share/glib-2.0/schemas" "gschemas.compile
 # But since the complete set is compressed not that large, we add the complete set
 
 add_folder_recursively "${PKG_MANAGER_ROOT}" "share/gtksourceview-3.0"
+
+##### Patch ocamlfind META files - the exists_if lines usually reference compile time libs
+
+find "${LIB_ABSDIR}" -name "META" | xargs -n 1 sed -i".bak" 's/^ *exists_if.*//'
+find "${LIB_ABSDIR}" -name "META.bak" -delete
 
 ##### MacOS DMG installer specific files #####
 
