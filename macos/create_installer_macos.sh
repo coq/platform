@@ -16,7 +16,7 @@
 # -signcert=<prefix> : Path prefix or certificate <prefix>.cer/<prefix>.p12
 # -signd=<id> : Signing identity in the certificate
 
-###################### PRELIMINARIES ######################
+###################### Preliminaries ######################
 
 echo "##### Building Mac DMG installer #####"
 
@@ -24,6 +24,7 @@ echo "##### Building Mac DMG installer #####"
 
 set -o nounset
 set -o errexit
+HERE="$(pwd)"
 
 ###### Parse command line ######
 
@@ -49,24 +50,31 @@ do
   esac
 done
 
+###### Common utilities ######
+
+source shell_scripts/installer_utilities.sh
+
+##### Get the release and package pick of the Coq Platform #####
+
+source shell_scripts/get_names_from_switch.sh
+
 ###### Check if required system utilities are installed #####
 
 command -v gfind &> /dev/null || ( echo "Please install gfind (eg. sudo port install findutils)" ; exit 1)
 command -v grealpath &> /dev/null || ( echo "Please install grealpath (eg. sudo port install coreutils)" ; exit 1)
 command -v macpack  &> /dev/null || ( echo "Please install macpack (eg. sudo port install py38-pip; port select --set pip3 pip38; pip3 install macpack)" ; exit 1)
 
-##### Get the release and package pick of the Coq Platform #####
-
-source shell_scripts/get_names_from_switch.sh
-
-echo "##### Coq Platform release = ${COQ_PLATFORM_RELEASE} version = ${COQ_PLATFORM_PACKAGE_PICK_POSTFIX} #####" 
-
-###### Create working folder and cd #####
+###### Create root folder #####
 
 rm -rf macos_installer/
 mkdir macos_installer/
 cd macos_installer/
 mkdir logs
+> logs/macpack.log
+
+###################### Coq and Coq Platform version ######################
+
+echo "##### Coq Platform release = ${COQ_PLATFORM_RELEASE} version = ${COQ_PLATFORM_PACKAGE_PICK_POSTFIX} #####" 
 
 ###### Get the Coq sourcees from opam #####
 
@@ -84,7 +92,142 @@ COQ_VERSION_MACOS=$COQ_VERSION
 
 echo "##### Coq version = ${COQ_VERSION} (Mac app version=${COQ_VERSION_MACOS}) #####"
 
-##### Create DMG package folder structure #####
+###################### Handle system packages ######################
+
+##### MacPorts/Homebrew folder variables #####
+
+set +e
+PORTCMD="$(which port)"
+set -e
+
+if [ -z "${PORTCMD}" ]; then
+  PKG_MANAGER=brew
+  PKG_MANAGER_ROOT="/usr/local/"
+  PKG_MANAGER_ROOT_STRIP="/usr/local/Cellar/*/*/" # one * for the package name and one for its version
+else
+  PKG_MANAGER=port
+  # If someone knows a better way to find out where port is installed, please let me know!
+  PKG_MANAGER_ROOT="${PORTCMD%bin/port}"
+  PKG_MANAGER_ROOT_STRIP="${PORTCMD%bin/port}"
+fi
+
+##### Add files from a system package using package name and grep filter #####
+
+# $1 = package name
+# $2 = regexp filter (grep)
+# Note:
+# This function strips common prefixes in the destination.
+
+function add_files_of_system_package {
+  case $PKG_MANAGER in
+  port)
+    LIST_PKG_CONTENTS="port contents"
+  ;;
+  brew)
+    LIST_PKG_CONTENTS="brew ls -v"
+  ;;
+  esac
+  echo "Copying files from package $1 ..."
+  for file in $($LIST_PKG_CONTENTS "$1" | grep "$2" | sort -u)
+  do
+    relpath="${file#${PKG_MANAGER_ROOT_STRIP}}"
+    reldir="${relpath%/*}"
+    mkdir -p "$RSRC_ABSDIR/$reldir"
+    cp "$file" "$RSRC_ABSDIR/$reldir/"
+  done
+}
+
+###################### Handle shared library dependencies ######################
+
+# Find shared library dependencies and patch one binary using macpack
+# $1 = full path to executable
+# $2 = relative path from binary to "${RSRC_ABSDIR}" filder
+
+function add_shared_library_dependencies {
+  type="$(file -b $1)"
+  if [ "${type}" == 'Mach-O 64-bit executable x86_64' ] || [ "${type}" == 'Mach-O 64-bit bundle x86_64' ]
+  then
+    echo "Adding shared libraries for $1"
+    macpack -v -d "$2"/lib/dylib $1 >> logs/macpack.log
+  else
+    echo "INFO: File '$1' with type '${type}' ignored in shared library analysis."
+  fi
+}
+
+###################### Adding stuff manually ######################
+
+##### Add a folder recursively #####
+
+# $1 = path prefix (absolute)
+# $2 = relative path to $1 and ${RSRC_ABSDIR} (must not start with /)
+
+function add_folder_recursively {
+  echo "Copying files from folder $1/$2 ..."
+  mkdir -p "${RSRC_ABSDIR}/$2/"
+  cp -R "$1/$2/" "${RSRC_ABSDIR}/$2/"
+}
+
+##### Add a single file #####
+
+# $1 = path prefix (absolute)
+# $2 = relative path to $1 and ${RSRC_ABSDIR}
+# $3 = file name
+
+function add_single_file {
+  echo "Copying single file $1/$2/$3"
+  mkdir -p "${RSRC_ABSDIR}/$2"
+  cp "$1/$2/$3" "${RSRC_ABSDIR}/$2/"
+}
+
+###################### Callback functions for package analyzer ######################
+
+# callback_package_primary
+# callback_package_secondary
+#   $1 = package name
+#   $2 = dependency level
+#   $3 = file whitelist RE
+#   $4 = file blacklist RE
+#   Create the installer information for a primary (user visible) or secondary (not user visible) package.
+#   For installers which produce plain images, this is usually empty.
+
+function callback_package_primary {
+  true
+}
+
+function callback_package_secondary {
+  true
+}
+
+# callback_dependency_primary
+# callback_dependency_secondary
+#   $1 = package which depends on $2
+#   $2 = package on which $1 depends
+#   Create the installer information for a primary (user visible) or secondary (not user visible) package dependency.
+#   For installers which produce plain images, this is usually empty.
+
+function callback_dependency_primary {
+  true
+}
+
+function callback_dependency_secondary {
+  true
+}
+
+# callback_file
+#   $1 = package name
+#   $2 = absolute path to source file (in .opam)
+#   $3 = relative path (without name)
+#   $4 = file name
+#   Create the installer information for a single file.
+#   This either copies the file or creates a file reference in an installer description file
+
+function callback_file {
+  mkdir -p "$RSRC_ABSDIR/$3"
+  cp "$2" "$RSRC_ABSDIR/$3/"
+}
+
+###################### Create installer folder structure ######################
+
 
 # Folder and image names
 
@@ -104,357 +247,21 @@ mkdir ${APP_ABSDIR}/Contents/MacOS  # The top level executable shown in launcher
 mkdir -p ${RSRC_ABSDIR}             # Most files go here
 mkdir -p ${DYNLIB_ABSDIR}           # System shared libraries
 
-##### opam folder variables #####
 
-# The opam prefix - stripped from absolute paths to create relative paths
-OPAM_PREFIX="$(opam conf var prefix)"
 
-##### MacPorts/Brew folder variables #####
 
-set +e
-PORTCMD="$(which port)"
-set -e
-
-if [ -z "${PORTCMD}" ]; then
-  PKG_MANAGER=brew
-  PKG_MANAGER_ROOT="/usr/local/"
-  PKG_MANAGER_ROOT_STRIP="/usr/local/Cellar/*/*/" # one * for the package name and one for its version
-else
-  PKG_MANAGER=port
-  # If someone knows a better way to find out where port is installed, please let me know!
-  PKG_MANAGER_ROOT="${PORTCMD%bin/port}"
-  PKG_MANAGER_ROOT_STRIP="${PORTCMD%bin/port}"
-fi
-
-###################### UTILITY FUNCTIONS ######################
-
-# Check if a space separated list contains an item
-# $1 = list
-# $2 = item
-
-function list_contains {
-    [[ " $1 " == *" $2 "* ]]
-}
-
-# Check if a list contains an item with prefix
-# $1 = list
-# $2 = prefix
-
-function list_contains_prefix {
-    [[ " $1 " == *" $2"* ]]
-}
-
-# Find shared library dependencies and patch one binary using macpack
-# $1 full path to binary
-# $3 relative path from binary to "${RSRC_ABSDIR}" filder
-
-> logs/macpack.log
-
-function add_dylibs_using_macpack {
-  type="$(file -b $1)"
-  if [ "${type}" == 'Mach-O 64-bit executable x86_64' ] || [ "${type}" == 'Mach-O 64-bit bundle x86_64' ]
-  then
-    echo "Copying shared libraries for $1 ..."
-    macpack -v -d "$2"/lib/dylib $1 >> logs/macpack.log
-  else
-    echo "INFO: File '$1' with type '${type}' ignored in shared library analysis."
-  fi
-}
-
-# Add files from a Brew package using package name and grp filter
-# $1 = Package name
-# $2 = regexp filter (grep)
-# Note:
-# This function strips the install path of the "port" command
-
-function add_files_of_package {
-  case $PKG_MANAGER in
-  port)
-    LIST_PKG_CONTENTS="port contents"
-  ;;
-  brew)
-    LIST_PKG_CONTENTS="brew ls -v"
-  ;;
-  esac
-  echo "Copying files from package $1 ..."
-  for file in $($LIST_PKG_CONTENTS "$1" | grep "$2" | sort -u)
-  do
-    relpath="${file#${PKG_MANAGER_ROOT_STRIP}}"
-    reldir="${relpath%/*}"
-    mkdir -p "$RSRC_ABSDIR/$reldir"
-    cp "$file" "$RSRC_ABSDIR/$reldir/"
-  done
-}
-
-# Add a folder recursively
-# $1 = path prefix (absolute)
-# $2 = relative path to $1 and ${RSRC_ABSDIR} (must not start with /)
-
-function add_folder_recursively {
-  echo "Copying files from folder $1/$2 ..."
-  mkdir -p "${RSRC_ABSDIR}/$2/"
-  cp -R "$1/$2/" "${RSRC_ABSDIR}/$2/"
-}
-
-# Add a single file
-# $1 = path prefix (absolute)
-# $2 = relative path to $1 and ${RSRC_ABSDIR}
-# $3 = file name
-
-function add_single_file {
-  echo "Copying single file $1/$2/$3"
-  mkdir -p "${RSRC_ABSDIR}/$2"
-  cp "$1/$2/$3" "${RSRC_ABSDIR}/$2/"
-}
-
-# Taken from Adwanita's Makefile
-# $1 = root of the icon theme
-
-function make_theme_index {
-pushd "$1"
-
-cat> index.theme <<'EOT'
-[Icon Theme]
-Name=Adwaita
-Comment=The Only One
-Example=folder
-
-EOT
-echo "Directories=$(find */* -type d | tr -s "\n" ,)" >> index.theme
-echo "" >> index.theme
-
-(
-for dir in `find */* -type d`; do
-    sizefull="`dirname $dir`"
-    if test "$sizefull" = "scalable"; then
-        size="16"
-    elif test "$sizefull" = "scalable-up-to-32"; then
-        size="16"
-    else
-        size="`echo $sizefull | sed -e 's/x.*$//g'`"
-    fi
-    context="`basename $dir`"
-    echo "[$dir]"
-    if test "$context" = "actions"; then
-        echo "Context=Actions"
-    fi
-    if test "$context" = "animations"; then
-        echo "Context=Animations"
-    fi
-    if test "$context" = "apps"; then
-        echo "Context=Applications"
-    fi
-    if test "$context" = "categories"; then
-        echo "Context=Categories"
-    fi
-    if test "$context" = "devices"; then
-        echo "Context=Devices"
-    fi
-    if test "$context" = "emblems"; then
-        echo "Context=Emblems"
-    fi
-    if test "$context" = "emotes"; then
-        echo "Context=Emotes"
-    fi
-    if test "$context" = "intl"; then
-        echo "Context=International"
-    fi
-    if test "$context" = "mimetypes"; then
-        echo "Context=MimeTypes"
-    fi
-    if test "$context" = "places"; then
-        echo "Context=Places"
-    fi
-    if test "$context" = "status"; then
-        echo "Context=Status"
-    fi
-    if test "$context" = "ui"; then
-        echo "Context=UI"
-    fi
-    if test "$context" = "legacy"; then
-        echo "Context=Legacy"
-    fi
-    echo "Size=$size"
-    if test "$sizefull" = "scalable"; then
-        echo "MinSize=8"
-        echo "MaxSize=512"
-        echo "Type=Scalable"
-    elif test "$sizefull" = "scalable-up-to-32"; then
-        echo "MinSize=16"
-        echo "MaxSize=32"
-        echo "Type=Scalable"
-    elif test "$size" = "256"; then
-        echo "MinSize=56"
-        echo "MaxSize=256"
-        echo "Type=Scalable"
-    elif test "$size" = "512"; then
-        echo "MinSize=56"
-        echo "MaxSize=512"
-        echo "Type=Scalable"
-    else
-        echo "Type=Fixed"
-    fi
-    echo ""
-done
-) >> index.theme
-
-popd
-}
-
-# Check if a URL exists
-# $1 url
-
-function check_url {
-  curl --head --silent --fail "$1" >/dev/null
-}
-
-# Check if an (opam) license name has an SPDX record
-# $1 = name of license
-# $2 = name of package (for warnings)
-
-declare -A SPDX_LICENSE
-
-function check_spdx_license {
-  if [ -z ${SPDX_LICENSE[$1]+_} ]
-  then
-    if check_url "https://spdx.org/licenses/$1.html"
-    then
-      SPDX_LICENSE[$1]=yes
-    else
-      SPDX_LICENSE[$1]=no
-    fi
-  fi
-
-  if [ "${SPDX_LICENSE[$1]}" == "yes" ]
-  then
-      return 0
-  else
-    echo "License for package '$2' with name '$1' has no SPDX record" >> WARNINGS.log
-    return 1
-  fi
-}
-
-###### Get filtered list of explicitly installed packages #####
-
-echo "Create primary package list"
-
-PRIMARY_PACKAGES="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk' | tr -s '\n' ' ')"
-
-###### Associative array with package name -> file filter (regexp pattern) #####
-
-# If no white list regexp is given it is "."
-# If no black list list regexp is given it is "\.byte\.exe$"
-
-declare -A OPAM_FILE_WHITELIST
-declare -A OPAM_FILE_BLACKLIST
-
-OPAM_FILE_WHITELIST[lablgtk3]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
-OPAM_FILE_WHITELIST[lablgtk3-sourceview3]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
-OPAM_FILE_WHITELIST[cairo2]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
-
-###### Lits of packages to ignore #####
-
-# Note: it is more efficient to ignore a package than to blacklist / not whitelist all files in it
-
-# OCaml compiler and tools
-
-IGNORED_PACKAGES="ocaml ocaml-variants ocaml-base-compiler base ocaml-compiler-libs ocaml-config ocaml-secondary-compiler ocamlfind-secondary"
-IGNORED_PACKAGES="${IGNORED_PACKAGES} dune configurator sexplib0 csexp ocamlbuild cppo"
-
-# Regexp for packages to ignore
-
-IGNORED_PACKAGES_RE="^conf-"
-
-###### Function for analyzing one package
-
-# Analyze one package
-# - retrieve list of files and copy to ${RSRC_ABSDIR}
-# - retrieve dependencies and add to list of dependent packages
-# $1 = package name
-# $2 = dependency level
-
-function process_package {
-  echo "Copying package $1 ($2) ..."
-
-  # Copy files
-
-  if [ ${OPAM_FILE_WHITELIST[$1]+_} ]
-  then
-    whitelist="${OPAM_FILE_WHITELIST[$1]}"
-  else
-    whitelist="." # take everything
-  fi
-
-  if [ ${OPAM_FILE_BLACKLIST[$1]+_} ]
-  then
-    blacklist="${OPAM_FILE_BLACKLIST[$1]}"
-  else
-    blacklist="(\.byte|\.cm[aioxt]|\.cmxa|\.cmti|\.o|\.a|\.glob|\.ml|\.mli|\.h)$" # exclude byte code and library stuff
-  fi
-
-  files="$(opam show --list-files $1 | grep -E "$whitelist" | grep -E -v "$blacklist" )" || true
-  if echo "$files" | grep '(modified since)' > /dev/null
-  then
-    echo "The package '$1' contains files which have been modified since opam installed them." >> WARNINGS.log
-    files=${files//(modified since)/}
-  fi
-  echo "${files}" > logs/"$1".filelist
-  for file in $files
-  do
-    if [ -d "$file" ]
-    then
-      true # ignore directories
-    elif [ -f "$file" ]
-    then
-      relpath="${file#$OPAM_PREFIX}"
-      reldir="${relpath%/*}"
-      mkdir -p "$RSRC_ABSDIR/$reldir"
-      cp "$file" "$RSRC_ABSDIR/$reldir/"
-    else
-      echo "In package '$1' the file '$file' does not exist"
-      exit 1
-    fi
-  done
-
-  # handle dependencies
-  # Note: the --installed is required cause of an opam bug.
-  # See https://github.com/ocaml/opam/issues/4461
-  dependencies="$(opam list --required-by=$1 --short --installed)"
-  for dependency in $dependencies
-  do
-    # Check if dependency is already in the list of known packages
-    if ! list_contains "$PACKAGES_DONE" "$dependency"
-    then
-      # Even if teh package is excluded by IGNORED_PACKAGES_RE, we still want it in the list
-      # so that we can produce an accurate dependency list
-      PACKAGES_DONE="$PACKAGES_DONE $dependency"
-      if [[ ! "$dependency" =~ ${IGNORED_PACKAGES_RE} ]]
-      then
-        process_package "$dependency" $(($2 + 1))
-      fi
-    fi
-  done
-}
 
 ###################### TOP LEVEL FILE GATHERING ######################
 
-###### Go through selected packages and recursively analyze dependencies #####
+##### System independent opam file copying #####
 
-echo '##### Copy opam packages #####'
-
-# The initial list of already processed, otherwise processed or ignored packages
-PACKAGES_DONE="$PRIMARY_PACKAGES $IGNORED_PACKAGES"
-
-for package in $PRIMARY_PACKAGES
-do
-  process_package "$package" 0
-done
+source "${HERE}"/shell_scripts/installer_create_tree.sh
 
 ##### Find system shared libraries the installed binaries depend on #####
 
 echo '##### Copy system shared libraries #####'
 
-# Copy dynamically loaded (invisible for 'otool') shared libraries for GDK and GTK
+##### Copy dynamically loaded (invisible for 'otool') shared libraries for GDK and GTK #####
 
 PIXBUF_LOADER_ABSDIR="$RSRC_ABSDIR/lib/gdk-pixbuf-2.0/2.10.0/loaders"
 mkdir -p "$PIXBUF_LOADER_ABSDIR"
@@ -481,20 +288,20 @@ done
 
 for file in $(find "${BIN_ABSDIR}" -type f)
 do
-  add_dylibs_using_macpack "${file}" ".."
+  add_shared_library_dependencies "${file}" ".."
 done
 
 for file in $(find "$PIXBUF_LOADER_ABSDIR" -type f)
 do
-  add_dylibs_using_macpack "${file}" "$PIXBUF_LOADER_RELDIR"
+  add_shared_library_dependencies "${file}" "$PIXBUF_LOADER_RELDIR"
 done
 
 for file in $(find "$IMMODULES_ABSDIR" -type f)
 do
-  add_dylibs_using_macpack "${file}" "$IMMODULES_RELDIR"
+  add_shared_library_dependencies "${file}" "$IMMODULES_RELDIR"
 done
 
-# Dynamic library debug output
+##### Dynamic library debug output #####
 
 if [ "$OTOOLDUMP" == 'Y' ]
 then
@@ -505,20 +312,19 @@ then
   done
 fi
 
-##### Add files from additional macports packages #####
+###### Add GTK resources #####
 
 ### Adwaita icon theme
 
-add_files_of_package "adwaita-icon-theme"  \
+add_files_of_system_package "adwaita-icon-theme"  \
 "/\(16x16\|22x22\|32x32\|48x48\)/.*\("\
 "actions/bookmark\|actions/document\|devices/drive\|actions/format-text\|actions/go\|actions/list\|"\
 "actions/media\|actions/pan\|actions/process\|actions/system\|actions/window\|"\
 "mimetypes/text\|mimetypes/inode\|mimetypes/application\|"\
 "places/folder\|places/user\|status/dialog\|ui/pan\|"\
-"legacy/document\|legacy/go\|legacy/process\|legacy/window\|legacy/system\)"
+"legacy/document\|legacy/go\|legacy/process\|legacy/window\|legacy/system\)" \
 
 make_theme_index "${RSRC_ABSDIR}/share/icons/Adwaita/"
-
 
 ### GTK compiled schemas
 
@@ -541,7 +347,7 @@ add_folder_recursively "${PKG_MANAGER_ROOT}" "share/gtksourceview-3.0"
 find "${LIB_ABSDIR}" -name "META" | xargs -n 1 sed -i".bak" 's/^ *exists_if.*//'
 find "${LIB_ABSDIR}" -name "META.bak" -delete
 
-##### MacOS DMG installer specific files #####
+###################### Create installer ######################
 
 # Find CoqIDE folder
 
@@ -583,7 +389,7 @@ cp ${coqidefolder}/MacOS/*.icns ${RSRC_ABSDIR}
 
 ln -sf /Applications _dmg/Applications
 
-##### Create README.html #####
+###################### Create README.html ######################
 
 if [ "${CREATEREADME}" == "Y" ]
 then
