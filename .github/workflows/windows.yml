@@ -54,7 +54,7 @@ jobs:
           - '64'
         variant:
           # Keep this in sync with the Smoke test below
-          - '8.16~2022.09~beta1.sh'
+          - '8.16~2022.09~beta1'
           - '8.15~2022.04'
 
     steps:
@@ -107,7 +107,7 @@ jobs:
           - '32'
           - '64'
         variant:
-          - '8.16~2022.09~beta1.sh'
+          - '8.16~2022.09~beta1'
           - '8.15~2022.04'
 
     steps:
