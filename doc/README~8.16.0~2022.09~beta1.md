@@ -1,4 +1,5 @@
-# Coq Platform 2022.04.1 providing Coq 8.16.0 (released Sep 2022) with a beta package pick for the 2022.09 release.
+
+# Coq Platform 2022.09.0 providing Coq 8.16.0 (released Sep 2022) with a beta package pick for the 2022.09 release.
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
@@ -8,8 +9,8 @@ The [Coq Platform](https://github.com/coq/platform) is a distribution of the Coq
 interactive prover together with a selection of Coq libraries and plugins.
 
 The Coq Platform supports to install several versions of Coq (also in parallel).
-This README file is for **Coq Platform 2022.04.1 with Coq 8.16.0**.
-The README files for other versions are linked in the main [README](../README.md).
+This README file is for **Coq Platform 2022.09.0 with Coq 8.16.0**.
+The README files for other versions are linked in the main [README](https://github.com/coq/platform/blob/main/README.md).
 
 This version of Coq Platform 2022.04.1 includes Coq 8.16.0 from Sep 2022. This is beta release with complete package pick and intended for package maintainers and early adopters. 
 
@@ -37,13 +38,13 @@ It could mean that parts of the software use one license while other parts use a
 It could also mean that you can choose between the given licenses.
 Please clarify the details with the homepage of the package.
 
-**Note:** The package list is also available as [CSV](PackageTable~8.16.0~2022.09~beta1.csv).
+**Note:** The package list is also available as [CSV](https://github.com/coq/platform/tree/main/doc/PackageTable~8.16.0~2022.09~beta1.csv).
 
 **Note:** Click on the triangle to show additional information for a package!
 
 <br>
 
-## **Coq Platform 2022.04.1 with Coq 8.16.0 "base level"**
+## **Coq Platform 2022.09.0 with Coq 8.16.0 "base level"**
 
 The **base level** is mostly intended as a basis for custom installations using
 opam and contains the following package(s):
@@ -65,13 +66,13 @@ opam and contains the following package(s):
 
 <br>
 
-## **Coq Platform 2022.04.1 with Coq 8.16.0 "IDE level"**
+## **Coq Platform 2022.09.0 with Coq 8.16.0 "IDE level"**
 
 The **IDE level** adds an interactive development environment to the **base level**.
 
 For beginners, e.g. following introductory tutorials, this level is usually sufficient.
 If you install the **IDE level**, you can later add additional packages individually
-via `opam install <package-name>` or rerun the Coq Platform installation script
+via `opam install 'package-name'` or rerun the Coq Platform installation script
 and choose the full or extended level.
 
 The **IDE level** contains the following package(s):
@@ -93,14 +94,14 @@ The **IDE level** contains the following package(s):
 
 <br>
 
-## **Coq Platform 2022.04.1 with Coq 8.16.0 "full level"**
+## **Coq Platform 2022.09.0 with Coq 8.16.0 "full level"**
 
 The **full level** adds many commonly used coq libraries, plug-ins and
 developments.
 
 The packages in the **full level** are mature, well maintained
 and suitable as basis for your own developments.
-See the Coq Platform [charter](charter.md) for details.
+See the Coq Platform [charter](https://github.com/coq/platform/blob/main/charter.md) for details.
 
 The **full level** contains the following packages:
 
@@ -244,7 +245,7 @@ The **full level** contains the following packages:
 (1.3+8.16) A function definition package for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Matthieu Sozeau &lt;matthieu.sozeau@inria.fr&gt; - Cyprien Mangin &lt;cyprien.mangin@m4x.org&gt;</dd>
-    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-or-later.html" target="_blank">LGPL-2.1-or-later</a></dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://mattam82.github.io/Coq-Equations'>homepage</a>)
       (<a href='https://github.com/mattam82/Coq-Equations/issues'>bug reports</a>)
@@ -412,7 +413,7 @@ The **full level** contains the following packages:
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://gitlab.inria.fr/fbesson/itauto'>homepage</a>)
-      (<a href='frederic.besson@inria.fr https://gitlab.inria.fr/fbesson/itauto/-/issues'>bug reports</a>)
+      (<a href='mailto:frederic.besson@inria.fr'>bug reports (email)</a>, <a href='https://gitlab.inria.fr/fbesson/itauto/-/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-itauto/coq-itauto.8.16.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>itauto is a reflexive intuitionistic SAT solver parameterised by a theory module.<br>When run inside Coq, the theory module wraps an arbitrary Coq tactic, e.g., the lia<br>solver for linear arithmetic or the congruence solver for uninterpreted function symbols<br>and constructors. Using a black-box Nelson-Oppen scheme for combination of theories,<br>itauto also provides an SMT-like tactic for propositional reasoning modulo the solvers for<br>both arithmetic and function symbols.</dd>
@@ -832,7 +833,7 @@ The **full level** contains the following packages:
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-or-later.html" target="_blank">LGPL-2.1-or-later</a> <a href="https://spdx.org/licenses/GPL-2.0-or-later.html" target="_blank">GPL-2.0-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://wwwlehre.dhbw-stuttgart.de/~sschulz/E/E.html'>homepage</a>)
-      (<a href='Stephan Schulz (see homepage for email)'>bug reports</a>)
+      (bug reports:  Stephan Schulz (see homepage for email))
       (<a href='https://opam.ocaml.org/packages/eprover/eprover.2.6/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>E is a theorem prover for full first-order logic with equality. It accepts a problem specification, typically consisting of a number of first-order clauses or formulas, and a conjecture, again either in clausal or full first-order form. The system will then try to find a formal proof for the conjecture, assuming the axioms.</dd>
@@ -874,11 +875,11 @@ The **full level** contains the following packages:
 (0.32) A tool for writing definitions of programming languages and calculi</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Peter Sewell Francesco Zappa Nardelli Scott Owens</dd>
-    <dt><b>license</b></dt><dd> part BSD3, part LGPL 2.1 - see <a href="http://www.cl.cam.ac.uk/~pes20/ott/" target="_blank">homepage</a> for details</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://www.cl.cam.ac.uk/~pes20/ott/'>homepage</a>)
       (<a href='https://github.com/ott-lang/ott/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/ott/ott.0.32/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ott/ott.0.32/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Ott takes as input a definition of a language syntax and semantics, in a<br>concise and readable ASCII notation that is close to what one would write in<br>informal mathematics.  It generates output:<br>- a LaTeX source file that defines commands to build a typeset version of the definition;<br>- a Coq version of the definition;<br>- a HOL version of the definition;<br>- an Isabelle/HOL version of the definition;<br>- a Lem version of the definition;<br>- an OCaml version of the syntax of the definition.<br>Additionally, it can be run as a filter, taking a<br>LaTeX/Coq/Isabelle/HOL/Lem/OCaml source file<br>with embedded (symbolic) terms of the defined language, parsing them and<br>replacing them by typeset terms.</dd>
   </dl>
@@ -931,7 +932,7 @@ The **full level** contains the following packages:
 
 <br>
 
-## **Coq Platform 2022.04.1 with Coq 8.16.0 "optional packages"**
+## **Coq Platform 2022.09.0 with Coq 8.16.0 "optional packages"**
 
 The **optional** packages have the same maturity and maintenance level as the
 packages in the full level, but either have a **non open source license** or
@@ -976,7 +977,7 @@ The following packages are **optional**:
 
 <br>
 
-## **Coq Platform 2022.04.1 with Coq 8.16.0 "extended level"**
+## **Coq Platform 2022.09.0 with Coq 8.16.0 "extended level"**
 
 The **extended level** contains packages which are in a beta stage or otherwise
 don't yet have the level of maturity or support required for inclusion in the
@@ -1849,15 +1850,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='http://projects.camlcity.org/projects/findlib.html'>ocamlfind.1.9.5</a>
-(1.9.5) A library manager for OCaml</summary>
+  <summary><a href='http://projects.camlcity.org/projects/findlib.html'>ocamlfind.1.9.5~relocatable</a>
+(1.9.5~relocatable) A library manager for OCaml</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Gerd Stolpmann &lt;gerd@gerd-stolpmann.de&gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://projects.camlcity.org/projects/findlib.html'>homepage</a>)
       (<a href='https://github.com/ocaml/ocamlfind/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocamlfind/ocamlfind.1.9.5/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/ocamlfind/ocamlfind.1.9.5~relocatable/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Findlib is a library manager for OCaml. It provides a convention how<br>to store libraries, and a file format (\META\) to describe the<br>properties of libraries. There is also a tool (ocamlfind) for<br>interpreting the META files, so that it is very easy to use libraries<br>in programs and scripts.</dd>
   </dl>
@@ -2117,4 +2118,5 @@ Please refer to the linked opam package and/or your system package manager for d
     <dt><b>description</b></dt><dd>The Zarith library implements arithmetic and logical operations over<br>arbitrary-precision integers. It uses GMP to efficiently implement<br>arithmetic over big integers. Small integers are represented as Caml<br>unboxed integers, for speed and space economy.</dd>
   </dl>
 </details>
+
 

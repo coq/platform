@@ -30,6 +30,7 @@ cd "${ROOT_PATH}"
 
 CHECKOPAMLINKS='Y'
 COQ_PLATFORM_PACKAGE_PICK_NAME=''
+RESULT_TYPE='MD'
 
 for arg in "$@"
 do
@@ -37,7 +38,9 @@ do
     -quick|-q)             CHECKOPAMLINKS='N' ;;
     -pick=*|-p=*|-v=*)     COQ_PLATFORM_PACKAGE_PICK_NAME="${arg#*=}";;
     -packages=*)           COQ_PLATFORM_PACKAGE_PICK_NAME="${arg#*=}";;
-    -output=*|-o=*)        RESULT_FILE_MD="${arg#*=}";;
+    -html)                 RESULT_TYPE='HTML';;
+    -md)                   RESULT_TYPE='MD';;
+    -output=*|-o=*)        RESULT_FILE_TXT="${arg#*=}";;
     -table=*|-t=*)         RESULT_FILE_CSV="${arg#*=}";;
     *) echo "Illegal option ${arg}"; exit 1 ;;
   esac
@@ -63,6 +66,39 @@ else
       done
     done
   done
+fi
+
+##### Helpers to switch between HTML and MD output #####
+
+if [ "${RESULT_TYPE}" == 'MD' ]
+then
+  BB='**'
+  BE='**'
+  H1B='#'
+  H1E=''
+  H2B='## **'
+  H2E='**'
+  PB=''
+  PE=''
+  BR='<br>'
+  END=''
+  function REF {
+    echo "[$1]($2)"
+  }
+else
+  BB='<b>'
+  BE='</b>'
+  H1B='<h1>'
+  H1E='</h1>'
+  H2B='<h2>'
+  H2E='</h2>'
+  PB='<p>'
+  PE='</p>'
+  BR='<br>'
+  END='</body>'
+  function REF {
+    echo "<a href=\"$2\" target=\"_blank\">$1</a>"
+  }
 fi
 
 ##### Utility functions #####
@@ -155,6 +191,38 @@ function html_escape {
   echo "${string}"
 }
 
+# Handle multi references, like an email + web adress in an opam maintainer field
+# This always produces HTML, even if we are in MD mode
+# $1 = display text of reference
+# $2 = possibly multiple references
+# If something in $2 is not an URL, both the display text and the reference are posted
+function html_multi_ref() {
+  other=''
+  next=false
+  for field in $2
+  do
+    if $next
+    then
+      printf ", "
+    fi
+    if [[ $field =~ https://[0-9a-zA-Z./-_~]+ ]]
+    then
+      printf "<a href='%s'>$1</a>" "${field}"
+      next=true
+    elif [[ $field =~ [-_0-9a-zA-Z.]+@[-_0-9a-zA-Z.]+ ]]
+    then
+      printf "<a href='%s'>$1 (email)</a>" "mailto:${field}"
+      next=true
+    else
+      other="$other $field"
+    fi
+  done
+  if [ -n "$other" ]
+  then
+    echo "$1: $other"
+  fi
+}
+
 # Get opam package url from repo name and package name
 # $1 repo name (opam show -f repository <package>)
 # $2 package name
@@ -210,7 +278,7 @@ package_list_notes="$(grep '# DESCRIPTION'  "${COQ_PLATFORM_PACKAGE_PICK_FILE}" 
 
 ##### Determine name of output files #####
 
-RESULT_FILE_MD="${RESULT_FILE_MD:-${DOC_PATH}/README${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.md}"
+RESULT_FILE_TXT="${RESULT_FILE_TXT:-${DOC_PATH}/README${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.md}"
 RESULT_FILE_CSV="${RESULT_FILE_CSV:-${DOC_PATH}/PackageTable${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.csv}"
 
 ##### Get list of all installed packages from opam #####
@@ -348,28 +416,28 @@ function html_package_opam {
   fi
 
   # Create final HTML text for package
-  printf "<details>\n" >> ${RESULT_FILE_MD}
-  printf "  <summary><a href='%s'>%s</a>\n(%s) %s</summary>\n" "${phomepage}" "${package_pretty}" "${pversion}" "${psynopsis}" >> ${RESULT_FILE_MD}
-  printf "  <dl>\n" >> ${RESULT_FILE_MD}
-  printf "    <dt><b>authors</b></dt><dd>%s</dd>\n" "${pauthors}" >> ${RESULT_FILE_MD}
-  printf "    <dt><b>license</b></dt><dd>%s</dd>\n" "${licensehtml}" >> ${RESULT_FILE_MD}
-  printf "    <dt><b>links</b></dt><dd>\n" >> ${RESULT_FILE_MD}
+  printf "<details>\n" >> ${RESULT_FILE_TXT}
+  printf "  <summary><a href='%s'>%s</a>\n(%s) %s</summary>\n" "${phomepage}" "${package_pretty}" "${pversion}" "${psynopsis}" >> ${RESULT_FILE_TXT}
+  printf "  <dl>\n" >> ${RESULT_FILE_TXT}
+  printf "    <dt><b>authors</b></dt><dd>%s</dd>\n" "${pauthors}" >> ${RESULT_FILE_TXT}
+  printf "    <dt><b>license</b></dt><dd>%s</dd>\n" "${licensehtml}" >> ${RESULT_FILE_TXT}
+  printf "    <dt><b>links</b></dt><dd>\n" >> ${RESULT_FILE_TXT}
   if [ -n "${phomepage}" ]
   then  
-    printf "      (<a href='%s'>homepage</a>)\n" "${phomepage}" >> ${RESULT_FILE_MD}
+    printf "      (<a href='%s'>homepage</a>)\n" "${phomepage}" >> ${RESULT_FILE_TXT}
   fi
   if [ -n "${pbugreports}" ]
   then  
-    printf "      (<a href='%s'>bug reports</a>)\n" "${pbugreports}" >> ${RESULT_FILE_MD}
+    printf "      (%s)\n" "$(html_multi_ref 'bug reports' "${pbugreports}")" >> ${RESULT_FILE_TXT}
   fi
   if [ -n "${popam_url}" ]
   then  
-    printf "      (<a href='%s'>opam package</a>)\n" "${popam_url}" >> ${RESULT_FILE_MD}
+    printf "      (<a href='%s'>opam package</a>)\n" "${popam_url}" >> ${RESULT_FILE_TXT}
   fi
-  printf "    </dd>\n" >> ${RESULT_FILE_MD}
-  printf "    <dt><b>description</b></dt><dd>%s</dd>\n" "${pdescription}" >> ${RESULT_FILE_MD}
-  printf "  </dl>\n" >> ${RESULT_FILE_MD}
-  printf "</details>\n\n" >> ${RESULT_FILE_MD}
+  printf "    </dd>\n" >> ${RESULT_FILE_TXT}
+  printf "    <dt><b>description</b></dt><dd>%s</dd>\n" "${pdescription}" >> ${RESULT_FILE_TXT}
+  printf "  </dl>\n" >> ${RESULT_FILE_TXT}
+  printf "</details>\n\n" >> ${RESULT_FILE_TXT}
 
   # Create CSV entry for package
   package_main="${1%%.*}"
@@ -382,57 +450,90 @@ function html_package_opam {
 
 echo "package,version,license,level" > ${RESULT_FILE_CSV}
 
-# Write MD header
+# Write MD/HTML header
 
-cat > ${RESULT_FILE_MD} <<EOT
-# Coq Platform ${COQ_PLATFORM_RELEASE} providing ${COQ_PLATFORM_VERSION_TITLE}
+if [ "${RESULT_TYPE}" == 'MD' ]
+then
+  echo '' > ${RESULT_FILE_TXT}
+else
+cat > ${RESULT_FILE_TXT} <<EOT
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Coq Platform - $COQ_PLATFORM_RELEASE</title>
+<style>
+body {
+   width : 50em;
+   margin-left : auto;   
+   margin-right : auto;   
+}
+h1,h2 {
+  text-align : center;
+  font-family : sans-serif;
+}
+dt {
+  font-family : sans-serif;
+  font-weight : bold;
+}
+dd { 
+  margin-bottom : 1em;
+}
+</style>
+</head>
+<body>
+EOT
+fi
 
-The [Coq proof assistant](https://coq.inria.fr) provides a formal language
+cat >> ${RESULT_FILE_TXT} <<EOT
+${H1B} Coq Platform ${COQ_PLATFORM_RELEASE} providing ${COQ_PLATFORM_VERSION_TITLE}${H1E}
+
+${PB}The $(REF 'Coq proof assistant' 'https://coq.inria.fr') provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
-with an environment for semi-interactive development of machine-checked proofs.
+with an environment for semi-interactive development of machine-checked proofs.${PE}
 
-The [Coq Platform](https://github.com/coq/platform) is a distribution of the Coq
-interactive prover together with a selection of Coq libraries and plugins.
+${PB}The $(REF 'Coq Platform' 'https://github.com/coq/platform') is a distribution of the Coq
+interactive prover together with a selection of Coq libraries and plugins.${PE}
 
-The Coq Platform supports to install several versions of Coq (also in parallel).
-This README file is for **Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG}**.
-The README files for other versions are linked in the main [README](../README.md).
+${PB}The Coq Platform supports to install several versions of Coq (also in parallel).
+This README file is for ${BB}Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG}${BE}.
+The README files for other versions are linked in the main $(REF 'README' 'https://github.com/coq/platform/blob/main/README.md').${PE}
 
-${COQ_PLATFORM_VERSION_DESCRIPTION}
+${PB}${COQ_PLATFORM_VERSION_DESCRIPTION}${PE}
 
-The OCaml version used is $(opam switch invariant | tr -d '"[]{}' | sed 's/.*= //').
+${PB}The OCaml version used is $(opam switch invariant | tr -d '"[]{}' | sed 's/.*= //').${PE}
 
-The Coq Platform supports four levels of installation extent:
-**base**, **IDE**, **full** and **extended** and a few **optional** packages.
+${PB}The Coq Platform supports four levels of installation extent:
+${BB}base${BE}, ${BB}IDE${BE}, ${BB}full${BE} and ${BB}extended${BE} and a few ${BB}optional${BE} packages.
 The sections below provide a short description of each level and the list of
 packages included in each level. Packaged versions of the Coq Platform usually
-contain the **extended** set with all optional packages.
+contain the ${BB}extended${BE} set with all optional packages.${PE}
 
-**Note on non-free licenses:** The Coq Platform contains software with
-**non-free licenses which do not allow commercial use without purchasing a license**,
-notably the **coq-compcert** package. Please study the package licenses given
+${PB}${BB}Note on non-free licenses:${BE} The Coq Platform contains software with
+${BB}non-free licenses which do not allow commercial use without purchasing a license${BE},
+notably the ${BB}coq-compcert${BE} package. Please study the package licenses given
 below and verify that they are compatible with your intended use in case you
-plan to use these packages.
+plan to use these packages.${PE}
 
-**Note on license information:**
+${PB}${BB}Note on license information:${BE}
 The license information given below is obtained from opam.
-The Coq Platform team does no double check this information.
+The Coq Platform team does no double check this information.${PE}
 
-**Note on multiple licenses:** 
+${PB}${BB}Note on multiple licenses:${BE} 
 In case several licenses are given below, it is not clearly specified what this means.
 It could mean that parts of the software use one license while other parts use another license.
 It could also mean that you can choose between the given licenses.
-Please clarify the details with the homepage of the package.
+Please clarify the details with the homepage of the package.${PE}
 
-**Note:** The package list is also available as [CSV](${RESULT_FILE_CSV#${DOC_PATH}/}).
+${PB}${BB}Note:${BE} The package list is also available as $(REF 'CSV' https://github.com/coq/platform/tree/main/doc/${RESULT_FILE_CSV#${DOC_PATH}/}).${PE}
 
-**Note:** Click on the triangle to show additional information for a package!
+${PB}${BB}Note:${BE} Click on the triangle to show additional information for a package!${PE}
 
-<br>
+${BR}
 
-## **Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "base level"**
+${H2B}Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "base level"${H2E}
 
-The **base level** is mostly intended as a basis for custom installations using
+The ${BB}base level${BE} is mostly intended as a basis for custom installations using
 opam and contains the following package(s):
 
 EOT
@@ -442,19 +543,19 @@ do
   html_package_opam "${package}" base
 done
 
-cat >> ${RESULT_FILE_MD} <<EOT
-<br>
+cat >> ${RESULT_FILE_TXT} <<EOT
+${BR}
 
-## **Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "IDE level"**
+${H2B}Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "IDE level"${H2E}
 
-The **IDE level** adds an interactive development environment to the **base level**.
+${PB}The ${BB}IDE level${BE} adds an interactive development environment to the ${BB}base level${BE}.${PE}
 
-For beginners, e.g. following introductory tutorials, this level is usually sufficient.
-If you install the **IDE level**, you can later add additional packages individually
-via \`opam install <package-name>\` or rerun the Coq Platform installation script
-and choose the full or extended level.
+${PB}For beginners, e.g. following introductory tutorials, this level is usually sufficient.
+If you install the ${BB}IDE level${BE}, you can later add additional packages individually
+via \`opam install 'package-name'\` or rerun the Coq Platform installation script
+and choose the full or extended level.${PE}
 
-The **IDE level** contains the following package(s):
+${PB}The ${BB}IDE level${BE} contains the following package(s):${PE}
 
 EOT
 
@@ -463,19 +564,19 @@ do
   html_package_opam "${package}" ide
 done
 
-cat >> ${RESULT_FILE_MD} <<EOT
-<br>
+cat >> ${RESULT_FILE_TXT} <<EOT
+${BR}
 
-## **Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "full level"**
+${H2B}Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "full level"${H2E}
 
-The **full level** adds many commonly used coq libraries, plug-ins and
-developments.
+${PB}The ${BB}full level${BE} adds many commonly used coq libraries, plug-ins and
+developments.${PE}
 
-The packages in the **full level** are mature, well maintained
+${PB}The packages in the ${BB}full level${BE} are mature, well maintained
 and suitable as basis for your own developments.
-See the Coq Platform [charter](charter.md) for details.
+See the Coq Platform $(REF 'charter' 'https://github.com/coq/platform/blob/main/charter.md') for details.${PE}
 
-The **full level** contains the following packages:
+${PB}The ${BB}full level${BE} contains the following packages:${PE}
 
 EOT
 
@@ -484,21 +585,21 @@ do
   html_package_opam "${package}" full
 done
 
-cat >> ${RESULT_FILE_MD} <<EOT
-<br>
+cat >> ${RESULT_FILE_TXT} <<EOT
+${BR}
 
-## **Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "optional packages"**
+${H2B}Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "optional packages"${H2E}
 
-The **optional** packages have the same maturity and maintenance level as the
-packages in the full level, but either have a **non open source license** or
-depend on packages with non open source license.
+${PB}The ${BB}optional${BE} packages have the same maturity and maintenance level as the
+packages in the full level, but either have a ${BB}non open source license${BE} or
+depend on packages with non open source license.${PE}
 
-The interactive installation script and the Windows installer explicitly ask
-if you want to install these packages.
+${PB}The interactive installation script and the Windows installer explicitly ask
+if you want to install these packages.${PE}
 
-The macOS and snap installation bundles always include these packages.
+${PB}The macOS and snap installation bundles always include these packages.${PE}
 
-The following packages are **optional**:
+${PB}The following packages are ${BB}optional${BE}:${PE}
 
 EOT
 
@@ -507,22 +608,22 @@ do
   html_package_opam "${package}" optional
 done
 
-cat >> ${RESULT_FILE_MD} <<EOT
-<br>
+cat >> ${RESULT_FILE_TXT} <<EOT
+${BR}
 
-## **Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "extended level"**
+${H2B}Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "extended level"${H2E}
 
-The **extended level** contains packages which are in a beta stage or otherwise
+${PB}The ${BB}extended level${BE} contains packages which are in a beta stage or otherwise
 don't yet have the level of maturity or support required for inclusion in the
 full level, but there are plans to move them to the full level in a future
 release of Coq Platform. The main point of the extended level is advertisement:
-users are important to bring a development from a beta to a release state.
+users are important to bring a development from a beta to a release state.${PE}
 
-The interactive installation script explicitly asks if you want to install these packages.
+${PB}The interactive installation script explicitly asks if you want to install these packages.
 The macOS and snap installation bundles always include these packages.
-The Windows installer also includes them, and they are selected by default.
+The Windows installer also includes them, and they are selected by default.${PE}
 
-The **extended level** contains the following packages:
+${PB}The ${BB}extended level${BE} contains the following packages:${PE}
 
 EOT
 
@@ -531,17 +632,17 @@ do
   html_package_opam "${package}" extended
 done
 
-cat >> ${RESULT_FILE_MD} <<EOT
-<br>
+cat >> ${RESULT_FILE_TXT} <<EOT
+${BR}
 
-## **Dependency packages**
+${H2B}Dependency packages${H2E}
 
-In addition the dependencies listed below are partially or fully included or required during build time.
+${PB}In addition the dependencies listed below are partially or fully included or required during build time.
 Please note, that the version numbers given are the versions of opam packages,
 which do not always match with the version of the supplied packages.
 E.g. some opam packages just refer to latest packages e.g. installed by MacPorts,
 Homebrew or Linux system package managers.
-Please refer to the linked opam package and/or your system package manager for details on what software version is used.
+Please refer to the linked opam package and/or your system package manager for details on what software version is used.${PE}
 
 EOT
 
@@ -550,3 +651,5 @@ for package in ${PACKAGES_ALL}
 do
   html_package_opam "${package}" dependency
 done
+
+echo "${END}" >> ${RESULT_FILE_TXT}
