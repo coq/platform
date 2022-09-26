@@ -32,6 +32,11 @@ source shell_scripts/get_names_from_switch.sh
 DIR_TARGET=windows_installer
 rm -rf "$DIR_TARGET"
 mkdir -p "$DIR_TARGET"
+LOGDIR="$DIR_TARGET/logs" 
+mkdir -p "${LOGDIR}"
+MODDIR="$DIR_TARGET/mods" 
+mkdir -p "${MODDIR}"
+
 ###################### Coq and Coq Platform version ######################
 
 echo "##### Coq Platform release = ${COQ_PLATFORM_RELEASE} version = ${COQ_PLATFORM_PACKAGE_PICK_POSTFIX} #####" 
@@ -205,6 +210,7 @@ function callback_file {
 
   reldir_win_prev="$reldir_win"
 }
+reldir_win_prev=''
 
 ###################### Create installer folder structure ######################
 
@@ -276,7 +282,8 @@ add_files_of_system_package "mingw64-${COQ_ARCH}-adwaita-icon-theme"  \
 "places/folder\|places/user\|status/dialog\|ui/pan\|"\
 "legacy/document\|legacy/go\|legacy/process\|legacy/window\|legacy/system\)" \
 "files_conf-adwaita-icon-theme"
-make_theme_index "${RSRC_ABSDIR}/share/icons/Adwaita/"
+
+make_theme_index "${MODDIR}/share/icons/Adwaita/"
 
 ### GTK compiled schemas
 

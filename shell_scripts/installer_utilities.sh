@@ -69,6 +69,7 @@ function check_spdx_license {
 # $1 = root of the icon theme
 
 function make_theme_index {
+mkdir -p "$1"
 pushd "$1"
 
 cat> index.theme <<'EOT'

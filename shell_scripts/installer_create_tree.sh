@@ -122,7 +122,7 @@ function analyze_package {
     files=${files//(modified since)/}
   fi
 
-  echo "${files}" > logs/"$1".filelist
+  echo "${files}" > "${LOGDIR}/$1".filelist
   for file in $files
   do
     if [ -d "$file" ]

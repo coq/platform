@@ -70,6 +70,7 @@ rm -rf macos_installer/
 mkdir macos_installer/
 cd macos_installer/
 mkdir logs
+LOGDIR=logs
 > logs/macpack.log
 
 ###################### Coq and Coq Platform version ######################
