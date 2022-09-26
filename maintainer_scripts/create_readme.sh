@@ -58,7 +58,7 @@ else
     do
       for postfix in "" ".sh"
       do
-        testname="${prefix1}${prefix2}${COQ_PLATFORM_PACKAGE_PICK_NAME}${postfix}"
+        testname="${prefix1}${prefix2}${COQ_PLATFORM_PACKAGE_PICK_NAME#\~}${postfix}"
         if [ -f "${testname}" ]
         then
           COQ_PLATFORM_PACKAGE_PICK_FILE="${testname}"
