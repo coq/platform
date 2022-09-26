@@ -68,6 +68,12 @@ else
   done
 fi
 
+if [ -z "${COQ_PLATFORM_PACKAGE_PICK_FILE+x}" ]
+then
+  echo "ERROR: package pick ${COQ_PLATFORM_PACKAGE_PICK_NAME} could not be found!"
+  exit 1
+fi
+
 ##### Helpers to switch between HTML and MD output #####
 
 if [ "${RESULT_TYPE}" == 'MD' ]
