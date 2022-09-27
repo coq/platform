@@ -395,7 +395,7 @@ if [ "${CREATEREADME}" == "Y" ]
 then
   echo '##### Create README.html #####'
   pushd ..
-  maintainer_scripts/create_readme.sh -pick="${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}" -html -output=macos_installer/_dmg/README.html -table=macos_installer/_dmg/Packages_and_licenses.csv
+  maintainer_scripts/create_readme.sh -pick="${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}" -installed -html -output=macos_installer/_dmg/README.html -table=macos_installer/_dmg/Packages_and_licenses.csv
   popd
 fi
 

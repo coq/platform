@@ -31,6 +31,7 @@ cd "${ROOT_PATH}"
 CHECKOPAMLINKS='Y'
 COQ_PLATFORM_PACKAGE_PICK_NAME=''
 RESULT_TYPE='MD'
+ONLY_INSTALLED='N'
 
 for arg in "$@"
 do
@@ -42,6 +43,7 @@ do
     -md)                   RESULT_TYPE='MD';;
     -output=*|-o=*)        RESULT_FILE_TXT="${arg#*=}";;
     -table=*|-t=*)         RESULT_FILE_CSV="${arg#*=}";;
+    -installed|-i)         ONLY_INSTALLED='Y';;
     *) echo "Illegal option ${arg}"; exit 1 ;;
   esac
 done
@@ -113,16 +115,32 @@ fi
 # $1 = list
 # $2 = item
 
-function list_contains {
+function slist_contains {
     [[ " $1 " == *" $2 "* ]]
 }
 
-# Check if a list contains an item with prefix
+# Check if a space separated list contains an item with prefix
 # $1 = list
 # $2 = prefix
 
-function list_contains_prefix {
+function slist_contains_prefix {
     [[ " $1 " == *" $2"* ]]
+}
+
+# Interesection of two space separated lists
+# $1 = list A
+# $2 = list B
+
+function slist_intersection {
+  local result=""
+  for item in $1
+  do
+    if slist_contains "$2" "$item"
+    then
+      result="${result} $item"
+    fi
+  done
+  echo "${result}"
 }
 
 # Filter a package list and remove packages from lower levels
@@ -143,7 +161,7 @@ function filter_package_list() {
   packages_filtered=''
   for package in $packages
   do
-    if ! list_contains "${exclude}" "${package}"
+    if ! slist_contains "${exclude}" "${package}"
     then
       packages_filtered="${packages_filtered} ${package}"
     fi
@@ -179,7 +197,7 @@ function check_spdx_license {
   then
       return 0
   else
-    echo "License for package '$2' with name '$1' has no SPDX record" >> WARNINGS.log
+    echo "License for package '$2' with name '$1' has no SPDX record" | tee WARNINGS.log
     return 1
   fi
 }
@@ -293,7 +311,7 @@ source ${ROOT_PATH}/package_picks/coq_platform_switch_name.sh
 
 opam switch "${COQ_PLATFORM_SWITCH_NAME}"
 
-PACKAGES_ALL="$(opam list --installed --short --columns=name,version | sed 's/  */./' | tr -s '\n' ' ')"
+PACKAGES_INSTALLED="$(opam list --installed --short --columns=name,version | sed 's/  */./' | tr -s '\n' ' ')"
 
 ##### Sanity checks #####
 
@@ -302,37 +320,69 @@ PACKAGES_ALL="$(opam list --installed --short --columns=name,version | sed 's/  
 # Check if all packages from the extended platform are in the switch.
 # If this is not the case, dependencies might be missing.
 
+MISSING_PACKAGES=''
+
 for package in ${PACKAGES_EXTENDED}
 do
-  if ! list_contains "${PACKAGES_ALL}" "${package}"
+  if ! slist_contains "${PACKAGES_INSTALLED}" "${package}"
   then
-    echo "ERROR: the package '${package}' is not included in opam switch ${COQ_PLATFORM_SWITCH_NAME}"
-    exit 1
+    echo "WARNING: the package '${package}' is not included in opam switch ${COQ_PLATFORM_SWITCH_NAME}" | tee WARNINGS.log
+    MISSING_PACKAGES="${MISSING_PACKAGES} ${package}"
   fi
 done
 
+if [ -n "${MISSING_PACKAGES}" ]
+then
+  MISSING_PACKAGES="${PB}${BB}ATTENTION: This installation is not a complete Coq Platform installtion. The following packages are not included: ${MISSING_PACKAGES}${BE}${PE}"
+  echo "WARNING: THE OPAM SWITCH DOES NOT CONTAIN ALL PLATFORM PACKAGES"
+fi
+
 ##### Filter package lists #####
 
+echo "========== Package lists before filtering =========="
 echo PACKAGES_BASE="${PACKAGES_BASE}"
 echo PACKAGES_IDE="${PACKAGES_IDE}"
 echo PACKAGES_FULL="${PACKAGES_FULL}"
 echo PACKAGES_OPTIONAL="${PACKAGES_OPTIONAL}"
 echo PACKAGES_EXTENDED="${PACKAGES_EXTENDED}"
-echo PACKAGES_ALL="${PACKAGES_ALL}"
+echo PACKAGES_INSTALLED="${PACKAGES_INSTALLED}"
+echo ""
 
-PACKAGES_ALL="$(filter_package_list "${PACKAGES_ALL}" "${PACKAGES_EXTENDED}" false)"
+PACKAGES_DEPENDENCY="$(filter_package_list "${PACKAGES_INSTALLED}" "${PACKAGES_EXTENDED}" false)"
 PACKAGES_EXTENDED="$(filter_package_list "${PACKAGES_EXTENDED}" "${PACKAGES_OPTIONAL}" true)"
 PACKAGES_OPTIONAL="$(filter_package_list "${PACKAGES_OPTIONAL}" "${PACKAGES_FULL}" true)"
 PACKAGES_FULL="$(filter_package_list "${PACKAGES_FULL}" "${PACKAGES_IDE}" true)"
 PACKAGES_IDE="$(filter_package_list "${PACKAGES_IDE}" "${PACKAGES_BASE}" true)"
 PACKAGES_BASE="$(filter_package_list "${PACKAGES_BASE}" "" true)"
 
+echo "========== Package lists after filtering =========="
 echo PACKAGES_BASE="${PACKAGES_BASE}"
 echo PACKAGES_IDE="${PACKAGES_IDE}"
 echo PACKAGES_FULL="${PACKAGES_FULL}"
 echo PACKAGES_OPTIONAL="${PACKAGES_OPTIONAL}"
 echo PACKAGES_EXTENDED="${PACKAGES_EXTENDED}"
-echo PACKAGES_ALL="${PACKAGES_ALL}"
+echo PACKAGES_DEPENDENCY="${PACKAGES_DEPENDENCY}"
+echo ""
+
+if [ "${ONLY_INSTALLED}" = "Y" ]
+then
+  PACKAGES_DEPENDENCY="$(slist_intersection "${PACKAGES_DEPENDENCY}" "${PACKAGES_INSTALLED}")"
+  PACKAGES_EXTENDED="$(slist_intersection "${PACKAGES_EXTENDED}" "${PACKAGES_INSTALLED}")"
+  PACKAGES_OPTIONAL="$(slist_intersection "${PACKAGES_OPTIONAL}" "${PACKAGES_INSTALLED}")"
+  PACKAGES_FULL="$(slist_intersection "${PACKAGES_FULL}" "${PACKAGES_INSTALLED}")"
+  PACKAGES_IDE="$(slist_intersection "${PACKAGES_IDE}" "${PACKAGES_INSTALLED}")"
+  PACKAGES_BASE="$(slist_intersection "${PACKAGES_BASE}" "${PACKAGES_INSTALLED}" )"
+
+  echo "========== Package lists after installed filtering =========="
+  echo PACKAGES_BASE="${PACKAGES_BASE}"
+  echo PACKAGES_IDE="${PACKAGES_IDE}"
+  echo PACKAGES_FULL="${PACKAGES_FULL}"
+  echo PACKAGES_OPTIONAL="${PACKAGES_OPTIONAL}"
+  echo PACKAGES_EXTENDED="${PACKAGES_EXTENDED}"
+  echo PACKAGES_DEPENDENCY="${PACKAGES_DEPENDENCY}"
+  echo ""
+fi
+
 
 ##### Create one README.md entry #####
 
@@ -389,7 +439,7 @@ function html_package_opam {
   # Elaborate license information
   if [ ${#plicense[@]} -eq 0 ]
   then
-    echo "License for package '${package}' is unspecified" >> WARNINGS.log
+    echo "License for package '${package}' is unspecified" | tee WARNINGS.log
     licensehtml="unknown - please clarify with <a href=\"${phomepage}\" target=\"_blank\">homepage</a>"
     licensecsv="unknown"
   else
@@ -418,7 +468,7 @@ function html_package_opam {
   popam_url="$(opam_get_installed_opam_repo "${prepository}" "$1")"
   if [ "${CHECKOPAMLINKS}" == 'Y' ] && ! check_url "${popam_url}"
   then
-    echo "opam url '${popam_url}' for package '${package}' does not exist!" >> WARNINGS.log
+    echo "opam url '${popam_url}' for package '${package}' does not exist!" | tee WARNINGS.log
   fi
 
   # Create final HTML text for package
@@ -514,6 +564,8 @@ ${BB}base${BE}, ${BB}IDE${BE}, ${BB}full${BE} and ${BB}extended${BE} and a few $
 The sections below provide a short description of each level and the list of
 packages included in each level. Packaged versions of the Coq Platform usually
 contain the ${BB}extended${BE} set with all optional packages.${PE}
+
+${MISSING_PACKAGES}
 
 ${PB}${BB}Note on non-free licenses:${BE} The Coq Platform contains software with
 ${BB}non-free licenses which do not allow commercial use without purchasing a license${BE},
@@ -653,7 +705,7 @@ Please refer to the linked opam package and/or your system package manager for d
 EOT
 
 # sort packages by name, but ignore a "conf-" prefix
-for package in ${PACKAGES_ALL}
+for package in ${PACKAGES_DEPENDENCY}
 do
   html_package_opam "${package}" dependency
 done
