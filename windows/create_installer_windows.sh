@@ -66,6 +66,7 @@ function add_files_of_system_package {
   fi
   if [ -f "$DIR_TARGET/$3.nsh" ]
   then
+    local hasfiles=false
     echo "Adding files from cygwin package $1 ($2; $3; ${4:-})"
     prevfolder="--none--"
     for file in $(cygcheck -l "$1" | grep "$2" | sort -u)
@@ -83,7 +84,15 @@ function add_files_of_system_package {
         mkdir -p "$4/$relfolder"
         ln "$file" "$4/$relpath"
       fi
+      hasfiles=true
     done >> "$DIR_TARGET/$3.nsh"
+    if ! $hasfiles
+    then
+      echo "ERROR: system package $1 is invalid"
+      exit 1
+    fi
+  else
+    echo "INFO: add_files_of_system_package: target $DIR_TARGET/$3.nsh does not exist"
   fi
 }
 
@@ -268,12 +277,20 @@ FILE_SEC_DESCRIPTIONS="$DIR_TARGET"/section_descriptions.nsh
 
 ##### System independent opam file copying #####
 
-OPAM_PACKAGE_EXCLUSION_OVERRIDE_RE="conf-adwaita-icon-theme"
+OPAM_PACKAGE_EXCLUSION_OVERRIDE_RE="conf-gtk3|conf-gtksourceview3|conf-adwaita-icon-theme"
 source "${HERE}"/shell_scripts/installer_create_tree.sh
 
 ##### Find system shared libraries the installed binaries depend on #####
 
 echo '##### Copy system shared libraries #####'
+
+##### Create empty GDK pixbuf loaders cache file #####
+
+# Note: CoqIDE does not need pixbuf loaders (PNG is integratd) - but we need an empty loaders.cache file in the right (GDK version dependent) place
+PIXBUF_LOADER_CACHE_RELPATH="$(cygcheck -l mingw64-x86_64-gdk-pixbuf2.0 | grep loaders.cache | sed 's|.*/mingw/||')"
+mkdir -p "${MODDIR}/${PIXBUF_LOADER_CACHE_RELPATH%/*}" 
+touch "${MODDIR}/${PIXBUF_LOADER_CACHE_RELPATH}"
+add_single_file "${MODDIR}/" "${PIXBUF_LOADER_CACHE_RELPATH}" "files_conf-gtk3"
 
 ###### Add system DLLs to some packages #####
 
