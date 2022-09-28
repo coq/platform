@@ -186,8 +186,8 @@ function add_single_file {
 # callback_package_secondary
 #   $1 = package name
 #   $2 = dependency level
-#   $3 = file whitelist RE
-#   $4 = file blacklist RE
+#   $3 = file inclusion list RE
+#   $4 = file exclusion list RE
 #   Create the installer information for a primary (user visible) or secondary (not user visible) package.
 #   For installers which produce plain images, this is usually empty.
 
