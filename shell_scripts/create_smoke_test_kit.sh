@@ -233,11 +233,11 @@ cat <<-'EOH' | sed -e 's/$/\r/' -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PAC
 	            EXIT /B 1
 	        ) ELSE (
 	            ECHO "Using coqc from C:\bin\PRODUCTNAME\bin"
-	            SET PATH="C:\bin\PRODUCTNAME\bin;%PATH%"
+	            SET "PATH=C:\bin\PRODUCTNAME\bin;%PATH%"
 	        )
 	    ) ELSE (
 	        ECHO "Using coqc from C:\PRODUCTNAME\bin"
-	        SET PATH="C:\PRODUCTNAME\bin;%PATH%"
+	        SET "PATH=C:\PRODUCTNAME\bin;%PATH%"
 	    )
 	)
 	
@@ -245,7 +245,7 @@ cat <<-'EOH' | sed -e 's/$/\r/' -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PAC
 	FOR /F "tokens=* USEBACKQ" %%F IN (`coqc -where`) DO SET COQLIB=%%F
 	
 	REM cd to smoke test folder
-	SET HERE=%CD%
+	SET "HERE=%CD%"
 	CD "%~dp0%"
 	
 	GOTO :run_all_tests
@@ -256,7 +256,7 @@ cat <<-'EOH' | sed -e 's/$/\r/' -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PAC
 	
 	:run_test
 	  ECHO "====================== Running test file %1 ======================"
-	  SET HERESUB=%CD%
+	  SET "HERESUB=%CD%"
 	  CD "%~dp1"
 	  ECHO "coqc %~2 %~nx1"
 	  coqc %~2 %~nx1
