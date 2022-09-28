@@ -57,7 +57,9 @@ PRIMARY_PACKAGES="$(opam list --installed-roots --short --columns=name | grep -v
 OPAM_FILE_INCLUSION_LIST_DEFAULT="."
 
 # Default exclusion list
-OPAM_FILE_EXCLUSION_LIST_DEFAULT="(\.byte|\.cm[aioxt]|\.cmxa|\.cmti|\.[oah]|\.glob|\.ml|\.mli|opam|dune-package)$"
+OPAM_FILE_EXCLUSION_LIST_DEFAULT="(\.byte|\.byte\.exe|\.cm[aioxt]|\.cmxa|\.cmti|\.[oah]|\.glob|\.ml|\.mli|opam|dune-package)$"
+
+# NOTE: we take all files which are included and not excluded
 
 declare -A OPAM_FILE_INCLUSION_LIST
 declare -A OPAM_FILE_EXCLUSION_LIST
@@ -67,21 +69,25 @@ OPAM_FILE_INCLUSION_LIST[lablgtk3-sourceview3]="stubs.dll$" # we keep only the s
 OPAM_FILE_INCLUSION_LIST[cairo2]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
 
 # For compcert we need .h and .a files
-OPAM_FILE_EXCLUSION_LIST[coq-compcert]="(\.byte|\.cm[aioxt]|\.cmxa|\.cmti|\.[o]|\.glob|\.ml|\.mli|opam|dune-package)$"
+OPAM_FILE_EXCLUSION_LIST[coq-compcert]="(\.byte|\.byte\.exe|\.cm[aioxt]|\.cmxa|\.cmti|\.[o]|\.glob|\.ml|\.mli|opam|dune-package)$"
 OPAM_FILE_EXCLUSION_LIST[coq-compcert-32]=OPAM_FILE_EXCLUSION_LIST[coq-compcert]
 
 ###### Lits of packages to ignore #####
 
 # Note: it is more efficient to ignore a package than to exclude / not include all files in it
 
-# OCaml compiler and tools
+# Explicit list of ignored packages
 
-IGNORED_PACKAGES="ocaml"$'\n'"ocaml-variants"$'\n'"ocaml-base-compiler"$'\n'"base"$'\n'"ocaml-compiler-libs"$'\n'"ocaml-config"$'\n'"ocaml-secondary-compiler"$'\n'"ocamlfind-secondary"
-IGNORED_PACKAGES="${IGNORED_PACKAGES}"$'\n'"dune"$'\n'"configurator"$'\n'"sexplib0"$'\n'"csexp"$'\n'"ocamlbuild"$'\n'"cppo"
+OPAM_PACKAGE_EXCLUSION_LIST="ocaml"$'\n'"ocaml-variants"$'\n'"ocaml-base-compiler"$'\n'"base"$'\n'"ocaml-compiler-libs"$'\n'"ocaml-config"$'\n'"ocaml-secondary-compiler"$'\n'"ocamlfind-secondary"
+OPAM_PACKAGE_EXCLUSION_LIST="${OPAM_PACKAGE_EXCLUSION_LIST}"$'\n'"dune"$'\n'"configurator"$'\n'"sexplib0"$'\n'"csexp"$'\n'"ocamlbuild"$'\n'"cppo"
 
 # Regexp for packages to ignore
 
-IGNORED_PACKAGES_RE="^conf-"
+OPAM_PACKAGE_EXCLUSION_RE="^conf-"
+
+# Some systems override some package exclusions
+
+OPAM_PACKAGE_EXCLUSION_OVERRIDE_RE="${OPAM_PACKAGE_EXCLUSION_OVERRIDE_RE:-}"
 
 ###### Function for analyzing one package #####
 
@@ -131,9 +137,13 @@ function analyze_package {
     elif [ -f "$file" ]
     then
       relpath="${file#$OPAM_PREFIX}"
-      reldir="$(dirname $relpath})"
-      filename="$(basename $relpath})"
-      callback_file $1 "${file}"  "${reldir}" "${filename}"
+      # using dirname and basename is terribly slow on cygwin (minutes for all files in coq)
+      # reldir="$(dirname $relpath})"
+      # filename="$(basename $relpath})"
+      reldir="${relpath%/*}"
+      filename="${relpath##*/})"
+
+      callback_file $1 "${file}" "${reldir}" "${filename}"
     else
       echo "In package '$1' the file '$file' does not exist"
       exit 1
@@ -146,20 +156,27 @@ function analyze_package {
   dependencies="$(opam list --required-by=$1 --short --installed)"
   for dependency in $dependencies
   do
-    # Check if dependency is visible or hidden and write dependency checker macro call in respective NSIS include file
-    if list_contains "$PRIMARY_PACKAGES" "$dependency"
+    local included=false
+    # Unless the dependency is excluded, record the dependency
+    if ! list_contains "$OPAM_PACKAGE_EXCLUSION_LIST" "$dependency" && [[ ! "$dependency" =~ ${OPAM_PACKAGE_EXCLUSION_RE} ]] || [[ "$dependency" =~ ${OPAM_PACKAGE_EXCLUSION_OVERRIDE_RE} ]]
     then
-      callback_dependency_primary "$1" "$2"
-    else
-      callback_dependency_secondary "$1" "$2"
+      included=true
+      # Check if dependency is visible or hidden and write dependency checker macro call in respective NSIS include file
+      if list_contains "$PRIMARY_PACKAGES" "$dependency"
+      then
+        callback_dependency_primary "$1" "$dependency"
+      else
+        callback_dependency_secondary "$1" "$dependency"
+      fi
     fi
 
+    # If the dependency is not yet processed, process it
     if ! list_contains "$PACKAGES_DONE" "$dependency"
     then
-      # Even if th package is excluded by IGNORED_PACKAGES_RE, we still want it in the list
+      # Even if the package is excluded by OPAM_PACKAGE_EXCLUSION_RE, we still want it in the list
       # so that we can produce an accurate dependency list
       PACKAGES_DONE="$PACKAGES_DONE"$'\n'"$dependency"
-      if [[ ! "$dependency" =~ ${IGNORED_PACKAGES_RE} ]]
+      if $included
       then
         analyze_package "$dependency" $(($2 + 1))
       fi
@@ -176,10 +193,10 @@ echo '##### Copy opam packages #####'
 echo 'PRIMARY PACKAGES'
 echo "$PRIMARY_PACKAGES"
 echo 'IGNORED PACKAGES'
-echo "$IGNORED_PACKAGES"
+echo "$OPAM_PACKAGE_EXCLUSION_LIST"
 
 # The initial list of already processed, otherwise processed or ignored packages
-PACKAGES_DONE="$PRIMARY_PACKAGES"$'\n'"$IGNORED_PACKAGES"
+PACKAGES_DONE="$PRIMARY_PACKAGES"$'\n'"$OPAM_PACKAGE_EXCLUSION_LIST"
 
 for package in $PRIMARY_PACKAGES
 do

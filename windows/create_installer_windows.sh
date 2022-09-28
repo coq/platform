@@ -50,6 +50,7 @@ echo "##### Coq Platform release = ${COQ_PLATFORM_RELEASE} version = ${COQ_PLATF
 # $1 = package name
 # $2 = regexp filter (grep)
 # $3 = file list file name
+# $4 = path to copy files to in addition (for further analysis), optional
 # Note:
 # This function strips common prefixes in the destination.
 # Currently only one prefix is stripped:
@@ -59,20 +60,29 @@ echo "##### Coq Platform release = ${COQ_PLATFORM_RELEASE} version = ${COQ_PLATF
 # package could have several prefixes
 
 function add_files_of_system_package {
+  if [ -n "${4:-}" ]
+  then
+    mkdir -p "$4"
+  fi
   if [ -f "$DIR_TARGET/$3.nsh" ]
   then
-    echo "Adding files from cygwin package $1"
-    prevpath="--none--"
+    echo "Adding files from cygwin package $1 ($2; $3; ${4:-})"
+    prevfolder="--none--"
     for file in $(cygcheck -l "$1" | grep "$2" | sort -u)
     do
       relpath="${file#/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/}"
-      relpath="${relpath%/*}"
-      if [ "$relpath" != "$prevpath" ]
+      relfolder="${relpath%/*}"
+      if [ "$relfolder" != "$prevfolder" ]
       then
-        echo 'SetOutPath $INSTDIR\'"$(cygpath -w "$relpath")"
-        prevpath="$relpath"
+        echo 'SetOutPath $INSTDIR\'"$(cygpath -w "$relfolder")"
+        prevfolder="$relfolder"
       fi
       echo -n "FILE "; cygpath -aw "$file";
+      if [ -n "${4:-}" ]
+      then
+        mkdir -p "$4/$relfolder"
+        ln "$file" "$4/$relpath"
+      fi
     done >> "$DIR_TARGET/$3.nsh"
   fi
 }
@@ -108,15 +118,15 @@ function add_folder_recursively {
   if [ -f "$DIR_TARGET/$3.nsh" ]
   then
     echo "Adding files from folder $1/$2"
-    prevpath="--none--"
+    prevfolder="--none--"
     for file in $(find $1$2 -type f | sort -u)
     do
       relpath="${file#$1}"
-      relpath="${relpath%/*}"
-      if [ "$relpath" != "$prevpath" ]
+      relfolder="${relpath%/*}"
+      if [ "$relfolder" != "$prevfolder" ]
       then
-        echo 'SetOutPath $INSTDIR\'"$(cygpath -w "$relpath")"
-        prevpath="$relpath"
+        echo 'SetOutPath $INSTDIR\'"$(cygpath -w "$relfolder")"
+        prevfolder="$relfolder"
       fi
       echo -n "FILE "; cygpath -aw "$file";
     done >> "$DIR_TARGET/$3.nsh"
@@ -143,8 +153,8 @@ function add_single_file {
 # callback_package_secondary
 #   $1 = package name
 #   $2 = dependency level
-#   $3 = file whitelist RE
-#   $4 = file blacklist RE
+#   $3 = file inclusion list RE
+#   $4 = file exclusion list RE
 #   Create the installer information for a primary (user visible) or secondary (not user visible) package.
 #   For installers which produce plain images, this is usually empty.
 
@@ -152,6 +162,7 @@ function callback_package_primary {
   # This is a user visible package which can be explicitly selected or deselected
   echo "Section \"$1\" Sec_${1//-/_}" >> "$FILE_SEC_VISIBLE"
   echo 'SetOutPath "$INSTDIR\"' >> "$FILE_SEC_VISIBLE"
+  reldir_win_prev=''
   echo "!include \"files_$1.nsh\"" >> "$FILE_SEC_VISIBLE"
   echo "SectionEnd" >> "$FILE_SEC_VISIBLE"
 
@@ -167,6 +178,7 @@ function callback_package_secondary {
   # This is a hidden section which is selected automatically by dependency
   echo "Section \"-$1\" Sec_${1//-/_}" >> "$FILE_SEC_HIDDEN"
   echo 'SetOutPath "$INSTDIR\"' >> "$FILE_SEC_HIDDEN"
+  reldir_win_prev=''
   echo "!include \"files_$1.nsh\"" >> "$FILE_SEC_HIDDEN"
   echo "SectionEnd" >> "$FILE_SEC_HIDDEN"
 
@@ -205,12 +217,10 @@ function callback_file {
   if [ "$reldir_win" != "$reldir_win_prev" ]
   then
     echo SetOutPath "\$INSTDIR$reldir_win" >> "$DIR_TARGET"/files_$1.nsh
+    reldir_win_prev="$reldir_win"
   fi
   echo FILE "$file_win" >> "$DIR_TARGET"/files_$1.nsh
-
-  reldir_win_prev="$reldir_win"
 }
-reldir_win_prev=''
 
 ###################### Create installer folder structure ######################
 
@@ -258,6 +268,7 @@ FILE_SEC_DESCRIPTIONS="$DIR_TARGET"/section_descriptions.nsh
 
 ##### System independent opam file copying #####
 
+OPAM_PACKAGE_EXCLUSION_OVERRIDE_RE="conf-adwaita-icon-theme"
 source "${HERE}"/shell_scripts/installer_create_tree.sh
 
 ##### Find system shared libraries the installed binaries depend on #####
@@ -283,7 +294,8 @@ add_files_of_system_package "mingw64-${COQ_ARCH}-adwaita-icon-theme"  \
 "legacy/document\|legacy/go\|legacy/process\|legacy/window\|legacy/system\)" \
 "files_conf-adwaita-icon-theme"
 
-make_theme_index "${MODDIR}/share/icons/Adwaita/"
+#"${MODDIR}/share/icons/Adwaita/"
+# make_theme_index "${MODDIR}/share/icons/Adwaita/"
 
 ### GTK compiled schemas
 
@@ -300,12 +312,6 @@ add_single_file "/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/" "share/glib-2.0/s
 # But since the complete set is compressed not that large, we add the complete set
 
 add_folder_recursively "/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/" "share/gtksourceview-3.0" "files_dep-gtksourceview3"
-
-###### Create dependency reset/selection/deselection include files #####
-
-sort_dependencies "$FILE_DEP_HIDDEN.in" "$FILE_DEP_HIDDEN" 'CheckHiddenSectionDependency' "$FILE_RES_HIDDEN" -r
-sort_dependencies "$FILE_DEP_VISIBLE.in" "$FILE_VISIBLE_SEL" 'SectionVisibleSelect' /dev/null -r
-sort_dependencies "$FILE_DEP_VISIBLE.in" "$FILE_VISIBLE_DESEL" 'SectionVisibleDeSelect' /dev/null ""
 
 ###################### Create installer ######################
 
@@ -352,6 +358,12 @@ function sort_dependencies
     }' | sort $5 -n | awk "
     { print \"\${$3}\", \"\${Sec_\"\$2\"}\", \"\${Sec_\"\$3\"}\", \"'\"\$2\"'\", \"'\"\$3\"'\"; }" > "$2"
 }
+
+###### Create dependency reset/selection/deselection include files #####
+
+sort_dependencies "$FILE_DEP_HIDDEN.in" "$FILE_DEP_HIDDEN" 'CheckHiddenSectionDependency' "$FILE_RES_HIDDEN" -r
+sort_dependencies "$FILE_DEP_VISIBLE.in" "$FILE_VISIBLE_SEL" 'SectionVisibleSelect' /dev/null -r
+sort_dependencies "$FILE_DEP_VISIBLE.in" "$FILE_VISIBLE_DESEL" 'SectionVisibleDeSelect' /dev/null ""
 
 ###### Create the NSIS installer #####
 
