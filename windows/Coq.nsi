@@ -494,7 +494,7 @@ Section "Uninstall"
   ; Registry keys
   DeleteRegKey HKCU "Software\${MY_PRODUCT}"
   DeleteRegKey HKLM "SOFTWARE\Coq"
-  DeleteRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Coq"
+  DeleteRegKey HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\${MY_PRODUCT}"
   ${unregisterExtension} ".v" "Coq Script File"
 
   ; Root folders
