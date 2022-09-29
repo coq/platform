@@ -7,6 +7,8 @@ cygwin_cache/
 macos_installer/
 smoke-test-kit/
 source-statistics/
+snap/
+*.snap
 maintainer_scripts/ci_package_list.sh
 maintainer_scripts/patched_package_list.sh
 WARNINGS.LOG

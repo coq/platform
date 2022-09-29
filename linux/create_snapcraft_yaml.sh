@@ -13,23 +13,35 @@
 # This script creates snap craft yaml file from which a
 # snap based Linux installer is created in a later step
 
-###################### GATHER INFORMATION #####################
+###################### Preliminaries ######################
 
-# Run the Coq Platform setup scripts but stop just after the installation of
-# opam and setting up the switch but before installing packages.
-# The purpose of this is not to setup the Coq Platform - this is done when
-# the snapcraft.yaml file is run - but to gather information about the
-# Coq Platform, e.g. the package lists.
-# We also setup opam, since we get package descriptions from opam.
+echo "##### Create snap/scnapcraft.yml #####"
+
+###### Script safety ######
+
+set -o nounset
+set -o errexit
+
+##### Initialization #####
 
 cd "$(dirname "$0")/.."
-COQ_PLATFORM_OPAM_ONLY=y
-source coq_platform_make.sh
+source "shell_scripts/init_machine_type.sh"
+source "shell_scripts/init_utilities.sh"
+
+##### Parameters #####
+
+source "shell_scripts/parse_cmdline_arguments.sh"
+
+##### Get pick and release information #####
+
+source "package_picks/coq_platform_release.sh"
+source "${COQ_PLATFORM_PACKAGE_PICK_FILE}"
+source "package_picks/coq_platform_switch_name.sh"
 
 # Snap versions cannot contain . nor +
 PLATFORM_RELEASE=${COQ_PLATFORM_RELEASE//[.+]/-}
 
-###################### CREATE SNAPCRAFT.YAML #####################
+###################### Create snapcraft.yaml #####################
 
 # Description of the snap
 COQ_DESCRIPTION=`mktemp`
@@ -77,6 +89,22 @@ sed \
 
 echo "INFO: filled in snap/gui/coqide.desktop"
 
-echo -e "Done, now run:\n\tsnapcraft snap"
+echo ""
+echo "If you want to restart the snap creation from scratch after chaging the scripts, run first:"
+echo "  snapcraft clean"
+echo ""
+echo "Then run - depending on the resources you want to give to the snap VM:"
+echo "  SNAPCRAFT_BUILD_ENVIRONMENT_CPU=2  SNAPCRAFT_BUILD_ENVIRONMENT_MEMORY=4G  snapcraft snap"
+echo "  SNAPCRAFT_BUILD_ENVIRONMENT_CPU=3  SNAPCRAFT_BUILD_ENVIRONMENT_MEMORY=6G  snapcraft snap"
+echo "  SNAPCRAFT_BUILD_ENVIRONMENT_CPU=6  SNAPCRAFT_BUILD_ENVIRONMENT_MEMORY=12G snapcraft snap"
+echo "  SNAPCRAFT_BUILD_ENVIRONMENT_CPU=12 SNAPCRAFT_BUILD_ENVIRONMENT_MEMORY=24G snapcraft snap"
+echo "  SNAPCRAFT_BUILD_ENVIRONMENT_CPU=24 SNAPCRAFT_BUILD_ENVIRONMENT_MEMORY=48G snapcraft snap"
+echo "  SNAPCRAFT_BUILD_ENVIRONMENT_CPU=48 SNAPCRAFT_BUILD_ENVIRONMENT_MEMORY=96G snapcraft snap"
+echo "ATTENTION: this must fit the -jobs option you gave ($COQ_PLATFORM_JOBS)!"
+echo "You need about twice the number of cores in the VM (and according memory) as the -jobs value."
+echo "The values suggested above are tested and leave you a bit of resources on a machine with 2^n memory."
+echo ""
+echo "To install the created snap run"
+echo "  snap install --dangerous coq-prover_${PLATFORM_RELEASE}_amd64.snap"
 
 rm -f $COQ_DESCRIPTION

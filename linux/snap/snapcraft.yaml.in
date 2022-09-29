@@ -16,26 +16,13 @@ parts:
     source: .
     source-type: local
     override-build: |
-      if [ -d $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/ ]; then exit 0; fi
+      if [ -d $SNAPCRAFT_PART_INSTALL/coq-platform/ ]; then exit 0; fi
       # build
       echo "COQ_PLATFORM_RELEASE=@@PLATFORM_RELEASE@@" >> package_picks/coq_platform_release.sh
       echo "COQ_PLATFORM_SWITCH_NAME=@@PLATFORM_RELEASE@@" >> package_picks/coq_platform_switch_name.sh
       echo "COQ_PLATFORM_REPO_NAME=@@PLATFORM_RELEASE@@" >> package_picks/coq_platform_switch_name.sh
-      COQREGTESTING=y OPAMROOT=$SNAPCRAFT_PART_INSTALL/coq-platform/ ./coq_platform_make.sh @@PLATFORM_ARGS@@ -dumplogs
-      # cleanup
-      OPAMROOT=$SNAPCRAFT_PART_INSTALL/coq-platform/ opam clean
-      # remove byte code executables, static libraries and Coq glob files
-      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/ \( -name '*.byte.exe' -o -name '*.byte' -o -name '*.cm[aioxt]' -o -name '*.cmxa' -o -name '*.[oa]' -o -name '*.cmti' -o -name '*.glob' \) -type f -delete
-      # remove ocaml files under OPAMROOT/bin 
-      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/bin/ \( -name 'ocaml*' -o -name 'camlp5*' -o -name 'mkcamlp5' -o -name 'ocpp5' -o -name 'cppo' -o -name 'safe_camlp4' -o -name 'ppxfind' -o -name 'gdk_pixbuf_mlsource3' -o -name 'lablgladecc3' \) -type f -delete
-      # remove all folders under OPAMROOT/lib, except coq*, stublibs, stdlib-shims, elpi, z3 and menhir
-      find $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/lib/ -maxdepth 1 -mindepth 1 \! \( -name 'coq*' -o -name 'stublibs' -o -name 'stdlib-shims' -o -name 'elpi' -o -name 'z3' -name 'menhir*' \) -type d -exec rm -rf {} \;
-      rm -rf $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/share/ocaml-secondary-compiler
-      rm -rf $SNAPCRAFT_PART_INSTALL/coq-platform/repo/
-      ##### Patch ocamlfind META files - the exists_if lines usually reference compile time libs
-      find "$SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/lib/" -name "META" | xargs -n 1 sed -i".bak" 's/^ *exists_if.*//'
-      find "$SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/lib/" -name "META.bak" -delete
-
+      COQREGTESTING=y ./coq_platform_make.sh @@PLATFORM_ARGS@@ -dumplogs
+      linux/snap/create_image_snap.sh -dest=$SNAPCRAFT_PART_INSTALL/coq-platform/ 
 
   wrapper:
     plugin: nil
@@ -44,13 +31,13 @@ parts:
     source-type: local
     override-build: |
       # install wrapper for apps
-      mkdir -p $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/bin/
-      cp linux/snap/coq_wrapper $SNAPCRAFT_PART_INSTALL/coq-platform/@@PLATFORM_RELEASE@@/bin/
+      mkdir -p $SNAPCRAFT_PART_INSTALL/coq-platform/bin/
+      cp linux/snap/coq_wrapper $SNAPCRAFT_PART_INSTALL/coq-platform/bin/
 
 apps:
   coqide:
-    command-chain: [ coq-platform/@@PLATFORM_RELEASE@@/bin/coq_wrapper ]
-    command: coq-platform/@@PLATFORM_RELEASE@@/bin/coqide
+    command-chain: [ coq-platform/bin/coq_wrapper ]
+    command: coq-platform/bin/coqide
     plugs:
     - home
     - desktop
@@ -62,19 +49,19 @@ apps:
     extensions: [gnome-3-28]
   coqtop:
     plugs: [home]
-    command-chain: [ coq-platform/@@PLATFORM_RELEASE@@/bin/coq_wrapper ]
-    command: coq-platform/@@PLATFORM_RELEASE@@/bin/coqtop
+    command-chain: [ coq-platform/bin/coq_wrapper ]
+    command: coq-platform/bin/coqtop
   coqc:
     plugs: [home]
-    command-chain: [ coq-platform/@@PLATFORM_RELEASE@@/bin/coq_wrapper ]
-    command: coq-platform/@@PLATFORM_RELEASE@@/bin/coqc
+    command-chain: [ coq-platform/bin/coq_wrapper ]
+    command: coq-platform/bin/coqc
   coq-makefile:
     plugs: [home]
-    command-chain: [ coq-platform/@@PLATFORM_RELEASE@@/bin/coq_wrapper ]
-    command: coq-platform/@@PLATFORM_RELEASE@@/bin/coq_makefile
+    command-chain: [ coq-platform/bin/coq_wrapper ]
+    command: coq-platform/bin/coq_makefile
   coqidetop:
     plugs: [home,network-bind]
-    command-chain: [ coq-platform/@@PLATFORM_RELEASE@@/bin/coq_wrapper ]
-    command: coq-platform/@@PLATFORM_RELEASE@@/bin/coqidetop.opt
+    command-chain: [ coq-platform/bin/coq_wrapper ]
+    command: coq-platform/bin/coqidetop.opt
 
 
