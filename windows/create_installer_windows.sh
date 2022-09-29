@@ -1,28 +1,242 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# This script creates a Windows NSIS MSI installer from the current set of installed opam Coq packages
+###################### COPYRIGHT/COPYLEFT ######################
+
+# Released to the public under the
+# Creative Commons CC0 1.0 Universal License
+# See https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt
+
+###################### CREATE WINDOWS NSIS Installer ######################
+
+###################### Preliminaries ######################
+
+echo "##### Building Windows NSIS installer #####"
+
+###### Script safety ######
 
 set -o nounset
 set -o errexit
+HERE="$(pwd)"
+
+###### Common utilities ######
+
+source shell_scripts/installer_utilities.sh
 
 ##### Get the release and package pick of the Coq Platform #####
 
 source shell_scripts/get_names_from_switch.sh
 
+
+###### Create root folder #####
+
+DIR_TARGET=windows_installer
+rm -rf "$DIR_TARGET"
+mkdir -p "$DIR_TARGET"
+LOGDIR="$DIR_TARGET/logs" 
+mkdir -p "${LOGDIR}"
+MODDIR="$DIR_TARGET/mods" 
+mkdir -p "${MODDIR}"
+
+###################### Coq and Coq Platform version ######################
+
 echo "##### Coq Platform release = ${COQ_PLATFORM_RELEASE} version = ${COQ_PLATFORM_PACKAGE_PICK_POSTFIX} #####" 
 
-##### Files and folders #####
 
-# The opam prefix - stripped from absolute paths to create relative paths
-OPAM_PREFIX="$(opam conf var prefix)"
+
+###################### Handle system packages ######################
+
+##### Add files from a system package using package name and grep filter #####
+
+# $1 = package name
+# $2 = regexp filter (grep)
+# $3 = file list file name
+# $4 = path to copy files to in addition (for further analysis), optional
+# Note:
+# This function strips common prefixes in the destination.
+# Currently only one prefix is stripped:
+#   /usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/
+# In case there are additional prefixes to skip add them here.
+# It doesn't make much sense to have a prefix parameter, because one
+# package could have several prefixes
+
+function add_files_of_system_package {
+  if [ -n "${4:-}" ]
+  then
+    mkdir -p "$4"
+  fi
+  if [ -f "$DIR_TARGET/$3.nsh" ]
+  then
+    local hasfiles=false
+    echo "Adding files from cygwin package $1 ($2; $3; ${4:-})"
+    prevfolder="--none--"
+    for file in $(cygcheck -l "$1" | grep "$2" | sort -u)
+    do
+      relpath="${file#/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/}"
+      relfolder="${relpath%/*}"
+      if [ "$relfolder" != "$prevfolder" ]
+      then
+        echo 'SetOutPath $INSTDIR\'"$(cygpath -w "$relfolder")"
+        prevfolder="$relfolder"
+      fi
+      echo -n "FILE "; cygpath -aw "$file";
+      if [ -n "${4:-}" ]
+      then
+        mkdir -p "$4/$relfolder"
+        ln "$file" "$4/$relpath"
+      fi
+      hasfiles=true
+    done >> "$DIR_TARGET/$3.nsh"
+    if ! $hasfiles
+    then
+      echo "ERROR: system package $1 is invalid"
+      exit 1
+    fi
+  else
+    echo "INFO: add_files_of_system_package: target $DIR_TARGET/$3.nsh does not exist"
+  fi
+}
+
+###################### Handle shared library dependencies ######################
+
+# Find shared library dependencies using ldd to find them
+# $1 = full path to executable
+# $2 = regexp filter (grep)
+# $3 = file list file name
+
+function add_shared_library_dependencies {
+  if [ -f "$DIR_TARGET/$3.nsh" ]
+  then
+    echo "Adding shared libraries for $1"
+    echo 'SetOutPath $INSTDIR\bin' >> "$DIR_TARGET/$3.nsh"
+    for file in $(ldd $(which "$1") | cut -d ' ' -f 3 | grep "$2" | sort -u)
+    do
+      echo -n "FILE "; cygpath -aw "$file";
+    done >> "$DIR_TARGET/$3.nsh"
+  fi
+}
+
+###################### Adding stuff manually ######################
+
+##### Add a folder recursively #####
+
+# $1 = path prefix (absolute cygwin format, must end with /)
+# $2 = relative path to $1 (must not start with /)
+# $3 file list file name
+
+function add_folder_recursively {
+  if [ -f "$DIR_TARGET/$3.nsh" ]
+  then
+    echo "Adding files from folder $1/$2"
+    prevfolder="--none--"
+    for file in $(find $1$2 -type f | sort -u)
+    do
+      relpath="${file#$1}"
+      relfolder="${relpath%/*}"
+      if [ "$relfolder" != "$prevfolder" ]
+      then
+        echo 'SetOutPath $INSTDIR\'"$(cygpath -w "$relfolder")"
+        prevfolder="$relfolder"
+      fi
+      echo -n "FILE "; cygpath -aw "$file";
+    done >> "$DIR_TARGET/$3.nsh"
+  fi
+}
+
+##### Add a single file #####
+
+# $1 = path prefix (absolute cygwin format)
+# $2 = relative path to $1
+# $3 file list file name
+
+function add_single_file {
+  if [ -f "$DIR_TARGET/$3.nsh" ]
+  then
+    echo 'SetOutPath $INSTDIR\'"$(dirname "$(cygpath -w "$2")")" >> "$DIR_TARGET/$3.nsh"
+    echo -n "FILE $(cygpath -aw "$1$2")" >> "$DIR_TARGET/$3.nsh"
+  fi
+}
+
+###################### Callback functions for package analyzer ######################
+
+# callback_package_primary
+# callback_package_secondary
+#   $1 = package name
+#   $2 = dependency level
+#   $3 = file inclusion list RE
+#   $4 = file exclusion list RE
+#   Create the installer information for a primary (user visible) or secondary (not user visible) package.
+#   For installers which produce plain images, this is usually empty.
+
+function callback_package_primary {
+  # This is a user visible package which can be explicitly selected or deselected
+  echo "Section \"$1\" Sec_${1//-/_}" >> "$FILE_SEC_VISIBLE"
+  echo 'SetOutPath "$INSTDIR\"' >> "$FILE_SEC_VISIBLE"
+  reldir_win_prev=''
+  echo "!include \"files_$1.nsh\"" >> "$FILE_SEC_VISIBLE"
+  echo "SectionEnd" >> "$FILE_SEC_VISIBLE"
+
+  descr="$(opam show --field=synopsis "$1")"
+  descr="${descr//\"/\'}"
+  echo 'LangString DESC_'"${1//-/_}"' ${LANG_ENGLISH} "'"$descr"'"' >> "$FILE_STRINGS"
+  echo '!insertmacro MUI_DESCRIPTION_TEXT ${Sec_'"${1//-/_}"'} $(DESC_'"${1//-/_}"')' >> "$FILE_SEC_DESCRIPTIONS"
+
+  echo "# File list for $1 including $3 and excluding $4" > "$DIR_TARGET"/files_$1.nsh
+}
+
+function callback_package_secondary {
+  # This is a hidden section which is selected automatically by dependency
+  echo "Section \"-$1\" Sec_${1//-/_}" >> "$FILE_SEC_HIDDEN"
+  echo 'SetOutPath "$INSTDIR\"' >> "$FILE_SEC_HIDDEN"
+  reldir_win_prev=''
+  echo "!include \"files_$1.nsh\"" >> "$FILE_SEC_HIDDEN"
+  echo "SectionEnd" >> "$FILE_SEC_HIDDEN"
+
+  echo "# File list for $1 including $3 and excluding $4" > "$DIR_TARGET"/files_$1.nsh
+}
+
+# callback_dependency_primary
+# callback_dependency_secondary
+#   $1 = package which depends on $2
+#   $2 = package on which $1 depends
+#   Create the installer information for a primary (user visible) or secondary (not user visible) package dependency.
+#   For installers which produce plain images, this is usually empty.
+
+function callback_dependency_primary {
+  # This is a user visible package which can be explicitly selected or deselected
+  echo "${1//-/_}" "${2//-/_}" >> "$FILE_DEP_VISIBLE.in"
+}
+
+function callback_dependency_secondary {
+  # This is a hidden dependency package
+  echo "${1//-/_}" "${2//-/_}" >> "$FILE_DEP_HIDDEN.in"
+}
+
+# callback_file
+#   $1 = package name
+#   $2 = absolute path to source file (in .opam)
+#   $3 = relative path (without name)
+#   $4 = file name
+#   Create the installer information for a single file.
+#   This either copies the file or creates a file reference in an installer description file
+
+function callback_file {
+  file_win="${2//\//\\}"
+  reldir_win="${3//\//\\}"
+
+  if [ "$reldir_win" != "$reldir_win_prev" ]
+  then
+    echo SetOutPath "\$INSTDIR$reldir_win" >> "$DIR_TARGET"/files_$1.nsh
+    reldir_win_prev="$reldir_win"
+  fi
+  echo FILE "$file_win" >> "$DIR_TARGET"/files_$1.nsh
+}
+
+###################### Create installer folder structure ######################
 
 # The architecture
 COQ_ARCH=$(uname -m)
 
 # The folder for the windows installer stuff
-DIR_TARGET=windows_installer
-rm -rf "$DIR_TARGET"
-mkdir -p "$DIR_TARGET"
 
 # The NSIS include file for the visible installer sections
 FILE_SEC_VISIBLE="$DIR_TARGET"/sections_visible.nsh
@@ -58,242 +272,65 @@ FILE_STRINGS="$DIR_TARGET"/strings.nsh
 FILE_SEC_DESCRIPTIONS="$DIR_TARGET"/section_descriptions.nsh
 > "$FILE_SEC_DESCRIPTIONS"
 
-##### Utility functions #####
 
-# Check if a newline searated list contains an item
-# $1 = list
-# $2 = item
+###################### TOP LEVEL FILE GATHERING ######################
 
-function list_contains {
-#   This variant does not work when $2 contains regexp chars like conf-g++
-#   [[ $1 =~ (^|[[:space:]])$2($|[[:space:]]) ]]
-    [[ $'\n'"$1"$'\n' == *$'\n'"$2"$'\n'* ]]
-}
+##### System independent opam file copying #####
 
-# Add dlls for an executable using ldd to find them
-# $1 = executable name
-# $2 = regexp filter (grep)
-# $3 = file list file name
+OPAM_PACKAGE_EXCLUSION_OVERRIDE_RE="conf-gtk3|conf-gtksourceview3|conf-adwaita-icon-theme"
+source "${HERE}"/shell_scripts/installer_create_tree.sh
 
-function add_dlls_using_ldd {
-  if [ -f "$DIR_TARGET/$3.nsh" ]
-  then
-    echo "Adding DLLs for $1"
-    echo 'SetOutPath $INSTDIR\bin' >> "$DIR_TARGET/$3.nsh"
-    for file in $(ldd $(which "$1") | cut -d ' ' -f 3 | grep "$2" | sort -u)
-    do
-      echo -n "FILE "; cygpath -aw "$file";
-    done >> "$DIR_TARGET/$3.nsh"
-  fi
-}
+##### Find system shared libraries the installed binaries depend on #####
 
-# Add files from a cygwin package using package name and grp filter
-# $1 = cygwin package name
-# $2 = regexp filter (grep)
-# $3 = file list file name
-# Note:
-# This function strips common prefixes in the destination.
-# Currently only one prefix is stripped:
-#   /usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/
-# In case there are additional prefixes to skip add them here.
-# It doesn't make much sense to have a prefix parameter, because one
-# package could have several prefixes
+echo '##### Copy system shared libraries #####'
 
-function add_files_using_cygwin_package {
-  if [ -f "$DIR_TARGET/$3.nsh" ]
-  then
-    echo "Adding files from cygwin package $1"
-    prevpath="--none--"
-    for file in $(cygcheck -l "$1" | grep "$2" | sort -u)
-    do
-      relpath="${file#/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/}"
-      relpath="${relpath%/*}"
-      if [ "$relpath" != "$prevpath" ]
-      then
-        echo 'SetOutPath $INSTDIR\'"$(cygpath -w "$relpath")"
-        prevpath="$relpath"
-      fi
-      echo -n "FILE "; cygpath -aw "$file";
-    done >> "$DIR_TARGET/$3.nsh"
-  fi
-}
+##### Create empty GDK pixbuf loaders cache file #####
 
-# Add a folder recursively
-# $1 = path prefix (absolute cygwin format, must end with /)
-# $2 = relative path to $1 (must not start with /)
-# $3 file list file name
+# Note: CoqIDE does not need pixbuf loaders (PNG is integratd) - but we need an empty loaders.cache file in the right (GDK version dependent) place
+PIXBUF_LOADER_CACHE_RELPATH="$(cygcheck -l mingw64-x86_64-gdk-pixbuf2.0 | grep loaders.cache | sed 's|.*/mingw/||')"
+mkdir -p "${MODDIR}/${PIXBUF_LOADER_CACHE_RELPATH%/*}" 
+touch "${MODDIR}/${PIXBUF_LOADER_CACHE_RELPATH}"
+add_single_file "${MODDIR}/" "${PIXBUF_LOADER_CACHE_RELPATH}" "files_conf-gtk3"
 
-function add_foler_recursively {
-  if [ -f "$DIR_TARGET/$3.nsh" ]
-  then
-    echo "Adding files from folder $1/$2"
-    prevpath="--none--"
-    for file in $(find $1$2 -type f | sort -u)
-    do
-      relpath="${file#$1}"
-      relpath="${relpath%/*}"
-      if [ "$relpath" != "$prevpath" ]
-      then
-        echo 'SetOutPath $INSTDIR\'"$(cygpath -w "$relpath")"
-        prevpath="$relpath"
-      fi
-      echo -n "FILE "; cygpath -aw "$file";
-    done >> "$DIR_TARGET/$3.nsh"
-  fi
-}
+###### Add system DLLs to some packages #####
 
-# Add a single file
-# $1 = path prefix (absolute cygwin format)
-# $2 = relative path to $1
-# $3 file list file name
+add_shared_library_dependencies "coqc" "/usr/${COQ_ARCH}-w64-mingw32/sys-root/" "files_coq"
+add_shared_library_dependencies "coqide" "/usr/${COQ_ARCH}-w64-mingw32/sys-root/" "files_coqide"
+add_shared_library_dependencies "gappa" "/usr/${COQ_ARCH}-w64-mingw32/sys-root/" "files_gappa"
 
-function add_single_file {
-  if [ -f "$DIR_TARGET/$3.nsh" ]
-  then
-    echo 'SetOutPath $INSTDIR\'"$(dirname "$(cygpath -w "$2")")" >> "$DIR_TARGET/$3.nsh"
-    echo -n "FILE $(cygpath -aw "$1$2")" >> "$DIR_TARGET/$3.nsh"
-  fi
-}
+###### Add GTK resources #####
 
-###### Get filtered list of explicitly installed packages #####
+### Adwaita icon theme
 
-echo "Create package list"
+add_files_of_system_package "mingw64-${COQ_ARCH}-adwaita-icon-theme"  \
+"/\(16x16\|22x22\|32x32\|48x48\)/.*\("\
+"actions/bookmark\|actions/document\|devices/drive\|actions/format-text\|actions/go\|actions/list\|"\
+"actions/media\|actions/pan\|actions/process\|actions/system\|actions/window\|"\
+"mimetypes/text\|mimetypes/inode\|mimetypes/application\|"\
+"places/folder\|places/user\|status/dialog\|ui/pan\|"\
+"legacy/document\|legacy/go\|legacy/process\|legacy/window\|legacy/system\)" \
+"files_conf-adwaita-icon-theme"
 
-SELECTABLE_PACKAGES="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^elpi')"
+#"${MODDIR}/share/icons/Adwaita/"
+# make_theme_index "${MODDIR}/share/icons/Adwaita/"
 
-###### Associative array with package name -> file filter (regexp pattern) #####
+### GTK compiled schemas
 
-# If not white list regexp is given it is "."
-# If not black list list regexp is given it is "\.byte\.exe$"
+add_single_file "/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/" "share/glib-2.0/schemas/gschemas.compiled" "files_dep-glib-compiled-schemas"
 
-declare -A OPAM_FILE_WHITELIST
-declare -A OPAM_FILE_BLACKLIST
+### GTK sourceview languag specs and styles (except coq itself)
 
-OPAM_FILE_WHITELIST[ocaml-variants]='.^' # this has the ocaml compiler in
-OPAM_FILE_WHITELIST[base]='.^' # ocaml stdlib
-OPAM_FILE_WHITELIST[ocaml-compiler-libs]='.^'
+# Not really everything is needed from this. These might suffice:
+# language-specs/dev.lang
+# language-specs/language.dtd
+# language-specs/language.rng
+# language-specs/language2.rng
+# styles/classic.xml
+# But since the complete set is compressed not that large, we add the complete set
 
-OPAM_FILE_WHITELIST[dune]='.^'
-OPAM_FILE_WHITELIST[configurator]='.^'
-OPAM_FILE_WHITELIST[sexplib0]='.^'
-OPAM_FILE_WHITELIST[csexp]='.^'
-OPAM_FILE_WHITELIST[ocamlbuild]='.^'
-OPAM_FILE_WHITELIST[result]='.^'
-OPAM_FILE_WHITELIST[cppo]='.^'
+add_folder_recursively "/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/" "share/gtksourceview-3.0" "files_dep-gtksourceview3"
 
-OPAM_FILE_WHITELIST[elpi]='.^' # linked in coq-elpi
-OPAM_FILE_WHITELIST[camlp5]='.^' # linked in elpi
-OPAM_FILE_WHITELIST[ppx_drivers]='.^' # linked in elpi
-OPAM_FILE_WHITELIST[ppxlib]='.^' # linked in elpi
-OPAM_FILE_WHITELIST[ppx_deriving]='.^' # linked in elpi
-OPAM_FILE_WHITELIST[ocaml-migrate-parsetree]='.^' # linked in elpi
-OPAM_FILE_WHITELIST[re]='.^' # linked in elpi
-
-OPAM_FILE_WHITELIST[lablgtk3]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
-OPAM_FILE_WHITELIST[lablgtk3-sourceview3]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
-OPAM_FILE_WHITELIST[cairo2]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
-
-###### Function for analyzing one package
-
-# Analyze one package
-# - retrieve list of files and create NSIS include file
-# - retrieve dependencies and create NSIS file for user visible and hidden dependencies
-# $1 = package name
-# $2 = dependency level
-
-function analyze_package {
-  echo "Analyzing package $1 ($2)"
-
-  # Create section entry
-  if list_contains "$SELECTABLE_PACKAGES" "$1"
-  then
-    # This is a user visible package which can be explicitly selected or deselected
-    echo "Section \"$1\" Sec_${1//-/_}" >> "$FILE_SEC_VISIBLE"
-    echo 'SetOutPath "$INSTDIR\"' >> "$FILE_SEC_VISIBLE"
-    echo "!include \"files_$1.nsh\"" >> "$FILE_SEC_VISIBLE"
-    echo "SectionEnd" >> "$FILE_SEC_VISIBLE"
-
-    descr="$(opam show --field=synopsis "$1")"
-    descr="${descr//\"/\'}"
-    echo 'LangString DESC_'"${1//-/_}"' ${LANG_ENGLISH} "'"$descr"'"' >> "$FILE_STRINGS"
-    echo '!insertmacro MUI_DESCRIPTION_TEXT ${Sec_'"${1//-/_}"'} $(DESC_'"${1//-/_}"')' >> "$FILE_SEC_DESCRIPTIONS"
-  else
-    # This is a hidden section which is selected automatically by dependency
-    echo "Section \"-$1\" Sec_${1//-/_}" >> "$FILE_SEC_HIDDEN"
-    echo 'SetOutPath "$INSTDIR\"' >> "$FILE_SEC_HIDDEN"
-    echo "!include \"files_$1.nsh\"" >> "$FILE_SEC_HIDDEN"
-    echo "SectionEnd" >> "$FILE_SEC_HIDDEN"
-  fi
-
-  # Create file list include file
-
-  if [ ${OPAM_FILE_WHITELIST[$1]+_} ]
-  then
-    whitelist="${OPAM_FILE_WHITELIST[$1]}"
-  else
-    whitelist="." # take everything
-  fi
-
-  if [ ${OPAM_FILE_BLACKLIST[$1]+_} ]
-  then
-    blacklist="${OPAM_FILE_BLACKLIST[$1]}"
-  else
-    blacklist="(\.byte\.exe|\.cm[aioxt]|\.cmxa|\.cmti|\.o|\.a|\.glob|\.h)$" # exclude byte code and library stuff
-  fi
-
-  echo "# File list for $1 matching $whitelist excluding $blacklist" > "$DIR_TARGET"/files_$1.nsh
-  files="$(opam show --list-files $1 | grep -E "$whitelist" | grep -E -v "$blacklist" )" || true
-  reldir_win_prev="--none--"
-  for file in $files
-  do
-    if [ -d "$file" ]
-    then
-      true # ignore directories
-    elif [ -f "$file" ]
-    then
-      relpath="${file#$OPAM_PREFIX}"
-      reldir="${relpath%/*}"
-
-      file_win="${file//\//\\}"
-      reldir_win="${reldir//\//\\}"
-
-      if [ "$reldir_win" != "$reldir_win_prev" ]
-      then
-        echo SetOutPath "\$INSTDIR$reldir_win" >> "$DIR_TARGET"/files_$1.nsh
-      fi
-      echo FILE "$file_win" >> "$DIR_TARGET"/files_$1.nsh
-
-      reldir_win_prev="$reldir_win"
-    else
-      echo "In package '$1' the file '$file' does not exist"
-      exit 1
-    fi
-  done
-
-  # handle dependencies
-  # Note: the --installed is required cause of an opam bug.
-  # See https://github.com/ocaml/opam/issues/4461
-  dependencies="$(opam list --required-by=$1 --short --installed)"
-  for dependency in $dependencies
-  do
-    # Check if dependency is visible or hidden and write dependency checker macro call in respective NSIS include file
-    if list_contains "$SELECTABLE_PACKAGES" "$dependency"
-    then
-      # This is a user visible package which can be explicitly selected or deselected
-      echo "${1//-/_}" "${dependency//-/_}" >> "$FILE_DEP_VISIBLE.in"
-    else
-      # This is a hidden dependency package
-      echo "${1//-/_}" "${dependency//-/_}" >> "$FILE_DEP_HIDDEN.in"
-    fi
-
-    # Check if dependency is already in the list of known packages
-    if ! list_contains "$PACKAGES" "$dependency"
-    then
-      PACKAGES="$PACKAGES"$'\n'"$dependency"
-      analyze_package "$dependency" $(($2 + 1))
-    fi
-  done
-}
+###################### Create installer ######################
 
 ###### Function for sorting a dependency list by level #####
 
@@ -338,49 +375,6 @@ function sort_dependencies
     }' | sort $5 -n | awk "
     { print \"\${$3}\", \"\${Sec_\"\$2\"}\", \"\${Sec_\"\$3\"}\", \"'\"\$2\"'\", \"'\"\$3\"'\"; }" > "$2"
 }
-
-###### Go through selected packages and recursively analyze dependencies #####
-
-# The initial list of packages is the list of top level packages
-PACKAGES="$SELECTABLE_PACKAGES"
-
-for package in $SELECTABLE_PACKAGES
-do
-  analyze_package "$package" 0
-done
-
-###### Add system DLLs to some packages #####
-
-add_dlls_using_ldd "coqc" "/usr/${COQ_ARCH}-w64-mingw32/sys-root/" "files_coq"
-add_dlls_using_ldd "coqide" "/usr/${COQ_ARCH}-w64-mingw32/sys-root/" "files_coqide"
-add_dlls_using_ldd "gappa" "/usr/${COQ_ARCH}-w64-mingw32/sys-root/" "files_gappa"
-
-###### Add GTK resources #####
-
-### Adwaita icon theme
-
-add_files_using_cygwin_package "mingw64-${COQ_ARCH}-adwaita-icon-theme"  \
-"/\(16x16\|22x22\|32x32\|48x48\)/.*\("\
-"actions/bookmark\|actions/document\|devices/drive\|actions/format-text\|actions/go\|actions/list\|"\
-"actions/media\|actions/pan\|actions/process\|actions/system\|actions/window\|"\
-"mimetypes/text\|places/folder\|places/user\|status/dialog\)"  \
-"files_conf-adwaita-icon-theme"
-
-### GTK compiled schemas
-
-add_single_file "/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/" "share/glib-2.0/schemas/gschemas.compiled" "files_dep-glib-compiled-schemas"
-
-### GTK sourceview languag specs and styles (except coq itself)
-
-# Not really everything is needed from this. These might suffice:
-# language-specs/dev.lang
-# language-specs/language.dtd
-# language-specs/language.rng
-# language-specs/language2.rng
-# styles/classic.xml
-# But since teh complete set is compressed not that large, we add the complete set
-
-add_foler_recursively "/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/" "share/gtksourceview-3.0" "files_dep-gtksourceview3"
 
 ###### Create dependency reset/selection/deselection include files #####
 

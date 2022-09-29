@@ -178,9 +178,18 @@ cat <<-'EOH' | sed -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PACKAGE_PICK_POS
 	then
 	  if ! [ -f /Applications/PRODUCTNAME.app/Contents/Resources/bin/coqc ]
 	  then
-	    echo "This script expects that coqc is in the PATH"
-	    echo "or on macOS installed under /Applications/PRODUCTNAME.app/"
-	    exit 1
+	    if ! [ -f /snap/coq-prover/current/coq-platform/bin/coqc ]
+	    then
+	      echo "This script expects that coqc is in the PATH"
+	      echo "or on macOS installed under /Applications/PRODUCTNAME.app/"
+	      echo "or on Linux with Snap installed under /snap/coq-prover/current/"
+	      exit 1
+	    else
+	      echo "Using coqc from '/snap/coq-prover/current/coq-platform/bin'"
+	      echo "ATTENTION: coq-hammer requires LD_LIBRARY_PATH to be set to lib/stublibs!"
+	      export PATH='/snap/coq-prover/current/coq-platform/bin':"$PATH"
+	      export LD_LIBRARY_PATH='/snap/coq-prover/current/coq-platform/lib/stublibs':"$LD_LIBRARY_PATH"
+	    fi
 	  else
 	    echo "Using coqc from '/Applications/PRODUCTNAME.app/Contents/Resources/bin'"
 	    export PATH='/Applications/PRODUCTNAME.app/Contents/Resources/bin':"$PATH"
@@ -233,11 +242,11 @@ cat <<-'EOH' | sed -e 's/$/\r/' -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PAC
 	            EXIT /B 1
 	        ) ELSE (
 	            ECHO "Using coqc from C:\bin\PRODUCTNAME\bin"
-	            SET PATH="C:\bin\PRODUCTNAME\bin;%PATH%"
+	            SET "PATH=C:\bin\PRODUCTNAME\bin;%PATH%"
 	        )
 	    ) ELSE (
 	        ECHO "Using coqc from C:\PRODUCTNAME\bin"
-	        SET PATH="C:\PRODUCTNAME\bin;%PATH%"
+	        SET "PATH=C:\PRODUCTNAME\bin;%PATH%"
 	    )
 	)
 	
@@ -245,7 +254,7 @@ cat <<-'EOH' | sed -e 's/$/\r/' -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PAC
 	FOR /F "tokens=* USEBACKQ" %%F IN (`coqc -where`) DO SET COQLIB=%%F
 	
 	REM cd to smoke test folder
-	SET HERE=%CD%
+	SET "HERE=%CD%"
 	CD "%~dp0%"
 	
 	GOTO :run_all_tests
@@ -256,7 +265,7 @@ cat <<-'EOH' | sed -e 's/$/\r/' -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PAC
 	
 	:run_test
 	  ECHO "====================== Running test file %1 ======================"
-	  SET HERESUB=%CD%
+	  SET "HERESUB=%CD%"
 	  CD "%~dp1"
 	  ECHO "coqc %~2 %~nx1"
 	  coqc %~2 %~nx1
