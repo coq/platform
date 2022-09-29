@@ -51,6 +51,9 @@ PACKAGES=""
 PACKAGES="${PACKAGES} PIN.coq.8.16.0"
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
+# Since dune does support Coq, it is explicitly selected
+PACKAGES="${PACKAGES} dune.3.4.1"
+PACKAGES="${PACKAGES} dune-configurator.3.4.1"
 
 ########## IDE PACKAGES ##########
 
