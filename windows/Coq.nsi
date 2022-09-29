@@ -13,7 +13,7 @@
 SetCompressor lzma
 
 !define MY_PRODUCT "Coq-Platform${VERSION}" ;Define your own software name here
-!define OUTFILE "Coq-Platform-release-${RELEASE}-version${VERSION}-arch-${ARCH}.exe"
+!define OUTFILE "Coq-Platform-release-${RELEASE}-version${VERSION}-Windows-${ARCH}.exe"
 
 !include "MUI2.nsh"
 !include "FileAssociation.nsh"

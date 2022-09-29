@@ -418,6 +418,6 @@ echo "==========================================================================
 
 echo "==============================================================================="
 echo "Created installer:"
-echo "$DIR_TARGET/Coq-Platform-release-${COQ_PLATFORM_RELEASE}-version${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}-arch-${COQ_ARCH}.exe"
+echo "$DIR_TARGET/Coq-Platform-release-${COQ_PLATFORM_RELEASE}-version${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}-Windows-${COQ_ARCH}.exe"
 echo "==============================================================================="
 cd ..
