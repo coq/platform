@@ -79,6 +79,7 @@ jobs:
         shell: bash
         run: |
           eval $(opam env)
+          export MACOSX_DEPLOYMENT_TARGET=10.13
           shell_scripts/create_smoke_test_kit.sh
 
       - name: 'Upload smoke test kit'
