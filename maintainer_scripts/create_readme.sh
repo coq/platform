@@ -520,7 +520,7 @@ cat > ${RESULT_FILE_TXT} <<EOT
 <title>The Coq Platform - $COQ_PLATFORM_RELEASE</title>
 <style>
 body {
-   width : 50em;
+   width : 60em;
    margin-left : auto;   
    margin-right : auto;   
 }

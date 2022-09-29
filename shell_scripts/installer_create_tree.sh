@@ -57,7 +57,7 @@ PRIMARY_PACKAGES="$(opam list --installed-roots --short --columns=name | grep -v
 OPAM_FILE_INCLUSION_LIST_DEFAULT="."
 
 # Default exclusion list
-OPAM_FILE_EXCLUSION_LIST_DEFAULT="(\.byte|\.byte\.exe|\.cm[aioxt]|\.cmxa|\.cmti|\.[oah]|\.glob|\.ml|\.mli|opam|dune-package)$"
+OPAM_FILE_EXCLUSION_LIST_DEFAULT="(\.byte|\.byte\.exe|\.cm[aioxt]|\.cmxa|\.cmti|\.[oah]|\.glob|\.ml|\.mli|opam)$"
 
 # NOTE: we take all files which are included and not excluded
 
@@ -69,7 +69,7 @@ OPAM_FILE_INCLUSION_LIST[lablgtk3-sourceview3]="stubs.dll$" # we keep only the s
 OPAM_FILE_INCLUSION_LIST[cairo2]="stubs.dll$" # we keep only the stublib DLL, the rest is linked in coqide
 
 # For compcert we need .h and .a files
-OPAM_FILE_EXCLUSION_LIST[coq-compcert]="(\.byte|\.byte\.exe|\.cm[aioxt]|\.cmxa|\.cmti|\.[o]|\.glob|\.ml|\.mli|opam|dune-package)$"
+OPAM_FILE_EXCLUSION_LIST[coq-compcert]="(\.byte|\.byte\.exe|\.cm[aioxt]|\.cmxa|\.cmti|\.[o]|\.glob|\.ml|\.mli|opam)$"
 OPAM_FILE_EXCLUSION_LIST[coq-compcert-32]=OPAM_FILE_EXCLUSION_LIST[coq-compcert]
 
 ###### Lits of packages to ignore #####
@@ -82,7 +82,7 @@ OPAM_FILE_EXCLUSION_LIST[coq-compcert-32]=OPAM_FILE_EXCLUSION_LIST[coq-compcert]
 # Since QuickChick requires OCamlc at run time, it is also excluded
 
 OPAM_PACKAGE_EXCLUSION_LIST="ocaml"$'\n'"ocaml-variants"$'\n'"ocaml-base-compiler"$'\n'"ocaml-compiler-libs"$'\n'"ocaml-config"$'\n'"ocaml-secondary-compiler"$'\n'"ocamlfind-secondary"$'\n'"coq-quickchick"
-OPAM_PACKAGE_EXCLUSION_LIST="${OPAM_PACKAGE_EXCLUSION_LIST}"$'\n'"dune"$'\n'"configurator"$'\n'"sexplib0"$'\n'"csexp"$'\n'"ocamlbuild"$'\n'"cppo"
+OPAM_PACKAGE_EXCLUSION_LIST="${OPAM_PACKAGE_EXCLUSION_LIST}"$'\n'"sexplib0"$'\n'"csexp"$'\n'"ocamlbuild"$'\n'"cppo"
 
 # Regexp for packages to ignore
 

@@ -256,3 +256,39 @@ if [ ! -z ${SNAPCRAFT_PROJECT_NAME+x} ]
 then
   opam var --switch $COQ_PLATFORM_SWITCH_NAME snap=true
 fi
+
+###################### final sanity checks ######################
+
+echo "===== FINAL OPAM SANITY CHECKS ====="
+
+# Check if an opam repo is set correctly
+# $1 - repo name
+# $2 - repo url
+function check_repo {
+  local url="$(opam repo list | awk "/ $1 / "'{ print $3 }')"
+  if [ -n "$url" ] && [ "$url" != "$2" ]
+  then
+    echo "========================= OPAM REPOS ========================="
+    echo "You have a predefined opam repo, which does not point to the usual URL."
+    echo "You have '$1' point to '$url' instead of '$2'."
+    echo "The Coq Platform scripts cannot continue with this."
+    echo "You can fix this with"
+    echo "  opam repo set-url $1 '$2'"
+    echo "but this will likely mess up your existing opam installation."
+    echo "Alternatively you can edit the Coq Platform scripts to use different"
+    echo "opam repo names (search for $1)."
+    echo "This is likely an effect of a very old/outdated opam installation."
+    echo "========================= OPAM REPOS ========================="
+    exit 1
+  fi
+}
+
+if [ "$OSTYPE" == cygwin ]
+then
+  check_repo 'default' 'git+https://github.com/fdopen/opam-repository-mingw.git#opam2'
+else
+  check_repo 'default' 'https://opam.ocaml.org'
+fi
+check_repo 'coq-released' 'https://coq.inria.fr/opam/released'
+check_repo 'coq-core-dev' 'https://coq.inria.fr/opam/core-dev'
+check_repo 'coq-extra-dev' 'https://coq.inria.fr/opam/extra-dev'

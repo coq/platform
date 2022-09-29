@@ -51,6 +51,9 @@ PACKAGES=""
 PACKAGES="${PACKAGES} PIN.coq.8.16.0"
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
+# Since dune does support Coq, it is explicitly selected
+PACKAGES="${PACKAGES} dune.3.4.1"
+PACKAGES="${PACKAGES} dune-configurator.3.4.1"
 
 ########## IDE PACKAGES ##########
 
@@ -171,7 +174,10 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.0"
-  PACKAGES="${PACKAGES} coq-metacoq.1.1+8.16"
+  if [ "$OSTYPE" != cygwin ]
+  then
+    PACKAGES="${PACKAGES} coq-metacoq.1.1+8.16"
+  fi
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"
