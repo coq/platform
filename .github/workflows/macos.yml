@@ -111,7 +111,7 @@ jobs:
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
         with:
-          name: 'Macos installer ${{matrix.variant}}'
+          name: 'Macos installer ${{matrix.variant}} x86_64'
           path: macos_installer/Coq-Platform-*.dmg
           retention-days: 5
 
@@ -134,7 +134,7 @@ jobs:
         uses: actions/download-artifact@v2
         id: download
         with:
-          name: 'Macos installer ${{matrix.variant}}'
+          name: 'Macos installer ${{matrix.variant}} x86_64'
 
       - name: 'Download smoke test kit'
         uses: actions/download-artifact@v2
