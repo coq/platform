@@ -270,10 +270,10 @@ function check_repo {
   then
     echo "========================= OPAM REPOS ========================="
     echo "You have a predefined opam repo, which does not point to the usual URL."
-    echo "You have $1 point to $url instead of %2."
+    echo "You have '$1' point to '$url' instead of '$2'."
     echo "The Coq Platform scripts cannot continue with this."
     echo "You can fix this with"
-    echo "  opam repo set-url $1 $2"
+    echo "  opam repo set-url $1 '$2'"
     echo "but this will likely mess up your existing opam installation."
     echo "Alternatively you can edit the Coq Platform scripts to use different"
     echo "opam repo names (search for $1)."
@@ -283,7 +283,12 @@ function check_repo {
   fi
 }
 
-check_repo 'default' 'https://opam.ocaml.org'
+if [ "$OSTYPE" == cygwin ]
+then
+  check_repo 'default' 'git+https://github.com/fdopen/opam-repository-mingw.git#opam2'
+else
+  check_repo 'default' 'https://opam.ocaml.org'
+fi
 check_repo 'coq-released' 'https://coq.inria.fr/opam/released'
 check_repo 'coq-core-dev' 'https://coq.inria.fr/opam/core-dev'
 check_repo 'coq-extra-dev' 'https://coq.inria.fr/opam/extra-dev'
