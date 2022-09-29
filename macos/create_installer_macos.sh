@@ -233,7 +233,7 @@ function callback_file {
 # Folder and image names
 
 APP_NAME="Coq-Platform${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.app"
-DMG_NAME="Coq-Platform-release-${COQ_PLATFORM_RELEASE}-version${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}"
+DMG_NAME="Coq-Platform-release-${COQ_PLATFORM_RELEASE}-version${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}-MacOS-$(uname -m)"
 APP_ABSDIR="_dmg/${APP_NAME}"
 RSRC_ABSDIR="${APP_ABSDIR}/Contents/Resources"
 BIN_ABSDIR="$RSRC_ABSDIR/bin"

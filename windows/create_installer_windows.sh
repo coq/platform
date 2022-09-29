@@ -287,7 +287,7 @@ echo '##### Copy system shared libraries #####'
 ##### Create empty GDK pixbuf loaders cache file #####
 
 # Note: CoqIDE does not need pixbuf loaders (PNG is integratd) - but we need an empty loaders.cache file in the right (GDK version dependent) place
-PIXBUF_LOADER_CACHE_RELPATH="$(cygcheck -l mingw64-x86_64-gdk-pixbuf2.0 | grep loaders.cache | sed 's|.*/mingw/||')"
+PIXBUF_LOADER_CACHE_RELPATH="$(cygcheck -l mingw64-${COQ_ARCH}-gdk-pixbuf2.0 | grep loaders.cache | sed 's|.*/mingw/||')"
 mkdir -p "${MODDIR}/${PIXBUF_LOADER_CACHE_RELPATH%/*}" 
 touch "${MODDIR}/${PIXBUF_LOADER_CACHE_RELPATH}"
 add_single_file "${MODDIR}/" "${PIXBUF_LOADER_CACHE_RELPATH}" "files_conf-gtk3"
@@ -418,6 +418,6 @@ echo "==========================================================================
 
 echo "==============================================================================="
 echo "Created installer:"
-echo "$DIR_TARGET/Coq-Platform-release-${COQ_PLATFORM_RELEASE}-version${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}-arch-${COQ_ARCH}.exe"
+echo "$DIR_TARGET/Coq-Platform-release-${COQ_PLATFORM_RELEASE}-version${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}-Windows-${COQ_ARCH}.exe"
 echo "==============================================================================="
 cd ..

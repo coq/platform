@@ -49,7 +49,7 @@ OPAM_PREFIX="$(opam conf var prefix)"
 
 ###### Get filtered (newline separated) list of explicitly installed packages #####
 
-PRIMARY_PACKAGES="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk')"
+PRIMARY_PACKAGES="$(opam list --installed-roots --short --columns=name | grep -v '^ocaml\|^opam\|^depext\|^conf\|^lablgtk\|^coq-quickchick')"
 
 ###### Associative array with package name -> file filter (regexp pattern) #####
 
@@ -78,7 +78,10 @@ OPAM_FILE_EXCLUSION_LIST[coq-compcert-32]=OPAM_FILE_EXCLUSION_LIST[coq-compcert]
 
 # Explicit list of ignored packages
 
-OPAM_PACKAGE_EXCLUSION_LIST="ocaml"$'\n'"ocaml-variants"$'\n'"ocaml-base-compiler"$'\n'"ocaml-compiler-libs"$'\n'"ocaml-config"$'\n'"ocaml-secondary-compiler"$'\n'"ocamlfind-secondary"
+# This excludes the OCaml build infrastructure
+# Since QuickChick requires OCamlc at run time, it is also excluded
+
+OPAM_PACKAGE_EXCLUSION_LIST="ocaml"$'\n'"ocaml-variants"$'\n'"ocaml-base-compiler"$'\n'"ocaml-compiler-libs"$'\n'"ocaml-config"$'\n'"ocaml-secondary-compiler"$'\n'"ocamlfind-secondary"$'\n'"coq-quickchick"
 OPAM_PACKAGE_EXCLUSION_LIST="${OPAM_PACKAGE_EXCLUSION_LIST}"$'\n'"dune"$'\n'"configurator"$'\n'"sexplib0"$'\n'"csexp"$'\n'"ocamlbuild"$'\n'"cppo"
 
 # Regexp for packages to ignore

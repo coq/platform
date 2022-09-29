@@ -13,7 +13,7 @@
 SetCompressor lzma
 
 !define MY_PRODUCT "Coq-Platform${VERSION}" ;Define your own software name here
-!define OUTFILE "Coq-Platform-release-${RELEASE}-version${VERSION}-arch-${ARCH}.exe"
+!define OUTFILE "Coq-Platform-release-${RELEASE}-version${VERSION}-Windows-${ARCH}.exe"
 
 !include "MUI2.nsh"
 !include "FileAssociation.nsh"
@@ -437,7 +437,7 @@ FunctionEnd
     FunctionEnd
   !endif
 
-  !define MUI_DIRECTORYPAGE_TEXT_TOP "Select where to install Coq.  The path MUST NOT include spaces."
+  !define MUI_DIRECTORYPAGE_TEXT_TOP "Please select where to install Coq.$\r$\n$\r$\nATTENTION:$\r$\n -the path must not include spaces.$\r$\n- the path must be empty unless you are adding additional packages using the same installer!$\r$\n- if you already have a *different* Coq version installed in the *same* place, please uninstall first via add/remove programs.$\r$\n- it is fine to install multiple versions of Coq in *different* folders."
   !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro MUI_PAGE_INSTFILES
   !insertmacro MUI_PAGE_FINISH
