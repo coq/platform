@@ -174,10 +174,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.0"
-  if [ "$OSTYPE" != cygwin ]
-  then
-    PACKAGES="${PACKAGES} coq-metacoq.1.1+8.16"
-  fi
+  PACKAGES="${PACKAGES} coq-metacoq.1.1+8.16"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"
