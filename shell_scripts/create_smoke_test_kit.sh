@@ -190,7 +190,7 @@ cat <<-'EOH' | sed -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PACKAGE_PICK_POS
 	      echo "Using coqc from '/snap/coq-prover/current/coq-platform/bin'"
 	      echo "ATTENTION: coq-hammer requires LD_LIBRARY_PATH to be set to lib/stublibs!"
 	      export PATH='/snap/coq-prover/current/coq-platform/bin':"$PATH"
-	      export LD_LIBRARY_PATH='/snap/coq-prover/current/coq-platform/lib/stublibs':"$LD_LIBRARY_PATH"
+	      export LD_LIBRARY_PATH='/snap/coq-prover/current/coq-platform/lib/stublibs':"${LD_LIBRARY_PATH:-}"
 	    fi
 	  else
 	    echo "Using coqc from '/Applications/PRODUCTNAME.app/Contents/Resources/bin'"
