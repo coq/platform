@@ -145,14 +145,14 @@ function add_folder_recursively {
 ##### Add a single file #####
 
 # $1 = path prefix (absolute cygwin format)
-# $2 = relative path to $1
+# $2 = relative path to $1 in installation (including filename)
 # $3 file list file name
 
 function add_single_file {
   if [ -f "$DIR_TARGET/$3.nsh" ]
   then
     echo 'SetOutPath $INSTDIR\'"$(dirname "$(cygpath -w "$2")")" >> "$DIR_TARGET/$3.nsh"
-    echo -n "FILE $(cygpath -aw "$1$2")" >> "$DIR_TARGET/$3.nsh"
+    echo "FILE $(cygpath -aw "$1$2")" >> "$DIR_TARGET/$3.nsh"
   fi
 }
 
@@ -330,6 +330,12 @@ add_single_file "/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/" "share/glib-2.0/s
 
 add_folder_recursively "/usr/${COQ_ARCH}-w64-mingw32/sys-root/mingw/" "share/gtksourceview-3.0" "files_dep-gtksourceview3"
 
+### coq-shell.bat ###
+
+add_single_file "windows/" "coq-shell.bat" "files_coq"
+add_single_file "windows/" "coq-shell.ico" "files_coq"
+add_single_file "$DIR_TARGET/files/" "bin/coq.ico" "files_coqide"
+
 ###################### Create installer ######################
 
 ###### Function for sorting a dependency list by level #####
@@ -408,6 +414,9 @@ wget https://github.com/coq/coq/raw/v8.13/ide/coqide/coq.ico
 wget https://github.com/coq/coq/raw/v8.13/LICENSE
 wget https://raw.githubusercontent.com/AbsInt/CompCert/v3.8/LICENSE -O coq-compcert-license.txt
 wget https://raw.githubusercontent.com/PrincetonUniversity/VST/v2.7/LICENSE -O coq-vst-license.txt
+
+mkdir -p files/bin
+cp coq.ico files/bin
 
 echo "==============================================================================="
 echo "NOTE: The creation of the installer can take 10 minutes"
