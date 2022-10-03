@@ -400,6 +400,11 @@ ln -sf /Applications _dmg/Applications
 sed "s/@@VERSION@@/${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}/" ../macos/coq-shell.command.template > _dmg/coq-shell${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.command
 chmod u+x _dmg/coq-shell${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.command
 
+##### coq-env.sh #####
+
+sed "s/@@VERSION@@/${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}/" ../macos/coq-env.sh.template > ${BIN_ABSDIR}/coq-env.sh
+chmod u+x ${BIN_ABSDIR}/coq-env.sh
+
 ##### Installation.html #####
 
 sed "s/@@VERSION@@/${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}/" ../macos/Installation.html.template > _dmg/Installation.html
