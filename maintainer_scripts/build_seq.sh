@@ -16,4 +16,4 @@
 
 # ATTENTION: this script is intended to be called from Coq Platform root (obe folder up)
 
-OPAMYES=0 ./coq_platform_make.sh -extent=x -parallel=s -jobs=8 -compcert=y -vst=y -switch=k
+OPAMYES=0 ./coq_platform_make.sh -extent=x -parallel=s -jobs=8 -compcert=y -large=i -switch=k

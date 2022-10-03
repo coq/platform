@@ -103,7 +103,14 @@ then
 
   # Univalent Mathematics (UniMath)
   # Note: coq-unimath requires too much memory for 32 bit architectures
-  if [ "${BITSIZE}" == "64" ]; then PACKAGES="${PACKAGES} coq-unimath.20210807"; fi
+  if [ "${BITSIZE}" == "64" ]
+  then
+      case "$COQ_PLATFORM_UNIMATH" in
+    [yY]) PACKAGES="${PACKAGES} coq-unimath.20210807" ;;
+    [nN]) true ;;
+    *) echo "Illegal value for COQ_PLATFORM_UNIMATH - aborting"; false ;;
+    esac
+  fi
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-equations.1.2.3+8.13"

@@ -24,7 +24,7 @@ e.g. for a lecture.
 As soon as you have created a package pick file, you can create an opam switch from it by running `coq_platform_make.sh/.bat` and selecting the new pick.
 You can also give the pick on the command line e.g. by running:
 ```
-./coq_platform_make.sh -packages="my_new_pick" -extent=x -parallel=p -jobs=6 -compcert=y -vst=y -switch=k
+./coq_platform_make.sh -packages="my_new_pick" -extent=x -parallel=p -jobs=6 -compcert=y -large=i -switch=k
 ```
 
 On Windows you can either create a new cygwin with:
@@ -34,7 +34,7 @@ CALL coq_platform_make_windows.bat ^
   -destcyg=C:\bin\cygwin64_coq_platform_my_new_pick ^
   -cygcache=C:\bin\cygwin_cache ^
   -cygrepo=https://mirrors.kernel.org/sourceware/cygwin ^
-  -packages="my_new_pick" -extent=x -parallel=p -jobs=6 -compcert=y -vst=y -switch=k 
+  -packages="my_new_pick" -extent=x -parallel=p -jobs=6 -compcert=y -large=i -switch=k 
 ```
 or you can reuse an existing Coq Platform created cygwin and run the same shell script as above.
 The Coq Platform cygwin hardly ever changes, so there is no point in creating a new cygwin for each package pick.
@@ -64,7 +64,7 @@ After you created a new package pick, you can create a Snap package from it as f
 
 - First note that for snap it is **not** required to build the switch first - the snap building process will build it inside of the snapcraft VM.
 - Navigate to your Coq Platform git folder, e.g. `cd ~/platform`
-- Run `linux/create_snapcraft_yaml.sh -packages=my_new_pick -extent=x -parallel=p -jobs=6 -vst=y -compcert=y -set-switch=y -switch=k`
+- Run `linux/create_snapcraft_yaml.sh -packages=my_new_pick -extent=x -parallel=p -jobs=6 -large=i -compcert=y -set-switch=y -switch=k`
 - Run `SNAPCRAFT_BUILD_ENVIRONMENT_CPU=12 SNAPCRAFT_BUILD_ENVIRONMENT_MEMORY=24G snapcraft snap` - the CPU (thread) count and memory depends on your machine - you should have 2GB per CPU and you should have twice as many CPU threads as the job count you specified initially.
 - Building the snap will take a while.
 - You can install the snap with `snap install --dangerous coq-prover_2022-09-0_amd64.snap`.
