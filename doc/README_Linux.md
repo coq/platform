@@ -20,22 +20,39 @@ In case you don't have snap installed yet, please refer to [installing-snapd](ht
 
 The snap URL is https://snapcraft.io/coq-prover.
 
-This install method is maintained by Enrico Tassi.
+This install method has been implemented by Enrico Tassi.
+
+**A note to lecturers:** it is easy to create a customized snap packages from an opam switch - see [Customized Installers](FAQ-customized-installers.md)
 
 ## Package name
+
 The name of the package is `coq-prover` since `coq` was considered
 unacceptable by the Snap Store admins (too short and non informative).
 
 ## Aliases
+
 The snap package can install binaries in the path, but they are all called
-`coq-prover.something` and `something` cannot contain `_`.
+`coq-prover.something` and `something` cannot contain `_`,
+but it is possible to request short aliases from the snap team.
 
 As per [request](https://forum.snapcraft.io/t/aliases-request-for-coq-prover/21925)
-Coq is granted the `coqide -> coq-prover.coqide` and
-`coq_makefile -> coq-prover.coq-makefile` aliases (shorthands generated
-on the fly).
+Coq is granted these short aliases:
+- **coqide -> coq-prover.coqide**
+- **coq_makefile -> coq-prover.coq-makefile**
+- **coqtop -> coq-prover.coqtop**
+- **coqc -> coq-prover.coqc**
+- **coqdep -> coq-prover.coqdep**
+- **coqidetop.opt -> coq-prover.coqidetop**
+
+## Using non aliased tools from the command line
+
+If you want to use more than the aliased tools from the command line, you have two options:
+
+- Run `eval $(coq-prover.env)` in your shell. This will set the environment variables `$PATH`, `$COQLIB` and `$LD_LIBRARY_PATH` in the current shell.
+- Run `/snap/coq-prover/current/coq-platform/bin/coq-shell.sh`. This will start a new shell context (which can be closed with `exit`) in which the above variables are set.
 
 ## Channels and updates
+
 Each package is available on a channel, which is a combination of track and
 risk level.
 A track is something like `latest` (the default one) or, `major-version` (as
@@ -60,14 +77,10 @@ happy to grant quickly a new track if it follows the same schema of an existing
 one.
 
 ## See also
-- linux/snap/github_actions for a script to trigger a CI build for a platform
-  branch also uploading to the Snap Store
-
-## Snap doc
 
 - [Channels](https://snapcraft.io/docs/channels)
 - [Process for manual store actions (tracks, aliases)](https://forum.snapcraft.io/t/process-for-aliases-auto-connections-and-tracks/455)
-
+- `linux/snap/github_actions` for a script to trigger a CI build for a platform branch also uploading to the Snap Store
 
 # Installation by compiling from sources using opam
 

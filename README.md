@@ -233,7 +233,7 @@ If you want to work with the 32 bit variants, please use these options in your C
 **Important note:** CompCert is **not** free / open source software, but may be used for research and evaluation purposes.
 Please clarify the license at [CompCert License](https://github.com/AbsInt/CompCert/blob/master/LICENSE).
 
-## Installation of other packages
+## Installation of additional packages
 
 - On Windows open a shell with `C:\<your_coq_platform_cygwin_path>\cygwin.bat`.
 - On Linux or macOS open a shell in the usual way.
@@ -262,35 +262,10 @@ Please clarify the license at [CompCert License](https://github.com/AbsInt/CompC
 
 </details>
 
-<details><summary><font size="+1">Creating package pick variants</font></summary>
+<details><summary><font size="+1">Creating package pick variants and customized installers</font></summary>
 
 It is an intended use case of the Coq Platform to create custom variants, e.g.
 for projects or lectures, by creating additional files in the [package_picks](package_picks)
 folder.
 
-The scripts for creating binary packages and installers should be able to
-handle such variants, so that it should be easy to create a custom installer
-e.g. for a lecture.
-
-A few notes on the process:
-
-- Create a new file in the [package_picks](package_picks) folder by copying one of the existing files as template.
-- Add or remove packages or change package versions according to your requirements.
-- You should include specific versions for all packages to get a reproducible result.
-  The opam database changes daily and unless you specify a version for each package you get different results and possibly the build will fail.
-- In case you want to include pre release packages, which don't have a published opam package as yet, you can add opam packages in the folders under [opam](opam).
-  opam packages in thes folder take precedence over packages from the published repositories.
-- You can set the variable `COQ_PLATFORM_USE_DEV_REPOSITORY` in the header of the package pick file to `Y` in case you want to include the public and local `extra-dev` opam repositories in the opam package search.
-- **Please always change the opam switch name**, that is the variable `COQ_PLATFORM_PACKAGE_PICK_POSTFIX`!
-- The scripts for creating binary packages/installers for macOS, Windows and snap are in the specific system sub folders:
-  - **macOS**: (macos/create_installer_macos.sh)
-  - **Windows**: (windows/create_installer_windows.sh)
-  - **snap**: (linux/create_snapcraft_yaml.sh)
-  - the macOS and Windows script are intended to be run locally and require that the specific Coq Platform version has been installed and that **the opam switch is selected**,
-    but the CI actions also create the installers for macOS and Windows.
-  - the snap package is intended to be created via a CI action - see (linux/snap/github_actions/README.md)
-  - the scripts don't take required parameters (some have debug parameters)
-
-A note on debugging `Sorry, no solution found: there seems to be a problem with your request.`: this happens mostly in a parallel build, when you request e.g. package versions which have incompatible dependencies. The best way to debug this is to set in [coq_platform_make.sh](https://github.com/coq/platform/blob/0895c3cc0d69837ed7a80d882d4348d90e4a609a/coq_platform_make.sh#L22) `export OPAMYES=0` and then do a sequential build (select 's' when the scripts asks). opam will stop then whenever additional dependencies need to be installed and especially if the version of an already installed packages needs to be changed.
-
-If you have issues, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
+For details, especially on creating custom installers for MacOS, Linux/Snap and Windows see [Customized Installers](doc/FAQ-customized-installers.md).

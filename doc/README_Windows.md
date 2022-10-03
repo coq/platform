@@ -10,8 +10,11 @@ This method is intended for beginners.
 
 - Download the installer from https://github.com/coq/platform/releases (click on "Assets" at the end of a release section)
 - Run the installer and follow the instructions
+- In case you want to use the installed `coqc` and other tools from the command line, you have two options:
+  - Use the supplied `coq-shell.bat` command - a short cut is installed in the start menu. This file opens a Windows command interpreter in which the environment variables `$PATH` and `$COQLIB` are set.
+  - Run `CALL C:\my_coq_install_path\coq-shell.bat` in a command shell to set the above variables in the current command shell.
 
-A note to lecturers: it is easy to create a customized Windows installer from an opam switch - see [Customized Installers](#customized-installers)
+**A note to lecturers:** it is easy to create a customized Windows installer from an opam switch - see [Customized Installers](FAQ-customized-installers.md)
 
 # Installation by compiling from sources using opam on cygwin
 
