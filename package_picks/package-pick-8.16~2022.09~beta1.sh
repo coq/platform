@@ -186,7 +186,12 @@ then
   # Communication with coqtop
   PACKAGES="${PACKAGES} coq-serapi.8.16.0+0.16.0"
 
-  # Bedrock2, fiat crypto, ...
-  PACKAGES="${PACKAGES} coq-coqutil.0.0.1"
-  # PACKAGES="${PACKAGES} coq-bedrock2.0.0.1"                   # Error: "sed: illegal option -- z"
+  # fiat crypto, bedrock2, rupicola and dependencies
+  PACKAGES="${PACKAGES} coq-coqutil.0.0.2"
+  PACKAGES="${PACKAGES} coq-rewriter.0.0.6"
+  PACKAGES="${PACKAGES} coq-riscv.0.0.2"
+  PACKAGES="${PACKAGES} coq-bedrock2.0.0.2"
+  PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.2"
+  PACKAGES="${PACKAGES} coq-rupicola.0.0.5"
+  PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.15"
 fi
