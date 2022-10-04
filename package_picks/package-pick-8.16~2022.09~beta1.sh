@@ -139,7 +139,7 @@ then
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.16"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.1"
-  PACKAGES="${PACKAGES} coq-libhyps.2.0.5"
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.6"
   PACKAGES="${PACKAGES} coq-itauto.8.16.0"
   
   # General mathematics (which requires one of the above tools)
