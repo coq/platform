@@ -1,0 +1,63 @@
+From 128f8472027e03757af0e8c12d0199aebb8bc95b Mon Sep 17 00:00:00 2001
+From: Jason Gross <jgross@mit.edu>
+Date: Tue, 4 Oct 2022 11:36:57 +0530
+Subject: [PATCH] `make bedrock2_install` now installs examples
+
+We also have `bedrock2_install_{ex,noex}` targets now.
+---
+ Makefile          | 8 +++++++-
+ bedrock2/Makefile | 9 +++++++--
+ 2 files changed, 14 insertions(+), 3 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 421f72e1..91b8a94e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,6 +1,6 @@
+ default_target: all
+ 
+-.PHONY: update_all clone_all coqutil coq-record-update riscv-coq bedrock2_noex bedrock2_ex compiler_noex compiler_ex kami processor end2end all clean_coqutil clean_coq-record-update clean_riscv-coq clean_bedrock2 clean_compiler clean_kami clean_processor clean_end2end clean_manglenames clean install_coqutil install_coq-record-update install_kami install_riscv-coq install_bedrock2 install_compiler install_processor install_end2end install
++.PHONY: update_all clone_all coqutil coq-record-update riscv-coq bedrock2_noex bedrock2_ex compiler_noex compiler_ex kami processor end2end all clean_coqutil clean_coq-record-update clean_riscv-coq clean_bedrock2 clean_compiler clean_kami clean_processor clean_end2end clean_manglenames clean install_coqutil install_coq-record-update install_kami install_riscv-coq install_bedrock2 install_bedrock2_ex install_bedrock2_noex install_compiler install_processor install_end2end install
+ 
+ clone_all:
+ 	git submodule update --init --recursive
+@@ -110,6 +110,12 @@ clean_bedrock2:
+ install_bedrock2:
+ 	$(MAKE) -C $(ABS_ROOT_DIR)/bedrock2 install
+ 
++install_bedrock2_noex:
++	$(MAKE) -C $(ABS_ROOT_DIR)/bedrock2 install_noex
++
++install_bedrock2_ex:
++	$(MAKE) -C $(ABS_ROOT_DIR)/bedrock2 install_ex
++
+ compiler_noex:
+ 	$(MAKE) -C $(ABS_ROOT_DIR)/compiler noex
+ 
+diff --git a/bedrock2/Makefile b/bedrock2/Makefile
+index 1a8b5303..28d5e239 100644
+--- a/bedrock2/Makefile
++++ b/bedrock2/Makefile
+@@ -1,6 +1,6 @@
+ default_target: all
+ 
+-.PHONY: clean force all noex ex install test
++.PHONY: clean force all noex ex install_noex install_ex install test
+ 
+ # absolute paths so that emacs compile mode knows where to find error
+ # use cygpath -m because Coq on Windows cannot handle cygwin paths
+@@ -94,5 +94,10 @@ clean:: Makefile.coq.noex Makefile.coq.ex
+ 	find . -type f \( -name '*~' -o -name '*.aux' -o -name '.lia.cache' -o -name '.nia.cache' \) -delete
+ 	rm -f Makefile.coq.noex Makefile.coq.noex.conf Makefile.coq.ex Makefile.coq.ex.conf _CoqProject special/BytedumpTest.out
+ 
+-install::
++install_noex::
+ 	$(MAKE) -f Makefile.coq.noex install
++
++install_ex::
++	$(MAKE) -f Makefile.coq.ex install
++
++install:: install_noex install_ex
+-- 
+2.37.0
+

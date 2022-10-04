@@ -1,0 +1,48 @@
+opam-version: "2.0"
+authors: [
+  "Massachusetts Institute of Technology"
+  "Kevix"
+  "SiFive"
+]
+maintainer: "Jason Gross <jgross@mit.edu>"
+homepage: "https://github.com/mit-plv/bedrock2"
+bug-reports: "https://github.com/mit-plv/bedrock2/issues"
+license: "MIT"
+patches: [
+  "0001-make-bedrock2_install-now-installs-examples.patch"
+]
+build: [
+  [make "-j%{jobs}%" "EXTERNAL_DEPENDENCIES=1" "bedrock2_ex"]
+]
+install: [make "EXTERNAL_DEPENDENCIES=1" "install_bedrock2"]
+run-test: [
+  [make "-j%{jobs}%" "-C" "bedrock2" "EXTERNAL_DEPENDENCIES=1" "test"]
+]
+depends: [
+  "conf-findutils" {build}
+  "conf-python-3" {build & with-test}
+  "coq" {>= "8.15~"}
+  "coq-coqutil" {= "0.0.2"}
+  "zarith" {>= "1.11"}
+]
+dev-repo: "git+https://github.com/mit-plv/bedrock2.git"
+synopsis: "A work-in-progress language and compiler for verified low-level programming"
+description: """
+bedrock2 is a low-level systems programming language. This
+language is equipped with a simple program logic for
+proving correctness of the programs.  A verified compiler
+targeting RISC-V from this language exists but is not yet on opam.
+
+The project has similar goals as bedrock, but uses a different design.
+No code is shared between bedrock and bedrock2.
+
+The source language is a C-like language called ExprImp. It is an
+imperative language with expressions. Currently, the only data type
+is word (32-bit or 64-bit), and the memory is a partial map from words
+to bytes. Records are supported as a notation for memory access with an offset.
+"""
+tags: ["logpath:bedrock2"]
+url {
+  src: "https://github.com/mit-plv/bedrock2/archive/refs/tags/v0.0.2.tar.gz"
+  checksum: "sha512=4f2b2975eb3ed26158b4cf2eb6f8b2eb27fc381e57da5b0be4eb275c3306d71542938cdf614108975bf24d985b6991b95cb1f681406b9f0759f214d4eb33b337"
+}
