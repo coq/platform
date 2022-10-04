@@ -54,6 +54,8 @@ declare -A COQ_OPTION
 declare -A PATCH_CMDS
 
 TEST_FILES[coq-aac-tactics]='theories/Tutorial.v'
+TEST_FILES[coq-bedrock2]=''
+TEST_FILES[coq-bedrock2-compiler]=''
 TEST_FILES[coq-bignums]='tests/success/bigQ.v tests/success/NumberScopes.v'
 TEST_FILES[coq-compcert-32]='lib/Coqlib.v'
 COQ_OPTION[coq-compcert-32]='-Q $COQLIB/../coq-variant/compcert32/compcert compcert'
@@ -75,6 +77,7 @@ TEST_FILES[coq-elpi~dev]='examples/tutorial_coq_elpi.v examples/tutorial_elpi_la
 TEST_FILES[coq-equations]='examples/Fin.v examples/STLC.v'
 TEST_FILES[coq-ext-lib]='examples/MonadReasoning.v examples/Printing.v'
 TEST_FILES[coq-extructures]='../../test_files/coq-extructures/tutorial.v'
+TEST_FILES[coq-fiat-crypto]='../../test_files/coq-fiat-crypto/test.v'
 TEST_FILES[coq-flocq]='examples/Average.v' # In fixing: examples/Cody_Waite.v
 TEST_FILES[coq-flocq3]='examples/Average.v' # In fixing: examples/Cody_Waite.v
 PATCH_CMDS[coq-flocq3]='{gsub(/^From Flocq Require/, "From Flocq3 Require", $0); print $0; next}'
@@ -131,6 +134,9 @@ TEST_FILES[coq-relation-algebra~8.14~2022.04]='compiler_opts.v imp.v'
 TEST_FILES[coq-relation-algebra~8.15~2022.04]='compiler_opts.v imp.v'
 TEST_FILES[coq-relation-algebra]='examples/compiler_opts.v examples/imp.v'
 PATCH_CMDS[coq-relation-algebra]='/^Require Import kat .*$/ {print "From RelationAlgebra "$0; next}'
+TEST_FILES[coq-rewriter]='../../test_files/coq-rewriter/test.v'
+TEST_FILES[coq-riscv]=''
+TEST_FILES[coq-rupicola]=''
 TEST_FILES[coq-serapi]=''
 TEST_FILES[coq-simple-io]='test/Example.v test/TestExtraction.v'
 TEST_FILES[coq-stdpp]='tests/sets.v'
