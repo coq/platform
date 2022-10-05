@@ -29,6 +29,9 @@ function dump_opam_logs {
 
 opam config set jobs $COQ_PLATFORM_JOBS
 
+# coq-fiat-crypto requires this - it sets the maximum stack size to 32MB
+ulimit -s 32768
+
 case "$COQ_PLATFORM_PARALLEL" in
   [pP]) 
     echo "===== INSTALL OPAM PACKAGES (PARALLEL) ====="

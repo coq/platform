@@ -31,6 +31,7 @@ source "shell_scripts/init_utilities.sh"
 ##### Parameters #####
 
 source "shell_scripts/parse_cmdline_arguments.sh"
+source "shell_scripts/ask_large.sh"
 
 ##### Get pick and release information #####
 

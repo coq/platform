@@ -14,11 +14,15 @@ using the Coq proof assistant.
 
 depends: [
   "coq" {= version}
-  "ocamlfind" {build}
+  "ocamlfind" {>= "1.8.1"}
   "dune" {>= "2.5.1"}
   "conf-findutils" {build}
-  "lablgtk3-sourceview3"
+  "lablgtk3-sourceview3" {>= "3.1.2"}
   "conf-adwaita-icon-theme"
+]
+patches: [
+  # See https://github.com/coq/coq/pull/16581
+  "0001-Workaround-for-CoqIDE-preferences-crashing-on-MacOS-.patch"
 ]
 build: [
   [

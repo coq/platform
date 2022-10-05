@@ -40,3 +40,8 @@ EOH
   ask_user_opt4_cancel "Install full (f), extended (x), base (b) or IDE (i)?" fF "full platform" xX "extended platform" bB "base Coq" iI "Coq+CoqIDE"
   COQ_PLATFORM_EXTENT=$ANSWER
 fi
+
+case "$COQ_PLATFORM_EXTENT" in
+[bB]) COQ_PLATFORM_LARGE=e ;;
+[iI]) COQ_PLATFORM_LARGE=e ;;
+esac

@@ -110,7 +110,11 @@ then
   # Note: coq-unimath requires too much memory for 32 bit architectures
   if [ "${BITSIZE}" == "64" ]
   then
-    PACKAGES="${PACKAGES} coq-unimath.20220816"
+    case "$COQ_PLATFORM_UNIMATH" in
+    [yY]) PACKAGES="${PACKAGES} coq-unimath.20220816" ;;
+    [nN]) true ;;
+    *) echo "Illegal value for COQ_PLATFORM_UNIMATH - aborting"; false ;;
+    esac
   fi 
 
   # Code extraction
@@ -135,7 +139,7 @@ then
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.16"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.1"
-  PACKAGES="${PACKAGES} coq-libhyps.2.0.5"
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.6"
   PACKAGES="${PACKAGES} coq-itauto.8.16.0"
   
   # General mathematics (which requires one of the above tools)
@@ -174,10 +178,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.0"
-  if [ "$OSTYPE" != cygwin ]
-  then
-    PACKAGES="${PACKAGES} coq-metacoq.1.1+8.16"
-  fi
+  PACKAGES="${PACKAGES} coq-metacoq.1.1+8.16"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"
@@ -189,7 +190,21 @@ then
   # Communication with coqtop
   PACKAGES="${PACKAGES} coq-serapi.8.16.0+0.16.0"
 
-  # Bedrock2, fiat crypto, ...
-  PACKAGES="${PACKAGES} coq-coqutil.0.0.1"
-  # PACKAGES="${PACKAGES} coq-bedrock2.0.0.1"                   # Error: "sed: illegal option -- z"
+  # fiat crypto, bedrock2, rupicola and dependencies
+  if [ "${BITSIZE}" == "64" ]
+  then
+    case "$COQ_PLATFORM_FIATCRYPTO" in
+      [yY])
+        PACKAGES="${PACKAGES} coq-coqutil.0.0.2"
+        PACKAGES="${PACKAGES} coq-rewriter.0.0.6"
+        PACKAGES="${PACKAGES} coq-riscv.0.0.2"
+        PACKAGES="${PACKAGES} coq-bedrock2.0.0.3"
+        PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.3"
+        PACKAGES="${PACKAGES} coq-rupicola.0.0.5"
+        PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.15"
+        ;;
+      [nN]) true ;;
+      *) echo "Illegal value for COQ_PLATFORM_FIATCRYPTO - aborting"; false ;;
+    esac
+  fi
 fi

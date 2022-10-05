@@ -12,7 +12,7 @@ Then:
 export GHTOKEN=6NDVjMDhmZDAwMGZ...
 export GHUSER=gares
 export BRANCH=v8.13
-export PLATFORM="-extent=f -parallel=p -jobs=2 -vst=y -compcert=y"
+export PLATFORM="-extent=f -parallel=p -jobs=2 -large=i -compcert=y"
 export SAVE=true
 export UPLOAD=false
 ./github_actions/run_snap.sh

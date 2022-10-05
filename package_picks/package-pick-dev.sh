@@ -103,7 +103,11 @@ then
   # Note: coq-unimath requires too much memory for 32 bit architectures
   if [ "${BITSIZE}" == "64" ]
   then
-    PACKAGES="${PACKAGES} coq-unimath.dev"
+    case "$COQ_PLATFORM_UNIMATH" in
+    [yY]) PACKAGES="${PACKAGES} coq-unimath.dev" ;;
+    [nN]) true ;;
+    *) echo "Illegal value for COQ_PLATFORM_UNIMATH - aborting"; false ;;
+    esac
   fi 
 
   # Code extraction

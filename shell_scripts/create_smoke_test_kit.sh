@@ -54,6 +54,8 @@ declare -A COQ_OPTION
 declare -A PATCH_CMDS
 
 TEST_FILES[coq-aac-tactics]='theories/Tutorial.v'
+TEST_FILES[coq-bedrock2]='bedrock2/src/bedrock2Examples/ipow.v'
+TEST_FILES[coq-bedrock2-compiler]='compiler/src/compiler/Pipeline.v'
 TEST_FILES[coq-bignums]='tests/success/bigQ.v tests/success/NumberScopes.v'
 TEST_FILES[coq-compcert-32]='lib/Coqlib.v'
 COQ_OPTION[coq-compcert-32]='-Q $COQLIB/../coq-variant/compcert32/compcert compcert'
@@ -64,7 +66,7 @@ TEST_FILES[coq-coqprime]='src/Coqprime/examples/russell1.v'
 PATCH_CMDS[coq-coqprime]='/^Require Import PocklingtonRefl.$/ {print "From Coqprime "$0; next}'
 TEST_FILES[coq-coquelicot]='examples/BacS2013.v'
 PATCH_CMDS[coq-coquelicot]='/^Require Import .*Rcomplements.*.$/ {print "From Coquelicot "$0; next}'
-TEST_FILES[coq-coqutil]='src/coqutil/Map/SortedList.v'
+TEST_FILES[coq-coqutil]='src/coqutil/Map/SortedListWord.v'
 TEST_FILES[coq-corn]=''
 TEST_FILES[coq-deriving]='tests/tree.v'
 TEST_FILES[coq-dpdgraph]='tests/Test.v'
@@ -75,6 +77,7 @@ TEST_FILES[coq-elpi~dev]='examples/tutorial_coq_elpi.v examples/tutorial_elpi_la
 TEST_FILES[coq-equations]='examples/Fin.v examples/STLC.v'
 TEST_FILES[coq-ext-lib]='examples/MonadReasoning.v examples/Printing.v'
 TEST_FILES[coq-extructures]='../../test_files/coq-extructures/tutorial.v'
+TEST_FILES[coq-fiat-crypto]='src/Demo.v'
 TEST_FILES[coq-flocq]='examples/Average.v' # In fixing: examples/Cody_Waite.v
 TEST_FILES[coq-flocq3]='examples/Average.v' # In fixing: examples/Cody_Waite.v
 PATCH_CMDS[coq-flocq3]='{gsub(/^From Flocq Require/, "From Flocq3 Require", $0); print $0; next}'
@@ -131,6 +134,9 @@ TEST_FILES[coq-relation-algebra~8.14~2022.04]='compiler_opts.v imp.v'
 TEST_FILES[coq-relation-algebra~8.15~2022.04]='compiler_opts.v imp.v'
 TEST_FILES[coq-relation-algebra]='examples/compiler_opts.v examples/imp.v'
 PATCH_CMDS[coq-relation-algebra]='/^Require Import kat .*$/ {print "From RelationAlgebra "$0; next}'
+TEST_FILES[coq-rewriter]='src/Rewriter/Demo.v '
+TEST_FILES[coq-riscv]='src/riscv/Examples/MulTrapHandler.v'
+TEST_FILES[coq-rupicola]='src/Rupicola/Examples/Uppercase.v'
 TEST_FILES[coq-serapi]=''
 TEST_FILES[coq-simple-io]='test/Example.v test/TestExtraction.v'
 TEST_FILES[coq-stdpp]='tests/sets.v'
@@ -190,7 +196,7 @@ cat <<-'EOH' | sed -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PACKAGE_PICK_POS
 	      echo "Using coqc from '/snap/coq-prover/current/coq-platform/bin'"
 	      echo "ATTENTION: coq-hammer requires LD_LIBRARY_PATH to be set to lib/stublibs!"
 	      export PATH='/snap/coq-prover/current/coq-platform/bin':"$PATH"
-	      export LD_LIBRARY_PATH='/snap/coq-prover/current/coq-platform/lib/stublibs':"$LD_LIBRARY_PATH"
+	      export LD_LIBRARY_PATH='/snap/coq-prover/current/coq-platform/lib/stublibs':"${LD_LIBRARY_PATH:-}"
 	    fi
 	  else
 	    echo "Using coqc from '/Applications/PRODUCTNAME.app/Contents/Resources/bin'"

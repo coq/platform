@@ -45,7 +45,10 @@ source shell_scripts/ask_introduction.sh
 source shell_scripts/ask_packagelist.sh
 source shell_scripts/ask_parallel_build.sh
 source shell_scripts/ask_compcert_open_source.sh
+source shell_scripts/ask_large.sh
 source shell_scripts/ask_vst.sh
+source shell_scripts/ask_unimath.sh
+source shell_scripts/ask_fiat-crypto.sh
 
 ###################### PACKAGE SELECTION #####################
 

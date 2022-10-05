@@ -16,13 +16,14 @@ In case you want to use the fast path:
 - Open the downloaded DMG package with a double click.
 - Drag and drop the "Coq_Platform_2022.01.0.app" icon on the link to the "Applications" folder.
 - CoqIDE appears under `/Applications` in Finder and in Launcher.
-- Beta releases of Coq Platform might contain unsigned packages, which macOS does not start by default. In case you get an error message
-stating "Coq_Platform.app cannot be opened because the developer cannot be verified" either download a release package, or alternatively
-right click the `Coq_Platform` app in `/Applications` in Finder and select `open`. You will see the same error message as before, but it will have an `Open` button now.
-- In case you want to use the installed `coqc` from the command line, please add the folder `/Applications/Coq-Platform~8.15~2022.04.app/Contents/Resources/bin` to your `$PATH`, e.g. by running `sudo sh -c "echo '/Applications/Coq-Platform~8.15~2022.04.app/Contents/Resources/bin' > /etc/paths.d/coq"`
+- The published installers are always signed by INRIA, but no notarized by Apple yet. This means that on first start of the application, you must right click on the Coq application in the `Applications` folder and select `open`. Subsequently this is not required - the application can be started directly.
+- In case you want to use the installed `coqc` and other tools from the command line, you have three options:
+  - Use the supplied `coq-shell.command` file. This file is included in the top level folder of the `.dmg` file and can be dragged e.g. to the desktop and started from there. It opens a terminal window in which the environment variables `$PATH` and `$COQLIB` are set. These `.command` files always refer to a specifc version of Coq, so you can keep multiple of these files for multiple versions of Coq.
+  - Run `eval $(/Applications/Coq-Platform~8.15~2022.04.app/Contents/Resources/bin/coq-env.sh)` in your shell. This will set the same environment variables as `coq-shell.command` in the current shell.
+  - Add the folder `/Applications/Coq-Platform~8.15~2022.04.app/Contents/Resources/bin` to your `$PATH`, e.g. by running `sudo sh -c "echo '/Applications/Coq-Platform~8.15~2022.04.app/Contents/Resources/bin' > /etc/paths.d/coq"`. Please note that this method has two disadvantages: first it is difficult to switch between different versions of Coq and second some tools require additional environment variables, e.g. `COQLIB` or `LD_LIBRARY_PATH` to be set.
 - If you want to inspect the installed content, right click the `Coq_Platform` app in `/Applications` in Finder and select `Show Package Contents`.
 
-A note to lecturers: it is easy to create a customized Windows installer from an opam switch - see [Customized Installers](#customized-installers)
+**A note to lecturers:** it is easy to create a customized Windows installer from an opam switch - see [Customized Installers](FAQ-customized-installers.md)
 
 # Installation by compiling from Sources using opam
 

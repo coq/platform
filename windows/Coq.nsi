@@ -9,6 +9,10 @@
 ; ARCH         The target architecture, either x86_64 or i686
 
 ; Enable compression after debugging.
+; NOTE: NSIS files are limited to 2GB (compressed)
+; Turuning off compression for a full installer will result in
+; Internal compiler error #12345: error mmapping datablock to 257061.
+; For quick tests (say IDE only), compression can be turned off. 
 ; SetCompress off
 SetCompressor lzma
 
@@ -102,10 +106,12 @@ Section "-CoqWinStuff" Sec_CoqWinStuff
   CreateDirectory "$SMPROGRAMS\Coq"
   ; The first shortcut set here is treated as main application by Windows 7/8.
   ; Use CoqIDE as main application
-  CreateShortCut "$SMPROGRAMS\Coq\CoqIDE.lnk" "$INSTDIR\bin\coqide.exe" "" "$INSTDIR\bin\coqide.exe" 0
+  CreateShortCut "$SMPROGRAMS\Coq\CoqIDE.lnk" "$INSTDIR\bin\coqide.exe" "" "$INSTDIR\bin\coq.ico" 0
+  ; Coq shell
+  CreateShortCut "$SMPROGRAMS\Coq\Coq-Shell.lnk" "%COMSPEC%" "/K $INSTDIR\coq-shell.bat" "$INSTDIR\coq-shell.ico" 0
   ; CreateShortCut "$SMPROGRAMS\Coq\Coq.lnk" "$INSTDIR\bin\coqtop.exe"
   WriteINIStr "$SMPROGRAMS\Coq\The Coq HomePage.url" "InternetShortcut" "URL" "http://coq.inria.fr"
-  WriteINIStr "$SMPROGRAMS\Coq\The Coq Standard Library.url" "InternetShortcut" "URL" "http://coq.inria.fr/library"
+  WriteINIStr "$SMPROGRAMS\Coq\The Coq Standard Library.url" "InternetShortcut" "URL" "https://coq.inria.fr/distrib/current/stdlib/"
   CreateShortCut "$SMPROGRAMS\Coq\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
   ; fill in coq_environment.txt
   SetOutPath "$INSTDIR\bin\"
@@ -437,7 +443,7 @@ FunctionEnd
     FunctionEnd
   !endif
 
-  !define MUI_DIRECTORYPAGE_TEXT_TOP "Please select where to install Coq.$\r$\n$\r$\nATTENTION:$\r$\n -the path must not include spaces.$\r$\n- the path must be empty unless you are adding additional packages using the same installer!$\r$\n- if you already have a *different* Coq version installed in the *same* place, please uninstall first via add/remove programs.$\r$\n- it is fine to install multiple versions of Coq in *different* folders."
+  !define MUI_DIRECTORYPAGE_TEXT_TOP "ATTENTION:$\r$\n -the path must not include spaces$\r$\n- the path must be empty unless you are adding additional packages using the same installer$\r$\n- if you already have a *different* Coq version installed in the *same* place, please uninstall first via add/remove programs$\r$\n- it is fine to install multiple versions of Coq in *different* folders"
   !insertmacro MUI_PAGE_DIRECTORY
   !insertmacro MUI_PAGE_INSTFILES
   !insertmacro MUI_PAGE_FINISH
@@ -482,10 +488,13 @@ Section "Uninstall"
   RMDir /r "$INSTDIR\license_readme"
   RMDir /r "$INSTDIR\man"
   RMDir /r "$INSTDIR\emacs"
+  Delete "$INSTDIR\findlib.root"
+  Delete "$INSTDIR\coq-shell.ico"
+  Delete "$INSTDIR\coq-shell.bat"
 
   ; Start Menu
-  Delete "$SMPROGRAMS\Coq\Coq.lnk"
   Delete "$SMPROGRAMS\Coq\CoqIde.lnk"
+  Delete "$SMPROGRAMS\Coq\coq-shell.lnk"
   Delete "$SMPROGRAMS\Coq\Uninstall.lnk"
   Delete "$SMPROGRAMS\Coq\The Coq HomePage.url"
   Delete "$SMPROGRAMS\Coq\The Coq Standard Library.url"

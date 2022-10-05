@@ -18,10 +18,10 @@ then
   then
 cat <<EOH
 ======================= VERIFIED SOFTWARE TOOLCHAIN VST =======================
-The Coq Platform installs the Verified Software Toolchain VST.
+The Coq Platform includes the Verified Software Toolchain VST.
 
-Unfortunately VST takes a while to compile - on a fast machine with 32GB RAM it
-may be just 20 minutes, but on a slow machine with 4GB RAM it is more likely
+Unfortunately VST takes a while to build - on a fast machine with 64GB RAM it
+may be just 10..15 minutes, but on a slow machine with 4GB RAM it might be
 2 hours.
 
 In case you do not plan to formally verify C code with VST, you might want

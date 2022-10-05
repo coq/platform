@@ -386,11 +386,30 @@ chmod a+x ${APP_ABSDIR}/Contents/MacOS/coqide
 
 cp ${coqidefolder}/MacOS/*.icns ${RSRC_ABSDIR}
 
+
+###################### Create contents of the top level DMG folder  ######################
+
+##### Link to the Applications folder #####
+
 # Create a link to the 'Applications' folder, so that one can drag and drop the application there
 
 ln -sf /Applications _dmg/Applications
 
-###################### Create README.html ######################
+##### coq-shell.command #####
+
+sed "s/@@VERSION@@/${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}/" ../macos/coq-shell.command.template > _dmg/coq-shell${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.command
+chmod u+x _dmg/coq-shell${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.command
+
+##### coq-env.sh #####
+
+sed "s/@@VERSION@@/${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}/" ../macos/coq-env.sh.template > ${BIN_ABSDIR}/coq-env.sh
+chmod u+x ${BIN_ABSDIR}/coq-env.sh
+
+##### Installation.html #####
+
+sed "s/@@VERSION@@/${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}/" ../macos/Installation.html.template > _dmg/Installation.html
+
+##### README.html #####
 
 if [ "${CREATEREADME}" == "Y" ]
 then

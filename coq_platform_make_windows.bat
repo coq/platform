@@ -210,8 +210,22 @@ IF "%~0" == "-compcert" (
   GOTO Parse
 )
 
+IF "%~0" == "-large" (
+  SET COQ_PLATFORM_LARGE=%~1
+  SHIFT
+  SHIFT
+  GOTO Parse
+)
+
 IF "%~0" == "-vst" (
   SET COQ_PLATFORM_VST=%~1
+  SHIFT
+  SHIFT
+  GOTO Parse
+)
+
+IF "%~0" == "-unimath" (
+  SET COQ_PLATFORM_UNIMATH=%~1
   SHIFT
   SHIFT
   GOTO Parse
@@ -497,23 +511,24 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO If an option is not given, the option is explained and asked for interactively.
   ECHO Except for expert users this is the recommended way to run this script.
   ECHO(
+  ECHO -h, -help     Print this help message
   ECHO -extent=f     Setup opam and build full Coq Platform
   ECHO -extent=x     Setup opam and build extended Coq Platform
-  ECHO -extent=b     Just setup opam and build Coq (basic)
-  ECHO -extent=i     Just setup opam and build Coq + CoqIDE
+  ECHO -extent=b     Just setup opam and build Coq
+  ECHO -extent=i     Just setup opam and build Coq+CoqIDE
+  ECHO -large=i/e/s  Include/Exclude/Select large packages
   ECHO -pick=file/postfix Select the package pick / version file
   ECHO -parallel=p   Build several opam packages in parallel
   ECHO -parallel=s   Build opam packages sequentially
   ECHO -jobs=1..16   Number of make threads per package
-  ECHO -compcert=y   Build the non ioen source software CompCert
-  ECHO -compcert=n   Do not build CompCert and VST
-  ECHO -vst=y        Build Verified Software Toolchain (takes a while)
-  ECHO -vst=n        Do not build Verified Software Toolchain
+  ECHO -compcert=y/n Build CompCert (NOT OPEN SOURCE, required for VST)
+  ECHO -vst=y/n      Build Verified Software Toolchain (takes a while)
+  ECHO -unimath=y/n  Build Univalent Mathematics library (takes a while)
   ECHO -switch=k     In case the opam switch already exists, keep it
   ECHO -switch=d     In case the opam switch already exists, delete it
   ECHO -set-switch=y Select the newly created opam switch
   ECHO -set-switch=n Do not select the newly created opam switch
-  ECHO -dumplogs=y   Dump all opam logs in case opam fails (intended for CI)
+  ECHO -dumplogs     Dump all log files in case of an error (intended for CI)
   ECHO -override-dev-pkg=name=url To override the url of a .dev package
   REM  01234567890123456789012345678901234567890123456789012345678901234567890123456789
   GOTO :EOF
@@ -535,7 +550,9 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO -parallel  = %COQ_PLATFORM_PARALLEL%
   ECHO -jobs      = %COQ_PLATFORM_JOBS%
   ECHO -compcert  = %COQ_PLATFORM_COMPCERT%
+  ECHO -large     = %COQ_PLATFORM_LARGE%
   ECHO -vst       = %COQ_PLATFORM_VST%
+  ECHO -unimath   = %COQ_PLATFORM_UNIMATH%
   ECHO -switch    = %COQ_PLATFORM_SWITCH%
   ECHO -set-switch= %COQ_PLATFORM_SET_SWITCH%
   ECHO -dumplogs  = %COQ_PLATFORM_DUMP_LOGS%

@@ -23,14 +23,15 @@ OPTIONS:
   -extent=x     Setup opam and build extended Coq Platform
   -extent=b     Just setup opam and build Coq
   -extent=i     Just setup opam and build Coq+CoqIDE
+  -large=i/e/s  Include/Exclude/Select large packages
   -pick=file/postfix Select the package pick / version file
   -parallel=p   Build several opam packages in parallel
   -parallel=s   Build opam packages sequentially
   -jobs=1..16   Number of make threads per package
-  -compcert=y   Build CompCert
-  -compcert=n   Do not build CompCert and VST
-  -vst=y        Build Verified Software Toolchain (takes a while)
-  -vst=n        Do not build Verified Software Toolchain
+  -compcert=y/n Build CompCert (NOT OPEN SOURCE, required for VST)
+  -vst=y/n      Build Verified Software Toolchain (takes a while)
+  -unimath=y/n  Build Univalent Mathematics library (takes a while)
+  -fiatcrypto=y/n Build fiat-crypto and dependencies (takes a while)
   -switch=k     In case the opam switch already exists, keep it
   -switch=d     In case the opam switch already exists, delete it
   -set-switch=y Select the newly created opam switch
@@ -50,8 +51,11 @@ do
     -pick=*)       COQ_PLATFORM_PACKAGE_PICK_NAME="${arg#*=}";;
     -parallel=*)   COQ_PLATFORM_PARALLEL="${arg#*=}";;
     -jobs=*)       COQ_PLATFORM_JOBS="${arg#*=}";;
+    -large=*)      COQ_PLATFORM_LARGE="${arg#*=}";;
     -compcert=*)   COQ_PLATFORM_COMPCERT="${arg#*=}";;
     -vst=*)        COQ_PLATFORM_VST="${arg#*=}";;
+    -unimath=*)    COQ_PLATFORM_UNIMATH="${arg#*=}";;
+    -fiatcrypto=*) COQ_PLATFORM_FIATCRYPTO="${arg#*=}";;
     -switch=*)     COQ_PLATFORM_SWITCH="${arg#*=}";;
     -set-switch=*) COQ_PLATFORM_SET_SWITCH="${arg#*=}";;
     -dumplogs)     COQ_PLATFORM_DUMP_LOGS=y;;
@@ -80,12 +84,15 @@ then
   done
 fi
 
-check_value_enumeraton  "${COQ_PLATFORM_EXTENT:-__unset__}"   "[xfbi]" "-extent/COQ_PLATFORM_EXTENT"
-check_value_enumeraton  "${COQ_PLATFORM_PARALLEL:-__unset__}" "[ps]"  "-parallel/COQ_PLATFORM_PARALLEL"
-check_value_range       "${COQ_PLATFORM_JOBS:-__unset__}"     1 16    "-jobs/COQ_PLATFORM_JOBS"
-check_value_enumeraton  "${COQ_PLATFORM_COMPCERT:-__unset__}" "[yn]"  "-compcert/COQ_PLATFORM_COMPCERT"
-check_value_enumeraton  "${COQ_PLATFORM_VST:-__unset__}"      "[yn]"  "-vst/COQ_PLATFORM_VST"
-check_value_enumeraton  "${COQ_PLATFORM_SWITCH:-__unset__}"   "[kd]"  "-switch/COQ_PLATFORM_SWITCH"
+check_value_enumeraton  "${COQ_PLATFORM_EXTENT:-__unset__}"    "[xfbi]" "-extent/COQ_PLATFORM_EXTENT"
+check_value_enumeraton  "${COQ_PLATFORM_PARALLEL:-__unset__}"  "[ps]"  "-parallel/COQ_PLATFORM_PARALLEL"
+check_value_range       "${COQ_PLATFORM_JOBS:-__unset__}"      1 16    "-jobs/COQ_PLATFORM_JOBS"
+check_value_enumeraton  "${COQ_PLATFORM_LARGE:-__unset__}"     "[ies]" "-large/COQ_PLATFORM_LARGE"
+check_value_enumeraton  "${COQ_PLATFORM_COMPCERT:-__unset__}"  "[yn]"  "-compcert/COQ_PLATFORM_COMPCERT"
+check_value_enumeraton  "${COQ_PLATFORM_VST:-__unset__}"       "[yn]"  "-vst/COQ_PLATFORM_VST"
+check_value_enumeraton  "${COQ_PLATFORM_UNIMATH:-__unset__}"   "[yn]"  "-unimath/COQ_PLATFORM_UNIMATH"
+check_value_enumeraton  "${COQ_PLATFORM_FIATCRYPTO:-__unset__}" "[yn]" "-fiatcrypto/COQ_PLATFORM_FIATCRYPTO"
+check_value_enumeraton  "${COQ_PLATFORM_SWITCH:-__unset__}"    "[kd]"  "-switch/COQ_PLATFORM_SWITCH"
 check_value_enumeraton  "${COQ_PLATFORM_DUMP_LOGS:-__unset__}" "[yn]"  "-dumplogs/COQ_PLATFORM_DUMP_LOGS"
 check_value_enumeraton  "${COQ_PLATFORM_OPAM_ONLY:-__unset__}" "[yn]"  "-opamonly/COQ_PLATFORM_OPAM_ONLY"
 check_value_file_exists "${COQ_PLATFORM_PACKAGE_PICK_FILE:-__unset__}" "-packages/COQ_PLATFORM_PACKAGE_PICK_FILE"
