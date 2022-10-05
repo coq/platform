@@ -31,6 +31,7 @@ OPTIONS:
   -compcert=y/n Build CompCert (NOT OPEN SOURCE, required for VST)
   -vst=y/n      Build Verified Software Toolchain (takes a while)
   -unimath=y/n  Build Univalent Mathematics library (takes a while)
+  -fiatcrypto=y/n Build fiat-crypto and dependencies (takes a while)
   -switch=k     In case the opam switch already exists, keep it
   -switch=d     In case the opam switch already exists, delete it
   -set-switch=y Select the newly created opam switch
@@ -54,6 +55,7 @@ do
     -compcert=*)   COQ_PLATFORM_COMPCERT="${arg#*=}";;
     -vst=*)        COQ_PLATFORM_VST="${arg#*=}";;
     -unimath=*)    COQ_PLATFORM_UNIMATH="${arg#*=}";;
+    -fiatcrypto=*) COQ_PLATFORM_FIATCRYPTO="${arg#*=}";;
     -switch=*)     COQ_PLATFORM_SWITCH="${arg#*=}";;
     -set-switch=*) COQ_PLATFORM_SET_SWITCH="${arg#*=}";;
     -dumplogs)     COQ_PLATFORM_DUMP_LOGS=y;;
@@ -89,6 +91,7 @@ check_value_enumeraton  "${COQ_PLATFORM_LARGE:-__unset__}"     "[ies]" "-large/C
 check_value_enumeraton  "${COQ_PLATFORM_COMPCERT:-__unset__}"  "[yn]"  "-compcert/COQ_PLATFORM_COMPCERT"
 check_value_enumeraton  "${COQ_PLATFORM_VST:-__unset__}"       "[yn]"  "-vst/COQ_PLATFORM_VST"
 check_value_enumeraton  "${COQ_PLATFORM_UNIMATH:-__unset__}"   "[yn]"  "-unimath/COQ_PLATFORM_UNIMATH"
+check_value_enumeraton  "${COQ_PLATFORM_FIATCRYPTO:-__unset__}" "[yn]" "-fiatcrypto/COQ_PLATFORM_FIATCRYPTO"
 check_value_enumeraton  "${COQ_PLATFORM_SWITCH:-__unset__}"    "[kd]"  "-switch/COQ_PLATFORM_SWITCH"
 check_value_enumeraton  "${COQ_PLATFORM_DUMP_LOGS:-__unset__}" "[yn]"  "-dumplogs/COQ_PLATFORM_DUMP_LOGS"
 check_value_enumeraton  "${COQ_PLATFORM_OPAM_ONLY:-__unset__}" "[yn]"  "-opamonly/COQ_PLATFORM_OPAM_ONLY"

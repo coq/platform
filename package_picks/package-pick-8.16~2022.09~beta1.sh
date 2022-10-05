@@ -191,11 +191,20 @@ then
   PACKAGES="${PACKAGES} coq-serapi.8.16.0+0.16.0"
 
   # fiat crypto, bedrock2, rupicola and dependencies
-  PACKAGES="${PACKAGES} coq-coqutil.0.0.2"
-  PACKAGES="${PACKAGES} coq-rewriter.0.0.6"
-  PACKAGES="${PACKAGES} coq-riscv.0.0.2"
-  PACKAGES="${PACKAGES} coq-bedrock2.0.0.3"
-  PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.3"
-  PACKAGES="${PACKAGES} coq-rupicola.0.0.5"
-  PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.15"
+  if [ "${BITSIZE}" == "64" ]
+  then
+    case "$COQ_PLATFORM_FIATCRYPTO" in
+      [yY])
+        PACKAGES="${PACKAGES} coq-coqutil.0.0.2"
+        PACKAGES="${PACKAGES} coq-rewriter.0.0.6"
+        PACKAGES="${PACKAGES} coq-riscv.0.0.2"
+        PACKAGES="${PACKAGES} coq-bedrock2.0.0.3"
+        PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.3"
+        PACKAGES="${PACKAGES} coq-rupicola.0.0.5"
+        PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.15"
+        ;;
+      [nN]) true ;;
+      *) echo "Illegal value for COQ_PLATFORM_FIATCRYPTO - aborting"; false ;;
+    esac
+  fi
 fi

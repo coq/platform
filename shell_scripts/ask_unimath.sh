@@ -12,8 +12,10 @@
 
 # UNIMATH yes / no
 
-if [ -z "${COQ_PLATFORM_UNIMATH:+x}" ]
+if grep -q "COQ_PLATFORM_UNIMATH" "${COQ_PLATFORM_PACKAGE_PICK_FILE}"
 then
+  if [ -z "${COQ_PLATFORM_UNIMATH:+x}" ]
+  then
 cat <<EOH
 ======================= UNIVALENT MATHEMATICS LIBRARY =======================
 The Coq Platform includes the Univalent Mathematics Library.
@@ -28,6 +30,9 @@ to select no (n) below. You can install UniMath at any time later with:
   opam install coq-unimath
 ======================= UNIVALENT MATHEMATICS LIBRARY =======================
 EOH
-  ask_user_opt2_cancel "Install UniMath (y) or do not install UniMath (n)?" yY "install UniMath" nN "do not install UniMath"
-  COQ_PLATFORM_UNIMATH=$ANSWER
+    ask_user_opt2_cancel "Install UniMath (y) or do not install UniMath (n)?" yY "install UniMath" nN "do not install UniMath"
+    COQ_PLATFORM_UNIMATH=$ANSWER
+  fi
+else
+  COQ_PLATFORM_UNIMATH='n'
 fi
