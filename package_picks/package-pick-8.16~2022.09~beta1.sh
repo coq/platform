@@ -153,7 +153,7 @@ then
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0"
   PACKAGES="${PACKAGES} coq-ott.0.32"
   PACKAGES="${PACKAGES} ott.0.32"
-  PACKAGES="${PACKAGES} coq-mathcomp-word.2.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-word.1.1"
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.11" ;;
