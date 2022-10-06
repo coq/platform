@@ -655,8 +655,8 @@ ${BR}
 ${H2B}Coq Platform ${COQ_PLATFORM_RELEASE} with Coq ${COQ_PLATFORM_COQ_TAG} "optional packages"${H2E}
 
 ${PB}The ${BB}optional${BE} packages have the same maturity and maintenance level as the
-packages in the full level, but either have a ${BB}non open source license${BE} or
-depend on packages with non open source license.${PE}
+packages in the full level, but either take a rather long time to build or have
+a ${BB}non open source license${BE} or depend on packages with non open source license.${PE}
 
 ${PB}The interactive installation script and the Windows installer explicitly ask
 if you want to install these packages.${PE}

@@ -952,8 +952,8 @@ The **full level** contains the following packages:
 ## **Coq Platform 2022.09.0 with Coq 8.16.0 "optional packages"**
 
 The **optional** packages have the same maturity and maintenance level as the
-packages in the full level, but either have a **non open source license** or
-depend on packages with non open source license.
+packages in the full level, but either take a rather long time to build or have
+a **non open source license** or depend on packages with non open source license.
 
 The interactive installation script and the Windows installer explicitly ask
 if you want to install these packages.
