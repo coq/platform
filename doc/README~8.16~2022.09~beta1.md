@@ -12,7 +12,7 @@ The Coq Platform supports to install several versions of Coq (also in parallel).
 This README file is for **Coq Platform 2022.09.0 with Coq 8.16.0**.
 The README files for other versions are linked in the main [README](https://github.com/coq/platform/blob/main/README.md).
 
-This version of Coq Platform 2022.04.1 includes Coq 8.16.0 from Sep 2022. This is beta release with complete package pick and intended for package maintainers and early adopters. 
+This version of Coq Platform 2022.09.0 includes Coq 8.16.0 from Sep 2022. This is beta release with complete package pick and intended for package maintainers and early adopters. 
 
 The OCaml version used is 4.13.1+options ocaml-option-flambda.
 
@@ -21,6 +21,8 @@ The Coq Platform supports four levels of installation extent:
 The sections below provide a short description of each level and the list of
 packages included in each level. Packaged versions of the Coq Platform usually
 contain the **extended** set with all optional packages.
+
+
 
 **Note on non-free licenses:** The Coq Platform contains software with
 **non-free licenses which do not allow commercial use without purchasing a license**,
@@ -38,7 +40,7 @@ It could mean that parts of the software use one license while other parts use a
 It could also mean that you can choose between the given licenses.
 Please clarify the details with the homepage of the package.
 
-**Note:** The package list is also available as [CSV](https://github.com/coq/platform/tree/main/doc/PackageTable~8.16.0~2022.09~beta1.csv).
+**Note:** The package list is also available as [CSV](https://github.com/coq/platform/tree/main/doc/PackageTable~8.16~2022.09~beta1.csv).
 
 **Note:** Click on the triangle to show additional information for a package!
 
@@ -58,9 +60,39 @@ opam and contains the following package(s):
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/coq/coq.8.16.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/coq/coq.8.16.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>The Coq proof assistant provides a formal language to write<br>mathematical definitions, executable algorithms, and theorems, together<br>with an environment for semi-interactive development of machine-checked<br>proofs. Typical applications include the certification of properties of programming<br>languages (e.g., the CompCert compiler certification project and the<br>Bedrock verified low-level programming library), the formalization of<br>mathematics (e.g., the full formalization of the Feit-Thompson theorem<br>and homotopy type theory) and teaching.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/ocaml/dune'>dune-configurator.3.4.1</a>
+(3.4.1) Helper library for gathering system configuration</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC &lt;opensource@janestreet.com&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/ocaml/dune'>homepage</a>)
+      (<a href='https://github.com/ocaml/dune/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/dune-configurator/dune-configurator.3.4.1/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>dune-configurator is a small library that helps writing OCaml scripts that<br>test features available on the system, in order to generate config.h<br>files for instance.<br>Among other things, dune-configurator allows one to:<br>- test if a C program compiles<br>- query pkg-config<br>- import #define from OCaml header files<br>- generate config.h file</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/ocaml/dune'>dune.3.4.1</a>
+(3.4.1) Fast, portable, and opinionated build system</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC &lt;opensource@janestreet.com&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/ocaml/dune'>homepage</a>)
+      (<a href='https://github.com/ocaml/dune/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/dune/dune.3.4.1/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>dune is a build system that was designed to simplify the release of<br>Jane Street packages. It reads metadata from \dune\ files following a<br>very simple s-expression syntax.<br><br>dune is fast, has very low-overhead, and supports parallel builds on<br>all platforms. It has no system dependencies; all you need to build<br>dune or packages using dune is OCaml. You don&apos;t need make or bash<br>as long as the packages themselves don&apos;t use bash explicitly.<br><br>dune supports multi-package development by simply dropping multiple<br>repositories into the same directory.<br><br>It also supports multi-context builds, such as building against<br>several opam roots/switches simultaneously. This helps maintaining<br>packages across several versions of OCaml and gives cross-compilation<br>for free.</dd>
   </dl>
 </details>
 
@@ -421,15 +453,15 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://github.com/Matafou/LibHyps'>coq-libhyps.2.0.5</a>
-(2.0.5) Hypotheses manipulation library</summary>
+  <summary><a href='https://github.com/Matafou/LibHyps'>coq-libhyps.2.0.6</a>
+(2.0.6) Hypotheses manipulation library</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Pierre Courtieu</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/Matafou/LibHyps'>homepage</a>)
       (<a href='https://github.com/Matafou/LibHyps/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-libhyps/coq-libhyps.2.0.5/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-libhyps/coq-libhyps.2.0.6/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library defines a set of tactics to manipulate hypothesis<br>individually or by group. In particular it allows applying a tactic on<br>each hypothesis of a goal, or only on *new* hypothesis after some<br>tactic. Examples of manipulations: automatic renaming, subst, revert,<br>or any tactic expecting a hypothesis name as argument.<br><br>It also provides the especialize tactic to ease forward reasoning by<br>instantianting one, several or all premisses of a hypothesis.</dd>
   </dl>
@@ -811,21 +843,6 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://github.com/UniMath/UniMath'>coq-unimath.20220816</a>
-(20220816) Library of Univalent Mathematics</summary>
-  <dl>
-    <dt><b>authors</b></dt><dd>The UniMath Development Team</dd>
-    <dt><b>license</b></dt><dd> Kind of MIT - see <a href="https://github.com/UniMath/UniMath" target="_blank">homepage</a> for details</dd>
-    <dt><b>links</b></dt><dd>
-      (<a href='https://github.com/UniMath/UniMath'>homepage</a>)
-      (<a href='https://github.com/UniMath/UniMath/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-unimath/coq-unimath.20220816/opam'>opam package</a>)
-    </dd>
-    <dt><b>description</b></dt><dd></dd>
-  </dl>
-</details>
-
-<details>
   <summary><a href='https://wwwlehre.dhbw-stuttgart.de/~sschulz/E/E.html'>eprover.2.6</a>
 (2.6) E Theorem Prover</summary>
   <dl>
@@ -924,7 +941,7 @@ The **full level** contains the following packages:
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/Z3prover/z3'>homepage</a>)
       (<a href='https://github.com/Z3prover/z3/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/z3_tptp/z3_tptp.4.11.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/z3_tptp/z3_tptp.4.11.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -955,6 +972,21 @@ The following packages are **optional**:
       (<a href='http://compcert.inria.fr/'>homepage</a>)
       (<a href='https://github.com/AbsInt/CompCert/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-compcert/coq-compcert.3.11/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/UniMath/UniMath'>coq-unimath.20220816</a>
+(20220816) Library of Univalent Mathematics</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>The UniMath Development Team</dd>
+    <dt><b>license</b></dt><dd> Kind of MIT - see <a href="https://github.com/UniMath/UniMath" target="_blank">homepage</a> for details</dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/UniMath/UniMath'>homepage</a>)
+      (<a href='https://github.com/UniMath/UniMath/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-unimath/coq-unimath.20220816/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -992,15 +1024,45 @@ The Windows installer also includes them, and they are selected by default.
 The **extended level** contains the following packages:
 
 <details>
-  <summary><a href='https://github.com/mit-plv/coqutil'>coq-coqutil.0.0.1</a>
-(0.0.1) Coq library for tactics, basic definitions, sets, maps</summary>
+  <summary><a href='https://github.com/mit-plv/bedrock2'>coq-bedrock2-compiler.0.0.3</a>
+(0.0.3) A work-in-progress language and compiler for verified low-level programming (compiler part)</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Massachusetts Institute of Technology Kevix SiFive</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/mit-plv/bedrock2'>homepage</a>)
+      (<a href='https://github.com/mit-plv/bedrock2/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-bedrock2-compiler/coq-bedrock2-compiler.0.0.3/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>bedrock2 is a low-level systems programming language. This language is<br>equipped with a simple program logic for proving correctness of the<br>programs.  This package includes a verified compiler targeting RISC-V<br>from this language.<br><br>The project has similar goals as bedrock, but uses a different design.<br>No code is shared between bedrock and bedrock2.<br><br>The source language is a C-like language called ExprImp. It is an<br>imperative language with expressions. Currently, the only data type<br>is word (32-bit or 64-bit), and the memory is a partial map from words<br>to bytes. Records are supported as a notation for memory access with an offset.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/mit-plv/bedrock2'>coq-bedrock2.0.0.3</a>
+(0.0.3) A work-in-progress language and compiler for verified low-level programming</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Massachusetts Institute of Technology Kevix SiFive</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/mit-plv/bedrock2'>homepage</a>)
+      (<a href='https://github.com/mit-plv/bedrock2/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-bedrock2/coq-bedrock2.0.0.3/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>bedrock2 is a low-level systems programming language. This language is<br>equipped with a simple program logic for proving correctness of the<br>programs.  A verified compiler targeting RISC-V from this language<br>exists in the coq-bedrock2-compiler package on opam.<br><br>The project has similar goals as bedrock, but uses a different design.<br>No code is shared between bedrock and bedrock2.<br><br>The source language is a C-like language called ExprImp. It is an<br>imperative language with expressions. Currently, the only data type<br>is word (32-bit or 64-bit), and the memory is a partial map from words<br>to bytes. Records are supported as a notation for memory access with an offset.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/mit-plv/coqutil'>coq-coqutil.0.0.2</a>
+(0.0.2) Coq library for tactics, basic definitions, sets, maps</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Massachusetts Institute of Technology</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/mit-plv/coqutil'>homepage</a>)
       (<a href='https://github.com/mit-plv/coqutil/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-coqutil/coq-coqutil.0.0.1/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-coqutil/coq-coqutil.0.0.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>### coqutil -- Various Coq Utilities<br><br>Contents:<br>* [Datatypes](https://github.com/mit-plv/coqutil/tree/master/src/coqutil/Datatypes): Some utilities for existing datatypes, and new datatypes.<br>* [Decidable](https://github.com/mit-plv/coqutil/blob/master/src/coqutil/Decidable.v): `BoolSpec`-based decidability typeclasses. Allows one to write `if MyType_eqb a b then ... else ...` where `MyType_eqb a b` returns a `bool`, instead of writing `if MyType_eq_dec a b then ... else ...` where `MyType_eq_dec a b` returns a `sumbool`, while still getting `a = b` and `a &lt;&gt; b` as hypotheses (as opposed to `MyType_eqb a b = true` and `MyType_eqb a b = false`) after destructing the `if` (need to use [`destr`](https://github.com/mit-plv/coqutil/blob/master/src/coqutil/Tactics/destr.v) instead of `destruct`). So one gets the benefits of `Sumbool` without getting its disadvantage of having to carry around proof terms, which can cause a blow-up under reduction if one is not careful.<br>* [Map](https://github.com/mit-plv/coqutil/tree/master/src/coqutil/Map): A typeclass based map library allowing one to abstract over the concrete implementation of maps. The implementations have to be extensional, which excludes certain efficient implementations, but simplifies proofs, because one can `replace mapA with mapB` if one can prove that `mapA` and `mapB` have the same contents. Comes with a [solver](https://github.com/mit-plv/coqutil/blob/master/src/coqutil/Map/Solver.v) which works reasonably fast on most map goals we have encountered so far.<br>* [Tactics](https://github.com/mit-plv/coqutil/tree/master/src/coqutil/Tactics): A collection of useful general-purpose tactics.<br>* [Word](https://github.com/mit-plv/coqutil/tree/master/src/coqutil/Word): Fixed width words for any width, in the same typeclass based style as the map library. Designed for the case where all words have the same (potentially abstract) bit width. Therefore, it does not provide functions to concatenate and split words, which is better addressed by [bbv](https://github.com/mit-plv/bbv/).<br>* [Z](https://github.com/mit-plv/coqutil/tree/master/src/coqutil/Z): Utilities to work with the `Z` type from Coq&apos;s standard library, including a tactic to prove `Z` equalities by splitting the equality into equalities on bit index ranges, a tactic to make `lia` capable of reasoning about goals with division and modulo, and a tactic to simplify expressions containing nested occurrences of `mod`, and more misc utilities.<br>* Various macros, notations, and desirable default settings.<br><br>Each feature is intended to be as minimal and as independent of the other features as possible, so that users can pick just what they need.</dd>
   </dl>
@@ -1037,6 +1099,36 @@ The **extended level** contains the following packages:
 </details>
 
 <details>
+  <summary><a href='https://github.com/mit-plv/fiat-crypto'>coq-fiat-crypto.0.0.15</a>
+(0.0.15) Cryptographic Primitive Code Generation by Fiat</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Andres Erbsen &lt;andreser@mit.edu&gt; - Google Inc. - Jade Philipoom &lt;jadep@mit.edu&gt; &lt;jade.philipoom@gmail.com&gt; - Massachusetts Institute of Technology - Zoe Paraskevopoulou &lt;zoe.paraskevopoulou@gmail.com&gt;</dd>
+    <dt><b>license</b></dt><dd> MIT OR Apache-2.0 OR BSD-1-Clause - see <a href="https://github.com/mit-plv/fiat-crypto" target="_blank">homepage</a> for details</dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/mit-plv/fiat-crypto'>homepage</a>)
+      (<a href='https://github.com/mit-plv/fiat-crypto/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-fiat-crypto/coq-fiat-crypto.0.0.15/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Coq code and proofs for a command-line binary that can synthesize proven-correct<br>big-integer modular field arithmetic operations for cryptography.<br>Target languages include C, Rust, Zig, Go, and bedrock2.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq.1.1+8.16</a>
+(1.1+8.16) A meta-programming framework for Coq</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Abhishek Anand &lt;aa755@cs.cornell.edu&gt; - Danil Annenkov &lt;danil.v.annenkov@gmail.com&gt; - Simon Boulier &lt;simon.boulier@inria.fr&gt; - Cyril Cohen &lt;cyril.cohen@inria.fr&gt; - Yannick Forster &lt;forster@ps.uni-saarland.de&gt; - Fabian Kunze &lt;fkunze@fakusb.de&gt; - Meven Lennon-Bertrand &lt;Meven.Bertrand@univ-nantes.fr&gt; - Kenji Maillard &lt;kenji.maillard@inria.fr&gt; - Gregory Malecha &lt;gmalecha@gmail.com&gt; - Jakob Botsch Nielsen &lt;Jakob.botsch.nielsen@gmail.com&gt; - Matthieu Sozeau &lt;matthieu.sozeau@inria.fr&gt; - Nicolas Tabareau &lt;nicolas.tabareau@inria.fr&gt; - Théo Winterhalter &lt;theo.winterhalter@inria.fr&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
+      (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq/coq-metacoq.1.1+8.16/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>The meta-package includes the template-coq library,<br>the PCUIC development including a verified equivalence between Coq and PCUIC, <br>a safe type checker and verified erasure for PCUIC and example translations. <br><br>See individual packages for more detailed descriptions.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://github.com/tchajed/coq-record-update'>coq-record-update.0.3.0</a>
 (0.3.0) Generic support for updating record fields in Coq</summary>
   <dl>
@@ -1061,6 +1153,51 @@ The **extended level** contains the following packages:
       (<a href='https://github.com/coq-community/reduction-effects'>homepage</a>)
       (<a href='https://github.com/coq-community/reduction-effects/issues'>bug reports</a>)
       (<a href='https://coq.inria.fr/opam/released/packages/coq-reduction-effects/coq-reduction-effects.0.1.4/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/mit-plv/rewriter'>coq-rewriter.0.0.6</a>
+(0.0.6) Reflective PHOAS rewriting/pattern-matching-compilation framework for simply-typed equalities and let-lifting, experimental and tailored for use in Fiat Cryptography</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Google Inc. Massachusetts Institute of Technology</dd>
+    <dt><b>license</b></dt><dd> MIT OR Apache-2.0 OR BSD-1-Clause - see <a href="https://github.com/mit-plv/rewriter" target="_blank">homepage</a> for details</dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/mit-plv/rewriter'>homepage</a>)
+      (<a href='https://github.com/mit-plv/rewriter/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-rewriter/coq-rewriter.0.0.6/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/mit-plv/riscv-coq'>coq-riscv.0.0.2</a>
+(0.0.2) RISC-V Specification in Coq, somewhat experimental</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Massachusetts Institute of Technology</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/mit-plv/riscv-coq'>homepage</a>)
+      (<a href='https://github.com/mit-plv/riscv-coq/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-riscv/coq-riscv.0.0.2/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd></dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/mit-plv/rupicola'>coq-rupicola.0.0.5</a>
+(0.0.5) Gallina to imperative code compilation, currently in design phase</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Clément Pit-Claudel &lt;clement.pitclaudel@live.com&gt; - Jade Philipoom - Dustin Jamner - Andres Erbsen - Adam Chlipala</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/mit-plv/rupicola'>homepage</a>)
+      (<a href='https://github.com/mit-plv/rupicola/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-rupicola/coq-rupicola.0.0.5/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -1222,15 +1359,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/Chris00/ocaml-cairo'>cairo2.0.6.3</a>
-(0.6.3) Binding to Cairo, a 2D Vector Graphics Library</summary>
+  <summary><a href='https://github.com/Chris00/ocaml-cairo'>cairo2.0.6.4</a>
+(0.6.4) Binding to Cairo, a 2D Vector Graphics Library</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Christophe Troestler &lt;Christophe.Troestler@umons.ac.be&gt; - Pierre Hauweele &lt;pierre@hauweele.net&gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-3.0.html" target="_blank">LGPL-3.0</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/Chris00/ocaml-cairo'>homepage</a>)
       (<a href='https://github.com/Chris00/ocaml-cairo/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/cairo2/cairo2.0.6.3/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/cairo2/cairo2.0.6.4/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This is a binding to Cairo, a 2D graphics library with support for<br>multiple output devices. Currently supported output targets include<br>the X Window System, Quartz, Win32, image buffers, PostScript, PDF,<br>and SVG file output.</dd>
   </dl>
@@ -1567,6 +1704,81 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-erasure.1.1+8.16</a>
+(1.1+8.16) Implementation and verification of an erasure procedure for Coq</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Abhishek Anand &lt;aa755@cs.cornell.edu&gt; - Danil Annenkov &lt;danil.v.annenkov@gmail.com&gt; - Simon Boulier &lt;simon.boulier@inria.fr&gt; - Cyril Cohen &lt;cyril.cohen@inria.fr&gt; - Yannick Forster &lt;forster@ps.uni-saarland.de&gt; - Fabian Kunze &lt;fkunze@fakusb.de&gt; - Meven Lennon-Bertrand &lt;Meven.Bertrand@univ-nantes.fr&gt; - Kenji Maillard &lt;kenji.maillard@inria.fr&gt; - Gregory Malecha &lt;gmalecha@gmail.com&gt; - Jakob Botsch Nielsen &lt;Jakob.botsch.nielsen@gmail.com&gt; - Matthieu Sozeau &lt;matthieu.sozeau@inria.fr&gt; - Nicolas Tabareau &lt;nicolas.tabareau@inria.fr&gt; - Théo Winterhalter &lt;theo.winterhalter@inria.fr&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
+      (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-erasure/coq-metacoq-erasure.1.1+8.16/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>The Erasure module provides a complete specification of Coq&apos;s so-called<br>\extraction\ procedure, starting from the PCUIC calculus and targeting<br>untyped call-by-value lambda-calculus.<br><br>The `erasure` function translates types and proofs in well-typed terms<br>into a dummy `tBox` constructor, following closely P. Letouzey&apos;s PhD<br>thesis.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-pcuic.1.1+8.16</a>
+(1.1+8.16) A type system equivalent to Coq&apos;s and its metatheory</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Abhishek Anand &lt;aa755@cs.cornell.edu&gt; - Danil Annenkov &lt;danil.v.annenkov@gmail.com&gt; - Simon Boulier &lt;simon.boulier@inria.fr&gt; - Cyril Cohen &lt;cyril.cohen@inria.fr&gt; - Yannick Forster &lt;forster@ps.uni-saarland.de&gt; - Fabian Kunze &lt;fkunze@fakusb.de&gt; - Meven Lennon-Bertrand &lt;Meven.Bertrand@univ-nantes.fr&gt; - Kenji Maillard &lt;kenji.maillard@inria.fr&gt; - Gregory Malecha &lt;gmalecha@gmail.com&gt; - Jakob Botsch Nielsen &lt;Jakob.botsch.nielsen@gmail.com&gt; - Matthieu Sozeau &lt;matthieu.sozeau@inria.fr&gt; - Nicolas Tabareau &lt;nicolas.tabareau@inria.fr&gt; - Théo Winterhalter &lt;theo.winterhalter@inria.fr&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
+      (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-pcuic/coq-metacoq-pcuic.1.1+8.16/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>The PCUIC module provides a cleaned-up specification of Coq&apos;s typing algorithm along<br>with a certified typechecker for it. This module includes the standard metatheory of<br>PCUIC: Weakening, Substitution, Confluence and Subject Reduction are proven here.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-safechecker.1.1+8.16</a>
+(1.1+8.16) Implementation and verification of safe conversion and typechecking algorithms for Coq</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Abhishek Anand &lt;aa755@cs.cornell.edu&gt; - Danil Annenkov &lt;danil.v.annenkov@gmail.com&gt; - Simon Boulier &lt;simon.boulier@inria.fr&gt; - Cyril Cohen &lt;cyril.cohen@inria.fr&gt; - Yannick Forster &lt;forster@ps.uni-saarland.de&gt; - Fabian Kunze &lt;fkunze@fakusb.de&gt; - Meven Lennon-Bertrand &lt;Meven.Bertrand@univ-nantes.fr&gt; - Kenji Maillard &lt;kenji.maillard@inria.fr&gt; - Gregory Malecha &lt;gmalecha@gmail.com&gt; - Jakob Botsch Nielsen &lt;Jakob.botsch.nielsen@gmail.com&gt; - Matthieu Sozeau &lt;matthieu.sozeau@inria.fr&gt; - Nicolas Tabareau &lt;nicolas.tabareau@inria.fr&gt; - Théo Winterhalter &lt;theo.winterhalter@inria.fr&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
+      (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-safechecker/coq-metacoq-safechecker.1.1+8.16/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>The SafeChecker modules provides a correct implementation of<br>weak-head reduction, conversion and typechecking of Coq definitions and global environments.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-template.1.1+8.16</a>
+(1.1+8.16) A quoting and unquoting library for Coq in Coq</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Abhishek Anand &lt;aa755@cs.cornell.edu&gt; - Danil Annenkov &lt;danil.v.annenkov@gmail.com&gt; - Simon Boulier &lt;simon.boulier@inria.fr&gt; - Cyril Cohen &lt;cyril.cohen@inria.fr&gt; - Yannick Forster &lt;forster@ps.uni-saarland.de&gt; - Fabian Kunze &lt;fkunze@fakusb.de&gt; - Meven Lennon-Bertrand &lt;Meven.Bertrand@univ-nantes.fr&gt; - Kenji Maillard &lt;kenji.maillard@inria.fr&gt; - Gregory Malecha &lt;gmalecha@gmail.com&gt; - Jakob Botsch Nielsen &lt;Jakob.botsch.nielsen@gmail.com&gt; - Matthieu Sozeau &lt;matthieu.sozeau@inria.fr&gt; - Nicolas Tabareau &lt;nicolas.tabareau@inria.fr&gt; - Théo Winterhalter &lt;theo.winterhalter@inria.fr&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
+      (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-metacoq-template/coq-metacoq-template.1.1+8.16/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>Template Coq is a quoting library for Coq. It takes Coq terms and<br>constructs a representation of their syntax tree as a Coq inductive data<br>type. The representation is based on the kernel&apos;s term representation.<br><br>In addition to a complete reification and denotation of CIC terms,<br>Template Coq includes:<br><br>- Reification of the environment structures, for constant and inductive declarations.<br>- Denotation of terms and global declarations<br>- A monad for manipulating global declarations, calling the type<br>  checker, and inserting them in the global environment, in the style of<br>  MetaCoq/MTac.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-translations.1.1+8.16</a>
+(1.1+8.16) Translations built on top of MetaCoq</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Abhishek Anand &lt;aa755@cs.cornell.edu&gt; - Danil Annenkov &lt;danil.v.annenkov@gmail.com&gt; - Simon Boulier &lt;simon.boulier@inria.fr&gt; - Cyril Cohen &lt;cyril.cohen@inria.fr&gt; - Yannick Forster &lt;forster@ps.uni-saarland.de&gt; - Fabian Kunze &lt;fkunze@fakusb.de&gt; - Meven Lennon-Bertrand &lt;Meven.Bertrand@univ-nantes.fr&gt; - Kenji Maillard &lt;kenji.maillard@inria.fr&gt; - Gregory Malecha &lt;gmalecha@gmail.com&gt; - Jakob Botsch Nielsen &lt;Jakob.botsch.nielsen@gmail.com&gt; - Matthieu Sozeau &lt;matthieu.sozeau@inria.fr&gt; - Nicolas Tabareau &lt;nicolas.tabareau@inria.fr&gt; - Théo Winterhalter &lt;theo.winterhalter@inria.fr&gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
+      (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-translations/coq-metacoq-translations.1.1+8.16/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>The Translations modules provides implementation of standard translations <br>from type theory to type theory, e.g. parametricity and the `cross-bool` <br>translation that invalidates functional extensionality.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='http://vst.cs.princeton.edu/'>coq-vst-zlist.2.11</a>
 (2.11) A list library indexed by Z type, with a powerful automatic solver</summary>
   <dl>
@@ -1608,36 +1820,6 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://opam.ocaml.org/packages/csexp/csexp.1.5.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library provides minimal support for Canonical S-expressions<br>[1]. Canonical S-expressions are a binary encoding of S-expressions<br>that is super simple and well suited for communication between<br>programs.<br><br>This library only provides a few helpers for simple applications. If<br>you need more advanced support, such as parsing from more fancy input<br>sources, you should consider copying the code of this library given<br>how simple parsing S-expressions in canonical form is.<br><br>To avoid a dependency on a particular S-expression library, the only<br>module of this library is parameterised by the type of S-expressions.<br><br>[1] https://en.wikipedia.org/wiki/Canonical_S-expressions</dd>
-  </dl>
-</details>
-
-<details>
-  <summary><a href='https://github.com/ocaml/dune'>dune-configurator.3.4.1</a>
-(3.4.1) Helper library for gathering system configuration</summary>
-  <dl>
-    <dt><b>authors</b></dt><dd>Jane Street Group, LLC &lt;opensource@janestreet.com&gt;</dd>
-    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
-    <dt><b>links</b></dt><dd>
-      (<a href='https://github.com/ocaml/dune'>homepage</a>)
-      (<a href='https://github.com/ocaml/dune/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/dune-configurator/dune-configurator.3.4.1/opam'>opam package</a>)
-    </dd>
-    <dt><b>description</b></dt><dd>dune-configurator is a small library that helps writing OCaml scripts that<br>test features available on the system, in order to generate config.h<br>files for instance.<br>Among other things, dune-configurator allows one to:<br>- test if a C program compiles<br>- query pkg-config<br>- import #define from OCaml header files<br>- generate config.h file</dd>
-  </dl>
-</details>
-
-<details>
-  <summary><a href='https://github.com/ocaml/dune'>dune.3.4.1</a>
-(3.4.1) Fast, portable, and opinionated build system</summary>
-  <dl>
-    <dt><b>authors</b></dt><dd>Jane Street Group, LLC &lt;opensource@janestreet.com&gt;</dd>
-    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
-    <dt><b>links</b></dt><dd>
-      (<a href='https://github.com/ocaml/dune'>homepage</a>)
-      (<a href='https://github.com/ocaml/dune/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/dune/dune.3.4.1/opam'>opam package</a>)
-    </dd>
-    <dt><b>description</b></dt><dd>dune is a build system that was designed to simplify the release of<br>Jane Street packages. It reads metadata from \dune\ files following a<br>very simple s-expression syntax.<br><br>dune is fast, has very low-overhead, and supports parallel builds on<br>all platforms. It has no system dependencies; all you need to build<br>dune or packages using dune is OCaml. You don&apos;t need make or bash<br>as long as the packages themselves don&apos;t use bash explicitly.<br><br>dune supports multi-package development by simply dropping multiple<br>repositories into the same directory.<br><br>It also supports multi-context builds, such as building against<br>several opam roots/switches simultaneously. This helps maintaining<br>packages across several versions of OCaml and gives cross-compilation<br>for free.</dd>
   </dl>
 </details>
 
@@ -1835,15 +2017,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml/ocamlbuild/'>ocamlbuild.0.14.1</a>
-(0.14.1) OCamlbuild is a build system with builtin rules to easily build most OCaml projects</summary>
+  <summary><a href='https://github.com/ocaml/ocamlbuild/'>ocamlbuild.0.14.2</a>
+(0.14.2) OCamlbuild is a build system with builtin rules to easily build most OCaml projects</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Nicolas Pouillard Berke Durak</dd>
     <dt><b>license</b></dt><dd> LGPL-2.0-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://github.com/ocaml/ocamlbuild/" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml/ocamlbuild/'>homepage</a>)
       (<a href='https://github.com/ocaml/ocamlbuild/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocamlbuild/ocamlbuild.0.14.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ocamlbuild/ocamlbuild.0.14.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>

@@ -47,16 +47,16 @@ There is a script `maintainer_scripts/build_seq.sh` which builds a pick package 
 
 If you have issues, please contact us on zulip chat [Coq-Platform & users](https://coq.zulipchat.com/#narrow/stream/250632-Coq-Platform.20devs.20.26.20users)
 
-## Creating a custom installer for MacOS
+## Creating a custom installer for macOS
 
-After you created and built a new package pick, you can create a MacOS DMG installer from it as follows:
+After you created and built a new package pick, you can create a macOS DMG installer from it as follows:
 
 - Activate the opam switch with `opam switch __coq-platform.2022.09.0~my_new_pick`
 - Navigate to your Coq Platform git folder, e.g. `cd ~/platform`
 - Run `macos/create_installer_macos.sh -sign=Y -signcert=path_to_certificate_file -signid=signature_id`
 - Above the `path_to_certificate_file` is the path and name of the `.cer` and `.p12` file **without** the file extension. The signature ID is typically the name of the institution to which the certificate is issued.
 
-On recent MacOS one can't start the application - that is CoqIDE - without signing the installer. One can still use the installed tools from the command line, though. One can even start coqide from the command line even without signing.
+On recent macOS one can't start the application - that is CoqIDE - without signing the installer. One can still use the installed tools from the command line, though. One can even start coqide from the command line even without signing.
 
 ## Creating a custom installer for Snap
 
