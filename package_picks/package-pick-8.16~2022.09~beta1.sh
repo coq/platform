@@ -83,11 +83,11 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.15.0"
   PACKAGES="${PACKAGES} coq-mathcomp-field.1.15.0"
   PACKAGES="${PACKAGES} coq-mathcomp-character.1.15.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"           # patched to allow Coq 8.16
-  PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.2"              # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"
+  PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.2"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.3"
-  PACKAGES="${PACKAGES} coq-mathcomp-zify.1.2.0+1.12+8.13"      # patched to allow Coq 8.16
-  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.5"        # patched to allow Coq 8.16 and ssreflect 1.15
+  PACKAGES="${PACKAGES} coq-mathcomp-zify.1.2.0+1.12+8.13"
+  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.5"
   PACKAGES="${PACKAGES} coq-coquelicot.3.2.0"
 
   # Number theory
@@ -100,7 +100,7 @@ then
   PACKAGES="${PACKAGES} coq-gappa.1.5.2 gappa.1.4.1"
 
   # Constructive mathematics
-  PACKAGES="${PACKAGES} coq-math-classes.8.15.0"                # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-math-classes.8.15.0"
   PACKAGES="${PACKAGES} coq-corn.8.16.0"
 
   # Homotopy Type Theory (HoTT)
@@ -118,7 +118,7 @@ then
   fi 
 
   # Code extraction
-  PACKAGES="${PACKAGES} coq-simple-io.1.7.0"                    # patched to allow Coq 8.16
+  PACKAGES="${PACKAGES} coq-simple-io.1.7.0"
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210"
