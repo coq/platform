@@ -36,6 +36,7 @@ LOGDIR="$DIR_TARGET/logs"
 mkdir -p "${LOGDIR}"
 MODDIR="$DIR_TARGET/mods" 
 mkdir -p "${MODDIR}"
+MODDIR_WIN="$(cygpath -aw "${MODDIR}")"
 
 ###################### Coq and Coq Platform version ######################
 
@@ -228,7 +229,15 @@ function callback_file {
     echo SetOutPath "\$INSTDIR$reldir_win" >> "$DIR_TARGET"/files_$1.nsh
     reldir_win_prev="$reldir_win"
   fi
-  echo FILE "$file_win" >> "$DIR_TARGET"/files_$1.nsh
+  if [ "$4" == "META" ]
+  then
+    # Copy a patched version to $MODDIR and use this copy
+    mkdir -p "$MODDIR/$3"
+    sed 's/^ *exists_if.*//' "$2" > "$MODDIR/$3/$4"
+    echo FILE "$MODDIR_WIN\\$reldir_win\\$4" >> "$DIR_TARGET"/files_$1.nsh
+  else
+    echo FILE "$file_win" >> "$DIR_TARGET"/files_$1.nsh
+  fi
 }
 
 ###################### Create installer folder structure ######################
