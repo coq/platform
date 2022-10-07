@@ -23,6 +23,8 @@ depends: [
 patches: [
   # See https://github.com/coq/coq/pull/16581
   "0001-Workaround-for-CoqIDE-preferences-crashing-on-MacOS-.patch"
+  # See https://github.com/coq/coq/pull/16142
+  "0001-Fix-interrupt-on-Windows.patch"
 ]
 build: [
   [
