@@ -11,24 +11,24 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.16.0 (released Sep 2022) with a beta package pick for the 2022.09 release."
+COQ_PLATFORM_VERSION_TITLE="Coq 8.15.2 (released Sep 2022) with a beta package pick for the 2022.09 release."
 COQ_PLATFORM_VERSION_SORTORDER=9000
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.16~2022.09~beta1'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.15~2022.09~beta1'
 
 # The corresponding Coq development branch and tag
-COQ_PLATFORM_COQ_BRANCH='v8.16'
-COQ_PLATFORM_COQ_TAG='8.16.0'
+COQ_PLATFORM_COQ_BRANCH='v8.15'
+COQ_PLATFORM_COQ_TAG='8.15.2'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.09.0 includes Coq 8.16.0 from Sep 2022. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.09.0 includes Coq 8.15.2 from Sep 2022. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is beta release with complete package pick and intended for package maintainers and early adopters. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
@@ -50,7 +50,7 @@ PACKAGES=""
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} PIN.coq.8.16.0"
+PACKAGES="${PACKAGES} PIN.coq.8.15.2"
 # Since dune does support Coq, it is explicitly selected
 PACKAGES="${PACKAGES} dune.3.4.1"
 PACKAGES="${PACKAGES} dune-configurator.3.4.1"
@@ -60,7 +60,7 @@ PACKAGES="${PACKAGES} dune-configurator.3.4.1"
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.16.0"
+PACKAGES="${PACKAGES} coqide.8.15.2"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
@@ -72,7 +72,7 @@ then
   PACKAGES="${PACKAGES} PIN.ppxlib.0.25.1"            # coq-serapi requires this version
 
   # Standard library extensions
-  PACKAGES="${PACKAGES} coq-bignums.8.16.0"
+  PACKAGES="${PACKAGES} coq-bignums.8.15.0"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.7"
   PACKAGES="${PACKAGES} coq-stdpp.1.8.0"
 
@@ -101,10 +101,10 @@ then
 
   # Constructive mathematics
   PACKAGES="${PACKAGES} coq-math-classes.8.15.0"
-  PACKAGES="${PACKAGES} coq-corn.8.16.0"
+  PACKAGES="${PACKAGES} coq-corn.8.13.0"
 
   # Homotopy Type Theory (HoTT)
-  PACKAGES="${PACKAGES} coq-hott.8.16"
+  PACKAGES="${PACKAGES} coq-hott.8.15"
 
   # Univalent Mathematics (UniMath)
   # Note: coq-unimath requires too much memory for 32 bit architectures
@@ -122,30 +122,30 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210"
-  PACKAGES="${PACKAGES} coq-equations.1.3+8.16"
-  PACKAGES="${PACKAGES} coq-aac-tactics.8.16.0"
-  PACKAGES="${PACKAGES} coq-unicoq.1.6+8.16"
-  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.16"
-  PACKAGES="${PACKAGES} elpi.1.16.5 coq-elpi.1.15.6"
+  PACKAGES="${PACKAGES} coq-equations.1.3+8.15"
+  PACKAGES="${PACKAGES} coq-aac-tactics.8.15.1"
+  PACKAGES="${PACKAGES} coq-unicoq.1.6+8.15"
+  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"
+  PACKAGES="${PACKAGES} elpi.1.15.2 coq-elpi.1.14.0" # Newer coq-elpi requires Coq 8.16
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.3.0"
   PACKAGES="${PACKAGES} coq-quickchick.1.6.4"
-  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.16"
+  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"
   if [[ "$OSTYPE" != cygwin ]]
   then
     # coq-hammer does not work on Windows because it heavily relies on fork
-    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.16"
+    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.15"
     PACKAGES="${PACKAGES} eprover.2.6"
     PACKAGES="${PACKAGES} z3_tptp.4.11.0"
   fi
-  PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.16"
+  PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.15"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.1"
   PACKAGES="${PACKAGES} coq-libhyps.2.0.6"
-  PACKAGES="${PACKAGES} coq-itauto.8.16.0"
+  PACKAGES="${PACKAGES} coq-itauto.8.15.0"
   
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.4"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0"
-  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.8"
+  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.7" # Newer versions require Coq 8.16
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.3"
@@ -168,7 +168,7 @@ then
   esac
 
   # Proof analysis and other tools
-  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.16"
+  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.15"
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
@@ -178,7 +178,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.0"
-  PACKAGES="${PACKAGES} coq-metacoq.1.1+8.16"
+  PACKAGES="${PACKAGES} coq-metacoq.1.1+8.15"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"
@@ -188,7 +188,7 @@ then
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"
 
   # Communication with coqtop
-  PACKAGES="${PACKAGES} coq-serapi.8.16.0+0.16.0"
+  PACKAGES="${PACKAGES} coq-serapi.8.15.0+0.15.2"
 
   # fiat crypto, bedrock2, rupicola and dependencies
   if [ "${BITSIZE}" == "64" ]

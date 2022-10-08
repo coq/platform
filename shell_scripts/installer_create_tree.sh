@@ -141,10 +141,10 @@ function analyze_package {
     then
       relpath="${file#$OPAM_PREFIX}"
       # using dirname and basename is terribly slow on cygwin (minutes for all files in coq)
-      # reldir="$(dirname $relpath})"
-      # filename="$(basename $relpath})"
+      # reldir="$(dirname $relpath)"
+      # filename="$(basename $relpath)"
       reldir="${relpath%/*}"
-      filename="${relpath##*/})"
+      filename="${relpath##*/}"
 
       callback_file $1 "${file}" "${reldir}" "${filename}"
     else
