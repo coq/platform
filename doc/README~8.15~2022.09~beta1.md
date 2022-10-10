@@ -1,5 +1,5 @@
 
-# Coq Platform 2022.09.0 providing Coq 8.15.2 (released Sep 2022) with a beta package pick for the 2022.09 release.
+# Coq Platform 2022.09.0 providing Coq 8.15.2 (released Jun 2022) with a beta package pick for the 2022.09 release.
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together

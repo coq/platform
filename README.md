@@ -35,6 +35,7 @@ of Coq and libraries. Each README file contains a list of included packages with
 detailed information for each package.
 
 - [Coq 8.16.0 (released Sep 2022) with a beta package pick from Oct 2022](doc/README~8.16~2022.09~beta1.md)
+- [Coq 8.15.2 (released Jun 2022) with a beta package pick from Oct 2022](doc/README~8.15~2022.09~beta1.md)
 - [Coq 8.15.2 (released Jun 2022) with the first package pick from Apr 2022](doc/README~8.15~2022.04.md)
 - [Coq 8.14.1 (released Nov 2021) with an updated package pick from Apr 2022](doc/README~8.14~2022.04.md)
 - [Coq 8.14.1 (released Nov 2021) with the first package pick from Jan 2022](doc/README~8.14~2022.01.md)
