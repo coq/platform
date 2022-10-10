@@ -16,13 +16,13 @@ on:
       platform:
         description: 'Arguments for the platform script:'
         required: true
-        default: '-extent=x -parallel=p -jobs=2 -large=i -compcert=y -set-switch=y'
+        default: '-extent=x -parallel=p -jobs=2 -large=i -compcert=y -unimath=n -set-switch=y'
 
 ###############################################################################
 # Platform script options shared among all jobs
 ###############################################################################
 env:
-  PLATFORM: -extent=x -parallel=p -jobs=2 -large=i -compcert=y -set-switch=y
+  PLATFORM: -extent=x -parallel=p -jobs=2 -large=i -compcert=y -unimath=n -set-switch=y
   COQREGTESTING: y
 
 ###############################################################################

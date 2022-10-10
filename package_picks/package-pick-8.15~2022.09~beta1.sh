@@ -178,7 +178,11 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.0"
-  PACKAGES="${PACKAGES} coq-metacoq.1.1+8.15"
+  if [ "${BITSIZE}" == "64" ]
+  then
+    # This is out of memory in 32 bit windows - interetsingly 1.1+8.16 does work
+    PACKAGES="${PACKAGES} coq-metacoq.1.1+8.15"
+  fi
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"
