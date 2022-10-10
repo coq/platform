@@ -40,7 +40,7 @@ source "$(dirname "$0")/get_names_from_switch.sh"
 
 ###### Get filtered list of explicitly installed packages #####
 
-echo "Create package list"
+echo "Create package list for '${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}'"
 
 packages="$(opam list --installed-roots --short --columns=name | grep "${pattern}" | cat)"
 
@@ -132,6 +132,7 @@ TEST_FILES[coq-reglang]='theories/dfa.v'
 TEST_FILES[coq-relation-algebra~8.14~2022.01]='compiler_opts.v imp.v'
 TEST_FILES[coq-relation-algebra~8.14~2022.04]='compiler_opts.v imp.v'
 TEST_FILES[coq-relation-algebra~8.15~2022.04]='compiler_opts.v imp.v'
+TEST_FILES[coq-relation-algebra~8.15~2022.09~beta1]='compiler_opts.v imp.v'
 TEST_FILES[coq-relation-algebra]='examples/compiler_opts.v examples/imp.v'
 PATCH_CMDS[coq-relation-algebra]='/^Require Import kat .*$/ {print "From RelationAlgebra "$0; next}'
 TEST_FILES[coq-rewriter]='src/Rewriter/Demo.v '
