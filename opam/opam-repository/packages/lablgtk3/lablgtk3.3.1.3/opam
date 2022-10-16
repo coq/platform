@@ -13,29 +13,33 @@ homepage: "https://github.com/garrigue/lablgtk"
 bug-reports: "https://github.com/garrigue/lablgtk/issues"
 dev-repo: "git+https://github.com/garrigue/lablgtk.git"
 license: "LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception"
-doc: "https://garrigue.github.io/lablgtk/lablgtk3"
+doc: "https://garrigue.github.io/lablgtk/lablgtk3/lablgtk3"
 
 depends: [
-  "ocaml"     {         >= "4.05.0" }
+  "ocaml"     {         >= "4.09.0" }
   "dune"      {         >= "1.8.0"  }
   "cairo2"    {         >= "0.6"    }
   "conf-gtk3" { build & >= "18"     }
-]
-conflicts: [
-  "base-domains"
+  "camlp-streams" { build           }
+  "ocamlfind" { dev                 }
+  "camlp5"    { dev                 }
 ]
 patches: [
   "0001-Add-function-channel_of_descr_socket-windows-has-dif.patch"
 ]
 
 build: [
-  [ "dune" "build" "-p" name "-j"  jobs ]
+  [ "dune" "build" "-p" name "-j" jobs ]
+]
+run-test: [
+  [ "dune" "build" "-p" name "-j" jobs "examples/buttons.exe" ]
 ]
 url {
   src:
-    "https://github.com/garrigue/lablgtk/releases/download/3.1.1/lablgtk3-3.1.1.tbz"
+    "https://github.com/garrigue/lablgtk/releases/download/3.1.3/lablgtk3-3.1.3.tbz"
   checksum: [
-    "sha256=22c7061c8acb49c1ccd0a19396d2b1d7d1d677e0ce7954122404be94a00fecf9"
-    "sha512=193c340d9941680869eb90bc89f5b27cc5bdf294f4635081a9ba56a99fa2982266c4ee2eb5fd04d3a3f6150082800de5df786def8c72a276a779d843d914e9e3"
+    "sha256=786ae7fa15ce166ef85515eda86bb4b258f47cdc1d712d850bb9440a510021c6"
+    "sha512=bfa0f351c18eff7c8bd79e9c7c533bc5e8882784d239ce3a3b71c0d50f647538f5d002e456a41969badbdfe07f0a9697c43850ebe3b372c147297690e7ee1c60"
   ]
 }
+x-commit-hash: "8a803575ded8107a063a8779c47ca79310de90bc"
