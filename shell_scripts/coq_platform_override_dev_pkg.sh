@@ -15,7 +15,7 @@ do
     pkg="${override%%=*}"
     url="${override#*=}"
     echo "Overriding $pkg.dev url with $url"
-    opam pin add --kind=http $pkg.dev $url
+    opam pin add --no-action --kind=http $pkg.dev $url
 done
 
 if [ ! -z "${COQ_PLATFORM_OVERRIDE_DEV:-}" ]; then
