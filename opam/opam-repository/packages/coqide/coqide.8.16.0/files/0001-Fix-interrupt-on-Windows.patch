@@ -1,16 +1,16 @@
-From 291512ef736648d6508acd1ddc8dd384531ee5a5 Mon Sep 17 00:00:00 2001
+From 18cc27bd4746d12755f68d4c5f362c1addfc4b9b Mon Sep 17 00:00:00 2001
 From: Jim Fehrle <jim.fehrle@gmail.com>
 Date: Sat, 4 Jun 2022 10:36:31 -0700
-Subject: [PATCH] Fix interrupt on Windows
+Subject: [PATCH] Fix interrupt on Windows Experiment
 
 ---
  .../09-coqide/16142-fix_win_interrupt2.rst    |  5 ++++
  ide/coqide/coq.ml                             |  1 +
- ide/coqide/coqide.ml                          |  7 ++++-
+ ide/coqide/coqide.ml                          | 13 ++++++++-
  ide/coqide/coqide_WIN32.c.in                  | 28 ++++++-------------
  ide/coqide/coqide_WIN32.ml.in                 |  8 +++++-
  ide/coqide/coqide_main.ml                     |  1 +
- ide/coqide/dune                               | 24 ++++++++++++++--
+ ide/coqide/dune                               | 26 +++++++++++++----
  ide/coqide/idetop.ml                          | 14 +++++++++-
  ide/coqide/shared.ml                          | 16 +++++++++++
  ide/coqide/shared.mli                         | 15 ++++++++++
@@ -22,7 +22,7 @@ Subject: [PATCH] Fix interrupt on Windows
  ide/coqide/shared_X11.ml.in                   | 11 ++++++++
  ide/coqide/shared_os_specific.mli             | 11 ++++++++
  lib/spawn.ml                                  |  5 ++--
- 18 files changed, 163 insertions(+), 28 deletions(-)
+ 18 files changed, 169 insertions(+), 30 deletions(-)
  create mode 100644 doc/changelog/09-coqide/16142-fix_win_interrupt2.rst
  create mode 100644 ide/coqide/shared.ml
  create mode 100644 ide/coqide/shared.mli
@@ -58,7 +58,7 @@ index f2f7d23e73..416b17a7b5 100644
  
  (* todo: does not work on windows (sigusr1 not supported) *)
 diff --git a/ide/coqide/coqide.ml b/ide/coqide/coqide.ml
-index 13858891f1..5bc4c691d5 100644
+index 13858891f1..46a42ea691 100644
 --- a/ide/coqide/coqide.ml
 +++ b/ide/coqide/coqide.ml
 @@ -442,8 +442,12 @@ let revert_all ?parent _ =
@@ -75,10 +75,16 @@ index 13858891f1..5bc4c691d5 100644
      try FileAux.check_quit ?parent saveall; exit 0
      with FileAux.DontQuit -> ()
  
-@@ -842,6 +846,7 @@ module Nav = struct
+@@ -842,6 +846,13 @@ module Nav = struct
        Coq.reset_coqtop sn.coqtop (* calls init_bpts *)
      end
    let interrupt _ =  (* terminate computation *)
++    try
++      let fname = Filename.concat (Filename.get_temp_dir_name ())
++          (Printf.sprintf "CREATE_FILE_%d" (!Shared.cvt_pid (Unix.getpid ()))) in
++      let fd = open_out fname in
++      close_out fd
++    with _ -> ();
 +    if Sys.os_type = "Win32" then File.win_interrupt := true;
      Minilib.log "User interrupt received";
      if not (resume_debugger Interface.Interrupt) && notebook#pages <> [] then begin
@@ -159,7 +165,7 @@ index 9821b9f2ee..04b65e1aa0 100644
      GMain.main ();
      failwith "Gtk loop ended"
 diff --git a/ide/coqide/dune b/ide/coqide/dune
-index c953a190e4..8838d7cf4e 100644
+index c953a190e4..60c619603a 100644
 --- a/ide/coqide/dune
 +++ b/ide/coqide/dune
 @@ -13,7 +13,7 @@
@@ -171,7 +177,7 @@ index c953a190e4..8838d7cf4e 100644
   (modes native byte)
   (link_flags -linkall))
  
-@@ -26,12 +26,22 @@
+@@ -26,12 +26,21 @@
  (library
   (name coqide_gui)
   (wrapped false)
@@ -181,7 +187,7 @@ index c953a190e4..8838d7cf4e 100644
   (foreign_stubs
    (language c)
    (names coqide_os_stubs))
-  (optional)
+- (optional)
 - (libraries coqide-server.protocol coqide-server.core lablgtk3-sourceview3))
 + (libraries coqide-server.protocol coqide-server.core lablgtk3-sourceview3 platform_specific))
 +
@@ -196,7 +202,7 @@ index c953a190e4..8838d7cf4e 100644
  
  (executable
   (name gen_gtk_platform)
-@@ -46,10 +56,18 @@
+@@ -46,15 +55,22 @@
   (targets coqide_os_specific.ml)
   (action (copy# coqide_%{read:gtk_platform.conf}.ml.in %{targets})))
  
@@ -215,6 +221,11 @@ index c953a190e4..8838d7cf4e 100644
  (executable
   (name coqide_main)
   (public_name coqide)
+  (package coqide)
+- (optional)
+  (modules coqide_main)
+  (modes exe byte)
+  (libraries coqide_gui))
 diff --git a/ide/coqide/idetop.ml b/ide/coqide/idetop.ml
 index a0f036e757..06206c5883 100644
 --- a/ide/coqide/idetop.ml
@@ -431,5 +442,5 @@ index 27b4387b61..4343ffb362 100644
  
  let rec wait p =
 -- 
-2.37.0
+2.34.1
 
