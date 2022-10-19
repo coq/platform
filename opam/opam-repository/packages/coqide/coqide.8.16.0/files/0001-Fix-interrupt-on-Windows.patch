@@ -79,12 +79,12 @@ index 13858891f1..46a42ea691 100644
        Coq.reset_coqtop sn.coqtop (* calls init_bpts *)
      end
    let interrupt _ =  (* terminate computation *)
-+    try
++    (try
 +      let fname = Filename.concat (Filename.get_temp_dir_name ())
-+          (Printf.sprintf "CREATE_FILE_%d" (!Shared.cvt_pid (Unix.getpid ()))) in
++          (Printf.sprintf "INTERRUPT_CLICKED_%d" (!Shared.cvt_pid (Unix.getpid ()))) in
 +      let fd = open_out fname in
 +      close_out fd
-+    with _ -> ();
++    with _ -> ());
 +    if Sys.os_type = "Win32" then File.win_interrupt := true;
      Minilib.log "User interrupt received";
      if not (resume_debugger Interface.Interrupt) && notebook#pages <> [] then begin
