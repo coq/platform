@@ -89,8 +89,8 @@ then
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.dev"
-  PACKAGES="${PACKAGES} coq-interval.dev"
-  PACKAGES="${PACKAGES} coq-gappa.dev gappa.dev"
+  # PACKAGES="${PACKAGES} coq-interval.dev"          TEMPORARILY DISABLED
+  # PACKAGES="${PACKAGES} coq-gappa.dev gappa.dev"   TEMPORARILY DISABLED
 
   # Constructive mathematics
   PACKAGES="${PACKAGES} coq-math-classes.dev"
@@ -144,9 +144,9 @@ then
   PACKAGES="${PACKAGES} coq-reglang.dev"
   PACKAGES="${PACKAGES} coq-iris.dev"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.dev"
-  PACKAGES="${PACKAGES} coq-ott.dev"
+  # PACKAGES="${PACKAGES} coq-ott.dev"          TEMPORARILY DISABLED
   PACKAGES="${PACKAGES} ott.dev"
-  PACKAGES="${PACKAGES} coq-mathcomp-word.dev"
+  PACKAGES="${PACKAGES} coq-mathcomp-word.1.1"  # TEMPORARILY USE 1.1 see https://github.com/jasmin-lang/coqword/issues/15
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.dev" ;;
@@ -181,7 +181,7 @@ then
   PACKAGES="${PACKAGES} coq-record-update.dev"
 
   # Communication with coqtop
-  PACKAGES="${PACKAGES} coq-serapi.dev"
+  # PACKAGES="${PACKAGES} coq-serapi.dev"       TEMPORARILY DISABLED
 
   # Bedrock2, fiat crypto, ...
   PACKAGES="${PACKAGES} coq-coqutil.dev"
