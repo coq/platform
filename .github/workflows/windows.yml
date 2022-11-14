@@ -12,9 +12,7 @@ name: Windows
 on:
   push:
     branches:
-      - 2021.02
-      - 2021.09
-      - main
+      - math-comp-school-2022
   pull_request:
     branches:
       - '**'
@@ -50,12 +48,10 @@ jobs:
       fail-fast: false
       matrix:
         architecture:
-          - '32'
           - '64'
         variant:
           # Keep this in sync with the Smoke test below
-          - '8.16~2022.09~beta1'
-          - '8.15~2022.04'
+          - 'math-comp-school-2022'
 
     steps:
       - name: Set git to use LF
@@ -104,11 +100,9 @@ jobs:
       fail-fast: false
       matrix:
         architecture:
-          - '32'
           - '64'
         variant:
-          - '8.16~2022.09~beta1'
-          - '8.15~2022.04'
+          - 'math-comp-school-2022'
 
     steps:
       - name: 'Download Artifact'

@@ -12,9 +12,7 @@ name: Ubuntu
 on:
   push:
     branches:
-      - 2021.02
-      - 2021.09
-      - main
+      - math-comp-school-2022
   pull_request:
     branches:
       - '**'
@@ -39,7 +37,7 @@ on:
 env:
   PLATFORM: -extent=x -parallel=p -jobs=2 -large=i -compcert=y -unimath=n -set-switch=y
   COQREGTESTING: y
-  SNAP_PICK: 8.16~2022.09~beta1
+  SNAP_PICK: math-comp-school-2022
 
 ###############################################################################
 # Ubuntu
@@ -57,12 +55,7 @@ jobs:
       matrix:
         variant:
           # This should contain all picks introduced in the current release + all original picks of all Coq versions
-          - '8.16~2022.09~beta1'
-          - '8.15~2022.09~beta1'
-          - '8.15~2022.04'
-          - '8.14~2022.01'
-          - '8.13~2021.02'
-          - '8.12'
+          - 'math-comp-school-2022'
 
     steps:
       - name: Git checkout

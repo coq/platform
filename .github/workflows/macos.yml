@@ -12,9 +12,7 @@ name: Macos
 on:
   push:
     branches:
-      - 2021.02
-      - 2021.09
-      - main
+      - math-comp-school-2022
   pull_request:
     branches:
       - '**'
@@ -48,8 +46,7 @@ jobs:
       fail-fast: false
       matrix:
         variant:
-          - '8.16~2022.09~beta1'
-          - '8.15~2022.04'
+          - 'math-comp-school-2022'
 
     steps:
       - name: Git checkout
@@ -123,8 +120,7 @@ jobs:
       fail-fast: false
       matrix:
         variant:
-          - '8.16~2022.09~beta1'
-          - '8.15~2022.04'
+          - 'math-comp-school-2022'
 
     steps:
       - name: Install bash
