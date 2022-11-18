@@ -1,0 +1,29 @@
+opam-version: "2.0"
+name: "coq-mathcomp-algebra-tactics"
+synopsis: "Ring and field tactics for Mathematical Components"
+description: """\
+This library provides `ring` and `field` tactics for Mathematical Components,
+that work with any `comRingType` and `fieldType` instances, respectively.
+Their instance resolution is done through canonical structure inference.
+Therefore, they work with abstract rings and do not require `Add Ring` and
+`Add Field` commands. Another key feature of this library is that they
+automatically push down ring morphisms and additive functions to leaves of
+ring/field expressions before normalization to the Horner form."""
+maintainer: "sakaguchi@coins.tsukuba.ac.jp"
+authors: "Kazuhiko Sakaguchi"
+license: "CECILL-B"
+tags: "logpath:mathcomp.algebra_tactics"
+homepage: "https://github.com/math-comp/algebra-tactics"
+bug-reports: "https://github.com/math-comp/algebra-tactics/issues"
+depends: [
+  "coq" {>= "8.13"}
+  "coq-mathcomp-algebra" {>= "2.0"}
+  "coq-mathcomp-zify" {>= "1.1.0"}
+  "coq-elpi" {>= "1.10.1"}
+]
+build: [make "-j%{jobs}%"]
+install: [make "install"]
+dev-repo: "git+https://github.com/math-comp/algebra-tactics.git"
+url {
+  src: "git+https://github.com/proux01/algebra-tactics.git#hierarchy-builder"
+}

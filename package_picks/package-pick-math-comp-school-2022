@@ -76,7 +76,7 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-solvable.2.0.0+alpha1"
   PACKAGES="${PACKAGES} coq-mathcomp-field.2.0.0+alpha1"
   PACKAGES="${PACKAGES} coq-mathcomp-character.2.0.0+alpha1"
-
-#  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-zify.hierarchy-builder"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.hierarchy-builder"
 
 fi
