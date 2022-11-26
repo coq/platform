@@ -11,7 +11,7 @@ confinement: strict
 parts:
   coq:
     plugin: nil
-    build-packages: [build-essential, curl, m4, unzip, git]
+    build-packages: [build-essential, curl, m4, unzip, git, libstdc++-7-dev]
     stage-packages: [make, libmpfr6, libgmp10]
     source: .
     source-type: local
