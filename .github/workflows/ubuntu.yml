@@ -28,7 +28,7 @@ on:
         default: '-extent=x -parallel=p -jobs=2 -large=i -compcert=y -unimath=n -set-switch=y'
       snap_pick:
         description: 'Package pick for the snap package:'
-        default: 8.16~2022.09~beta1
+        default: 8.16~2022.09
       upload:
         description: 'Upload artifact to Snap Store? (true/false, default false)'
         default: false
@@ -39,7 +39,7 @@ on:
 env:
   PLATFORM: -extent=x -parallel=p -jobs=2 -large=i -compcert=y -unimath=n -set-switch=y
   COQREGTESTING: y
-  SNAP_PICK: 8.16~2022.09~beta1
+  SNAP_PICK: 8.16~2022.09
 
 ###############################################################################
 # Ubuntu
@@ -57,8 +57,8 @@ jobs:
       matrix:
         variant:
           # This should contain all picks introduced in the current release + all original picks of all Coq versions
-          - '8.16~2022.09~beta1'
-          - '8.15~2022.09~beta1'
+          - '8.16~2022.09'
+          - '8.15~2022.09'
           - '8.15~2022.04'
           - '8.14~2022.01'
           - '8.13~2021.02'
