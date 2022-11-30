@@ -65,18 +65,19 @@ echo "python3 = '$(which python3)' '$(python3 --version)'"
 echo "pip3 = '$(which pip3)' '$(pip3 --version)'"
 pip3 show --files macpack
 
-# Determine the patch to the macpack binary.
-# We filter these two lines from the output of 'pip3 show macpack --files'
-# Location: /Users/msoegtrop/Library/Python/3.8/lib/python/site-packages
-#   ../../../bin/macpack
-# and combine them with realpath to the path to the macpack binary
-MACPACK="$(realpath "$(pip3 show macpack | grep 'Location:' | cut -f 2 -d ' ')/$(pip3 show macpack --files | grep "^[^:]*macpack$" | sed 's/^ *//')")"
-echo "MACKPACK = '$MACPACK'"
-
 command -v python3 &> /dev/null || ( echo "You don't have python3 - which is starnge because macOS supplies one" ; exit 1)
 command -v pip3 &> /dev/null || ( echo "You don't have pip3 - which is starnge because macOS supplies one" ; exit 1)
 command -v gfind &> /dev/null || ( echo "Please install gfind (eg. sudo port install findutils)" ; exit 1)
 command -v grealpath &> /dev/null || ( echo "Please install grealpath (eg. sudo port install coreutils)" ; exit 1)
+
+# Determine the path to the macpack binary.
+# We filter these two lines from the output of 'pip3 show macpack --files'
+# Location: /Users/msoegtrop/Library/Python/3.8/lib/python/site-packages
+#   ../../../bin/macpack
+# and combine them with realpath to the path to the macpack binary
+MACPACK="$(grealpath "$(pip3 show macpack | grep 'Location:' | cut -f 2 -d ' ')/$(pip3 show macpack --files | grep "^[^:]*macpack$" | sed 's/^ *//')")"
+echo "MACKPACK = '$MACPACK'"
+
 command -v "$MACPACK"  &> /dev/null || ( echo "Please install macpack (eg. pip3 macpack)" ; exit 1)
 
 ###### Create root folder #####
