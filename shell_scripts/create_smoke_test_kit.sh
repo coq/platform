@@ -205,6 +205,9 @@ cat <<-'EOH' | sed -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PACKAGE_PICK_POS
 	  fi
 	fi
 
+	# Print Coq version
+	echo "Coq Version = $(coqc --version)"
+
 	# set COQLIB variable
 	COQLIB="$(coqc -where | tr -d '\r')"
 
@@ -259,6 +262,10 @@ cat <<-'EOH' | sed -e 's/$/\r/' -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PAC
 	    )
 	)
 	
+	REM Print Coq version
+	echo "Coq Version"
+	coqc --version
+
 	REM set COQLIB variable
 	FOR /F "tokens=* USEBACKQ" %%F IN (`coqc -where`) DO SET COQLIB=%%F
 	
@@ -374,3 +381,16 @@ echo "On macOS, Linux or unix you can now run " $smoke_script
 
 chmod u+x $smoke_batch
 echo "On windows you can now run " $smoke_batch
+
+##### Create smoke test ZIP #####
+
+case "$OSTYPE" in
+linux*)  COQ_OS_NAME="Linux" ;;
+darwin*) COQ_OS_NAME="MacOS" ;;
+cygwin)  COQ_OS_NAME="Windows" ;;
+*)       COQ_OS_NAME="UNKNOWN_OS" ;;
+esac
+
+ZIP_NAME="Smoke-test-kit-${COQ_PLATFORM_RELEASE}-version${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}-${COQ_OS_NAME}-$(uname -m)"
+
+zip -r "${ZIP_NAME}.zip" smoke-test-kit
