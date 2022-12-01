@@ -188,7 +188,7 @@ then
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"
 
   # Communication with coqtop
-  PACKAGES="${PACKAGES} coq-serapi.8.16.0+0.16.0"
+  PACKAGES="${PACKAGES} coq-serapi.8.16.0+0.16.1"
 
   # fiat crypto, bedrock2, rupicola and dependencies
   if [ "${BITSIZE}" == "64" ]
