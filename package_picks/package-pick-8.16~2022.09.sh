@@ -201,7 +201,7 @@ then
         PACKAGES="${PACKAGES} coq-bedrock2.0.0.3"
         PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.3"
         PACKAGES="${PACKAGES} coq-rupicola.0.0.5"
-        PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.15"
+        PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.17"
         ;;
       [nN]) true ;;
       *) echo "Illegal value for COQ_PLATFORM_FIATCRYPTO - aborting"; false ;;
