@@ -30,5 +30,5 @@ authors: [
   "Kazuhiko Sakaguchi"
 ]
 url {
-  src: "git+https://github.com/proux01/mczify.git#hierarchy-builder"
+  src: "git+https://github.com/proux01/mczify.git#18ab1d3d877"
 }

@@ -20,5 +20,5 @@ description:"""
 This library contains more definitions and theorems about finite groups.
 """
 url {
-  src: "https://github.com/math-comp/math-comp/zipball/hierarchy-builder"
+  src: "git+https://github.com/math-comp/math-comp.git#f802c4f2d6d903153968608488d7a3200b77af4f"
 }

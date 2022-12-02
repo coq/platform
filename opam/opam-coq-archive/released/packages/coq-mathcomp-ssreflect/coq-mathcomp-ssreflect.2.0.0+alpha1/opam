@@ -27,5 +27,5 @@ finite types, finite sets, finite functions, finite graphs, basic arithmetics
 and prime numbers, big operators
 """
 url {
-  src: "https://github.com/math-comp/math-comp/zipball/hierarchy-builder"
+  src: "git+https://github.com/math-comp/math-comp.git#f802c4f2d6d903153968608488d7a3200b77af4f"
 }

@@ -22,5 +22,5 @@ ordered fields, real fields,  modules, algebras, integers, rational
 numbers, polynomials, matrices, vector spaces...
 """
 url {
-  src: "https://github.com/math-comp/math-comp/zipball/hierarchy-builder"
+  src: "git+https://github.com/math-comp/math-comp.git#f802c4f2d6d903153968608488d7a3200b77af4f"
 }

@@ -25,5 +25,5 @@ build: [make "-j%{jobs}%"]
 install: [make "install"]
 dev-repo: "git+https://github.com/math-comp/algebra-tactics.git"
 url {
-  src: "git+https://github.com/proux01/algebra-tactics.git#hierarchy-builder"
+  src: "git+https://github.com/proux01/algebra-tactics.git#7323a12"
 }
