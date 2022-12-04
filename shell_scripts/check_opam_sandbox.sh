@@ -35,4 +35,9 @@ then
 			opam init --reinit --no-setup
 		fi
 	fi
+
+	# This is required if the macOS system python is used, because it defaults the python cache folder to
+	# $HOME/Library/Caches/com.apple.python/
+	# Which is outside of the sandbox
+	export PYTHONPYCACHEPREFIX="__pycache__"
 fi

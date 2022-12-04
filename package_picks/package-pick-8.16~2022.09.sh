@@ -11,25 +11,25 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.16.0 (released Sep 2022) with a beta package pick for the 2022.09 release."
-COQ_PLATFORM_VERSION_SORTORDER=9000
+COQ_PLATFORM_VERSION_TITLE="Coq 8.16.1 (released Nov 2022) with the first package pick from Sep 2022"
+COQ_PLATFORM_VERSION_SORTORDER=1
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.16~2022.09~beta1'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.16~2022.09'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.16'
-COQ_PLATFORM_COQ_TAG='8.16.0'
+COQ_PLATFORM_COQ_TAG='8.16.1'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.09.0 includes Coq 8.16.0 from Sep 2022. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='This is beta release with complete package pick and intended for package maintainers and early adopters. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.09.1 includes Coq 8.16.1 from Nov 2022. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='This is the **latest release version** of the Coq Platform and recommended for general application. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
 COQ_PLATFORM_OCAML_VERSION='4.13.1'
@@ -50,7 +50,7 @@ PACKAGES=""
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} PIN.coq.8.16.0"
+PACKAGES="${PACKAGES} PIN.coq.8.16.1"
 # Since dune does support Coq, it is explicitly selected
 PACKAGES="${PACKAGES} dune.3.4.1"
 PACKAGES="${PACKAGES} dune-configurator.3.4.1"
@@ -60,7 +60,7 @@ PACKAGES="${PACKAGES} dune-configurator.3.4.1"
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.16.0"
+PACKAGES="${PACKAGES} coqide.8.16.1"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
@@ -188,7 +188,7 @@ then
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"
 
   # Communication with coqtop
-  PACKAGES="${PACKAGES} coq-serapi.8.16.0+0.16.0"
+  PACKAGES="${PACKAGES} coq-serapi.8.16.0+0.16.1"
 
   # fiat crypto, bedrock2, rupicola and dependencies
   if [ "${BITSIZE}" == "64" ]
@@ -197,11 +197,11 @@ then
       [yY])
         PACKAGES="${PACKAGES} coq-coqutil.0.0.2"
         PACKAGES="${PACKAGES} coq-rewriter.0.0.6"
-        PACKAGES="${PACKAGES} coq-riscv.0.0.2"
-        PACKAGES="${PACKAGES} coq-bedrock2.0.0.3"
-        PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.3"
-        PACKAGES="${PACKAGES} coq-rupicola.0.0.5"
-        PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.15"
+        PACKAGES="${PACKAGES} coq-riscv.0.0.3"
+        PACKAGES="${PACKAGES} coq-bedrock2.0.0.4"
+        PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.4"
+        PACKAGES="${PACKAGES} coq-rupicola.0.0.6"
+        PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.17"
         ;;
       [nN]) true ;;
       *) echo "Illegal value for COQ_PLATFORM_FIATCRYPTO - aborting"; false ;;

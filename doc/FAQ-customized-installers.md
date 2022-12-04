@@ -51,7 +51,7 @@ If you have issues, please contact us on zulip chat [Coq-Platform & users](https
 
 After you created and built a new package pick, you can create a macOS DMG installer from it as follows:
 
-- Activate the opam switch with `opam switch __coq-platform.2022.09.0~my_new_pick`
+- Activate the opam switch with `opam switch __coq-platform.2022.09.1~my_new_pick`
 - Navigate to your Coq Platform git folder, e.g. `cd ~/platform`
 - Run `macos/create_installer_macos.sh -sign=Y -signcert=path_to_certificate_file -signid=signature_id`
 - Above the `path_to_certificate_file` is the path and name of the `.cer` and `.p12` file **without** the file extension. The signature ID is typically the name of the institution to which the certificate is issued.
@@ -76,7 +76,7 @@ After you created a new package pick, you can create a Snap package from it as f
 After you created and built a new package pick, you can create a Windows installer from it as follows:
 
 - Open the Coq Platform cygwin shell, e.g. `C:\bin\cygwin64_coq_platform\cygwin.bat`.
-- Activate the opam switch with `opam switch __coq-platform.2022.09.0~my_new_pick`
+- Activate the opam switch with `opam switch __coq-platform.2022.09.1~my_new_pick`
 - Navigate to the `coq-platform` folder.
 - Run `windows/create_installer_windows.sh`
 

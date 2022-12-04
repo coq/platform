@@ -20,12 +20,6 @@ depends: [
   "lablgtk3-sourceview3" {>= "3.1.2"}
   "conf-adwaita-icon-theme"
 ]
-patches: [
-  # See https://github.com/coq/coq/pull/16581
-  "0001-Workaround-for-CoqIDE-preferences-crashing-on-MacOS-.patch"
-  # See https://github.com/coq/coq/pull/16142
-  "0001-Fix-interrupt-on-Windows.patch"
-]
 build: [
   [
     "./configure"
@@ -41,6 +35,6 @@ build: [
 ]
 
 url {
-  src: "https://github.com/coq/coq/archive/refs/tags/V8.16.0.tar.gz"
-  checksum: "sha256=36577b55f4a4b1c64682c387de7abea932d0fd42fc0cd5406927dca344f53587"
+  src: "https://github.com/coq/coq/archive/refs/tags/V8.16.1.tar.gz"
+  checksum: "sha256=583471c8ed4f227cb374ee8a13a769c46579313d407db67a82d202ee48300e4b"
 }

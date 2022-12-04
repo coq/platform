@@ -132,7 +132,7 @@ TEST_FILES[coq-reglang]='theories/dfa.v'
 TEST_FILES[coq-relation-algebra~8.14~2022.01]='compiler_opts.v imp.v'
 TEST_FILES[coq-relation-algebra~8.14~2022.04]='compiler_opts.v imp.v'
 TEST_FILES[coq-relation-algebra~8.15~2022.04]='compiler_opts.v imp.v'
-TEST_FILES[coq-relation-algebra~8.15~2022.09~beta1]='compiler_opts.v imp.v'
+TEST_FILES[coq-relation-algebra~8.15~2022.09]='compiler_opts.v imp.v'
 TEST_FILES[coq-relation-algebra]='examples/compiler_opts.v examples/imp.v'
 PATCH_CMDS[coq-relation-algebra]='/^Require Import kat .*$/ {print "From RelationAlgebra "$0; next}'
 TEST_FILES[coq-rewriter]='src/Rewriter/Demo.v '
@@ -205,6 +205,9 @@ cat <<-'EOH' | sed -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PACKAGE_PICK_POS
 	  fi
 	fi
 
+	# Print Coq version
+	echo "Coq Version = $(coqc --version)"
+
 	# set COQLIB variable
 	COQLIB="$(coqc -where | tr -d '\r')"
 
@@ -259,6 +262,10 @@ cat <<-'EOH' | sed -e 's/$/\r/' -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PAC
 	    )
 	)
 	
+	REM Print Coq version
+	echo "Coq Version"
+	coqc --version
+
 	REM set COQLIB variable
 	FOR /F "tokens=* USEBACKQ" %%F IN (`coqc -where`) DO SET COQLIB=%%F
 	
@@ -293,6 +300,22 @@ cat <<-'EOH' | sed -e 's/$/\r/' -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PAC
 	REM Run coqc for all smoke test files
 	EOH
 
+##### Create a _CoqProject file with options given as command line arguments
+
+function create_coqproject {
+	echo "create _CoqProject for options '$@'"
+	local filename="smoke-test-kit/${package}/_CoqProject"
+	rm -f "${filename}"
+	while [ $# -gt 0 ]
+	do
+		case "$1" in
+		-Q) echo "-Q $2 $3" >> "${filename}"; shift 3 ;;
+		-R) echo "-R $2 $3" >> "${filename}"; shift 3 ;;
+		*) echo "-arg $1" >> "${filename}"; shift ;;
+		esac
+	done	
+}
+
 ##### Get the test/example file(s) for each package #####
 
 for package in ${packages}
@@ -312,10 +335,10 @@ do
 
   if [ -n "${COQ_OPTION[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]+_undef_}" ]
   then
-    options='"'"${COQ_OPTION[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]}"'"'
+    options="${COQ_OPTION[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]}"
   elif [ -n "${COQ_OPTION[${package}]+_undef_}" ]
   then
-    options='"'"${COQ_OPTION[${package}]}"'"'
+    options="${COQ_OPTION[${package}]}"
   else
     options=""
   fi
@@ -344,12 +367,18 @@ do
       filename=${filename/-/_}
       cp "smoke-test-kit/${package}-src/$file" "smoke-test-kit/${package}/${filename}"
       patch_file "smoke-test-kit/${package}/${filename}" "${patches}"
-      echo "run_test ${package}/${filename} $options" >> $smoke_script
-      echo "CALL :run_test ${package}/${filename} ${options//\$COQLIB/%COQLIB%}"$'\r' >> $smoke_batch
+      echo "run_test ${package}/${filename} \"$options\"" >> $smoke_script
+      echo "CALL :run_test ${package}/${filename} \"${options//\$COQLIB/%COQLIB%}\""$'\r' >> $smoke_batch
     done
     rm -rf smoke-test-kit/${package}-src
   else
     echo "File list for ${package} is set empty"
+  fi
+
+  if [ -n "$options" ]
+  then
+    # Create a _CoqProject file with the options
+	create_coqproject $options
   fi
 done
 
@@ -374,3 +403,16 @@ echo "On macOS, Linux or unix you can now run " $smoke_script
 
 chmod u+x $smoke_batch
 echo "On windows you can now run " $smoke_batch
+
+##### Create smoke test ZIP #####
+
+case "$OSTYPE" in
+linux*)  COQ_OS_NAME="Linux" ;;
+darwin*) COQ_OS_NAME="MacOS" ;;
+cygwin)  COQ_OS_NAME="Windows" ;;
+*)       COQ_OS_NAME="UNKNOWN_OS" ;;
+esac
+
+ZIP_NAME="Smoke-test-kit-${COQ_PLATFORM_RELEASE}-version${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}-${COQ_OS_NAME}-$(uname -m)"
+
+zip -r "${ZIP_NAME}.zip" smoke-test-kit
