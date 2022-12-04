@@ -401,7 +401,7 @@ IF "%RUNSETUP%"=="y" (
     --no-shortcuts ^
     %CYGWIN_OPT% ^
     -P cygwin-devel,gcc-core,gcc-g++, ^
-    -P rsync,patch,diffutils,curl,make,unzip,git,m4,perl,wget ^
+    -P rsync,patch,diffutils,curl,make,zip,unzip,git,m4,perl,wget ^
     -P gdb,liblzma5 ^
     -P automake,automake1.14 ^
     -P pkg-config ^
