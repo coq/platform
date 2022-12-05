@@ -92,7 +92,7 @@ This method is intended for experienced users, who may want to use opam to insta
   - OpenSuse:             sudo zypper in -t pattern devel_C_C++
 - For CentOS and possibly RHEL some additional steps are required, see [CentOS](#centos) below.
 - Get the Coq Platform scripts via either of these methods
-  - Most users should download and extract `https://github.com/coq/platform/archive/refs/tags/2022.09.1.zip`.
+  - Most users should download and extract `https://github.com/coq/platform/archive/refs/tags/2022.09.0.zip`.
   - Users which intend to contribute to Coq Platform should use `git clone --branch 2022.09.1 https://github.com/coq/platform.git`.
 - Open a shell, navigate to the download folder and execute `coq_platform_make.sh`.
 - The system will ask for sudo permissions to install prerequisites *several times* so the script is not fully unattended but all installations of dependencies are done directly after the initialization of the opam switch.
