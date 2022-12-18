@@ -49,6 +49,7 @@ jobs:
       matrix:
         architecture:
           - '64'
+          - '32'
         variant:
           # Keep this in sync with the Smoke test below
           - '8.16~2022.09'
@@ -102,6 +103,7 @@ jobs:
       matrix:
         architecture:
           - '64'
+          - '32'
         variant:
           - '8.16~2022.09'
           - '8.15~2022.04'
