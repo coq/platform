@@ -422,18 +422,18 @@ cp ../windows/*.ns* .
 mkdir source
 for package in coq coqide coq-compcert coq-vst coq-vst-32
 do
-  packagefull=$(opam list --installed-roots --short --columns=name,version ${package} | sed 's/ /./')
-  if opam list --installed --check $packagefull
+  if opam list --installed --silent ${package}
   then
+  packagefull=$(opam list --installed-roots --short --columns=name,version ${package} | sed 's/ /./')
     opam source --dir=source/${package} ${packagefull}
   fi
 done
 
 # Get VST variant
-if opam list --installed --check coq-vst
+if opam list --installed --silent coq-vst
 then
   vst_pkg=coq-vst
-elif opam list --installed --check coq-vst-32
+elif opam list --installed --silent coq-vst-32
 then
   vst_pkg=coq-vst-32
 else
