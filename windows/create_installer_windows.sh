@@ -420,30 +420,54 @@ cp ../windows/*.ns* .
 
 # Extract some data from sources
 mkdir source
-for package in coq coqide coq-compcert coq-vst
+for package in coq coqide coq-compcert coq-vst coq-vst-32
 do
   packagefull=$(opam list --installed-roots --short --columns=name,version ${package} | sed 's/ /./')
-  opam source --dir=source/${package} ${packagefull}
+  if opam list --installed --check $packagefull
+  then
+    opam source --dir=source/${package} ${packagefull}
+  fi
 done
 
+# Get VST variant
+if opam list --installed --check coq-vst
+then
+  vst_pkg=coq-vst
+elif opam list --installed --check coq-vst-32
+then
+  vst_pkg=coq-vst-32
+else
+  vst_pkg=""
+fi
+
+# Check VST license
+if [ -n "$vst_pkg" ]
+then
+  vst_pkg_full=$(opam list --installed-roots --short --columns=name,version ${vst_pkg} | sed 's/ /./')
+  vst_license="$(opam show $vst_pkg_full -f license:)"
+  if [ "${vst_license}" == '"BSD-2-Clause"' ]
+  then
+    NSIS_VST_CHECK=""
+    echo "VST license is ${vst_license} => no check required"
+  else
+    NSIS_VST_CHECK="-DVST_CHECK_LICENSE"
+    echo "VST license is ${vst_license} => check required"
+  fi
+else
+  NSIS_VST_CHECK=""
+fi
+
+# Copy some files from source
 cp source/coq/LICENSE .
 cp source/coqide/ide/coqide/coq.ico .
 mkdir -p files/bin
 cp source/coqide/ide/coqide/coq.ico files/bin/
 cp source/coq-compcert/LICENSE coq-compcert-license.txt
-cp source/coq-vst/LICENSE coq-vst-license.txt
-rm -rf source
-
-# Check VST license
-vst_license="$(opam show coq-vst -f license:)"
-if [ "${vst_license}" == '"BSD-2-Clause"' ]
+if [ -n "$NSIS_VST_CHECK" ]
 then
-  NSIS_VST_CHECK=""
-  echo "VST license is ${vst_license} => no check required"
-else
-  NSIS_VST_CHECK="-DVST_CHECK_LICENSE"
-  echo "VST license is ${vst_license} => check required"
+  cp source/$vst_pkg/LICENSE coq-vst-license.txt
 fi
+rm -rf source
 
 echo "==============================================================================="
 echo "NOTE: The creation of the installer can take 10 minutes"
