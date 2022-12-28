@@ -418,21 +418,63 @@ NSIS=$(pwd)/nsis-3.06.1/makensis.exe
 chmod u+x "$NSIS"
 cp ../windows/*.ns* .
 
-# ToDo: we need a more elegant way to get this data via opam
-wget https://github.com/coq/coq/raw/v8.13/ide/coqide/coq.ico
-wget https://github.com/coq/coq/raw/v8.13/LICENSE
-wget https://raw.githubusercontent.com/AbsInt/CompCert/v3.8/LICENSE -O coq-compcert-license.txt
-wget https://raw.githubusercontent.com/PrincetonUniversity/VST/v2.7/LICENSE -O coq-vst-license.txt
+# Extract some data from sources
+mkdir source
+for package in coq coqide coq-compcert coq-vst coq-vst-32
+do
+  if opam list --installed --silent ${package}
+  then
+  packagefull=$(opam list --installed-roots --short --columns=name,version ${package} | sed 's/ /./')
+    opam source --dir=source/${package} ${packagefull}
+  fi
+done
 
+# Get VST variant
+if opam list --installed --silent coq-vst
+then
+  vst_pkg=coq-vst
+elif opam list --installed --silent coq-vst-32
+then
+  vst_pkg=coq-vst-32
+else
+  vst_pkg=""
+fi
+
+# Check VST license
+if [ -n "$vst_pkg" ]
+then
+  vst_pkg_full=$(opam list --installed-roots --short --columns=name,version ${vst_pkg} | sed 's/ /./')
+  vst_license="$(opam show $vst_pkg_full -f license:)"
+  if [ "${vst_license}" == '"BSD-2-Clause"' ]
+  then
+    NSIS_VST_CHECK=""
+    echo "VST license is ${vst_license} => no check required"
+  else
+    NSIS_VST_CHECK="-DVST_CHECK_LICENSE"
+    echo "VST license is ${vst_license} => check required"
+  fi
+else
+  NSIS_VST_CHECK=""
+fi
+
+# Copy some files from source
+cp source/coq/LICENSE .
+cp source/coqide/ide/coqide/coq.ico .
 mkdir -p files/bin
-cp coq.ico files/bin
+cp source/coqide/ide/coqide/coq.ico files/bin/
+cp source/coq-compcert/LICENSE coq-compcert-license.txt
+if [ -n "$NSIS_VST_CHECK" ]
+then
+  cp source/$vst_pkg/LICENSE coq-vst-license.txt
+fi
+rm -rf source
 
 echo "==============================================================================="
 echo "NOTE: The creation of the installer can take 10 minutes"
 echo "(cause of the CPU heavy but effective LZMA compression used)"
 echo "==============================================================================="
 
-"$NSIS" -DRELEASE="${COQ_PLATFORM_RELEASE}" -DVERSION="${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}" -DARCH="$COQ_ARCH" Coq.nsi
+"$NSIS" -DRELEASE="${COQ_PLATFORM_RELEASE}" -DVERSION="${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}" -DARCH="$COQ_ARCH" $NSIS_VST_CHECK Coq.nsi
 
 echo "==============================================================================="
 echo "Created installer:"

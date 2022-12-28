@@ -39,6 +39,8 @@ IF DEFINED HTTP_PROXY (
 REM A Cygwin mirror - see https://cygwin.com/mirrors.html for choices
 REM THIS MUST NOT INCLUDE THE TRAILING /
 SET CYGWIN_REPOSITORY=https://mirrors.kernel.org/sourceware/cygwin
+REM See https://www.cygwin.com/install.html#unsupported
+SET CYGWIN_REPOSITORY_32=https://mirrors.kernel.org/sourceware/cygwin-archive/20221123
 
 REM A local folder (in Windows path syntax) where cygwin packages are cached
 IF EXIST %LOCALAPPDATA%\Temp\NUL (
@@ -86,6 +88,7 @@ IF "%~0" == "-arch" (
   IF "%~1" == "32" (
     SET ARCH=i686
     SET SETUP=setup-x86.exe
+    SET CYGWIN_REPOSITORY=%CYGWIN_REPOSITORY_32%
     SET BITS=32
     SET OTHER_BITS=64
     SET OTHER_ARCH=x86_64
@@ -307,7 +310,7 @@ IF "%DESTCYG%" == "1" (
 ) ELSE (
   REM CHECK PATH
   IF EXIST %DESTCYG%\NUL (
-    IF NOT EXIST %DESTCYG%\home\%USERNAME%\coq-platform\NUL (
+    IF NOT EXIST %DESTCYG%\home\%USERNAME%\platform\NUL (
       ECHO ERROR: The folder %DESTCYG% exists and is not a Coq Platform cygwin folder!
       EXIT 1
     )
@@ -351,6 +354,11 @@ REM ========== DERIVED CYGWIN SETUP OPTIONS ==========
 REM One can't set a variable to empty in DOS, but you can set it to a space this way.
 REM The quotes are just there to make the space visible and to protect from "remove trailing spaces".
 SET "CYGWIN_OPT= "
+
+IF "%ARCH%" == "i686" (
+  REM See https://www.cygwin.com/install.html#unsupported
+  SET CYGWIN_OPT= %CYGWIN_OPT% --allow-unsupported-windows
+)
 
 IF "%CYGWIN_FROM_CACHE%" == "y" (
   SET CYGWIN_OPT= %CYGWIN_OPT% -L
@@ -454,11 +462,11 @@ SET USER_HOME_DIR_WFMT=%USER_HOME_DIR_MFMT:/=\%
 ECHO ========== BUILD COQ PLATFORM ==========
 
 IF "%BUILD_COQ_PLATFORM%" == "y" (
-  RMDIR /S /Q "%USER_HOME_DIR_MFMT%/coq-platform"
-  MKDIR "%USER_HOME_DIR_MFMT%/coq-platform"
-  XCOPY /S "%BATCHDIR%*.*" "%USER_HOME_DIR_WFMT%\coq-platform" || GOTO ErrorExit
+  RMDIR /S /Q "%USER_HOME_DIR_MFMT%\platform"
+  MKDIR "%USER_HOME_DIR_MFMT%\platform"
+  XCOPY /S "%BATCHDIR%*.*" "%USER_HOME_DIR_WFMT%\platform" || GOTO ErrorExit
 
-  %BASH% --login "%CYGWIN_INSTALLDIR_CFMT%/%USER_HOME_DIR_CFMT%/coq-platform/coq_platform_make.sh" || GOTO ErrorExit
+  %BASH% --login "%CYGWIN_INSTALLDIR_CFMT%/%USER_HOME_DIR_CFMT%/platform/coq_platform_make.sh" || GOTO ErrorExit
 
 ) ELSE (
   ECHO Note: Automatic Coq Platform build has been disabled with -build=n

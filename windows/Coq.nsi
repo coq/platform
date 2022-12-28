@@ -14,6 +14,7 @@
 ; Internal compiler error #12345: error mmapping datablock to 257061.
 ; For quick tests (say IDE only), compression can be turned off. 
 ; SetCompress off
+; SetCompressor zlib
 SetCompressor lzma
 
 !define MY_PRODUCT "Coq-Platform${VERSION}" ;Define your own software name here
@@ -430,17 +431,19 @@ FunctionEnd
     FunctionEnd
   !endif
 
-  !ifdef Sec_coq_vst
-    !define LicVST_Title "Princeton VST License Agreement"
-    !define LicVST_SubTitle "You selected the VST addon. VST contains parts of CompCert which are not open source. Please review the license terms before installing VST!"
-    !define LicVST_Bottom "If you accept the terms of the agreement, click I Agree to continue. Otherwise go back and unselect the VST addon."
-    !insertmacro MUI_PAGE_LICENSE_EXTRA "coq-vst-license.txt" "${LicVST_Title}" "${LicVST_SubTitle}" "${LicVST_Bottom}" SelFuncVST
+  !ifdef VST_CHECK_LICENSE
+    !ifdef Sec_coq_vst
+      !define LicVST_Title "Princeton VST License Agreement"
+      !define LicVST_SubTitle "You selected the VST addon. VST contains parts of CompCert which are not open source. Please review the license terms before installing VST!"
+      !define LicVST_Bottom "If you accept the terms of the agreement, click I Agree to continue. Otherwise go back and unselect the VST addon."
+      !insertmacro MUI_PAGE_LICENSE_EXTRA "coq-vst-license.txt" "${LicVST_Title}" "${LicVST_SubTitle}" "${LicVST_Bottom}" SelFuncVST
 
-    Function SelFuncVST
-      ${Unless} ${SectionIsSelected} ${Sec_coq_vst}
-        Abort
-      ${EndUnless}
-    FunctionEnd
+      Function SelFuncVST
+        ${Unless} ${SectionIsSelected} ${Sec_coq_vst}
+          Abort
+        ${EndUnless}
+      FunctionEnd
+    !endif
   !endif
 
   !define MUI_DIRECTORYPAGE_TEXT_TOP "ATTENTION:$\r$\n -the path must not include spaces$\r$\n- the path must be empty unless you are adding additional packages using the same installer$\r$\n- if you already have a *different* Coq version installed in the *same* place, please uninstall first via add/remove programs$\r$\n- it is fine to install multiple versions of Coq in *different* folders"

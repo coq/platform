@@ -49,10 +49,11 @@ jobs:
       matrix:
         architecture:
           - '64'
+          - '32'
         variant:
           # Keep this in sync with the Smoke test below
           - '8.16~2022.09'
-          - '8.15~2022.04'
+          - '8.15~2022.09'
 
     steps:
       - name: Set git to use LF
@@ -73,11 +74,11 @@ jobs:
 
       - name: Create installer
         shell: cmd
-        run: C:\cygwin_coq_platform\bin\bash --login -c "cd coq-platform/ && windows/create_installer_windows.sh && mkdir /cygdrive/c/installer && cp windows_installer/*exe /cygdrive/c/installer/"
+        run: C:\cygwin_coq_platform\bin\bash --login -c "cd platform/ && windows/create_installer_windows.sh && mkdir /cygdrive/c/installer && cp windows_installer/*exe /cygdrive/c/installer/"
 
       - name: Create smoke test kit
         shell: cmd
-        run: C:\cygwin_coq_platform\bin\bash --login -c "cd coq-platform/ && shell_scripts/create_smoke_test_kit.sh && mkdir /cygdrive/c/smoke && cp -ra smoke-test-kit/* /cygdrive/c/smoke/"
+        run: C:\cygwin_coq_platform\bin\bash --login -c "cd platform/ && shell_scripts/create_smoke_test_kit.sh && mkdir /cygdrive/c/smoke && cp -ra smoke-test-kit/* /cygdrive/c/smoke/"
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
@@ -102,9 +103,10 @@ jobs:
       matrix:
         architecture:
           - '64'
+          - '32'
         variant:
           - '8.16~2022.09'
-          - '8.15~2022.04'
+          - '8.15~2022.09'
 
     steps:
       - name: 'Download Artifact'
