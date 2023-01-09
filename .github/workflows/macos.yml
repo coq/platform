@@ -59,14 +59,22 @@ jobs:
         if: ${{ github.event.inputs.platform != '' }}
         run: echo "PLATFORM=${{ github.event.inputs.platform }}" >> $GITHUB_ENV
 
-      - name: Cleanup HomeBrew caches
-        # This is to avoid errors of the kind
-        # ==> Downloading https://ghcr.io/v2/homebrew/core/harfbuzz/manifests/5.1.0
-        # Error: adwaita-icon-theme: Failed to download resource "harfbuzz_bottle_manifest"
-        # The downloaded GitHub Packages manifest was corrupted or modified (it is not valid JSON): 
+      - name: Cleanup, update and upgrade HomeBrew
+        # This is to avoid errors of these kinds:
+        # - ==> Downloading https://ghcr.io/v2/homebrew/core/harfbuzz/manifests/5.1.0
+        #   Error: adwaita-icon-theme: Failed to download resource "harfbuzz_bottle_manifest"
+        #   The downloaded GitHub Packages manifest was corrupted or modified (it is not valid JSON): 
+        # - dyld[45184]: Library not loaded: '/usr/local/opt/libunistring/lib/libunistring.2.dylib'
+        #   Referenced from: '/usr/local/Cellar/wget/1.21.3/bin/wget'
+        #   Reason: tried: '/usr/local/opt/libunistring/lib/libunistring.2.dylib' (no such file),
+        # Note: brew upgrade does fail regularly, but brew is anyway in a better state afterwards
         run: |
           brew cleanup
           brew update
+          brew upgrade || true
+
+      - name: Install homebrew packages required by main script
+        run: brew install wget
 
       - name: Run common platform script
         shell: bash
