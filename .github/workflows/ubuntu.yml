@@ -126,6 +126,13 @@ jobs:
         uses: snapcore/action-build@v1.1.2
         id: build
 
+      - name: Save snapcraft logs
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: 'Snapcraft logs'
+          path: /home/runner/.cache/snapcraft/log/
+
       - name: Save Artifact
         uses: actions/upload-artifact@v2
         with:
