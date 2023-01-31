@@ -162,7 +162,7 @@ function add_files_of_system_package {
 
 function add_shared_library_dependencies {
   type="$(file -b $1)"
-  if [ "${type}" == 'Mach-O 64-bit executable x86_64' ] || [ "${type}" == 'Mach-O 64-bit bundle x86_64' ]
+  if [ "${type}" == 'Mach-O 64-bit executable x86_64' ] || [ "${type}" == 'Mach-O 64-bit bundle x86_64' ] || [ "${type}" == 'Mach-O 64-bit executable arm64' ] || [ "${type}" == 'Mach-O 64-bit bundle arm64' ]
   then
     echo "Adding shared libraries for $1"
     "${MACPACK}" -v -d "$2"/lib/dylib $1 >> logs/macpack.log
