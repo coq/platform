@@ -14,7 +14,7 @@ depexts: [
   ["python3"] {os-distribution = "ol"}
   ["python"] {os-distribution = "arch"}
   ["python3"] {os-family = "suse"}
-  ["dev-lang/python:3.6"] {os-distribution = "gentoo"}
+  ["dev-lang/python:3.9"] {os-distribution = "gentoo"}
   ["python3"] {os = "openbsd"}
   ["lang/python39"] {os = "netbsd"}
   ["lang/python39"] {os = "freebsd"}
