@@ -39,7 +39,7 @@ opamfile="opam/opam-coq-archive/released/packages/${name}/${name}.${version}/opa
 echo "opamfile = $opamfile"
 
 # Create and patch opam file
-opam show --raw ${name}.${version} | sed -e 's/< *"8.16~"/< "8.17~"/' > "${opamfile}"
+opam show --raw ${name}.${version} | sed -e 's/< *"8.17~*"/< "8.18~"/' > "${opamfile}"
 
 # Update repo and instal package
 opam update ${COQ_PLATFORM_REPO_NAME}.patch_coq-released
