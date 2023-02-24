@@ -86,54 +86,54 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.6"
   PACKAGES="${PACKAGES} coq-coquelicot.3.3.0"
 
-  # # Number theory
+  # Number theory
   # PACKAGES="${PACKAGES} coq-coqprime.1.2.0" # Does not compile when dependecy versions are relaxed
   PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1"
   
-  # # Numerical mathematics
+  # Numerical mathematics
   # PACKAGES="${PACKAGES} coq-flocq.4.1.0" # Does not build (no version patching required)
   # PACKAGES="${PACKAGES} coq-interval.4.6.1" # Requires Flocq
   # PACKAGES="${PACKAGES} coq-gappa.1.5.3" # Requires Flocq
   PACKAGES="${PACKAGES} gappa.1.4.1"
 
-  # # Constructive mathematics
-  # PACKAGES="${PACKAGES} coq-math-classes.8.15.0"
-  # PACKAGES="${PACKAGES} coq-corn.8.16.0"
+  # Constructive mathematics
+  # PACKAGES="${PACKAGES} coq-math-classes.8.15.0" # Does not compile
+  # PACKAGES="${PACKAGES} coq-corn.8.16.0" # Requires coq-math-classes
 
-  # # Homotopy Type Theory (HoTT)
-  # PACKAGES="${PACKAGES} coq-hott.8.16"
+  # Homotopy Type Theory (HoTT)
+  PACKAGES="${PACKAGES} coq-hott.8.16" # patched to allow 8.17
 
-  # # Univalent Mathematics (UniMath)
-  # # Note: coq-unimath requires too much memory for 32 bit architectures
-  # if [ "${BITSIZE}" == "64" ]
-  # then
-  #   case "$COQ_PLATFORM_UNIMATH" in
-  #   [yY]) PACKAGES="${PACKAGES} coq-unimath.20220816" ;;
-  #   [nN]) true ;;
-  #   *) echo "Illegal value for COQ_PLATFORM_UNIMATH - aborting"; false ;;
-  #   esac
-  # fi 
+  # Univalent Mathematics (UniMath)
+  # Note: coq-unimath requires too much memory for 32 bit architectures
+  if [ "${BITSIZE}" == "64" ]
+  then
+    case "$COQ_PLATFORM_UNIMATH" in
+    [yY]) PACKAGES="${PACKAGES} coq-unimath.20220816" ;;
+    [nN]) true ;;
+    *) echo "Illegal value for COQ_PLATFORM_UNIMATH - aborting"; false ;;
+    esac
+  fi 
 
-  # # Code extraction
-  # PACKAGES="${PACKAGES} coq-simple-io.1.7.0"
+  # Code extraction
+  PACKAGES="${PACKAGES} coq-simple-io.1.8.0"
 
-  # # Proof automation / generation / helpers
-  # PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210"
-  # PACKAGES="${PACKAGES} coq-equations.1.3+8.16"
-  # PACKAGES="${PACKAGES} coq-aac-tactics.8.16.0"
-  # PACKAGES="${PACKAGES} coq-unicoq.1.6+8.16"
-  # PACKAGES="${PACKAGES} coq-mtac2.1.4+8.16"
-  # PACKAGES="${PACKAGES} elpi.1.16.5 coq-elpi.1.15.6"
-  # PACKAGES="${PACKAGES} coq-hierarchy-builder.1.3.0"
-  # PACKAGES="${PACKAGES} coq-quickchick.1.6.4"
-  # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.16"
-  # if [[ "$OSTYPE" != cygwin ]]
-  # then
-  #   # coq-hammer does not work on Windows because it heavily relies on fork
-  #   PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.16"
-  #   PACKAGES="${PACKAGES} eprover.2.6"
-  #   PACKAGES="${PACKAGES} z3_tptp.4.11.0"
-  # fi
+  # Proof automation / generation / helpers
+  PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210"
+  PACKAGES="${PACKAGES} coq-equations.1.3+8.17"
+  PACKAGES="${PACKAGES} coq-aac-tactics.8.17.0"
+  # PACKAGES="${PACKAGES} coq-unicoq.1.6+8.16" needs patch
+  # PACKAGES="${PACKAGES} coq-mtac2.1.4+8.16" needs patch
+  PACKAGES="${PACKAGES} elpi.1.16.8 coq-elpi.1.17.0"
+  # PACKAGES="${PACKAGES} coq-hierarchy-builder.1.4.0" needs patch
+  # PACKAGES="${PACKAGES} coq-quickchick.1.6.4" needs patch
+  # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.16" needs patch
+  if [[ "$OSTYPE" != cygwin ]]
+  then
+    # coq-hammer does not work on Windows because it heavily relies on fork
+    # PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.16"
+    PACKAGES="${PACKAGES} eprover.2.6"
+    PACKAGES="${PACKAGES} z3_tptp.4.11.2"
+  fi
   # PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.16"
   # PACKAGES="${PACKAGES} coq-coqeal.1.1.1"
   # PACKAGES="${PACKAGES} coq-libhyps.2.0.6"
