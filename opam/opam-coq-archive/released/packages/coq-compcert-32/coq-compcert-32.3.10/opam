@@ -61,5 +61,8 @@ tags: [
 ]
 url {
   src: "https://github.com/AbsInt/CompCert/archive/v3.10.tar.gz"
-  checksum: "sha512=93687fb36cdfb247d47404c8d41d84ba96d006dd3a535646337a477fd5517c7487ff1d66e83bccceb47ba2d18b187c1bbdc55b2eff00373a8a120edfc80ef11a"
+  checksum: [
+    "sha512=93687fb36cdfb247d47404c8d41d84ba96d006dd3a535646337a477fd5517c7487ff1d66e83bccceb47ba2d18b187c1bbdc55b2eff00373a8a120edfc80ef11a"
+    "sha256=89d7889a41d9d295ee959ff9de7aed1a0a7c813f77fa9a668beedabeade91927"
+  ]
 }

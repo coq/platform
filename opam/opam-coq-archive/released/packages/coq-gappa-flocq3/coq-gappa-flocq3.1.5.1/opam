@@ -32,6 +32,10 @@ tags: [
 authors: [ "Guillaume Melquiond <guillaume.melquiond@inria.fr>" ]
 synopsis: "This version of coq-gappa is patched to use legacy Flocq-3.x from logical path Flocq3"
 url {
-  src: "https://gappa.gitlabpages.inria.fr/releases/gappalib-coq-1.5.1.tar.gz"
-  checksum: "sha512=24763d44523334792ac65bf5db5b5edeb1e8e0f3d44f365353ea8d0acc277ba67c50071302c725992fc73f9213ac98b54347fe4c789f21d5ff78133b00123f9e"
+  src:
+    "https://gappa.gitlabpages.inria.fr/releases/gappalib-coq-1.5.1.tar.gz"
+  checksum: [
+    "sha512=24763d44523334792ac65bf5db5b5edeb1e8e0f3d44f365353ea8d0acc277ba67c50071302c725992fc73f9213ac98b54347fe4c789f21d5ff78133b00123f9e"
+    "sha256=6d54d6fc933929b38711d2fe04062a181ac40d29a2f5e482138308801d4e7663"
+  ]
 }

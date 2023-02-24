@@ -41,6 +41,10 @@ authors: [
 ]
 synopsis: "This version of coq-interval is patched to use legacy Flocq-3.x from logical path Flocq3"
 url {
-  src: "https://coqinterval.gitlabpages.inria.fr/releases/interval-4.4.0.tar.gz"
-  checksum: "sha512=47b56fb496a8ca39e2b0cafbea30bd769674ca35d9140b17dc48f18d87903a70a11efd49f9235a675923e9f5e1b0d86db6931b1ffd32ab1a25dc16c9fc7e4dee"
+  src:
+    "https://coqinterval.gitlabpages.inria.fr/releases/interval-4.4.0.tar.gz"
+  checksum: [
+    "sha512=47b56fb496a8ca39e2b0cafbea30bd769674ca35d9140b17dc48f18d87903a70a11efd49f9235a675923e9f5e1b0d86db6931b1ffd32ab1a25dc16c9fc7e4dee"
+    "sha256=6e9714bca36c5f7b97a3280bd2cb785805b45f9f5898751b533174d68f02be01"
+  ]
 }

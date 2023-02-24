@@ -30,5 +30,8 @@ authors: [
 synopsis: "This is a version of coq-flocq which puts Flocq 3.x under the logical path Flocq3, so that 3.x and 4.x can be installed in parallel"
 url {
   src: "https://flocq.gitlabpages.inria.fr/releases/flocq-3.4.3.tar.gz"
-  checksum: "sha512=10f407e91e0d601b502b2c89104a8753dfcc3d9572f0fd9d007c7692d3d6c96fd5652fb103bcf2396a64236947734ee725c01f4ba2901565f9da38667f538d5a"
+  checksum: [
+    "sha512=10f407e91e0d601b502b2c89104a8753dfcc3d9572f0fd9d007c7692d3d6c96fd5652fb103bcf2396a64236947734ee725c01f4ba2901565f9da38667f538d5a"
+    "sha256=b59ccad1a4c2dd7b3d921d27131f4a48a5a10cff5acf63f48cf9f98f7521bac6"
+  ]
 }
