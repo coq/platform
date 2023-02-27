@@ -36,6 +36,9 @@ depends: [
   "coq-menhirlib" {>= "20190626"}
 ]
 available: os != "macos"
+patches: [
+  "0001-Minor-change-to-adjust-to-Coq-8.17-rc1.patch"
+]
 build: [
   [
     "./configure"

@@ -152,11 +152,11 @@ then
   PACKAGES="${PACKAGES} ott.0.33"
   PACKAGES="${PACKAGES} coq-mathcomp-word.2.0" # required mathcomp version relaxation and removal of mutex with coq-mathcomp-algebra-tactics
   
-  # case "$COQ_PLATFORM_COMPCERT" in
-  #   [yY]) PACKAGES="${PACKAGES} coq-compcert.3.12" ;; # Does not compile after Coq relaxation
-  #   [nN]) true ;;
-  #   *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
-  # esac
+  case "$COQ_PLATFORM_COMPCERT" in
+    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.12" ;;
+    [nN]) true ;;
+    *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
+  esac
 
   # case "$COQ_PLATFORM_VST" in
   #   [yY]) PACKAGES="${PACKAGES} coq-vst.2.11.1" ;; requires CompCert
