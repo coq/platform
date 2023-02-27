@@ -91,9 +91,9 @@ then
   PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1"
   
   # Numerical mathematics
-  # PACKAGES="${PACKAGES} coq-flocq.4.1.0" # Does not build (no version patching required)
-  # PACKAGES="${PACKAGES} coq-interval.4.6.1" # Requires Flocq
-  # PACKAGES="${PACKAGES} coq-gappa.1.5.3" # Requires Flocq
+  PACKAGES="${PACKAGES} coq-flocq.4.1.1"
+  PACKAGES="${PACKAGES} coq-interval.4.6.1"
+  PACKAGES="${PACKAGES} coq-gappa.1.5.3" # Requires Flocq
   PACKAGES="${PACKAGES} gappa.1.4.1"
 
   # Constructive mathematics
@@ -134,38 +134,38 @@ then
     PACKAGES="${PACKAGES} eprover.2.6"
     PACKAGES="${PACKAGES} z3_tptp.4.11.2"
   fi
-  # PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.16"
-  # PACKAGES="${PACKAGES} coq-coqeal.1.1.1"
-  # PACKAGES="${PACKAGES} coq-libhyps.2.0.6"
-  # PACKAGES="${PACKAGES} coq-itauto.8.16.0"
+  PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.17"
+  # PACKAGES="${PACKAGES} coq-coqeal.1.1.1" requires coq-mathcomp-real-closed
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.6"
+  PACKAGES="${PACKAGES} coq-itauto.8.17.0"
   
   # # General mathematics (which requires one of the above tools)
-  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.4"
-  # PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0"
-  # PACKAGES="${PACKAGES} coq-relation-algebra.1.7.8"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.1" # dependency coq-matcomp-classical requires Coq version relaxation
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0" # required Coq version relaxation
+  # PACKAGES="${PACKAGES} coq-relation-algebra.1.7.8" fails to build after relaxation patching
 
   # # Formal languages, compilers and code verification
-  # PACKAGES="${PACKAGES} coq-reglang.1.1.3"
-  # PACKAGES="${PACKAGES} coq-iris.4.0.0"
-  # PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0"
-  # PACKAGES="${PACKAGES} coq-ott.0.32"
-  # PACKAGES="${PACKAGES} ott.0.32"
-  # PACKAGES="${PACKAGES} coq-mathcomp-word.1.1"
+  PACKAGES="${PACKAGES} coq-reglang.1.1.3" # requires Coq and mathcomp version relaxation
+  PACKAGES="${PACKAGES} coq-iris.4.0.0"
+  PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0"
+  PACKAGES="${PACKAGES} coq-ott.0.33"
+  PACKAGES="${PACKAGES} ott.0.33"
+  PACKAGES="${PACKAGES} coq-mathcomp-word.2.0" # required mathcomp version relaxation and removal of mutex with coq-mathcomp-algebra-tactics
   
   # case "$COQ_PLATFORM_COMPCERT" in
-  #   [yY]) PACKAGES="${PACKAGES} coq-compcert.3.11" ;;
+  #   [yY]) PACKAGES="${PACKAGES} coq-compcert.3.12" ;; # Does not compile after Coq relaxation
   #   [nN]) true ;;
   #   *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
   # esac
 
   # case "$COQ_PLATFORM_VST" in
-  #   [yY]) PACKAGES="${PACKAGES} coq-vst.2.11.1" ;;
+  #   [yY]) PACKAGES="${PACKAGES} coq-vst.2.11.1" ;; requires CompCert
   #   [nN]) true ;;
   #   *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
   # esac
 
   # # Proof analysis and other tools
-  # PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.16"
+  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.16" # requires Coq version relaxation
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
