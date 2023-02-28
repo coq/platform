@@ -19,12 +19,11 @@ depends: [
   "coq-mathcomp-ssreflect" {>= "1.12" & < "1.17~"}
   "coq-mathcomp-algebra"
 ]
-conflicts: [
-  "coq-prosa" {= "0.5"}
-  "coq-mathcomp-apery" {<= "1.0.2"}
-  "coq-mathcomp-algebra-tactics" {< "1.0.0"}
+patches: [ "0001-rename-ssrZ.v-to-word_ssrZ.v-to-avoid-conflict-with-.patch" ]
+build: [
+  [ "mv" "src/ssrZ.v" "src/word_ssrZ.v"]
+  [ "dune" "build" "-p" name "-j" jobs ]
 ]
-build: ["dune" "build" "-p" name "-j" jobs]
 dev-repo: "git+https://github.com/jasmin-lang/coqword.git"
 url {
   src: "https://github.com/jasmin-lang/coqword/archive/refs/tags/v2.0.tar.gz"
