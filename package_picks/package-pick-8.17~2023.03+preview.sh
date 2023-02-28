@@ -159,7 +159,7 @@ then
   esac
 
   # case "$COQ_PLATFORM_VST" in
-  #   [yY]) PACKAGES="${PACKAGES} coq-vst.2.11.1" ;; requires CompCert
+  #   [yY]) PACKAGES="${PACKAGES} coq-vst.2.11.1" ;; does not support CompCert 3.12
   #   [nN]) true ;;
   #   *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
   # esac
@@ -174,18 +174,18 @@ if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
 
   # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-deriving.0.1.0"
-  PACKAGES="${PACKAGES} coq-metacoq.1.1+8.16"
+  # PACKAGES="${PACKAGES} coq-deriving.0.1.0" # "hint locality" error after Coq version relaxation
+  # PACKAGES="${PACKAGES} coq-metacoq.1.1+8.16" # No 8.17 version
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-extructures.0.3.1"
+  # PACKAGES="${PACKAGES} coq-extructures.0.3.1" # requires coq-deriving
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.4"
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"
 
   # Communication with coqtop
-  PACKAGES="${PACKAGES} coq-serapi.8.16.0+0.16.1"
+  PACKAGES="${PACKAGES} coq-serapi.8.17+rc1+0.17.1"
 
   # fiat crypto, bedrock2, rupicola and dependencies
   if [ "${BITSIZE}" == "64" ]
@@ -193,12 +193,12 @@ then
     case "$COQ_PLATFORM_FIATCRYPTO" in
       [yY])
         PACKAGES="${PACKAGES} coq-coqutil.0.0.2"
-        PACKAGES="${PACKAGES} coq-rewriter.0.0.6"
+        PACKAGES="${PACKAGES} coq-rewriter.0.0.6" # Note: 0.0.7 fails with stack overflow with max stack size on MacOS
         PACKAGES="${PACKAGES} coq-riscv.0.0.3"
         PACKAGES="${PACKAGES} coq-bedrock2.0.0.4"
         PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.4"
         PACKAGES="${PACKAGES} coq-rupicola.0.0.6"
-        PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.17"
+        # PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.17" # requires coq-coqprimt
         ;;
       [nN]) true ;;
       *) echo "Illegal value for COQ_PLATFORM_FIATCRYPTO - aborting"; false ;;
