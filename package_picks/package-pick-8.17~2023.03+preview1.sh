@@ -18,7 +18,7 @@ COQ_PLATFORM_VERSION_SORTORDER=99
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.17~2023.03+preview'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.17~2023.03+preview1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.17'
@@ -28,7 +28,7 @@ COQ_PLATFORM_COQ_TAG='8.17+rc1'
 COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.03+preview includes Coq 8.17+rc1 from Dec 2022. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.03+preview1 includes Coq 8.17+rc1 from Dec 2022. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is an incomplete previewthe release inteded for package maintainers. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
