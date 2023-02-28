@@ -24,12 +24,12 @@ tags: [
   "keyword:C"
   "keyword:compiler"
   "logpath:compcert32"
-  "date:2022-11-21"
+  "date:2022-11-25"
 ]
 homepage: "http://compcert.inria.fr/"
 bug-reports: "https://github.com/AbsInt/CompCert/issues"
 depends: [
-  "coq" {>= "8.9.0" & < "8.17~"}
+  "coq" {>= "8.12.0" & < "8.17~"}
   "menhir" {>= "20190626"}
   "ocaml" {>= "4.05.0"}
   "coq-flocq" {>= "4.1.0" & < "5~"}
@@ -37,7 +37,7 @@ depends: [
 ]
 available: os != "macos"
 patches: [
-  "0001-Minor-change-to-adjust-to-Coq-8.17-rc1.patch"
+  "0001-Fix-incomplete-checking-of-unsolved-holes-465.patch"
 ]
 build: [
   [
