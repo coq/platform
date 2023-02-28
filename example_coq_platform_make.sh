@@ -1,3 +1,3 @@
 # This is a test / example call for coq_platform_make.sh
 
-./coq_platform_make.sh -packages="8.16~2022.09" -extent=x -parallel=p -jobs=8 -compcert=y -large=i -switch=k
+OPAMYES=0 ./coq_platform_make.sh -packages="8.17~2023.03+preview1" -extent=x -parallel=p -jobs=8 -compcert=y -large=i -switch=k

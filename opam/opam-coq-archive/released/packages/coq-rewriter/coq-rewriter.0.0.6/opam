@@ -25,5 +25,8 @@ synopsis: "Reflective PHOAS rewriting/pattern-matching-compilation framework for
 tags: ["logpath:Rewriter"]
 url {
   src: "https://github.com/mit-plv/rewriter/archive/refs/tags/v0.0.6.tar.gz"
-  checksum: "sha512=ef79eaddad52c5e4e3eb1a4e10cd5e5aa9b670de35179a65110f21f2d3e4a566e6ae71053dd9a71d494875b1fc9bbcd7361ebac2170d036f7788bb6234e402f5"
+  checksum: [
+    "sha512=ef79eaddad52c5e4e3eb1a4e10cd5e5aa9b670de35179a65110f21f2d3e4a566e6ae71053dd9a71d494875b1fc9bbcd7361ebac2170d036f7788bb6234e402f5"
+    "sha256=7f4818fa8d375a589baf8b6a58103de98565e23f60e55ef360d6e70fb539e7e4"
+  ]
 }
