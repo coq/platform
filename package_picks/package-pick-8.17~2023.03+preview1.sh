@@ -121,12 +121,12 @@ then
   PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.17"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.17.0"
-  # PACKAGES="${PACKAGES} coq-unicoq.1.6+8.16" needs patch
-  # PACKAGES="${PACKAGES} coq-mtac2.1.4+8.16" needs patch
+  # PACKAGES="${PACKAGES} coq-unicoq.1.6+8.16" # needs patch
+  # PACKAGES="${PACKAGES} coq-mtac2.1.4+8.16" # needs patch
   PACKAGES="${PACKAGES} elpi.1.16.8 coq-elpi.1.17.0"
-  # PACKAGES="${PACKAGES} coq-hierarchy-builder.1.4.0" needs patch
-  # PACKAGES="${PACKAGES} coq-quickchick.1.6.4" needs patch
-  # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.16" needs patch
+  # PACKAGES="${PACKAGES} coq-hierarchy-builder.1.4.0" # needs patch
+  # PACKAGES="${PACKAGES} coq-quickchick.1.6.4" # needs patch
+  # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.16" # needs patch
   if [[ "$OSTYPE" != cygwin ]]
   then
     # coq-hammer does not work on Windows because it heavily relies on fork
@@ -135,16 +135,16 @@ then
     PACKAGES="${PACKAGES} z3_tptp.4.11.2"
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.17"
-  # PACKAGES="${PACKAGES} coq-coqeal.1.1.1" requires coq-mathcomp-real-closed
+  # PACKAGES="${PACKAGES} coq-coqeal.1.1.1" # requires coq-mathcomp-real-closed
   PACKAGES="${PACKAGES} coq-libhyps.2.0.6"
   PACKAGES="${PACKAGES} coq-itauto.8.17.0"
   
-  # # General mathematics (which requires one of the above tools)
+  # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.1" # dependency coq-matcomp-classical requires Coq version relaxation
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.0.0" # required Coq version relaxation
-  # PACKAGES="${PACKAGES} coq-relation-algebra.1.7.8" fails to build after relaxation patching
+  # PACKAGES="${PACKAGES} coq-relation-algebra.1.7.8" # fails to build after relaxation patching
 
-  # # Formal languages, compilers and code verification
+  # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.3" # requires Coq and mathcomp version relaxation
   PACKAGES="${PACKAGES} coq-iris.4.0.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0"
@@ -158,11 +158,13 @@ then
     *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
   esac
 
-  # case "$COQ_PLATFORM_VST" in
-  #   [yY]) PACKAGES="${PACKAGES} coq-vst.2.11.1" ;; does not support CompCert 3.12
-  #   [nN]) true ;;
-  #   *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
-  # esac
+  case "$COQ_PLATFORM_VST" in
+    [yY])
+      # PACKAGES="${PACKAGES} coq-vst.2.11.1" # does not support CompCert 3.12
+      true ;;
+    [nN]) true ;;
+    *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
+  esac
 
   # # Proof analysis and other tools
   PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.16" # requires Coq version relaxation
