@@ -81,7 +81,7 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-character.1.16.0"
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.2"
-  # PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.3" # Does not compile when dependecy versions are relaxed
+  PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.4"
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.3.0+1.12+8.13"
   PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.6"
   PACKAGES="${PACKAGES} coq-coquelicot.3.3.0"
@@ -135,7 +135,7 @@ then
     PACKAGES="${PACKAGES} z3_tptp.4.11.2"
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.17"
-  # PACKAGES="${PACKAGES} coq-coqeal.1.1.1" # requires coq-mathcomp-real-closed
+  PACKAGES="${PACKAGES} coq-coqeal.1.1.1"
   PACKAGES="${PACKAGES} coq-libhyps.2.0.6"
   PACKAGES="${PACKAGES} coq-itauto.8.17.0"
   
