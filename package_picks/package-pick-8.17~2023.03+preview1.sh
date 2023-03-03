@@ -32,7 +32,7 @@ COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.03+preview1 
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is an incomplete previewthe release inteded for package maintainers. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
-COQ_PLATFORM_OCAML_VERSION='4.13.1'
+COQ_PLATFORM_OCAML_VERSION='4.14.1'
 
 ###################### PACKAGE SELECTION #####################
 

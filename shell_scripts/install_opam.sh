@@ -166,6 +166,7 @@ then
         4.10.2) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+mingw64c";;
         4.12.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw64c";;
         4.13.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw64c";;
+        4.14.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw64c";;
         *) echo "Unsupported OCaml version ${COQ_PLATFORM_OCAML_VERSION}"; return 1;;
       esac
     else
@@ -173,6 +174,7 @@ then
         4.10.2) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+mingw32c";;
         4.12.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw32c";;
         4.13.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw32c";;
+        4.14.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw32c";;
         *) echo "Unsupported OCaml version ${COQ_PLATFORM_OCAML_VERSION}"; return 1;;
       esac
     fi
@@ -181,6 +183,7 @@ then
       4.10.2) COQ_PLATFORM_OCAML_VARIANT="ocaml-base-compiler.${COQ_PLATFORM_OCAML_VERSION}";;
       4.12.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+options,ocaml-option-flambda";;
       4.13.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+options,ocaml-option-flambda";;
+      4.14.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+options,ocaml-option-flambda";;
       *) echo "Unsupported OCaml version ${COQ_PLATFORM_OCAML_VERSION}"; return 1;;
     esac
   fi
