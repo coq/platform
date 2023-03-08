@@ -87,7 +87,7 @@ then
   PACKAGES="${PACKAGES} coq-coquelicot.3.3.0"
 
   # Number theory
-  # PACKAGES="${PACKAGES} coq-coqprime.1.2.0" # Does not compile when dependecy versions are relaxed
+  PACKAGES="${PACKAGES} coq-coqprime.1.3.0"
   PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1"
   
   # Numerical mathematics
@@ -195,12 +195,12 @@ then
     case "$COQ_PLATFORM_FIATCRYPTO" in
       [yY])
         PACKAGES="${PACKAGES} coq-coqutil.0.0.2"
-        PACKAGES="${PACKAGES} coq-rewriter.0.0.6" # Note: 0.0.7 fails with stack overflow with max stack size on MacOS
+        PACKAGES="${PACKAGES} coq-rewriter.0.0.7"
         PACKAGES="${PACKAGES} coq-riscv.0.0.3"
         PACKAGES="${PACKAGES} coq-bedrock2.0.0.4"
         PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.4"
         PACKAGES="${PACKAGES} coq-rupicola.0.0.6"
-        # PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.17" # requires coq-coqprimt
+        # PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.17" # fails to build
         ;;
       [nN]) true ;;
       *) echo "Illegal value for COQ_PLATFORM_FIATCRYPTO - aborting"; false ;;
