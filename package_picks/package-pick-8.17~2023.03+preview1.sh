@@ -176,7 +176,7 @@ if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
 
   # Proof automation / generation / helpers
-  # PACKAGES="${PACKAGES} coq-deriving.0.1.0" # "hint locality" error after Coq version relaxation
+  PACKAGES="${PACKAGES} coq-deriving.0.1.1"
   # PACKAGES="${PACKAGES} coq-metacoq.1.1+8.16" # No 8.17 version
 
   # General mathematics
