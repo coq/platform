@@ -135,7 +135,7 @@ then
     PACKAGES="${PACKAGES} z3_tptp.4.11.2"
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.17"
-  PACKAGES="${PACKAGES} coq-coqeal.1.1.1"
+  PACKAGES="${PACKAGES} coq-coqeal.1.1.2"
   PACKAGES="${PACKAGES} coq-libhyps.2.0.6"
   PACKAGES="${PACKAGES} coq-itauto.8.17.0"
   
