@@ -69,7 +69,7 @@ if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.8.17.0"
-  PACKAGES="${PACKAGES} coq-ext-lib.0.11.7"
+  PACKAGES="${PACKAGES} coq-ext-lib.0.11.8"
   PACKAGES="${PACKAGES} coq-stdpp.1.8.0"
 
   # General mathematics
