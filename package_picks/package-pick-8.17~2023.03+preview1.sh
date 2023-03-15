@@ -180,7 +180,7 @@ then
   # PACKAGES="${PACKAGES} coq-metacoq.1.1+8.16" # No 8.17 version
 
   # General mathematics
-  # PACKAGES="${PACKAGES} coq-extructures.0.3.1" # requires coq-deriving
+  PACKAGES="${PACKAGES} coq-extructures.0.3.1"
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.4"
