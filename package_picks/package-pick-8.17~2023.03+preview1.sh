@@ -93,11 +93,11 @@ then
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.1.1"
   PACKAGES="${PACKAGES} coq-interval.4.6.1"
-  PACKAGES="${PACKAGES} coq-gappa.1.5.3" # Requires Flocq
+  PACKAGES="${PACKAGES} coq-gappa.1.5.3"
   PACKAGES="${PACKAGES} gappa.1.4.1"
 
   # Constructive mathematics
-  # PACKAGES="${PACKAGES} coq-math-classes.8.15.0" # Does not compile
+  PACKAGES="${PACKAGES} coq-math-classes.8.17.0"
   # PACKAGES="${PACKAGES} coq-corn.8.16.0" # Requires coq-math-classes
 
   # Homotopy Type Theory (HoTT)
