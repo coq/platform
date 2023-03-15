@@ -150,7 +150,7 @@ then
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0"
   PACKAGES="${PACKAGES} coq-ott.0.33"
   PACKAGES="${PACKAGES} ott.0.33"
-  PACKAGES="${PACKAGES} coq-mathcomp-word.2.0" # required mathcomp version relaxation and removal of mutex with coq-mathcomp-algebra-tactics
+  PACKAGES="${PACKAGES} coq-mathcomp-word.2.1"
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.12" ;;
