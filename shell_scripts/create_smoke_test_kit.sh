@@ -111,6 +111,7 @@ TEST_FILES[coq-mathcomp-bigenough]='bigenough.v'
 TEST_FILES[coq-mathcomp-character]='mathcomp/character/all_character.v'
 TEST_FILES[coq-mathcomp-field]='mathcomp/field/finfield.v'
 TEST_FILES[coq-mathcomp-fingroup]='mathcomp/fingroup/fingroup.v'
+PATCH_CMDS[coq-mathcomp-fingroup~8.17~2023.03+preview1]='/Hint Rewrite mulg1 mul1g/ { sub("Hint", "#[local] Hint", $0); print $0; next}'
 TEST_FILES[coq-mathcomp-finmap]='finmap.v'
 TEST_FILES[coq-mathcomp-multinomials]=''
 TEST_FILES[coq-mathcomp-real-closed]='theories/complex.v'
@@ -127,6 +128,7 @@ TEST_FILES[coq-ott]='../../test_files/coq-ott/regexp.v'
 TEST_FILES[coq-paramcoq]='test-suite/Parametricity.v'
 TEST_FILES[coq-quickchick]='' # QuickChick requires OCaml, which is currently only provided in "from sources" mode - when OCaml is added use 'examples/Tutorial.v'
 TEST_FILES[coq-record-update]='/tests/RecordSetTests.v'
+PATCH_CMDS[coq-record-update~8.17~2023.03+preview1]='/Instance/ { sub("Instance", "#[local] Instance", $0); print $0; next}'
 TEST_FILES[coq-reduction-effects]='tests/PrintEffect.v'
 TEST_FILES[coq-reglang]='theories/dfa.v'
 TEST_FILES[coq-relation-algebra~8.14~2022.01]='compiler_opts.v imp.v'
@@ -394,16 +396,6 @@ echo $'\r' >> $smoke_batch
 echo 'CD "%HERE%"'$'\r' >> $smoke_batch
 echo 'ECHO "====================== SMOKE TEST SUCCESS ======================"'$'\r' >> $smoke_batch
 
-##### Run bash runner script #####
-
-chmod u+x $smoke_script
-echo "On macOS, Linux or unix you can now run " $smoke_script
-
-##### Run batch runner script #####
-
-chmod u+x $smoke_batch
-echo "On windows you can now run " $smoke_batch
-
 ##### Create smoke test ZIP #####
 
 case "$OSTYPE" in
@@ -416,3 +408,16 @@ esac
 ZIP_NAME="Smoke-test-kit-${COQ_PLATFORM_RELEASE}-version${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}-${COQ_OS_NAME}-$(uname -m)"
 
 zip -r "${ZIP_NAME}.zip" smoke-test-kit
+echo ""
+echo "A zip file containing the smoke test kit has been created with name $ZIP_NAME.zip"
+
+##### Run bash runner script #####
+
+chmod u+x $smoke_script
+echo "On macOS, Linux or unix you can now run $smoke_script"
+
+##### Run batch runner script #####
+
+chmod u+x $smoke_batch
+echo "On windows you can now run $smoke_batch"
+
