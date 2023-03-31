@@ -14,7 +14,7 @@ install: [
 ]
 depends: [
   "ocaml"
-  "coq" {>= "8.16" & < "8.17~"}
+  "coq" {>= "8.17" & < "8.18~"}
 ]
 synopsis: "An enhanced unification algorithm for Coq"
 tags: [
