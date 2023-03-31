@@ -167,7 +167,7 @@ then
   esac
 
   # # Proof analysis and other tools
-  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.16" # requires Coq version relaxation
+  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.17"
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
