@@ -142,7 +142,7 @@ then
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.1" # dependency coq-matcomp-classical requires Coq version relaxation
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.0"
-  # PACKAGES="${PACKAGES} coq-relation-algebra.1.7.8" # fails to build after relaxation patching
+  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.3" # requires Coq and mathcomp version relaxation
