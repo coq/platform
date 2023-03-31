@@ -126,11 +126,11 @@ then
   PACKAGES="${PACKAGES} elpi.1.16.9 coq-elpi.1.17.1"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.4.0"
   # PACKAGES="${PACKAGES} coq-quickchick.1.6.4" # needs patch
-  # PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.16" # needs patch
+  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.17"
   if [[ "$OSTYPE" != cygwin ]]
   then
     # coq-hammer does not work on Windows because it heavily relies on fork
-    # PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.16"
+    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.17"
     PACKAGES="${PACKAGES} eprover.2.6"
     PACKAGES="${PACKAGES} z3_tptp.4.11.2"
   fi
