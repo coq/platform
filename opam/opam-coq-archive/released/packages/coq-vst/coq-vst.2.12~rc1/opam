@@ -1,0 +1,50 @@
+opam-version: "2.0"
+synopsis: "Verified Software Toolchain"
+description: "The software toolchain includes static analyzers to check assertions about your program; optimizing compilers to translate your program to machine language; operating systems and libraries to supply context for your program. The Verified Software Toolchain project assures with machine-checked proofs that the assertions claimed at the top of the toolchain really hold in the machine-language program, running in the operating-system context."
+authors: [
+  "Andrew W. Appel"
+  "Lennart Beringer"
+  "Josiah Dodds"
+  "Qinxiang Cao"
+  "Aquinas Hobor"
+  "Gordon Stewart"
+  "Qinshi Wang"
+  "Sandrine Blazy"
+  "Santiago Cuellar"
+  "Robert Dockins"
+  "Nick Giannarakis"
+  "Samuel Gruetter"
+  "Jean-Marie Madiot"
+]
+maintainer: "VST team"
+homepage: "http://vst.cs.princeton.edu/"
+dev-repo: "git+https://github.com/PrincetonUniversity/VST.git"
+bug-reports: "https://github.com/PrincetonUniversity/VST/issues"
+license: "BSD-2-Clause"
+
+build: [
+  [make "-j%{jobs}%" "vst" "IGNORECOQVERSION=true" "ZLIST=platform" "BITSIZE=64"]
+]
+install: [
+  [make "install" "IGNORECOQVERSION=true" "ZLIST=platform" "BITSIZE=64"]
+]
+run-test: [
+  [make "-j%{jobs}%" "test" "IGNORECOQVERSION=true" "ZLIST=platform" "BITSIZE=64"]
+]
+depends: [
+  "ocaml"
+  "coq" {>= "8.14" & < "8.18~"}
+  "coq-compcert" {= "3.12"}
+  "coq-vst-zlist" {= "2.12~rc1"}
+  "coq-flocq" {>= "4.1.0"}
+]
+tags: [
+  "category:Computer Science/Semantics and Compilation/Semantics"
+  "keyword:C"
+  "logpath:VST"
+  "date:2022-08-19"
+]
+url {
+  src: "https://github.com/PrincetonUniversity/VST/archive/refs/tags/v2.12rc1.tar.gz"
+  checksum: "sha512=c21df8990cd0145ff17e6cee3cb849de670d98f8f960a57a8699e810164b002534fe09f55b204521a191d641df4f8db77ce2370c6e3eff79a13abe07a1f80d07"
+}
