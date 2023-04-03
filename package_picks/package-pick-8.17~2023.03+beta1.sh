@@ -18,14 +18,14 @@ COQ_PLATFORM_VERSION_SORTORDER=99
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.17~2023.03+preview1'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.17~2023.03+beta1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.17'
-COQ_PLATFORM_COQ_TAG='8.17+rc1'
+COQ_PLATFORM_COQ_TAG='8.17.0'
 
 # This controls if opam repositories for development packages are selected
-COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
+COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
 COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.03+preview1 includes Coq 8.17+rc1 from Dec 2022. '
@@ -50,7 +50,7 @@ PACKAGES=""
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} PIN.coq.8.17+rc1"
+PACKAGES="${PACKAGES} PIN.coq.8.17.0"
 # Since dune does support Coq, it is explicitly selected
 PACKAGES="${PACKAGES} dune.3.7.0"
 PACKAGES="${PACKAGES} dune-configurator.3.7.0"
@@ -60,7 +60,7 @@ PACKAGES="${PACKAGES} dune-configurator.3.7.0"
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.17+rc1"
+PACKAGES="${PACKAGES} coqide.8.17.0"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
