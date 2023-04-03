@@ -184,7 +184,7 @@ then
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.4"
-  PACKAGES="${PACKAGES} coq-record-update.0.3.0"
+  PACKAGES="${PACKAGES} coq-record-update.0.3.2"
 
   # Communication with coqtop
   PACKAGES="${PACKAGES} coq-serapi.8.17+rc1+0.17.1"
