@@ -12,7 +12,7 @@
 
 # The two lines below are used by the package selection script
 COQ_PLATFORM_VERSION_TITLE="Coq 8.12.2 (released Dec 2020) with the first package pick from Dec 2020"
-COQ_PLATFORM_VERSION_SORTORDER=7
+COQ_PLATFORM_VERSION_SORTORDER=10
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
