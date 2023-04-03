@@ -177,7 +177,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.1"
-  # PACKAGES="${PACKAGES} coq-metacoq.1.1+8.16" # No 8.17 version
+  PACKAGES="${PACKAGES} coq-metacoq.1~preview+8.17
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"
