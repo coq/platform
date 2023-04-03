@@ -140,12 +140,12 @@ then
   PACKAGES="${PACKAGES} coq-itauto.8.17.0"
   
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.1" # dependency coq-matcomp-classical requires Coq version relaxation
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.1"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.0"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9"
 
   # Formal languages, compilers and code verification
-  PACKAGES="${PACKAGES} coq-reglang.1.1.3" # requires Coq and mathcomp version relaxation
+  PACKAGES="${PACKAGES} coq-reglang.1.1.3"
   PACKAGES="${PACKAGES} coq-iris.4.0.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0"
   PACKAGES="${PACKAGES} coq-ott.0.33"
@@ -177,7 +177,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.1"
-  PACKAGES="${PACKAGES} coq-metacoq.1~preview+8.17
+  PACKAGES="${PACKAGES} coq-metacoq.1~preview+8.17"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"
