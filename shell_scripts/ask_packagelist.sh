@@ -28,7 +28,7 @@ developments. You can use "opam switch" to switch between Coq versions.
 The following Coq versions and package picks are available:
 EOH
 
-  packagefile_list="$( (for file in package_picks/package-pick-*.sh; do echo "$(grep "COQ_PLATFORM_VERSION_SORTORDER=" $file) $file"; done) | tr '=' ' ' | sed 's/  */ /g' | sort -n | cut -d ' ' -f 3)"
+  packagefile_list="$( (for file in package_picks/package-pick-*.sh; do echo "$(grep "COQ_PLATFORM_VERSION_SORTORDER=" $file) $file"; done) | tr '=' ' ' | sed 's/  */ /g' | sort -n -k 2 | cut -d ' ' -f 3)"
 
   packageindex=0
   for packagefile in ${packagefile_list}
