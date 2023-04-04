@@ -148,8 +148,13 @@ then
   PACKAGES="${PACKAGES} coq-reglang.1.1.3"
   PACKAGES="${PACKAGES} coq-iris.4.0.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0"
-  PACKAGES="${PACKAGES} coq-ott.0.33"
-  PACKAGES="${PACKAGES} ott.0.33"
+  if [[ "$OSTYPE" != cygwin ]]
+  then
+    # Windows: some issues with executable extsnions (ott.opt instead of ott.exe)
+    # Note: 0.32 does work on Windows!
+    PACKAGES="${PACKAGES} coq-ott.0.33"
+    PACKAGES="${PACKAGES} ott.0.33"
+  fi
   PACKAGES="${PACKAGES} coq-mathcomp-word.2.1"
   
   case "$COQ_PLATFORM_COMPCERT" in
@@ -177,7 +182,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.1"
-  PACKAGES="${PACKAGES} coq-metacoq.1~preview+8.17"
+  # PACKAGES="${PACKAGES} coq-metacoq.1~preview+8.17" does not work on Windows - let's wait for a release
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"
@@ -187,7 +192,11 @@ then
   PACKAGES="${PACKAGES} coq-record-update.0.3.2"
 
   # Communication with coqtop
-  PACKAGES="${PACKAGES} coq-serapi.8.17.0+0.17.0"
+  if [[ "$OSTYPE" != cygwin ]]
+  then
+    # Windows: path length issues
+    PACKAGES="${PACKAGES} coq-serapi.8.17.0+0.17.0"
+  fi
 
   # fiat crypto, bedrock2, rupicola and dependencies
   if [ "${BITSIZE}" == "64" ]
@@ -200,7 +209,11 @@ then
         PACKAGES="${PACKAGES} coq-bedrock2.0.0.5"
         PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.5"
         PACKAGES="${PACKAGES} coq-rupicola.0.0.7"
-        PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.20"
+        if [ "$OSTYPE" != cygwin ]
+        then
+          # Windows: stack overflow
+          PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.20"
+        fi
         ;;
       [nN]) true ;;
       *) echo "Illegal value for COQ_PLATFORM_FIATCRYPTO - aborting"; false ;;
