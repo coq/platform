@@ -15,6 +15,22 @@
 # - repeated questions for the sudo password are avoided
 # - there are no conflicts between required system packages
 
-echo "===== INSTALL PREREQUISITES ====="
 
-$COQ_PLATFORM_TIME opam ${COQ_PLATFORM_OPAM_DEPEXT_COMMAND} ${PACKAGES//PIN.}
+case "$COQ_PLATFORM_PARALLEL" in
+  [pP]) 
+    echo "===== INSTALL PREREQUISITES (PARALLEL) ====="
+    $COQ_PLATFORM_TIME opam ${COQ_PLATFORM_OPAM_DEPEXT_COMMAND} ${PACKAGES//PIN.}
+    ;;
+  [sS]) 
+    echo "===== INSTALL PREREQUISITES (SEQUENTIAL) ====="
+    for package in ${PACKAGES//PIN.}
+    do
+      echo PROCESSING $package
+      $COQ_PLATFORM_TIME opam ${COQ_PLATFORM_OPAM_DEPEXT_COMMAND} $package
+    done
+    ;;
+  *)
+    echo "Illegal value for COQ_PLATFORM_PARALLEL - aborting"
+    false
+    ;;
+esac
