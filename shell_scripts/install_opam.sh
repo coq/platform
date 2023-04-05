@@ -63,6 +63,7 @@ then
     which git
     git --version
     pwd
+    ls -l /etc/pki/tls/certs/
 
     time git clone https://github.com/fdopen/installer-test-repo.git
     rm -rf 'installer-*'
