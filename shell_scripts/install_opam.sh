@@ -62,6 +62,17 @@ then
     echo "PATH=$PATH"
     which git
     git --version
+    pwd
+
+    time git clone https://github.com/fdopen/installer-test-repo.git
+    rm -rf 'installer-*'
+
+    time git clone git://github.com/fdopen/installer-test-repo.git
+    rm -rf 'installer-*'
+
+    time git clone http://github.com/fdopen/installer-test-repo.git
+    rm -rf 'installer-*'
+    
     bash -x opam$BITSIZE/install.sh --prefix "/usr/$(uname -m)-w64-mingw32/sys-root/mingw"
   else
       echo "ERROR: unsopported OS type '$OSTYPE'"
