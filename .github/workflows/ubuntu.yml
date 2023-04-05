@@ -75,6 +75,9 @@ jobs:
       
       - name: Set stack size
         run: |
+          ls -l /etc/security/limits.conf
+          whoami
+          groups
           cat /etc/security/limits.conf
           echo '* soft stack 65520' >> /etc/security/limits.conf
           echo '* hard stack 65520' >> /etc/security/limits.conf
