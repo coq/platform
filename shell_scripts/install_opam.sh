@@ -65,6 +65,7 @@ then
     pwd
     ls -l /etc/pki/tls/certs/
     cat /etc/pki/tls/certs/ca-bundle.crt
+    env
 
     time git clone https://github.com/fdopen/installer-test-repo.git
     rm -rf 'installer-*'
