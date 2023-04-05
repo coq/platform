@@ -66,6 +66,11 @@ then
     ls -l /etc/pki/tls/certs/
     cat /etc/pki/tls/certs/ca-bundle.crt
     env
+    echo "update-ca-trust begin"
+    update-ca-trust
+    echo "update-ca-trust dump"
+    cat /etc/pki/tls/certs/ca-bundle.crt
+    echo "update-ca-trust end"
 
     time git clone https://github.com/fdopen/installer-test-repo.git
     rm -rf 'installer-*'
