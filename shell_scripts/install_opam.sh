@@ -71,16 +71,6 @@ then
     echo "update-ca-trust dump"
     cat /etc/pki/tls/certs/ca-bundle.crt
     echo "update-ca-trust end"
-
-    time git clone https://github.com/fdopen/installer-test-repo.git
-    rm -rf installer-test-repo
-
-    time git clone git://github.com/fdopen/installer-test-repo.git
-    rm -rf installer-test-repo
-
-    time git clone http://github.com/fdopen/installer-test-repo.git
-    rm -rf installer-test-repo
-    
     bash -x opam$BITSIZE/install.sh --prefix "/usr/$(uname -m)-w64-mingw32/sys-root/mingw"
   else
       echo "ERROR: unsopported OS type '$OSTYPE'"
