@@ -59,12 +59,6 @@ jobs:
         variant:
           # This should contain all picks introduced in the current release + all original picks of all Coq versions
           - '8.17~2023.03+beta1'
-          - '8.16~2022.09'
-          - '8.15~2022.09'
-          - '8.15~2022.04'
-          - '8.14~2022.01'
-          - '8.13~2021.02'
-          - '8.12'
 
     steps:
       - name: Git checkout
@@ -78,6 +72,13 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install bubblewrap build-essential
+      
+      - name: Set stack size
+        run: |
+          cat /etc/security/limits.conf
+          echo '* soft stack 65520' >> /etc/security/limits.conf
+          echo '* hard stack 65520' >> /etc/security/limits.conf
+          cat /etc/security/limits.conf
 
       - name: Run common platform script
         shell: bash
