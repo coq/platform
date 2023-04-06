@@ -59,6 +59,11 @@ then
     # We want MinGW cross - this requires a special opam
     wget https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam$BITSIZE.tar.xz -O "opam$BITSIZE.tar.xz"
     tar -xf "opam$BITSIZE.tar.xz"
+    # On 32 bit cygwin on GitHub somehow the ceriticate database is broken - fix it
+    ls -l /etc/pki/tls/certs/
+    ls -lL /etc/pki/tls/certs/
+    update-ca-trust
+    ls -lL /etc/pki/tls/certs/
     bash opam$BITSIZE/install.sh --prefix "/usr/$(uname -m)-w64-mingw32/sys-root/mingw"
   else
       echo "ERROR: unsopported OS type '$OSTYPE'"
