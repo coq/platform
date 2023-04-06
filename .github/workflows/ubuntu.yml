@@ -79,8 +79,8 @@ jobs:
           whoami
           groups
           cat /etc/security/limits.conf
-          sudo echo '* soft stack 65536' >> /etc/security/limits.conf
-          sudo echo '* hard stack 65536' >> /etc/security/limits.conf
+          sudo bash -c "echo '* soft stack 65536' >> /etc/security/limits.conf"
+          sudo bash -c "echo '* hard stack 65536' >> /etc/security/limits.conf"
           cat /etc/security/limits.conf
 
       - name: Run common platform script
