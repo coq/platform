@@ -79,9 +79,13 @@ jobs:
           whoami
           groups
           cat /etc/security/limits.conf
+          ulimit -a
           sudo bash -c "echo '* soft stack 65536' >> /etc/security/limits.conf"
           sudo bash -c "echo '* hard stack 65536' >> /etc/security/limits.conf"
           cat /etc/security/limits.conf
+          ulimit -a
+          sudo bash -c "ulimit -a"
+          ulimit -S -s 65536
 
       - name: Run common platform script
         shell: bash
