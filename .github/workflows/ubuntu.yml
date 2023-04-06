@@ -73,20 +73,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install bubblewrap build-essential
       
-      - name: Set stack size
-        run: |
-          ls -l /etc/security/limits.conf
-          whoami
-          groups
-          cat /etc/security/limits.conf
-          ulimit -a
-          sudo bash -c "echo '* soft stack 65536' >> /etc/security/limits.conf"
-          sudo bash -c "echo '* hard stack 65536' >> /etc/security/limits.conf"
-          cat /etc/security/limits.conf
-          ulimit -a
-          sudo bash -c "ulimit -a"
-          ulimit -S -s 65536
-
       - name: Run common platform script
         shell: bash
         run: ./coq_platform_make.sh  -packages=${{matrix.variant}} $PLATFORM -dumplogs

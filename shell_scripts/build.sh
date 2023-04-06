@@ -29,8 +29,10 @@ function dump_opam_logs {
 
 opam config set jobs $COQ_PLATFORM_JOBS
 
-# coq-fiat-crypto requires this - it sets the maximum stack size to 32MB
-# ulimit -s 65520
+# coq-fiat-crypto requires this - it sets the maximum stack size to 64MB
+# Note that on MacOS the absolute maximum is ulimit -S -s 65520
+# One can rise it as root on MacOS, but only for a root shell, not for the current shell
+ulimit -S -s 65520
 
 case "$COQ_PLATFORM_PARALLEL" in
   [pP]) 
