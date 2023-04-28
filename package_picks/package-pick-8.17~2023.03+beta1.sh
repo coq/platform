@@ -141,7 +141,7 @@ then
   
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.1"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9"
 
   # Formal languages, compilers and code verification
