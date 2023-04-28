@@ -182,7 +182,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.1"
-  # PACKAGES="${PACKAGES} coq-metacoq.1~preview+8.17" does not work on Windows - let's wait for a release
+  PACKAGES="${PACKAGES} coq-metacoq.1.2+8.17"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"
