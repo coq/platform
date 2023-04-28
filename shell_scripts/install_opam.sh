@@ -59,11 +59,6 @@ then
     # We want MinGW cross - this requires a special opam
     wget https://github.com/fdopen/opam-repository-mingw/releases/download/0.0.0.2/opam$BITSIZE.tar.xz -O "opam$BITSIZE.tar.xz"
     tar -xf "opam$BITSIZE.tar.xz"
-    # On 32 bit cygwin on GitHub somehow the ceriticate database is broken - fix it
-    ls -l /etc/pki/tls/certs/
-    ls -lL /etc/pki/tls/certs/
-    update-ca-trust
-    ls -lL /etc/pki/tls/certs/
     bash opam$BITSIZE/install.sh --prefix "/usr/$(uname -m)-w64-mingw32/sys-root/mingw"
   else
       echo "ERROR: unsopported OS type '$OSTYPE'"
@@ -142,7 +137,7 @@ then
   if [[ "$OSTYPE" == cygwin ]]
   then
     # Init opam with windows specific default repo
-    opam init --bare --shell-setup --enable-shell-hook --enable-completion --disable-sandboxing default 'https://github.com/fdopen/opam-repository-mingw.git#opam2'
+    opam init --bare --shell-setup --enable-shell-hook --enable-completion --disable-sandboxing default 'https://github.com/ocaml-opam/opam-repository-mingw.git#sunset'
   else
     opam init --bare --shell-setup --enable-shell-hook --enable-completion $COQ_PLATFORM_OPAM_INIT_EXTRA
   fi
@@ -171,7 +166,7 @@ then
         4.10.2) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+mingw64c";;
         4.12.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw64c";;
         4.13.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw64c";;
-        4.14.1) COQ_PLATFORM_OCAML_VERSION="4.14.0"; COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw64c";;
+        4.14.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw64c";;
         *) echo "Unsupported OCaml version ${COQ_PLATFORM_OCAML_VERSION}"; return 1;;
       esac
     else
@@ -179,7 +174,7 @@ then
         4.10.2) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+mingw32c";;
         4.12.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw32c";;
         4.13.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw32c";;
-        4.14.1) COQ_PLATFORM_OCAML_VERSION="4.14.0"; COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw32c";;
+        4.14.1) COQ_PLATFORM_OCAML_VARIANT="ocaml-variants.${COQ_PLATFORM_OCAML_VERSION}+flambda+mingw32c";;
         *) echo "Unsupported OCaml version ${COQ_PLATFORM_OCAML_VERSION}"; return 1;;
       esac
     fi
@@ -272,9 +267,21 @@ echo "===== FINAL OPAM SANITY CHECKS ====="
 # Check if an opam repo is set correctly
 # $1 - repo name
 # $2 - repo url
+# $3 - optional old repo url
 function check_repo {
   local url="$(opam repo list | awk "/ $1 / "'{ print $3 }')"
-  if [ -n "$url" ] && [ "$url" != "$2" ]
+  if [ -n "$url" ] && [ "$url" == "$3" ]
+  then
+    echo "========================= OPAM REPOS ========================="
+    echo "You have a predefined opam repo, which points to a deprecated URL."
+    echo "You have '$1' point to '$url' instead of '$2'."
+    echo "This is because the opam repo haes been moved somewhere else."
+    echo "The Coq Platform scripts cannot continue with this."
+    echo "You can fix this with"
+    echo "  opam repo set-url $1 '$2'"
+    echo "========================= OPAM REPOS ========================="
+    exit 1
+  elif [ -n "$url" ] && [ "$url" != "$2" ]
   then
     echo "========================= OPAM REPOS ========================="
     echo "You have a predefined opam repo, which does not point to the usual URL."
@@ -293,10 +300,10 @@ function check_repo {
 
 if [ "$OSTYPE" == cygwin ]
 then
-  check_repo 'default' 'git+https://github.com/fdopen/opam-repository-mingw.git#opam2'
+  check_repo 'default' 'git+https://github.com/ocaml-opam/opam-repository-mingw.git#sunset' 'git+https://github.com/fdopen/opam-repository-mingw.git#opam2'
 else
-  check_repo 'default' 'https://opam.ocaml.org'
+  check_repo 'default' 'https://opam.ocaml.org' 'none'
 fi
-check_repo 'coq-released' 'https://coq.inria.fr/opam/released'
-check_repo 'coq-core-dev' 'https://coq.inria.fr/opam/core-dev'
-check_repo 'coq-extra-dev' 'https://coq.inria.fr/opam/extra-dev'
+check_repo 'coq-released' 'https://coq.inria.fr/opam/released' 'none'
+check_repo 'coq-core-dev' 'https://coq.inria.fr/opam/core-dev' 'none'
+check_repo 'coq-extra-dev' 'https://coq.inria.fr/opam/extra-dev' 'none'
