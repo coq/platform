@@ -23,20 +23,23 @@ bug-reports: "https://github.com/PrincetonUniversity/VST/issues"
 license: "BSD-2-Clause"
 
 build: [
-  [make "-j%{jobs}%" "vst" "IGNORECOQVERSION=true" "ZLIST=platform" "BITSIZE=64"]
+  [make "-j%{jobs}%" "vst" "IGNORECOQVERSION=true" "ZLIST=platform" "BITSIZE=32"]
 ]
 install: [
-  [make "install" "IGNORECOQVERSION=true" "ZLIST=platform" "BITSIZE=64"]
+  [make "install" "IGNORECOQVERSION=true" "ZLIST=platform" "BITSIZE=32"]
 ]
 run-test: [
-  [make "-j%{jobs}%" "test" "IGNORECOQVERSION=true" "ZLIST=platform" "BITSIZE=64"]
+  [make "-j%{jobs}%" "test" "IGNORECOQVERSION=true" "ZLIST=platform" "BITSIZE=32"]
 ]
 depends: [
   "ocaml"
   "coq" {>= "8.14" & < "8.18~"}
-  "coq-compcert" {= "3.12"}
+  "coq-compcert-32" {= "3.12"}
   "coq-vst-zlist" {= version}
   "coq-flocq" {>= "4.1.0"}
+]
+conflicts: [
+  "coq-vst"
 ]
 tags: [
   "category:Computer Science/Semantics and Compilation/Semantics"

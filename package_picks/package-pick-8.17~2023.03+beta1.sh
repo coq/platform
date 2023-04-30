@@ -125,7 +125,7 @@ then
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.17"
   PACKAGES="${PACKAGES} elpi.1.16.9 coq-elpi.1.17.1"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.4.0"
-  # PACKAGES="${PACKAGES} coq-quickchick.1.6.4" # needs patch
+  PACKAGES="${PACKAGES} coq-quickchick.1.6.5"
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.17"
   if [[ "$OSTYPE" != cygwin ]]
   then
@@ -140,8 +140,8 @@ then
   PACKAGES="${PACKAGES} coq-itauto.8.17.0"
   
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.1"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.2"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9"
 
   # Formal languages, compilers and code verification
@@ -182,7 +182,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.1"
-  # PACKAGES="${PACKAGES} coq-metacoq.1~preview+8.17" does not work on Windows - let's wait for a release
+  PACKAGES="${PACKAGES} coq-metacoq.1.2+8.17"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"

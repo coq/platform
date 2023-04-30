@@ -5,7 +5,7 @@ REM But you do need separate cygwin folders for compiling a 64 bit and 32 bit Co
 
 CALL coq_platform_make_windows.bat ^
   -arch=64 ^
-  -destcyg=C:\bin\cygwin64_coq_platform1234 ^
+  -destcyg=C:\bin\cygwin64_coq_platform ^
   -cygcache=C:\bin\cygwin_cache ^
   -cygrepo=https://mirrors.kernel.org/sourceware/cygwin ^
   -packages="8.17~2023.03+beta1" -extent=x -parallel=p -jobs=8 -switch=k -compcert=y -large=i
