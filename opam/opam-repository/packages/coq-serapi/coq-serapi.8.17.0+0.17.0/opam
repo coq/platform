@@ -27,13 +27,13 @@ depends: [
   "coq"                 { >= "8.17" & < "8.18"     }
   "cmdliner"            { >= "1.1.0"               }
   "ocamlfind"           { >= "1.8.0"               }
-  "sexplib"             { >= "v0.13.0"             }
+  "sexplib"             { >= "v0.13.0" & < "v0.16~" }
   "dune"                { >= "2.0.1"               }
-  "ppx_import"          { >= "1.5-3" & < "2.0"     }
+  "ppx_import"          { >= "1.5-3" & < "v0.16~"   }
   "ppx_deriving"        { >= "4.2.1"               }
-  "ppx_sexp_conv"       { >= "v0.13.0"             }
-  "ppx_compare"         { >= "v0.13.0"             }
-  "ppx_hash"            { >= "v0.13.0"             }
+  "ppx_sexp_conv"       { >= "v0.13.0" & < "v0.16~" }
+  "ppx_compare"         { >= "v0.13.0" & < "v0.16~" }
+  "ppx_hash"            { >= "v0.13.0" & < "v0.16~" }
   "yojson"              { >= "1.7.0"               }
   "ppx_deriving_yojson" { >= "3.4"                 }
 ]
