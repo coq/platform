@@ -27,6 +27,7 @@ function dump_opam_logs {
   return 1
 }
 
+id
 opam config set jobs $COQ_PLATFORM_JOBS
 
 # coq-fiat-crypto requires this - it sets the maximum stack size to 64MB
@@ -37,6 +38,7 @@ ulimit -S -s 65520
 case "$COQ_PLATFORM_PARALLEL" in
   [pP]) 
     echo "===== INSTALL OPAM PACKAGES (PARALLEL) ====="
+    id
     if ! $COQ_PLATFORM_TIME opam install ${PACKAGES//PIN.}; then dump_opam_logs; fi
     for package in ${PACKAGES}
     do
@@ -45,6 +47,7 @@ case "$COQ_PLATFORM_PARALLEL" in
         echo PINNING $package
         package_name="$(echo "$package" | cut -d '.' -f 2)"
         package_version="$(echo "$package" | cut -d '.' -f 3-)"
+        id
         if ! $COQ_PLATFORM_TIME opam pin ${package_name} ${package_version}; then dump_opam_logs; fi
         ;;
       esac
@@ -60,10 +63,12 @@ case "$COQ_PLATFORM_PARALLEL" in
         echo PROCESSING 1 $package
         package_name="$(echo "$package" | cut -d '.' -f 2)"
         package_version="$(echo "$package" | cut -d '.' -f 3-)"
+        id
         if ! $COQ_PLATFORM_TIME opam pin ${package_name} ${package_version}; then dump_opam_logs; fi
         ;;
       *)
         echo PROCESSING 2 $package
+        id
         if ! $COQ_PLATFORM_TIME opam install ${package}; then dump_opam_logs; fi
         ;;
       esac
