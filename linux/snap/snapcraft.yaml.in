@@ -21,7 +21,7 @@ parts:
       echo "COQ_PLATFORM_RELEASE=@@PLATFORM_RELEASE@@" >> package_picks/coq_platform_release.sh
       echo "COQ_PLATFORM_SWITCH_NAME=@@PLATFORM_RELEASE@@" >> package_picks/coq_platform_switch_name.sh
       echo "COQ_PLATFORM_REPO_NAME=@@PLATFORM_RELEASE@@" >> package_picks/coq_platform_switch_name.sh
-      COQREGTESTING=y ./coq_platform_make.sh @@PLATFORM_ARGS@@ -dumplogs
+      COQREGTESTING=y COQ_PLATFORM_LXD_WORKAROUND_NO_PIN=y ./coq_platform_make.sh @@PLATFORM_ARGS@@ -dumplogs
       linux/snap/create_image_snap.sh -dest=$SNAPCRAFT_PART_INSTALL/coq-platform/ 
 
   wrapper:

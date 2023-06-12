@@ -40,18 +40,23 @@ case "$COQ_PLATFORM_PARALLEL" in
     echo "===== INSTALL OPAM PACKAGES (PARALLEL) ====="
     id
     if ! $COQ_PLATFORM_TIME opam install ${PACKAGES//PIN.}; then dump_opam_logs; fi
-    for package in ${PACKAGES}
-    do
-      case $package in
-      PIN.*)
-        echo PINNING $package
-        package_name="$(echo "$package" | cut -d '.' -f 2)"
-        package_version="$(echo "$package" | cut -d '.' -f 3-)"
-        id
-        if ! $COQ_PLATFORM_TIME opam pin ${package_name} ${package_version}; then dump_opam_logs; fi
-        ;;
-      esac
-    done
+    if [ "${COQ_PLATFORM_LXD_WORKAROUND_NO_PIN:-n}" == "y" ]
+    then
+      echo "ATTENTION: pinning disabled as workaround for LXD issues"
+    else
+      for package in ${PACKAGES}
+      do
+        case $package in
+        PIN.*)
+          echo PINNING $package
+          package_name="$(echo "$package" | cut -d '.' -f 2)"
+          package_version="$(echo "$package" | cut -d '.' -f 3-)"
+          id
+          if ! $COQ_PLATFORM_TIME opam pin ${package_name} ${package_version}; then dump_opam_logs; fi
+          ;;
+        esac
+      done
+    fi
     ;;
   [sS]) 
     echo "===== INSTALL OPAM PACKAGES (SEQUENTIAL) ====="
