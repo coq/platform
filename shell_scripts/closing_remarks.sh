@@ -41,18 +41,23 @@ EOH
 
 # Ask to set switch if the default switch (when OPAMSWITCH="") does not match
 OPAMSWITCH=""
-if [ ! "$(opam switch show 2>/dev/null)" == "${COQ_PLATFORM_SWITCH_NAME}" ]
+if [ "${COQ_PLATFORM_LXD_WORKAROUND_NO_PIN:-n}" == "y" ]
 then
-  if [ -z "${COQ_PLATFORM_SET_SWITCH:+x}" ]
+  echo "ATTENTION: opam switch setting disabled as workaround for LXD issues"
+else
+  if [ ! "$(opam switch show 2>/dev/null)" == "${COQ_PLATFORM_SWITCH_NAME}" ]
   then
-    ask_user_opt2_cancel "Set the new opam switch as default now (y/n)?" yY "switch" nN "don't"
-    COQ_PLATFORM_SET_SWITCH=$ANSWER
-  fi
+    if [ -z "${COQ_PLATFORM_SET_SWITCH:+x}" ]
+    then
+      ask_user_opt2_cancel "Set the new opam switch as default now (y/n)?" yY "switch" nN "don't"
+      COQ_PLATFORM_SET_SWITCH=$ANSWER
+    fi
 
-  if [ "${COQ_PLATFORM_SET_SWITCH:-y}" == "y" ]
-  then
-    opam switch "${COQ_PLATFORM_SWITCH_NAME}"
-    eval $(opam env)
-    echo "Opam switch ${COQ_PLATFORM_SWITCH_NAME} set as default!"
+    if [ "${COQ_PLATFORM_SET_SWITCH:-y}" == "y" ]
+    then
+      opam switch "${COQ_PLATFORM_SWITCH_NAME}"
+      eval $(opam env)
+      echo "Opam switch ${COQ_PLATFORM_SWITCH_NAME} set as default!"
+    fi
   fi
 fi
