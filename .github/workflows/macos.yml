@@ -33,6 +33,8 @@ on:
 env:
   PLATFORM_ARGS: -extent=x -parallel=p -jobs=2 -large=e -compcert=y -set-switch=y
   COQREGTESTING: y
+  HOMEBREW_NO_INSTALL_FROM_API:
+  # See https://github.com/orgs/Homebrew/discussions/4612#discussioncomment-6351357
 
 ###############################################################################
 # Macos
@@ -67,10 +69,14 @@ jobs:
         # - dyld[45184]: Library not loaded: '/usr/local/opt/libunistring/lib/libunistring.2.dylib'
         #   Referenced from: '/usr/local/Cellar/wget/1.21.3/bin/wget'
         #   Reason: tried: '/usr/local/opt/libunistring/lib/libunistring.2.dylib' (no such file),
-        # Note: brew upgrade does fail regularly, but brew is anyway in a better state afterwards
         run: |
           brew cleanup
+          # See https://github.com/orgs/Homebrew/discussions/4612#discussioncomment-6351357
+          brew config
+          brew untap homebrew/core homebrew/cask
+          brew config
           brew update
+          # Note: brew upgrade does fail regularly, but brew is anyway in a better state afterwards
           brew upgrade || true
 
       - name: Install homebrew packages required by main script
