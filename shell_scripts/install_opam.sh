@@ -127,6 +127,9 @@ EOH
     fi
     COQ_PLATFORM_OPAM_INIT_EXTRA=--disable-sandboxing
   fi
+elif [[ "$OSTYPE" == cygwin ]]
+then
+  COQ_PLATFORM_OPAM_INIT_EXTRA=--disable-sandboxing
 fi
 
 ###################### INITIALIZE OPAM #####################
@@ -136,8 +139,10 @@ then
   echo "===== INITIALIZING OPAM ====="
   if [[ "$OSTYPE" == cygwin ]]
   then
-    # Init opam with windows specific default repo
-    opam init --bare --shell-setup --enable-shell-hook --enable-completion --disable-sandboxing default 'https://github.com/ocaml-opam/opam-repository-mingw.git#sunset'
+    # On Windows this is the special fdopen cross opam which uses the fdopen repo as default, which we don't want, so specify the default repo explicitly
+    # On Windows the lowest prio repo is default='https://opam.ocaml.org', then comes default-mingw='https://github.com/ocaml-opam/opam-repository-mingw.git#sunset'
+    # See https://github.com/ocaml-opam/opam-repository-mingw#updates
+    opam init --bare --shell-setup --enable-shell-hook --enable-completion 'default' 'https://opam.ocaml.org' $COQ_PLATFORM_OPAM_INIT_EXTRA
   else
     opam init --bare --shell-setup --enable-shell-hook --enable-completion $COQ_PLATFORM_OPAM_INIT_EXTRA
   fi
@@ -149,7 +154,14 @@ fi
 
 # Prepare list of patch repos
 COQ_PLATFORM_OPAM_PATCH_REPOS="${COQ_PLATFORM_REPO_NAME}.patch_coq-released,${COQ_PLATFORM_REPO_NAME}.patch_ocaml"
-COQ_PLATFORM_OPAM_MAIN_REPOS="coq-released,default"
+if [[ "$OSTYPE" == cygwin ]]
+then
+  COQ_PLATFORM_OPAM_MAIN_REPOS="coq-released,default-mingw,default"
+  $COQ_PLATFORM_TIME opam repo add --dont-select default-mingw 'https://github.com/ocaml-opam/opam-repository-mingw.git#sunset'
+else
+  COQ_PLATFORM_OPAM_MAIN_REPOS="coq-released,default"
+fi
+
 if [ "${COQ_PLATFORM_USE_DEV_REPOSITORY}" == 'Y' ]
 then
   COQ_PLATFORM_OPAM_PATCH_REPOS="${COQ_PLATFORM_REPO_NAME}.patch_coq-dev,${COQ_PLATFORM_OPAM_PATCH_REPOS}"
@@ -300,7 +312,8 @@ function check_repo {
 
 if [ "$OSTYPE" == cygwin ]
 then
-  check_repo 'default' 'git+https://github.com/ocaml-opam/opam-repository-mingw.git#sunset' 'git+https://github.com/fdopen/opam-repository-mingw.git#opam2'
+  check_repo 'default' 'https://opam.ocaml.org' 'git+https://github.com/fdopen/opam-repository-mingw.git#opam2'
+  check_repo 'default-mingw' 'git+https://github.com/ocaml-opam/opam-repository-mingw.git#sunset' 'none'
 else
   check_repo 'default' 'https://opam.ocaml.org' 'none'
 fi
