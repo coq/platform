@@ -15,7 +15,7 @@
 
 if [[ "$OSTYPE" == cygwin ]]
 then
-  ln -s -f /usr/bin/python2 /usr/bin/python
+  ln -s -f /usr/bin/python3 /usr/bin/python
 fi
 
 ###################### Fix tar in 32 bit cygwin #####################
