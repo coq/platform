@@ -56,7 +56,7 @@ Here are the different categories of expected stakeholders for the Coq Platform:
 
 ## Platform editorial board
 
-- The mission of the platform editorial board is to help the curator making informed decisions about the packages that should be included in the Coq platform.  Membership in this editorial board is the result of co-optation, with representatives of the core development team, the curator, and representative users.
+The mission of the platform editorial board is to help the curator making informed decisions about the packages that should be included in the Coq platform.  Membership in this editorial board is the result of co-optation, with representatives of the core development team, the curator, and representative users.
 
 ## Questions to be resolved
 
