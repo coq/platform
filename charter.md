@@ -40,17 +40,23 @@ Here are the different categories of expected stakeholders for the Coq Platform:
 
 - Packages are typically included on user request via a github issue.
 
-- Requests should contain a justification. Good justifications are usage of the package in a regular course or a course with more than 25 attendees or usage of the package as prerequisite in at least three other packages or research developments by authors other than the author of the original package.
+- Requests should contain a justification. Example justifications are usage of the package in a regular course or a course with a large audience or usage of the package as prerequisite in at least three other packages or research developments by authors other than the author of the original package.
 
 - The author(s) or current maintainer(s) of the package shall agree to the inclusion of their package in the Coq Platform. This means that they agree to put reasonable effort into releasing a version of the package compatible with each new Coq release shortly after every Coq release and to maintain some relative stability between each release. The agreement of the authors is given via a comment in the respective github issue.
 
 - All the dependencies of a platform package are also officially part of the platform. This means in particular that, apart from dependencies that are outside the Coq ecosystem and are well-known to be stable and well supported, the maintainers of the dependencies should also agree to the inclusion in the platform and commit to keep producing new compatible releases which are relatively stable. As part of the stability commitment, maintainers should refrain from adding new dependencies that are not already part of the platform without raising the question with the platform maintainers.
+
+- Requests for inclusion shall be reviewed by a **Platform Editorial Board** to help the curator decide on the matter.
 
 ## Package exclusion process
 
 - The exclusion of a package shall be a rare event.
 
 - In case the package authors / maintainers cannot maintain compatibility to a new Coq release in the expected time, for one release the curator will try to organize maintenance otherwise. The platform curator will also have timely discussions with the Coq team in case changes in core Coq might lead to substantial maintenance effort in a platform package. If the maintenance problem continues for the next release, the curator can remove a package from the platform. The platform users shall be informed about such a decision as early as possible, at least 1 month before a platform release.
+
+## Platform editorial board
+
+- The mission of the platform editorial board is to help the curator making informed decisions about the packages that should be included in the Coq platform.  Membership in this editorial board is the result of co-optation, with representatives of the core development team, the curator, and representative users.
 
 ## Questions to be resolved
 
