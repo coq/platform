@@ -1,5 +1,5 @@
 name: coq-prover
-base: core18
+base: core20
 version: '@@PLATFORM_RELEASE@@'
 summary: Coq
 description: |
@@ -76,7 +76,8 @@ apps:
     - unity7
     - wayland
     - x11
-    extensions: [gnome-3-28]
+    # See https://snapcraft.io/docs/supported-extensions for a core/extension version matrix
+    extensions: [gnome-3-38]
   coqtop:
     plugs: [home]
     command-chain: [ coq-platform/bin/coq_wrapper ]
