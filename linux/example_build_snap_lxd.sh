@@ -7,6 +7,6 @@
 #   sudo snap install lxd
 #   sudo lxd init --minimal
 
-linux/create_snapcraft_yaml.sh -packages="8.17~2023.03+beta1" -extent=b -parallel=p -jobs=4 -compcert=n -large=e -switch=k
+linux/create_snapcraft_yaml.sh -packages="8.17~2023.03+beta1" -extent=b -parallel=p -jobs=4 -large=e -switch=k -set-switch=y
 SNAPCRAFT_BUILD_ENVIRONMENT=lxd snapcraft clean
 SNAPCRAFT_BUILD_ENVIRONMENT=lxd SNAPCRAFT_BUILD_ENVIRONMENT_CPU=6  SNAPCRAFT_BUILD_ENVIRONMENT_MEMORY=12G snapcraft snap
