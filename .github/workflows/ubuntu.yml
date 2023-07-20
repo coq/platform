@@ -139,7 +139,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: 'Snapcraft logs'
-          path: /home/runner/.cache/snapcraft/log/
+          path: /home/runner/.local/state/snapcraft/log
 
       - name: Save Artifact
         uses: actions/upload-artifact@v2
