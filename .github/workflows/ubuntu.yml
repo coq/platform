@@ -106,7 +106,7 @@ jobs:
   Ubuntu_snap:
     name: Snap package
     # Since we build the snap with --destructive-mode, the runner version must match the snap core version
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     timeout-minutes: 10
 
     steps:
