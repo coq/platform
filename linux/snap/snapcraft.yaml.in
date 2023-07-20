@@ -1,5 +1,5 @@
 name: coq-prover
-base: core18
+base: core22
 version: '@@PLATFORM_RELEASE@@'
 summary: Coq
 description: |
