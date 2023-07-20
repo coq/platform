@@ -111,6 +111,9 @@ jobs:
     steps:
       - name: Git checkout
         uses: actions/checkout@v2
+      
+      - name: Check OS version
+        run: lsb_release -a
 
       - name: Set PLATFORM
         if: ${{ github.event.inputs.platform != '' }}
