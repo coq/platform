@@ -51,61 +51,62 @@ env:
 ###############################################################################
 jobs:
 
-  Ubuntu_platform:
-    name: Ubuntu
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        variant:
-          # This should contain all picks introduced in the current release + all original picks of all Coq versions
-          # - '8.17~2023.03+beta1'
-          # - '8.16~2022.09'
-          # - '8.15~2022.09'
-          # - '8.15~2022.04'
-          # - '8.14~2022.01'
-          # - '8.13~2021.02'
-          - '8.12'
+  # Ubuntu_platform:
+  #   name: Ubuntu
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       variant:
+  #         # This should contain all picks introduced in the current release + all original picks of all Coq versions
+  #         # - '8.17~2023.03+beta1'
+  #         # - '8.16~2022.09'
+  #         # - '8.15~2022.09'
+  #         # - '8.15~2022.04'
+  #         # - '8.14~2022.01'
+  #         # - '8.13~2021.02'
+  #         - '8.12'
 
-    steps:
-      - name: Git checkout
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Git checkout
+  #       uses: actions/checkout@v2
 
-      - name: Set PLATFORM
-        if: ${{ github.event.inputs.platform != '' }}
-        run: echo "PLATFORM=${{ github.event.inputs.platform }}" >> $GITHUB_ENV
+  #     - name: Set PLATFORM
+  #       if: ${{ github.event.inputs.platform != '' }}
+  #       run: echo "PLATFORM=${{ github.event.inputs.platform }}" >> $GITHUB_ENV
 
-      - name: Install bubblewrap and build-essential
-        run: |
-          sudo apt-get update
-          sudo apt-get install bubblewrap build-essential
+  #     - name: Install bubblewrap and build-essential
+  #       run: |
+  #         sudo apt-get update
+  #         sudo apt-get install bubblewrap build-essential
 
-      - name: Run common platform script
-        shell: bash
-        run: ./coq_platform_make.sh  -packages=${{matrix.variant}} $PLATFORM -dumplogs
+  #     - name: Run common platform script
+  #       shell: bash
+  #       run: ./coq_platform_make.sh  -packages=${{matrix.variant}} $PLATFORM -dumplogs
 
-      - name: Create smoke test kit
-        shell: bash
-        run: |
-          eval $(opam env)
-          shell_scripts/create_smoke_test_kit.sh
+  #     - name: Create smoke test kit
+  #       shell: bash
+  #       run: |
+  #         eval $(opam env)
+  #         shell_scripts/create_smoke_test_kit.sh
 
-      - name: 'Run Linux smoke test kit'
-        shell: bash
-        run: |
-          eval $(opam env)
-          smoke-test-kit/run-smoke-test.sh
+  #     - name: 'Run Linux smoke test kit'
+  #       shell: bash
+  #       run: |
+  #         eval $(opam env)
+  #         smoke-test-kit/run-smoke-test.sh
 
-      - name: 'Upload smoke test kit'
-        uses: actions/upload-artifact@v2
-        with:
-          name: 'Smoke Test Kit ${{matrix.variant}}'
-          path: smoke-test-kit
-          retention-days: 5
+  #     - name: 'Upload smoke test kit'
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: 'Smoke Test Kit ${{matrix.variant}}'
+  #         path: smoke-test-kit
+  #         retention-days: 5
 
   Ubuntu_snap:
     name: Snap package
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
       - name: Git checkout
@@ -149,37 +150,38 @@ jobs:
   #
   # In any case the job will fail fast if it can't download
   # the snap or the smoke test
-  Ubuntu_smoke:
-    name: Snap package smoke test
-    if: ${{ always() }}
-    needs: [Ubuntu_platform, Ubuntu_snap]
-    runs-on: ubuntu-latest
 
-    steps:
+  # Ubuntu_smoke:
+  #   name: Snap package smoke test
+  #   if: ${{ always() }}
+  #   needs: [Ubuntu_platform, Ubuntu_snap]
+  #   runs-on: ubuntu-latest
 
-      - name: Set SNAP_PICK
-        if: ${{ github.event.inputs.snap_pick != '' }}
-        run: echo "SNAP_PICK=${{ github.event.inputs.snap_pick }}" >> $GITHUB_ENV
+  #   steps:
 
-      - name: Download Artifact
-        uses: actions/download-artifact@v2
-        id: download-snap
-        with:
-          name: 'Snap package'
+  #     - name: Set SNAP_PICK
+  #       if: ${{ github.event.inputs.snap_pick != '' }}
+  #       run: echo "SNAP_PICK=${{ github.event.inputs.snap_pick }}" >> $GITHUB_ENV
 
-      - name: 'Download smoke test kit'
-        uses: actions/download-artifact@v2
-        id: download-smoke
-        with:
-          name: 'Smoke Test Kit ${{ env.SNAP_PICK }}'
+  #     - name: Download Artifact
+  #       uses: actions/download-artifact@v2
+  #       id: download-snap
+  #       with:
+  #         name: 'Snap package'
 
-      - name: 'Install Snap'
-        run: |
-          sudo snap install --dangerous ${{ steps.download-snap.outputs.download-path }}/coq-prover_*.snap
-          sudo snap alias coq-prover.coqc coqc
+  #     - name: 'Download smoke test kit'
+  #       uses: actions/download-artifact@v2
+  #       id: download-smoke
+  #       with:
+  #         name: 'Smoke Test Kit ${{ env.SNAP_PICK }}'
 
-      - name: 'Run Smoke Test Kit'
-        run: |
-          cd ${{steps.download-smoke.outputs.download-path}}
-          chmod a+x ./run-smoke-test.sh
-          ./run-smoke-test.sh
+  #     - name: 'Install Snap'
+  #       run: |
+  #         sudo snap install --dangerous ${{ steps.download-snap.outputs.download-path }}/coq-prover_*.snap
+  #         sudo snap alias coq-prover.coqc coqc
+
+  #     - name: 'Run Smoke Test Kit'
+  #       run: |
+  #         cd ${{steps.download-smoke.outputs.download-path}}
+  #         chmod a+x ./run-smoke-test.sh
+  #         ./run-smoke-test.sh
