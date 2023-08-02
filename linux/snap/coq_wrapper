@@ -6,12 +6,15 @@
 
 export COQBIN="$(cd $(dirname $0); pwd)"
 export COQLIB="$(cd $(dirname $0)/../lib/coq/; pwd)"
+COQSTUBLIBS="$(cd $(dirname $0)/../lib/stublibs/; pwd)"
 SELF="$(basename $1)"
 
 shift # drop $1
 
 # this path also contains coq extra utilities like gappa
 export PATH="$COQBIN:$PATH"
+# this folder contains shared libraries like libz3.so
+export LD_LIBRARY_PATH="$COQSTUBLIBS:$LD_LIBRARY_PATH"
 
 if [ "$SELF" == "bash" -o "$SELF" == "sh" ]; then # for debugging the snap
   exec $SELF "$@"
