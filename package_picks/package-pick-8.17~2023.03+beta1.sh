@@ -52,8 +52,8 @@ PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
 # The Coq compiler coqc and the Coq standard library
 PACKAGES="${PACKAGES} PIN.coq.8.17.1"
 # Since dune does support Coq, it is explicitly selected
-PACKAGES="${PACKAGES} dune.3.7.0"
-PACKAGES="${PACKAGES} dune-configurator.3.7.0"
+PACKAGES="${PACKAGES} dune.3.10.0"
+PACKAGES="${PACKAGES} dune-configurator.3.10.0"
 
 ########## IDE PACKAGES ##########
 
@@ -68,23 +68,23 @@ fi
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
   # Standard library extensions
-  PACKAGES="${PACKAGES} coq-bignums.8.17.0"
+  PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.17"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.8"
   PACKAGES="${PACKAGES} coq-stdpp.1.8.0"
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.16.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.16.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.16.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.16.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-field.1.16.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-character.1.16.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.17.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.17.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.17.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.17.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-field.1.17.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-character.1.17.0"
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.2"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.4"
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.3.0+1.12+8.13"
-  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.6"
-  PACKAGES="${PACKAGES} coq-coquelicot.3.3.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.6.0"
+  PACKAGES="${PACKAGES} coq-coquelicot.3.4.0"
 
   # Number theory
   PACKAGES="${PACKAGES} coq-coqprime.1.3.0"
@@ -92,7 +92,7 @@ then
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.1.1"
-  PACKAGES="${PACKAGES} coq-interval.4.6.1"
+  PACKAGES="${PACKAGES} coq-interval.4.8.0"
   PACKAGES="${PACKAGES} coq-gappa.1.5.3"
   PACKAGES="${PACKAGES} gappa.1.4.1"
 
@@ -135,12 +135,12 @@ then
     PACKAGES="${PACKAGES} z3_tptp.4.11.2"
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.17"
-  PACKAGES="${PACKAGES} coq-coqeal.1.1.2"
+  PACKAGES="${PACKAGES} coq-coqeal.1.1.3"
   PACKAGES="${PACKAGES} coq-libhyps.2.0.6"
   PACKAGES="${PACKAGES} coq-itauto.8.17.0"
   
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.2"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.3"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9"
 
