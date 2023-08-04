@@ -11,7 +11,7 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.17.0 (released Mar 2023) with the first package pick from Apr 2023"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.17.1 (released Jun 2023) with the first package pick from Apr 2023"
 COQ_PLATFORM_VERSION_SORTORDER=1
 
 # The package list name is the final part of the opam switch name.
@@ -22,7 +22,7 @@ COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.17~2023.03+beta1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.17'
-COQ_PLATFORM_COQ_TAG='8.17.0'
+COQ_PLATFORM_COQ_TAG='8.17.1'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
@@ -50,7 +50,7 @@ PACKAGES=""
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} PIN.coq.8.17.0"
+PACKAGES="${PACKAGES} PIN.coq.8.17.1"
 # Since dune does support Coq, it is explicitly selected
 PACKAGES="${PACKAGES} dune.3.7.0"
 PACKAGES="${PACKAGES} dune-configurator.3.7.0"
@@ -60,7 +60,7 @@ PACKAGES="${PACKAGES} dune-configurator.3.7.0"
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.17.0"
+PACKAGES="${PACKAGES} coqide.8.17.1"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
