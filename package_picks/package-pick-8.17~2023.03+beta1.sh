@@ -52,8 +52,8 @@ PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
 # The Coq compiler coqc and the Coq standard library
 PACKAGES="${PACKAGES} PIN.coq.8.17.1"
 # Since dune does support Coq, it is explicitly selected
-PACKAGES="${PACKAGES} dune.3.10.0"
-PACKAGES="${PACKAGES} dune-configurator.3.10.0"
+PACKAGES="${PACKAGES} dune.3.7.0"
+PACKAGES="${PACKAGES} dune-configurator.3.7.0"
 
 ########## IDE PACKAGES ##########
 
