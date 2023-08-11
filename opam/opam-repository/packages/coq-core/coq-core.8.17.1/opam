@@ -55,6 +55,7 @@ build: [
 ]
 patches: [
   "0001-coq_makefile-put-file-to-install-list-in-file-instea.patch"
+  "0001-coqdep-Windows-fix-normalisation-of-paths-containing.patch"
 ]
 dev-repo: "git+https://github.com/coq/coq.git"
 depopts: ["coq-native"]
