@@ -11,7 +11,7 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.17.0 (released Mar 2023) with the first package pick from Apr 2023"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.17.1 (released Jun 2023) with the first package pick from Apr 2023"
 COQ_PLATFORM_VERSION_SORTORDER=1
 
 # The package list name is the final part of the opam switch name.
@@ -22,7 +22,7 @@ COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.17~2023.03+beta1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.17'
-COQ_PLATFORM_COQ_TAG='8.17.0'
+COQ_PLATFORM_COQ_TAG='8.17.1'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
@@ -50,7 +50,7 @@ PACKAGES=""
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} PIN.coq.8.17.0"
+PACKAGES="${PACKAGES} PIN.coq.8.17.1"
 # Since dune does support Coq, it is explicitly selected
 PACKAGES="${PACKAGES} dune.3.7.0"
 PACKAGES="${PACKAGES} dune-configurator.3.7.0"
@@ -60,7 +60,7 @@ PACKAGES="${PACKAGES} dune-configurator.3.7.0"
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.17.0"
+PACKAGES="${PACKAGES} coqide.8.17.1"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
@@ -68,23 +68,23 @@ fi
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
   # Standard library extensions
-  PACKAGES="${PACKAGES} coq-bignums.8.17.0"
+  PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.17"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.8"
   PACKAGES="${PACKAGES} coq-stdpp.1.8.0"
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.16.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.16.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.16.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.16.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-field.1.16.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-character.1.16.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.17.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.17.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.17.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.17.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-field.1.17.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-character.1.17.0"
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.2"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.4"
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.3.0+1.12+8.13"
-  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.5.6"
-  PACKAGES="${PACKAGES} coq-coquelicot.3.3.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.6.0"
+  PACKAGES="${PACKAGES} coq-coquelicot.3.4.0"
 
   # Number theory
   PACKAGES="${PACKAGES} coq-coqprime.1.3.0"
@@ -92,7 +92,7 @@ then
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.1.1"
-  PACKAGES="${PACKAGES} coq-interval.4.6.1"
+  PACKAGES="${PACKAGES} coq-interval.4.8.0"
   PACKAGES="${PACKAGES} coq-gappa.1.5.3"
   PACKAGES="${PACKAGES} gappa.1.4.1"
 
@@ -135,12 +135,12 @@ then
     PACKAGES="${PACKAGES} z3_tptp.4.11.2"
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.17"
-  PACKAGES="${PACKAGES} coq-coqeal.1.1.2"
+  PACKAGES="${PACKAGES} coq-coqeal.1.1.3"
   PACKAGES="${PACKAGES} coq-libhyps.2.0.6"
   PACKAGES="${PACKAGES} coq-itauto.8.17.0"
   
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.2"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.3"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9"
 
