@@ -18,7 +18,7 @@ COQ_PLATFORM_VERSION_SORTORDER=1
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.17~2023.03'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.17~2023.08'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.17'
@@ -28,7 +28,7 @@ COQ_PLATFORM_COQ_TAG='8.17.1'
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.03 includes Coq 8.17.1 from Jun 2023. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.03.0 includes Coq 8.17.1 from Jun 2023. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is the **latest release version** of the Coq Platform and recommended for general application. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
@@ -150,7 +150,7 @@ then
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0"
   if [[ "$OSTYPE" != cygwin ]]
   then
-    # Windows: some issues with executable extsnions (ott.opt instead of ott.exe)
+    # Windows: some issues with executable extensions (ott.opt instead of ott.exe)
     # Note: 0.32 does work on Windows!
     PACKAGES="${PACKAGES} coq-ott.0.33"
     PACKAGES="${PACKAGES} ott.0.33"
