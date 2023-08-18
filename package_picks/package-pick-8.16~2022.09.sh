@@ -29,7 +29,7 @@ COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
 COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.09.1 includes Coq 8.16.1 from Nov 2022. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='This is the **latest release version** of the Coq Platform and recommended for general application. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='This is the original package pick for Coq 8.16.1 from Sep 2022. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
 COQ_PLATFORM_OCAML_VERSION='4.13.1'

@@ -7,7 +7,7 @@ CALL coq_platform_make_windows.bat ^
   -arch=32 ^
   -destcyg=C:\bin\cygwin32_coq_platform ^
   -cygcache=C:\bin\cygwin_cache ^
-  -packages="8.17~2023.03+beta1" -extent=x -parallel=p -jobs=8 -switch=k -compcert=y -large=i
+  -packages="8.17~2023.03" -extent=x -parallel=p -jobs=8 -switch=k -compcert=y -large=i
 
 REM NOTE: You can also call coq_platform_make_windows.bat from a cygwin prompt
 REM (e.g. in case you use cygwin for GIT) but please remember to quote paths with
@@ -18,4 +18,4 @@ REM   ./coq_platform_make_windows.bat \
 REM     -arch=32 \
 REM     -destcyg='C:\bin\cygwin64_coq_platform' \
 REM     -cygcache='C:\bin\cygwin_cache' \
-REM     -packages="8.17~2023.03+beta1" -extent=x -parallel=p -jobs=8 -switch=k -compcert=y -large=i
+REM     -packages="8.17~2023.03" -extent=x -parallel=p -jobs=8 -switch=k -compcert=y -large=i
