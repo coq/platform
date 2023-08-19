@@ -12,7 +12,7 @@
 
 # The two lines below are used by the package selection script
 COQ_PLATFORM_VERSION_TITLE="Coq dev (latest master of all packages)"
-COQ_PLATFORM_VERSION_SORTORDER=9999
+COQ_PLATFORM_VERSION_SORTORDER=99
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.

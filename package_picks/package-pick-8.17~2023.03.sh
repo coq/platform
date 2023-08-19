@@ -11,7 +11,7 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.17.1 (released Jun 2023) with the first package pick from Aug 2023"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.17.1 (released Jun 2023) with the first package pick from Apr/Aug 2023"
 COQ_PLATFORM_VERSION_SORTORDER=1
 
 # The package list name is the final part of the opam switch name.
@@ -49,11 +49,11 @@ PACKAGES=""
 
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
-# The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} PIN.coq.8.17.1"
 # Since dune does support Coq, it is explicitly selected
 PACKAGES="${PACKAGES} dune.3.7.0"
 PACKAGES="${PACKAGES} dune-configurator.3.7.0"
+# The Coq compiler coqc and the Coq standard library
+PACKAGES="${PACKAGES} PIN.coq.8.17.1"
 
 ########## IDE PACKAGES ##########
 

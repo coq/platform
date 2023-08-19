@@ -29,6 +29,7 @@ COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
 COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2022.09.1 includes Coq 8.16.1 from Nov 2022. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='There are two package picks for Coq 8.16.1: the original from Sep 2022, and an updated/extended one from Apr/Aug 2023. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is the original package pick for Coq 8.16.1 from Sep 2022. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
@@ -49,11 +50,11 @@ PACKAGES=""
 
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
-# The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} PIN.coq.8.16.1"
 # Since dune does support Coq, it is explicitly selected
 PACKAGES="${PACKAGES} dune.3.4.1"
 PACKAGES="${PACKAGES} dune-configurator.3.4.1"
+# The Coq compiler coqc and the Coq standard library
+PACKAGES="${PACKAGES} PIN.coq.8.16.1"
 
 ########## IDE PACKAGES ##########
 
@@ -126,7 +127,7 @@ then
   PACKAGES="${PACKAGES} coq-aac-tactics.8.16.0"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.16"
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.16"
-  PACKAGES="${PACKAGES} elpi.1.16.5 coq-elpi.1.15.6"
+  PACKAGES="${PACKAGES} elpi.1.16.9 coq-elpi.1.15.6"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.3.0"
   PACKAGES="${PACKAGES} coq-quickchick.1.6.4"
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.16"
