@@ -18,7 +18,7 @@ COQ_PLATFORM_VERSION_SORTORDER=102
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.16~2023.03'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.16~2023.08'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.16'
