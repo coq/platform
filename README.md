@@ -34,6 +34,8 @@ The table below contains links to the README files for the supported versions
 of Coq and libraries. Each README file contains a list of included packages with
 detailed information for each package.
 
+- [Coq 8.17.1 (released Jun 2023) with the first package pick from Aug 2023](doc/README~8.17~2023.08.md)
+- [Coq 8.16.1 (released Nov 2022) with an updated package pick from Aug 2023](doc/README~8.16~2023.08.md)
 - [Coq 8.16.1 (released Nov 2022) with the first package pick from Sep 2022](doc/README~8.16~2022.09.md)
 - [Coq 8.15.2 (released Jun 2022) with an updated package pick from Sep 2022](doc/README~8.15~2022.09.md)
 - [Coq 8.15.2 (released Jun 2022) with the first package pick from Apr 2022](doc/README~8.15~2022.04.md)
@@ -71,6 +73,14 @@ The Coq Platform team does no double check this information.
 </details>
 
 <details><summary><font size="+1">Release notes / changelog</font></summary>
+
+## Changes in 2023.03.0
+
+- Added new picks 8.17~2023.08 and 8.16~2023.08
+- coq-ott has been removed on Windows, since version 0.33 has issues there - if you need coq-ott we recommend to install version 0.32 via opam on Windows
+- coq-fiat-crypto has been removed on Windows, since version 0.0.20 results in a stack overflows - there is no good work around for this - we recommend to use the previous pick 8.16~2022.09 
+
+Please see the [Pick Readme](doc/README~8.17~2023.08.md) for details on the package list.
 
 ## Changes in 2022.09.1
 
