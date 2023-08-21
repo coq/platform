@@ -11,7 +11,7 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.16.1 (released Nov 2022) with an updated package pick from from Apr/Aug 2023"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.16.1 (released Nov 2022) with an updated package pick from from Aug 2023"
 COQ_PLATFORM_VERSION_SORTORDER=102
 
 # The package list name is the final part of the opam switch name.
@@ -29,7 +29,7 @@ COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
 COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.03 includes Coq 8.16.1 from Nov 2022. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='There are two package picks for Coq 8.16.1: the original from Sep 2022, and an updated/extended one from Apr/Aug 2023. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='There are two package picks for Coq 8.16.1: the original from Sep 2022, and an updated/extended one from Aug 2023. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is the latest package pick for Coq 8.16.1 with some package updates with the goal to make it as compatible as possible to the Coq 8.17.1 package pick. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
