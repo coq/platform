@@ -11,25 +11,26 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.17.1 (released Jun 2023) with the first package pick from Apr 2023"
-COQ_PLATFORM_VERSION_SORTORDER=1
+COQ_PLATFORM_VERSION_TITLE="Coq 8.16.1 (released Nov 2022) with an updated package pick from from Aug 2023"
+COQ_PLATFORM_VERSION_SORTORDER=102
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.17~2023.03+beta1'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.16~2023.08'
 
 # The corresponding Coq development branch and tag
-COQ_PLATFORM_COQ_BRANCH='v8.17'
-COQ_PLATFORM_COQ_TAG='8.17.1'
+COQ_PLATFORM_COQ_BRANCH='v8.16'
+COQ_PLATFORM_COQ_TAG='8.16.1'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.03+preview1 includes Coq 8.17+rc1 from Dec 2022. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='This is an incomplete previewthe release inteded for package maintainers. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.03 includes Coq 8.16.1 from Nov 2022. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='There are two package picks for Coq 8.16.1: the original from Sep 2022, and an updated/extended one from Aug 2023. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='This is the latest package pick for Coq 8.16.1 with some package updates with the goal to make it as compatible as possible to the Coq 8.17.1 package pick. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
 COQ_PLATFORM_OCAML_VERSION='4.14.1'
@@ -49,26 +50,29 @@ PACKAGES=""
 
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
-# The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} PIN.coq.8.17.1"
 # Since dune does support Coq, it is explicitly selected
 PACKAGES="${PACKAGES} dune.3.7.0"
 PACKAGES="${PACKAGES} dune-configurator.3.7.0"
+# The Coq compiler coqc and the Coq standard library
+PACKAGES="${PACKAGES} PIN.coq.8.16.1"
 
 ########## IDE PACKAGES ##########
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.17.1"
+PACKAGES="${PACKAGES} coqide.8.16.1"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
+# Some dependencies for which we need specific versions
+  PACKAGES="${PACKAGES} PIN.sexplib0.v0.15.1"         # coq-serapi requires this version
+
   # Standard library extensions
-  PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.17"
+  PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.16"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.8"
   PACKAGES="${PACKAGES} coq-stdpp.1.8.0"
 
@@ -105,10 +109,11 @@ then
 
   # Univalent Mathematics (UniMath)
   # Note: coq-unimath requires too much memory for 32 bit architectures
+  # Note: coq-unimath.2023.0321 requires Coq 8.17.1 (specifcally a patch in coqmakefile)
   if [ "${BITSIZE}" == "64" ]
   then
     case "$COQ_PLATFORM_UNIMATH" in
-    [yY]) PACKAGES="${PACKAGES} coq-unimath.20230321" ;;
+    [yY]) PACKAGES="${PACKAGES} coq-unimath.20220816" ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_UNIMATH - aborting"; false ;;
     esac
@@ -119,30 +124,30 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20220210 menhir.20220210"
-  PACKAGES="${PACKAGES} coq-equations.1.3+8.17"
-  PACKAGES="${PACKAGES} coq-aac-tactics.8.17.0"
-  PACKAGES="${PACKAGES} coq-unicoq.1.6+8.17"
-  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.17"
-  PACKAGES="${PACKAGES} elpi.1.16.9 coq-elpi.1.17.1"
+  PACKAGES="${PACKAGES} coq-equations.1.3+8.16"
+  PACKAGES="${PACKAGES} coq-aac-tactics.8.16.0"
+  PACKAGES="${PACKAGES} coq-unicoq.1.6+8.16"
+  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.16"
+  PACKAGES="${PACKAGES} elpi.1.16.9 coq-elpi.1.15.6"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.4.0"
   PACKAGES="${PACKAGES} coq-quickchick.1.6.5"
-  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.17"
+  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.16"
   if [[ "$OSTYPE" != cygwin ]]
   then
     # coq-hammer does not work on Windows because it heavily relies on fork
-    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.17"
+    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.16"
     PACKAGES="${PACKAGES} eprover.2.6"
     PACKAGES="${PACKAGES} z3_tptp.4.11.2"
   fi
-  PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.17"
+  PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.16"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.3"
   PACKAGES="${PACKAGES} coq-libhyps.2.0.6"
-  PACKAGES="${PACKAGES} coq-itauto.8.17.0"
+  PACKAGES="${PACKAGES} coq-itauto.8.16.0"
   
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.3"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1"
-  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9"
+  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.8"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.1.3"
@@ -172,7 +177,7 @@ then
   esac
 
   # # Proof analysis and other tools
-  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.17"
+  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.16"
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
@@ -182,7 +187,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.1"
-  PACKAGES="${PACKAGES} coq-metacoq.1.2+8.17"
+  PACKAGES="${PACKAGES} coq-metacoq.1.2+8.16"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"
@@ -195,7 +200,7 @@ then
   if [[ "$OSTYPE" != cygwin ]]
   then
     # Windows: path length issues
-    PACKAGES="${PACKAGES} coq-serapi.8.17.0+0.17.0"
+    PACKAGES="${PACKAGES} coq-serapi.8.16.0+0.16.3"
   fi
 
   # fiat crypto, bedrock2, rupicola and dependencies
