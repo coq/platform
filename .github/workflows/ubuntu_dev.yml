@@ -44,7 +44,7 @@ jobs:
 
     steps:
       - name: Git checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set PLATFORM
         if: ${{ github.event.inputs.platform != '' }}
@@ -72,7 +72,7 @@ jobs:
           smoke-test-kit/run-smoke-test.sh
 
       - name: 'Upload smoke test kit'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: 'Smoke Test Kit ${{matrix.variant}}'
           path: smoke-test-kit
