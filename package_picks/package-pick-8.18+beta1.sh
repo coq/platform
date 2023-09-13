@@ -195,7 +195,7 @@ then
   if [[ "$OSTYPE" != cygwin ]]
   then
     # Windows: path length issues
-    PACKAGES="${PACKAGES} coq-serapi.8.17.0+0.17.0"
+    PACKAGES="${PACKAGES} coq-serapi.8.18+rc1+0.18.0"
   fi
 
   # fiat crypto, bedrock2, rupicola and dependencies
@@ -212,7 +212,7 @@ then
         if [ "$OSTYPE" != cygwin ]
         then
           # Windows: stack overflow
-          PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.20"
+          PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.22"
         fi
         ;;
       [nN]) true ;;

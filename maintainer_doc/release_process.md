@@ -73,7 +73,7 @@ Coq CI ref:       a8c50a569a971d6e36e8df88ca16f9f8958f9543
 OPAM versions:    8.6.0  8.7.0  8.7.dev  8.8.0  8.8.dev  8.9.0  8.10+beta1  8.10.0  8.11.0  8.11.dev  8.12.0  8.12.dev  8.13+beta1  8.13.0  8.14.0  8.15.0  8.16.0  8.17.0  9.0.0+coq8.13  9.0.0+coq8.14  9.0.0+coq8.15  9.0.0+coq8.16  9.0.0+coq8.17  9.0.0+coq8.18  dev [9.0.0+coq8.18]
 GIT tag-versions: 8.6.0  8.7.0  8.8+beta1  8.8.0  8.9.0  8.10+beta1  8.10.0  8.11.0  8.12.0  8.13+beta1  8.13.0  8.14.0  8.15.0  8.16.0  8.17.0  9.0.0  9.0.0+coq8.13  9.0.0+coq8.14  9.0.0+coq8.15  9.0.0+coq8.16  9.0.0+coq8.17  9.0.0+coq8.18  
 ```
-- compare the git tag names and opam package versions, do an initial pick for the package and update the new pick file - teh packages are processed in the same order as they appear in the pick file
+- compare the git tag names and opam package versions, do an initial pick for the package and update the new pick file - the packages are processed in the same order as they appear in the pick file
 - in case the opam and git tag versions don't match, try using `opam show --raw <package.version>` to see how opam and git versions relate
 - in case there is a new tag but no opam package, consider to create one in the coq platform opam patch folder
   - `git clone git@github.com:coq/opam-coq-archive.git` (or pull)
