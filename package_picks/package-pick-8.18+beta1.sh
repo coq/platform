@@ -70,7 +70,7 @@ then
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.18"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.8"
-  PACKAGES="${PACKAGES} coq-stdpp.1.8.0"
+  #PACKAGES="${PACKAGES} coq-stdpp.1.8.0" #DOES NOT BUILD AFTER RELAXING VERSION RESTRICTIONS
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.0.0"
@@ -93,12 +93,12 @@ then
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.1.3"
   PACKAGES="${PACKAGES} coq-interval.4.8.1"
-  PACKAGES="${PACKAGES} coq-gappa.1.5.3"
+  #PACKAGES="${PACKAGES} coq-gappa.1.5.3" # does not build even after relaxing version constraints
   PACKAGES="${PACKAGES} gappa.1.4.1"
 
   # Constructive mathematics
-  PACKAGES="${PACKAGES} coq-math-classes.8.17.0"
-  PACKAGES="${PACKAGES} coq-corn.8.16.0"
+  #PACKAGES="${PACKAGES} coq-math-classes.8.17.0" # does not build even after relaxing version constraints
+  #PACKAGES="${PACKAGES} coq-corn.8.16.0" # depends on coq-math-classes
 
   # Homotopy Type Theory (HoTT)
   PACKAGES="${PACKAGES} coq-hott.8.18"
@@ -115,22 +115,22 @@ then
   fi 
 
   # Code extraction
-  PACKAGES="${PACKAGES} coq-simple-io.1.8.0"
+  PACKAGES="${PACKAGES} coq-simple-io.1.8.0" # does not build even after relaxing version constraints
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20230608 menhir.20230608"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.18"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.18.0"
-  PACKAGES="${PACKAGES} coq-unicoq.1.6+8.17"
-  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.17"
+  #PACKAGES="${PACKAGES} coq-unicoq.1.6+8.17" # does not build even after relaxing version constraints
+  #PACKAGES="${PACKAGES} coq-mtac2.1.4+8.17" # does not build even after relaxing version constraints
   PACKAGES="${PACKAGES} elpi.1.17.0 coq-elpi.1.19.0"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.5.0"
   PACKAGES="${PACKAGES} coq-quickchick.2.0.0"
-  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.17"
+  #PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.17" # does not build even after relaxing version constraints
   if [[ "$OSTYPE" != cygwin ]]
   then
     # coq-hammer does not work on Windows because it heavily relies on fork
-    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.17"
+    #PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.17" # depends on coq-hammer-tactics
     PACKAGES="${PACKAGES} eprover.2.6" # ToDo 3.0 might be out
     PACKAGES="${PACKAGES} z3_tptp.4.11.2" # ToDo check for updates
   fi
@@ -142,12 +142,12 @@ then
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.4"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1"
-  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9"
+  #PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9" # does not build even after relaxing version constraints
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.2.0"
-  PACKAGES="${PACKAGES} coq-iris.4.0.0"
-  PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0"
+  #PACKAGES="${PACKAGES} coq-iris.4.0.0" # does not build even after relaxing version constraints
+  #PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0" # depends on coq-iris
   if [[ "$OSTYPE" != cygwin ]]
   then
     # Windows: some issues with executable extensions (ott.opt instead of ott.exe)
@@ -172,7 +172,7 @@ then
   esac
 
   # # Proof analysis and other tools
-  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.17"
+  #PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.17" # does not build even after relaxing version constraints
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
@@ -181,8 +181,8 @@ if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
 
   # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-deriving.0.1.1"
-  PACKAGES="${PACKAGES} coq-metacoq.1.2+8.17"
+  #PACKAGES="${PACKAGES} coq-deriving.0.1.1" #does not build even after relaxing version constraints
+  #PACKAGES="${PACKAGES} coq-metacoq.1.2+8.17" #does not build even after relaxing version constraints
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"

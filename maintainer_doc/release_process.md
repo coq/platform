@@ -92,5 +92,5 @@ GIT tag-versions: 8.6.0  8.7.0  8.8+beta1  8.8.0  8.9.0  8.10+beta1  8.10.0  8.1
 - if the build fails just because of an opam version restriction, try creating a patched opam file with relaxed restrictions
   - the are a few scripts `maintainer_scripts/patch_opam_package_<detail>.sh` to help with this, but please note that these are not that well tested and that they use `opam show --raw` to get
     the previous version, which is usually a reordering / reformatting of the opam file and not comparable with it (PRs to fix this welcome ;-)
-- if something isn't easy to fix, comment out the package (it dependent package) with a note why the package was disabled (`# version xyz does not work`)
+- if something isn't easy to fix, comment out the package (it dependent package) with a note why the package was disabled (`# version xyz does not work`). Typically anything that requires patching the repo's source code would be considered not easy to fix.
 - if things are reasonably file for the `full` build, run the script again for the extended selection - it should pick up where you aborted it before cause of `maintainer_scripts/packages_already_processed.txt`
