@@ -73,7 +73,7 @@ then
   #PACKAGES="${PACKAGES} coq-stdpp.1.8.0" #DOES NOT BUILD AFTER RELAXING VERSION RESTRICTIONS
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.0.0"
+  #PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.0.0" #does not buid, depends on coq-mathcomp-algebra-tactics
   PACKAGES="${PACKAGES} coq-mathcomp-fingroup.2.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra.2.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-solvable.2.0.0"
@@ -115,7 +115,7 @@ then
   fi 
 
   # Code extraction
-  PACKAGES="${PACKAGES} coq-simple-io.1.8.0" # does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-simple-io.1.8.0"
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20230608 menhir.20230608"
@@ -125,7 +125,7 @@ then
   #PACKAGES="${PACKAGES} coq-mtac2.1.4+8.17" # does not build even after relaxing version constraints
   PACKAGES="${PACKAGES} elpi.1.17.0 coq-elpi.1.19.0"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.5.0"
-  PACKAGES="${PACKAGES} coq-quickchick.2.0.0"
+  #PACKAGES="${PACKAGES} coq-quickchick.2.0.0" # does not build
   #PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.17" # does not build even after relaxing version constraints
   if [[ "$OSTYPE" != cygwin ]]
   then
@@ -140,8 +140,8 @@ then
   PACKAGES="${PACKAGES} coq-itauto.8.18.0"
   
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.4"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1"
+  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.4" #does not build
+  # PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1" #depends on coq-mathcomp-finmap.dev which does not build
   #PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9" # does not build even after relaxing version constraints
 
   # Formal languages, compilers and code verification
@@ -155,7 +155,7 @@ then
     PACKAGES="${PACKAGES} coq-ott.0.33"
     PACKAGES="${PACKAGES} ott.0.33"
   fi
-  PACKAGES="${PACKAGES} coq-mathcomp-word.2.1"
+  #PACKAGES="${PACKAGES} coq-mathcomp-word.2.1" # does not build -> depends on coq-mathcomp-finmap.dev
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.13.1" ;;
@@ -165,7 +165,7 @@ then
 
   case "$COQ_PLATFORM_VST" in
     [yY])
-      PACKAGES="${PACKAGES} coq-vst.2.12"
+      #PACKAGES="${PACKAGES} coq-vst.2.12" #somehow I've been unable to relax the version condition
       true ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
@@ -185,10 +185,10 @@ then
   #PACKAGES="${PACKAGES} coq-metacoq.1.2+8.17" #does not build even after relaxing version constraints
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-extructures.0.3.1"
+  #PACKAGES="${PACKAGES} coq-extructures.0.3.1" #does not build -> deoebds ib coq-mathcomp-finmap.dev 
 
   # Gallina extensions
-  PACKAGES="${PACKAGES} coq-reduction-effects.0.1.4"
+  #PACKAGES="${PACKAGES} coq-reduction-effects.0.1.4" #DOES NOT BUILD
   PACKAGES="${PACKAGES} coq-record-update.0.3.2"
 
   # Communication with coqtop
@@ -204,7 +204,7 @@ then
     case "$COQ_PLATFORM_FIATCRYPTO" in
       [yY])
         PACKAGES="${PACKAGES} coq-coqutil.0.0.3"
-        PACKAGES="${PACKAGES} coq-rewriter.0.0.8"
+        #PACKAGES="${PACKAGES} coq-rewriter.0.0.8" # does not build
         PACKAGES="${PACKAGES} coq-riscv.0.0.4"
         PACKAGES="${PACKAGES} coq-bedrock2.0.0.5"
         PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.5"
@@ -212,7 +212,8 @@ then
         if [ "$OSTYPE" != cygwin ]
         then
           # Windows: stack overflow
-          PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.22"
+          #PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.22" #does not build - depends on cor-rewriter
+          true
         fi
         ;;
       [nN]) true ;;
