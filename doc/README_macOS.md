@@ -38,15 +38,15 @@ This method is intended for experienced users, who may want to use opam to insta
 - If you have neither Homebrew nor MacPorts installed, read the section [Homebrew and MacPorts](#homebrew-and-macports) below.
 - If you have Homebrew installed, read the section [Homebrew issues and workarounds](#homebrew-issues-and-workarounds) below.
 - Get the Coq Platform scripts via either of these methods
-  - Most users should download and extract `https://github.com/coq/platform/archive/refs/tags/2023.03.0.zip`.
-  - Users which intend to contribute to Coq Platform should use `git clone --branch 2023.03.0 https://github.com/coq/platform.git`.
+  - Most users should download and extract `https://github.com/coq/platform/archive/refs/tags/2023.03.1.zip`.
+  - Users which intend to contribute to Coq Platform should use `git clone --branch 2023.03.1 https://github.com/coq/platform.git`.
 - Open a shell, navigate to the download folder and execute `coq_platform_make.sh`.
 - If you are using MacPorts, the system will ask once for sudo permissions to install prerequisites after installing OCaml (5..20 minutes after script start).
 - In case the script aborts e.g. cause of internet issues, just rerun the script.
-- The script creates a new opam switch named e.g. CP.2023.03.0~8.17~2023.08 - the exact name depends on the Coq version and package pick you selected.
+- The script creates a new opam switch named e.g. CP.2023.03.1~8.17~2023.08 - the exact name depends on the Coq version and package pick you selected.
   This means the script does not touch your existing opam setup unless you already have a switch of this name.
 - Use the following commands to activate this switch after opening a new shell:
-  - `opam switch CP.2023.03.0~8.17~2023.08` (note: the switch name might vary if you choose a different version of Coq - please use `opam switch` to see a list of switch names)
+  - `opam switch CP.2023.03.1~8.17~2023.08` (note: the switch name might vary if you choose a different version of Coq - please use `opam switch` to see a list of switch names)
   - `eval $(opam env)`
   - The second step can be automated by rerunning `opam init`
 - The main opam repositories for Coq and OCaml developments are already added to the created opam switch, so it should be easy to install additional Coq (or OCaml) packages.
