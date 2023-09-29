@@ -76,6 +76,11 @@ The Coq Platform team does no double check this information.
 
 ## Changes in 2023.03.1
 
+- Bugfix for coq-makefile in snap
+- Added opam package `gmake` to build a MinGW version of GNU make on Windows
+
+## Changes in 2023.03.0
+
 - Added new picks 8.17~2023.08 and 8.16~2023.08
 - coq-ott has been removed on Windows, since version 0.33 has issues there - if you need coq-ott we recommend to install version 0.32 via opam on Windows
 - coq-fiat-crypto has been removed on Windows, since version 0.0.20 results in a stack overflows - there is no good work around for this - we recommend to use the previous pick 8.16~2022.09 
