@@ -22,13 +22,13 @@ COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.18+beta1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.18'
-COQ_PLATFORM_COQ_TAG='8.18+rc1'
+COQ_PLATFORM_COQ_TAG='8.18.0'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.03.0 includes Coq 8.18+rc1 from Sep 2023. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.03.0 includes Coq 8.18.0 from Sep 2023. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is a preliminary release intended for package maintainers. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
@@ -53,14 +53,14 @@ PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"  # TODO port patch to 1.9
 PACKAGES="${PACKAGES} dune.3.10.0"
 PACKAGES="${PACKAGES} dune-configurator.3.10.0"
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} PIN.coq.8.18+rc1"
+PACKAGES="${PACKAGES} PIN.coq.8.18.0"
 
 ########## IDE PACKAGES ##########
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.18+rc1"
+PACKAGES="${PACKAGES} coqide.8.18.0"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
@@ -140,8 +140,8 @@ then
   PACKAGES="${PACKAGES} coq-itauto.8.18.0"
   
   # General mathematics (which requires one of the above tools)
-  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.4" #does not build
-  # PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1" #depends on coq-mathcomp-finmap.dev which does not build
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.4" #does not build
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1" #depends on coq-mathcomp-finmap.dev which does not build
   #PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9" # does not build even after relaxing version constraints
 
   # Formal languages, compilers and code verification
@@ -155,7 +155,7 @@ then
     PACKAGES="${PACKAGES} coq-ott.0.33"
     PACKAGES="${PACKAGES} ott.0.33"
   fi
-  #PACKAGES="${PACKAGES} coq-mathcomp-word.2.1" # does not build -> depends on coq-mathcomp-finmap.dev
+  PACKAGES="${PACKAGES} coq-mathcomp-word.2.1" # does not build -> depends on coq-mathcomp-finmap.dev
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.13.1" ;;
@@ -185,7 +185,7 @@ then
   #PACKAGES="${PACKAGES} coq-metacoq.1.2+8.17" #does not build even after relaxing version constraints
 
   # General mathematics
-  #PACKAGES="${PACKAGES} coq-extructures.0.3.1" #does not build -> deoebds ib coq-mathcomp-finmap.dev 
+  PACKAGES="${PACKAGES} coq-extructures.0.4.0"
 
   # Gallina extensions
   #PACKAGES="${PACKAGES} coq-reduction-effects.0.1.4" #DOES NOT BUILD
@@ -195,7 +195,7 @@ then
   if [[ "$OSTYPE" != cygwin ]]
   then
     # Windows: path length issues
-    PACKAGES="${PACKAGES} coq-serapi.8.18+rc1+0.18.0"
+    PACKAGES="${PACKAGES} coq-serapi.8.18.0+0.18.1"
   fi
 
   # fiat crypto, bedrock2, rupicola and dependencies
