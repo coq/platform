@@ -93,7 +93,7 @@ then
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.1.3"
   PACKAGES="${PACKAGES} coq-interval.4.8.1"
-  #PACKAGES="${PACKAGES} coq-gappa.1.5.3" # does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-gappa.1.5.4"
   PACKAGES="${PACKAGES} gappa.1.4.1"
 
   # Constructive mathematics
@@ -121,10 +121,10 @@ then
   PACKAGES="${PACKAGES} coq-menhirlib.20230608 menhir.20230608"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.18"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.18.0"
-  #PACKAGES="${PACKAGES} coq-unicoq.1.6+8.17" # does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-unicoq.1.6+8.18"
   #PACKAGES="${PACKAGES} coq-mtac2.1.4+8.17" # does not build even after relaxing version constraints
-  PACKAGES="${PACKAGES} elpi.1.17.0 coq-elpi.1.19.0"
-  PACKAGES="${PACKAGES} coq-hierarchy-builder.1.5.0"
+  PACKAGES="${PACKAGES} elpi.1.17.3 coq-elpi.1.19.0"
+  PACKAGES="${PACKAGES} coq-hierarchy-builder.1.6.0"
   #PACKAGES="${PACKAGES} coq-quickchick.2.0.0" # does not build
   #PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.17" # does not build even after relaxing version constraints
   if [[ "$OSTYPE" != cygwin ]]
@@ -181,14 +181,14 @@ if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
 
   # Proof automation / generation / helpers
-  #PACKAGES="${PACKAGES} coq-deriving.0.1.1" #does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-deriving.0.2.0"
   #PACKAGES="${PACKAGES} coq-metacoq.1.2+8.17" #does not build even after relaxing version constraints
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.4.0"
 
   # Gallina extensions
-  #PACKAGES="${PACKAGES} coq-reduction-effects.0.1.4" # does not build
+  PACKAGES="${PACKAGES} coq-reduction-effects.0.1.5"
   PACKAGES="${PACKAGES} coq-record-update.0.3.2"
 
   # Communication with coqtop
@@ -204,7 +204,7 @@ then
     case "$COQ_PLATFORM_FIATCRYPTO" in
       [yY])
         PACKAGES="${PACKAGES} coq-coqutil.0.0.3"
-        #PACKAGES="${PACKAGES} coq-rewriter.0.0.8" # does not build
+        PACKAGES="${PACKAGES} coq-rewriter.0.0.9"
         PACKAGES="${PACKAGES} coq-riscv.0.0.4"
         PACKAGES="${PACKAGES} coq-bedrock2.0.0.5"
         PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.5"

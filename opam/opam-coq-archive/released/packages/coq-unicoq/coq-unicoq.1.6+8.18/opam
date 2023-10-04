@@ -1,0 +1,27 @@
+opam-version: "2.0"
+maintainer: "matthieu.sozeau@inria.fr"
+authors: [ "Matthieu Sozeau <matthieu.sozeau@inria.fr>" "Beta Ziliani <beta@mpi-sws.org>" ]
+dev-repo: "git+https://github.com/unicoq/unicoq.git"
+homepage: "https://github.com/unicoq/unicoq"
+bug-reports: "https://github.com/unicoq/unicoq/issues"
+license: "MIT"
+build: [
+  ["coq_makefile" "-f" "_CoqProject" "-o" "Makefile"]
+  [make "-j%{jobs}%"]
+]
+install: [
+  [make "install"]
+]
+depends: [
+  "ocaml"
+  "coq" {>= "8.17" & < "8.18~"}
+]
+synopsis: "An enhanced unification algorithm for Coq"
+tags: [
+  "logpath:Unicoq"
+  "date:2023-03-28"
+]
+url {
+  src: "https://github.com/unicoq/unicoq/archive/v1.6-8.18.tar.gz"
+  checksum: "sha512=29b5a7f54b50d0c6de5b08ce865ce65e10d648fbab910728f970e8b88e24319dfd541c51de080b5f416f0220c1d27729787b1960cbfb7b17b48a906f52d709f8"
+}
