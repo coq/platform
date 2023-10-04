@@ -140,8 +140,8 @@ then
   PACKAGES="${PACKAGES} coq-itauto.8.18.0"
   
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.4"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1"
+  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.5" # requires coq-mathcomp-solvable < "1.18~"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.2.1"
   #PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9" # does not build even after relaxing version constraints
 
   # Formal languages, compilers and code verification
@@ -155,7 +155,7 @@ then
     PACKAGES="${PACKAGES} coq-ott.0.33"
     PACKAGES="${PACKAGES} ott.0.33"
   fi
-  PACKAGES="${PACKAGES} coq-mathcomp-word.2.1"
+  # PACKAGES="${PACKAGES} coq-mathcomp-word.2.1" # requires coq-mathcomp-ssreflect < 1.18~
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.13.1" ;;
