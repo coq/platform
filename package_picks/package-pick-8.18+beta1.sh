@@ -70,10 +70,10 @@ then
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.18"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.8"
-  #PACKAGES="${PACKAGES} coq-stdpp.1.8.0" #DOES NOT BUILD AFTER RELAXING VERSION RESTRICTIONS
+  #PACKAGES="${PACKAGES} coq-stdpp.1.8.0" # does not build even after relaxing version constraints
 
   # General mathematics
-  #PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.0.0" #does not buid, depends on coq-mathcomp-algebra-tactics
+  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-fingroup.2.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra.2.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-solvable.2.0.0"
@@ -140,8 +140,8 @@ then
   PACKAGES="${PACKAGES} coq-itauto.8.18.0"
   
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.4" #does not build
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1" #depends on coq-mathcomp-finmap.dev which does not build
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.4"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1"
   #PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9" # does not build even after relaxing version constraints
 
   # Formal languages, compilers and code verification
@@ -155,7 +155,7 @@ then
     PACKAGES="${PACKAGES} coq-ott.0.33"
     PACKAGES="${PACKAGES} ott.0.33"
   fi
-  PACKAGES="${PACKAGES} coq-mathcomp-word.2.1" # does not build -> depends on coq-mathcomp-finmap.dev
+  PACKAGES="${PACKAGES} coq-mathcomp-word.2.1"
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.13.1" ;;
@@ -165,7 +165,7 @@ then
 
   case "$COQ_PLATFORM_VST" in
     [yY])
-      #PACKAGES="${PACKAGES} coq-vst.2.12" #somehow I've been unable to relax the version condition
+      #PACKAGES="${PACKAGES} coq-vst.2.12" # does not build requires CompCert 3.12
       true ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
@@ -188,7 +188,7 @@ then
   PACKAGES="${PACKAGES} coq-extructures.0.4.0"
 
   # Gallina extensions
-  #PACKAGES="${PACKAGES} coq-reduction-effects.0.1.4" #DOES NOT BUILD
+  #PACKAGES="${PACKAGES} coq-reduction-effects.0.1.4" # does not build
   PACKAGES="${PACKAGES} coq-record-update.0.3.2"
 
   # Communication with coqtop
