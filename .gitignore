@@ -16,3 +16,4 @@ maintainer_scripts/ci_package_list.sh
 maintainer_scripts/patched_package_list.sh
 WARNINGS.LOG
 Smoke-test-kit-*.zip
+PATCHED_PACKAGE_LIST_FILE.sh

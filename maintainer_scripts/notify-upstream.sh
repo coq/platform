@@ -36,18 +36,18 @@ PACKAGE_FILTER_RE="${2:-.}"
 
 ########## Settings ##########
 
-EXT_RELEASE="+rc1"
-DATE_RELEASE="December 29th, 2022"
-EXT_FINAL=".0"
-DATE_FINAL="March 7th, 2023"
-VERSION_PLATFORM="2023.03"
-DATE_PLATFORM_BETA="March 21st, 2023"
-DATE_PLATFORM_NOTIFY="March 21st, 2023"
-DATE_PLATFORM_EXPECTED="April 14th, 2023"
-DATE_PLATFORM_LATEST="June 30, 2023"
+EXT_RELEASE=".0"
+DATE_RELEASE="September 7th, 2023"
+EXT_FINAL=""
+DATE_FINAL=""
+VERSION_PLATFORM="2023.10"
+DATE_PLATFORM_BETA="October 31st, 2023"
+DATE_PLATFORM_NOTIFY="October 31st, 2023"
+DATE_PLATFORM_EXPECTED="November 30th, 2023"
+DATE_PLATFORM_LATEST="January 15th, 2023"
 PLATFORM_MAIN_BRANCH="https://github.com/coq/platform/tree/main"
 
-CC="CC: https://github.com/coq/platform/issues/335"
+CC="CC: https://github.com/coq/platform/issues/372"
 #CC="\n@coqbot column:...."
 
 COQ_PLATFORM_UNIMATH=Y
