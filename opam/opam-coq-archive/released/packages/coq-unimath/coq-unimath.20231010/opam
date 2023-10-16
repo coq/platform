@@ -3,7 +3,7 @@ maintainer: "The UniMath Development Team"
 homepage: "https://github.com/UniMath/UniMath"
 dev-repo: "git+https://github.com/UniMath/UniMath.git"
 bug-reports: "https://github.com/UniMath/UniMath/issues"
-license: "Kind of MIT"
+license: "Similar to MIT license"
 authors: ["The UniMath Development Team"]
 build: [make "BUILD_COQ=no" "-j%{jobs}%"]
 install: [make "BUILD_COQ=no" "install"]
@@ -13,6 +13,6 @@ depends: [
 ]
 synopsis: "Library of Univalent Mathematics"
 url {
-  src: "https://github.com/UniMath/UniMath/archive/refs/tags/v20230420.tar.gz"
-  checksum: "sha512=2ffcb03bece607eb017107183c4b67a552021168c86937b0cf6d98d75b852f25d9b4d36598278f76fa7544c02c81f8a52c77fc057463f685191176d3ae612d27"
+  src: "https://github.com/UniMath/UniMath/archive/refs/tags/v20231010.tar.gz"
+  checksum: "sha512=27729e1e6cba0df2e07d4789fd2cefcdba71e2374afb16bdaabee4132d1ab8721096602aa83e2aa599b994e1a744b969f0d5134677fbaecb3241c916d32353ac"
 }

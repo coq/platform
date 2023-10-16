@@ -108,7 +108,7 @@ then
   if [ "${BITSIZE}" == "64" ]
   then
     case "$COQ_PLATFORM_UNIMATH" in
-    [yY]) PACKAGES="${PACKAGES} coq-unimath.20230420" ;;
+    [yY]) PACKAGES="${PACKAGES} coq-unimath.20231010" ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_UNIMATH - aborting"; false ;;
     esac
