@@ -25,7 +25,7 @@ COQ_PLATFORM_COQ_BRANCH='v8.18'
 COQ_PLATFORM_COQ_TAG='8.18.0'
 
 # This controls if opam repositories for development packages are selected
-COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
+COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
 COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.03.0 includes Coq 8.18.0 from Sep 2023. '
@@ -87,7 +87,7 @@ then
   PACKAGES="${PACKAGES} coq-coquelicot.3.4.0"
 
   # Number theory
-  PACKAGES="${PACKAGES} coq-coqprime.1.3.0"
+  PACKAGES="${PACKAGES} coq-coqprime.1.4.0"
   PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1"
   
   # Numerical mathematics
@@ -97,7 +97,7 @@ then
   PACKAGES="${PACKAGES} gappa.1.4.1"
 
   # Constructive mathematics
-  #PACKAGES="${PACKAGES} coq-math-classes.8.17.0" # does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-math-classes.8.18.0"
   #PACKAGES="${PACKAGES} coq-corn.8.16.0" # depends on coq-math-classes
 
   # Homotopy Type Theory (HoTT)
@@ -125,7 +125,7 @@ then
   #PACKAGES="${PACKAGES} coq-mtac2.1.4+8.17" # does not build even after relaxing version constraints
   PACKAGES="${PACKAGES} elpi.1.17.3 coq-elpi.1.19.0"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.6.0"
-  #PACKAGES="${PACKAGES} coq-quickchick.2.0.0" # does not build
+  PACKAGES="${PACKAGES} coq-quickchick.2.0.1"
   #PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.17" # does not build even after relaxing version constraints
   if [[ "$OSTYPE" != cygwin ]]
   then
@@ -189,7 +189,7 @@ then
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.5"
-  PACKAGES="${PACKAGES} coq-record-update.0.3.2"
+  PACKAGES="${PACKAGES} coq-record-update.0.3.3"
 
   # Communication with coqtop
   if [[ "$OSTYPE" != cygwin ]]
