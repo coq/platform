@@ -70,7 +70,7 @@ then
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.18"
   PACKAGES="${PACKAGES} coq-ext-lib.0.11.8"
-  #PACKAGES="${PACKAGES} coq-stdpp.1.8.0" # does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-stdpp.1.9.0"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.0.0"
@@ -146,8 +146,8 @@ then
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.2.0"
-  #PACKAGES="${PACKAGES} coq-iris.4.0.0" # does not build even after relaxing version constraints
-  #PACKAGES="${PACKAGES} coq-iris-heap-lang.4.0.0" # depends on coq-iris
+  PACKAGES="${PACKAGES} coq-iris.4.1.0"
+  PACKAGES="${PACKAGES} coq-iris-heap-lang.4.1.0"
   if [[ "$OSTYPE" != cygwin ]]
   then
     # Windows: some issues with executable extensions (ott.opt instead of ott.exe)
