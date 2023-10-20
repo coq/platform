@@ -142,7 +142,7 @@ then
   # General mathematics (which requires one of the above tools)
   # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.5" # requires coq-mathcomp-solvable < "1.18~"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.2.1"
-  #PACKAGES="${PACKAGES} coq-relation-algebra.1.7.9" # does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.10"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.2.0"
