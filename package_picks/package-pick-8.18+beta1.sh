@@ -172,7 +172,7 @@ then
   esac
 
   # # Proof analysis and other tools
-  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.18" # does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.18"
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
