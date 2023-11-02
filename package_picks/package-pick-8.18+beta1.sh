@@ -122,7 +122,7 @@ then
   PACKAGES="${PACKAGES} coq-equations.1.3+8.18"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.18.0"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.18"
-  #PACKAGES="${PACKAGES} coq-mtac2.1.4+8.17" # does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.18"
   PACKAGES="${PACKAGES} elpi.1.17.4 coq-elpi.1.19.3"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.6.0"
   PACKAGES="${PACKAGES} coq-quickchick.2.0.1"
