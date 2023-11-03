@@ -141,7 +141,7 @@ then
   
   # General mathematics (which requires one of the above tools)
   # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.5" # requires coq-mathcomp-solvable < "1.18~"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.2.1"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.2.2"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.10"
 
   # Formal languages, compilers and code verification
@@ -172,7 +172,7 @@ then
   esac
 
   # # Proof analysis and other tools
-  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.18" # does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.18"
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
