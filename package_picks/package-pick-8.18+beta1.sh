@@ -182,7 +182,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.2.0"
-  #PACKAGES="${PACKAGES} coq-metacoq.1.2+8.17" #does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-metacoq.1.2.1+8.18"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.4.0"
