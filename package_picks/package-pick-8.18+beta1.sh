@@ -165,7 +165,7 @@ then
 
   case "$COQ_PLATFORM_VST" in
     [yY])
-      #PACKAGES="${PACKAGES} coq-vst.2.12" # does not build requires CompCert 3.12
+      PACKAGES="${PACKAGES} coq-vst.2.13"
       true ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
