@@ -126,13 +126,13 @@ then
   PACKAGES="${PACKAGES} elpi.1.17.4 coq-elpi.1.19.3"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.6.0"
   PACKAGES="${PACKAGES} coq-quickchick.2.0.1"
-  #PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.17" # does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.18"
   if [[ "$OSTYPE" != cygwin ]]
   then
     # coq-hammer does not work on Windows because it heavily relies on fork
-    #PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.17" # depends on coq-hammer-tactics
-    PACKAGES="${PACKAGES} eprover.2.6" # ToDo 3.0 might be out
-    PACKAGES="${PACKAGES} z3_tptp.4.11.2" # ToDo check for updates
+    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.18"
+    PACKAGES="${PACKAGES} eprover.2.6"     # ToDo 3.0 might be out
+    PACKAGES="${PACKAGES} z3_tptp.4.11.2"  # 4.12.2-1 has build issues on ARM macOS
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.18"
   PACKAGES="${PACKAGES} coq-coqeal.2.0.0"
@@ -140,7 +140,7 @@ then
   PACKAGES="${PACKAGES} coq-itauto.8.18.0"
   
   # General mathematics (which requires one of the above tools)
-  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.5" # requires coq-mathcomp-solvable < "1.18~"
+  #PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.5" # requires coq-mathcomp 1.18
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.2.2"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.10"
 
