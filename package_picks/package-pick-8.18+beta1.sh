@@ -73,17 +73,17 @@ then
   PACKAGES="${PACKAGES} coq-stdpp.1.9.0"
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.0.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.2.0.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra.2.0.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-solvable.2.0.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-field.2.0.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-character.2.0.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-solvable.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-field.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-character.2.1.0"
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.2.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.2.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.5.0+2.0+8.16"
-  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.2.0.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.2.1.0"
   PACKAGES="${PACKAGES} coq-coquelicot.3.4.0"
 
   # Number theory
