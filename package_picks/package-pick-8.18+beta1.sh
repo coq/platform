@@ -73,17 +73,17 @@ then
   PACKAGES="${PACKAGES} coq-stdpp.1.9.0"
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.0.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.2.0.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra.2.0.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-solvable.2.0.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-field.2.0.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-character.2.0.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-solvable.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-field.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-character.2.1.0"
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.2.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.2.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.5.0+2.0+8.16"
-  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.2.0.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.2.1.0"
   PACKAGES="${PACKAGES} coq-coquelicot.3.4.0"
 
   # Number theory
@@ -126,13 +126,13 @@ then
   PACKAGES="${PACKAGES} elpi.1.17.4 coq-elpi.1.19.3"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.6.0"
   PACKAGES="${PACKAGES} coq-quickchick.2.0.1"
-  #PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.17" # does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.18"
   if [[ "$OSTYPE" != cygwin ]]
   then
     # coq-hammer does not work on Windows because it heavily relies on fork
-    #PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.17" # depends on coq-hammer-tactics
-    PACKAGES="${PACKAGES} eprover.2.6" # ToDo 3.0 might be out
-    PACKAGES="${PACKAGES} z3_tptp.4.11.2" # ToDo check for updates
+    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.18"
+    PACKAGES="${PACKAGES} eprover.2.6"     # ToDo 3.0 might be out
+    PACKAGES="${PACKAGES} z3_tptp.4.11.2"  # 4.12.2-1 has build issues on ARM macOS
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.18"
   PACKAGES="${PACKAGES} coq-coqeal.2.0.0"
@@ -140,7 +140,7 @@ then
   PACKAGES="${PACKAGES} coq-itauto.8.18.0"
   
   # General mathematics (which requires one of the above tools)
-  # PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.5" # requires coq-mathcomp-solvable < "1.18~"
+  #PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.5" # requires coq-mathcomp 1.18
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.2.2"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.10"
 
@@ -165,7 +165,7 @@ then
 
   case "$COQ_PLATFORM_VST" in
     [yY])
-      #PACKAGES="${PACKAGES} coq-vst.2.12" # does not build requires CompCert 3.12
+      PACKAGES="${PACKAGES} coq-vst.2.13"
       true ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
@@ -182,7 +182,7 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.2.0"
-  #PACKAGES="${PACKAGES} coq-metacoq.1.2+8.17" #does not build even after relaxing version constraints
+  PACKAGES="${PACKAGES} coq-metacoq.1.2.1+8.18"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.4.0"
@@ -203,16 +203,16 @@ then
   then
     case "$COQ_PLATFORM_FIATCRYPTO" in
       [yY])
-        PACKAGES="${PACKAGES} coq-coqutil.0.0.3"
+        PACKAGES="${PACKAGES} coq-coqutil.0.0.4"
         PACKAGES="${PACKAGES} coq-rewriter.0.0.9"
         PACKAGES="${PACKAGES} coq-riscv.0.0.4"
-        PACKAGES="${PACKAGES} coq-bedrock2.0.0.5"
-        PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.5"
-        PACKAGES="${PACKAGES} coq-rupicola.0.0.7"
+        PACKAGES="${PACKAGES} coq-bedrock2.0.0.6"
+        PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.6"
+        PACKAGES="${PACKAGES} coq-rupicola.0.0.8"
         if [ "$OSTYPE" != cygwin ]
         then
           # Windows: stack overflow
-          #PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.22" #does not build - depends on cor-rewriter
+          PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.24"
           true
         fi
         ;;
