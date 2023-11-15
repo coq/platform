@@ -11,14 +11,14 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.18.0 (released Sep 2023) with the preliminary package pick from Sep 2023"
-COQ_PLATFORM_VERSION_SORTORDER=97
+COQ_PLATFORM_VERSION_TITLE="Coq 8.18.0 (released Sep 2023) with the preliminary package pick based on mathcomp 2.1"
+COQ_PLATFORM_VERSION_SORTORDER=98
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.18+beta1'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.18+mc2+beta1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.18'
@@ -29,7 +29,7 @@ COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
 COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.03.0 includes Coq 8.18.0 from Sep 2023. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='This is a preliminary release intended for package maintainers. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='This is a preliminary release based on mathcomp 2.1 intended for package maintainers. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
 COQ_PLATFORM_OCAML_VERSION='4.14.1'
@@ -73,17 +73,17 @@ then
   PACKAGES="${PACKAGES} coq-stdpp.1.9.0"
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.1.18.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.1.18.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra.1.18.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-solvable.1.18.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-field.1.18.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-character.1.18.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-fingroup.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-solvable.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-field.2.1.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-character.2.1.0"
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"
-  PACKAGES="${PACKAGES} coq-mathcomp-finmap.1.5.2"
-  PACKAGES="${PACKAGES} coq-mathcomp-real-closed.1.1.4"
-  PACKAGES="${PACKAGES} coq-mathcomp-zify.1.3.0+1.12+8.13"
-  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.1.6.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-finmap.2.0.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-real-closed.2.0.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-zify.1.5.0+2.0+8.16"
+  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.2.1.0"
   PACKAGES="${PACKAGES} coq-coquelicot.3.4.0"
 
   # Number theory
@@ -135,17 +135,17 @@ then
     PACKAGES="${PACKAGES} z3_tptp.4.11.2"  # 4.12.2-1 has build issues on ARM macOS
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.18"
-  PACKAGES="${PACKAGES} coq-coqeal.1.1.3"
+  PACKAGES="${PACKAGES} coq-coqeal.2.0.0"
   PACKAGES="${PACKAGES} coq-libhyps.2.0.6"
   PACKAGES="${PACKAGES} coq-itauto.8.18.0"
   
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.6"
-  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.1.1"
+  #PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.6.5" # requires coq-mathcomp 1.18
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.2.2"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.10"
 
   # Formal languages, compilers and code verification
-  PACKAGES="${PACKAGES} coq-reglang.1.1.3"
+  PACKAGES="${PACKAGES} coq-reglang.1.2.0"
   PACKAGES="${PACKAGES} coq-iris.4.1.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.1.0"
   if [[ "$OSTYPE" != cygwin ]]
@@ -155,7 +155,7 @@ then
     PACKAGES="${PACKAGES} coq-ott.0.33"
     PACKAGES="${PACKAGES} ott.0.33"
   fi
-  PACKAGES="${PACKAGES} coq-mathcomp-word.2.1"
+  # PACKAGES="${PACKAGES} coq-mathcomp-word.2.1" # requires coq-mathcomp-ssreflect < 1.18~
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.13.1" ;;
@@ -181,11 +181,11 @@ if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
 
   # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-deriving.0.1.1"
+  PACKAGES="${PACKAGES} coq-deriving.0.2.0"
   PACKAGES="${PACKAGES} coq-metacoq.1.2.1+8.18"
 
   # General mathematics
-  PACKAGES="${PACKAGES} coq-extructures.0.3.1"
+  PACKAGES="${PACKAGES} coq-extructures.0.4.0"
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.5"
