@@ -40,6 +40,7 @@ install: [
 patches: [
   "0001-Fix-bug-when-installing-with-a-system-compiler.patch"
   "0001-Allow-executable-relative-paths-staring-with.patch"
+  "0001-Windows-allow-and-as-path-separator.patch"
   (* This patch is from https://github.com/fdopen/opam-repository-mingw/tree/opam2/packages/ocamlfind/ocamlfind.1.9.5/files *)
   "findlib-1.9.5.patch" {os = "win32"}
 ]
