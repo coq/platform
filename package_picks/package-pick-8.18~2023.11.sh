@@ -182,7 +182,10 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.1.1"
-  PACKAGES="${PACKAGES} coq-metacoq.1.2.1+8.18"
+  if [ "${BITSIZE}" == "64" ]
+  then
+    PACKAGES="${PACKAGES} coq-metacoq.1.2.1+8.18"
+  fi
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.3.1"
