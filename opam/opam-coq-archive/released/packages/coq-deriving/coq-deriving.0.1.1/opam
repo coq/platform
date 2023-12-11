@@ -1,0 +1,36 @@
+opam-version: "2.0"
+maintainer: "Arthur Azevedo de Amorim <arthur.aa@gmail.com>"
+
+homepage: "https://github.com/arthuraa/deriving"
+bug-reports: "https://github.com/arthuraa/deriving/issues"
+dev-repo: "git+https://github.com/arthuraa/deriving.git"
+license: "MIT"
+
+build: [ make "-j" "%{jobs}%" "test" {with-test} ]
+install: [ make "install" ]
+depends: [
+  "coq" { (>= "8.11" & < "8.19~") | (= "dev") }
+  "coq-mathcomp-ssreflect" {>= "1.11"}
+]
+
+tags: [
+  "keyword:generic programming"
+  "category:Computer Science/Data Types and Data Structures"
+  "logpath:deriving"
+]
+authors: [
+  "Arthur Azevedo de Amorim"
+]
+
+synopsis: "Generic instances of MathComp classes"
+description: """
+Deriving provides generic instances of MathComp classes for
+inductive data types.  It includes native support for eqType,
+choiceType, countType and finType instances, and it allows users to
+define their own instances for other classes.
+"""
+
+url {
+  src: "https://github.com/arthuraa/deriving/archive/v0.1.1.tar.gz"
+  checksum: "sha512=2762dbc28543906d90ab0c7c9cd22157a94679da59188432fccff2e149de9ad29a40ab20d222a0f55dcbe0354a6d94b74b14d7141fd1fb228c5edb89257494ce"
+}

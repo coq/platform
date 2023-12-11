@@ -52,8 +52,9 @@ jobs:
           - '32'
         variant:
           # Keep this in sync with the Smoke test below
+          - '8.18~2023.11'
+          - '8.18~mc2~2023.11'
           - '8.17~2023.08'
-          - '8.16~2022.09'
 
     steps:
       - name: Set git to use LF
@@ -105,8 +106,9 @@ jobs:
           - '64'
           - '32'
         variant:
+          - '8.18~2023.11'
+          - '8.18~mc2~2023.11'
           - '8.17~2023.08'
-          - '8.16~2022.09'
 
     steps:
       - name: 'Download Artifact'
