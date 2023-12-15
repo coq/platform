@@ -45,7 +45,7 @@ env:
 jobs:
   Macos_platform:
     name: Macos
-    runs-on: [self-hosted, macOS]
+    runs-on: self-hosted
     strategy:
       fail-fast: false
       matrix:
@@ -150,7 +150,7 @@ jobs:
   Macos_smoke:
     name: Smoke test Macos
     needs: Macos_platform
-    runs-on: [self-hosted, macOS]
+    runs-on: self-hosted
     strategy:
       fail-fast: false
       matrix:
