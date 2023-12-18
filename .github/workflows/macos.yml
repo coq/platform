@@ -75,6 +75,9 @@ jobs:
           brew cleanup
           # See https://github.com/orgs/Homebrew/discussions/4612#discussioncomment-6351357
           brew config
+          # Trying to avoid Error: No available tap homebrew/core or homebrew/cask.
+          brew tap --force homebrew/cask
+          brew tap --force homebrew/core
           brew untap homebrew/core homebrew/cask
           brew config
           brew update
