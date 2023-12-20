@@ -45,7 +45,7 @@ env:
 jobs:
   Macos_platform:
     name: Macos
-    runs-on: macos-latest
+    runs-on: self-hosted
     strategy:
       fail-fast: false
       matrix:
@@ -75,6 +75,9 @@ jobs:
           brew cleanup
           # See https://github.com/orgs/Homebrew/discussions/4612#discussioncomment-6351357
           brew config
+          # Trying to avoid Error: No available tap homebrew/core or homebrew/cask.
+          brew tap --force homebrew/cask
+          brew tap --force homebrew/core
           brew untap homebrew/core homebrew/cask
           brew config
           brew update
@@ -112,10 +115,14 @@ jobs:
           pip3 install macpack
 
       - name: 'Build DMG installer'
-        shell: bash
-        run: |
-          eval $(opam env)
-          macos/create_installer_macos.sh
+        uses: Wandalen/wretry.action@master
+        with:
+          attempt_limit: 5
+          attempt_delay: 5000
+          shell: bash
+          command: |
+            eval $(opam env)
+            macos/create_installer_macos.sh
 
       - name: 'Upload DMG script logs on failure'
         uses: actions/upload-artifact@v2
@@ -134,7 +141,7 @@ jobs:
   Macos_smoke:
     name: Smoke test Macos
     needs: Macos_platform
-    runs-on: macos-latest
+    runs-on: self-hosted
     strategy:
       fail-fast: false
       matrix:
