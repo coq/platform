@@ -24,6 +24,7 @@ REM Values are x86_64 or i686 (not 64 or 32)
 SET ARCH=x86_64
 SET SETUP=setup-x86_64.exe
 SET BITS=64
+SET BITSCYGBASE=cygwin
 SET OTHER_BITS=32
 SET OTHER_ARCH=i686
 
@@ -90,6 +91,8 @@ IF "%~0" == "-arch" (
     SET SETUP=setup-x86.exe
     SET CYGWIN_REPOSITORY=%CYGWIN_REPOSITORY_32%
     SET BITS=32
+    REM path length are super critical, especially for ser-api, so we can't user a longer base name for 32 than for 64 bits
+    SET BITSCYGBASE=cygw32
     SET OTHER_BITS=64
     SET OTHER_ARCH=x86_64
   ) ELSE (
@@ -97,6 +100,7 @@ IF "%~0" == "-arch" (
       SET ARCH=x86_64
       SET SETUP=setup-x86_64.exe
       SET BITS=64
+      SET BITSCYGBASE=cygwin
       SET OTHER_BITS=32
       SET OTHER_ARCH=i686
     ) ELSE (
@@ -283,10 +287,11 @@ IF "%DESTCYG%" == "" (
   ECHO path should indicate that the cygwin is specialized for Coq Platform builds.
   ECHO(
   ECHO The following recommended paths can be chosen by entering a number:
-  ECHO 1  C:\cygwin%BITS%_coq.
-  ECHO 2  C:\cygwin%BITS%_coq_platform.
-  ECHO 3  C:\bin\cygwin%BITS%_coq_platform.
-  ECHO Please enter a number 1...3 or a complete path
+  ECHO 1  C:\%BITSCYGBASE%_coq
+  ECHO 2  C:\%BITSCYGBASE%_coq_platform
+  ECHO 3  C:\bin\%BITSCYGBASE%_coq
+  ECHO 4  C:\bin\%BITSCYGBASE%_coq_platform
+  ECHO Please enter a number 1...4 or a complete path
   ECHO ======================== CYGWIN INSTALLATION LOCATION ========================
   SET /P DESTCYG="Cygwin install folder: "
 )
@@ -302,16 +307,20 @@ IF "%DESTCYG%" == "" (
 )
 
 IF "%DESTCYG%" == "1" (
-  SET DESTCYG=C:\cygwin%BITS%_coq
+  SET DESTCYG=C:\%BITSCYGBASE%_coq
 ) ELSE IF "%DESTCYG%" == "2" (
-  SET DESTCYG=C:\cygwin%BITS%_coq_platform
+  SET DESTCYG=C:\%BITSCYGBASE%_coq_platform
 ) ELSE IF "%DESTCYG%" == "3" (
-  SET DESTCYG=C:\bin\cygwin%BITS%_coq_platform
+  SET DESTCYG=C:\bin\%BITSCYGBASE%_coq
+) ELSE IF "%DESTCYG%" == "4" (
+  SET DESTCYG=C:\bin\%BITSCYGBASE%_coq_platform
 ) ELSE (
   REM CHECK PATH
   IF EXIST %DESTCYG%\NUL (
-    IF NOT EXIST %DESTCYG%\home\%USERNAME%\platform\NUL (
+    IF NOT EXIST %DESTCYG%\platform\NUL (
       ECHO ERROR: The folder %DESTCYG% exists and is not a Coq Platform cygwin folder!
+      ECHO Note: the platform root and opam root path changed in 2023.11 to work around path length issues.
+      ECHO You can still reuse an existing coq platform cygwin installation by starting the script from there.
       EXIT 1
     )
   )
@@ -452,21 +461,18 @@ SET "PROFILEREAD="
 copy "%BATCHDIR%\windows\configure_profile.sh" "%CYGWIN_INSTALLDIR_WFMT%\var\tmp" || GOTO ErrorExit
 %BASH% --login "%CYGWIN_INSTALLDIR_CFMT%/var/tmp/configure_profile.sh" "%PROXY%" || GOTO ErrorExit
 
-REM Get cygwin user home folder as windows path
-REM Note: we don't write the full path from cygwin, because it is a bit dangerous if this fails.
-REM We want to prepend USER_HOME_DIR_MFMT here to be sure we stay in this folder.
-SET /p USER_HOME_DIR_CFMT=<"%CYGWIN_INSTALLDIR_WFMT%\var\tmp\main_user_folder.txt"
-SET USER_HOME_DIR_MFMT=%CYGWIN_INSTALLDIR_MFMT%%USER_HOME_DIR_CFMT%
-SET USER_HOME_DIR_WFMT=%USER_HOME_DIR_MFMT:/=\%
+REM Get platform root folder as windows path
+SET PLATFORM_ROOT_DIR_MFMT=%CYGWIN_INSTALLDIR_MFMT%/platform
+SET PLATFORM_ROOT_DIR_WFMT=%PLATFORM_ROOT_DIR_MFMT:/=\%
 
 ECHO ========== BUILD COQ PLATFORM ==========
 
 IF "%BUILD_COQ_PLATFORM%" == "y" (
-  RMDIR /S /Q "%USER_HOME_DIR_MFMT%\platform"
-  MKDIR "%USER_HOME_DIR_MFMT%\platform"
-  XCOPY /S "%BATCHDIR%*.*" "%USER_HOME_DIR_WFMT%\platform" || GOTO ErrorExit
+  RMDIR /S /Q "%PLATFORM_ROOT_DIR_MFMT%"
+  MKDIR "%PLATFORM_ROOT_DIR_MFMT%"
+  XCOPY /S "%BATCHDIR%*.*" "%PLATFORM_ROOT_DIR_WFMT%" || GOTO ErrorExit
 
-  %BASH% --login "%CYGWIN_INSTALLDIR_CFMT%/%USER_HOME_DIR_CFMT%/platform/coq_platform_make.sh" || GOTO ErrorExit
+  %BASH% --login "%CYGWIN_INSTALLDIR_CFMT%/platform/coq_platform_make.sh" || GOTO ErrorExit
 
 ) ELSE (
   ECHO Note: Automatic Coq Platform build has been disabled with -build=n

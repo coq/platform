@@ -39,11 +39,12 @@ if [ ! -f $donefile ] ; then
   # Set a marker that this is a cygwin intended for Coq Platform compilation
   echo export COQ_PLATFORM_CYGWIN_OK=Y
 
+  # Set the opam root folder
+  echo export OPAMROOT="'$(cygpath -aw /opam)'"
+  echo export PLATFORMROOT="'$(cygpath -aw /platform)'"
+
   exec 1>&6 6>&-       # Restore stdout from file descriptor 6 and close file descriptor #6
 
   touch $donefile
 fi
 
-###################### REPORT USER FOLDER ######################
-
-echo $HOME > /var/tmp/main_user_folder.txt
