@@ -80,6 +80,16 @@ The Coq Platform team does no double check this information.
 
 <details><summary><font size="+1">Release notes / changelog</font></summary>
 
+## Changes in 2023.11.0
+
+- When using the build from sources script on Windows the root folders changed to shorten the path length (e.g. coq-serapi had build issues cause by long path names)
+  - the opam path is now `<cygroot>/opam`  instead of `<cygroot>/home/<user>/.opam`
+  - the platform path is now `<cygroot>/platform`  instead of `<cygroot>/home/<user>/platform`
+  - the (longest) recommended cygwin root path is now `C:\bin\cygwin_coq_platform` or `C:\bin\cygw32_coq_platform`
+- Added new pick 8.18~2023.11 8.18~mc2
+- coq-ott has been added back on Windows
+- coq-fiat-crypto has been removed on Windows, since version 0.0.20 results in stack overflows - there is no good work around for this - we recommend to use the prior pick 8.16~2022.09
+
 ## Changes in 2023.03.0
 
 - Added new picks 8.17~2023.08 and 8.16~2023.08

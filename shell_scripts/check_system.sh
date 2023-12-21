@@ -69,12 +69,15 @@ then
 	fi
 
     # On 32 bit cygwin on GitHub somehow the certificate database is broken - fix it
-	echo "============ Fix certificate database ============"
-    ls -l /etc/pki/tls/certs/
-    ls -lL /etc/pki/tls/certs/
-    update-ca-trust
-    ls -lL /etc/pki/tls/certs/
-	echo "============ Fix certificate database done ============"
+	if [ "${BITSIZE}" == "32" ]
+	then
+		echo "============ Fix certificate database ============"
+		ls -l /etc/pki/tls/certs/
+		ls -lL /etc/pki/tls/certs/
+		update-ca-trust
+		ls -lL /etc/pki/tls/certs/
+		echo "============ Fix certificate database done ============"
+	fi
 
 else
 		echo "ERROR: unsopported OS type '$OSTYPE'"

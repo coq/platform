@@ -18,7 +18,7 @@ COQ_PLATFORM_VERSION_SORTORDER=2
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.18~mc2~2023.11'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.18~mc2'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.18'
@@ -148,13 +148,8 @@ then
   PACKAGES="${PACKAGES} coq-reglang.1.2.0"
   PACKAGES="${PACKAGES} coq-iris.4.1.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.1.0"
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    # Windows: some issues with executable extensions (ott.opt instead of ott.exe)
-    # Note: 0.32 does work on Windows!
-    PACKAGES="${PACKAGES} coq-ott.0.33"
-    PACKAGES="${PACKAGES} ott.0.33"
-  fi
+  PACKAGES="${PACKAGES} coq-ott.0.33"
+  PACKAGES="${PACKAGES} ott.0.33"
   # PACKAGES="${PACKAGES} coq-mathcomp-word.2.1" # requires coq-mathcomp-ssreflect < 1.18~
   
   case "$COQ_PLATFORM_COMPCERT" in
@@ -195,11 +190,7 @@ then
   PACKAGES="${PACKAGES} coq-record-update.0.3.3"
 
   # Communication with coqtop
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    # Windows: path length issues
-    PACKAGES="${PACKAGES} coq-serapi.8.18.0+0.18.1"
-  fi
+  PACKAGES="${PACKAGES} coq-serapi.8.18.0+0.18.1"
 
   # fiat crypto, bedrock2, rupicola and dependencies
   if [ "${BITSIZE}" == "64" ]

@@ -53,7 +53,7 @@ jobs:
         variant:
           # Keep this in sync with the Smoke test below
           - '8.18~2023.11'
-          - '8.18~mc2~2023.11'
+          - '8.18~mc2'
           - '8.17~2023.08'
 
     steps:
@@ -75,11 +75,11 @@ jobs:
 
       - name: Create installer
         shell: cmd
-        run: C:\cygwin_coq_platform\bin\bash --login -c "cd platform/ && windows/create_installer_windows.sh && mkdir /cygdrive/c/installer && cp windows_installer/*exe /cygdrive/c/installer/"
+        run: C:\cygwin_coq_platform\bin\bash --login -c "cd /platform/ && windows/create_installer_windows.sh && mkdir /cygdrive/c/installer && cp windows_installer/*exe /cygdrive/c/installer/"
 
       - name: Create smoke test kit
         shell: cmd
-        run: C:\cygwin_coq_platform\bin\bash --login -c "cd platform/ && shell_scripts/create_smoke_test_kit.sh && mkdir /cygdrive/c/smoke && cp -ra smoke-test-kit/* /cygdrive/c/smoke/"
+        run: C:\cygwin_coq_platform\bin\bash --login -c "cd /platform/ && shell_scripts/create_smoke_test_kit.sh && mkdir /cygdrive/c/smoke && cp -ra smoke-test-kit/* /cygdrive/c/smoke/"
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
@@ -107,7 +107,7 @@ jobs:
           - '32'
         variant:
           - '8.18~2023.11'
-          - '8.18~mc2~2023.11'
+          - '8.18~mc2'
           - '8.17~2023.08'
 
     steps:

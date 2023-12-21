@@ -59,7 +59,7 @@ jobs:
         variant:
           # This should contain all picks introduced in the current release + all original picks of all Coq versions
           - '8.18~2023.11'
-          - '8.18~mc2~2023.11'
+          - '8.18~mc2'
           - '8.17~2023.08'
           - '8.16~2022.09'
           - '8.15~2022.09'
