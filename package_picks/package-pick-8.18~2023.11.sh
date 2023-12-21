@@ -150,7 +150,7 @@ then
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.1.0"
   PACKAGES="${PACKAGES} coq-ott.0.33"
   PACKAGES="${PACKAGES} ott.0.33"
-  PACKAGES="${PACKAGES} coq-mathcomp-word.2.1"
+  PACKAGES="${PACKAGES} coq-mathcomp-word.2.1" # Note: 3.0 is incompatible with mathcomp 1.X
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.13.1" ;;
