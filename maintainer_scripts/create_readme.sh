@@ -320,7 +320,13 @@ RESULT_FILE_GRAPH="${RESULT_FILE_GRAPH:-${DOC_PATH}/DependencyGraph${COQ_PLATFOR
 
 source ${ROOT_PATH}/package_picks/coq_platform_switch_name.sh
 
-echo "Creating Readme for opam switch ${COQ_PLATFORM_SWITCH_NAME}"
+echo "Creating Readme for pick ${COQ_PLATFORM_PACKAGE_PICK_FILE} and opam switch ${COQ_PLATFORM_SWITCH_NAME}"
+
+if ! opam switch ${COQ_PLATFORM_SWITCH_NAME}
+then
+  echo "opam switch ${COQ_PLATFORM_SWITCH_NAME} does not exist => exit"
+  exit 0
+fi
 
 PACKAGES_INSTALLED="$(opam list --installed --short --columns=name,version --switch="${COQ_PLATFORM_SWITCH_NAME}" | sed 's/  */./' | tr -s '\n' ' ')"
 
