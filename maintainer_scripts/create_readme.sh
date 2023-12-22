@@ -770,20 +770,23 @@ function write_packages (
   done
 )
 
-echo "digraph G {" > dependencies.gv
-echo "label = \"Dependecy graph for Coq Platform ${COQ_PLATFORM_RELEASE}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}\\n\\n\"" >> dependencies.gv
-echo "labelloc = \"t\"" >> dependencies.gv
-echo "fontname = \"Helvetica,Arial,sans-serif\"" >> dependencies.gv
-echo "fontsize = 32" >> dependencies.gv
+if [ "$DEPENDCY_GRAPH" == "Y" ]
+then
+  echo "digraph G {" > dependencies.gv
+  echo "label = \"Dependecy graph for Coq Platform ${COQ_PLATFORM_RELEASE}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}\\n\\n\"" >> dependencies.gv
+  echo "labelloc = \"t\"" >> dependencies.gv
+  echo "fontname = \"Helvetica,Arial,sans-serif\"" >> dependencies.gv
+  echo "fontsize = 32" >> dependencies.gv
 
-write_packages "$PACKAGES_BASE" "shape=ellipse,color=blue," true
-write_packages "$PACKAGES_IDE" "shape=ellipse,color=blue," true
-write_packages "$PACKAGES_FULL" "shape=ellipse,color=darkgreen," true
-write_packages "$PACKAGES_OPTIONAL" "shape=ellipse,color=red," true
-write_packages "$PACKAGES_EXTENDED" "shape=ellipse,color=orange," true
-write_packages "$PACKAGES_DEPENDENCY" "shape=ellipse,color=gray," false
+  write_packages "$PACKAGES_BASE" "shape=ellipse,color=blue," true
+  write_packages "$PACKAGES_IDE" "shape=ellipse,color=blue," true
+  write_packages "$PACKAGES_FULL" "shape=ellipse,color=darkgreen," true
+  write_packages "$PACKAGES_OPTIONAL" "shape=ellipse,color=red," true
+  write_packages "$PACKAGES_EXTENDED" "shape=ellipse,color=orange," true
+  write_packages "$PACKAGES_DEPENDENCY" "shape=ellipse,color=gray," false
 
-echo "}" >> dependencies.gv
+  echo "}" >> dependencies.gv
 
-dot dependencies.gv -Tpdf > "$RESULT_FILE_GRAPH"
-rm dependencies.gv
+  dot dependencies.gv -Tpdf > "$RESULT_FILE_GRAPH"
+  rm dependencies.gv
+fi
