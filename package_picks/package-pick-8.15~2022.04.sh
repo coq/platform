@@ -182,6 +182,6 @@ then
   PACKAGES="${PACKAGES} coq-record-update.0.3.0"
 
   # Communication with coqtop
-  PACKAGES="${PACKAGES} coq-serapi.8.15.0+0.15.0"
+  # PACKAGES="${PACKAGES} coq-serapi.8.15.0+0.15.0" # removed - smoke test crashes in 8.15
 
 fi
