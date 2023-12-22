@@ -24,6 +24,7 @@ esac
 
 set -o nounset
 set -o errexit
+set -o pipefail
 
 ###### The scripts supports a regexp package name pattern as $1 #####
 
@@ -52,6 +53,10 @@ declare -A TEST_FILES
 declare -A COQ_OPTION
 # A AWK command for patching test files (typically require statements) [optional]
 declare -A PATCH_CMDS
+# A commandline to execute instead of coqc
+# Note that this command must work on macOS, Linux and Windows!
+# If TEST_FILES are given, these are copied (and patched if PATCH_CMDS is also given), but not given to the command in any way - the command line needs to duplicate the file list in some way
+declare -A TEST_CMDS
 
 TEST_FILES[coq-aac-tactics]='theories/Tutorial.v'
 TEST_FILES[coq-bedrock2]='bedrock2/src/bedrock2Examples/ipow.v'
@@ -144,6 +149,7 @@ TEST_FILES[coq-rewriter]='src/Rewriter/Demo.v '
 TEST_FILES[coq-riscv]='src/riscv/Examples/MulTrapHandler.v'
 TEST_FILES[coq-rupicola]='src/Rupicola/Examples/Uppercase.v'
 TEST_FILES[coq-serapi]=''
+TEST_CMDS[coq-serapi]="echo '(Add () \"Lemma addn0 n : n + 0. Proof. now induction n. Qed.\") (Exec 5)' | sertop"
 TEST_FILES[coq-simple-io]='test/Example.v test/TestExtraction.v'
 TEST_FILES[coq-stdpp]='tests/sets.v'
 TEST_FILES[coq-unicoq]='test-suite/microtests.v'
@@ -183,6 +189,7 @@ cat <<-'EOH' | sed -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PACKAGE_PICK_POS
 	# Exit on all errors
 	set -o nounset
 	set -o errexit
+	set -o pipefail
 
 	# The scripts supports a regexp package name pattern as $1
 	pattern="${1:-.*}"
@@ -358,6 +365,16 @@ do
     patches=""
   fi
 
+  if [ -n "${TEST_CMDS[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]+_undef_}" ]
+  then
+    commands="${TEST_CMDS[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]}"
+  elif [ -n "${TEST_CMDS[${package}]+_undef_}" ]
+  then
+    commands="${TEST_CMDS[${package}]}"
+  else
+    commands=""
+  fi
+
   if [ -n "$files" ]
   then
     # get installed version of package (otherwise opam source gives the latest)
@@ -372,12 +389,24 @@ do
       filename=${filename/-/_}
       cp "smoke-test-kit/${package}-src/$file" "smoke-test-kit/${package}/${filename}"
       patch_file "smoke-test-kit/${package}/${filename}" "${patches}"
-      echo "run_test ${package}/${filename} \"$options\"" >> $smoke_script
-      echo "CALL :run_test ${package}/${filename} \"${options//\$COQLIB/%COQLIB%}\""$'\r' >> $smoke_batch
+	  if [ -z "$commands" ]
+	  then
+		echo "run_test ${package}/${filename} \"$options\"" >> $smoke_script
+		echo "CALL :run_test ${package}/${filename} \"${options//\$COQLIB/%COQLIB%}\""$'\r' >> $smoke_batch
+	  fi
     done
     rm -rf smoke-test-kit/${package}-src
-  else
-    echo "File list for ${package} is set empty"
+  elif [ -z "$commands" ]
+  then
+    echo "File list and command for ${package}are set empty"
+  fi
+
+  if [ -n "$commands" ]
+  then
+    echo "echo \"====================== Running test command for $package ======================\"" >> $smoke_script
+    echo "echo \"====================== Running test command for $package ======================\"" >> $smoke_batch
+	echo "$commands" >> $smoke_script
+	echo "$commands" >> $smoke_batch
   fi
 
   if [ -n "$options" ]
