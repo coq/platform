@@ -112,10 +112,15 @@ jobs:
           pip3 install macpack
 
       - name: 'Build DMG installer'
-        shell: bash
-        run: |
-          eval $(opam env)
-          macos/create_installer_macos.sh
+        uses: Wandalen/wretry.action@v1
+        with:
+          attempt_limit: 5
+          attempt_delay: 5000
+          shell: bash
+          command: |
+            eval $(opam env)
+            macos/create_installer_macos.sh
+
 
       - name: 'Upload DMG script logs on failure'
         uses: actions/upload-artifact@v3
