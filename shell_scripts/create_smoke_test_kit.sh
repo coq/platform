@@ -149,7 +149,7 @@ TEST_FILES[coq-rewriter]='src/Rewriter/Demo.v '
 TEST_FILES[coq-riscv]='src/riscv/Examples/MulTrapHandler.v'
 TEST_FILES[coq-rupicola]='src/Rupicola/Examples/Uppercase.v'
 TEST_FILES[coq-serapi]=''
-TEST_CMDS[coq-serapi]="echo '(Add () \"Lemma addn0 n : n + 0. Proof. now induction n. Qed.\") (Exec 5)' | sertop"
+TEST_CMDS[coq-serapi]="echo '(Add () \"Lemma addn0 n : n + 0 = n. Proof. now induction n. Qed.\") (Exec 5)' | sertop"
 TEST_FILES[coq-simple-io]='test/Example.v test/TestExtraction.v'
 TEST_FILES[coq-stdpp]='tests/sets.v'
 TEST_FILES[coq-unicoq]='test-suite/microtests.v'
