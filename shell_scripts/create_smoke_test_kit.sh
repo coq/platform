@@ -148,8 +148,8 @@ PATCH_CMDS[coq-relation-algebra]='/^Require Import kat .*$/ {print "From Relatio
 TEST_FILES[coq-rewriter]='src/Rewriter/Demo.v '
 TEST_FILES[coq-riscv]='src/riscv/Examples/MulTrapHandler.v'
 TEST_FILES[coq-rupicola]='src/Rupicola/Examples/Uppercase.v'
-TEST_FILES[coq-serapi]=''
-TEST_CMDS[coq-serapi]="echo '(Add () \"Lemma addn0 n : n + 0 = n. Proof. now induction n. Qed.\") (Exec 5)' | sertop"
+TEST_FILES[coq-serapi]='../../test_files/coq-serapi/serapi_example'
+TEST_CMDS[coq-serapi]="sertop < serapi_example"
 TEST_FILES[coq-simple-io]='test/Example.v test/TestExtraction.v'
 TEST_FILES[coq-stdpp]='tests/sets.v'
 TEST_FILES[coq-unicoq]='test-suite/microtests.v'
@@ -243,6 +243,24 @@ cat <<-'EOH' | sed -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PACKAGE_PICK_POS
 	  fi
 	}
 
+	# Run one test command
+	# $1: package name = sub folder name
+	# $2..: command to run
+	function run_test_command {
+	  local package="$1"
+	  local command="${@:2}"
+	  if [[ "$package" =~ ${pattern} ]]
+	  then
+	    echo "====================== Running test command for $package: $@ ======================"
+	      here="$(pwd)"
+	      cd "${package}"
+	      echo "test command $command"
+	      eval "$command"
+	      cd "$here"
+	    echo $'\n\n'
+	  fi
+	}
+
 	# Run coqc for all smoke test files
 	EOH
 
@@ -306,7 +324,23 @@ cat <<-'EOH' | sed -e 's/$/\r/' -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PAC
 	  ECHO(
 	  ECHO(
 	GOTO :EOF
-	
+
+	:run_test_command
+	  ECHO "====================== Running test command for %1: %~2 ======================"
+	  SET "HERESUB=%CD%"
+	  CD "%1"
+	  ECHO "test command %~2"
+	  %~2
+	  IF ERRORLEVEL 1 (
+	    CD "%HERESUB%"
+	    ECHO "Test command failed"
+	    EXIT /B 1
+	  )
+	  CD "%HERESUB%"
+	  ECHO(
+	  ECHO(
+	GOTO :EOF
+
 	:run_all_tests
 	
 	REM Run coqc for all smoke test files
@@ -403,10 +437,8 @@ do
 
   if [ -n "$commands" ]
   then
-    echo "echo \"====================== Running test command for $package ======================\"" >> $smoke_script
-    echo "echo \"====================== Running test command for $package ======================\"" >> $smoke_batch
-	echo "$commands" >> $smoke_script
-	echo "$commands" >> $smoke_batch
+	echo "run_test_command $package \"$commands\"" >> $smoke_script
+	echo "CALL :run_test_command $package \"$commands\"" >> $smoke_batch
   fi
 
   if [ -n "$options" ]

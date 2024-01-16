@@ -1,0 +1,2 @@
+(Add () "Lemma addn0 n : n + 0 = 0. Proof. now induction n. Qed.")
+(Exec 5)
