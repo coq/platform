@@ -98,6 +98,10 @@ apps:
     plugs: [home]
     command-chain: [ coq-platform/bin/coq_wrapper ]
     command: coq-platform/bin/coqdep
+  sertop:
+    plugs: [home]
+    command-chain: [ coq-platform/bin/coq_wrapper ]
+    command: coq-platform/bin/sertop
   # Note: one cannot start an interactive shell from snap in a sensible way cause the shell would run in the snap sandbox.
   # One can register exceptions for required files, but making it work for all common shells would be too complicated.
   # But one can start this script from /snap/coq-prover/current/coq-platform/bin

@@ -184,6 +184,7 @@ jobs:
         run: |
           sudo snap install --dangerous ${{ steps.download-snap.outputs.download-path }}/coq-prover_*.snap
           sudo snap alias coq-prover.coqc coqc
+          sudo snap alias coq-prover.sertop sertop
 
       - name: 'Run Smoke Test Kit'
         run: |
