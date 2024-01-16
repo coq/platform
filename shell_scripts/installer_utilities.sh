@@ -171,6 +171,7 @@ function retry_command()
     local sleeptime=$2
     local cmd="${@: 3}"
     local ntries=0
+    echo "retry $maxtries with delay of $sleeptime command '$cmd'"
     while true
     do
         if [ $ntries -ge $maxtries ]
