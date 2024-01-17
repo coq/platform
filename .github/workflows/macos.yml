@@ -116,11 +116,9 @@ jobs:
         with:
           attempt_limit: 5
           attempt_delay: 5000
-          shell: bash
           command: |
             eval $(opam env)
             macos/create_installer_macos.sh
-
 
       - name: 'Upload DMG script logs on failure'
         uses: actions/upload-artifact@v3
