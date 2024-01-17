@@ -183,7 +183,6 @@ jobs:
         run: |
           ls /Applications/Coq-Platform*.app
           export PATH="$PATH:$(cd /Applications/Coq-Platform*.app/Contents/Resources/bin/; pwd)"
-          export DYLD_PRINT_LIBRARIES=1
           cd ${{steps.download-smoke.outputs.download-path}}
           chmod a+x ./run-smoke-test.sh
           ./run-smoke-test.sh
