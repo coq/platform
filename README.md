@@ -94,6 +94,10 @@ The Coq Platform team does no double check this information.
 - coq-ott has been added back on Windows
 - coq-fiat-crypto is still removed on Windows, since version 0.0.24 results in stack overflows - there is no good work around for this - we recommend to use the prior pick 8.16~2022.09
 
+**ATTENTION**:
+
+Please see the [Pick Readme 8.18~2023.11](doc/README~8.18~2023.11.md) and [Pick Readme 8.18~mc2](doc/README~8.18~mc2.md) for details on the package list.
+
 ## Changes in 2023.03.0
 
 - Added new picks 8.17~2023.08 and 8.16~2023.08
