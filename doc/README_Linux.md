@@ -24,6 +24,8 @@ This install method has been implemented by Enrico Tassi.
 
 **A note to lecturers:** it is easy to create a customized snap packages from an opam switch - see [Customized Installers](FAQ-customized-installers.md)
 
+**A note to serapi users:** please run the command `sudo snap alias coq-prover.sertop sertop` to make `sertop` accessible without the `coq-prover` prefix
+
 ## Package name
 
 The name of the package is `coq-prover` since `coq` was considered

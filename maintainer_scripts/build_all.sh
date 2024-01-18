@@ -10,7 +10,9 @@
 
 ###################### Create Readme.md ######################
 
-# This script creates a README.md file for all available package picks
+# This script builds all available package picks
+# It also creates the readme, packagelist and dependency graph for all picks
+# THIS CAN TAKE A DAY
 
 ##### Initialization #####
 
@@ -21,5 +23,6 @@ set -o errexit
 
 for pick in package_picks/package-pick-*
 do
+  ./coq_platform_make.sh -pick="${pick}" -extent=x -parallel=p -jobs=8 -compcert=y -large=i -switch=k -set-switch=n 
   maintainer_scripts/create_readme.sh -pick="${pick}" -depgraph
 done

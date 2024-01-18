@@ -32,6 +32,8 @@ CHECKOPAMLINKS='Y'
 COQ_PLATFORM_PACKAGE_PICK_NAME=''
 RESULT_TYPE='MD'
 ONLY_INSTALLED='N'
+DEPENDCY_GRAPH='N'
+DEPENDCY_GRAPH_ONLY='N'
 
 for arg in "$@"
 do
@@ -44,6 +46,8 @@ do
     -output=*|-o=*)        RESULT_FILE_TXT="${arg#*=}";;
     -table=*|-t=*)         RESULT_FILE_CSV="${arg#*=}";;
     -installed|-i)         ONLY_INSTALLED='Y';;
+    -depgraph|-d)          DEPENDCY_GRAPH='Y';;
+    -depgraphonly)         DEPENDCY_GRAPH_ONLY='Y';;
     *) echo "Illegal option ${arg}"; exit 1 ;;
   esac
 done
@@ -310,14 +314,21 @@ package_list_notes="$(grep '# DESCRIPTION'  "${COQ_PLATFORM_PACKAGE_PICK_FILE}" 
 
 RESULT_FILE_TXT="${RESULT_FILE_TXT:-${DOC_PATH}/README${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.md}"
 RESULT_FILE_CSV="${RESULT_FILE_CSV:-${DOC_PATH}/PackageTable${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.csv}"
+RESULT_FILE_GRAPH="${RESULT_FILE_GRAPH:-${DOC_PATH}/DependencyGraph${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}.pdf}"
 
 ##### Get list of all installed packages from opam #####
 
 source ${ROOT_PATH}/package_picks/coq_platform_switch_name.sh
 
-opam switch "${COQ_PLATFORM_SWITCH_NAME}"
+echo "Creating Readme for pick ${COQ_PLATFORM_PACKAGE_PICK_FILE} and opam switch ${COQ_PLATFORM_SWITCH_NAME}"
 
-PACKAGES_INSTALLED="$(opam list --installed --short --columns=name,version | sed 's/  */./' | tr -s '\n' ' ')"
+if ! opam switch ${COQ_PLATFORM_SWITCH_NAME}
+then
+  echo "opam switch ${COQ_PLATFORM_SWITCH_NAME} does not exist => exit"
+  exit 0
+fi
+
+PACKAGES_INSTALLED="$(opam list --installed --short --columns=name,version --switch="${COQ_PLATFORM_SWITCH_NAME}" | sed 's/  */./' | tr -s '\n' ' ')"
 
 ##### Sanity checks #####
 
@@ -507,6 +518,9 @@ function html_package_opam {
 }
 
 ##### Create README.md and README.csv #####
+
+if [ "$DEPENDCY_GRAPH_ONLY" == "N" ]
+then
 
 # Write CSV header
 
@@ -717,3 +731,62 @@ do
 done
 
 echo "${END}" >> ${RESULT_FILE_TXT}
+
+fi
+
+##### Create Dependency.pdf #####
+
+DEP_INCLUSION_RE="^coq"
+
+PACKAGES_DONE=""
+
+# $1 = list of packages
+# $2 = node attributes (without [], with trailing , if not empty)
+# $3 : true = include all packages, false = include only name filtered packages
+function write_packages (
+  for package in $1
+  do
+    echo "Processing dependcy graph for $package"
+    if [[ "$package" =~ ${DEP_INCLUSION_RE} ]] || $3
+    then
+      package_name="${package%%.*}"
+      package_version="${package#*.}"
+      echo "\"$package_name\" [$2label=\"$package_name\\n$package_version\"];" >> dependencies.gv
+
+      dependencies="$(opam list --required-by=$package --short --installed --switch="${COQ_PLATFORM_SWITCH_NAME}")"
+      for dependency in $dependencies
+      do
+        # If the package is included record the dependency
+        if [[ "$dependency" =~ ${DEP_INCLUSION_RE} ]]
+        then
+          case $dependency in
+              coq) attr="[color=gray]";;
+              *)   attr="";;
+          esac
+          echo "\"$package_name\" -> \"$dependency\" $attr;" >> dependencies.gv
+        fi
+      done
+    fi
+  done
+)
+
+if [ "$DEPENDCY_GRAPH" == "Y" ]
+then
+  echo "digraph G {" > dependencies.gv
+  echo "label = \"Dependecy graph for Coq Platform ${COQ_PLATFORM_RELEASE}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}\\n\\n\"" >> dependencies.gv
+  echo "labelloc = \"t\"" >> dependencies.gv
+  echo "fontname = \"Helvetica,Arial,sans-serif\"" >> dependencies.gv
+  echo "fontsize = 32" >> dependencies.gv
+
+  write_packages "$PACKAGES_BASE" "shape=ellipse,color=blue," true
+  write_packages "$PACKAGES_IDE" "shape=ellipse,color=blue," true
+  write_packages "$PACKAGES_FULL" "shape=ellipse,color=darkgreen," true
+  write_packages "$PACKAGES_OPTIONAL" "shape=ellipse,color=red," true
+  write_packages "$PACKAGES_EXTENDED" "shape=ellipse,color=orange," true
+  write_packages "$PACKAGES_DEPENDENCY" "shape=ellipse,color=gray," false
+
+  echo "}" >> dependencies.gv
+
+  dot dependencies.gv -Tpdf > "$RESULT_FILE_GRAPH"
+  rm dependencies.gv
+fi

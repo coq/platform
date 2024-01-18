@@ -482,7 +482,8 @@ hdi_opts=(-volname "${DMG_NAME}"
           # see discussion in #11803
           -fs hfs+
          )
-hdiutil create "${hdi_opts[@]}" "${DMG_NAME}.dmg"
+
+retry_command 10 3 hdiutil create "${hdi_opts[@]}" "${DMG_NAME}.dmg"
 
 echo "##### Finished installer '${DMG_NAME}.dmg' #####"
 

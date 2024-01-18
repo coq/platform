@@ -24,6 +24,7 @@ esac
 
 set -o nounset
 set -o errexit
+set -o pipefail
 
 ###### The scripts supports a regexp package name pattern as $1 #####
 
@@ -52,6 +53,10 @@ declare -A TEST_FILES
 declare -A COQ_OPTION
 # A AWK command for patching test files (typically require statements) [optional]
 declare -A PATCH_CMDS
+# A commandline to execute instead of coqc
+# Note that this command must work on macOS, Linux and Windows!
+# If TEST_FILES are given, these are copied (and patched if PATCH_CMDS is also given), but not given to the command in any way - the command line needs to duplicate the file list in some way
+declare -A TEST_CMDS
 
 TEST_FILES[coq-aac-tactics]='theories/Tutorial.v'
 TEST_FILES[coq-bedrock2]='bedrock2/src/bedrock2Examples/ipow.v'
@@ -102,7 +107,7 @@ PATCH_CMDS[coq-interval-flocq3]='/Interval/ {sub("Interval", "IntervalFlocq3", $
 TEST_FILES[coq-iris-heap-lang]='tests/heapprop.v'
 TEST_FILES[coq-iris]='tests/heapprop.v'
 TEST_FILES[coq-itauto]='test-suite/no_test_lia.v' # test-suite/arith.v  has issues with Int63.v
-TEST_FILES[coq-libhyps]='' # 'Demo/demo.v' fails with 8.18
+TEST_FILES[coq-libhyps]='Demo/demo.v'
 TEST_FILES[coq-math-classes]=''
 TEST_FILES[coq-mathcomp-algebra-tactics]='examples/field_examples.v examples/ring_examples.v'
 PATCH_CMDS[coq-mathcomp-algebra-tactics]='/From mathcomp/ {sub("[(][*]", "", $0); sub("[*][)]", "", $0); print $0; next}'
@@ -143,7 +148,8 @@ PATCH_CMDS[coq-relation-algebra]='/^Require Import kat .*$/ {print "From Relatio
 TEST_FILES[coq-rewriter]='src/Rewriter/Demo.v '
 TEST_FILES[coq-riscv]='src/riscv/Examples/MulTrapHandler.v'
 TEST_FILES[coq-rupicola]='src/Rupicola/Examples/Uppercase.v'
-TEST_FILES[coq-serapi]=''
+TEST_FILES[coq-serapi]='../../test_files/coq-serapi/serapi_example'
+TEST_CMDS[coq-serapi]="sertop < serapi_example"
 TEST_FILES[coq-simple-io]='test/Example.v test/TestExtraction.v'
 TEST_FILES[coq-stdpp]='tests/sets.v'
 TEST_FILES[coq-unicoq]='test-suite/microtests.v'
@@ -183,6 +189,7 @@ cat <<-'EOH' | sed -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PACKAGE_PICK_POS
 	# Exit on all errors
 	set -o nounset
 	set -o errexit
+	set -o pipefail
 
 	# The scripts supports a regexp package name pattern as $1
 	pattern="${1:-.*}"
@@ -231,6 +238,24 @@ cat <<-'EOH' | sed -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PACKAGE_PICK_POS
 	      cd "${1%/*}"
 	      echo "coqc ${2:-} ${1##*/}"
 	      coqc ${2:-} "${1##*/}"
+	      cd "$here"
+	    echo $'\n\n'
+	  fi
+	}
+
+	# Run one test command
+	# $1: package name = sub folder name
+	# $2..: command to run
+	function run_test_command {
+	  local package="$1"
+	  local command="${@:2}"
+	  if [[ "$package" =~ ${pattern} ]]
+	  then
+	    echo "====================== Running test command for $package: $@ ======================"
+	      here="$(pwd)"
+	      cd "${package}"
+	      echo "test command $command"
+	      eval "$command"
 	      cd "$here"
 	    echo $'\n\n'
 	  fi
@@ -299,7 +324,23 @@ cat <<-'EOH' | sed -e 's/$/\r/' -e "s/PRODUCTNAME/Coq-Platform${COQ_PLATFORM_PAC
 	  ECHO(
 	  ECHO(
 	GOTO :EOF
-	
+
+	:run_test_command
+	  ECHO "====================== Running test command for %1: %~2 ======================"
+	  SET "HERESUB=%CD%"
+	  CD "%1"
+	  ECHO "test command %~2"
+	  %~2
+	  IF ERRORLEVEL 1 (
+	    CD "%HERESUB%"
+	    ECHO "Test command failed"
+	    EXIT /B 1
+	  )
+	  CD "%HERESUB%"
+	  ECHO(
+	  ECHO(
+	GOTO :EOF
+
 	:run_all_tests
 	
 	REM Run coqc for all smoke test files
@@ -358,6 +399,16 @@ do
     patches=""
   fi
 
+  if [ -n "${TEST_CMDS[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]+_undef_}" ]
+  then
+    commands="${TEST_CMDS[${package}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}]}"
+  elif [ -n "${TEST_CMDS[${package}]+_undef_}" ]
+  then
+    commands="${TEST_CMDS[${package}]}"
+  else
+    commands=""
+  fi
+
   if [ -n "$files" ]
   then
     # get installed version of package (otherwise opam source gives the latest)
@@ -372,12 +423,22 @@ do
       filename=${filename/-/_}
       cp "smoke-test-kit/${package}-src/$file" "smoke-test-kit/${package}/${filename}"
       patch_file "smoke-test-kit/${package}/${filename}" "${patches}"
-      echo "run_test ${package}/${filename} \"$options\"" >> $smoke_script
-      echo "CALL :run_test ${package}/${filename} \"${options//\$COQLIB/%COQLIB%}\""$'\r' >> $smoke_batch
+	  if [ -z "$commands" ]
+	  then
+		echo "run_test ${package}/${filename} \"$options\"" >> $smoke_script
+		echo "CALL :run_test ${package}/${filename} \"${options//\$COQLIB/%COQLIB%}\""$'\r' >> $smoke_batch
+	  fi
     done
     rm -rf smoke-test-kit/${package}-src
-  else
-    echo "File list for ${package} is set empty"
+  elif [ -z "$commands" ]
+  then
+    echo "File list and command for ${package}are set empty"
+  fi
+
+  if [ -n "$commands" ]
+  then
+	echo "run_test_command $package \"$commands\"" >> $smoke_script
+	echo "CALL :run_test_command $package \"$commands\"" >> $smoke_batch
   fi
 
   if [ -n "$options" ]

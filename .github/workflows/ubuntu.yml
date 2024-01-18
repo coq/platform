@@ -70,7 +70,7 @@ jobs:
 
     steps:
       - name: Git checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set PLATFORM
         if: ${{ github.event.inputs.platform != '' }}
@@ -98,7 +98,7 @@ jobs:
           smoke-test-kit/run-smoke-test.sh
 
       - name: 'Upload smoke test kit'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: 'Smoke Test Kit ${{matrix.variant}}'
           path: smoke-test-kit
@@ -111,7 +111,7 @@ jobs:
 
     steps:
       - name: Git checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set PLATFORM
         if: ${{ github.event.inputs.platform != '' }}
@@ -136,7 +136,7 @@ jobs:
         run: cat /home/runner/.local/state/snapcraft/log/*
 
       - name: Save Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: 'Snap package'
           path: ${{ steps.build.outputs.snap }}
@@ -169,13 +169,13 @@ jobs:
         run: echo "SNAP_PICK=${{ github.event.inputs.snap_pick }}" >> $GITHUB_ENV
 
       - name: Download Artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         id: download-snap
         with:
           name: 'Snap package'
 
       - name: 'Download smoke test kit'
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         id: download-smoke
         with:
           name: 'Smoke Test Kit ${{ env.SNAP_PICK }}'
@@ -184,6 +184,7 @@ jobs:
         run: |
           sudo snap install --dangerous ${{ steps.download-snap.outputs.download-path }}/coq-prover_*.snap
           sudo snap alias coq-prover.coqc coqc
+          sudo snap alias coq-prover.sertop sertop
 
       - name: 'Run Smoke Test Kit'
         run: |

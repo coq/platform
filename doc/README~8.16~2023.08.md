@@ -60,7 +60,7 @@ opam and contains the following package(s):
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/coq/coq.8.16.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/coq/coq.8.16.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>The Coq proof assistant provides a formal language to write<br>mathematical definitions, executable algorithms, and theorems, together<br>with an environment for semi-interactive development of machine-checked<br>proofs. Typical applications include the certification of properties of programming<br>languages (e.g., the CompCert compiler certification project and the<br>Bedrock verified low-level programming library), the formalization of<br>mathematics (e.g., the full formalization of the Feit-Thompson theorem<br>and homotopy type theory) and teaching.</dd>
   </dl>
@@ -75,7 +75,7 @@ opam and contains the following package(s):
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml/dune'>homepage</a>)
       (<a href='https://github.com/ocaml/dune/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/dune-configurator/dune-configurator.3.7.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/dune-configurator/dune-configurator.3.7.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>dune-configurator is a small library that helps writing OCaml scripts that<br>test features available on the system, in order to generate config.h<br>files for instance.<br>Among other things, dune-configurator allows one to:<br>- test if a C program compiles<br>- query pkg-config<br>- import #define from OCaml header files<br>- generate config.h file</dd>
   </dl>
@@ -90,7 +90,7 @@ opam and contains the following package(s):
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml/dune'>homepage</a>)
       (<a href='https://github.com/ocaml/dune/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/dune/dune.3.7.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/dune/dune.3.7.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>dune is a build system that was designed to simplify the release of<br>Jane Street packages. It reads metadata from \dune\ files following a<br>very simple s-expression syntax.<br><br>dune is fast, has very low-overhead, and supports parallel builds on<br>all platforms. It has no system dependencies; all you need to build<br>dune or packages using dune is OCaml. You don'apos;t need make or bash<br>as long as the packages themselves don'apos;t use bash explicitly.<br><br>dune supports multi-package development by simply dropping multiple<br>repositories into the same directory.<br><br>It also supports multi-context builds, such as building against<br>several opam roots/switches simultaneously. This helps maintaining<br>packages across several versions of OCaml and gives cross-compilation<br>for free.</dd>
   </dl>
@@ -118,7 +118,7 @@ The **IDE level** contains the following package(s):
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/coqide/coqide.8.16.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/coqide/coqide.8.16.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>CoqIDE is a graphical user interface for interactive development<br>of mathematical definitions, executable algorithms, and proofs of theorems<br>using the Coq proof assistant.</dd>
   </dl>
@@ -866,7 +866,7 @@ The **full level** contains the following packages:
     <dt><b>links</b></dt><dd>
       (<a href='https://gitlab.inria.fr/gappa/gappa'>homepage</a>)
       (<a href='https://gitlab.inria.fr/gappa/gappa/-/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/gappa/gappa.1.4.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/gappa/gappa.1.4.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -896,7 +896,7 @@ The **full level** contains the following packages:
     <dt><b>links</b></dt><dd>
       (<a href='http://www.cl.cam.ac.uk/~pes20/ott/'>homepage</a>)
       (<a href='https://github.com/ott-lang/ott/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/ott/ott.0.33/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ott/ott.0.33/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Ott takes as input a definition of a language syntax and semantics, in a<br>concise and readable ASCII notation that is close to what one would write in<br>informal mathematics.  It generates output:<br>- a LaTeX source file that defines commands to build a typeset version of the definition;<br>- a Coq version of the definition;<br>- a HOL version of the definition;<br>- an Isabelle/HOL version of the definition;<br>- a Lem version of the definition;<br>- an OCaml version of the syntax of the definition.<br>Additionally, it can be run as a filter, taking a<br>LaTeX/Coq/Isabelle/HOL/Lem/OCaml source file<br>with embedded (symbolic) terms of the defined language, parsing them and<br>replacing them by typeset terms.</dd>
   </dl>
@@ -926,7 +926,7 @@ The **full level** contains the following packages:
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/Z3prover/z3'>homepage</a>)
       (<a href='https://github.com/Z3prover/z3/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/z3_tptp/z3_tptp.4.11.2/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/z3_tptp/z3_tptp.4.11.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -1215,60 +1215,60 @@ Homebrew or Linux system package managers.
 Please refer to the linked opam package and/or your system package manager for details on what software version is used.
 
 <details>
-  <summary><a href='https://github.com/ahrefs/atd'>atd.2.12.0</a>
-(2.12.0) Parser for the ATD data format description language</summary>
+  <summary><a href='https://github.com/ahrefs/atd'>atd.2.15.0</a>
+(2.15.0) Parser for the ATD data format description language</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Martin Jambon <lt;martin@mjambon.com>gt; - Rudi Grinberg <lt;rudi.grinberg@gmail.com>gt; - Martin Jambon <lt;martin@r2c.dev>gt; - Martin Jambon <lt;github@mjambon.com>gt; - Ivan Jager <lt;aij+git@mrph.org>gt; - oleksiy <lt;oleksiy.golovko@ahrefs.com>gt; - David Sheets <lt;sheets@alum.mit.edu>gt; - Rudi Grinberg <lt;me@rgrinberg.com>gt; - Martin Jambon <lt;martin@esper.com>gt; - Jeff Meister <lt;nanaki@gmail.com>gt; - Caio Wakamatsu <lt;caio.wakamatsu@ahrefs.com>gt; - Carmelo Piccione <lt;carmelo.piccione@gmail.com>gt; - Daniel Weil <lt;danweil68@gmail.com>gt; - Egor Chemokhonenko <lt;egor.chemohonenko@ahrefs.com>gt; - Gabriel Scherer <lt;gabriel.scherer@gmail.com>gt; - Raman Varabets <lt;roman.vorobets@gmail.com>gt; - tzm <lt;frank@boldsolutions.de>gt; - Mathieu Baudet <lt;mathieubaudet@fb.com>gt; - Oleksiy Golovko <lt;alexei.golovko@gmail.com>gt; - Rauan Mayemir <lt;rauan@mayemir.io>gt; - Carmelo Piccione <lt;cep1@solvuu.com>gt; - John Billings <lt;john@monkeynut.org>gt; - Louis Roché <lt;louis@louisroche.net>gt; - Brendan Long <lt;self@brendanlong.com>gt; - Chris Yocum <lt;cyocum@gmail.com>gt; - Louis Roché (Ahrefs) <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis.roche@ahrefs.com>gt; - Pavel Antoshkin <lt;pavel.antoshkin@ahrefs.com>gt; - Pierre Boutillier <lt;pierre.boutillier@laposte.net>gt; - Shon Feder <lt;shon.feder@key.me>gt; - Anurag Soni <lt;anuragsoni.13@gmail.com>gt; - Arjun Ravi Narayan <lt;arjunravinarayan@gmail.com>gt; - Asya-kawai <lt;kawai-toshiki@aintek.xyz>gt; - Christophe Troestler <lt;christophe.Troestler@umons.ac.be>gt; - Damien Doligez <lt;ddoligez@janestreet.com>gt; - Daniel M <lt;dan.mntg@gmail.com>gt; - Ding Xiang Fei <lt;dingxiangfei2009@protonmail.ch>gt; - François Pottier <lt;francois.pottier@inria.fr>gt; - Javier Chavarri <lt;javier.chavarri@gmail.com>gt; - Kate <lt;kit.ty.kate@disroot.org>gt; - Louis <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis@cryptosense.com>gt; - Raman Varabets <lt;raman+git@ahrefs.com>gt; - Stephane Legrand <lt;slegrand45@gmail.com>gt; - Vincent Bernardoff <lt;vb@luminar.eu.org>gt; - haoyang <lt;haoyang@esper.co>gt; - pmundkur <lt;prashanth.mundkur@gmail.com>gt; - ygrek <lt;ygrek@autistici.org>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ahrefs/atd'>homepage</a>)
       (<a href='https://github.com/ahrefs/atd/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/atd/atd.2.12.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/atd/atd.2.15.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>ATD is the OCaml library providing a parser for the ATD language and various<br>utilities. ATD stands for Adjustable Type Definitions in reference to its main<br>property of supporting annotations that allow a good fit with a variety of data<br>formats.</dd>
+    <dt><b>description</b></dt><dd>ATD is the OCaml library providing a parser for the ATD language and various<br>utilities. ATD stands for Adjustable Type Definitions in reference to its main<br>property of supporting annotations that allow a good fit with a variety of data<br>formats. This package also provides the 'apos;atdcat'apos; and 'apos;atddiff'apos; command-line<br>utilities.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/ahrefs/atd'>atdgen-runtime.2.12.0</a>
-(2.12.0) Runtime library for code generated by atdgen</summary>
+  <summary><a href='https://github.com/ahrefs/atd'>atdgen-runtime.2.15.0</a>
+(2.15.0) Runtime library for code generated by atdgen</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Martin Jambon <lt;martin@mjambon.com>gt; - Rudi Grinberg <lt;rudi.grinberg@gmail.com>gt; - Martin Jambon <lt;martin@r2c.dev>gt; - Martin Jambon <lt;github@mjambon.com>gt; - Ivan Jager <lt;aij+git@mrph.org>gt; - oleksiy <lt;oleksiy.golovko@ahrefs.com>gt; - David Sheets <lt;sheets@alum.mit.edu>gt; - Rudi Grinberg <lt;me@rgrinberg.com>gt; - Martin Jambon <lt;martin@esper.com>gt; - Jeff Meister <lt;nanaki@gmail.com>gt; - Caio Wakamatsu <lt;caio.wakamatsu@ahrefs.com>gt; - Carmelo Piccione <lt;carmelo.piccione@gmail.com>gt; - Daniel Weil <lt;danweil68@gmail.com>gt; - Egor Chemokhonenko <lt;egor.chemohonenko@ahrefs.com>gt; - Gabriel Scherer <lt;gabriel.scherer@gmail.com>gt; - Raman Varabets <lt;roman.vorobets@gmail.com>gt; - tzm <lt;frank@boldsolutions.de>gt; - Mathieu Baudet <lt;mathieubaudet@fb.com>gt; - Oleksiy Golovko <lt;alexei.golovko@gmail.com>gt; - Rauan Mayemir <lt;rauan@mayemir.io>gt; - Carmelo Piccione <lt;cep1@solvuu.com>gt; - John Billings <lt;john@monkeynut.org>gt; - Louis Roché <lt;louis@louisroche.net>gt; - Brendan Long <lt;self@brendanlong.com>gt; - Chris Yocum <lt;cyocum@gmail.com>gt; - Louis Roché (Ahrefs) <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis.roche@ahrefs.com>gt; - Pavel Antoshkin <lt;pavel.antoshkin@ahrefs.com>gt; - Pierre Boutillier <lt;pierre.boutillier@laposte.net>gt; - Shon Feder <lt;shon.feder@key.me>gt; - Anurag Soni <lt;anuragsoni.13@gmail.com>gt; - Arjun Ravi Narayan <lt;arjunravinarayan@gmail.com>gt; - Asya-kawai <lt;kawai-toshiki@aintek.xyz>gt; - Christophe Troestler <lt;christophe.Troestler@umons.ac.be>gt; - Damien Doligez <lt;ddoligez@janestreet.com>gt; - Daniel M <lt;dan.mntg@gmail.com>gt; - Ding Xiang Fei <lt;dingxiangfei2009@protonmail.ch>gt; - François Pottier <lt;francois.pottier@inria.fr>gt; - Javier Chavarri <lt;javier.chavarri@gmail.com>gt; - Kate <lt;kit.ty.kate@disroot.org>gt; - Louis <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis@cryptosense.com>gt; - Raman Varabets <lt;raman+git@ahrefs.com>gt; - Stephane Legrand <lt;slegrand45@gmail.com>gt; - Vincent Bernardoff <lt;vb@luminar.eu.org>gt; - haoyang <lt;haoyang@esper.co>gt; - pmundkur <lt;prashanth.mundkur@gmail.com>gt; - ygrek <lt;ygrek@autistici.org>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ahrefs/atd'>homepage</a>)
       (<a href='https://github.com/ahrefs/atd/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/atdgen-runtime/atdgen-runtime.2.12.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/atdgen-runtime/atdgen-runtime.2.15.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package should be used only in conjunction with the atdgen code<br>generator</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/ahrefs/atd'>atdgen.2.12.0</a>
-(2.12.0) Generates efficient JSON serializers, deserializers and validators</summary>
+  <summary><a href='https://github.com/ahrefs/atd'>atdgen.2.15.0</a>
+(2.15.0) Generates efficient JSON serializers, deserializers and validators</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Martin Jambon <lt;martin@mjambon.com>gt; - Rudi Grinberg <lt;rudi.grinberg@gmail.com>gt; - Martin Jambon <lt;martin@r2c.dev>gt; - Martin Jambon <lt;github@mjambon.com>gt; - Ivan Jager <lt;aij+git@mrph.org>gt; - oleksiy <lt;oleksiy.golovko@ahrefs.com>gt; - David Sheets <lt;sheets@alum.mit.edu>gt; - Rudi Grinberg <lt;me@rgrinberg.com>gt; - Martin Jambon <lt;martin@esper.com>gt; - Jeff Meister <lt;nanaki@gmail.com>gt; - Caio Wakamatsu <lt;caio.wakamatsu@ahrefs.com>gt; - Carmelo Piccione <lt;carmelo.piccione@gmail.com>gt; - Daniel Weil <lt;danweil68@gmail.com>gt; - Egor Chemokhonenko <lt;egor.chemohonenko@ahrefs.com>gt; - Gabriel Scherer <lt;gabriel.scherer@gmail.com>gt; - Raman Varabets <lt;roman.vorobets@gmail.com>gt; - tzm <lt;frank@boldsolutions.de>gt; - Mathieu Baudet <lt;mathieubaudet@fb.com>gt; - Oleksiy Golovko <lt;alexei.golovko@gmail.com>gt; - Rauan Mayemir <lt;rauan@mayemir.io>gt; - Carmelo Piccione <lt;cep1@solvuu.com>gt; - John Billings <lt;john@monkeynut.org>gt; - Louis Roché <lt;louis@louisroche.net>gt; - Brendan Long <lt;self@brendanlong.com>gt; - Chris Yocum <lt;cyocum@gmail.com>gt; - Louis Roché (Ahrefs) <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis.roche@ahrefs.com>gt; - Pavel Antoshkin <lt;pavel.antoshkin@ahrefs.com>gt; - Pierre Boutillier <lt;pierre.boutillier@laposte.net>gt; - Shon Feder <lt;shon.feder@key.me>gt; - Anurag Soni <lt;anuragsoni.13@gmail.com>gt; - Arjun Ravi Narayan <lt;arjunravinarayan@gmail.com>gt; - Asya-kawai <lt;kawai-toshiki@aintek.xyz>gt; - Christophe Troestler <lt;christophe.Troestler@umons.ac.be>gt; - Damien Doligez <lt;ddoligez@janestreet.com>gt; - Daniel M <lt;dan.mntg@gmail.com>gt; - Ding Xiang Fei <lt;dingxiangfei2009@protonmail.ch>gt; - François Pottier <lt;francois.pottier@inria.fr>gt; - Javier Chavarri <lt;javier.chavarri@gmail.com>gt; - Kate <lt;kit.ty.kate@disroot.org>gt; - Louis <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis@cryptosense.com>gt; - Raman Varabets <lt;raman+git@ahrefs.com>gt; - Stephane Legrand <lt;slegrand45@gmail.com>gt; - Vincent Bernardoff <lt;vb@luminar.eu.org>gt; - haoyang <lt;haoyang@esper.co>gt; - pmundkur <lt;prashanth.mundkur@gmail.com>gt; - ygrek <lt;ygrek@autistici.org>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ahrefs/atd'>homepage</a>)
       (<a href='https://github.com/ahrefs/atd/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/atdgen/atdgen.2.12.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/atdgen/atdgen.2.15.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Atdgen is a command-line program that takes as input type definitions in the ATD<br>syntax and produces OCaml code suitable for data serialization and<br>deserialization.<br>Two data formats are currently supported, these are biniou and JSON.<br>Atdgen-biniou and Atdgen-json will refer to Atdgen used in one context or the<br>other.<br>Atdgen was designed with efficiency and durability in mind. Software authors are<br>encouraged to use Atdgen directly and to write tools that may reuse part of<br>Atdgen’s source code.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/ahrefs/atd'>atdts.2.12.0</a>
-(2.12.0) TypeScript code generation for ATD APIs</summary>
+  <summary><a href='https://github.com/ahrefs/atd'>atdts.2.15.0</a>
+(2.15.0) TypeScript code generation for ATD APIs</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Martin Jambon <lt;martin@mjambon.com>gt; - Rudi Grinberg <lt;rudi.grinberg@gmail.com>gt; - Martin Jambon <lt;martin@r2c.dev>gt; - Martin Jambon <lt;github@mjambon.com>gt; - Ivan Jager <lt;aij+git@mrph.org>gt; - oleksiy <lt;oleksiy.golovko@ahrefs.com>gt; - David Sheets <lt;sheets@alum.mit.edu>gt; - Rudi Grinberg <lt;me@rgrinberg.com>gt; - Martin Jambon <lt;martin@esper.com>gt; - Jeff Meister <lt;nanaki@gmail.com>gt; - Caio Wakamatsu <lt;caio.wakamatsu@ahrefs.com>gt; - Carmelo Piccione <lt;carmelo.piccione@gmail.com>gt; - Daniel Weil <lt;danweil68@gmail.com>gt; - Egor Chemokhonenko <lt;egor.chemohonenko@ahrefs.com>gt; - Gabriel Scherer <lt;gabriel.scherer@gmail.com>gt; - Raman Varabets <lt;roman.vorobets@gmail.com>gt; - tzm <lt;frank@boldsolutions.de>gt; - Mathieu Baudet <lt;mathieubaudet@fb.com>gt; - Oleksiy Golovko <lt;alexei.golovko@gmail.com>gt; - Rauan Mayemir <lt;rauan@mayemir.io>gt; - Carmelo Piccione <lt;cep1@solvuu.com>gt; - John Billings <lt;john@monkeynut.org>gt; - Louis Roché <lt;louis@louisroche.net>gt; - Brendan Long <lt;self@brendanlong.com>gt; - Chris Yocum <lt;cyocum@gmail.com>gt; - Louis Roché (Ahrefs) <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis.roche@ahrefs.com>gt; - Pavel Antoshkin <lt;pavel.antoshkin@ahrefs.com>gt; - Pierre Boutillier <lt;pierre.boutillier@laposte.net>gt; - Shon Feder <lt;shon.feder@key.me>gt; - Anurag Soni <lt;anuragsoni.13@gmail.com>gt; - Arjun Ravi Narayan <lt;arjunravinarayan@gmail.com>gt; - Asya-kawai <lt;kawai-toshiki@aintek.xyz>gt; - Christophe Troestler <lt;christophe.Troestler@umons.ac.be>gt; - Damien Doligez <lt;ddoligez@janestreet.com>gt; - Daniel M <lt;dan.mntg@gmail.com>gt; - Ding Xiang Fei <lt;dingxiangfei2009@protonmail.ch>gt; - François Pottier <lt;francois.pottier@inria.fr>gt; - Javier Chavarri <lt;javier.chavarri@gmail.com>gt; - Kate <lt;kit.ty.kate@disroot.org>gt; - Louis <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis@cryptosense.com>gt; - Raman Varabets <lt;raman+git@ahrefs.com>gt; - Stephane Legrand <lt;slegrand45@gmail.com>gt; - Vincent Bernardoff <lt;vb@luminar.eu.org>gt; - haoyang <lt;haoyang@esper.co>gt; - pmundkur <lt;prashanth.mundkur@gmail.com>gt; - ygrek <lt;ygrek@autistici.org>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ahrefs/atd'>homepage</a>)
       (<a href='https://github.com/ahrefs/atd/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/atdts/atdts.2.12.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/atdts/atdts.2.15.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>TypeScript code generation for ATD APIs</dd>
   </dl>
@@ -2019,15 +2019,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml/num/'>num.1.4</a>
-(1.4) The legacy Num library for arbitrary-precision integer and rational arithmetic</summary>
+  <summary><a href='https://github.com/ocaml/num/'>num.1.5</a>
+(1.5) The legacy Num library for arbitrary-precision integer and rational arithmetic</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Valérie Ménissier-Morain Pierre Weis Xavier Leroy</dd>
     <dt><b>license</b></dt><dd> LGPL-2.1-only WITH OCaml-LGPL-linking-exception - see <a href="https://github.com/ocaml/num/" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml/num/'>homepage</a>)
       (<a href='https://github.com/ocaml/num/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/num/num.1.4/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/num/num.1.5/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -2107,15 +2107,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml/ocamlbuild/'>ocamlbuild.0.14.2</a>
-(0.14.2) OCamlbuild is a build system with builtin rules to easily build most OCaml projects</summary>
+  <summary><a href='https://github.com/ocaml/ocamlbuild/'>ocamlbuild.0.14.3</a>
+(0.14.3) OCamlbuild is a build system with builtin rules to easily build most OCaml projects</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Nicolas Pouillard Berke Durak</dd>
     <dt><b>license</b></dt><dd> LGPL-2.0-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://github.com/ocaml/ocamlbuild/" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml/ocamlbuild/'>homepage</a>)
       (<a href='https://github.com/ocaml/ocamlbuild/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocamlbuild/ocamlbuild.0.14.2/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ocamlbuild/ocamlbuild.0.14.3/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -2137,15 +2137,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/backtracking/ocamlgraph/'>ocamlgraph.2.0.0</a>
-(2.0.0) A generic graph library for OCaml</summary>
+  <summary><a href='https://github.com/backtracking/ocamlgraph/'>ocamlgraph.2.1.0</a>
+(2.1.0) A generic graph library for OCaml</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Sylvain Conchon Jean-Christophe Filliâtre Julien Signoles</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/backtracking/ocamlgraph/'>homepage</a>)
       (<a href='https://github.com/backtracking/ocamlgraph/issues/new'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ocamlgraph/ocamlgraph.2.0.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ocamlgraph/ocamlgraph.2.1.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Provides both graph data structures and graph algorithms</dd>
   </dl>
@@ -2272,30 +2272,30 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml-ppx/ppxlib'>ppxlib.0.30.0</a>
-(0.30.0) Standard infrastructure for ppx rewriters</summary>
+  <summary><a href='https://github.com/ocaml-ppx/ppxlib'>ppxlib.0.31.0</a>
+(0.31.0) Standard infrastructure for ppx rewriters</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Jane Street Group, LLC <lt;opensource@janestreet.com>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml-ppx/ppxlib'>homepage</a>)
       (<a href='https://github.com/ocaml-ppx/ppxlib/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ppxlib/ppxlib.0.30.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ppxlib/ppxlib.0.31.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Ppxlib is the standard infrastructure for ppx rewriters<br>and other programs that manipulate the in-memory representation of<br>OCaml programs, a.k.a the \Parsetree\.<br><br>It also comes bundled with two ppx rewriters that are commonly used to<br>write tools that manipulate and/or generate Parsetree values;<br>`ppxlib.metaquot` which allows to construct Parsetree values using the<br>OCaml syntax directly and `ppxlib.traverse` which provides various<br>ways of automatically traversing values of a given type, in particular<br>allowing to inject a complex structured value into generated code.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml/ocaml-re'>re.1.10.4</a>
-(1.10.4) RE is a regular expression library for OCaml</summary>
+  <summary><a href='https://github.com/ocaml/ocaml-re'>re.1.11.0</a>
+(1.11.0) RE is a regular expression library for OCaml</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Jerome Vouillon - Thomas Gazagnaire - Anil Madhavapeddy - Rudi Grinberg - Gabriel Radanne</dd>
-    <dt><b>license</b></dt><dd> LGPL-2.0-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://github.com/ocaml/ocaml-re" target="_blank">homepage</a> for details</dd>
+    <dt><b>license</b></dt><dd> LGPL-2.1-or-later WITH OCaml-LGPL-linking-exception - see <a href="https://github.com/ocaml/ocaml-re" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml/ocaml-re'>homepage</a>)
       (<a href='https://github.com/ocaml/ocaml-re/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/re/re.1.10.4/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/re/re.1.11.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Pure OCaml regular expressions with:<br>* Perl-style regular expressions (module Re.Perl)<br>* Posix extended regular expressions (module Re.Posix)<br>* Emacs-style regular expressions (module Re.Emacs)<br>* Shell-style file globbing (module Re.Glob)<br>* Compatibility layer for OCaml'apos;s built-in Str module (module Re.Str)</dd>
   </dl>
@@ -2362,15 +2362,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml-community/yojson'>yojson.2.1.0</a>
-(2.1.0) Yojson is an optimized parsing and printing library for the JSON format</summary>
+  <summary><a href='https://github.com/ocaml-community/yojson'>yojson.2.1.2</a>
+(2.1.2) Yojson is an optimized parsing and printing library for the JSON format</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Martin Jambon</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml-community/yojson'>homepage</a>)
       (<a href='https://github.com/ocaml-community/yojson/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/yojson/yojson.2.1.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/yojson/yojson.2.1.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Yojson is an optimized parsing and printing library for the JSON format.<br><br>ydump is a pretty-printing command-line program provided with the<br>yojson package.</dd>
   </dl>

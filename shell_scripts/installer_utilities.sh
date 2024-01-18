@@ -158,3 +158,35 @@ done
 
 popd
 }
+
+##### retry a command (macOS hdiutil is unreliable since a while) #####
+
+# $1 = retry count
+# $2 = wait time [s]
+# $3.. = command and args
+
+function retry_command()
+{
+    local maxtries=$1
+    local sleeptime=$2
+    local cmd="${@: 3}"
+    local ntries=0
+    echo "retry $maxtries with delay of $sleeptime command '$cmd'"
+    while true
+    do
+        if [ $ntries -ge $maxtries ]
+        then
+            echo "Max retry count reached -> abort"
+            return 1
+        fi
+
+        if $cmd
+        then
+            return 0
+        else
+            ((ntries++))
+            echo "Command failed: $cmd - try $ntries/$maxtries"
+            sleep $sleeptime
+        fi
+    done
+}
