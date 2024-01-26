@@ -51,9 +51,7 @@ jobs:
       matrix:
         variant:
           # Keep this in sync with the Smoke test below
-          - '8.18~2023.11'
-          - '8.18~mc2'
-          - '8.17~2023.08'
+          - '8.19~2023.11+beta1'
 
     steps:
       - name: Git checkout
@@ -155,9 +153,7 @@ jobs:
       fail-fast: false
       matrix:
         variant:
-          - '8.18~2023.11'
-          - '8.18~mc2'
-          - '8.17~2023.08'
+          - '8.19~2023.11+beta1'
 
     steps:
       - name: Install bash
