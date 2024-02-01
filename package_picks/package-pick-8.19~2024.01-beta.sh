@@ -69,7 +69,7 @@ then
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.19"
   PACKAGES="${PACKAGES} coq-ext-lib.0.12.0"
-  PACKAGES="${PACKAGES} coq-stdpp.1.9.0"
+  #PACKAGES="${PACKAGES} coq-stdpp.1.9.0" does not build
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.2.0"
@@ -207,7 +207,7 @@ then
     case "$COQ_PLATFORM_FIATCRYPTO" in
       [yY])
         PACKAGES="${PACKAGES} coq-coqutil.0.0.4"
-        PACKAGES="${PACKAGES} coq-rewriter.0.0.9"
+        PACKAGES="${PACKAGES} coq-rewriter.0.0.10"
         PACKAGES="${PACKAGES} coq-riscv.0.0.4"
         PACKAGES="${PACKAGES} coq-bedrock2.0.0.6"
         PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.6"

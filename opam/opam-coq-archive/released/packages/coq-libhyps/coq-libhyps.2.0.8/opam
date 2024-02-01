@@ -1,0 +1,54 @@
+# this is a mirror of an opam description file in the
+# opam-coq-archive at:
+# https://github.com/coq/opam-coq-archive/tree/master/released/packages/coq-libhyps
+# the latter being official and probably more up to date.
+
+opam-version: "2.0"
+maintainer: "Pierre.Courtieu@lecnam.net"
+synopsis: "Hypotheses manipulation library"
+
+homepage: "https://github.com/Matafou/LibHyps"
+dev-repo: "git+https://github.com/Matafou/LibHyps.git"
+bug-reports: "https://github.com/Matafou/LibHyps/issues"
+doc: "https://github.com/Matafou/LibHyps/blob/master/Demo/demo.v"
+license: "MIT"
+
+build: [
+  ["./configure.sh"]
+  [make "-j%{jobs}%"]
+]
+
+run-test: [
+  ["./configure.sh"]
+  [make "-j%{jobs}%"]
+  [make "tests"]
+]
+
+install: [make "install"]
+
+depends: [
+  "coq" {(>= "8.11" & < "8.20~") | (= "dev")}
+]
+
+tags: [
+  "keyword:proof environment manipulation"
+  "keyword:forward reasoning"
+  "keyword:hypothesis naming"
+  "category:Miscellaneous/Coq Tactics Library"
+  "logpath:LibHyps"
+]
+
+authors: [
+ "Pierre Courtieu"
+]
+
+description: "
+This library defines a set of tactics to manipulate hypothesis
+individually or by group. In particular it allows applying a tactic on
+each hypothesis of a goal, or only on *new* hypothesis after some
+tactic. Examples of manipulations: automatic renaming, subst, revert,
+or any tactic expecting a hypothesis name as argument.
+
+It also provides the especialize tactic to ease forward reasoning by
+instantianting one, several or all premisses of a hypothesis.
+"

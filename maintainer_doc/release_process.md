@@ -61,7 +61,7 @@ COQ_PLATFORM_OCAML_VERSION='4.14.1'
 
 ### Select initial package versions
 
-- empty the file `maintainer_scripts/PATCHED_PACKAGE_LIST_FILE.sh` - this file contains a list of already processed packages and is usually checked in since the whole process can take several days
+- empty the files `maintainer_scripts/PATCHED_PACKAGE_LIST_FILE.sh` and `maintainer_scripts/packages_already_processed.txt` - these files contain a list of already processed packages and are usually checked in since the whole process can take several days
 - run the script `./maintainer_scripts/package-version-info.sh  package_picks/package-pick-<new pick>.sh`
 - this script copies the new pick, removes comment signs in front of any package pick line and then gets some info for each package in the pick, e.g.:
 ```

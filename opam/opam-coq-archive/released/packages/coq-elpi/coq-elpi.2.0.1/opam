@@ -15,7 +15,7 @@ install: [ make "install" "COQBIN=%{bin}%/" "ELPIDIR=%{prefix}%/lib/elpi" ]
 depends: [
   "ocaml" {>= "4.09.0" }
   "stdlib-shims"
-  "elpi" {>= "1.18.1" & < "1.19.0~"}
+  "elpi" {= "1.18.1"}
   "coq" {>= "8.19" & < "8.20~" }
   "dot-merlin-reader" {with-dev}
   "ocaml-lsp-server" {with-dev}

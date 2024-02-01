@@ -1,0 +1,40 @@
+opam-version: "2.0"
+maintainer: "palmskog@gmail.com"
+version: "dev"
+
+homepage: "https://github.com/coq-community/coq-dpdgraph"
+dev-repo: "git+https://github.com/coq-community/coq-dpdgraph.git"
+bug-reports: "https://github.com/coq-community/coq-dpdgraph/issues"
+license: "LGPL-2.1-only"
+
+synopsis: "Compute dependencies between Coq objects (definitions, theorems) and produce graphs"
+description: """
+Coq plugin that extracts the dependencies between Coq objects,
+and produces files with dependency information. Includes tools
+to visualize dependency graphs and find unused definitions."""
+
+build: [
+  ["autoconf"] {dev}
+  ["./configure"]
+  [make "-j%{jobs}%" "WARN_ERR="]
+]
+run-test: [make "test-suite"]
+install: [make "install" "BINDIR=%{bin}%"]
+depends: [
+  "ocaml" {>= "4.05.0"}
+  "coq" {>= "8.12.0" & < "8.20~"}
+  "conf-autoconf" {build & dev}
+  "ocamlgraph" 
+]
+
+tags: [
+  "category:Miscellaneous/Coq Extensions"
+  "keyword:dependency graph"
+  "keyword:dependency analysis"
+  "logpath:dpdgraph"
+]
+authors: [
+  "Anne Pacalet"
+  "Yves Bertot"
+  "Olivier Pons"
+]

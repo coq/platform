@@ -1,0 +1,40 @@
+opam-version: "2.0"
+maintainer: "palmskog@gmail.com"
+
+homepage: "http://www.cl.cam.ac.uk/~pes20/ott/"
+dev-repo: "git+https://github.com/ott-lang/ott.git"
+bug-reports: "https://github.com/ott-lang/ott/issues"
+license: "BSD-3-Clause"
+
+synopsis: "Auxiliary Coq library for Ott, a tool for writing definitions of programming languages and calculi"
+description: """
+Ott takes as input a definition of a language syntax and semantics, in a concise
+and readable ASCII notation that is close to what one would write in informal
+mathematics. It can then generate a Coq version of the definition, which requires
+this library.
+"""
+
+build: [make "-j%{jobs}%" "-C" "coq"]
+install: [make "-C" "coq" "install"]
+depends: [
+  "coq" {>= "8.6" & < "8.20"}
+]
+conflicts: [
+  "ott" { != version }
+]
+tags: [
+  "category:Computer Science/Semantics and Compilation/Semantics"
+  "keyword:abstract syntax"
+  "logpath:Ott"
+  "date:2023-01-16"
+]
+authors: [
+  "Peter Sewell"
+  "Francesco Zappa Nardelli"
+  "Scott Owens"
+]
+
+url {
+  src: "https://github.com/ott-lang/ott/archive/0.33.tar.gz"
+  checksum: "sha512=fd601ef958e52ca461eaff8175323416e3e524e1ba11fcf5328827ef2cb9ee3d54111843adb54d3c32e2f08c7c70214558bf5519fb8385bfa58049f22237c3c6"
+}

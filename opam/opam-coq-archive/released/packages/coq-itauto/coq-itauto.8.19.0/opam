@@ -22,7 +22,7 @@ build: [
 install: [make "install"]
 depends: [
   "ocaml" {>= "4.9~"}
-  "coq" {= "dev"}
+  "coq" {>= "8.18" & < "8.20"}
   "dune" {>= "2.9"}
   "coq-mathcomp-zify" {with-test}
 ]
