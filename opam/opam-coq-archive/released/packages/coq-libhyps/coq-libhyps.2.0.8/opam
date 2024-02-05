@@ -52,3 +52,8 @@ or any tactic expecting a hypothesis name as argument.
 It also provides the especialize tactic to ease forward reasoning by
 instantianting one, several or all premisses of a hypothesis.
 "
+
+url {
+  src: "https://github.com/Matafou/LibHyps/archive/refs/tags/libhyps-2.0.8.tar.gz"
+  checksum: "sha512=5d9799d2284101b5fc61ae3239f08f7e92418369bf0ed6a326261eb8e129470cbcbb4bba50fbf4d1a1a350a279cc50b45590be4635f083e4a4d6875ef7c3bf8f"
+}

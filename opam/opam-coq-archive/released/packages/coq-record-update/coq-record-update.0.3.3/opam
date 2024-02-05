@@ -31,3 +31,10 @@ tags: [
 authors: [
   "Tej Chajed"
 ]
+
+url {
+  src:
+    "https://github.com/tchajed/coq-record-update/archive/v0.3.3.tar.gz"
+  checksum:
+    "sha512=fb88f33ba716d068506d31047969fff40630adc7df7f21a016c8d92ff3c802007ce4efc0ae93c5456b76544040c323ae4d66755c8b425087504ddb1146a8b81a"
+}

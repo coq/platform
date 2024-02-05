@@ -38,3 +38,8 @@ authors: [
   "Yves Bertot"
   "Olivier Pons"
 ]
+
+url {
+  src: "https://github.com/coq-community/coq-dpdgraph/releases/download/v1.0%2B8.18/coq-dpdgraph-1.0-8.18.tgz"
+  checksum: "sha512=01e035bc746e0fa3031761dc1dac1c25c007a807f340ac73b5f97672e00ef2e1bf66ca2bbdbddcf805689155ae56b9ba29341d1273f64379b64561be6d3ee3d7"
+}

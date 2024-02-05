@@ -18,7 +18,7 @@ COQ_PLATFORM_VERSION_SORTORDER=98
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.19~2023.11+beta1'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.19~2024.01+beta1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.19'
@@ -28,7 +28,7 @@ COQ_PLATFORM_COQ_TAG='8.19.0'
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.01.0 includes Coq 8.19.0 from Jan 2023. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.01.0 includes Coq 8.19.0 from Jan 2024. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
 COQ_PLATFORM_OCAML_VERSION='4.14.1'
@@ -91,13 +91,13 @@ then
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.1.4"
-  PACKAGES="${PACKAGES} coq-interval.4.9.0"
-  PACKAGES="${PACKAGES} coq-gappa.1.5.4"
+  #PACKAGES="${PACKAGES} coq-interval.4.9.0" #DOES NOT BUILD
+  #PACKAGES="${PACKAGES} coq-gappa.1.5.4" #DOES NOT BUILD
   PACKAGES="${PACKAGES} gappa.1.4.1"
 
   # Constructive mathematics
-  PACKAGES="${PACKAGES} coq-math-classes.8.18.0"
-  PACKAGES="${PACKAGES} coq-corn.8.18.0"
+  #PACKAGES="${PACKAGES} coq-math-classes.8.18.0" #DOES NOT BUILD
+  #PACKAGES="${PACKAGES} coq-corn.8.18.0" #DOES NOT BUILD
 
   # Homotopy Type Theory (HoTT)
   PACKAGES="${PACKAGES} coq-hott.8.18"
@@ -120,38 +120,38 @@ then
   PACKAGES="${PACKAGES} coq-menhirlib.20231231 menhir.20231231"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.19"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.19.0"
-  PACKAGES="${PACKAGES} coq-unicoq.1.6+8.18"
-  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.18"
-  PACKAGES="${PACKAGES} elpi.1.18.2 coq-elpi.2.0.1"
+  #PACKAGES="${PACKAGES} coq-unicoq.1.6+8.18" #DOES NOT BUILD
+  #PACKAGES="${PACKAGES} coq-mtac2.1.4+8.18" #DOES NOT BUILD, DEPENDS ON UNICOQ
+  PACKAGES="${PACKAGES} elpi.1.18.1 coq-elpi.2.0.1"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.7.0"
   PACKAGES="${PACKAGES} coq-quickchick.2.0.2"
-  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.18"
+  #PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.18" # DOES NOT BUILD
   if [[ "$OSTYPE" != cygwin ]]
   then
     # coq-hammer does not work on Windows because it heavily relies on fork
-    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.18"
+    #PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.18" # DEPENDS ON COQ-HAMMER-TACTICS
     PACKAGES="${PACKAGES} eprover.3.0"
     PACKAGES="${PACKAGES} z3_tptp.4.11.2"  # 4.12.2-1 has build issues on ARM macOS
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.19"
   PACKAGES="${PACKAGES} coq-coqeal.2.0.1"
-  PACKAGES="${PACKAGES} coq-libhyps.2.0.8"
+  #PACKAGES="${PACKAGES} coq-libhyps.2.0.8" #DOES NOT BUILD
   PACKAGES="${PACKAGES} coq-itauto.8.19.0"
   
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.7.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.1.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.2.3"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.10"
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.2.1"
-  PACKAGES="${PACKAGES} coq-iris.4.1.0"
-  PACKAGES="${PACKAGES} coq-iris-heap-lang.4.1.0"
+  #PACKAGES="${PACKAGES} coq-iris.4.1.0" #DEPENDS ON coq-stdpp
+  #PACKAGES="${PACKAGES} coq-iris-heap-lang.4.1.0" #DEPENDS on coq-iris
   if [[ "$OSTYPE" != cygwin ]]
   then
     # Windows: some issues with executable extensions (ott.opt instead of ott.exe)
     # Note: 0.32 does work on Windows!
-    PACKAGES="${PACKAGES} coq-ott.0.33"
+    #PACKAGES="${PACKAGES} coq-ott.0.33" #DOES NOT BUILD
     PACKAGES="${PACKAGES} ott.0.33"
   fi
   PACKAGES="${PACKAGES} coq-mathcomp-word.3.0"
@@ -164,14 +164,14 @@ then
 
   case "$COQ_PLATFORM_VST" in
     [yY])
-      PACKAGES="${PACKAGES} coq-vst.2.13"
+      #PACKAGES="${PACKAGES} coq-vst.2.13"
       true ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
   esac
 
   # # Proof analysis and other tools
-  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.18"
+  #PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.18"
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
@@ -181,10 +181,10 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.2.0"
-  if [ "${BITSIZE}" == "64" ]
-  then
-    PACKAGES="${PACKAGES} coq-metacoq.1.2.1+8.18"
-  fi
+#   if [ "${BITSIZE}" == "64" ]
+#   then
+#     #PACKAGES="${PACKAGES} coq-metacoq.1.2.1+8.18" # DOES NOT BUILD, BREAKS AT coq-metacoq-template
+#   fi
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.4.0"
@@ -197,7 +197,7 @@ then
   if [[ "$OSTYPE" != cygwin ]]
   then
     # Windows: path length issues
-    PACKAGES="${PACKAGES} coq-serapi.8.18.0+0.18.1" #THERE SEEMS TO BE A NEW VERSION BUT ITS IN EXTRA-DEV ?
+    PACKAGES="${PACKAGES} coq-serapi.8.19.0+0.19.0"
 
   fi
 
@@ -206,16 +206,16 @@ then
   then
     case "$COQ_PLATFORM_FIATCRYPTO" in
       [yY])
-        PACKAGES="${PACKAGES} coq-coqutil.0.0.4"
+        #PACKAGES="${PACKAGES} coq-coqutil.0.0.4" #DOES NOT BUILD
         PACKAGES="${PACKAGES} coq-rewriter.0.0.10"
-        PACKAGES="${PACKAGES} coq-riscv.0.0.4"
-        PACKAGES="${PACKAGES} coq-bedrock2.0.0.6"
-        PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.6"
-        PACKAGES="${PACKAGES} coq-rupicola.0.0.8"
+        #PACKAGES="${PACKAGES} coq-riscv.0.0.4" #DEPENDS ON coq-util
+        #PACKAGES="${PACKAGES} coq-bedrock2.0.0.6"  #DEPENDS ON coq-util
+        #PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.6" #DEPENDS on coq-bedrock2
+        #PACKAGES="${PACKAGES} coq-rupicola.0.0.8" #DEPENDS on coq-bedrock2
         if [ "$OSTYPE" != cygwin ]
         then
           # Windows: stack overflow
-          PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.24" #TODO: GET VERSION 0.0.26
+          #PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.24" #DEPENDS on coq-rupicola, coq-bedrock2-compiler
           true
         fi
         ;;
