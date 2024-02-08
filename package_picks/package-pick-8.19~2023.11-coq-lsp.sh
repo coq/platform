@@ -90,111 +90,44 @@ then
   PACKAGES="${PACKAGES} coq-coquelicot.3.4.1"
 
   # Number theory
-  PACKAGES="${PACKAGES} coq-coqprime.1.4.0"
-  PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1" #NOTE:THIS IS STILL TAGGED TO v8.14.1, SHOULD SOMETHING BE DONE?
-  
+  # PACKAGES="${PACKAGES} coq-coqprime.1.4.0"
+  # PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1" #NOTE:THIS IS STILL TAGGED TO v8.14.1, SHOULD SOMETHING BE DONE?
+
   # Numerical mathematics
-  PACKAGES="${PACKAGES} coq-flocq.4.1.4"
+  # PACKAGES="${PACKAGES} coq-flocq.4.1.4"
   #PACKAGES="${PACKAGES} coq-interval.4.9.0" #DOES NOT BUILD
   #PACKAGES="${PACKAGES} coq-gappa.1.5.4" #DOES NOT BUILD
-  PACKAGES="${PACKAGES} gappa.1.4.1"
+  # PACKAGES="${PACKAGES} gappa.1.4.1"
 
   # Constructive mathematics
   #PACKAGES="${PACKAGES} coq-math-classes.8.18.0" #DOES NOT BUILD
   #PACKAGES="${PACKAGES} coq-corn.8.18.0" #DOES NOT BUILD
 
   # Homotopy Type Theory (HoTT)
-  PACKAGES="${PACKAGES} coq-hott.8.18"
-
-  # Univalent Mathematics (UniMath)
-  # Note: coq-unimath requires too much memory for 32 bit architectures
-  if [ "${BITSIZE}" == "64" ]
-  then
-    case "$COQ_PLATFORM_UNIMATH" in
-    [yY]) PACKAGES="${PACKAGES} coq-unimath.20231010" ;;
-    [nN]) true ;;
-    *) echo "Illegal value for COQ_PLATFORM_UNIMATH - aborting"; false ;;
-    esac
-  fi 
+  # PACKAGES="${PACKAGES} coq-hott.8.18"
 
   # Code extraction
   PACKAGES="${PACKAGES} coq-simple-io.1.8.0"
 
   # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-menhirlib.20231231 menhir.20231231"
+  # PACKAGES="${PACKAGES} coq-menhirlib.20231231 menhir.20231231"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.19"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.19.0"
-  #PACKAGES="${PACKAGES} coq-unicoq.1.6+8.18" #DOES NOT BUILD
-  #PACKAGES="${PACKAGES} coq-mtac2.1.4+8.18" #DOES NOT BUILD, DEPENDS ON UNICOQ
+
   PACKAGES="${PACKAGES} elpi.1.18.1 coq-elpi.2.0.1"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.7.0"
-  PACKAGES="${PACKAGES} coq-quickchick.2.0.2"
-  #PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.18" # DOES NOT BUILD
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    # coq-hammer does not work on Windows because it heavily relies on fork
-    #PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.18" # DEPENDS ON COQ-HAMMER-TACTICS
-    PACKAGES="${PACKAGES} eprover.3.0"
-    PACKAGES="${PACKAGES} z3_tptp.4.11.2"  # 4.12.2-1 has build issues on ARM macOS
-  fi
+
+  # BROKEN in CI
+  # PACKAGES="${PACKAGES} coq-quickchick.2.0.2"
+
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.19"
   PACKAGES="${PACKAGES} coq-coqeal.2.0.1"
   PACKAGES="${PACKAGES} coq-libhyps.2.0.8"
-  PACKAGES="${PACKAGES} coq-itauto.8.19.0"
-  
+  # BROKEN in CI
+  # PACKAGES="${PACKAGES} coq-itauto.8.19.0"
+
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.7.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.1.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.2.3"
-  PACKAGES="${PACKAGES} coq-relation-algebra.1.7.10"
-
-  # Formal languages, compilers and code verification
-  PACKAGES="${PACKAGES} coq-reglang.1.2.1"
-  PACKAGES="${PACKAGES} coq-iris.4.1.0"
-  PACKAGES="${PACKAGES} coq-iris-heap-lang.4.1.0"
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    # Windows: some issues with executable extensions (ott.opt instead of ott.exe)
-    # Note: 0.32 does work on Windows!
-    PACKAGES="${PACKAGES} coq-ott.0.33"
-    PACKAGES="${PACKAGES} ott.0.33"
-  fi
-  PACKAGES="${PACKAGES} coq-mathcomp-word.3.0"
-  
-  case "$COQ_PLATFORM_COMPCERT" in
-    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.13.1" ;;
-    [nN]) true ;;
-    *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
-  esac
-
-  case "$COQ_PLATFORM_VST" in
-    [yY])
-      PACKAGES="${PACKAGES} coq-vst.2.13"
-      true ;;
-    [nN]) true ;;
-    *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
-  esac
-
-  # # Proof analysis and other tools
-  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.18"
-fi
-
-########## EXTENDED" COQ PLATFORM PACKAGES ##########
-
-if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
-then
-
-  # Proof automation / generation / helpers
-  PACKAGES="${PACKAGES} coq-deriving.0.2.0"
-  if [ "${BITSIZE}" == "64" ]
-  then
-    PACKAGES="${PACKAGES} coq-metacoq.1.2.1+8.18"
-  fi
-
-  # General mathematics
-  PACKAGES="${PACKAGES} coq-extructures.0.4.0"
-
-  # Gallina extensions
-  PACKAGES="${PACKAGES} coq-reduction-effects.0.1.5"
-  PACKAGES="${PACKAGES} coq-record-update.0.3.3"
 
 fi
