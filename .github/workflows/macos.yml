@@ -69,17 +69,19 @@ jobs:
           brew cleanup
           # See https://github.com/orgs/Homebrew/discussions/4612#discussioncomment-6351357
           brew untap homebrew/core homebrew/cask
+          
+      - name: Brew update and upgrade
+        run: |
+            brew update
+            # Note: brew upgrade does fail regularly, but brew is anyway in a better state afterwards
+            brew upgrade || true
 
       - name: Brew config and doctor for issues
         run: |
-          brew config
           brew doctor
+          brew config
     
-      - name: Brew update and upgrade
-        run: |
-          brew update
-          # Note: brew upgrade does fail regularly, but brew is anyway in a better state afterwards
-          brew upgrade || true
+      
 
       - name: Test coreutils install
         run: |
