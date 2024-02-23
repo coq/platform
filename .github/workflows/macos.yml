@@ -48,12 +48,6 @@ jobs:
     runs-on: macos-latest
     strategy:
       fail-fast: false
-      matrix:
-        variant:
-          # Keep this in sync with the Smoke test below
-          - '8.18~2023.11'
-          - '8.18~mc2'
-          - '8.17~2023.08'
 
     steps:
       - name: Git checkout
@@ -74,7 +68,6 @@ jobs:
         run: |
           brew cleanup
           # See https://github.com/orgs/Homebrew/discussions/4612#discussioncomment-6351357
-          brew config
           brew untap homebrew/core homebrew/cask
 
       - name: Brew config and doctor for issues
