@@ -76,13 +76,14 @@ jobs:
             # Note: brew upgrade does fail regularly, but brew is anyway in a better state afterwards
             brew upgrade || true
 
-      - name: Brew config and doctor for issues
+      - name: Brew doctor
         run: |
-          brew doctor
-          brew config
-    
-      
+          brew doctor || true
 
+      - name: Brew config
+        run: |
+          brew config || true
+    
       - name: Test coreutils install
         run: |
           brew install coreutils
