@@ -80,6 +80,19 @@ jobs:
           brew update
           # Note: brew upgrade does fail regularly, but brew is anyway in a better state afterwards
           brew upgrade || true
+          # make sure we are using homebrew python, since we install some python packages via homebrew
+          brew install python3
+          brew link --overwrite python3
+          ls -l $(which python3)
+          ls -l $(which pip3)
+          # create a virtual environment so that we can use pip3
+          # (since python 3.12 using pip3 on package manager installed python requires a virtual environment)
+          python3 -m venv .venv
+          . .venv/bin/activate
+          # See https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-environment-variable
+          echo PATH=$PATH >> $GITHUB_ENV
+          ls -l $(which python3)
+          ls -l $(which pip3)
 
       - name: Install homebrew packages required by main script
         run: brew install wget
