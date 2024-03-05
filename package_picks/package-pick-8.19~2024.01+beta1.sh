@@ -91,8 +91,8 @@ then
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.1.4"
-  #PACKAGES="${PACKAGES} coq-interval.4.9.0" #DOES NOT BUILD
-  #PACKAGES="${PACKAGES} coq-gappa.1.5.4" #DOES NOT BUILD
+  #PACKAGES="${PACKAGES} coq-interval.4.10.0" #DOES NOT BUILD
+  PACKAGES="${PACKAGES} coq-gappa.1.5.5"
   PACKAGES="${PACKAGES} gappa.1.4.1"
 
   # Constructive mathematics
