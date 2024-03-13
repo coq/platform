@@ -11,7 +11,7 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.19.0 (released Jan 2024)"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.19.1 (released Mar 2024)"
 COQ_PLATFORM_VERSION_SORTORDER=98
 
 # The package list name is the final part of the opam switch name.
@@ -22,13 +22,13 @@ COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.19~2024.01+beta1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.19'
-COQ_PLATFORM_COQ_TAG='8.19.0'
+COQ_PLATFORM_COQ_TAG='8.19.1'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.01.0 includes Coq 8.19.0 from Jan 2024. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.01.0 includes Coq 8.19.1 from Mar 2024. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
 COQ_PLATFORM_OCAML_VERSION='4.14.1'
@@ -52,14 +52,14 @@ PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"  # TODO port patch to 1.9
 PACKAGES="${PACKAGES} dune.3.11.1"
 PACKAGES="${PACKAGES} dune-configurator.3.10.0"
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} PIN.coq.8.19.0"
+PACKAGES="${PACKAGES} PIN.coq.8.19.1"
 
 ########## IDE PACKAGES ##########
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.19.0"
+PACKAGES="${PACKAGES} coqide.8.19.1"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
@@ -91,7 +91,7 @@ then
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.1.4"
-  #PACKAGES="${PACKAGES} coq-interval.4.10.0" #DOES NOT BUILD
+  PACKAGES="${PACKAGES} coq-interval.4.10.0"
   PACKAGES="${PACKAGES} coq-gappa.1.5.5"
   PACKAGES="${PACKAGES} gappa.1.4.1"
 
