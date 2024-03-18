@@ -69,7 +69,7 @@ then
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.19"
   PACKAGES="${PACKAGES} coq-ext-lib.0.12.0"
-  #PACKAGES="${PACKAGES} coq-stdpp.1.9.0" does not build
+  #PACKAGES="${PACKAGES} coq-stdpp.1.9.0" #does not build
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.2.0"
@@ -181,10 +181,10 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.2.0"
-#   if [ "${BITSIZE}" == "64" ]
-#   then
-#     #PACKAGES="${PACKAGES} coq-metacoq.1.2.1+8.18" # DOES NOT BUILD, BREAKS AT coq-metacoq-template
-#   fi
+  if [ "${BITSIZE}" == "64" ]
+  then
+    PACKAGES="${PACKAGES} coq-metacoq.1.2.1+8.18"
+  fi
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.4.0"

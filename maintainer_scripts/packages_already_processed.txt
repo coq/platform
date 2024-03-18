@@ -51,7 +51,6 @@ coq-compcert
 coq-vst
 coq-dpdgraph
 coq-deriving
-coq-metacoq
 coq-extructures
 coq-reduction-effects
 coq-record-update
@@ -63,3 +62,4 @@ coq-bedrock2
 coq-bedrock2-compiler
 coq-rupicola
 coq-fiat-crypto
+coq-metacoq
