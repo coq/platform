@@ -134,7 +134,7 @@ then
     PACKAGES="${PACKAGES} z3_tptp.4.11.2"  # 4.12.2-1 has build issues on ARM macOS
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.19"
-  PACKAGES="${PACKAGES} coq-coqeal.2.0.1"
+  PACKAGES="${PACKAGES} coq-coqeal.2.0.2"
   #PACKAGES="${PACKAGES} coq-libhyps.2.0.8" #DOES NOT BUILD
   PACKAGES="${PACKAGES} coq-itauto.8.19.0"
   
@@ -181,10 +181,10 @@ then
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-deriving.0.2.0"
-  if [ "${BITSIZE}" == "64" ]
-  then
-    PACKAGES="${PACKAGES} coq-metacoq.1.2.1+8.18"
-  fi
+#   if [ "${BITSIZE}" == "64" ]
+#   then
+#     PACKAGES="${PACKAGES} coq-metacoq.1.2.1+8.18" #METACOQ.1.3.1+8.19 has just released
+#   fi
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.4.0"
