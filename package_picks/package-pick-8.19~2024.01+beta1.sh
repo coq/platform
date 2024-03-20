@@ -68,7 +68,7 @@ if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.19"
-  PACKAGES="${PACKAGES} coq-ext-lib.0.12.0"
+  PACKAGES="${PACKAGES} coq-ext-lib.0.12.1"
   #PACKAGES="${PACKAGES} coq-stdpp.1.9.0" #does not build
 
   # General mathematics
@@ -86,7 +86,7 @@ then
   PACKAGES="${PACKAGES} coq-coquelicot.3.4.1"
 
   # Number theory
-  PACKAGES="${PACKAGES} coq-coqprime.1.4.0"
+  PACKAGES="${PACKAGES} coq-coqprime.1.5.0"
   PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1" #NOTE:THIS IS STILL TAGGED TO v8.14.1, SHOULD SOMETHING BE DONE?
   
   # Numerical mathematics
