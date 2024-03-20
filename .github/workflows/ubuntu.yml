@@ -58,6 +58,7 @@ jobs:
       matrix:
         variant:
           # This should contain all picks introduced in the current release + all original picks of all Coq versions
+          - '8.19~2024.01+beta1'
           - '8.18~2023.11'
           - '8.18~mc2'
           - '8.17~2023.08'

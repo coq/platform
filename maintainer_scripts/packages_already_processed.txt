@@ -18,6 +18,7 @@ coq-coqprime-generator
 coq-flocq
 coq-interval
 coq-gappa
+gappa
 coq-math-classes
 coq-corn
 coq-hott
@@ -50,7 +51,6 @@ coq-compcert
 coq-vst
 coq-dpdgraph
 coq-deriving
-coq-metacoq
 coq-extructures
 coq-reduction-effects
 coq-record-update
@@ -62,4 +62,4 @@ coq-bedrock2
 coq-bedrock2-compiler
 coq-rupicola
 coq-fiat-crypto
-gappa
+coq-metacoq
