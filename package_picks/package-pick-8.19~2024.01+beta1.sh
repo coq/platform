@@ -136,7 +136,7 @@ then
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.19"
   PACKAGES="${PACKAGES} coq-coqeal.2.0.2"
   #PACKAGES="${PACKAGES} coq-libhyps.2.0.8" #DOES NOT BUILD
-  PACKAGES="${PACKAGES} coq-itauto.8.19.0"
+  #PACKAGES="${PACKAGES} coq-itauto.8.19.0" #DOES NOT BUILD ON WINDOWS
   
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.1.0.0"
@@ -164,7 +164,7 @@ then
 
   case "$COQ_PLATFORM_VST" in
     [yY])
-      #PACKAGES="${PACKAGES} coq-vst.2.13"
+      PACKAGES="${PACKAGES} coq-vst.2.14"
       true ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
