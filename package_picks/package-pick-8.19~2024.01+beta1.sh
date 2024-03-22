@@ -206,16 +206,16 @@ then
   then
     case "$COQ_PLATFORM_FIATCRYPTO" in
       [yY])
-        #PACKAGES="${PACKAGES} coq-coqutil.0.0.4" #DOES NOT BUILD
-        PACKAGES="${PACKAGES} coq-rewriter.0.0.10"
-        #PACKAGES="${PACKAGES} coq-riscv.0.0.4" #DEPENDS ON coq-util
-        #PACKAGES="${PACKAGES} coq-bedrock2.0.0.6"  #DEPENDS ON coq-util
-        #PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.6" #DEPENDS on coq-bedrock2
-        #PACKAGES="${PACKAGES} coq-rupicola.0.0.8" #DEPENDS on coq-bedrock2
+        PACKAGES="${PACKAGES} coq-coqutil.0.0.5"
+        PACKAGES="${PACKAGES} coq-rewriter.0.0.11"
+        PACKAGES="${PACKAGES} coq-riscv.0.0.5"
+        PACKAGES="${PACKAGES} coq-bedrock2.0.0.7"
+        PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.7"
+        PACKAGES="${PACKAGES} coq-rupicola.0.0.9"
         if [ "$OSTYPE" != cygwin ]
         then
           # Windows: stack overflow
-          #PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.24" #DEPENDS on coq-rupicola, coq-bedrock2-compiler
+          PACKAGES="${PACKAGES} coq-fiat-crypto.0.1.2"
           true
         fi
         ;;
