@@ -27,7 +27,7 @@ depends: [
 patches: [
   "0001-Add-function-channel_of_descr_socket-windows-has-dif.patch"
 ]
-
+available: [ os != "macos" ]
 build: [
   [ "dune" "subst"] {dev}
   [ "dune" "build" "-p" name "-j" jobs ]
