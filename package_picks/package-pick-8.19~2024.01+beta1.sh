@@ -197,7 +197,7 @@ then
   if [[ "$OSTYPE" != cygwin ]]
   then
     # Windows: path length issues
-    PACKAGES="${PACKAGES} coq-serapi.8.19.0+0.19.0"
+    PACKAGES="${PACKAGES} coq-serapi.8.19.0+0.19.2"
 
   fi
 
