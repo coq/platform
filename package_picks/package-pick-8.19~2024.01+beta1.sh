@@ -68,7 +68,7 @@ if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.19"
-  PACKAGES="${PACKAGES} coq-ext-lib.0.12.0"
+  PACKAGES="${PACKAGES} coq-ext-lib.0.12.1"
   #PACKAGES="${PACKAGES} coq-stdpp.1.9.0" #does not build
 
   # General mathematics
@@ -86,7 +86,7 @@ then
   PACKAGES="${PACKAGES} coq-coquelicot.3.4.1"
 
   # Number theory
-  PACKAGES="${PACKAGES} coq-coqprime.1.4.0"
+  PACKAGES="${PACKAGES} coq-coqprime.1.5.0"
   PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1" #NOTE:THIS IS STILL TAGGED TO v8.14.1, SHOULD SOMETHING BE DONE?
   
   # Numerical mathematics
@@ -124,7 +124,7 @@ then
   #PACKAGES="${PACKAGES} coq-mtac2.1.4+8.18" #DOES NOT BUILD, DEPENDS ON UNICOQ
   PACKAGES="${PACKAGES} elpi.1.18.1 coq-elpi.2.0.1"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.7.0"
-  PACKAGES="${PACKAGES} coq-quickchick.2.0.2"
+  #PACKAGES="${PACKAGES} coq-quickchick.2.0.2" #DOES NOT BUILD ON WINDOWS
   #PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.18" # DOES NOT BUILD
   if [[ "$OSTYPE" != cygwin ]]
   then
@@ -136,7 +136,7 @@ then
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.19"
   PACKAGES="${PACKAGES} coq-coqeal.2.0.2"
   #PACKAGES="${PACKAGES} coq-libhyps.2.0.8" #DOES NOT BUILD
-  PACKAGES="${PACKAGES} coq-itauto.8.19.0"
+  #PACKAGES="${PACKAGES} coq-itauto.8.19.0" #DOES NOT BUILD ON WINDOWS
   
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.1.0.0"
@@ -164,14 +164,14 @@ then
 
   case "$COQ_PLATFORM_VST" in
     [yY])
-      #PACKAGES="${PACKAGES} coq-vst.2.13"
+      PACKAGES="${PACKAGES} coq-vst.2.14"
       true ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
   esac
 
   # # Proof analysis and other tools
-  #PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.18"
+  PACKAGES="${PACKAGES} coq-dpdgraph.1.0+8.19"
 fi
 
 ########## EXTENDED" COQ PLATFORM PACKAGES ##########
@@ -197,7 +197,7 @@ then
   if [[ "$OSTYPE" != cygwin ]]
   then
     # Windows: path length issues
-    PACKAGES="${PACKAGES} coq-serapi.8.19.0+0.19.0"
+    PACKAGES="${PACKAGES} coq-serapi.8.19.0+0.19.2"
 
   fi
 
@@ -206,16 +206,16 @@ then
   then
     case "$COQ_PLATFORM_FIATCRYPTO" in
       [yY])
-        #PACKAGES="${PACKAGES} coq-coqutil.0.0.4" #DOES NOT BUILD
-        PACKAGES="${PACKAGES} coq-rewriter.0.0.10"
-        #PACKAGES="${PACKAGES} coq-riscv.0.0.4" #DEPENDS ON coq-util
-        #PACKAGES="${PACKAGES} coq-bedrock2.0.0.6"  #DEPENDS ON coq-util
-        #PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.6" #DEPENDS on coq-bedrock2
-        #PACKAGES="${PACKAGES} coq-rupicola.0.0.8" #DEPENDS on coq-bedrock2
+        PACKAGES="${PACKAGES} coq-coqutil.0.0.5"
+        PACKAGES="${PACKAGES} coq-rewriter.0.0.11"
+        PACKAGES="${PACKAGES} coq-riscv.0.0.5"
+        PACKAGES="${PACKAGES} coq-bedrock2.0.0.7"
+        PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.7"
+        PACKAGES="${PACKAGES} coq-rupicola.0.0.9"
         if [ "$OSTYPE" != cygwin ]
         then
           # Windows: stack overflow
-          #PACKAGES="${PACKAGES} coq-fiat-crypto.0.0.24" #DEPENDS on coq-rupicola, coq-bedrock2-compiler
+          PACKAGES="${PACKAGES} coq-fiat-crypto.0.1.2"
           true
         fi
         ;;

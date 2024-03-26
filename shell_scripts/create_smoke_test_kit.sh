@@ -149,6 +149,7 @@ TEST_FILES[coq-relation-algebra]='examples/compiler_opts.v examples/imp.v'
 PATCH_CMDS[coq-relation-algebra]='/^Require Import kat .*$/ {print "From RelationAlgebra "$0; next}'
 TEST_FILES[coq-rewriter]='src/Rewriter/Demo.v '
 TEST_FILES[coq-riscv]='src/riscv/Examples/MulTrapHandler.v'
+TEST_FILES[coq-riscv~8.19~2024.01+beta1]='src/riscv/Examples/Fib.v'
 TEST_FILES[coq-rupicola]='src/Rupicola/Examples/Uppercase.v'
 TEST_FILES[coq-serapi]='../../test_files/coq-serapi/serapi_example'
 TEST_CMDS[coq-serapi]="sertop < serapi_example"
