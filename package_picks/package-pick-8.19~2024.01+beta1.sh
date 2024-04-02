@@ -122,7 +122,7 @@ then
   PACKAGES="${PACKAGES} coq-aac-tactics.8.19.0"
   #PACKAGES="${PACKAGES} coq-unicoq.1.6+8.18" #DOES NOT BUILD
   #PACKAGES="${PACKAGES} coq-mtac2.1.4+8.18" #DOES NOT BUILD, DEPENDS ON UNICOQ
-  PACKAGES="${PACKAGES} elpi.1.18.1 coq-elpi.2.0.1"
+  PACKAGES="${PACKAGES} elpi.1.18.2 coq-elpi.2.1.0"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.7.0"
   #PACKAGES="${PACKAGES} coq-quickchick.2.0.2" #DOES NOT BUILD ON WINDOWS
   #PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.18" # DOES NOT BUILD
