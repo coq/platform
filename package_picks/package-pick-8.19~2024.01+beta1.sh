@@ -100,7 +100,7 @@ then
   #PACKAGES="${PACKAGES} coq-corn.8.18.0" #DOES NOT BUILD
 
   # Homotopy Type Theory (HoTT)
-  PACKAGES="${PACKAGES} coq-hott.8.18"
+  PACKAGES="${PACKAGES} coq-hott.8.19"
 
   # Univalent Mathematics (UniMath)
   # Note: coq-unimath requires too much memory for 32 bit architectures
@@ -139,7 +139,7 @@ then
   #PACKAGES="${PACKAGES} coq-itauto.8.19.0" #DOES NOT BUILD ON WINDOWS
   
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.1.0.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.1.1.0"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.2.3"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.10"
 
@@ -191,7 +191,7 @@ then
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.5"
-  PACKAGES="${PACKAGES} coq-record-update.0.3.3"
+  PACKAGES="${PACKAGES} coq-record-update.0.3.4"
 
   # Communication with coqtop
   if [[ "$OSTYPE" != cygwin ]]
