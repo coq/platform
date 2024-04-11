@@ -35,8 +35,8 @@ opam config set jobs $COQ_PLATFORM_JOBS
 ulimit -S -s 65520
 
 if ! $COQ_PLATFORM_TIME opam pin -n dune 3.15.0; then dump_opam_logs; fi
-if ! $COQ_PLATFORM_TIME opam pin -n coq-tactician-dummy 1.0~beta2+8.17; then dump_opam_logs; fi
-if ! $COQ_PLATFORM_TIME opam pin -n coq-tactician 1.0~beta2.1+8.18; then dump_opam_logs; fi
+if ! $COQ_PLATFORM_TIME opam pin -n coq-tactician-dummy 8.17.dev; then dump_opam_logs; fi
+if ! $COQ_PLATFORM_TIME opam pin -n coq-tactician 8.18.dev; then dump_opam_logs; fi
 if ! $COQ_PLATFORM_TIME opam pin -n coq-core 8.18.0; then dump_opam_logs; fi
 if ! $COQ_PLATFORM_TIME opam pin -n ocamlfind 1.9.5~relocatable; then dump_opam_logs; fi
 if ! $COQ_PLATFORM_TIME opam install dune coq-core coq-tactician-dummy coq-tactician ocamlfind; then dump_opam_logs; fi
