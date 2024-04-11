@@ -25,7 +25,7 @@ COQ_PLATFORM_COQ_BRANCH='v8.18'
 COQ_PLATFORM_COQ_TAG='8.18.0'
 
 # This controls if opam repositories for development packages are selected
-COQ_PLATFORM_USE_DEV_REPOSITORY='N'
+COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 
 # This extended descriptions is used for readme files
 COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.11.0 includes Coq 8.18.0 from Sep 2023 and Tactician.'
@@ -48,9 +48,6 @@ PACKAGES=""
 
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"  # TODO port patch to 1.9.6
-# Since dune does support Coq, it is explicitly selected
-PACKAGES="${PACKAGES} dune.3.7.1"
-PACKAGES="${PACKAGES} dune-configurator.3.10.0"
 # The Coq compiler coqc and the Coq standard library
 PACKAGES="${PACKAGES} PIN.coq.8.18.0"
 
