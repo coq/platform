@@ -54,5 +54,3 @@ PACKAGES="${PACKAGES} PIN.coq.8.18.0"
 ########## IDE PACKAGES ##########
 
 PACKAGES="${PACKAGES} coqide.8.18.0"
-
-PACKAGES="${PACKAGES} coq-tactician-dummy.1.0~beta2+8.17 coq-tactician.1.0~beta2.1+8.18"
