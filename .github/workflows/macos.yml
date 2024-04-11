@@ -15,6 +15,7 @@ on:
       - 2021.02
       - 2021.09
       - main
+      - tactician
   pull_request:
     branches:
       - '**'
