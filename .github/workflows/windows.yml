@@ -55,7 +55,7 @@ jobs:
           # Keep this in sync with the Smoke test below
           - '8.18~tactician'
           # - '8.19~2024.01+beta1'
-          # - '8.18~2023.11'
+          - '8.18~2023.11'
           # - '8.18~mc2'
           # - '8.17~2023.08'
 
