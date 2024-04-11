@@ -38,7 +38,8 @@ if ! $COQ_PLATFORM_TIME opam pin -n dune 3.15.0; then dump_opam_logs; fi
 if ! $COQ_PLATFORM_TIME opam pin -n coq-tactician-dummy 1.0~beta2+8.17; then dump_opam_logs; fi
 if ! $COQ_PLATFORM_TIME opam pin -n coq-tactician 1.0~beta2.1+8.18; then dump_opam_logs; fi
 if ! $COQ_PLATFORM_TIME opam pin -n coq-core 8.18.0; then dump_opam_logs; fi
-if ! $COQ_PLATFORM_TIME opam install dune.3.15.0 coq-core.8.18.0 coq-tactician-dummy.1.0~beta2+8.17 coq-tactician.1.0~beta2.1+8.18; then dump_opam_logs; fi
+if ! $COQ_PLATFORM_TIME opam pin -n ocamlfind 1.9.5~relocatable; then dump_opam_logs; fi
+if ! $COQ_PLATFORM_TIME opam install dune.3.15.0 coq-core.8.18.0 coq-tactician-dummy.1.0~beta2+8.17 coq-tactician.1.0~beta2.1+8.18 ocamlfind.1.9.5~relocatable; then dump_opam_logs; fi
 
 opam switch
 opam switch set ${COQ_PLATFORM_SWITCH_NAME}
