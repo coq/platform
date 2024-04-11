@@ -37,8 +37,10 @@ ulimit -S -s 65520
 if ! $COQ_PLATFORM_TIME opam install coq-core.8.18.0 coq-tactician.1.0~beta2.1+8.18; then dump_opam_logs; fi
 
 opam switch
-
-opam env
+opam switch set ${COQ_PLATFORM_SWITCH_NAME}
+opam switch
+eval $(opam env --set-switch --switch ${COQ_PLATFORM_SWITCH_NAME})
+opam switch
 
 opam exec -- tactician inject
 
