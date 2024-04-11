@@ -34,7 +34,7 @@ opam config set jobs $COQ_PLATFORM_JOBS
 # One can rise it as root on MacOS, but only for a root shell, not for the current shell
 ulimit -S -s 65520
 
-if ! $COQ_PLATFORM_TIME opam install --ignore-constraints-on=coq-tactician dune.3.15.0 coq-core.8.18.0 coq-tactician.1.0~beta2.1+8.18; then dump_opam_logs; fi
+if ! $COQ_PLATFORM_TIME opam install --ignore-constraints-on="coq-tactician,dune,coq-core" dune.3.15.0 coq-core.8.18.0 coq-tactician.1.0~beta2.1+8.18; then dump_opam_logs; fi
 
 opam switch
 opam switch set ${COQ_PLATFORM_SWITCH_NAME}
