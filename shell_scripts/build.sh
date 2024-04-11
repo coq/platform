@@ -34,11 +34,15 @@ opam config set jobs $COQ_PLATFORM_JOBS
 # One can rise it as root on MacOS, but only for a root shell, not for the current shell
 ulimit -S -s 65520
 
+if ! $COQ_PLATFORM_TIME opam install coq-core.8.18.0 coq-tactician.1.0~beta2.1+8.18; then dump_opam_logs; fi
+
+tactician inject
+
 case "$COQ_PLATFORM_PARALLEL" in
-  [pP]) 
-    echo "===== INSTALL OPAM PACKAGES (PARALLEL) ====="
-    if ! $COQ_PLATFORM_TIME opam install ${PACKAGES//PIN.}; then dump_opam_logs; fi
-    for package in ${PACKAGES}
+    [pP]) 
+        echo "===== INSTALL OPAM PACKAGES (PARALLEL) ====="
+        if ! $COQ_PLATFORM_TIME opam install ${PACKAGES//PIN.}; then dump_opam_logs; fi
+        for package in ${PACKAGES}
     do
       case $package in
       PIN.*)
