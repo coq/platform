@@ -36,7 +36,7 @@ ulimit -S -s 65520
 
 if ! $COQ_PLATFORM_TIME opam install coq-core.8.18.0 coq-tactician.1.0~beta2.1+8.18; then dump_opam_logs; fi
 
-eval $(opam env --set-switch --switch ${COQ_PLATFORM_SWITCH_NAME}) && tactician inject
+eval $(opam env --switch ${COQ_PLATFORM_SWITCH_NAME}) && tactician inject
 
 case "$COQ_PLATFORM_PARALLEL" in
     [pP]) 
