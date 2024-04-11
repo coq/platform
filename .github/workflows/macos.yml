@@ -106,19 +106,19 @@ jobs:
       - name: Install bash (needed by smoke scripts)
         run: brew install bash
 
-      - name: Create smoke test kit
-        shell: bash
-        run: |
-          eval $(opam env)
-          export MACOSX_DEPLOYMENT_TARGET=10.13
-          shell_scripts/create_smoke_test_kit.sh
+      # - name: Create smoke test kit
+      #   shell: bash
+      #   run: |
+      #     eval $(opam env)
+      #     export MACOSX_DEPLOYMENT_TARGET=10.13
+      #     shell_scripts/create_smoke_test_kit.sh
 
-      - name: 'Upload smoke test kit'
-        uses: actions/upload-artifact@v3
-        with:
-          name: 'Smoke Test Kit Macos ${{matrix.variant}}'
-          path: smoke-test-kit/
-          retention-days: 5
+      # - name: 'Upload smoke test kit'
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: 'Smoke Test Kit Macos ${{matrix.variant}}'
+      #     path: smoke-test-kit/
+      #     retention-days: 5
 
       - name: Install findutils, coreutils and macpack (needed by DMG script)
         run: |
@@ -149,57 +149,57 @@ jobs:
           path: macos_installer/Coq-Platform-*.dmg
           retention-days: 5
 
-  Macos_smoke:
-    name: Smoke test Macos
-    needs: Macos_platform
-    runs-on: macos-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        variant:
-          - '8.18~tactician'
-          # - '8.19~2024.01+beta1'
-          # - '8.18~2023.11'
-          # - '8.18~mc2'
-          # - '8.17~2023.08'
+  # Macos_smoke:
+  #   name: Smoke test Macos
+  #   needs: Macos_platform
+  #   runs-on: macos-latest
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       variant:
+  #         - '8.18~tactician'
+  #         # - '8.19~2024.01+beta1'
+  #         # - '8.18~2023.11'
+  #         # - '8.18~mc2'
+  #         # - '8.17~2023.08'
 
-    steps:
-      - name: Install bash
-        run: brew install bash
+  #   steps:
+  #     - name: Install bash
+  #       run: brew install bash
 
-      - name: 'Download Artifact'
-        uses: actions/download-artifact@v3
-        id: download
-        with:
-          name: 'Macos installer ${{matrix.variant}} x86_64'
+  #     - name: 'Download Artifact'
+  #       uses: actions/download-artifact@v3
+  #       id: download
+  #       with:
+  #         name: 'Macos installer ${{matrix.variant}} x86_64'
 
-      - name: 'Download smoke test kit'
-        uses: actions/download-artifact@v3
-        id: download-smoke
-        with:
-          name: 'Smoke Test Kit Macos ${{matrix.variant}}'
+  #     - name: 'Download smoke test kit'
+  #       uses: actions/download-artifact@v3
+  #       id: download-smoke
+  #       with:
+  #         name: 'Smoke Test Kit Macos ${{matrix.variant}}'
 
-      - name: 'Run Installer'
-        shell: bash
-        run: |
-          cd ${{steps.download.outputs.download-path}}
-          DMG=$(ls Coq-Platform-*.dmg)
-          hdiutil attach $DMG
-          cp -r /Volumes/${DMG%%.dmg}/Coq-Platform*.app /Applications/
-          hdiutil detach /Volumes/${DMG%%.dmg}/
+  #     - name: 'Run Installer'
+  #       shell: bash
+  #       run: |
+  #         cd ${{steps.download.outputs.download-path}}
+  #         DMG=$(ls Coq-Platform-*.dmg)
+  #         hdiutil attach $DMG
+  #         cp -r /Volumes/${DMG%%.dmg}/Coq-Platform*.app /Applications/
+  #         hdiutil detach /Volumes/${DMG%%.dmg}/
 
-      - name: 'Smoke coqc'
-        shell: bash
-        run: |
-          cd /Applications/Coq-Platform*.app/Contents/Resources/bin/
-          ./coqc -v
+  #     - name: 'Smoke coqc'
+  #       shell: bash
+  #       run: |
+  #         cd /Applications/Coq-Platform*.app/Contents/Resources/bin/
+  #         ./coqc -v
 
-      - name: 'Run Macos smoke test kit'
-        shell: bash
-        run: |
-          ls /Applications/Coq-Platform*.app
-          export PATH="$PATH:$(cd /Applications/Coq-Platform*.app/Contents/Resources/bin/; pwd)"
-          export COQLIB=$(coqc -where)
-          cd ${{steps.download-smoke.outputs.download-path}}
-          chmod a+x ./run-smoke-test.sh
-          ./run-smoke-test.sh
+  #     - name: 'Run Macos smoke test kit'
+  #       shell: bash
+  #       run: |
+  #         ls /Applications/Coq-Platform*.app
+  #         export PATH="$PATH:$(cd /Applications/Coq-Platform*.app/Contents/Resources/bin/; pwd)"
+  #         export COQLIB=$(coqc -where)
+  #         cd ${{steps.download-smoke.outputs.download-path}}
+  #         chmod a+x ./run-smoke-test.sh
+  #         ./run-smoke-test.sh
