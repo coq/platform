@@ -125,11 +125,11 @@ then
   PACKAGES="${PACKAGES} elpi.1.18.2 coq-elpi.2.1.0"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.7.0"
   #PACKAGES="${PACKAGES} coq-quickchick.2.0.2" #DOES NOT BUILD ON WINDOWS
-  #PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.18" # DOES NOT BUILD
+  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.19"
   if [[ "$OSTYPE" != cygwin ]]
   then
     # coq-hammer does not work on Windows because it heavily relies on fork
-    #PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.18" # DEPENDS ON COQ-HAMMER-TACTICS
+    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.19"
     PACKAGES="${PACKAGES} eprover.3.0"
     PACKAGES="${PACKAGES} z3_tptp.4.11.2"  # 4.12.2-1 has build issues on ARM macOS
   fi
@@ -186,7 +186,7 @@ then
     PACKAGES="${PACKAGES} coq-metacoq.1.3.1+8.19"
   fi
 
-  # General mathematics
+  # General mathematic s
   PACKAGES="${PACKAGES} coq-extructures.0.4.0"
 
   # Gallina extensions
