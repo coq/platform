@@ -69,7 +69,7 @@ then
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.19"
   PACKAGES="${PACKAGES} coq-ext-lib.0.12.1"
-  #PACKAGES="${PACKAGES} coq-stdpp.1.9.0" #does not build
+  PACKAGES="${PACKAGES} coq-stdpp.1.10.0"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.2.0"
@@ -145,13 +145,12 @@ then
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.2.1"
-  #PACKAGES="${PACKAGES} coq-iris.4.1.0" #DEPENDS ON coq-stdpp
-  #PACKAGES="${PACKAGES} coq-iris-heap-lang.4.1.0" #DEPENDS on coq-iris
+  PACKAGES="${PACKAGES} coq-iris.4.2.0"
+  PACKAGES="${PACKAGES} coq-iris-heap-lang.4.2.0"
   if [[ "$OSTYPE" != cygwin ]]
   then
     # Windows: some issues with executable extensions (ott.opt instead of ott.exe)
-    # Note: 0.32 does work on Windows!
-    #PACKAGES="${PACKAGES} coq-ott.0.33" #DOES NOT BUILD
+    PACKAGES="${PACKAGES} coq-ott.0.33"
     PACKAGES="${PACKAGES} ott.0.33"
   fi
   PACKAGES="${PACKAGES} coq-mathcomp-word.3.0"
