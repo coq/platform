@@ -119,7 +119,7 @@ then
   fi 
 
   # Code extraction
-  PACKAGES="${PACKAGES} coq-simple-io.1.8.0"
+  PACKAGES="${PACKAGES} coq-simple-io.1.9.0"
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20231231 menhir.20231231"
