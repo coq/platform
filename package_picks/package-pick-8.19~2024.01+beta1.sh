@@ -96,8 +96,8 @@ then
   PACKAGES="${PACKAGES} gappa.1.4.1"
 
   # Constructive mathematics
-  #PACKAGES="${PACKAGES} coq-math-classes.8.18.0" #DOES NOT BUILD
-  #PACKAGES="${PACKAGES} coq-corn.8.18.0" #DOES NOT BUILD
+  PACKAGES="${PACKAGES} coq-math-classes.8.19.0"
+  PACKAGES="${PACKAGES} coq-corn.8.19.0"
 
   # Homotopy Type Theory (HoTT)
   PACKAGES="${PACKAGES} coq-hott.8.19"
