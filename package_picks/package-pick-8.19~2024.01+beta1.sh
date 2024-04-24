@@ -186,7 +186,7 @@ then
     PACKAGES="${PACKAGES} coq-metacoq.1.3.1+8.19"
   fi
 
-  # General mathematic s
+  # General mathematics
   PACKAGES="${PACKAGES} coq-extructures.0.4.0"
 
   # Gallina extensions
