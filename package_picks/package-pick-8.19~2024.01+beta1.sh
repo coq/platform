@@ -120,8 +120,8 @@ then
   PACKAGES="${PACKAGES} coq-menhirlib.20231231 menhir.20231231"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.19"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.19.0"
-  #PACKAGES="${PACKAGES} coq-unicoq.1.6+8.18" #DOES NOT BUILD
-  #PACKAGES="${PACKAGES} coq-mtac2.1.4+8.18" #DOES NOT BUILD, DEPENDS ON UNICOQ
+  PACKAGES="${PACKAGES} coq-unicoq.1.6+8.19"
+  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.19"
   PACKAGES="${PACKAGES} elpi.1.18.2 coq-elpi.2.1.0"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.7.0"
   #PACKAGES="${PACKAGES} coq-quickchick.2.0.2" #DOES NOT BUILD ON WINDOWS
@@ -135,7 +135,7 @@ then
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.19"
   PACKAGES="${PACKAGES} coq-coqeal.2.0.2"
-  #PACKAGES="${PACKAGES} coq-libhyps.2.0.8" #DOES NOT BUILD
+  PACKAGES="${PACKAGES} coq-libhyps.2.0.8"
   #PACKAGES="${PACKAGES} coq-itauto.8.19.0" #DOES NOT BUILD ON WINDOWS
   
   # General mathematics (which requires one of the above tools)
