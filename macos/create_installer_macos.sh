@@ -115,12 +115,13 @@ echo "##### Coq version = ${COQ_VERSION} (Mac app version=${COQ_VERSION_MACOS}) 
 
 set +e
 PORTCMD="$(which port)"
+BREWCMD="$(which brew)"
 set -e
 
 if [ -z "${PORTCMD}" ]; then
   PKG_MANAGER=brew
-  PKG_MANAGER_ROOT="/usr/local/"
-  PKG_MANAGER_ROOT_STRIP="/usr/local/Cellar/*/*/" # one * for the package name and one for its version
+  PKG_MANAGER_ROOT="${BREWCMD%bin/brew}"
+  PKG_MANAGER_ROOT_STRIP="${PKG_MANAGER_ROOT}Cellar/*/*/" # one * for the package name and one for its version
 else
   PKG_MANAGER=port
   # If someone knows a better way to find out where port is installed, please let me know!
