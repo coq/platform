@@ -169,7 +169,7 @@ then
     PACKAGES="${PACKAGES} coq-ott.0.33"
     PACKAGES="${PACKAGES} ott.0.33"
   fi
-  PACKAGES="${PACKAGES} coq-mathcomp-word.3.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-word.3.1"
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.13.1" ;;
