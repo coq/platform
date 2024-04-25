@@ -49,7 +49,7 @@ PACKAGES=""
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"  # TODO port patch to 1.9.6
 # Since dune does support Coq, it is explicitly selected
-PACKAGES="${PACKAGES} dune.3.11.1"
+PACKAGES="${PACKAGES} dune.3.12.1"
 PACKAGES="${PACKAGES} dune-configurator.3.10.0"
 # The Coq compiler coqc and the Coq standard library
 PACKAGES="${PACKAGES} PIN.coq.8.19.1"
@@ -153,7 +153,7 @@ then
     PACKAGES="${PACKAGES} coq-ott.0.33"
     PACKAGES="${PACKAGES} ott.0.33"
   fi
-  PACKAGES="${PACKAGES} coq-mathcomp-word.3.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-word.3.1"
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.13.1" ;;
