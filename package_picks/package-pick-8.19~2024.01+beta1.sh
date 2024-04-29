@@ -129,7 +129,7 @@ then
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.19"
   PACKAGES="${PACKAGES} elpi.1.18.2 coq-elpi.2.1.0"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.7.0"
-  PACKAGES="${PACKAGES} coq-quickchick.2.0.3" # build issues on Windows
+  PACKAGES="${PACKAGES} coq-quickchick.2.0.3"
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.19"
   if [[ "$OSTYPE" != cygwin ]]
   then
