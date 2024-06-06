@@ -11,6 +11,7 @@
 ###################### SCRIPT INITIALIZATION #####################
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
+# echo "=============================== INITIALIZATION ==============================="
 source shell_scripts/init_safety_debug.sh
 source shell_scripts/init_paths.sh
 source shell_scripts/init_utilities.sh
