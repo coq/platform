@@ -880,6 +880,27 @@ The **extended level** contains the following packages:
   </dl>
 </details>
 
+<details>
+  <summary><a href='https://github.com/arthuraa/deriving'>coq-lsp.dev</a>
+  LSP-compliant language server for Coq</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>coq-lsp developers</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/ejgallego/coq-lsp/'>homepage</a>)
+      (<a href='https://github.com/ejgallego/coq-lsp/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/coq-lsp/'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>
+    `coq-lsp` is a [Language
+    Server](https://microsoft.github.io/language-server-protocol/) and [Visual
+    Studio Code](https://code.visualstudio.com/) extension for the [Coq Proof
+    Assistant](https://coq.inria.fr). Experimental support for [Emacs](https://github.com/ejgallego/coq-lsp#emacs), [Vim](https://github.com/ejgallego/coq-lsp#vim) and
+    [Neovim](https://github.com/ejgallego/coq-lsp#neovim) is also available in their own projects.
+    </dd>
+  </dl>
+</details>
+
 <br>
 
 ## **Dependency packages**
