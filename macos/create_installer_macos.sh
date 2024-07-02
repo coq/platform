@@ -145,10 +145,14 @@ function add_files_of_system_package {
   ;;
   esac
   echo "Copying files from package $1 ..."
+  echo "Number of files unfiltered $($LIST_PKG_CONTENTS "$1" | wc -l)"
+  echo "Number of files filtered $($LIST_PKG_CONTENTS "$1" | grep "$2" | wc -l)"
+  $LIST_PKG_CONTENTS "$1"
   for file in $($LIST_PKG_CONTENTS "$1" | grep "$2" | sort -u)
   do
     relpath="${file#${PKG_MANAGER_ROOT_STRIP}}"
     reldir="${relpath%/*}"
+    echo "add_files_of_system_package '$file' '$RSRC_ABSDIR' '$reldir'"
     mkdir -p "$RSRC_ABSDIR/$reldir"
     cp "$file" "$RSRC_ABSDIR/$reldir/"
   done
