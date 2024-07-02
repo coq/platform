@@ -33,7 +33,7 @@ COQ_PLATFORM_VERSION_DESCRIPTION+='There are two package picks for Coq 8.16.1: t
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is the latest package pick for Coq 8.16.1 with some package updates with the goal to make it as compatible as possible to the Coq 8.17.1 package pick. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
-COQ_PLATFORM_OCAML_VERSION='4.14.1'
+COQ_PLATFORM_OCAML_VERSION='4.14.2'
 
 ###################### PACKAGE SELECTION #####################
 
@@ -51,8 +51,8 @@ PACKAGES=""
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
 # Since dune does support Coq, it is explicitly selected
-PACKAGES="${PACKAGES} dune.3.7.0"
-PACKAGES="${PACKAGES} dune-configurator.3.7.0"
+PACKAGES="${PACKAGES} PIN.dune.3.15.3"
+PACKAGES="${PACKAGES} PIN.dune-configurator.3.15.3"
 # The Coq compiler coqc and the Coq standard library
 PACKAGES="${PACKAGES} PIN.coq.8.16.1"
 
