@@ -119,14 +119,21 @@ set -e
 
 if [ -z "${PORTCMD}" ]; then
   PKG_MANAGER=brew
-  PKG_MANAGER_ROOT="/usr/local/"
-  PKG_MANAGER_ROOT_STRIP="/usr/local/Cellar/*/*/" # one * for the package name and one for its version
+  PKG_MANAGER_ROOT="$(brew --cellar)"
+  # We want to transform e.g.
+  # /opt/homebrew/Cellar/adwaita-icon-theme/46.0/share/icons/Adwaita/cursors/row-resize
+  # to
+  # share/icons/Adwaita/cursors/row-resize
+  PKG_MANAGER_ROOT_STRIP="$(brew --cellar)/*/*/" # one * for the package name and one for its version
 else
   PKG_MANAGER=port
   # If someone knows a better way to find out where port is installed, please let me know!
   PKG_MANAGER_ROOT="${PORTCMD%bin/port}"
   PKG_MANAGER_ROOT_STRIP="${PORTCMD%bin/port}"
 fi
+echo "PKG_MANAGER            = $PKG_MANAGER"
+echo "PKG_MANAGER_ROOT       = $PKG_MANAGER_ROOT"
+echo "PKG_MANAGER_ROOT_STRIP = $PKG_MANAGER_ROOT_STRIP"
 
 ##### Add files from a system package using package name and grep filter #####
 
