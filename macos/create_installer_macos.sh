@@ -333,7 +333,7 @@ fi
 ### Adwaita icon theme
 
 add_files_of_system_package "adwaita-icon-theme"  \
-"/\(16x16\|22x22\|32x32\|48x48\)/.*\("\
+"/\(16x16\|scalable\|symbolic\)/.*\("\
 "actions/bookmark\|actions/document\|devices/drive\|actions/format-text\|actions/go\|actions/list\|"\
 "actions/media\|actions/pan\|actions/process\|actions/system\|actions/window\|"\
 "mimetypes/text\|mimetypes/inode\|mimetypes/application\|"\
