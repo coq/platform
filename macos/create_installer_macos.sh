@@ -154,7 +154,6 @@ function add_files_of_system_package {
   echo "Copying files from package $1 ..."
   echo "Number of files unfiltered $($LIST_PKG_CONTENTS "$1" | wc -l)"
   echo "Number of files filtered $($LIST_PKG_CONTENTS "$1" | grep "$2" | wc -l)"
-  $LIST_PKG_CONTENTS "$1"
   for file in $($LIST_PKG_CONTENTS "$1" | grep "$2" | sort -u)
   do
     relpath="${file#${PKG_MANAGER_ROOT_STRIP}}"
@@ -183,17 +182,6 @@ function add_shared_library_dependencies {
 }
 
 ###################### Adding stuff manually ######################
-
-##### Add a folder recursively #####
-
-# $1 = path prefix (absolute)
-# $2 = relative path to $1 and ${RSRC_ABSDIR} (must not start with /)
-
-function add_folder_recursively {
-  echo "Copying files from folder $1/$2 ..."
-  mkdir -p "${RSRC_ABSDIR}/$2/"
-  cp -R "$1/$2/" "${RSRC_ABSDIR}/$2/"
-}
 
 ##### Add a single file #####
 
@@ -356,7 +344,19 @@ make_theme_index "${RSRC_ABSDIR}/share/icons/Adwaita/"
 
 ### GTK compiled schemas
 
-add_single_file "${PKG_MANAGER_ROOT}" "share/glib-2.0/schemas" "gschemas.compiled"
+case $PKG_MANAGER in
+  port)
+    add_single_file "${PKG_MANAGER_ROOT}" "share/glib-2.0/schemas" "gschemas.compiled"
+  ;;
+  brew)
+    oneschema="$(brew ls -v gtk+3 | grep /schemas/ | head -1)"
+    schemapath="${oneschema%"${oneschema##*/schemas/}"}"
+    gtkroot="${schemapath%/share/glib-2.0/schemas/}"
+    echo "GTK schema paths: $oneschema, $schemapath, $gtkroot"
+    glib-compile-schemas "$schemapath"
+    add_single_file "${gtkroot}" "share/glib-2.0/schemas" "gschemas.compiled"
+  ;;
+esac
 
 ### GTK sourceview languag specs and styles (except coq itself)
 
@@ -368,7 +368,7 @@ add_single_file "${PKG_MANAGER_ROOT}" "share/glib-2.0/schemas" "gschemas.compile
 # styles/classic.xml
 # But since the complete set is compressed not that large, we add the complete set
 
-add_folder_recursively "${PKG_MANAGER_ROOT}" "share/gtksourceview-3.0"
+add_files_of_system_package gtksourceview3 "/share/gtksourceview-3.0/"
 
 ##### Patch ocamlfind META files - the exists_if lines usually reference compile time libs
 
