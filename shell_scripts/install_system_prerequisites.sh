@@ -15,6 +15,12 @@
 # - repeated questions for the sudo password are avoided
 # - there are no conflicts between required system packages
 
+# On MacPorts one needs to install gtk3 separately upfront to ensure no X11 (but quartz) dependencies are installed
+
+if [ "$(opam var os-distribution)" == "macports" ] &&  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
+then
+  opam install conf-gtk3
+fi
 
 case "$COQ_PLATFORM_PARALLEL" in
   [pP]) 

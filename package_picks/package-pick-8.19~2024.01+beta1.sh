@@ -31,7 +31,7 @@ COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.01.0 includes Coq 8.19.1 from Mar 2024. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
-COQ_PLATFORM_OCAML_VERSION='4.14.1'
+COQ_PLATFORM_OCAML_VERSION='4.14.2'
 
 ###################### PACKAGE SELECTION #####################
 
@@ -49,8 +49,8 @@ PACKAGES=""
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"  # TODO port patch to 1.9.6
 # Since dune does support Coq, it is explicitly selected
-PACKAGES="${PACKAGES} dune.3.11.1"
-PACKAGES="${PACKAGES} dune-configurator.3.10.0"
+PACKAGES="${PACKAGES} PIN.dune.3.15.3"
+PACKAGES="${PACKAGES} PIN.dune-configurator.3.15.3"
 # The Coq compiler coqc and the Coq standard library
 PACKAGES="${PACKAGES} PIN.coq.8.19.1"
 

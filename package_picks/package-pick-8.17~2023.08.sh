@@ -32,7 +32,7 @@ COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.11.0 include
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is the original package pick for Coq 8.17.1 from Aug 2023. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
-COQ_PLATFORM_OCAML_VERSION='4.14.1'
+COQ_PLATFORM_OCAML_VERSION='4.14.2'
 
 ###################### PACKAGE SELECTION #####################
 
@@ -50,8 +50,8 @@ PACKAGES=""
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"
 # Since dune does support Coq, it is explicitly selected
-PACKAGES="${PACKAGES} dune.3.7.0"
-PACKAGES="${PACKAGES} dune-configurator.3.7.0"
+PACKAGES="${PACKAGES} PIN.dune.3.15.3"
+PACKAGES="${PACKAGES} PIN.dune-configurator.3.15.3"
 # The Coq compiler coqc and the Coq standard library
 PACKAGES="${PACKAGES} PIN.coq.8.17.1"
 
