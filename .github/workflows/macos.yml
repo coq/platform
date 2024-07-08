@@ -101,6 +101,20 @@ jobs:
         shell: bash
         run: ./coq_platform_make.sh -packages=${{matrix.variant}} $PLATFORM_ARGS -dumplogs
 
+      - name: 'Upload opam log folder on failure'
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: 'Opam log folder ${{matrix.variant}}'
+          path: /Users/runner/.opam/log/
+
+      - name: 'Upload opam build folder on failure'
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: 'Opam build folder ${{matrix.variant}}'
+          path: /Users/runner/.opam/CP*${{matrix.variant}}/.opam_switch/build/
+
       - name: Install bash (needed by smoke scripts)
         run: brew install bash
 
