@@ -63,7 +63,7 @@ jobs:
           git config --global core.eol lf
 
       - name: Git checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set PLATFORM
         if: ${{ github.event.inputs.platform != '' }}
@@ -82,14 +82,14 @@ jobs:
         run: C:\cygwin_coq_platform\bin\bash --login -c "cd /platform/ && shell_scripts/create_smoke_test_kit.sh && mkdir /cygdrive/c/smoke && cp -ra smoke-test-kit/* /cygdrive/c/smoke/"
 
       - name: 'Upload Artifact'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: 'Windows installer ${{matrix.variant}} ${{matrix.architecture}}'
           path: C:\installer\*.exe
           retention-days: 5
 
       - name: 'Upload smoke test kit'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: 'Smoke Test Kit Windows ${{matrix.variant}} ${{matrix.architecture}}'
           path: C:\smoke\
@@ -112,13 +112,13 @@ jobs:
 
     steps:
       - name: 'Download Artifact'
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         id: download
         with:
           name: 'Windows installer ${{matrix.variant}} ${{matrix.architecture}}'
 
       - name: 'Download smoke test kit'
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         id: download-smoke
         with:
           name: 'Smoke Test Kit Windows ${{matrix.variant}} ${{matrix.architecture}}'
