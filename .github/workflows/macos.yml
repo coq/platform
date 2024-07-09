@@ -57,7 +57,7 @@ jobs:
           - '8.17~2023.08'
     steps:
       - name: Git checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set PLATFORM
         if: ${{ github.event.inputs.platform != '' }}
@@ -101,6 +101,20 @@ jobs:
         shell: bash
         run: ./coq_platform_make.sh -packages=${{matrix.variant}} $PLATFORM_ARGS -dumplogs
 
+      - name: 'Upload opam log folder on failure'
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: 'Opam log folder ${{matrix.variant}}'
+          path: /Users/runner/.opam/log/
+
+      - name: 'Upload opam build folder on failure'
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: 'Opam build folder ${{matrix.variant}}'
+          path: /Users/runner/.opam/CP*${{matrix.variant}}/.opam-switch/build
+
       - name: Install bash (needed by smoke scripts)
         run: brew install bash
 
@@ -112,7 +126,7 @@ jobs:
           shell_scripts/create_smoke_test_kit.sh
 
       - name: 'Upload smoke test kit'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: 'Smoke Test Kit Macos ${{matrix.variant}}'
           path: smoke-test-kit/
@@ -125,7 +139,7 @@ jobs:
           pip3 install macpack
 
       - name: 'Build DMG installer'
-        uses: Wandalen/wretry.action@v1.3.0
+        uses: Wandalen/wretry.action@v3
         with:
           attempt_limit: 5
           attempt_delay: 5000
@@ -134,14 +148,14 @@ jobs:
             macos/create_installer_macos.sh
 
       - name: 'Upload DMG script logs on failure'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: 'DMG script error logs ${{matrix.variant}}'
           path: macos_installer/logs/
 
       - name: 'Upload Artifact'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: 'Macos installer ${{matrix.variant}} x86_64'
           path: macos_installer/Coq-Platform-*.dmg
@@ -165,13 +179,13 @@ jobs:
         run: brew install bash
 
       - name: 'Download Artifact'
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         id: download
         with:
           name: 'Macos installer ${{matrix.variant}} x86_64'
 
       - name: 'Download smoke test kit'
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         id: download-smoke
         with:
           name: 'Smoke Test Kit Macos ${{matrix.variant}}'
