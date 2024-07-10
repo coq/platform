@@ -1,7 +1,7 @@
 opam-version: "2.0"
 maintainer: "matthieu.sozeau@inria.fr"
 homepage: "https://metacoq.github.io/metacoq"
-dev-repo: "git+https://github.com/MetaCoq/metacoq.git#coq-8.15"
+dev-repo: "git+https://github.com/MetaCoq/metacoq.git#coq-8.16"
 bug-reports: "https://github.com/MetaCoq/metacoq/issues"
 authors: ["Abhishek Anand <aa755@cs.cornell.edu>"
           "Danil Annenkov <danil.v.annenkov@gmail.com>"
@@ -31,9 +31,8 @@ install: [
   [make "-C" "template-coq" "install"]
 ]
 depends: [
-  "ocaml" {>= "4.07.1"}
   "stdlib-shims"
-  "coq" { >= "8.15" & < "8.16~" }
+  "coq" { >= "8.16" & < "8.17~" }
   "coq-equations" { >= "1.3" }
 ]
 synopsis: "A quoting and unquoting library for Coq in Coq"
@@ -54,10 +53,6 @@ Template Coq includes:
   MetaCoq/MTac.
 """
 url {
-  src:
-    "https://github.com/MetaCoq/metacoq/archive/refs/tags/v1.1-8.15.tar.gz"
-  checksum: [
-    "sha512=e75c1171fb6a41b21fc5c3f8f788698939dfa8abe950f16afaee2425426236e61be464f4eb69a2d36430fe6b51e980e83b97e88e58a1aa78ae253e249a49d49b"
-    "sha256=0a305d179c3ffb7e01560c2e83d8d511dd90ca202b5c6409710ded92a86e0021"
-  ]
+  src: "https://github.com/MetaCoq/metacoq/archive/refs/tags/v1.1-8.16.tar.gz"
+  checksum: "sha512=abd34042fc2804954abc8b1fba4c2b3d1d1c0c780874ad0cbe698a19756e26985c77bb231b2e9b40ea01261f3fbbb36fbdd2b7095931e947bf933359cb0154f7"
 }
