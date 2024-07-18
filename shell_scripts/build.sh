@@ -35,6 +35,12 @@ opam config set jobs $COQ_PLATFORM_JOBS
 ulimit -S -s 65520
 
 if ! $COQ_PLATFORM_TIME opam pin -n ocamlfind 1.9.5~relocatable; then dump_opam_logs; fi
+
+if [[ "$OSTYPE" == cygwin ]]
+then
+    if ! $COQ_PLATFORM_TIME opam pin -n opam-client 2.1.0; then dump_opam_logs; fi
+fi
+
 if [[ "$OSTYPE" != cygwin ]]
 then
     if ! $COQ_PLATFORM_TIME opam pin -n z3 4.11.2; then dump_opam_logs; fi # Installing z3 later will cause Tactician to be recompiled
