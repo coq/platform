@@ -138,7 +138,7 @@ then
   PACKAGES="${PACKAGES} coq-libhyps.2.0.5"
 
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.4"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.7"
 
   # Formal languages, compilers and code verification
