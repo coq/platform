@@ -41,7 +41,7 @@ then
     if ! $COQ_PLATFORM_TIME opam install z3; then dump_opam_logs; fi
 fi
 
-if ! $COQ_PLATFORM_TIME opam pin -n dune 3.15.0; then dump_opam_logs; fi
+if ! $COQ_PLATFORM_TIME opam pin -n dune 3.15.3; then dump_opam_logs; fi
 if ! $COQ_PLATFORM_TIME opam pin -n coq-tactician-dummy 8.17.dev; then dump_opam_logs; fi
 if ! $COQ_PLATFORM_TIME opam pin -n coq-tactician 8.18.dev; then dump_opam_logs; fi
 if ! $COQ_PLATFORM_TIME opam pin -n coq-core 8.18.0; then dump_opam_logs; fi
