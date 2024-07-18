@@ -19,7 +19,8 @@ authors: ["Abhishek Anand <aa755@cs.cornell.edu>"
 ]
 license: "MIT"
 patches: [
-  "0001-Fix-line-ending-issues-with-generated-code-on-Window.patch"
+  "0001-Fix-line-ending-issues-with-generated-code-on-Window.patch",
+  "Fix make issues Coq Platform CI.patch"
 ]
 build: [
   ["bash" "./configure.sh"]
