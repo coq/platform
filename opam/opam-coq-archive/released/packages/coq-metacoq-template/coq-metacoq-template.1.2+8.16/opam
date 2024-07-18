@@ -1,13 +1,14 @@
 opam-version: "2.0"
 maintainer: "matthieu.sozeau@inria.fr"
 homepage: "https://metacoq.github.io/metacoq"
-dev-repo: "git+https://github.com/MetaCoq/metacoq.git#coq-8.15"
+dev-repo: "git+https://github.com/MetaCoq/metacoq.git#coq-8.16"
 bug-reports: "https://github.com/MetaCoq/metacoq/issues"
 authors: ["Abhishek Anand <aa755@cs.cornell.edu>"
           "Danil Annenkov <danil.v.annenkov@gmail.com>"
           "Simon Boulier <simon.boulier@inria.fr>"
           "Cyril Cohen <cyril.cohen@inria.fr>"
           "Yannick Forster <forster@ps.uni-saarland.de>"
+          "Jason Gross <jgross@mit.edu>"
           "Fabian Kunze <fkunze@fakusb.de>"
           "Meven Lennon-Bertrand <Meven.Bertrand@univ-nantes.fr>"
           "Kenji Maillard <kenji.maillard@inria.fr>"
@@ -18,10 +19,7 @@ authors: ["Abhishek Anand <aa755@cs.cornell.edu>"
           "Théo Winterhalter <theo.winterhalter@inria.fr>"
 ]
 license: "MIT"
-patches: [
-  "0001-Fix-line-ending-issues-with-generated-code-on-Window.patch"
-  "Fix make issues Coq Platform CI.patch"
-]
+patches: [ "Fix make issues Coq Platform CI.patch" ]
 build: [
   ["bash" "./configure.sh"]
   ["rm" "-f" "template-coq/_PluginProject" "template-coq/_TemplateCoqProject"]
@@ -31,10 +29,7 @@ install: [
   [make "-C" "template-coq" "install"]
 ]
 depends: [
-  "ocaml" {>= "4.07.1"}
-  "stdlib-shims"
-  "coq" { >= "8.15" & < "8.16~" }
-  "coq-equations" { >= "1.3" }
+  "coq-metacoq-common" {= version}
 ]
 synopsis: "A quoting and unquoting library for Coq in Coq"
 description: """
@@ -54,10 +49,6 @@ Template Coq includes:
   MetaCoq/MTac.
 """
 url {
-  src:
-    "https://github.com/MetaCoq/metacoq/archive/refs/tags/v1.1-8.15.tar.gz"
-  checksum: [
-    "sha512=e75c1171fb6a41b21fc5c3f8f788698939dfa8abe950f16afaee2425426236e61be464f4eb69a2d36430fe6b51e980e83b97e88e58a1aa78ae253e249a49d49b"
-    "sha256=0a305d179c3ffb7e01560c2e83d8d511dd90ca202b5c6409710ded92a86e0021"
-  ]
+  src: "https://github.com/MetaCoq/metacoq/archive/refs/tags/v1.2-8.16.tar.gz"
+  checksum: "sha512=1fc976740f2ff5a6c4137cf4722e09cae5765d0d71f55e6a020883218396856558a6534aa7d2bd192b60778427edbbc2f096a0e738e95551808702613edbbb31"
 }

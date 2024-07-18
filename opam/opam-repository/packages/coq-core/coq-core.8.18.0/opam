@@ -56,7 +56,10 @@ build: [
     "@doc" {with-doc}
   ]
 ]
-patches: [ "0001-ocamldep-fix-to_relative_path-on-Windows.patch" ]
+patches: [
+  "0001-ocamldep-fix-to_relative_path-on-Windows.patch"
+  "PR19247-ported-Fix-coqide-compilation-with-lablgtk-3.1.5-on-windows.patch"
+]
 dev-repo: "git+https://github.com/coq/coq.git"
 depopts: ["coq-native"]
 url {

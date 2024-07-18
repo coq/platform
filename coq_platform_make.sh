@@ -11,11 +11,13 @@
 ###################### SCRIPT INITIALIZATION #####################
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
+# echo "=============================== INITIALIZATION ==============================="
 source shell_scripts/init_safety_debug.sh
 source shell_scripts/init_paths.sh
 source shell_scripts/init_utilities.sh
 source shell_scripts/init_machine_type.sh
 source shell_scripts/init_cygwin_fixes.sh
+source shell_scripts/init_macos_set_depolyment_target.sh
 
 ###################### SETTINGS #####################
 

@@ -56,6 +56,7 @@ build: [
 patches: [
   "0001-coq_makefile-put-file-to-install-list-in-file-instea.patch"
   "0001-coqdep-Windows-fix-normalisation-of-paths-containing.patch"
+  "PR19247-ported-Fix-coqide-compilation-with-lablgtk-3.1.5-on-windows.patch"
 ]
 dev-repo: "git+https://github.com/coq/coq.git"
 depopts: ["coq-native"]

@@ -11,7 +11,7 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.19.1 (released Mar 2024)"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.19.2 (released Jun 2024)"
 COQ_PLATFORM_VERSION_SORTORDER=98
 
 # The package list name is the final part of the opam switch name.
@@ -22,16 +22,16 @@ COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.19~2024.01+beta1'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.19'
-COQ_PLATFORM_COQ_TAG='8.19.1'
+COQ_PLATFORM_COQ_TAG='8.19.2'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.01.0 includes Coq 8.19.1 from Mar 2024. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.01.0 includes Coq 8.19.2 from Jun 2024. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
-COQ_PLATFORM_OCAML_VERSION='4.14.1'
+COQ_PLATFORM_OCAML_VERSION='4.14.2'
 
 ###################### PACKAGE SELECTION #####################
 
@@ -49,17 +49,17 @@ PACKAGES=""
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"  # TODO port patch to 1.9.6
 # Since dune does support Coq, it is explicitly selected
-PACKAGES="${PACKAGES} dune.3.11.1"
-PACKAGES="${PACKAGES} dune-configurator.3.10.0"
+PACKAGES="${PACKAGES} PIN.dune.3.15.3"
+PACKAGES="${PACKAGES} PIN.dune-configurator.3.15.3"
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} PIN.coq.8.19.1"
+PACKAGES="${PACKAGES} PIN.coq.8.19.2"
 
 ########## IDE PACKAGES ##########
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.19.1"
+PACKAGES="${PACKAGES} coqide.8.19.2"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
@@ -107,7 +107,7 @@ then
   if [ "${BITSIZE}" == "64" ]
   then
     case "$COQ_PLATFORM_UNIMATH" in
-    [yY]) PACKAGES="${PACKAGES} coq-unimath.20231010" ;;
+    [yY]) PACKAGES="${PACKAGES} coq-unimath.20240331" ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_UNIMATH - aborting"; false ;;
     esac

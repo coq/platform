@@ -86,27 +86,16 @@ IF "%~0" == "-h" (
 )
 
 IF "%~0" == "-arch" (
-  IF "%~1" == "32" (
-    SET ARCH=i686
-    SET SETUP=setup-x86.exe
-    SET CYGWIN_REPOSITORY=%CYGWIN_REPOSITORY_32%
-    SET BITS=32
-    REM path length are super critical, especially for ser-api, so we can't user a longer base name for 32 than for 64 bits
-    SET BITSCYGBASE=cygw32
-    SET OTHER_BITS=64
-    SET OTHER_ARCH=x86_64
+  IF "%~1" == "64" (
+    SET ARCH=x86_64
+    SET SETUP=setup-x86_64.exe
+    SET BITS=64
+    SET BITSCYGBASE=cygwin
+    SET OTHER_BITS=32
+    SET OTHER_ARCH=i686
   ) ELSE (
-    IF "%~1" == "64" (
-      SET ARCH=x86_64
-      SET SETUP=setup-x86_64.exe
-      SET BITS=64
-      SET BITSCYGBASE=cygwin
-      SET OTHER_BITS=32
-      SET OTHER_ARCH=i686
-    ) ELSE (
-      ECHO "Invalid -arch, valid are 32 and 64"
-      GOTO :EOF
-    )
+    ECHO "Invalid -arch, valid is 64 (32 bit is no longer supported)"
+    GOTO :EOF
   )
   SHIFT
   SHIFT
@@ -509,7 +498,7 @@ ECHO ========== BATCH FUNCTIONS ==========
   ECHO Cygwin setup parameters:
   ECHO(
   ECHO -h, -help  Print this help message and exit
-  ECHO -arch      ^<32 or 64^> Set cygwin, ocaml and coq to 32 or 64 bit
+  ECHO -arch      ^<64^> Set cygwin, ocaml and coq to 64 bit (the only option)
   ECHO -build=y   Setup cygwin and build Coq Platform
   ECHO -build=n   Just setup cygin - don't build Coq Platform
   ECHO -destcyg   ^<path to cygwin destination folder^>

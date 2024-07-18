@@ -119,14 +119,21 @@ set -e
 
 if [ -z "${PORTCMD}" ]; then
   PKG_MANAGER=brew
-  PKG_MANAGER_ROOT="/usr/local/"
-  PKG_MANAGER_ROOT_STRIP="/usr/local/Cellar/*/*/" # one * for the package name and one for its version
+  PKG_MANAGER_ROOT="$(brew --cellar)"
+  # We want to transform e.g.
+  # /opt/homebrew/Cellar/adwaita-icon-theme/46.0/share/icons/Adwaita/cursors/row-resize
+  # to
+  # share/icons/Adwaita/cursors/row-resize
+  PKG_MANAGER_ROOT_STRIP="$(brew --cellar)/*/*/" # one * for the package name and one for its version
 else
   PKG_MANAGER=port
   # If someone knows a better way to find out where port is installed, please let me know!
   PKG_MANAGER_ROOT="${PORTCMD%bin/port}"
   PKG_MANAGER_ROOT_STRIP="${PORTCMD%bin/port}"
 fi
+echo "PKG_MANAGER            = $PKG_MANAGER"
+echo "PKG_MANAGER_ROOT       = $PKG_MANAGER_ROOT"
+echo "PKG_MANAGER_ROOT_STRIP = $PKG_MANAGER_ROOT_STRIP"
 
 ##### Add files from a system package using package name and grep filter #####
 
@@ -145,10 +152,13 @@ function add_files_of_system_package {
   ;;
   esac
   echo "Copying files from package $1 ..."
+  echo "Number of files unfiltered $($LIST_PKG_CONTENTS "$1" | wc -l)"
+  echo "Number of files filtered $($LIST_PKG_CONTENTS "$1" | grep "$2" | wc -l)"
   for file in $($LIST_PKG_CONTENTS "$1" | grep "$2" | sort -u)
   do
     relpath="${file#${PKG_MANAGER_ROOT_STRIP}}"
     reldir="${relpath%/*}"
+    echo "add_files_of_system_package '$file' '$RSRC_ABSDIR' '$reldir'"
     mkdir -p "$RSRC_ABSDIR/$reldir"
     cp "$file" "$RSRC_ABSDIR/$reldir/"
   done
@@ -172,17 +182,6 @@ function add_shared_library_dependencies {
 }
 
 ###################### Adding stuff manually ######################
-
-##### Add a folder recursively #####
-
-# $1 = path prefix (absolute)
-# $2 = relative path to $1 and ${RSRC_ABSDIR} (must not start with /)
-
-function add_folder_recursively {
-  echo "Copying files from folder $1/$2 ..."
-  mkdir -p "${RSRC_ABSDIR}/$2/"
-  cp -R "$1/$2/" "${RSRC_ABSDIR}/$2/"
-}
 
 ##### Add a single file #####
 
@@ -334,7 +333,7 @@ fi
 ### Adwaita icon theme
 
 add_files_of_system_package "adwaita-icon-theme"  \
-"/\(16x16\|22x22\|32x32\|48x48\)/.*\("\
+"/\(16x16\|scalable\|symbolic\)/.*\("\
 "actions/bookmark\|actions/document\|devices/drive\|actions/format-text\|actions/go\|actions/list\|"\
 "actions/media\|actions/pan\|actions/process\|actions/system\|actions/window\|"\
 "mimetypes/text\|mimetypes/inode\|mimetypes/application\|"\
@@ -345,7 +344,19 @@ make_theme_index "${RSRC_ABSDIR}/share/icons/Adwaita/"
 
 ### GTK compiled schemas
 
-add_single_file "${PKG_MANAGER_ROOT}" "share/glib-2.0/schemas" "gschemas.compiled"
+case $PKG_MANAGER in
+  port)
+    add_single_file "${PKG_MANAGER_ROOT}" "share/glib-2.0/schemas" "gschemas.compiled"
+  ;;
+  brew)
+    oneschema="$(brew ls -v gtk+3 | grep /schemas/ | head -1)"
+    schemapath="${oneschema%"${oneschema##*/schemas/}"}"
+    gtkroot="${schemapath%/share/glib-2.0/schemas/}"
+    echo "GTK schema paths: $oneschema, $schemapath, $gtkroot"
+    glib-compile-schemas "$schemapath"
+    add_single_file "${gtkroot}" "share/glib-2.0/schemas" "gschemas.compiled"
+  ;;
+esac
 
 ### GTK sourceview languag specs and styles (except coq itself)
 
@@ -357,7 +368,7 @@ add_single_file "${PKG_MANAGER_ROOT}" "share/glib-2.0/schemas" "gschemas.compile
 # styles/classic.xml
 # But since the complete set is compressed not that large, we add the complete set
 
-add_folder_recursively "${PKG_MANAGER_ROOT}" "share/gtksourceview-3.0"
+add_files_of_system_package gtksourceview3 "/share/gtksourceview-3.0/"
 
 ##### Patch ocamlfind META files - the exists_if lines usually reference compile time libs
 
