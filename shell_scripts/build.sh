@@ -34,6 +34,7 @@ opam config set jobs $COQ_PLATFORM_JOBS
 # One can rise it as root on MacOS, but only for a root shell, not for the current shell
 ulimit -S -s 65520
 
+if ! $COQ_PLATFORM_TIME opam pin -n ocamlfind 1.9.5~relocatable; then dump_opam_logs; fi
 if [[ "$OSTYPE" != cygwin ]]
 then
     if ! $COQ_PLATFORM_TIME opam pin -n z3 4.11.2; then dump_opam_logs; fi # Installing z3 later will cause Tactician to be recompiled
@@ -44,7 +45,6 @@ if ! $COQ_PLATFORM_TIME opam pin -n dune 3.15.0; then dump_opam_logs; fi
 if ! $COQ_PLATFORM_TIME opam pin -n coq-tactician-dummy 8.17.dev; then dump_opam_logs; fi
 if ! $COQ_PLATFORM_TIME opam pin -n coq-tactician 8.18.dev; then dump_opam_logs; fi
 if ! $COQ_PLATFORM_TIME opam pin -n coq-core 8.18.0; then dump_opam_logs; fi
-if ! $COQ_PLATFORM_TIME opam pin -n ocamlfind 1.9.5~relocatable; then dump_opam_logs; fi
 if ! $COQ_PLATFORM_TIME opam install dune coq-core coq-tactician-dummy coq-tactician ocamlfind; then dump_opam_logs; fi
 
 opam switch
