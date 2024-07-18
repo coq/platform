@@ -38,7 +38,7 @@ if ! $COQ_PLATFORM_TIME opam pin -n ocamlfind 1.9.5~relocatable; then dump_opam_
 
 if [[ "$OSTYPE" == cygwin ]]
 then
-    if ! $COQ_PLATFORM_TIME opam pin -n opam-client 2.1.0; then dump_opam_logs; fi
+    if ! $COQ_PLATFORM_TIME opam pin -n opam-client 2.1.0; then dump_opam_logs; fi # opam-clinet 2.2.0 doesn't want to compile on Windows
 fi
 
 if [[ "$OSTYPE" != cygwin ]]
