@@ -45,7 +45,7 @@ case "$COQ_PLATFORM_PARALLEL" in
         echo PINNING $package
         package_name="$(echo "$package" | cut -d '.' -f 2)"
         package_version="$(echo "$package" | cut -d '.' -f 3-)"
-        if ! $COQ_PLATFORM_TIME opam pin ${package_name} ${package_version}; then dump_opam_logs; fi
+        if ! $COQ_PLATFORM_TIME opam pin --no-action ${package_name} ${package_version}; then dump_opam_logs; fi
         ;;
       esac
     done

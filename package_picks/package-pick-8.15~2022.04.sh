@@ -122,8 +122,8 @@ then
   PACKAGES="${PACKAGES} coq-aac-tactics.8.15.1"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.15"
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.15"
-  PACKAGES="${PACKAGES} coq-elpi.1.13.0 elpi.1.14.3"
-  PACKAGES="${PACKAGES} coq-hierarchy-builder.1.2.1"
+  PACKAGES="${PACKAGES} elpi.1.15.2 coq-elpi.1.14.0" #The previous used version was broken, so we use the same as the next 8.15 pick
+  PACKAGES="${PACKAGES} coq-hierarchy-builder.1.3.0" #Had to additionally upgrade hierarchy builder due to dependency constraints
   PACKAGES="${PACKAGES} coq-quickchick.1.6.1"
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.15"
   if [[ "$OSTYPE" != cygwin ]]
@@ -138,7 +138,7 @@ then
   PACKAGES="${PACKAGES} coq-libhyps.2.0.5"
 
   # General mathematics (which requires one of the above tools)
-  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-analysis.0.5.4"
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.7"
 
   # Formal languages, compilers and code verification

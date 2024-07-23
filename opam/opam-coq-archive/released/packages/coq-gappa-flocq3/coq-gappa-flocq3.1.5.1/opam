@@ -8,7 +8,7 @@ patches: [
   "0001-Rename-Flocq-to-Flocq3.patch"
 ]
 build: [
-  ["autoconf"]
+  ["autoreconf" "-f"]
   ["./configure"]
   ["./remake" "-j%{jobs}%"]
 ]
