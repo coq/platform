@@ -22,6 +22,7 @@ license: "MIT"
 patches: [ "Fix make issues Coq Platform CI.patch" ]
 build: [
   ["bash" "./configure.sh"]
+  ["rm" "-f" "template-coq/_PluginProject" "template-coq/_TemplateCoqProject"]
   [make "-j" "%{jobs}%" "template-coq"]
 ]
 install: [
