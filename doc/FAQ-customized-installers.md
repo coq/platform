@@ -58,19 +58,6 @@ After you created and built a new package pick, you can create a macOS DMG insta
 
 On recent macOS one can't start the application - that is CoqIDE - without signing the installer. One can still use the installed tools from the command line, though. One can even start coqide from the command line even without signing.
 
-## Creating a custom installer for Snap
-
-After you created a new package pick, you can create a Snap package from it as follows:
-
-- First note that for snap it is **not** required to build the switch first - the snap building process will build it inside of the snapcraft VM.
-- Navigate to your Coq Platform git folder, e.g. `cd ~/platform`
-- Run `linux/create_snapcraft_yaml.sh -packages=my_new_pick -extent=x -parallel=p -jobs=6 -large=i -compcert=y -set-switch=y -switch=k`
-- Run `SNAPCRAFT_BUILD_ENVIRONMENT_CPU=12 SNAPCRAFT_BUILD_ENVIRONMENT_MEMORY=24G snapcraft snap` - the CPU (thread) count and memory depends on your machine - you should have 2GB per CPU and you should have twice as many CPU threads as the job count you specified initially.
-- Building the snap will take a while.
-- You can install the snap with `snap install --dangerous coq-prover_2022-09-0_amd64.snap`.
-- The snap file name will not depend on your package pick name.
-- You can distribute the `.snap` file and people can install it with the above command.
-
 ## Creating a custom installer for Windows
 
 After you created and built a new package pick, you can create a Windows installer from it as follows:
