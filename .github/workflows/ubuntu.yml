@@ -26,12 +26,6 @@ on:
         description: 'Arguments for the platform script:'
         required: true
         default: '-extent=x -parallel=p -jobs=2 -large=i -compcert=y -unimath=n -set-switch=y'
-      snap_pick:
-        description: 'Package pick for the snap package:'
-        default: 8.18~2023.11
-      upload:
-        description: 'Upload artifact to Snap Store? (true/false, default false)'
-        default: false
 
 ###############################################################################
 # Platform script options shared among all jobs
@@ -39,7 +33,6 @@ on:
 env:
   PLATFORM: -extent=x -parallel=p -jobs=2 -large=i -compcert=y -unimath=n -set-switch=y
   COQREGTESTING: y
-  SNAP_PICK: 8.18~2023.11
 
 
 ###############################################################################
@@ -104,91 +97,3 @@ jobs:
           name: 'Smoke Test Kit ${{matrix.variant}}'
           path: smoke-test-kit
           retention-days: 5
-
-  Ubuntu_snap:
-    name: Snap package
-    # Since we build the snap with --destructive-mode, the runner version must match the snap core version
-    runs-on: ubuntu-20.04
-
-    steps:
-      - name: Git checkout
-        uses: actions/checkout@v4
-
-      - name: Set PLATFORM
-        if: ${{ github.event.inputs.platform != '' }}
-        run: echo "PLATFORM=${{ github.event.inputs.platform }}" >> $GITHUB_ENV
-
-      - name: Set SNAP_PICK
-        if: ${{ github.event.inputs.snap_pick != '' }}
-        run: echo "SNAP_PICK=${{ github.event.inputs.snap_pick }}" >> $GITHUB_ENV
-
-      - name: Generate snapcraft file
-        run: linux/create_snapcraft_yaml.sh -packages=$SNAP_PICK $PLATFORM
-
-      - name: Print snapcraft file
-        run: cat snap/snapcraft.yaml
-
-      - name: Run snapcraft
-        uses: MSoegtropIMC/action-snapcraft-build@v1.1.2-dm
-        id: build
-
-      - name: Dump snapcraft logs
-        if: ${{ always() }}
-        run: cat /home/runner/.local/state/snapcraft/log/*
-
-      - name: Save Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: 'Snap package'
-          path: ${{ steps.build.outputs.snap }}
-
-      - name: Upload Artifact to the Snap Store
-        if: ${{ github.event.inputs.upload }}
-        uses: snapcore/action-publish@v1
-        with:
-          store_login: ${{ secrets.STORE_LOGIN }}
-          snap: ${{ steps.build.outputs.snap }}
-          release: edge
-
-  # We run this one always because the Ubuntu_platform job
-  # has a matrix and contains the flaky dev job
-  # but here we really only need the SNAP_PICK one
-  #
-  # In any case the job will fail fast if it can't download
-  # the snap or the smoke test
-
-  Ubuntu_smoke:
-    name: Snap package smoke test
-    if: ${{ always() }}
-    needs: [Ubuntu_platform, Ubuntu_snap]
-    runs-on: ubuntu-latest
-
-    steps:
-
-      - name: Set SNAP_PICK
-        if: ${{ github.event.inputs.snap_pick != '' }}
-        run: echo "SNAP_PICK=${{ github.event.inputs.snap_pick }}" >> $GITHUB_ENV
-
-      - name: Download Artifact
-        uses: actions/download-artifact@v4
-        id: download-snap
-        with:
-          name: 'Snap package'
-
-      - name: 'Download smoke test kit'
-        uses: actions/download-artifact@v4
-        id: download-smoke
-        with:
-          name: 'Smoke Test Kit ${{ env.SNAP_PICK }}'
-
-      - name: 'Install Snap'
-        run: |
-          sudo snap install --dangerous ${{ steps.download-snap.outputs.download-path }}/coq-prover_*.snap
-          sudo snap alias coq-prover.coqc coqc
-          sudo snap alias coq-prover.sertop sertop
-
-      - name: 'Run Smoke Test Kit'
-        run: |
-          cd ${{steps.download-smoke.outputs.download-path}}
-          chmod a+x ./run-smoke-test.sh
-          ./run-smoke-test.sh

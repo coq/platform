@@ -26,8 +26,9 @@ for more on how the Platform is related to the Coq release cycle.
 The Coq Platform is based on the OCaml package manager **opam** and provides a set
 of scripts to compile and/or install opam, Coq and the platform contents on macOS,
 Windows and many Linux distributions in a reliable way with consistent results.
-In addition **pre-compiled binary packages** or **installers** are provided for **macOS**,
-**Windows** and **snap** for Linux (Docker is in preparation).
+In addition **pre-compiled binary packages** or **installers** are provided for **macOS** and
+**Windows** (Docker is in preparation). Note that snap for Linux is no longer supported
+(the maintenance effort was too high).
 
 The Coq Platform supports installing several versions of Coq - also in parallel,
 e.g., for porting developments from one version of Coq to another. For the
@@ -244,7 +245,7 @@ The current Coq 8.13.2 distribution requires 2.3 GByte on macOS.
 - for Windows there is an additional wrapper batch script to setup Cygwin as build and working environment
 - for Windows there is in addition a classic Windows installer mostly intended for quick installation by beginners
 - for macOS a signed (but currently not yet notarized) DMG package is provided, also mostly intended for beginners
-- for Linux snap packages are provided via the Snap Store
+- note that snap packages for Windows are **not supported** any more
 - it is easy to build variants of the provided installers with modified content
 - it is supported to install several versions of Coq in parallel - each will create a separate opam switch - this is intended e.g. for porting Coq developments from older versions of Coq
 - system prerequisites are installed using opam depext in a system independent manner
@@ -355,4 +356,4 @@ It is an intended use case of the Coq Platform to create custom variants, e.g.
 for projects or lectures, by creating additional files in the [package_picks](package_picks)
 folder.
 
-For details, especially on creating custom installers for macOS, Linux/Snap and Windows see [Customized Installers](doc/FAQ-customized-installers.md).
+For details, especially on creating custom installers for macOS and Windows see [Customized Installers](doc/FAQ-customized-installers.md).
