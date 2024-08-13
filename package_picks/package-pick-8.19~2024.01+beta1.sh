@@ -131,7 +131,7 @@ then
     # coq-hammer does not work on Windows because it heavily relies on fork
     PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.19"
     PACKAGES="${PACKAGES} eprover.3.1"
-    PACKAGES="${PACKAGES} z3_tptp.4.11.2"  # TODO UPDATE 4.12.2-1 has build issues on ARM macOS
+    PACKAGES="${PACKAGES} z3_tptp.4.13.0"
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.19"
   PACKAGES="${PACKAGES} coq-coqeal.2.0.2"
