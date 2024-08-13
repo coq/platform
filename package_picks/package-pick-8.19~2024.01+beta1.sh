@@ -151,7 +151,7 @@ then
   then
     # Windows: some issues with executable extensions (ott.opt instead of ott.exe)
     # Note: 0.32 does work on Windows!
-    #PACKAGES="${PACKAGES} coq-ott.0.33" #DOES NOT BUILD
+    PACKAGES="${PACKAGES} coq-ott.0.33"
     PACKAGES="${PACKAGES} ott.0.33"
   fi
   PACKAGES="${PACKAGES} coq-mathcomp-word.3.0"
