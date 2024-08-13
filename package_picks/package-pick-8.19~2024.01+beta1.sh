@@ -69,7 +69,7 @@ then
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.19"
   PACKAGES="${PACKAGES} coq-ext-lib.0.12.1"
-  #PACKAGES="${PACKAGES} coq-stdpp.1.9.0" #does not build
+  PACKAGES="${PACKAGES} coq-stdpp.1.10.0"
 
   # General mathematics
   PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.2.0"
@@ -96,8 +96,8 @@ then
   PACKAGES="${PACKAGES} gappa.1.4.1"
 
   # Constructive mathematics
-  #PACKAGES="${PACKAGES} coq-math-classes.8.18.0" #DOES NOT BUILD
-  #PACKAGES="${PACKAGES} coq-corn.8.18.0" #DOES NOT BUILD
+  PACKAGES="${PACKAGES} coq-math-classes.8.19.0"
+  PACKAGES="${PACKAGES} coq-corn.8.19.0"
 
   # Homotopy Type Theory (HoTT)
   PACKAGES="${PACKAGES} coq-hott.8.19"
@@ -120,23 +120,23 @@ then
   PACKAGES="${PACKAGES} coq-menhirlib.20231231 menhir.20231231"
   PACKAGES="${PACKAGES} coq-equations.1.3+8.19"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.19.0"
-  #PACKAGES="${PACKAGES} coq-unicoq.1.6+8.18" #DOES NOT BUILD
-  #PACKAGES="${PACKAGES} coq-mtac2.1.4+8.18" #DOES NOT BUILD, DEPENDS ON UNICOQ
+  PACKAGES="${PACKAGES} coq-unicoq.1.6+8.19"
+  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.19"
   PACKAGES="${PACKAGES} elpi.1.18.2 coq-elpi.2.1.0"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.7.0"
-  #PACKAGES="${PACKAGES} coq-quickchick.2.0.2" #DOES NOT BUILD ON WINDOWS
-  #PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.18" # DOES NOT BUILD
+  PACKAGES="${PACKAGES} coq-quickchick.2.0.3"
+  PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.19"
   if [[ "$OSTYPE" != cygwin ]]
   then
     # coq-hammer does not work on Windows because it heavily relies on fork
-    #PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.18" # DEPENDS ON COQ-HAMMER-TACTICS
-    PACKAGES="${PACKAGES} eprover.3.0"
-    PACKAGES="${PACKAGES} z3_tptp.4.11.2"  # 4.12.2-1 has build issues on ARM macOS
+    PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.19"
+    PACKAGES="${PACKAGES} eprover.3.1"
+    PACKAGES="${PACKAGES} z3_tptp.4.11.2"  # TODO UPDATE 4.12.2-1 has build issues on ARM macOS
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.19"
   PACKAGES="${PACKAGES} coq-coqeal.2.0.2"
   #PACKAGES="${PACKAGES} coq-libhyps.2.0.8" #DOES NOT BUILD
-  #PACKAGES="${PACKAGES} coq-itauto.8.19.0" #DOES NOT BUILD ON WINDOWS
+  PACKAGES="${PACKAGES} coq-itauto.8.19.0" #DOES NOT BUILD ON WINDOWS
   
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.1.1.0"
@@ -145,8 +145,8 @@ then
 
   # Formal languages, compilers and code verification
   PACKAGES="${PACKAGES} coq-reglang.1.2.1"
-  #PACKAGES="${PACKAGES} coq-iris.4.1.0" #DEPENDS ON coq-stdpp
-  #PACKAGES="${PACKAGES} coq-iris-heap-lang.4.1.0" #DEPENDS on coq-iris
+  PACKAGES="${PACKAGES} coq-iris.4.2.0"
+  PACKAGES="${PACKAGES} coq-iris-heap-lang.4.2.0"
   if [[ "$OSTYPE" != cygwin ]]
   then
     # Windows: some issues with executable extensions (ott.opt instead of ott.exe)
