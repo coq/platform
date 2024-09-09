@@ -11,7 +11,7 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.19.1 (released Jan 2024)"
+COQ_PLATFORM_VERSION_TITLE="Coq 8.19.2 (released Jan 2024)"
 COQ_PLATFORM_VERSION_SORTORDER=98
 
 # The package list name is the final part of the opam switch name.
@@ -22,16 +22,16 @@ COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.19-lsp'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.19'
-COQ_PLATFORM_COQ_TAG='8.19.1'
+COQ_PLATFORM_COQ_TAG='8.19.2'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.01.0 includes Coq 8.19.1 from Jan 2024. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.01.0 includes Coq 8.19.2 from Jan 2024. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
-COQ_PLATFORM_OCAML_VERSION='4.14.1'
+COQ_PLATFORM_OCAML_VERSION='4.14.2'
 
 ###################### PACKAGE SELECTION #####################
 
@@ -52,18 +52,17 @@ PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"  # TODO port patch to 1.9
 PACKAGES="${PACKAGES} dune.3.11.1"
 PACKAGES="${PACKAGES} dune-configurator.3.10.0"
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} PIN.coq.8.19.1"
+PACKAGES="${PACKAGES} PIN.coq.8.19.2"
 
 ########## Coq Language Server ##########
-PACKAGES="${PACKAGES} coq-serapi.8.19.0+0.19.3"
-PACKAGES="${PACKAGES} coq-lsp.0.1.9+8.19"
+PACKAGES="${PACKAGES} coq-lsp.0.2.0+8.19"
 
 ########## IDE PACKAGES ##########
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.19.1"
+PACKAGES="${PACKAGES} coqide.8.19.2"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
