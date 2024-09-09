@@ -34,6 +34,8 @@ opam config set jobs $COQ_PLATFORM_JOBS
 # One can rise it as root on MacOS, but only for a root shell, not for the current shell
 ulimit -S -s 65520
 
+opam pin add -k git -n coq-core.8.18.0 https://github.com/ejgallego/coq.git#v8.18+lsp
+
 case "$COQ_PLATFORM_PARALLEL" in
   [pP]) 
     echo "===== INSTALL OPAM PACKAGES (PARALLEL) ====="
@@ -45,7 +47,7 @@ case "$COQ_PLATFORM_PARALLEL" in
         echo PINNING $package
         package_name="$(echo "$package" | cut -d '.' -f 2)"
         package_version="$(echo "$package" | cut -d '.' -f 3-)"
-        if ! $COQ_PLATFORM_TIME opam pin --no-action ${package_name} ${package_version}; then dump_opam_logs; fi
+        if ! $COQ_PLATFORM_TIME opam pin --no-action add -k version ${package_name} ${package_version}; then dump_opam_logs; fi
         ;;
       esac
     done
