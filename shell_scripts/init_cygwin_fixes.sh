@@ -29,3 +29,30 @@ then
     tar xvf /tmp/tar-1.32-2.tar.xz -C /
   fi
 fi
+
+###################### Enable support for long paths #####################
+
+if [[ "$OSTYPE" == cygwin ]]
+then
+  if [ ! -f /usr/x86_64-w64-mingw32/sys-root/mingw/lib/default-manifest.o.bak ]
+  then
+    echo "========== Enable long path support in Cygwin MinGW tool chain =========="
+    # enable long paths in the cyhwin MinGW default manifest, so that all built executables support long paths
+    cp /usr/x86_64-w64-mingw32/sys-root/mingw/lib/default-manifest.o /usr/x86_64-w64-mingw32/sys-root/mingw/lib/default-manifest.o.tmp
+    x86_64-w64-mingw32-windres -F pe-x86-64 "${SCRIPTDIR}/windows/default-manifest.rc" -o "${SCRIPTDIR}/windows/default-manifest.o"
+    cp "${SCRIPTDIR}/windows/default-manifest.o" /usr/x86_64-w64-mingw32/sys-root/mingw/lib/default-manifest.o
+    cp /usr/x86_64-w64-mingw32/sys-root/mingw/lib/default-manifest.o.tmp /usr/x86_64-w64-mingw32/sys-root/mingw/lib/default-manifest.o.bak
+    echo "Long path support enapled in Cygwin MinGW tool chain =========="
+  fi
+  # Enable long paths in the registry
+  if ! ( REG QUERY 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem' /v LongPathsEnabled | grep -q 'LongPathsEnabled *REG_DWORD *0x1' )
+  then
+    echo "========== Enable long path support in registry =========="
+    source shell_scripts/ask_long_path.sh
+    if [ "$ANSWER" == "y" ]
+    then
+      cygstart --action=runas REG ADD 'HKLM\SYSTEM\CurrentControlSet\Control\FileSystem' /v LongPathsEnabled /t REG_DWORD /d 1 /f
+      echo "Long path support enabled in registry =========="
+    fi
+  fi
+fi

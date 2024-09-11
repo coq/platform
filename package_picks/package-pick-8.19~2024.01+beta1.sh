@@ -66,6 +66,11 @@ fi
 
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
+  # Some dependencies which need to be installed upfront to avoid recompilation
+  # sexplib depends on sexplib0 which has a version 0.17.0 compatible with OCaml 4.X, but sexplib 0.17.0 requires OCaml 5.X
+  # so if sexplib0 is installed first, we get 0.17.0 but later need to revert to 0.16.0 when sexpliv ist installed (required by coq-serapi)  
+  PACKAGES="${PACKAGES} sexplib"  
+  
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.19"
   PACKAGES="${PACKAGES} coq-ext-lib.0.12.1"
@@ -200,12 +205,7 @@ then
   PACKAGES="${PACKAGES} coq-record-update.0.3.4"
 
   # Communication with coqtop
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    # Windows: path length issues
-    PACKAGES="${PACKAGES} coq-serapi.8.19.0+0.19.2"
-
-  fi
+  PACKAGES="${PACKAGES} coq-serapi.8.19.0+0.19.2"
 
   # fiat crypto, bedrock2, rupicola and dependencies
   if [ "${BITSIZE}" == "64" ]
