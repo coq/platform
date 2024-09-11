@@ -119,7 +119,7 @@ then
   fi 
 
   # Code extraction
-  PACKAGES="${PACKAGES} coq-simple-io.1.8.0"
+  PACKAGES="${PACKAGES} coq-simple-io.1.9.0"
 
   # Proof automation / generation / helpers
   PACKAGES="${PACKAGES} coq-menhirlib.20231231 menhir.20231231"
@@ -165,7 +165,7 @@ then
     PACKAGES="${PACKAGES} coq-ott.0.33"
     PACKAGES="${PACKAGES} ott.0.33"
   fi
-  PACKAGES="${PACKAGES} coq-mathcomp-word.3.0"
+  PACKAGES="${PACKAGES} coq-mathcomp-word.3.1"
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.13.1" ;;
@@ -212,16 +212,16 @@ then
   then
     case "$COQ_PLATFORM_FIATCRYPTO" in
       [yY])
-        PACKAGES="${PACKAGES} coq-coqutil.0.0.5"
+        PACKAGES="${PACKAGES} coq-coqutil.0.0.6"
         PACKAGES="${PACKAGES} coq-rewriter.0.0.11"
         PACKAGES="${PACKAGES} coq-riscv.0.0.5"
-        PACKAGES="${PACKAGES} coq-bedrock2.0.0.7"
-        PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.7"
-        PACKAGES="${PACKAGES} coq-rupicola.0.0.9"
+        PACKAGES="${PACKAGES} coq-bedrock2.0.0.8"
+        PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.8"
+        PACKAGES="${PACKAGES} coq-rupicola.0.0.10"
         if [ "$OSTYPE" != cygwin ]
         then
           # Windows: stack overflow
-          PACKAGES="${PACKAGES} coq-fiat-crypto.0.1.2"
+          PACKAGES="${PACKAGES} coq-fiat-crypto.0.1.3"
           true
         fi
         ;;
