@@ -7,6 +7,57 @@ The scripts for creating binary packages and installers should be able to
 handle such variants, so that it should be easy to create a custom installer
 e.g. for a lecture.
 
+## Creating released versions of packages
+
+The CP build scripts get the source code for each package by downloading a zipped file.
+For github, zipped files are available only for _released_ versions. For example, the
+[Coq releases page](https://github.com/coq/coq/releases) lists the released versions.
+The zip files are listed under "Assets".  If your changes are not merged, then the
+zip files will be in your fork, e.g. https://github.com/FORKNAME/coq/releases.  Do the
+following:
+
+- On your system, create a tag for the change with **git tag TAGNAME**
+- Use **git push REMOTENAME TAGNAME** to upload the tag to github
+- In the github GUI, create a release that refers to the tag.
+- You will shortly need to copy the URL into the opam files and include its md5 and
+  sha512 checksums.  Download the zipped file and use a command such as
+  **openssl dgst --md5 ZIPFILE** to compute the checksums.
+
+## Creating local opam and patch files
+
+Each package has a directory that defines it, such as
+**coq-platform/platform/opam/opam-repository/coq/coq.8.19.0**.  This
+directory must contain an **opam** file and it may contain a **files**
+subdirectory containing patch files.
+
+Along with other information, the opam file points to the zipped file and gives
+its checksums, for example:
+
+```
+url {
+  src: 
+    "https://github.com/jfehrle/coq/archive/refs/tags/debug_pl_8_19_tag2.tar.gz"
+  checksum: [
+    "md5=8540549341f6425174165edec2bc5c29"
+    "sha512=00833a93914d485e6ca695b6cec220da47957d7e3358bfe8e68300c48935255e95436be751826d837dfbd5f784116df86c1b57a8fe7e3301b45b4b19bffe958f"
+  ]
+}
+```
+
+If there are prior versions of the package, you may be able to copy the **opam** file
+from another version and update only the url information.  Otherwise, dune
+can generate these files at compile time (e.g. the file for Coq's **coq-core** module
+is **coq-core.opam**, which you must rename to "**opam**" in the package directory).
+
+If you've modified Coq, note that it has four packages (coq, coq-core, coqide
+and coq-stdlib).  You'll need to create opam directories for each of these.
+
+Patch files provide a way to use source code that differs from what's in the
+zipped source file during the CP build.  As a heuristic, you may want to try
+copying the patch files from the most similar previous release, but it may
+be that the code in the patch has already been incorporated into the zipped
+file of your newer version.
+
 ## Creating a new package pick file
 
 - Create a new file in the [package_picks](package_picks) folder by copying one of the existing files as template.
