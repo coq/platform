@@ -155,13 +155,8 @@ then
   PACKAGES="${PACKAGES} coq-reglang.1.2.1"
   PACKAGES="${PACKAGES} coq-iris.4.2.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.2.0"
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    # Windows: some issues with executable extensions (ott.opt instead of ott.exe)
-    # Note: 0.32 does work on Windows!
-    PACKAGES="${PACKAGES} coq-ott.0.33"
-    PACKAGES="${PACKAGES} ott.0.33"
-  fi
+  PACKAGES="${PACKAGES} coq-ott.0.33"
+  PACKAGES="${PACKAGES} ott.0.33"
   PACKAGES="${PACKAGES} coq-mathcomp-word.3.0"
   
   case "$COQ_PLATFORM_COMPCERT" in
