@@ -49,7 +49,7 @@ PACKAGES=""
 # Coq needs a patched ocamlfind to be relocatable by installers
 PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"  # TODO port patch to 1.9.6
 # Since dune does support Coq, it is explicitly selected
-PACKAGES="${PACKAGES} dune.3.11.1"
+PACKAGES="${PACKAGES} dune.3.16.0"
 PACKAGES="${PACKAGES} dune-configurator.3.10.0"
 # The Coq compiler coqc and the Coq standard library
 PACKAGES="${PACKAGES} PIN.coq.8.20.0"
@@ -70,8 +70,8 @@ fi
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[fFxX] ]]
 then
   # Standard library extensions
-  PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.19"
-  PACKAGES="${PACKAGES} coq-ext-lib.0.12.1"
+  PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.20"
+  PACKAGES="${PACKAGES} coq-ext-lib.0.12.2"
   #PACKAGES="${PACKAGES} coq-stdpp.1.9.0" does not build
 
   # General mathematics
@@ -85,8 +85,8 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.2.1.0"
   PACKAGES="${PACKAGES} coq-mathcomp-real-closed.2.0.0"
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.5.0+2.0+8.16"
-  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.2.2.0"
-  PACKAGES="${PACKAGES} coq-coquelicot.3.4.1"
+  # PACKAGES="${PACKAGES} coq-mathcomp-multinomials.2.2.0"
+  PACKAGES="${PACKAGES} coq-coquelicot.3.4.2"
 
   # Number theory
   # PACKAGES="${PACKAGES} coq-coqprime.1.5.0"
@@ -103,22 +103,22 @@ then
   #PACKAGES="${PACKAGES} coq-corn.8.18.0" #DOES NOT BUILD
 
   # Homotopy Type Theory (HoTT)
-  # PACKAGES="${PACKAGES} coq-hott.8.18"
+  # PACKAGES="${PACKAGES} coq-hott.8.20"
 
   # Code extraction
-  PACKAGES="${PACKAGES} coq-simple-io.1.8.0"
+  PACKAGES="${PACKAGES} coq-simple-io.1.9.0"
 
   # Proof automation / generation / helpers
   # PACKAGES="${PACKAGES} coq-menhirlib.20231231 menhir.20231231"
-  PACKAGES="${PACKAGES} coq-equations.1.3+8.19"
-  PACKAGES="${PACKAGES} coq-aac-tactics.8.19.0"
+  PACKAGES="${PACKAGES} coq-equations.1.3.1+8.20"
+  # PACKAGES="${PACKAGES} coq-aac-tactics.8.19.0"
   PACKAGES="${PACKAGES} elpi.1.19.6 coq-elpi.2.2.3"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.7.0"
 
   # BROKEN in CI
   # PACKAGES="${PACKAGES} coq-quickchick.2.0.2"
 
-  PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.19"
+  PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.20"
   PACKAGES="${PACKAGES} coq-coqeal.2.0.1"
   PACKAGES="${PACKAGES} coq-libhyps.2.0.8"
   # BROKEN in CI
