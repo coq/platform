@@ -61,6 +61,7 @@ source package_picks/coq_platform_switch_name.sh
 
 source shell_scripts/ask_delete_opam_switch.sh
 source shell_scripts/install_opam.sh
+source shell_scripts/install_ocaml_stacksize.sh
 source shell_scripts/check_opam_sandbox.sh
 source shell_scripts/install_opam_depext.sh
 source shell_scripts/coq_platform_override_dev_pkg.sh

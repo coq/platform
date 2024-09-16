@@ -210,12 +210,7 @@ then
         PACKAGES="${PACKAGES} coq-bedrock2.0.0.7"
         PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.7"
         PACKAGES="${PACKAGES} coq-rupicola.0.0.9"
-        if [ "$OSTYPE" != cygwin ]
-        then
-          # Windows: stack overflow
-          PACKAGES="${PACKAGES} coq-fiat-crypto.0.1.2"
-          true
-        fi
+        PACKAGES="${PACKAGES} coq-fiat-crypto.0.1.2"
         ;;
       [nN]) true ;;
       *) echo "Illegal value for COQ_PLATFORM_FIATCRYPTO - aborting"; false ;;
