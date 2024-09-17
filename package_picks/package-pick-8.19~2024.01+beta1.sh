@@ -126,10 +126,7 @@ then
   PACKAGES="${PACKAGES} coq-equations.1.3+8.19"
   PACKAGES="${PACKAGES} coq-aac-tactics.8.19.0"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.19"
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    PACKAGES="${PACKAGES} coq-mtac2.1.4+8.19" # build issues on Windows
-  fi
+  PACKAGES="${PACKAGES} coq-mtac2.1.4+8.19" # build issues on Windows
   PACKAGES="${PACKAGES} elpi.1.18.2 coq-elpi.2.1.0"
   PACKAGES="${PACKAGES} coq-hierarchy-builder.1.7.0"
   if [[ "$OSTYPE" != cygwin ]]
@@ -158,13 +155,8 @@ then
   PACKAGES="${PACKAGES} coq-reglang.1.2.1"
   PACKAGES="${PACKAGES} coq-iris.4.2.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.2.0"
-  if [[ "$OSTYPE" != cygwin ]]
-  then
-    # Windows: some issues with executable extensions (ott.opt instead of ott.exe)
-    # Note: 0.32 does work on Windows!
-    PACKAGES="${PACKAGES} coq-ott.0.33"
-    PACKAGES="${PACKAGES} ott.0.33"
-  fi
+  PACKAGES="${PACKAGES} coq-ott.0.33"
+  PACKAGES="${PACKAGES} ott.0.33"
   PACKAGES="${PACKAGES} coq-mathcomp-word.3.0"
   
   case "$COQ_PLATFORM_COMPCERT" in
@@ -218,12 +210,7 @@ then
         PACKAGES="${PACKAGES} coq-bedrock2.0.0.7"
         PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.7"
         PACKAGES="${PACKAGES} coq-rupicola.0.0.9"
-        if [ "$OSTYPE" != cygwin ]
-        then
-          # Windows: stack overflow
-          PACKAGES="${PACKAGES} coq-fiat-crypto.0.1.2"
-          true
-        fi
+        PACKAGES="${PACKAGES} coq-fiat-crypto.0.1.2"
         ;;
       [nN]) true ;;
       *) echo "Illegal value for COQ_PLATFORM_FIATCRYPTO - aborting"; false ;;
