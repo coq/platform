@@ -1,6 +1,6 @@
 Note that cause of severe and continuing issues with the snap system we had to drop the support for snap binary installers.
 A volunteer for maintaining snap or another Linux binary installer system would be welcome.
-On Linux currently the only way to install Coq Platform is to build from sources via scrips.
+On Linux currently the only way to install Coq Platform is to build from sources via scripts.
 
 # Installation by compiling from sources using scripts / opam
 
