@@ -37,7 +37,10 @@ conflicts: [
 ]
 depopts: ["coq-native" "memprof-limits"]
 dev-repo: "git+https://github.com/coq/coq.git"
-patches: [ "PR19247-ported-Fix-coqide-compilation-with-lablgtk-3.1.5-on-windows.patch" ]
+patches: [ 
+  "PR19247-ported-Fix-coqide-compilation-with-lablgtk-3.1.5-on-windows.patch"
+  "0001-Windows-fix-path-normalization-in-coqdep.patch"
+]
 build: [
   ["dune" "subst"] {dev}
   [ "./configure"
