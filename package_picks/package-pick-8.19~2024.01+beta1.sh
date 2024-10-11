@@ -208,6 +208,7 @@ then
         PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.8"
         PACKAGES="${PACKAGES} coq-rupicola.0.0.10"
         PACKAGES="${PACKAGES} coq-fiat-crypto.0.1.3"
+        ;;
       [nN]) true ;;
       *) echo "Illegal value for COQ_PLATFORM_FIATCRYPTO - aborting"; false ;;
     esac
