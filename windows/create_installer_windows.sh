@@ -462,11 +462,9 @@ cp source/coq/LICENSE .
 cp source/coqide/ide/coqide/coq.ico .
 mkdir -p files/bin
 cp source/coqide/ide/coqide/coq.ico files/bin/
-cp source/coq-compcert/LICENSE coq-compcert-license.txt
-if [ -n "$NSIS_VST_CHECK" ]
-then
-  cp source/$vst_pkg/LICENSE coq-vst-license.txt
-fi
+# cp source/coq-compcert/LICENSE coq-compcert-license.txt
+echo "FAKE COMPCERT LICENSE" > coq-compcert-license.txt
+echo "FAKE VST LICENSE" > coq-vst-license.txt
 rm -rf source
 
 echo "==============================================================================="
