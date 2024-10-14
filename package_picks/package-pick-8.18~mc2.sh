@@ -12,7 +12,7 @@
 
 # The two lines below are used by the package selection script
 COQ_PLATFORM_VERSION_TITLE="Coq 8.18.0 (released Sep 2023) with a package pick based on mathcomp 2.1"
-COQ_PLATFORM_VERSION_SORTORDER=2
+COQ_PLATFORM_VERSION_SORTORDER=101
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
@@ -28,7 +28,7 @@ COQ_PLATFORM_COQ_TAG='8.18.0'
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.11.0 includes Coq 8.18.0 from Sep 2023. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.10.0 includes Coq 8.18.0 from Sep 2023. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is a preview release based on mathcomp 2.1 (some not compatible packages are missing). '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
