@@ -11,14 +11,14 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.19.2 (released Jun 2024)"
-COQ_PLATFORM_VERSION_SORTORDER=98
+COQ_PLATFORM_VERSION_TITLE="Coq 8.19.2 (released Jun 2024) with the first package pick from Oct 2024"
+COQ_PLATFORM_VERSION_SORTORDER=1
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
 # It might also be used for installer package names, but with ~ replaced by _
 # It is also used for version specific file selections in the smoke test kit.
-COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.19~2024.01+beta1'
+COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.19~2024.10'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.19'
@@ -28,7 +28,8 @@ COQ_PLATFORM_COQ_TAG='8.19.2'
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.01.0 includes Coq 8.19.2 from Jun 2024. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.10.0 includes Coq 8.19.2 from Jun 2024. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='This is the **latest release version** of the Coq Platform and recommended for general application. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
 COQ_PLATFORM_OCAML_VERSION='4.14.2'
@@ -69,7 +70,7 @@ then
   # Some dependencies which need to be installed upfront to avoid recompilation
   # sexplib depends on sexplib0 which has a version 0.17.0 compatible with OCaml 4.X, but sexplib 0.17.0 requires OCaml 5.X
   # so if sexplib0 is installed first, we get 0.17.0 but later need to revert to 0.16.0 when sexpliv ist installed (required by coq-serapi)  
-  PACKAGES="${PACKAGES} sexplib"  
+  PACKAGES="${PACKAGES} sexplib.v0.16.0"  
   
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.19"

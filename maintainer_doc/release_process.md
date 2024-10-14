@@ -40,7 +40,7 @@ COQ_PLATFORM_COQ_TAG='8.18+rc1'
 COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2023.11.0 includes Coq 8.18+rc1 from Sep 2023. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.10.0 includes Coq 8.18+rc1 from Sep 2023. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is a preliminary release intended for package maintainers. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
@@ -94,3 +94,122 @@ GIT tag-versions: 8.6.0  8.7.0  8.8+beta1  8.8.0  8.9.0  8.10+beta1  8.10.0  8.1
     the previous version, which is usually a reordering / reformatting of the opam file and not comparable with it (PRs to fix this welcome ;-)
 - if something isn't easy to fix, comment out the package (it dependent package) with a note why the package was disabled (`# version xyz does not work`). Typically anything that requires patching the repo's source code would be considered not easy to fix.
 - if things are reasonably file for the `full` build, run the script again for the extended selection - it should pick up where you aborted it before cause of `maintainer_scripts/packages_already_processed.txt`
+
+## Publish the release
+
+### Things to check
+
+- Check the tracker issue and the milestone that everything is done!
+- Note: we do not create a compatibility pick for the previous version of Coq any more unless there is a good reason
+
+### Update release number
+
+- Update the platform release number in coq-platform-main/package_picks/coq_platform_release.sh
+  **ATTENTION**: the release always has a minor extension (like 2022.04.0)
+- remove folders macos_installer, windows_installer, smoke_test_kit
+- search for the old switch name `CP.2024.10.0~8.19~2024.10` and replace it with the new switch name (one by one, e.g. using VSCode file search individual replace
+  - **do not replacing entries in the two opam switch list in ReadMe.md**
+  - alternatively replace everywhere and fix the switch lists later (must be touched anyway to insert the new switch)
+- search for the old switch prefix `CP.2024.10.0` and replace with the new switch prefix
+  - **ATTENTION**: the release always has a minor extension (like 2022.04.0) - the pick never has a minor extension!
+  - **ATTENTION**: search for the new switch prefix and then search for just "CP.20" and compare the hit count to make sure nothing was left over
+- search for last release name "2024.10.0" and change in an appropriate way
+  - doing so, exclude the release notes entry
+  - do change the release Readme files - we usually don't want to recreate all of them!
+  - search for `https://github.com/coq/platform/archive/refs/tags` to double check
+  - search for `git clone --branch` to double check
+
+- Update the pick choices in CI
+  - on Mac and WIndows keep the current and previous picks
+    - in case there is a double release (like package-pick-8.18~mc2) keep the double release and the previous
+    - in case a compatibility release for the previous version was added, keep this as well
+  - on Ubuntu keep all first releases of all Coq versions
+    - remove compatibility releases (updated package picks)
+
+- Double check
+  - Coq / pick version in switch names (should already be done by the replaces above)
+  - Update the pick choice in the example files (should already be done by the replaces above)
+
+- Add a note to ReadMe.md:
+```
+# ATTENTION RELEASE IN PROGRESS
+
+**We are currently preparing a release, which has the effect that some links already refer to the new tag, even though this does not exist as yet.**
+
+**In case you experience dead links, please replace `2024.10.0` with `2023.11.0`.**
+```
+
+### Create documentation for new release
+
+- make a complete (extended, include large and all optional packages) build by running
+  `./coq_platform_make.sh -packages="8.19~2024.10" -extent=x -parallel=p -jobs=8 -compcert=y -large=i`
+- create the ReadMe .md file, the package list .csv file and depedency graph .pdf file with
+  `./maintainer_scripts/create_readme.sh -pick=8.19~2024.10 -depgraph`
+
+### Optional: recreate documentation for all picks
+
+- This means following the process from the previous step for all picks
+- This should be done about once per year because dependency versions might change
+
+### Update README.md
+
+- add new pick(s)
+  - in section Overview
+  - in the two opam switch lists in sections "Using different Coq versions in parallel" and "Installation of additional packages"
+- create a new entry in the release notes
+
+### Mac
+
+- make a complete (extended, include large and all optional packages) build by running
+  - on Intel with `export MACOSX_DEPLOYMENT_TARGET=10.13` - see https://github.com/coq/platform/issues/338
+  - on ARM with `export MACOSX_DEPLOYMENT_TARGET=11.00` - see https://github.com/coq/platform/issues/338
+  - and then:
+  `./coq_platform_make.sh -packages="8.19~2024.10" -extent=x -parallel=p -jobs=8 -compcert=y -large=i`
+- create the installer by running `coq-platform-main/macos/create_installer_macos.sh`
+- test it using the smoke test kit
+  - Note: coqc can also be used from an unsigned installer
+  - from **external console** (not from VSCode - it always has coqc in the path)
+    ```
+    opam switch create --empty empty
+    opam switch empty
+    eval $(opam env)
+    which coqc
+    run smoke test kit **again from external console**
+    ```
+- have INRIA sign the installers from a CI run matching the release tag (ask Romain Tetely or the current release manager)
+- test the signed installers on a local MacOS ARM and Intel machine (using the smoke test kit)
+
+### Build Windows installer
+
+- make a complete (extended, include large and all optional packages) build by running
+  `./coq_platform_make.sh -packages="8.19~2024.10" -extent=x -parallel=p -jobs=8 -compcert=y -large=i`
+- create the installer by running `coq-platform-main/windows/create_installer_windows.sh`
+- test it using the smoke test kit
+- have INRIA sign the installers from a CI run matching the release tag (ask Romain Tetely or the current release manager)
+- test the signed installers on a local Windows machine (using the smoke test kit)
+
+### Local smoke test kit (pre installer build)
+
+Install app from DMG
+
+Note: coqc can also be used from an unsigned installer!
+
+### Additional test
+
+- run smoke test kit for new picks
+- test if sequential builds don't recompile something
+- for this it is best to set OPAMYES=0 in coq_platform_make.sh
+
+### Tag
+
+- git tag 2024.10.0 -a -m "Release 2024.10.0 with latest pick 8.19~2024.10"
+- git push --tags
+
+### Remove the "ATTENTION RELEASE IN PROGRESS" note from ReadMe.md
+
+### Final steps
+
+- Check the tracker issue again
+- tick of the check boxes for the release process
+- close the tracker issue
+- upload the signed installers from INRIA
