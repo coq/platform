@@ -158,23 +158,30 @@ GIT tag-versions: 8.6.0  8.7.0  8.8+beta1  8.8.0  8.9.0  8.10+beta1  8.10.0  8.1
   - in the two opam switch lists in sections "Using different Coq versions in parallel" and "Installation of additional packages"
 - create a new entry in the release notes
 
+### Create a preliminary draft release in Github
+
+- this is used as a means to transport unsigned installers to INRIA
+
 ### Mac
 
 - make a complete (extended, include large and all optional packages) build by running
-  - on Intel with `export MACOSX_DEPLOYMENT_TARGET=10.13` - see https://github.com/coq/platform/issues/338
-  - on ARM with `export MACOSX_DEPLOYMENT_TARGET=11.00` - see https://github.com/coq/platform/issues/338
-  - and then:
   `./coq_platform_make.sh -packages="8.19~2024.10" -extent=x -parallel=p -jobs=8 -compcert=y -large=i`
-- create the installer by running `coq-platform-main/macos/create_installer_macos.sh`
-- test it using the smoke test kit
-  - Note: coqc can also be used from an unsigned installer
+- select the created switch (if you did not answer 'y' at the corresponding question above) and run `eval $(opem env)`
+- check the minimum OS version with `otool -l $(which coqc) | grep -A 1 minos` (should be `minos 11.0` on ARM and `minos 10.13` on Intel)
+- create the smoke test kit by running `shell_scripts/create_smoke_test_kit.sh`
+- run the smoke test kit by running `smoke-test-kit/run-smoke-test.sh`
+- create the installer by running `macos/create_installer_macos.sh`
+- upload the installer as attachment to the github draft release create above
+- possibly repeat the complete process for additional variant installers
+- have INRIA sign the installer(s)  (ask Romain Tetely or the current release manager)
+- test the signed installers on a local MacOS ARM and Intel machine (using the smoke test kit)
   - from **external console** (not from VSCode - it always has coqc in the path)
     ```
     opam switch create --empty empty
     opam switch empty
     eval $(opam env)
-    which coqc
-    run smoke test kit **again from external console**
+    which coqc (should not find anything)
+    smoke-test-kit/run-smoke-test.sh
     ```
 - have INRIA sign the installers from a CI run matching the release tag (ask Romain Tetely or the current release manager)
 - test the signed installers on a local MacOS ARM and Intel machine (using the smoke test kit)
@@ -183,8 +190,13 @@ GIT tag-versions: 8.6.0  8.7.0  8.8+beta1  8.8.0  8.9.0  8.10+beta1  8.10.0  8.1
 
 - make a complete (extended, include large and all optional packages) build by running
   `./coq_platform_make.sh -packages="8.19~2024.10" -extent=x -parallel=p -jobs=8 -compcert=y -large=i`
-- create the installer by running `coq-platform-main/windows/create_installer_windows.sh`
+- select the created switch (if you did not answer 'y' at the corresponding question above) and run `eval $(opem env)`
+- create the smoke test kit by running `shell_scripts/create_smoke_test_kit.sh`
+- run the smoke test kit by running `smoke-test-kit/run-smoke-test.sh`
+- create the installer by running `windows/create_installer_windows.sh`
+- install the installer locally in the recommended folder (so that the smoke tets kit can find it)
 - test it using the smoke test kit
+  - start the smoke test kit batch file from a plain CMD console which does not have access to Coq
 - have INRIA sign the installers from a CI run matching the release tag (ask Romain Tetely or the current release manager)
 - test the signed installers on a local Windows machine (using the smoke test kit)
 
