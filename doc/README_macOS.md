@@ -2,13 +2,11 @@ This README presents the two standard methods to install the Coq Platform on mac
 - using a [macOS DMG package](#installation-using-the-macos-dmg-package),
 - [from sources](#installation-by-compiling-from-sources-using-opam), using the platform scripts.
 
-The first method is recommended for beginners (with Intel silicon Macs) and the second one is recommended for experienced users and all users with Apple silicon / M1 Macs.
+The first method is recommended for beginners (with Intel silicon Macs) and the second one is recommended for experienced users.
 
 # Installation using the macOS DMG package
 
 This method is intended for beginners.
-
-**ATTENTION for Apple silicon / M1 users**: if you have an Apple silicon / M1 Mac please use the [from sources](#installation-by-compiling-from-sources-using-opam) method! The DMG installer might work (this is unknown), but the second method will create much faster Coq binaries for M1, even though initially it takes longer.
 
 In case you want to use the fast path:
 
@@ -29,7 +27,7 @@ In case you want to use the fast path:
 
 This method is intended for experienced users, who may want to use opam to install additional packages, beyond the standard set provided by the Coq Platform.
 
-**ATTENTION for Apple silicon / M1 users**: when you moved your user data from an Intel silicon Mac, please make sure to rename the `.opam` folder in your home folder to e.g. `.opam_intel` (press `CMD`+`.` to make it visible in finder). If the `.opam` folder was copied over from an Intel silicon Mac, you will end up with a mix of ARM and Intel executables and libraries which won't work. Eventually you might want to delete the `.opam_intel` folder, but please make sure it doesn't contain anything you still need before you delete it.
+**ATTENTION for Apple silicon users**: when you moved your user data from an Intel silicon Mac, please make sure to rename the `.opam` folder in your home folder to e.g. `.opam_intel` (press `CMD`+`.` to make it visible in finder). If the `.opam` folder was copied over from an Intel silicon Mac, you will end up with a mix of ARM and Intel executables and libraries which won't work. Eventually you might want to delete the `.opam_intel` folder, but please make sure it doesn't contain anything you still need before you delete it.
 
 - Install XCode command line tools
   - On macOS Catalina & BigSur: open a console and enter `xcode-select --install` (takes about 5 minutes)
