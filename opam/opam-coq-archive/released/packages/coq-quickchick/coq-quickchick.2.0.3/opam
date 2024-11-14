@@ -43,3 +43,7 @@ url {
   src: "https://github.com/QuickChick/QuickChick/archive/refs/tags/v2.0.3.tar.gz"
   checksum: "sha512=0857dc53fb3c98d596d6464df07d9a6426dbf587f639ea5e87200d161b03aad6d9ce429ecffe3e93b010ac22d616f95922154571553ba238e23d7eb08ee75472"
 }
+extra-files: [
+  "0001-Fix-mycppo-script-for-Windows.patch"
+  "sha512=929a3d5aede993e114dc73b49b1cb245a354de603f18b87237c65a800958ab95f609b0833b1e37c55041b7b1a7ab9c8f60e63b24a9f79210b7481b03b5853e5d"
+]

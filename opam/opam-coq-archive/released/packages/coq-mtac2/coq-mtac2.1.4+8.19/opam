@@ -31,3 +31,7 @@ url {
     "sha512=4c5f17576bdfa6e127d5901666da640352ad472211bf21cf5ae67944e84ba9bf6306215cfcad83ca2117e29ec40429db8daf7421249e857537a08e827b3c4132"
   ]
 }
+extra-files: [
+  "0001-use-new-way-of-loading-ML-module-makes-Unicoq-module.patch"
+  "sha512=4c20b93910ad3a645d0feaebde8e214344be8ea689fac51dc2e53ff5cad0faffaca1b9e22573704795ffbe583d0693bd40ff0ca04ad1de0781df10e4dd270224"
+]

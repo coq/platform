@@ -52,3 +52,7 @@ url {
   src: "https://github.com/MetaCoq/metacoq/archive/refs/tags/v1.2-8.17.tar.gz"
   checksum: "sha512=a5ce2f5d94120a00703331a3cfdb7d51653fb44adeba89fa84b5f76e711ee9f582a22551f81fd144dc974e3f05e58d85cd716f8fcf69ec89923bc64774d82668"
 }
+extra-files: [
+  "Fix make issues Coq Platform CI.patch"
+  "sha512=bc1f366683aad137a72474bf43e01ce8e9b7cc2d789fd56fd7898666780b93cad9c34dca87adfbf87760bb2c91c8319d6c7b64101dabe477999acb51fc8b0498"
+]

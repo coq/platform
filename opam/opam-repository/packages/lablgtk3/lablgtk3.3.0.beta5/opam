@@ -33,3 +33,7 @@ url {
   checksum: "md5=e8745cbff677b330e06a304c6d1b9bce"
 }
 patches: "lablgtk3-3.0.beta5.patch" {os = "win32"}
+extra-files: [
+  "lablgtk3-3.0.beta5.patch"
+  "sha512=e11ba7e43b5ddf770f1677a115665a1c29aa258368b64c17e5d93d86600d4512b54b84248bb3f566fd3447e33563cd45fc50e621aaae5437bf2b418526dcded4"
+]

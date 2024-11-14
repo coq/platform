@@ -42,3 +42,13 @@ url {
     "md5=e991d9419a722fc513f4b4878e8c2cbe"
   ]
 }
+extra-files: [
+  [
+    "0001-Add-function-channel_of_descr_socket-windows-has-dif.patch"
+    "sha512=92368167c1574ca51c5239f518d07cb1ee4110635988289ab9cc982f9eedc93e1dfe67f17c0258e993607f5a09d650a2ffb77eae947b965f09ef1cf1c0fd3f75"
+  ]
+  [
+    "dune-project.patch"
+    "sha512=7c71e8ef47168d1606b392889fc160042cf416efc00a222341534519c248cc852d5403e0cdd3a28f2c68342653018b3c2da0323cde18ef611167d9853cee7e57"
+  ]
+]
