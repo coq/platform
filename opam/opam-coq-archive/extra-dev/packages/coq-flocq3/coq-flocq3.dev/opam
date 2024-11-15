@@ -33,3 +33,7 @@ url {
   src: "https://flocq.gitlabpages.inria.fr/releases/flocq-3.4.3.tar.gz"
   checksum: "sha512=10f407e91e0d601b502b2c89104a8753dfcc3d9572f0fd9d007c7692d3d6c96fd5652fb103bcf2396a64236947734ee725c01f4ba2901565f9da38667f538d5a"
 }
+extra-files: [
+  "0001-Rename-Flocq-to-Flocq3.patch"
+  "sha512=88af544e36a4d4f1d0a19bf4d433ad9e0401441c7b4241e224b1630177cf7dd640e309b81b58b934b69cc90bc8107d7bd6ad6c2ca7d4c09678da393013a37e80"
+]

@@ -30,3 +30,13 @@ url {
     "sha256=7f4818fa8d375a589baf8b6a58103de98565e23f60e55ef360d6e70fb539e7e4"
   ]
 }
+extra-files: [
+  [
+    "0001-Comment-out-Search-command-cause-of-stack-overflow.patch"
+    "sha512=9cebfab37f5009f7d9e059385bb4cd4e7aefe0f7b7c6b95cf684656feb9a19bee92269c37b7af08976f6d236b8c2096a8f153e5d68699c088508c36eb0fe60bb"
+  ]
+  [
+    "0001-Fix-for-realpath-not-in-zsh-91.patch"
+    "sha512=ef17f08b711292040a2599341e09b0a987a18817a5b26d97fd5e6d195264c22c23ce66e6524d286a8654a4388d4212137bddcc2f03e870ad4d0193e4bf690ac3"
+  ]
+]

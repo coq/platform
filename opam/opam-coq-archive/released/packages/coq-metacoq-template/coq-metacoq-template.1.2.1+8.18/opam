@@ -52,3 +52,7 @@ url {
   src: "https://github.com/MetaCoq/metacoq/archive/v1.2.1-8.18.tar.gz"
   checksum: "sha256=dd129826edd22e611f84cdc82f6486fc57343e13c8223ce041a3d0574b6f5262"
 }
+extra-files: [
+  "Fix make issues Coq Platform CI.patch"
+  "sha512=bc1f366683aad137a72474bf43e01ce8e9b7cc2d789fd56fd7898666780b93cad9c34dca87adfbf87760bb2c91c8319d6c7b64101dabe477999acb51fc8b0498"
+]

@@ -70,3 +70,13 @@ url {
     "sha512=46922d5f2eb6802a148a52fd3e7f0be8370c93e7bc33cee05cf4a2044290845b10ccddbaa306f29c808e7c5019700763e37e45ff6deb507b874a4348010fed50"
   ]
 }
+extra-files: [
+  [
+    "0001-ocamldep-fix-to_relative_path-on-Windows.patch"
+    "sha512=a17b106c0253516cdca608da99af8bfc816a1bf8903e52361c91d4fa8731dbc75a1a72a94c0b2148bcd5659f05e42d40fac9de1c033c369732f2f7469419b030"
+  ]
+  [
+    "PR19247-ported-Fix-coqide-compilation-with-lablgtk-3.1.5-on-windows.patch"
+    "sha512=c243b1ee6fd4586f1d00c3fb1941f655c9e7334f7751a8aad5783d2693dc001ffe0d3638d4c2f5ad6295114a74048ee7cb1370459d929553dca1a7a01f2600c7"
+  ]
+]

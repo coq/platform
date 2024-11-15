@@ -43,3 +43,7 @@ url {
   src: "https://github.com/coq/coq/archive/refs/tags/V8.17.1.tar.gz"
   checksum: "sha512=9a35311acec2a806730b94ac7dceabc88837f235c52a14c026827d9b89433bd7fa9555a9fc6829aa49edfedb24c8bbaf1411ebf463b74a50aeb17cba47745b6b"
 }
+extra-files: [
+  "PR19247-ported-Fix-coqide-compilation-with-lablgtk-3.1.5-on-windows.patch"
+  "sha512=44c753fcdb72437deb950d8de4366fc3bdf1e7d0b789a105a2910e306cf1b5b939702bfa0be8c21b6a8854d25b22f8988722e89173ea4ae80a6677e18e7b5df6"
+]

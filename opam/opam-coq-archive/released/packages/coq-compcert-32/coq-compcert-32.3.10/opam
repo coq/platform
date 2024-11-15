@@ -66,3 +66,7 @@ url {
     "sha256=89d7889a41d9d295ee959ff9de7aed1a0a7c813f77fa9a668beedabeade91927"
   ]
 }
+extra-files: [
+  "0001-Rename-Flocq-to-Flocq3.patch"
+  "sha512=37d8d026e6762fad178b91c340bb5e26ba616ae26e077f2613776bdecf75b65fe43ba558f0d093a10cd9d45a016384450b966776abf5d154fee8b706135465a8"
+]

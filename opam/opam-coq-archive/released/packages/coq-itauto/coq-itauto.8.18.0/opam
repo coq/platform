@@ -48,3 +48,7 @@ url {
     "sha512=a6912de70f2bb0118f352b5190b171dc863f4d50733b1881b1382afd1b9dcbad85971feb0d2d3b64deceb13d5b91ce78d1d5b445c745ced03ea0cf0b7b15c177"
   ]
 }
+extra-files: [
+  "0001-Remove-root-on-dune-calls-does-not-work-on-Windows-M.patch"
+  "sha512=5f58a9f128d03ad035717d662ccbcd891437295086610a572914eb29b7c2cc944752ce6e28126b6f8ba2b94563e5258a72e7a8286331fe79f99d19baeb34b9bd"
+]

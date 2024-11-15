@@ -51,9 +51,15 @@ patches: [
   "unlistable_dirs_in_path.patch" {snap}
 ]
 extra-files: [
+   [
+  "aux_file.patch"
+  "sha512=d7b9138bc09a3abfb77d7fd335cb448728e58fdcd44c41965fe2cd1d93ddd70428054aff80814772bb78f31fbc4f8818872e02b3b08962cf73f29874c2828de7"
+]
    ["coq.install" "sha512=b501737b4dbd22adc1c0377d744448056fb1dc493caf72c05f57c8463cf23f758373605ab3a50b9f505e4c856c41039d0bd7f81f96ed62adc6a674179523e7d2"]
-   ["aux_file.patch" "sha256=44baf8d636282a909965f7bbff921b4c743d099ea4412d16d0c6182f065346df"]
-   ["unlistable_dirs_in_path.patch" "sha256=07024d08b9147ae1c036ad6694bd9691da21517d63f98df1c3852d83f8ec52de"]
+   [
+  "unlistable_dirs_in_path.patch"
+  "sha512=06a94d1f245d3ad835d7c2aa4071f03408a777e27eeaaffd53ffdebce6623c6e20c9dc97e40a71614a6c9f862bb2be6777b67bf712677514adb670054e227c4f"
+]
 ]
 
 url {

@@ -52,4 +52,22 @@ url {
     "sha512=03514c618a16b02889db997c6c4789b3436b3ad7d974348d2c6dea53eb78898ab285ce5f10297c074bab4fd2c82931a8b7c5c113b994447a44abb30fca74c715"
   ]
 }
+extra-files: [
+  [
+    "0001-Allow-executable-relative-paths-staring-with.patch"
+    "sha512=70df52144b2444954d02b6036831a36badfdf21c752510fdf30fd06c09da4db4a3659cb05c65ef67251554f070e4c6b4c4a25793f4d736b18f69e130e2d10c9d"
+  ]
+  [
+    "0001-Fix-bug-when-installing-with-a-system-compiler.patch"
+    "sha512=fcbcd1d3b239d3c5974f8c05205cfdb5e3296a86f81e5c8e8ec2fb09928bdf13649eefd23ac671353e9d827a6a3c2515ce7b0b4c07aac24299c1ab1f3079c778"
+  ]
+  [
+    "0001-Windows-allow-and-as-path-separator.patch"
+    "sha512=66362042f141c0ebba96280d01effe4da3b0921900217188b8c4de1cb7d85f347f90f6128817f574b8cc08d8d57fe552aecccf36c67a1419b0795cb32cfd0a4b"
+  ]
+  [
+    "findlib-1.9.5.patch"
+    "sha512=ef85072123de333347d0a4113fd9faf98b14326d8ecf1640f0d89baa87ad07e69140a414fcee7d67353644fc06c124838f4f074296cb8590072216a1e73ed4ac"
+  ]
+]
 

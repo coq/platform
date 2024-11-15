@@ -71,3 +71,13 @@ url {
     "sha512=91bc81530fa4f6498961583ad51eac5001f139881788b88e360a866ad8e2a6e2c5bce86d1a580ab4cd4782bf49d48318767df82471ce33ba3ac143e5569ad33c"
   ]
 }
+extra-files: [
+  [
+    "0001-Windows-fix-path-normalization-in-coqdep.patch"
+    "sha512=ed520c9e7d17f5bd9067e22d19983571cd88fbae7ae4c62cbc0daac9b607a357224b6e093c962858dd586ccd282d127bac565ed942d7025836e37b6635cbb609"
+  ]
+  [
+    "PR19247-ported-Fix-coqide-compilation-with-lablgtk-3.1.5-on-windows.patch"
+    "sha512=e55c87a7aed663b6c11874e90c2cdc44b4b3d60b525dc3b6b03d40155dadd159414d21fe40a7c4fac8d3adbde67ef787a485c2e54ba417f9ce60439223f58e0d"
+  ]
+]

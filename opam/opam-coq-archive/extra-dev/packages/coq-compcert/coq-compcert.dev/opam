@@ -49,3 +49,13 @@ tags: [
 url {
   src: "git+https://github.com/AbsInt/CompCert.git"
 }
+extra-files: [
+  [
+    "0001-Allow-dev-version-of-Menhir.patch"
+    "sha512=76f4222174fe2ff396ccef236b249a5094f4258459c3d74a074e714ddab7da6ea22d66a264386202988e16e6e5713c7ef06c043751890369e0c35c5915e2c832"
+  ]
+  [
+    "0001-Rename-Flocq-to-Flocq3.patch"
+    "sha512=37d8d026e6762fad178b91c340bb5e26ba616ae26e077f2613776bdecf75b65fe43ba558f0d093a10cd9d45a016384450b966776abf5d154fee8b706135465a8"
+  ]
+]

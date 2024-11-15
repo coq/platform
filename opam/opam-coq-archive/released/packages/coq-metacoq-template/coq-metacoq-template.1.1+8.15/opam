@@ -59,3 +59,7 @@ url {
     "sha256=0a305d179c3ffb7e01560c2e83d8d511dd90ca202b5c6409710ded92a86e0021"
   ]
 }
+extra-files: [
+  "0001-Fix-line-ending-issues-with-generated-code-on-Window.patch"
+  "sha512=6b626b68ea3376ee3e532c8cbd024bd083be4b37e7fc933c4445c8fe7bc22022bc06a63b4f49e610381ee8a0218b0b42950ca417ca9404e84cbd16068191294e"
+]

@@ -58,3 +58,7 @@ url {
   ]
 }
 x-commit-hash: "7cbb0e7277c6cacd1ccf7941cac5a03c25fc63cf"
+extra-files: [
+  "5fbaa7048e50556c3b9d996712bf22f14da6726e.patch"
+  "sha512=387afdad06d18fe297dec24b3dfb5213dba08deb182959f61228ac0628992921a2f50150766154cc10234a4d7c4cd701bf4918fc5e0aa134e526f4d91193ae2b"
+]

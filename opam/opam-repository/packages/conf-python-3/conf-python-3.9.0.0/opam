@@ -29,5 +29,5 @@ on the system.
 If a minor version needs to be specified for your operating system, then
 python-3.9 will be used.
 """
-extra-files: ["test.py" "md5=db8829ab1f4aa1fc15f380afba9d01f5"]
+extra-files: ["test.py" "sha512=c392de4af374fb41705d8ff8510c1f770666a1386021f89f309848e6bfbb29fabc19f34091206c32691522698a973d447da7a82a937a9d707a79e4caae6ec30c"]
 flags: conf
