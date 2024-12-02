@@ -1,5 +1,5 @@
 
-# Coq Platform 2024.10.0 providing Coq 8.19.2 (released Jun 2024) with the first package pick from Oct 2024
+# Coq Platform 2024.10.1 providing Coq 8.19.2 (released Jun 2024) with the first package pick from Oct 2024
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
@@ -9,10 +9,10 @@ The [Coq Platform](https://github.com/coq/platform) is a distribution of the Coq
 interactive prover together with a selection of Coq libraries and plugins.
 
 The Coq Platform supports to install several versions of Coq (also in parallel).
-This README file is for **Coq Platform 2024.10.0 with Coq 8.19.2**.
+This README file is for **Coq Platform 2024.10.1 with Coq 8.19.2**.
 The README files for other versions are linked in the main [README](https://github.com/coq/platform/blob/main/README.md).
 
-This version of Coq Platform 2024.10.0 includes Coq 8.19.2 from Jun 2024. This is the **latest release version** of the Coq Platform and recommended for general application. 
+This version of Coq Platform 2024.10.1 includes Coq 8.19.2 from Jun 2024. This is the **latest release version** of the Coq Platform and recommended for general application. 
 
 The OCaml version used is 4.14.2+options ocaml-option-flambda.
 
@@ -46,7 +46,7 @@ Please clarify the details with the homepage of the package.
 
 <br>
 
-## **Coq Platform 2024.10.0 with Coq 8.19.2 "base level"**
+## **Coq Platform 2024.10.1 with Coq 8.19.2 "base level"**
 
 The **base level** is mostly intended as a basis for custom installations using
 opam and contains the following package(s):
@@ -98,7 +98,7 @@ opam and contains the following package(s):
 
 <br>
 
-## **Coq Platform 2024.10.0 with Coq 8.19.2 "IDE level"**
+## **Coq Platform 2024.10.1 with Coq 8.19.2 "IDE level"**
 
 The **IDE level** adds an interactive development environment to the **base level**.
 
@@ -126,7 +126,7 @@ The **IDE level** contains the following package(s):
 
 <br>
 
-## **Coq Platform 2024.10.0 with Coq 8.19.2 "full level"**
+## **Coq Platform 2024.10.1 with Coq 8.19.2 "full level"**
 
 The **full level** adds many commonly used coq libraries, plug-ins and
 developments.
@@ -934,7 +934,7 @@ The **full level** contains the following packages:
 
 <br>
 
-## **Coq Platform 2024.10.0 with Coq 8.19.2 "optional packages"**
+## **Coq Platform 2024.10.1 with Coq 8.19.2 "optional packages"**
 
 The **optional** packages have the same maturity and maintenance level as the
 packages in the full level, but either take a rather long time to build or have
@@ -994,7 +994,7 @@ The following packages are **optional**:
 
 <br>
 
-## **Coq Platform 2024.10.0 with Coq 8.19.2 "extended level"**
+## **Coq Platform 2024.10.1 with Coq 8.19.2 "extended level"**
 
 The **extended level** contains packages which are in a beta stage or otherwise
 don't yet have the level of maturity or support required for inclusion in the
