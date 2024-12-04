@@ -87,9 +87,9 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-character.2.3.0"
   PACKAGES="${PACKAGES} coq-mathcomp-bigenough.1.0.1"
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.2.1.0"
-# PACKAGES="${PACKAGES} coq-mathcomp-real-closed.2.0.1" # ToDo requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0
+# PACKAGES="${PACKAGES} coq-mathcomp-real-closed.2.0.1" # ToDo requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0, fails with version restriction relaxation
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.5.0+2.0+8.16"
-# PACKAGES="${PACKAGES} coq-mathcomp-multinomials.2.2.0" # ToDo requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0
+# PACKAGES="${PACKAGES} coq-mathcomp-multinomials.2.2.0" # ToDo requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0, fails with version restriction relaxation
   PACKAGES="${PACKAGES} coq-coquelicot.3.4.2"
 
   # Number theory
@@ -140,22 +140,22 @@ then
     PACKAGES="${PACKAGES} z3_tptp.4.13.0" # ToDo Check
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.20"
-  # PACKAGES="${PACKAGES} coq-coqeal.2.0.2" ToDo: requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0
+  # PACKAGES="${PACKAGES} coq-coqeal.2.0.2" ToDo: requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0, depends on packages which fail with version relaxation
   PACKAGES="${PACKAGES} coq-libhyps.2.0.8"
   PACKAGES="${PACKAGES} coq-itauto.8.20.0"
   
   # General mathematics (which requires one of the above tools)
   PACKAGES="${PACKAGES} coq-mathcomp-analysis.1.7.0"
-# PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.2.3" ToDo: requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0
+  PACKAGES="${PACKAGES} coq-mathcomp-algebra-tactics.1.2.3" # Works with version relaxation
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.11"
 
   # Formal languages, compilers and code verification
-# PACKAGES="${PACKAGES} coq-reglang.1.2.1" ToDo: requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0
+# PACKAGES="${PACKAGES} coq-reglang.1.2.1" ToDo: requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0, fails with version restriction relaxation 
   PACKAGES="${PACKAGES} coq-iris.4.3.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.3.0"
   PACKAGES="${PACKAGES} coq-ott.0.33"
   PACKAGES="${PACKAGES} ott.0.33"
-# PACKAGES="${PACKAGES} coq-mathcomp-word.3.2" ToDo: requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0
+  PACKAGES="${PACKAGES} coq-mathcomp-word.3.2" # Works with version relaxation
   
   case "$COQ_PLATFORM_COMPCERT" in
     [yY]) PACKAGES="${PACKAGES} coq-compcert.3.13.1" ;; # ToDo: there is CompCert 3.14, but VST requires 3.13.1
