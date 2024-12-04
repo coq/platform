@@ -140,7 +140,7 @@ then
     PACKAGES="${PACKAGES} z3_tptp.4.13.0" # ToDo Check
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.20"
-  # PACKAGES="${PACKAGES} coq-coqeal.2.0.2" ToDo: requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0, depends on packages which fail with version relaxation
+  # PACKAGES="${PACKAGES} coq-coqeal.2.0.2" # ToDo: requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0, depends on packages which fail with version relaxation
   PACKAGES="${PACKAGES} coq-libhyps.2.0.8"
   PACKAGES="${PACKAGES} coq-itauto.8.20.0"
   
@@ -150,7 +150,7 @@ then
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.11"
 
   # Formal languages, compilers and code verification
-# PACKAGES="${PACKAGES} coq-reglang.1.2.1" ToDo: requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0, fails with version restriction relaxation 
+# PACKAGES="${PACKAGES} coq-reglang.1.2.1" # ToDo: requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0, fails with version restriction relaxation 
   PACKAGES="${PACKAGES} coq-iris.4.3.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.3.0"
   PACKAGES="${PACKAGES} coq-ott.0.33"
@@ -181,14 +181,14 @@ if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[xX] ]]
 then
 
   # Proof automation / generation / helpers
-# PACKAGES="${PACKAGES} coq-deriving.0.2.0" ToDo: requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0
+  PACKAGES="${PACKAGES} coq-deriving.0.2.1"
   if [ "${BITSIZE}" == "64" ]
   then
     PACKAGES="${PACKAGES} coq-metacoq.1.3.2+8.20"
   fi
 
   # General mathematics
-# PACKAGES="${PACKAGES} coq-extructures.0.4.0" ToDo: fails in prerequisite coq-extructures
+# PACKAGES="${PACKAGES} coq-extructures.0.4.0" # ToDo: fails to build
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.5"
@@ -203,7 +203,7 @@ then
     case "$COQ_PLATFORM_FIATCRYPTO" in
       [yY])
         PACKAGES="${PACKAGES} coq-coqutil.0.0.6"
-#       PACKAGES="${PACKAGES} coq-rewriter.0.0.11" ToDo: Fails to build
+#       PACKAGES="${PACKAGES} coq-rewriter.0.0.11" # ToDo: fails to build
         PACKAGES="${PACKAGES} coq-riscv.0.0.5"
         PACKAGES="${PACKAGES} coq-bedrock2.0.0.8"
         PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.8"
