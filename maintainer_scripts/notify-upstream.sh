@@ -4,7 +4,7 @@ echo SHELL="$SHELL"
 
 ###################### COPYRIGHT/COPYLEFT ######################
 
-# (C) 2022 Michael Soegtrop
+# (C) 2024 Michael Soegtrop
 # (C) 2020 Enrico Tassi
 
 # Released to the public under the
@@ -36,18 +36,21 @@ PACKAGE_FILTER_RE="${2:-.}"
 
 ########## Settings ##########
 
+# Extension and release date of the Coq release
 EXT_RELEASE=".0"
-DATE_RELEASE="January 24th, 2024"
+DATE_RELEASE="September 3rd, 2024"
+# Extension and release date of the Coq release, in case the above is a beta
 EXT_FINAL=""
 DATE_FINAL=""
-VERSION_PLATFORM="2024.10"
-DATE_PLATFORM_BETA="March 31st, 2024"
-DATE_PLATFORM_NOTIFY="March 31st, 2024"
-DATE_PLATFORM_EXPECTED="April 30th, 2024"
-DATE_PLATFORM_LATEST="May 15th, 2024"
+# Coq Platform release code and dates
+VERSION_PLATFORM="2025.01"
+DATE_PLATFORM_BETA="Dec 8th, 2024"
+DATE_PLATFORM_NOTIFY="Dec 31st, 2024"
+DATE_PLATFORM_EXPECTED="Jan 31st, 2025"
+DATE_PLATFORM_LATEST="Feb 28th, 2025"
 PLATFORM_MAIN_BRANCH="https://github.com/coq/platform/tree/main"
 
-CC="CC: https://github.com/coq/platform/issues/405"
+CC="CC: https://github.com/coq/platform/issues/449"
 #CC="\n@coqbot column:...."
 
 COQ_PLATFORM_UNIMATH=Y

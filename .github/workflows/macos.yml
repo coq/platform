@@ -12,8 +12,6 @@ name: Macos
 on:
   push:
     branches:
-      - 2021.02
-      - 2021.09
       - main
   pull_request:
     branches:
@@ -51,8 +49,8 @@ jobs:
       matrix:
         variant:
           # Keep this in sync with the Smoke test below
+          - '8.20~2025.01'
           - '8.19~2024.10'
-          - '8.18~2023.11'
     steps:
       - name: Git checkout
         uses: actions/checkout@v4
@@ -166,8 +164,8 @@ jobs:
       fail-fast: false
       matrix:
         variant:
+          - '8.20~2025.01'
           - '8.19~2024.10'
-          - '8.18~2023.11'
 
     steps:
       - name: Install bash

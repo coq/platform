@@ -12,8 +12,6 @@ name: Ubuntu
 on:
   push:
     branches:
-      - 2021.02
-      - 2021.09
       - main
   pull_request:
     branches:
@@ -51,6 +49,7 @@ jobs:
       matrix:
         variant:
           # This should contain all picks introduced in the current release + all original picks of all Coq versions
+          - '8.20~2025.01'
           - '8.19~2024.10'
           - '8.18~2023.11'
           - '8.17~2023.08'
