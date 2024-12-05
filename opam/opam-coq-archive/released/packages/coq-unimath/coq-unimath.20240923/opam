@@ -1,0 +1,18 @@
+opam-version: "2.0"
+maintainer: "The UniMath Development Team"
+homepage: "https://github.com/UniMath/UniMath"
+dev-repo: "git+https://github.com/UniMath/UniMath.git"
+bug-reports: "https://github.com/UniMath/UniMath/issues"
+license: "Similar to MIT license"
+authors: ["The UniMath Development Team"]
+build: [make "BUILD_COQ=no" "-j%{jobs}%"]
+install: [make "BUILD_COQ=no" "install"]
+depends: [
+  "ocaml"
+  "coq" {>= "8.18"}
+]
+synopsis: "Library of Univalent Mathematics"
+url {
+  src: "https://github.com/UniMath/UniMath/archive/refs/tags/v20240923.tar.gz"
+  checksum: "sha512=ffb905217bc6426d6ad00168959961f560a05c040b10de0145ef27e1d93e9ab9ef60f7f5127fc8b9e0b04ad99608b452dbf261bc34072ee4f47ef6b6951bbc47"
+}
