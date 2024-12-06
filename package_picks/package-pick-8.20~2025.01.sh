@@ -130,7 +130,7 @@ then
   PACKAGES="${PACKAGES} coq-aac-tactics.8.20.0"
   PACKAGES="${PACKAGES} coq-unicoq.1.6+8.20"
   PACKAGES="${PACKAGES} coq-mtac2.1.4+8.20"
-  PACKAGES="${PACKAGES} coq-quickchick.2.0.4"
+  PACKAGES="${PACKAGES} coq-quickchick.2.0.5"
   PACKAGES="${PACKAGES} coq-hammer-tactics.1.3.2+8.20"
   if [[ "$OSTYPE" != cygwin ]]
   then
