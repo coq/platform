@@ -86,7 +86,7 @@ A short summary of the dispute:
 
 It is a dangerous thing to make `/usr/local/bin` writable to the current user, but the alternative - running `sudo make install` for 100 software packages - is also not free of danger. Also installing opam and putting `~/.opam/<switch>/bin` at the begin of the PATH opens the door to sneaking in adversarial programs in a similar way - with the big difference that opam by default doesn't do this in a fresh shell but only after you called `eval $(opam env)`.
 
-The bottom line is: there is no entirely safe way to install 100s of open source packages. If you trust the community reviews of open source software, you might be better off with MacPorts. If you more trust Murphy's law you might be better of with following Homebrew's path to limit potential damage to `/user/local`.
+The bottom line is: there is no entirely safe way to install 100s of open source packages. If you trust the community reviews of open source software, you might be better off with MacPorts. If you more trust Murphy's law you might be better of with following Homebrew's path to limit potential damage to `/usr/local`.
 
 ## Homebrew issues and workarounds
 
