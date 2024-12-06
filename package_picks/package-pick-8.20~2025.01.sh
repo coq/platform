@@ -73,7 +73,7 @@ then
   
   # Standard library extensions
   PACKAGES="${PACKAGES} coq-bignums.9.0.0+coq8.20"
-  PACKAGES="${PACKAGES} coq-ext-lib.0.12.2"
+  PACKAGES="${PACKAGES} coq-ext-lib.0.13.0"
   PACKAGES="${PACKAGES} coq-stdpp.1.11.0"
 
   # General mathematics
