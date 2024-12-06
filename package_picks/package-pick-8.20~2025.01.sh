@@ -203,12 +203,12 @@ then
     case "$COQ_PLATFORM_FIATCRYPTO" in
       [yY])
         PACKAGES="${PACKAGES} coq-coqutil.0.0.6"
-#       PACKAGES="${PACKAGES} coq-rewriter.0.0.11" # ToDo: fails to build
+        PACKAGES="${PACKAGES} coq-rewriter.0.0.12"
         PACKAGES="${PACKAGES} coq-riscv.0.0.5"
         PACKAGES="${PACKAGES} coq-bedrock2.0.0.8"
         PACKAGES="${PACKAGES} coq-bedrock2-compiler.0.0.8"
         PACKAGES="${PACKAGES} coq-rupicola.0.0.10"
-#       PACKAGES="${PACKAGES} coq-fiat-crypto.0.1.3" # ToDo: there is a 0.1.4 version in git but not in opam, ToDo: requires coq-rewriter
+        PACKAGES="${PACKAGES} coq-fiat-crypto.0.1.3"
         ;;
       [nN]) true ;;
       *) echo "Illegal value for COQ_PLATFORM_FIATCRYPTO - aborting"; false ;;
