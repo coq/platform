@@ -77,9 +77,9 @@ then
   PACKAGES="${PACKAGES} coq-stdpp.1.11.0"
 
   # General mathematics
-  PACKAGES="${PACKAGES} elpi.1.19.6 coq-elpi.2.2.3"   # required by coq-hierarchy-builder
-  PACKAGES="${PACKAGES} coq-hierarchy-builder.1.7.0"
-  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.3.0" # Todo: move elpi and hierarchy builder before this
+  PACKAGES="${PACKAGES} elpi.2.0.5 coq-elpi.2.3.0" # This would belong into the "Proof automation" section, but it is required by coq-hierarchy-builder
+  PACKAGES="${PACKAGES} coq-hierarchy-builder.1.7.1"
+  PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.3.0"
   PACKAGES="${PACKAGES} coq-mathcomp-fingroup.2.3.0"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra.2.3.0"
   PACKAGES="${PACKAGES} coq-mathcomp-solvable.2.3.0"
