@@ -89,7 +89,7 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.2.1.0"
 # PACKAGES="${PACKAGES} coq-mathcomp-real-closed.2.0.1" # ToDo requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0, fails with version restriction relaxation
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.5.0+2.0+8.16"
-# PACKAGES="${PACKAGES} coq-mathcomp-multinomials.2.2.0" # ToDo requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0, fails with version restriction relaxation
+  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.2.3.0"
   PACKAGES="${PACKAGES} coq-coquelicot.3.4.2"
 
   # Number theory
