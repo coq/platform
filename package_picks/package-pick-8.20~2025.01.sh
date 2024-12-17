@@ -77,8 +77,8 @@ then
   PACKAGES="${PACKAGES} coq-stdpp.1.11.0"
 
   # General mathematics
-  PACKAGES="${PACKAGES} elpi.2.0.5 coq-elpi.2.3.0" # This would belong into the "Proof automation" section, but it is required by coq-hierarchy-builder
-  PACKAGES="${PACKAGES} coq-hierarchy-builder.1.7.1"
+  PACKAGES="${PACKAGES} elpi.2.0.6 coq-elpi.2.3.0" # This would belong into the "Proof automation" section, but it is required by coq-hierarchy-builder
+  PACKAGES="${PACKAGES} coq-hierarchy-builder.1.8.0"
   PACKAGES="${PACKAGES} coq-mathcomp-ssreflect.2.3.0"
   PACKAGES="${PACKAGES} coq-mathcomp-fingroup.2.3.0"
   PACKAGES="${PACKAGES} coq-mathcomp-algebra.2.3.0"
@@ -89,7 +89,7 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-finmap.2.1.0"
 # PACKAGES="${PACKAGES} coq-mathcomp-real-closed.2.0.1" # ToDo requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0, fails with version restriction relaxation
   PACKAGES="${PACKAGES} coq-mathcomp-zify.1.5.0+2.0+8.16"
-# PACKAGES="${PACKAGES} coq-mathcomp-multinomials.2.2.0" # ToDo requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0, fails with version restriction relaxation
+  PACKAGES="${PACKAGES} coq-mathcomp-multinomials.2.3.0"
   PACKAGES="${PACKAGES} coq-coquelicot.3.4.2"
 
   # Number theory
