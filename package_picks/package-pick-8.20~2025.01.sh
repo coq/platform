@@ -93,7 +93,7 @@ then
   PACKAGES="${PACKAGES} coq-coquelicot.3.4.2"
 
   # Number theory
-  PACKAGES="${PACKAGES} coq-coqprime.1.5.0"
+  PACKAGES="${PACKAGES} coq-coqprime.1.6.0"
   PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1" #TODO: this points to https://github.com/thery/coqprime/archive/v8.14.1.tar.gz
   
   # Numerical mathematics
@@ -141,7 +141,7 @@ then
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.20"
   PACKAGES="${PACKAGES} coq-coqeal.2.0.3"
-  PACKAGES="${PACKAGES} coq-libhyps.2.0.8"
+  PACKAGES="${PACKAGES} coq-libhyps.3.0.1"
   PACKAGES="${PACKAGES} coq-itauto.8.20.0"
   
   # General mathematics (which requires one of the above tools)
@@ -150,7 +150,7 @@ then
   PACKAGES="${PACKAGES} coq-relation-algebra.1.7.11"
 
   # Formal languages, compilers and code verification
-# PACKAGES="${PACKAGES} coq-reglang.1.2.1" # ToDo: requires downgrade coq-mathcomp-ssreflect 2.3.0 to 2.2.0, fails with version restriction relaxation 
+  PACKAGES="${PACKAGES} coq-reglang.1.2.1"
   PACKAGES="${PACKAGES} coq-iris.4.3.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.3.0"
   PACKAGES="${PACKAGES} coq-ott.0.33"
@@ -188,7 +188,7 @@ then
   fi
 
   # General mathematics
-# PACKAGES="${PACKAGES} coq-extructures.0.4.0" # ToDo: fails to build
+ PACKAGES="${PACKAGES} coq-extructures.0.5.0"
 
   # Gallina extensions
   PACKAGES="${PACKAGES} coq-reduction-effects.0.1.5"
