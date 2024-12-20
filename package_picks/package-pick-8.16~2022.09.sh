@@ -136,7 +136,7 @@ then
     # coq-hammer does not work on Windows because it heavily relies on fork
     PACKAGES="${PACKAGES} coq-hammer.1.3.2+8.16"
     PACKAGES="${PACKAGES} eprover.2.6"
-    PACKAGES="${PACKAGES} z3_tptp.4.11.0"
+    PACKAGES="${PACKAGES} z3_tptp.4.13.0"
   fi
   PACKAGES="${PACKAGES} coq-paramcoq.1.1.3+coq8.16"
   PACKAGES="${PACKAGES} coq-coqeal.1.1.1"
