@@ -186,4 +186,8 @@ then
   # Bedrock2, fiat crypto, ...
   PACKAGES="${PACKAGES} coq-coqutil.dev"
   # PACKAGES="${PACKAGES} coq-bedrock2.dev"                   # Error: "sed: illegal option -- z"
+
+  # VSCoq
+  PACKAGES="${PACKAGES} vscoq-language-server.dev"
+
 fi
