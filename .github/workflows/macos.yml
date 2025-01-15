@@ -51,8 +51,7 @@ jobs:
       matrix:
         variant:
           # Keep this in sync with the Smoke test below
-          - '8.19~2024.10'
-          - '8.18~2023.11'
+          - 'ci'
     steps:
       - name: Git checkout
         uses: actions/checkout@v4
