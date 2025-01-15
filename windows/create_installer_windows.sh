@@ -459,9 +459,9 @@ fi
 
 # Copy some files from source
 cp source/coq/LICENSE .
-cp source/coqide/ide/coqide/coq.ico .
+cp source/rocqide/ide/rocqide/coq.ico .
 mkdir -p files/bin
-cp source/coqide/ide/coqide/coq.ico files/bin/
+cp source/rocqide/ide/rocqide/coq.ico files/bin/
 if opam list --installed --silent coq-compcert
 then
   cp source/coq-compcert/LICENSE coq-compcert-license.txt
