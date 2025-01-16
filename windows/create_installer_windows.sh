@@ -420,7 +420,7 @@ cp ../windows/*.ns* .
 
 # Extract some data from sources
 mkdir source
-for package in coq coqide coq-compcert coq-vst coq-vst-32
+for package in coq rocqide coq-compcert coq-vst coq-vst-32
 do
   if opam list --installed --silent ${package}
   then
