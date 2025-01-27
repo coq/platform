@@ -405,7 +405,6 @@ IF "%RUNSETUP%"=="y" (
     --root "%CYGWIN_INSTALLDIR_WFMT%" ^
     --local-package-dir "%CYGWIN_LOCAL_CACHE_WFMT%" ^
     --no-shortcuts ^
-    --allow-test-packages ^
     %CYGWIN_OPT% ^
     -P cygwin-devel,gcc-core,gcc-g++, ^
     -P rsync,patch,diffutils,curl,make,zip,unzip,git,m4,perl,wget ^
