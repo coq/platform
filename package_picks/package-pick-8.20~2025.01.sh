@@ -158,7 +158,7 @@ then
   PACKAGES="${PACKAGES} coq-mathcomp-word.3.2" # Works with version relaxation
   
   case "$COQ_PLATFORM_COMPCERT" in
-    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.13.1" ;; # ToDo: there is CompCert 3.14, but VST requires 3.13.1
+    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.15"
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
   esac
