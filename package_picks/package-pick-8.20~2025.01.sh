@@ -165,7 +165,7 @@ then
 
   case "$COQ_PLATFORM_VST" in
     [yY])
-      PACKAGES="${PACKAGES} coq-vst.2.14"
+      PACKAGES="${PACKAGES} coq-vst.2.15"
       true ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
