@@ -153,8 +153,8 @@ then
   PACKAGES="${PACKAGES} coq-reglang.1.2.1"
   PACKAGES="${PACKAGES} coq-iris.4.3.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.3.0"
-  PACKAGES="${PACKAGES} coq-ott.0.33"
-  PACKAGES="${PACKAGES} ott.0.33"
+  PACKAGES="${PACKAGES} coq-ott.0.34"
+  PACKAGES="${PACKAGES} ott.0.34"
   PACKAGES="${PACKAGES} coq-mathcomp-word.3.2" # Works with version relaxation
   
   case "$COQ_PLATFORM_COMPCERT" in
