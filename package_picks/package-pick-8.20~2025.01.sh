@@ -94,7 +94,7 @@ then
 
   # Number theory
   PACKAGES="${PACKAGES} coq-coqprime.1.6.0"
-  PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1" #TODO: this points to https://github.com/thery/coqprime/archive/v8.14.1.tar.gz
+  PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.2"
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.2.0"
