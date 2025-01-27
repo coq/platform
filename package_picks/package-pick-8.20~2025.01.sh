@@ -94,7 +94,7 @@ then
 
   # Number theory
   PACKAGES="${PACKAGES} coq-coqprime.1.6.0"
-  PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.2"
+  PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1" # Note: there is a newer version 1.1.2, but it requires Ocaml 5.X
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.2.0"
