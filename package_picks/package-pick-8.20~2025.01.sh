@@ -94,7 +94,7 @@ then
 
   # Number theory
   PACKAGES="${PACKAGES} coq-coqprime.1.6.0"
-  PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1" #TODO: this points to https://github.com/thery/coqprime/archive/v8.14.1.tar.gz
+  PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1" # Note: there is a newer version 1.1.2, but it requires Ocaml 5.X
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.2.0"
@@ -153,19 +153,19 @@ then
   PACKAGES="${PACKAGES} coq-reglang.1.2.1"
   PACKAGES="${PACKAGES} coq-iris.4.3.0"
   PACKAGES="${PACKAGES} coq-iris-heap-lang.4.3.0"
-  PACKAGES="${PACKAGES} coq-ott.0.33"
-  PACKAGES="${PACKAGES} ott.0.33"
+  PACKAGES="${PACKAGES} coq-ott.0.34"
+  PACKAGES="${PACKAGES} ott.0.34"
   PACKAGES="${PACKAGES} coq-mathcomp-word.3.2" # Works with version relaxation
   
   case "$COQ_PLATFORM_COMPCERT" in
-    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.13.1" ;; # ToDo: there is CompCert 3.14, but VST requires 3.13.1
+    [yY]) PACKAGES="${PACKAGES} coq-compcert.3.15" ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_COMPCERT - aborting"; false ;;
   esac
 
   case "$COQ_PLATFORM_VST" in
     [yY])
-      PACKAGES="${PACKAGES} coq-vst.2.14"
+      PACKAGES="${PACKAGES} coq-vst.2.15"
       true ;;
     [nN]) true ;;
     *) echo "Illegal value for COQ_PLATFORM_VST - aborting"; false ;;
