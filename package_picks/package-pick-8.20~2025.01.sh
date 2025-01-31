@@ -104,7 +104,7 @@ then
 
   # Constructive mathematics
   PACKAGES="${PACKAGES} coq-math-classes.8.19.0"
-  PACKAGES="${PACKAGES} coq-corn.8.19.0"
+  PACKAGES="${PACKAGES} coq-corn.8.20.0"
 
   # Homotopy Type Theory (HoTT)
   PACKAGES="${PACKAGES} coq-hott.8.20"
