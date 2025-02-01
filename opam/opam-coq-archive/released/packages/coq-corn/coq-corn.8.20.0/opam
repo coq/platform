@@ -48,6 +48,7 @@ depends: [
   "coq" {>= "8.18" & < "8.21~"}
   "coq-math-classes" {>= "8.19.0"}
   "coq-bignums" 
+  "coq-elpi" {>= "1.19.3"}
 ]
 
 tags: [
