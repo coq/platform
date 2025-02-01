@@ -60,7 +60,7 @@ PACKAGES="${PACKAGES} PIN.coq.8.20.1"
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
 PACKAGES="${PACKAGES} coqide.8.20.1"
-PACKAGES="${PACKAGES} vscoq-language-server 2.2.3"
+PACKAGES="${PACKAGES} vscoq-language-server.2.2.3"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
