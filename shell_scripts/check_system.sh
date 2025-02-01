@@ -78,7 +78,6 @@ then
 		ls -lL /etc/pki/tls/certs/
 		echo "============ Fix certificate database done ============"
 	fi
-
 else
 		echo "ERROR: unsopported OS type '$OSTYPE'"
 		return 1
