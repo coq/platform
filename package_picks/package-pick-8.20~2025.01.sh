@@ -11,8 +11,8 @@
 ###################### CONTROL VARIABLES #####################
 
 # The two lines below are used by the package selection script
-COQ_PLATFORM_VERSION_TITLE="Coq 8.20.0 (released Sep 2024) with an incomplete preview package pick"
-COQ_PLATFORM_VERSION_SORTORDER=90
+COQ_PLATFORM_VERSION_TITLE="Coq 8.20.1 (released Jan 2025) with the first package pick from Jan 2025"
+COQ_PLATFORM_VERSION_SORTORDER=1
 
 # The package list name is the final part of the opam switch name.
 # It is usually either empty ot starts with ~.
@@ -22,14 +22,14 @@ COQ_PLATFORM_PACKAGE_PICK_POSTFIX='~8.20~2025.01'
 
 # The corresponding Coq development branch and tag
 COQ_PLATFORM_COQ_BRANCH='v8.20'
-COQ_PLATFORM_COQ_TAG='8.20.0'
+COQ_PLATFORM_COQ_TAG='8.20.1'
 
 # This controls if opam repositories for development packages are selected
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2025.01.0 includes Coq 8.20.0 from Sep 2024. '
-COQ_PLATFORM_VERSION_DESCRIPTION+='This is a **yet incomplete preview pick** intended for package maintainers and early adopters. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2025.01.0 includes Coq 8.20.1 from Jan 2025. '
+COQ_PLATFORM_VERSION_DESCRIPTION+='This is the **latest release version** of the Coq Platform and recommended for general application. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
 COQ_PLATFORM_OCAML_VERSION='4.14.2'
@@ -52,14 +52,15 @@ PACKAGES="${PACKAGES} PIN.ocamlfind.1.9.5~relocatable"  # TODO port patch to 1.9
 PACKAGES="${PACKAGES} PIN.dune.3.16.1" # Note: 3.17.0 has issues on Windows
 PACKAGES="${PACKAGES} PIN.dune-configurator.3.16.1"
 # The Coq compiler coqc and the Coq standard library
-PACKAGES="${PACKAGES} PIN.coq.8.20.0"
+PACKAGES="${PACKAGES} PIN.coq.8.20.1"
 
 ########## IDE PACKAGES ##########
 
 # GTK based IDE for Coq - alternatives are VSCoq and Proofgeneral for Emacs
 if  [[ "${COQ_PLATFORM_EXTENT}"  =~ ^[iIfFxX] ]]
 then
-PACKAGES="${PACKAGES} coqide.8.20.0"
+PACKAGES="${PACKAGES} coqide.8.20.1"
+PACKAGES="${PACKAGES} vscoq-language-server.2.2.3"
 fi
 
 ########## "FULL" COQ PLATFORM PACKAGES ##########
@@ -94,7 +95,7 @@ then
 
   # Number theory
   PACKAGES="${PACKAGES} coq-coqprime.1.6.0"
-  PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.1" # Note: there is a newer version 1.1.2, but it requires Ocaml 5.X
+  PACKAGES="${PACKAGES} coq-coqprime-generator.1.1.2"
   
   # Numerical mathematics
   PACKAGES="${PACKAGES} coq-flocq.4.2.0"
@@ -104,7 +105,7 @@ then
 
   # Constructive mathematics
   PACKAGES="${PACKAGES} coq-math-classes.8.19.0"
-  PACKAGES="${PACKAGES} coq-corn.8.19.0"
+  PACKAGES="${PACKAGES} coq-corn.8.20.0"
 
   # Homotopy Type Theory (HoTT)
   PACKAGES="${PACKAGES} coq-hott.8.20"

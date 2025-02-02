@@ -76,6 +76,10 @@ source shell_scripts/install_system_prerequisites.sh
 
 source shell_scripts/build.sh
 
+###################### FINALIZE #####################
+
+source shell_scripts/post_system.sh
+
 ###################### CLOSING #####################
 
 source shell_scripts/closing_remarks.sh

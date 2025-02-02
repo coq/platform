@@ -43,6 +43,13 @@ if [ ! -f $donefile ] ; then
   echo export OPAMROOT="'$(cygpath -aw /opam)'"
   echo export PLATFORMROOT="'$(cygpath -aw /platform)'"
 
+  # Disable sandboxing in dune
+	# On Cygwin it works better to disable dune sandboxing.
+	# Sometimes virus checkers interfer with this, which makes the build unreliable.
+	# See https://dune.readthedocs.io/en/stable/reference/config/sandboxing_preference.html
+	# See https://dune.readthedocs.io/en/stable/concepts/sandboxing.html
+  echo export DUNE_SANDBOX=none
+
   exec 1>&6 6>&-       # Restore stdout from file descriptor 6 and close file descriptor #6
 
   touch $donefile

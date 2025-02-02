@@ -22,10 +22,19 @@ HERE="$(pwd)"
 
 source shell_scripts/installer_utilities.sh
 
+##### Check if hard links for external use have been created #####
+
+if [ -f "/platform/windows/link_shared_libraries_undo.sh" ]
+then
+  echo "WARNING: removing hard links for external use of this cygwin installation"
+  echo "WARNING: this will break e.g. VSCoq"
+  echo "To restore the links call /platform/windows/link_shared_libraries.sh"
+  /platform/windows/link_shared_libraries_undo.sh
+fi
+
 ##### Get the release and package pick of the Coq Platform #####
 
 source shell_scripts/get_names_from_switch.sh
-
 
 ###### Create root folder #####
 

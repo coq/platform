@@ -1,0 +1,98 @@
+opam-version: "2.0"
+maintainer: "b.a.w.spitters@gmail.com"
+
+homepage: "https://github.com/coq-community/corn"
+dev-repo: "git+https://github.com/coq-community/corn.git"
+bug-reports: "https://github.com/coq-community/corn/issues"
+license: "GPL-2.0"
+
+synopsis: "The Coq Constructive Repository at Nijmegen"
+description: """
+CoRN includes the following parts:
+
+- Algebraic Hierarchy
+
+  An axiomatic formalization of the most common algebraic
+  structures, including setoids, monoids, groups, rings,
+  fields, ordered fields, rings of polynomials, real and
+  complex numbers
+
+- Model of the Real Numbers
+
+  Construction of a concrete real number structure
+  satisfying the previously defined axioms
+
+- Fundamental Theorem of Algebra
+
+  A proof that every non-constant polynomial on the complex
+  plane has at least one root
+
+- Real Calculus
+
+  A collection of elementary results on real analysis,
+  including continuity, differentiability, integration,
+  Taylor's theorem and the Fundamental Theorem of Calculus
+
+- Exact Real Computation
+
+  Fast verified computation inside Coq. This includes: real numbers, functions,
+  integrals, graphs of functions, differential equations.
+"""
+
+build: [
+  ["./configure.sh"]
+  [make "-j%{jobs}%"]
+]
+install: [make "install"]
+depends: [
+  "coq" {>= "8.18" & < "8.21~"}
+  "coq-math-classes" {>= "8.19.0"}
+  "coq-bignums" 
+  "coq-elpi" {>= "1.19.3"}
+]
+
+tags: [
+  "category:Mathematics/Algebra"
+  "category:Mathematics/Real Calculus and Topology"
+  "category:Mathematics/Exact Real computation"
+  "keyword:constructive mathematics"
+  "keyword:algebra"
+  "keyword:real calculus"
+  "keyword:real numbers"
+  "keyword:Fundamental Theorem of Algebra"
+  "logpath:CoRN"
+  "date:2025-01-27"
+]
+authors: [
+  "Evgeny Makarov"
+  "Robbert Krebbers"
+  "Eelis van der Weegen"
+  "Bas Spitters"
+  "Jelle Herold"
+  "Russell O'Connor"
+  "Cezary Kaliszyk"
+  "Dan Synek"
+  "Luís Cruz-Filipe"
+  "Milad Niqui"
+  "Iris Loeb"
+  "Herman Geuvers"
+  "Randy Pollack"
+  "Freek Wiedijk"
+  "Jan Zwanenburg"
+  "Dimitri Hendriks"
+  "Henk Barendregt"
+  "Mariusz Giero"
+  "Rik van Ginneken"
+  "Dimitri Hendriks"
+  "Sébastien Hinderer"
+  "Bart Kirkels"
+  "Pierre Letouzey"
+  "Lionel Mamane"
+  "Nickolay Shmyrev"
+  "Vincent Semeria"
+]
+
+url {
+  src: "https://github.com/coq-community/corn/archive/refs/tags/8.20.0.tar.gz"
+  checksum: "sha512=f3dbb1a11deb92483d7db9c5de1a0a33b20594a8da011e31e54cc68e86c8515a29f213a99409778aee26dea74c1f3663b09fe09a528988918856d555b59c4e09"
+}
