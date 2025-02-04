@@ -40,7 +40,7 @@ COQ_PLATFORM_COQ_TAG='8.18+rc1'
 COQ_PLATFORM_USE_DEV_REPOSITORY='Y'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.10.1 includes Coq 8.18+rc1 from Sep 2023. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2025.01.0 includes Coq 8.18+rc1 from Sep 2023. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is a preliminary release intended for package maintainers. '
 
 # The OCaml version to use for this pick (just the version number - options are elaborated in a platform dependent way)
@@ -107,17 +107,21 @@ GIT tag-versions: 8.6.0  8.7.0  8.8+beta1  8.8.0  8.9.0  8.10+beta1  8.10.0  8.1
 - Update the platform release number in coq-platform-main/package_picks/coq_platform_release.sh
   **ATTENTION**: the release always has a minor extension (like 2022.04.0)
 - remove folders macos_installer, windows_installer, smoke_test_kit
-- search for the old switch name `CP.2024.10.1~8.19~2024.10` and replace it with the new switch name (one by one, e.g. using VSCode file search individual replace
+- search for the old switch name `CP.2025.01.0~8.20~2025.01` and replace it with the new switch name (one by one, e.g. using VSCode file search individual replace
   - **do not replacing entries in the two opam switch list in ReadMe.md**
   - alternatively replace everywhere and fix the switch lists later (must be touched anyway to insert the new switch)
-- search for the old switch prefix `CP.2024.10.1` and replace with the new switch prefix
+- search for the old switch prefix `CP.2025.01.0` and replace with the new switch prefix
   - **ATTENTION**: the release always has a minor extension (like 2022.04.0) - the pick never has a minor extension!
   - **ATTENTION**: search for the new switch prefix and then search for just "CP.20" and compare the hit count to make sure nothing was left over
-- search for last release name "2024.10.1" and change in an appropriate way
+  The **difference should be one** cause of the hit to CP.20 2 lines above.
+- search for last release name "2025.01.0" and change in an appropriate way
   - doing so, exclude the release notes entry
   - do change the release Readme files - we usually don't want to recreate all of them!
-  - search for `https://github.com/coq/platform/archive/refs/tags` to double check
-  - search for `git clone --branch` to double check
+- search for the old pick code `8.20~2025.01` and replace it with the new one
+- double check
+  - search for `https://github.com/coq/platform/archive/refs/tags`
+  - search for `git clone --branch`
+  - search for `-packages=`
 
 - Update the pick choices in CI
   - on Mac and WIndows keep the current and previous picks
@@ -136,15 +140,15 @@ GIT tag-versions: 8.6.0  8.7.0  8.8+beta1  8.8.0  8.9.0  8.10+beta1  8.10.0  8.1
 
 **We are currently preparing a release, which has the effect that some links already refer to the new tag, even though this does not exist as yet.**
 
-**In case you experience dead links, please replace `2024.10.1` with `2023.11.0`.**
+**In case you experience dead links, please replace `2025.01.0` with `2023.11.0`.**
 ```
 
 ### Create documentation for new release
 
 - make a complete (extended, include large and all optional packages) build by running
-  `./coq_platform_make.sh -packages="8.19~2024.10" -extent=x -parallel=p -jobs=8 -compcert=y -large=i`
+  `./coq_platform_make.sh -packages="8.20~2025.01" -extent=x -parallel=p -jobs=8 -compcert=y -large=i`
 - create the ReadMe .md file, the package list .csv file and depedency graph .pdf file with
-  `./maintainer_scripts/create_readme.sh -pick=8.19~2024.10 -depgraph`
+  `./maintainer_scripts/create_readme.sh -pick=8.20~2025.01 -depgraph`
 
 ### Optional: recreate documentation for all picks
 
@@ -165,7 +169,7 @@ GIT tag-versions: 8.6.0  8.7.0  8.8+beta1  8.8.0  8.9.0  8.10+beta1  8.10.0  8.1
 ### Mac
 
 - make a complete (extended, include large and all optional packages) build by running
-  `./coq_platform_make.sh -packages="8.19~2024.10" -extent=x -parallel=p -jobs=8 -compcert=y -large=i`
+  `./coq_platform_make.sh -packages="8.20~2025.01" -extent=x -parallel=p -jobs=8 -compcert=y -large=i`
 - select the created switch (if you did not answer 'y' at the corresponding question above) and run `eval $(opem env)`
 - check the minimum OS version with `otool -l $(which coqc) | grep -A 1 minos` (should be `minos 11.0` on ARM and `minos 10.13` on Intel)
 - create the smoke test kit by running `shell_scripts/create_smoke_test_kit.sh`
@@ -214,7 +218,7 @@ Note: coqc can also be used from an unsigned installer!
 
 ### Tag
 
-- git tag 2024.10.1 -a -m "Release 2024.10.1 with latest pick 8.19~2024.10"
+- git tag 2025.01.0 -a -m "Release 2025.01.0 with latest pick 8.19~2024.10"
 - git push --tags
 
 ### Remove the "ATTENTION RELEASE IN PROGRESS" note from ReadMe.md
@@ -238,7 +242,7 @@ In this case the recommended procedure is as follows:
 
 - Merge the required fixes
 
-- Search and replaces the old release code, e.g. "2024.10.0" with the new release code "2024.10.1".
+- Search and replaces the old release code, e.g. "2024.10.0" with the new release code "2025.01.0".
   - Also replaces in `release_process.md` where this sometimes doesn't look appropriate because it talks about major releases, but this way it is easier to keep this up to date.
   - Make sure to *not* replace in:
     - this paragraph
@@ -251,6 +255,6 @@ In this case the recommended procedure is as follows:
 
 - Tag with an appropriate tag message, e.g.
   ```
-  git tag 2024.10.1 -a -m "Release 2024.10.1 with adjustments to opam 2.3.0 (unmodified pick 8.19~2024.10)"
+  git tag 2025.01.0 -a -m "Release 2025.01.0 with adjustments to opam 2.3.0 (unmodified pick 8.19~2024.10)"
   git push --tags
   ```
