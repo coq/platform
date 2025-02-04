@@ -148,7 +148,10 @@ GIT tag-versions: 8.6.0  8.7.0  8.8+beta1  8.8.0  8.9.0  8.10+beta1  8.10.0  8.1
 - make a complete (extended, include large and all optional packages) build by running
   `./coq_platform_make.sh -packages="8.20~2025.01" -extent=x -parallel=p -jobs=8 -compcert=y -large=i`
 - create the ReadMe .md file, the package list .csv file and depedency graph .pdf file with
-  `./maintainer_scripts/create_readme.sh -pick=8.20~2025.01 -depgraph`
+  **ATTENTION** this script is not compatible with zsh (porting is in progress but complicated - maybe better move to python)!
+  `brew install bash`
+  `ls /opt/homebrew/Cellar/bash/`
+  `/opt/homebrew/Cellar/bash/5.2.37/bin/bash maintainer_scripts/create_readme.sh -pick=8.20~2025.01 -depgraph`
 
 ### Optional: recreate documentation for all picks
 

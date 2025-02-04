@@ -1,5 +1,5 @@
 
-# Coq Platform 2025.01.0 providing Coq 8.19.2 (released Jun 2024) with the first package pick from Oct 2024
+# Coq Platform 2025.01.0 providing Coq 8.20.1 (released Jan 2025) with the first package pick from Jan 2025
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
@@ -9,10 +9,10 @@ The [Coq Platform](https://github.com/coq/platform) is a distribution of the Coq
 interactive prover together with a selection of Coq libraries and plugins.
 
 The Coq Platform supports to install several versions of Coq (also in parallel).
-This README file is for **Coq Platform 2025.01.0 with Coq 8.19.2**.
+This README file is for **Coq Platform 2025.01.0 with Coq 8.20.1**.
 The README files for other versions are linked in the main [README](https://github.com/coq/platform/blob/main/README.md).
 
-This version of Coq Platform 2025.01.0 includes Coq 8.19.2 from Jun 2024. 
+This version of Coq Platform 2025.01.0 includes Coq 8.20.1 from Jan 2025. This is the **latest release version** of the Coq Platform and recommended for general application. 
 
 The OCaml version used is 4.14.2+options ocaml-option-flambda.
 
@@ -40,57 +40,57 @@ It could mean that parts of the software use one license while other parts use a
 It could also mean that you can choose between the given licenses.
 Please clarify the details with the homepage of the package.
 
-**Note:** The package list is also available as [CSV](https://github.com/coq/platform/tree/main/doc/PackageTable~8.19~2024.10.csv).
+**Note:** The package list is also available as [CSV](https://github.com/coq/platform/tree/main/doc/PackageTable~8.20~2025.01.csv).
 
 **Note:** Click on the triangle to show additional information for a package!
 
 <br>
 
-## **Coq Platform 2025.01.0 with Coq 8.19.2 "base level"**
+## **Coq Platform 2025.01.0 with Coq 8.20.1 "base level"**
 
 The **base level** is mostly intended as a basis for custom installations using
 opam and contains the following package(s):
 
 <details>
-  <summary><a href='https://coq.inria.fr/'>coq.8.19.2</a>
-(8.19.2) The Coq Proof Assistant</summary>
+  <summary><a href='https://coq.inria.fr/'>coq.8.20.1</a>
+(8.20.1) The Coq Proof Assistant</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Coq development team, INRIA, CNRS, and contributors</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/coq/coq.8.19.2/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/coq/coq.8.20.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Coq is a formal proof management system. It provides<br>a formal language to write mathematical definitions, executable<br>algorithms and theorems together with an environment for<br>semi-interactive development of machine-checked proofs.<br><br>Typical applications include the certification of properties of<br>programming languages (e.g. the CompCert compiler certification<br>project, or the Bedrock verified low-level programming library), the<br>formalization of mathematics (e.g. the full formalization of the<br>Feit-Thompson theorem or homotopy type theory) and teaching.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml/dune'>dune-configurator.3.15.3</a>
-(3.15.3) Helper library for gathering system configuration</summary>
+  <summary><a href='https://github.com/ocaml/dune'>dune-configurator.3.16.1</a>
+(3.16.1) Helper library for gathering system configuration</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Jane Street Group, LLC <lt;opensource@janestreet.com>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml/dune'>homepage</a>)
       (<a href='https://github.com/ocaml/dune/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/dune-configurator/dune-configurator.3.15.3/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/dune-configurator/dune-configurator.3.16.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>dune-configurator is a small library that helps writing OCaml scripts that<br>test features available on the system, in order to generate config.h<br>files for instance.<br>Among other things, dune-configurator allows one to:<br>- test if a C program compiles<br>- query pkg-config<br>- import #define from OCaml header files<br>- generate config.h file</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml/dune'>dune.3.15.3</a>
-(3.15.3) Fast, portable, and opinionated build system</summary>
+  <summary><a href='https://github.com/ocaml/dune'>dune.3.16.1</a>
+(3.16.1) Fast, portable, and opinionated build system</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Jane Street Group, LLC <lt;opensource@janestreet.com>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml/dune'>homepage</a>)
       (<a href='https://github.com/ocaml/dune/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/dune/dune.3.15.3/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/dune/dune.3.16.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Dune is a build system that was designed to simplify the release of<br>Jane Street packages. It reads metadata from \dune\ files following a<br>very simple s-expression syntax.<br><br>Dune is fast, has very low-overhead, and supports parallel builds on<br>all platforms. It has no system dependencies; all you need to build<br>dune or packages using dune is OCaml. You don'apos;t need make or bash<br>as long as the packages themselves don'apos;t use bash explicitly.<br><br>Dune is composable; supporting multi-package development by simply<br>dropping multiple repositories into the same directory.<br><br>Dune also supports multi-context builds, such as building against<br>several opam roots/switches simultaneously. This helps maintaining<br>packages across several versions of OCaml and gives cross-compilation<br>for free.</dd>
   </dl>
@@ -98,7 +98,7 @@ opam and contains the following package(s):
 
 <br>
 
-## **Coq Platform 2025.01.0 with Coq 8.19.2 "IDE level"**
+## **Coq Platform 2025.01.0 with Coq 8.20.1 "IDE level"**
 
 The **IDE level** adds an interactive development environment to the **base level**.
 
@@ -110,15 +110,15 @@ and choose the full or extended level.
 The **IDE level** contains the following package(s):
 
 <details>
-  <summary><a href='https://coq.inria.fr/'>coqide.8.19.2</a>
-(8.19.2) The Coq Proof Assistant --- GTK3 IDE</summary>
+  <summary><a href='https://coq.inria.fr/'>coqide.8.20.1</a>
+(8.20.1) The Coq Proof Assistant --- GTK3 IDE</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Coq development team, INRIA, CNRS, and contributors</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/coqide/coqide.8.19.2/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/coqide/coqide.8.20.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Coq is a formal proof management system. It provides<br>a formal language to write mathematical definitions, executable<br>algorithms and theorems together with an environment for<br>semi-interactive development of machine-checked proofs.<br><br>This package provides the CoqIDE, a graphical user interface for the<br>development of interactive proofs.</dd>
   </dl>
@@ -141,7 +141,7 @@ The **IDE level** contains the following package(s):
 
 <br>
 
-## **Coq Platform 2025.01.0 with Coq 8.19.2 "full level"**
+## **Coq Platform 2025.01.0 with Coq 8.20.1 "full level"**
 
 The **full level** adds many commonly used coq libraries, plug-ins and
 developments.
@@ -153,180 +153,180 @@ See the Coq Platform [charter](https://github.com/coq/platform/blob/main/charter
 The **full level** contains the following packages:
 
 <details>
-  <summary><a href='https://github.com/coq-community/aac-tactics'>coq-aac-tactics.8.19.0</a>
-(8.19.0) Coq tactics for rewriting universally quantified equations, modulo associative (and possibly commutative and idempotent) operators</summary>
+  <summary><a href='https://github.com/coq-community/aac-tactics'>coq-aac-tactics.8.20.0</a>
+(8.20.0) Coq tactics for rewriting universally quantified equations, modulo associative (and possibly commutative and idempotent) operators</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Thomas Braibant Damien Pous Fabian Kunze</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-3.0-or-later.html" target="_blank">LGPL-3.0-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/aac-tactics'>homepage</a>)
       (<a href='https://github.com/coq-community/aac-tactics/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-aac-tactics/coq-aac-tactics.8.19.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-aac-tactics/coq-aac-tactics.8.20.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This Coq plugin provides tactics for rewriting and proving universally<br>quantified equations modulo associativity and commutativity of some operator,<br>with idempotent commutative operators enabling additional simplifications.<br>The tactics can be applied for custom operators by registering the operators and<br>their properties as type class instances. Instances for many commonly used operators,<br>such as for binary integer arithmetic and booleans, are provided with the plugin.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/coq-community/bignums'>coq-bignums.9.0.0+coq8.19</a>
-(9.0.0+coq8.19) Bignums, the Coq library of arbitrarily large numbers</summary>
+  <summary><a href='https://github.com/coq-community/bignums'>coq-bignums.9.0.0+coq8.20</a>
+(9.0.0+coq8.20) Bignums, the Coq library of arbitrarily large numbers</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Laurent Théry - Benjamin Grégoire - Arnaud Spiwack - Evgeny Makarov - Pierre Letouzey</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/bignums'>homepage</a>)
       (<a href='https://github.com/coq-community/bignums/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-bignums/coq-bignums.9.0.0+coq8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-bignums/coq-bignums.9.0.0+coq8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This Coq library provides BigN, BigZ, and BigQ that used to<br>be part of the standard library.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/coq-community/coqeal'>coq-coqeal.2.0.2</a>
-(2.0.2) CoqEAL - The Coq Effective Algebra Library</summary>
+  <summary><a href='https://github.com/coq-community/coqeal'>coq-coqeal.2.0.3</a>
+(2.0.3) CoqEAL - The Coq Effective Algebra Library</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Guillaume Cano - Cyril Cohen - Maxime Dénès - Érik Martin-Dorel - Anders Mörtberg - Damien Rouhling - Pierre Roux - Vincent Siles</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/coqeal'>homepage</a>)
       (<a href='https://github.com/coq-community/coqeal/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-coqeal/coq-coqeal.2.0.2/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-coqeal/coq-coqeal.2.0.3/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This Coq library contains a subset of the work that was developed in the context<br>of the ForMath EU FP7 project (2009-2013). It has two parts:<br>- theory, which contains developments in algebra including normal forms of matrices,<br>  and optimized algorithms on MathComp data structures.<br>- refinements, which is a framework to ease change of data representations during a proof.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/thery/coqprime'>coq-coqprime-generator.1.1.1</a>
-(1.1.1) Certificate generator for prime numbers in Coq</summary>
+  <summary><a href='https://github.com/thery/coqprime'>coq-coqprime-generator.1.1.2</a>
+(1.1.2) Certificate generator for prime numbers in Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Laurent Théry</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/thery/coqprime'>homepage</a>)
       (<a href='https://github.com/thery/coqprime/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-coqprime-generator/coq-coqprime-generator.1.1.1/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-coqprime-generator/coq-coqprime-generator.1.1.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/thery/coqprime'>coq-coqprime.1.5.0</a>
-(1.5.0) Certifying prime numbers in Coq</summary>
+  <summary><a href='https://github.com/thery/coqprime'>coq-coqprime.1.6.0</a>
+(1.6.0) Certifying prime numbers in Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Laurent Théry</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/thery/coqprime'>homepage</a>)
       (<a href='https://github.com/thery/coqprime/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-coqprime/coq-coqprime.1.5.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-coqprime/coq-coqprime.1.6.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='http://coquelicot.saclay.inria.fr/'>coq-coquelicot.3.4.1</a>
-(3.4.1) A Coq formalization of real analysis compatible with the standard library</summary>
+  <summary><a href='http://coquelicot.saclay.inria.fr/'>coq-coquelicot.3.4.2</a>
+(3.4.2) A Coq formalization of real analysis compatible with the standard library</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Sylvie Boldo <lt;sylvie.boldo@inria.fr>gt; - Catherine Lelay <lt;catherine.lelay@inria.fr>gt; - Guillaume Melquiond <lt;guillaume.melquiond@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-3.0-or-later.html" target="_blank">LGPL-3.0-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://coquelicot.saclay.inria.fr/'>homepage</a>)
       (<a href='https://gitlab.inria.fr/coquelicot/coquelicot/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-coquelicot/coq-coquelicot.3.4.1/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-coquelicot/coq-coquelicot.3.4.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/coq-community/corn'>coq-corn.8.19.0</a>
-(8.19.0) The Coq Constructive Repository at Nijmegen</summary>
+  <summary><a href='https://github.com/coq-community/corn'>coq-corn.8.20.0</a>
+(8.20.0) The Coq Constructive Repository at Nijmegen</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Evgeny Makarov - Robbert Krebbers - Eelis van der Weegen - Bas Spitters - Jelle Herold - Russell O'apos;Connor - Cezary Kaliszyk - Dan Synek - Luís Cruz-Filipe - Milad Niqui - Iris Loeb - Herman Geuvers - Randy Pollack - Freek Wiedijk - Jan Zwanenburg - Dimitri Hendriks - Henk Barendregt - Mariusz Giero - Rik van Ginneken - Dimitri Hendriks - Sébastien Hinderer - Bart Kirkels - Pierre Letouzey - Lionel Mamane - Nickolay Shmyrev - Vincent Semeria</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/GPL-2.0.html" target="_blank">GPL-2.0</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/corn'>homepage</a>)
       (<a href='https://github.com/coq-community/corn/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-corn/coq-corn.8.19.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-corn/coq-corn.8.20.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>CoRN includes the following parts:<br><br>- Algebraic Hierarchy<br><br>  An axiomatic formalization of the most common algebraic<br>  structures, including setoids, monoids, groups, rings,<br>  fields, ordered fields, rings of polynomials, real and<br>  complex numbers<br><br>- Model of the Real Numbers<br><br>  Construction of a concrete real number structure<br>  satisfying the previously defined axioms<br><br>- Fundamental Theorem of Algebra<br><br>  A proof that every non-constant polynomial on the complex<br>  plane has at least one root<br><br>- Real Calculus<br><br>  A collection of elementary results on real analysis,<br>  including continuity, differentiability, integration,<br>  Taylor'apos;s theorem and the Fundamental Theorem of Calculus<br><br>- Exact Real Computation<br><br>  Fast verified computation inside Coq. This includes: real numbers, functions,<br>  integrals, graphs of functions, differential equations.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/coq-community/coq-dpdgraph'>coq-dpdgraph.1.0+8.19</a>
-(1.0+8.19) Compute dependencies between Coq objects (definitions, theorems) and produce graphs</summary>
+  <summary><a href='https://github.com/coq-community/coq-dpdgraph'>coq-dpdgraph.1.0+8.20</a>
+(1.0+8.20) Compute dependencies between Coq objects (definitions, theorems) and produce graphs</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Anne Pacalet Yves Bertot Olivier Pons</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/coq-dpdgraph'>homepage</a>)
       (<a href='https://github.com/coq-community/coq-dpdgraph/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-dpdgraph/coq-dpdgraph.1.0+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-dpdgraph/coq-dpdgraph.1.0+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Coq plugin that extracts the dependencies between Coq objects,<br>and produces files with dependency information. Includes tools<br>to visualize dependency graphs and find unused definitions.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/LPCIC/coq-elpi'>coq-elpi.2.1.0</a>
-(2.1.0) Elpi extension language for Coq</summary>
+  <summary><a href='https://github.com/LPCIC/coq-elpi'>coq-elpi.2.3.0</a>
+(2.3.0) Elpi extension language for Coq</summary>
   <dl>
-    <dt><b>authors</b></dt><dd>Enrico Tassi</dd>
+    <dt><b>authors</b></dt><dd>Enrico Tassi <lt;enrico.tassi@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-or-later.html" target="_blank">LGPL-2.1-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/LPCIC/coq-elpi'>homepage</a>)
       (<a href='https://github.com/LPCIC/coq-elpi/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-elpi/coq-elpi.2.1.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-elpi/coq-elpi.2.3.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>Coq-elpi provides a Coq plugin that embeds ELPI.<br>It also provides a way to embed Coq'apos;s terms into λProlog using<br>the Higher-Order Abstract Syntax approach<br>and a way to read terms back.  In addition to that it exports to ELPI a<br>set of Coq'apos;s primitives, e.g. printing a message, accessing the<br>environment of theorems and data types, defining a new constant and so on.<br>For convenience it also provides a quotation and anti-quotation for Coq'apos;s<br>syntax in λProlog.  E.g. `{{nat}}` is expanded to the type name of natural<br>numbers, or `{{A ->gt; B}}` to the representation of a product by unfolding<br> the `->gt;` notation. Finally it provides a way to define new vernacular commands<br>and<br>new tactics.</dd>
+    <dt><b>description</b></dt><dd>Coq-elpi provides a Coq plugin that embeds ELPI. It also provides a way to embed Coq'apos;s terms into λProlog using the Higher-Order Abstract Syntax approach and a way to read terms back. In addition to that it exports to ELPI a set of Coq'apos;s primitives, e.g. printing a message, accessing the environment of theorems and data types, defining a new constant and so on. For convenience it also provides a quotation and anti-quotation for Coq'apos;s syntax in λProlog. E.g., `{{nat}}` is expanded to the type name of natural numbers, or `{{A ->gt; B}}` to the representation of a product by unfolding the `->gt;` notation. Finally it provides a way to define new vernacular commands and new tactics.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://mattam82.github.io/Coq-Equations'>coq-equations.1.3+8.19</a>
-(1.3+8.19) A function definition package for Coq</summary>
+  <summary><a href='https://mattam82.github.io/Coq-Equations'>coq-equations.1.3.1+8.20</a>
+(1.3.1+8.20) A function definition package for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Cyprien Mangin <lt;cyprien.mangin@m4x.org>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://mattam82.github.io/Coq-Equations'>homepage</a>)
       (<a href='https://github.com/mattam82/Coq-Equations/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-equations/coq-equations.1.3+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-equations/coq-equations.1.3.1+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Equations is a function definition plugin for Coq, that allows the<br>definition of functions by dependent pattern-matching and well-founded,<br>mutual or nested structural recursion and compiles them into core<br>terms. It automatically derives the clauses equations, the graph of the<br>function and its associated elimination principle.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/coq-community/coq-ext-lib'>coq-ext-lib.0.12.1</a>
-(0.12.1) A library of Coq definitions, theorems, and tactics</summary>
+  <summary><a href='https://github.com/coq-community/coq-ext-lib'>coq-ext-lib.0.13.0</a>
+(0.13.0) A library of Coq definitions, theorems, and tactics</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Gregory Malecha</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-2-Clause.html" target="_blank">BSD-2-Clause</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/coq-ext-lib'>homepage</a>)
       (<a href='https://github.com/coq-community/coq-ext-lib/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-ext-lib/coq-ext-lib.0.12.1/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-ext-lib/coq-ext-lib.0.13.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>A collection of theories and plugins that may be useful in other Coq developments.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://flocq.gitlabpages.inria.fr/'>coq-flocq.4.1.4</a>
-(4.1.4) A formalization of floating-point arithmetic for the Coq system</summary>
+  <summary><a href='https://flocq.gitlabpages.inria.fr/'>coq-flocq.4.2.0</a>
+(4.2.0) A formalization of floating-point arithmetic for the Coq system</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Sylvie Boldo <lt;sylvie.boldo@inria.fr>gt; - Guillaume Melquiond <lt;guillaume.melquiond@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-3.0-or-later.html" target="_blank">LGPL-3.0-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://flocq.gitlabpages.inria.fr/'>homepage</a>)
       (<a href='https://gitlab.inria.fr/flocq/flocq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-flocq/coq-flocq.4.1.4/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-flocq/coq-flocq.4.2.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -348,135 +348,135 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://github.com/lukaszcz/coqhammer'>coq-hammer-tactics.1.3.2+8.19</a>
-(1.3.2+8.19) Reconstruction tactics for the hammer for Coq</summary>
+  <summary><a href='https://github.com/lukaszcz/coqhammer'>coq-hammer-tactics.1.3.2+8.20</a>
+(1.3.2+8.20) Reconstruction tactics for the hammer for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Lukasz Czajka <lt;lukaszcz@mimuw.edu.pl>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/lukaszcz/coqhammer'>homepage</a>)
       (<a href='https://github.com/lukaszcz/coqhammer/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-hammer-tactics/coq-hammer-tactics.1.3.2+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-hammer-tactics/coq-hammer-tactics.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Collection of tactics that are used by the hammer for Coq<br>to reconstruct proofs found by automated theorem provers. When the hammer<br>has been successfully applied to a project, only this package needs<br>to be installed; the hammer plugin is not required.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/lukaszcz/coqhammer'>coq-hammer.1.3.2+8.19</a>
-(1.3.2+8.19) General-purpose automated reasoning hammer tool for Coq</summary>
+  <summary><a href='https://github.com/lukaszcz/coqhammer'>coq-hammer.1.3.2+8.20</a>
+(1.3.2+8.20) General-purpose automated reasoning hammer tool for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Lukasz Czajka <lt;lukaszcz@mimuw.edu.pl>gt; - Cezary Kaliszyk <lt;cezary.kaliszyk@uibk.ac.at>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/lukaszcz/coqhammer'>homepage</a>)
       (<a href='https://github.com/lukaszcz/coqhammer/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-hammer/coq-hammer.1.3.2+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-hammer/coq-hammer.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>A general-purpose automated reasoning hammer tool for Coq that combines<br>learning from previous proofs with the translation of problems to the<br>logics of automated systems and the reconstruction of successfully found proofs.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/math-comp/hierarchy-builder'>coq-hierarchy-builder.1.7.0</a>
-(1.7.0) High level commands to declare and evolve a hierarchy based on packed classes</summary>
+  <summary><a href='https://github.com/math-comp/hierarchy-builder'>coq-hierarchy-builder.1.8.0</a>
+(1.8.0) High level commands to declare and evolve a hierarchy based on packed classes</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Cyril Cohen Kazuhiko Sakaguchi Enrico Tassi</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/math-comp/hierarchy-builder'>homepage</a>)
       (<a href='https://github.com/math-comp/hierarchy-builder/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-hierarchy-builder/coq-hierarchy-builder.1.7.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-hierarchy-builder/coq-hierarchy-builder.1.8.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Hierarchy Builder is a high level language to build hierarchies of algebraic structures and make these<br>hierarchies evolve without breaking user code. The key concepts are the ones of factory, builder<br>and abbreviation that let the hierarchy developer describe an actual interface for their library.<br>Behind that interface the developer can provide appropriate code to ensure retro compatibility.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='http://homotopytypetheory.org/'>coq-hott.8.19</a>
-(8.19) The Homotopy Type Theory library</summary>
+  <summary><a href='http://homotopytypetheory.org/'>coq-hott.8.20</a>
+(8.20) The Homotopy Type Theory library</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The HoTT Library Development Team</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-2-Clause.html" target="_blank">BSD-2-Clause</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://homotopytypetheory.org/'>homepage</a>)
       (<a href='https://github.com/HoTT/HoTT/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-hott/coq-hott.8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-hott/coq-hott.8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>To use the HoTT library, the following flags must be passed to coqc:<br>  -noinit -indices-matter<br>To use the HoTT library in a project, add the following to _CoqProject:<br>  -arg -noinit<br>  -arg -indices-matter</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://coqinterval.gitlabpages.inria.fr/'>coq-interval.4.10.0</a>
-(4.10.0) A Coq tactic for proving bounds on real-valued expressions automatically</summary>
+  <summary><a href='https://coqinterval.gitlabpages.inria.fr/'>coq-interval.4.11.1</a>
+(4.11.1) A Coq tactic for proving bounds on real-valued expressions automatically</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Guillaume Melquiond <lt;guillaume.melquiond@inria.fr>gt; - Érik Martin-Dorel <lt;erik.martin-dorel@irit.fr>gt; - Pierre Roux <lt;pierre.roux@onera.fr>gt; - Thomas Sibut-Pinote <lt;thomas.sibut-pinote@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/CECILL-C.html" target="_blank">CECILL-C</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://coqinterval.gitlabpages.inria.fr/'>homepage</a>)
       (<a href='https://gitlab.inria.fr/coqinterval/interval/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-interval/coq-interval.4.10.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-interval/coq-interval.4.11.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://iris-project.org/'>coq-iris-heap-lang.4.2.0</a>
-(4.2.0) The canonical example language for Iris</summary>
+  <summary><a href='https://iris-project.org/'>coq-iris-heap-lang.4.3.0</a>
+(4.3.0) The canonical example language for Iris</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Iris Team</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://iris-project.org/'>homepage</a>)
       (<a href='https://gitlab.mpi-sws.org/iris/iris/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-iris-heap-lang/coq-iris-heap-lang.4.2.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-iris-heap-lang/coq-iris-heap-lang.4.3.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package defines HeapLang, a concurrent lambda calculus with references, and<br>uses Iris to build a program logic for HeapLang programs.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://iris-project.org/'>coq-iris.4.2.0</a>
-(4.2.0) A Higher-Order Concurrent Separation Logic Framework with support for interactive proofs</summary>
+  <summary><a href='https://iris-project.org/'>coq-iris.4.3.0</a>
+(4.3.0) A Higher-Order Concurrent Separation Logic Framework with support for interactive proofs</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Iris Team</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://iris-project.org/'>homepage</a>)
       (<a href='https://gitlab.mpi-sws.org/iris/iris/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-iris/coq-iris.4.2.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-iris/coq-iris.4.3.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Iris is a framework for reasoning about the safety of concurrent programs using<br>concurrent separation logic. It can be used to develop a program logic, for<br>defining logical relations, and for reasoning about type systems, among other<br>applications. This package includes the base logic, Iris Proof Mode (IPM) /<br>MoSeL, and a general language-independent program logic; see coq-iris-heap-lang<br>for an instantiation of the program logic to a particular programming language.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://gitlab.inria.fr/fbesson/itauto'>coq-itauto.8.19.0</a>
-(8.19.0) Reflexive SAT solver with Nelson-Oppen support, parameterised by a leaf tactic inside Coq</summary>
+  <summary><a href='https://gitlab.inria.fr/fbesson/itauto'>coq-itauto.8.20.0</a>
+(8.20.0) Reflexive SAT solver with Nelson-Oppen support, parameterised by a leaf tactic inside Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Frédéric Besson</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://gitlab.inria.fr/fbesson/itauto'>homepage</a>)
       (<a href='mailto:frederic.besson@inria.fr'>bug reports (email)</a>, <a href='https://gitlab.inria.fr/fbesson/itauto/-/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-itauto/coq-itauto.8.19.0/opam'>opam package</a>)
+      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-itauto/coq-itauto.8.20.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>itauto is a reflexive intuitionistic SAT solver parameterised by a theory module.<br>When run inside Coq, the theory module wraps an arbitrary Coq tactic, e.g., the lia<br>solver for linear arithmetic or the congruence solver for uninterpreted function symbols<br>and constructors. Using a black-box Nelson-Oppen scheme for combination of theories,<br>itauto also provides an SMT-like tactic for propositional reasoning modulo the solvers for<br>both arithmetic and function symbols.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/Matafou/LibHyps'>coq-libhyps.2.0.8</a>
-(2.0.8) Hypotheses manipulation library</summary>
+  <summary><a href='https://github.com/Matafou/LibHyps'>coq-libhyps.3.0.1</a>
+(3.0.1) Hypotheses manipulation library</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Pierre Courtieu</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/Matafou/LibHyps'>homepage</a>)
       (<a href='https://github.com/Matafou/LibHyps/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-libhyps/coq-libhyps.2.0.8/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-libhyps/coq-libhyps.3.0.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library defines a set of tactics to manipulate hypothesis<br>individually or by group. In particular it allows applying a tactic on<br>each hypothesis of a goal, or only on *new* hypothesis after some<br>tactic. Examples of manipulations: automatic renaming, subst, revert,<br>or any tactic expecting a hypothesis name as argument.<br><br>It DOES NOT provide ANYMORE the especialize tactic to ease forward<br>reasoning by instantianting one, several or all premisses of a<br>hypothesis. Ths is due to coq'apos;s specialize being less permissive about<br>evars. This may be fixed in the future.</dd>
   </dl>
@@ -513,32 +513,32 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://math-comp.github.io/'>coq-mathcomp-algebra.2.2.0</a>
-(2.2.0) Mathematical Components Library on Algebra</summary>
+  <summary><a href='https://math-comp.github.io/'>coq-mathcomp-algebra.2.3.0</a>
+(2.3.0) Mathematical Components Library on Algebra</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Mathematical Components team</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/CECILL-B.html" target="_blank">CECILL-B</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://math-comp.github.io/'>homepage</a>)
       (<a href='https://github.com/math-comp/math-comp/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-algebra/coq-mathcomp-algebra.2.2.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-algebra/coq-mathcomp-algebra.2.3.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library contains definitions and theorems about discrete<br>(i.e. with decidable equality) algebraic structures : ring, fields,<br>ordered fields, real fields,  modules, algebras, integers, rational<br>numbers, polynomials, matrices, vector spaces...</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/math-comp/analysis'>coq-mathcomp-analysis.1.1.0</a>
-(1.1.0) An analysis library for mathematical components</summary>
+  <summary><a href='https://github.com/math-comp/analysis'>coq-mathcomp-analysis.1.8.0</a>
+(1.8.0) An analysis library for mathematical components</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Reynald Affeldt - Alessandro Bruni - Yves Bertot - Cyril Cohen - Marie Kerjean - Assia Mahboubi - Damien Rouhling - Pierre Roux - Kazuhiko Sakaguchi - Zachary Stone - Pierre-Yves Strub - Laurent Théry</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/CECILL-C.html" target="_blank">CECILL-C</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/math-comp/analysis'>homepage</a>)
       (<a href='https://github.com/math-comp/analysis/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-analysis/coq-mathcomp-analysis.1.1.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-analysis/coq-mathcomp-analysis.1.8.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This repository contains an experimental library for real analysis for<br>the Coq proof-assistant and using the Mathematical Components library.</dd>
+    <dt><b>description</b></dt><dd>This package contains a library for real analysis for<br>the Coq proof-assistant and using the Mathematical Components library.</dd>
   </dl>
 </details>
 
@@ -558,45 +558,45 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://math-comp.github.io/'>coq-mathcomp-character.2.2.0</a>
-(2.2.0) Mathematical Components Library on character theory</summary>
+  <summary><a href='https://math-comp.github.io/'>coq-mathcomp-character.2.3.0</a>
+(2.3.0) Mathematical Components Library on character theory</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Mathematical Components team</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/CECILL-B.html" target="_blank">CECILL-B</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://math-comp.github.io/'>homepage</a>)
       (<a href='https://github.com/math-comp/math-comp/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-character/coq-mathcomp-character.2.2.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-character/coq-mathcomp-character.2.3.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library contains definitions and theorems about group<br>representations, characters and class functions.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://math-comp.github.io/'>coq-mathcomp-field.2.2.0</a>
-(2.2.0) Mathematical Components Library on Fields</summary>
+  <summary><a href='https://math-comp.github.io/'>coq-mathcomp-field.2.3.0</a>
+(2.3.0) Mathematical Components Library on Fields</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Mathematical Components team</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/CECILL-B.html" target="_blank">CECILL-B</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://math-comp.github.io/'>homepage</a>)
       (<a href='https://github.com/math-comp/math-comp/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-field/coq-mathcomp-field.2.2.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-field/coq-mathcomp-field.2.3.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library contains definitions and theorems about field extensions,<br>galois theory, algebraic numbers, cyclotomic polynomials...</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://math-comp.github.io/'>coq-mathcomp-fingroup.2.2.0</a>
-(2.2.0) Mathematical Components Library on finite groups</summary>
+  <summary><a href='https://math-comp.github.io/'>coq-mathcomp-fingroup.2.3.0</a>
+(2.3.0) Mathematical Components Library on finite groups</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Mathematical Components team</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/CECILL-B.html" target="_blank">CECILL-B</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://math-comp.github.io/'>homepage</a>)
       (<a href='https://github.com/math-comp/math-comp/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-fingroup/coq-mathcomp-fingroup.2.2.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-fingroup/coq-mathcomp-fingroup.2.3.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library contains definitions and theorems about finite groups,<br>group quotients, group morphisms, group presentation, group action...</dd>
   </dl>
@@ -618,75 +618,75 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://github.com/math-comp/multinomials'>coq-mathcomp-multinomials.2.2.0</a>
-(2.2.0) A Multivariate polynomial Library for the Mathematical Components Library</summary>
+  <summary><a href='https://github.com/math-comp/multinomials'>coq-mathcomp-multinomials.2.3.0</a>
+(2.3.0) A Multivariate polynomial Library for the Mathematical Components Library</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Pierre-Yves Strub</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/CECILL-B.html" target="_blank">CECILL-B</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/math-comp/multinomials'>homepage</a>)
       (<a href='https://github.com/math-comp/multinomials/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-multinomials/coq-mathcomp-multinomials.2.2.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-multinomials/coq-mathcomp-multinomials.2.3.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/math-comp/real-closed'>coq-mathcomp-real-closed.2.0.0</a>
-(2.0.0) Mathematical Components Library on real closed fields</summary>
+  <summary><a href='https://github.com/math-comp/real-closed'>coq-mathcomp-real-closed.2.0.2</a>
+(2.0.2) Mathematical Components Library on real closed fields</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Cyril Cohen Assia Mahboubi</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/CECILL-B.html" target="_blank">CECILL-B</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/math-comp/real-closed'>homepage</a>)
       (<a href='https://github.com/math-comp/real-closed/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-real-closed/coq-mathcomp-real-closed.2.0.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-real-closed/coq-mathcomp-real-closed.2.0.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library contains definitions and theorems about real closed<br>fields, with a construction of the real closure and the algebraic<br>closure (including a proof of the fundamental theorem of<br>algebra). It also contains a proof of decidability of the first<br>order theory of real closed field, through quantifier elimination.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://math-comp.github.io/'>coq-mathcomp-solvable.2.2.0</a>
-(2.2.0) Mathematical Components Library on finite groups (II)</summary>
+  <summary><a href='https://math-comp.github.io/'>coq-mathcomp-solvable.2.3.0</a>
+(2.3.0) Mathematical Components Library on finite groups (II)</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Mathematical Components team</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/CECILL-B.html" target="_blank">CECILL-B</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://math-comp.github.io/'>homepage</a>)
       (<a href='https://github.com/math-comp/math-comp/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-solvable/coq-mathcomp-solvable.2.2.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-solvable/coq-mathcomp-solvable.2.3.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library contains more definitions and theorems about finite groups.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://math-comp.github.io/'>coq-mathcomp-ssreflect.2.2.0</a>
-(2.2.0) Small Scale Reflection</summary>
+  <summary><a href='https://math-comp.github.io/'>coq-mathcomp-ssreflect.2.3.0</a>
+(2.3.0) Small Scale Reflection</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Mathematical Components team</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/CECILL-B.html" target="_blank">CECILL-B</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://math-comp.github.io/'>homepage</a>)
       (<a href='https://github.com/math-comp/math-comp/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-ssreflect/coq-mathcomp-ssreflect.2.2.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-ssreflect/coq-mathcomp-ssreflect.2.3.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library includes the small scale reflection proof language<br>extension and the minimal set of libraries to take advantage of it.<br>This includes libraries on lists (seq), boolean and boolean<br>predicates, natural numbers and types with decidable equality,<br>finite types, finite sets, finite functions, finite graphs, basic arithmetics<br>and prime numbers, big operators</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/jasmin-lang/coqword'>coq-mathcomp-word.3.1</a>
-(3.1) Yet Another Coq Library on Machine Words</summary>
+  <summary><a href='https://github.com/jasmin-lang/coqword'>coq-mathcomp-word.3.2</a>
+(3.2) Yet Another Coq Library on Machine Words</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Pierre-Yves Strub</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/jasmin-lang/coqword'>homepage</a>)
       (<a href='https://github.com/jasmin-lang/coqword/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-word/coq-mathcomp-word.3.1/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-word/coq-mathcomp-word.3.2/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -708,75 +708,75 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://gitlab.inria.fr/fpottier/coq-menhirlib'>coq-menhirlib.20231231</a>
-(20231231) A support library for verified Coq parsers produced by Menhir</summary>
+  <summary><a href='https://gitlab.inria.fr/fpottier/coq-menhirlib'>coq-menhirlib.20240715</a>
+(20240715) A support library for verified Coq parsers produced by Menhir</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Jacques-Henri Jourdan <lt;jacques-henri.jourdan@lri.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-3.0-or-later.html" target="_blank">LGPL-3.0-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://gitlab.inria.fr/fpottier/coq-menhirlib'>homepage</a>)
       (<a href='https://gitlab.inria.fr/fpottier/menhir/-/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-menhirlib/coq-menhirlib.20231231/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-menhirlib/coq-menhirlib.20240715/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/Mtac2/Mtac2'>coq-mtac2.1.4+8.19</a>
-(1.4+8.19) Typed tactic language for Coq</summary>
+  <summary><a href='https://github.com/Mtac2/Mtac2'>coq-mtac2.1.4+8.20</a>
+(1.4+8.20) Typed tactic language for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Beta Ziliani <lt;beta.ziliani@gmail.com>gt; - Jan-Oliver Kaiser <lt;janno@mpi-sws.org - Robbert Krebbers <lt;mail@robbertkrebbers.nl>gt; - Yann Régis-Gianas <lt;yrg@pps.univ-paris-diderot.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/Mtac2/Mtac2'>homepage</a>)
       (<a href='https://github.com/Mtac2/Mtac2/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-mtac2/coq-mtac2.1.4+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-mtac2/coq-mtac2.1.4+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='http://www.cl.cam.ac.uk/~pes20/ott/'>coq-ott.0.33</a>
-(0.33) Auxiliary Coq library for Ott, a tool for writing definitions of programming languages and calculi</summary>
+  <summary><a href='http://www.cl.cam.ac.uk/~pes20/ott/'>coq-ott.0.34</a>
+(0.34) Auxiliary Coq library for Ott, a tool for writing definitions of programming languages and calculi</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Peter Sewell Francesco Zappa Nardelli Scott Owens</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://www.cl.cam.ac.uk/~pes20/ott/'>homepage</a>)
       (<a href='https://github.com/ott-lang/ott/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-ott/coq-ott.0.33/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-ott/coq-ott.0.34/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Ott takes as input a definition of a language syntax and semantics, in a concise<br>and readable ASCII notation that is close to what one would write in informal<br>mathematics. It can then generate a Coq version of the definition, which requires<br>this library.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/coq-community/paramcoq'>coq-paramcoq.1.1.3+coq8.19</a>
-(1.1.3+coq8.19) Plugin for generating parametricity statements to perform refinement proofs</summary>
+  <summary><a href='https://github.com/coq-community/paramcoq'>coq-paramcoq.1.1.3+coq8.20</a>
+(1.1.3+coq8.20) Plugin for generating parametricity statements to perform refinement proofs</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Chantal Keller (Inria, École polytechnique) - Marc Lasson (ÉNS de Lyon) - Abhishek Anand - Pierre Roux - Emilio Jesús Gallego Arias - Cyril Cohen - Matthieu Sozeau</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/coq-community/paramcoq'>homepage</a>)
       (<a href='https://github.com/coq-community/paramcoq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-paramcoq/coq-paramcoq.1.1.3+coq8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-paramcoq/coq-paramcoq.1.1.3+coq8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>A Coq plugin providing commands for generating parametricity statements.<br>Typical applications of such statements are in data refinement proofs.<br>Note that the plugin is still in an experimental state - it is not very user<br>friendly (lack of good error messages) and still contains bugs. But it<br>is usable enough to \translate\ a large chunk of the standard library.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/QuickChick/QuickChick'>coq-quickchick.2.0.3</a>
-(2.0.3) Randomized Property-Based Testing for Coq</summary>
+  <summary><a href='https://github.com/QuickChick/QuickChick'>coq-quickchick.2.0.5</a>
+(2.0.5) Randomized Property-Based Testing for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Leonidas Lampropoulos - Zoe Paraskevopoulou - Maxime Denes - Catalin Hritcu - Benjamin Pierce - Li-yao Xia - Arthur Azevedo de Amorim - Yishuai Li - Antal Spector-Zabusky</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/QuickChick/QuickChick'>homepage</a>)
       (<a href='https://github.com/QuickChick/QuickChick/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-quickchick/coq-quickchick.2.0.3/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-quickchick/coq-quickchick.2.0.5/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>A library for property-based testing in Coq.<br><br>  - Combinators for testable properties and random generators.<br>  - QuickChick plugin for running tests in a Coq session.<br>  - Includes a mutation testing tool.</dd>
   </dl>
@@ -798,60 +798,60 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='http://perso.ens-lyon.fr/damien.pous/ra/'>coq-relation-algebra.1.7.10</a>
-(1.7.10) Relation Algebra and KAT in Coq</summary>
+  <summary><a href='http://perso.ens-lyon.fr/damien.pous/ra/'>coq-relation-algebra.1.7.11</a>
+(1.7.11) Relation Algebra and KAT in Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Damien Pous <lt;Damien.Pous@ens-lyon.fr>gt; - Christian Doczkal <lt;christian.doczkal@ens-lyon.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-3.0-or-later.html" target="_blank">LGPL-3.0-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://perso.ens-lyon.fr/damien.pous/ra/'>homepage</a>)
       (<a href='https://github.com/damien-pous/relation-algebra/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-relation-algebra/coq-relation-algebra.1.7.10/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-relation-algebra/coq-relation-algebra.1.7.11/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/Lysxia/coq-simple-io'>coq-simple-io.1.9.0</a>
-(1.9.0) IO monad for Coq</summary>
+  <summary><a href='https://github.com/Lysxia/coq-simple-io'>coq-simple-io.1.10.0</a>
+(1.10.0) IO monad for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Li-yao Xia Yishuai Li</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/Lysxia/coq-simple-io'>homepage</a>)
       (<a href='https://github.com/Lysxia/coq-simple-io/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-simple-io/coq-simple-io.1.9.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-simple-io/coq-simple-io.1.10.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library provides tools to implement IO programs directly in Coq, in a<br>similar style to Haskell. Facilities for formal verification are not included.<br><br>IO is defined as a parameter with a purely functional interface in Coq,<br>to be extracted to OCaml. Some wrappers for the basic types and functions in<br>the OCaml Stdlib module are provided. Users are free to define their own<br>APIs on top of this IO type.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://gitlab.mpi-sws.org/iris/stdpp'>coq-stdpp.1.10.0</a>
-(1.10.0) An extended \Standard Library\ for Coq</summary>
+  <summary><a href='https://gitlab.mpi-sws.org/iris/stdpp'>coq-stdpp.1.11.0</a>
+(1.11.0) An extended \Standard Library\ for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The std++ team</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://gitlab.mpi-sws.org/iris/stdpp'>homepage</a>)
       (<a href='https://gitlab.mpi-sws.org/iris/stdpp/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-stdpp/coq-stdpp.1.10.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-stdpp/coq-stdpp.1.11.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>The key features of this library are as follows:<br><br>- It provides a great number of definitions and lemmas for common data<br>  structures such as lists, finite maps, finite sets, and finite multisets.<br>- It uses type classes for common notations (like `∅`, `∪`, and Haskell-style<br>  monad notations) so that these can be overloaded for different data structures.<br>- It uses type classes to keep track of common properties of types, like it<br>  having decidable equality or being countable or finite.<br>- Most data structures are represented in canonical ways so that Leibniz<br>  equality can be used as much as possible (for example, for maps we have<br>  `m1 = m2` iff `∀ i, m1 !! i = m2 !! i`). On top of that, the library provides<br>  setoid instances for most types and operations.<br>- It provides various tactics for common tasks, like an ssreflect inspired<br>  `done` tactic for finishing trivial goals, a simple breadth-first solver<br>  `naive_solver`, an equality simplifier `simplify_eq`, a solver `solve_proper`<br>  for proving compatibility of functions with respect to relations, and a solver<br>  `set_solver` for goals involving set operations.<br>- It is entirely dependency- and axiom-free.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/unicoq/unicoq'>coq-unicoq.1.6+8.19</a>
-(1.6+8.19) An enhanced unification algorithm for Coq</summary>
+  <summary><a href='https://github.com/unicoq/unicoq'>coq-unicoq.1.6+8.20</a>
+(1.6+8.20) An enhanced unification algorithm for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Beta Ziliani <lt;beta@mpi-sws.org>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/unicoq/unicoq'>homepage</a>)
       (<a href='https://github.com/unicoq/unicoq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-unicoq/coq-unicoq.1.6+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-unicoq/coq-unicoq.1.6+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -888,30 +888,30 @@ The **full level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='http://gitlab.inria.fr/fpottier/menhir'>menhir.20231231</a>
-(20231231) An LR(1) parser generator</summary>
+  <summary><a href='http://gitlab.inria.fr/fpottier/menhir'>menhir.20240715</a>
+(20240715) An LR(1) parser generator</summary>
   <dl>
     <dt><b>authors</b></dt><dd>François Pottier <lt;francois.pottier@inria.fr>gt; - Yann Régis-Gianas <lt;yrg@pps.univ-paris-diderot.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/GPL-2.0-only.html" target="_blank">GPL-2.0-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://gitlab.inria.fr/fpottier/menhir'>homepage</a>)
       (<a href='https://gitlab.inria.fr/fpottier/menhir/-/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/menhir/menhir.20231231/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/menhir/menhir.20240715/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='http://www.cl.cam.ac.uk/~pes20/ott/'>ott.0.33</a>
-(0.33) A tool for writing definitions of programming languages and calculi</summary>
+  <summary><a href='http://www.cl.cam.ac.uk/~pes20/ott/'>ott.0.34</a>
+(0.34) A tool for writing definitions of programming languages and calculi</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Peter Sewell Francesco Zappa Nardelli Scott Owens</dd>
-    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://www.cl.cam.ac.uk/~pes20/ott/'>homepage</a>)
       (<a href='https://github.com/ott-lang/ott/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ott/ott.0.33/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ott/ott.0.34/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Ott takes as input a definition of a language syntax and semantics, in a<br>concise and readable ASCII notation that is close to what one would write in<br>informal mathematics.  It generates output:<br>- a LaTeX source file that defines commands to build a typeset version of the definition;<br>- a Coq version of the definition;<br>- a HOL version of the definition;<br>- an Isabelle/HOL version of the definition;<br>- a Lem version of the definition;<br>- an OCaml version of the syntax of the definition.<br>Additionally, it can be run as a filter, taking a<br>LaTeX/Coq/Isabelle/HOL/Lem/OCaml source file<br>with embedded (symbolic) terms of the defined language, parsing them and<br>replacing them by typeset terms.</dd>
   </dl>
@@ -949,7 +949,7 @@ The **full level** contains the following packages:
 
 <br>
 
-## **Coq Platform 2025.01.0 with Coq 8.19.2 "optional packages"**
+## **Coq Platform 2025.01.0 with Coq 8.20.1 "optional packages"**
 
 The **optional** packages have the same maturity and maintenance level as the
 packages in the full level, but either take a rather long time to build or have
@@ -963,45 +963,45 @@ The macOS and snap installation bundles always include these packages.
 The following packages are **optional**:
 
 <details>
-  <summary><a href='http://compcert.inria.fr/'>coq-compcert.3.13.1</a>
-(3.13.1) The CompCert C compiler (64 bit)</summary>
+  <summary><a href='https://compcert.org/'>coq-compcert.3.15</a>
+(3.15) The CompCert C compiler (64 bit)</summary>
   <dl>
-    <dt><b>authors</b></dt><dd>Xavier Leroy <lt;xavier.leroy@inria.fr>gt;</dd>
-    <dt><b>license</b></dt><dd> INRIA Non-Commercial License Agreement - see <a href="http://compcert.inria.fr/" target="_blank">homepage</a> for details</dd>
+    <dt><b>authors</b></dt><dd>Xavier Leroy <lt;xavier.leroy@college-de-france.fr>gt;</dd>
+    <dt><b>license</b></dt><dd> INRIA Non-Commercial License Agreement - see <a href="https://compcert.org/" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
-      (<a href='http://compcert.inria.fr/'>homepage</a>)
+      (<a href='https://compcert.org/'>homepage</a>)
       (<a href='https://github.com/AbsInt/CompCert/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-compcert/coq-compcert.3.13.1/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-compcert/coq-compcert.3.15/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/UniMath/UniMath'>coq-unimath.20240331</a>
-(20240331) Library of Univalent Mathematics</summary>
+  <summary><a href='https://github.com/UniMath/UniMath'>coq-unimath.20240923</a>
+(20240923) Library of Univalent Mathematics</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The UniMath Development Team</dd>
     <dt><b>license</b></dt><dd> Similar to MIT license - see <a href="https://github.com/UniMath/UniMath" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/UniMath/UniMath'>homepage</a>)
       (<a href='https://github.com/UniMath/UniMath/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-unimath/coq-unimath.20240331/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-unimath/coq-unimath.20240923/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='http://vst.cs.princeton.edu/'>coq-vst.2.14</a>
-(2.14) Verified Software Toolchain</summary>
+  <summary><a href='http://vst.cs.princeton.edu/'>coq-vst.2.15</a>
+(2.15) Verified Software Toolchain</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Andrew W. Appel - Lennart Beringer - Josiah Dodds - Qinxiang Cao - Aquinas Hobor - Gordon Stewart - Qinshi Wang - Sandrine Blazy - Santiago Cuellar - Robert Dockins - Nick Giannarakis - Samuel Gruetter - Jean-Marie Madiot</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-2-Clause.html" target="_blank">BSD-2-Clause</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://vst.cs.princeton.edu/'>homepage</a>)
       (<a href='https://github.com/PrincetonUniversity/VST/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-vst/coq-vst.2.14/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-vst/coq-vst.2.15/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>The software toolchain includes static analyzers to check assertions about your program; optimizing compilers to translate your program to machine language; operating systems and libraries to supply context for your program. The Verified Software Toolchain project assures with machine-checked proofs that the assertions claimed at the top of the toolchain really hold in the machine-language program, running in the operating-system context.</dd>
   </dl>
@@ -1009,7 +1009,7 @@ The following packages are **optional**:
 
 <br>
 
-## **Coq Platform 2025.01.0 with Coq 8.19.2 "extended level"**
+## **Coq Platform 2025.01.0 with Coq 8.20.1 "extended level"**
 
 The **extended level** contains packages which are in a beta stage or otherwise
 don't yet have the level of maturity or support required for inclusion in the
@@ -1069,30 +1069,30 @@ The **extended level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://github.com/arthuraa/deriving'>coq-deriving.0.2.0</a>
-(0.2.0) Generic instances of MathComp classes</summary>
+  <summary><a href='https://github.com/arthuraa/deriving'>coq-deriving.0.2.1</a>
+(0.2.1) Generic instances of MathComp classes</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Arthur Azevedo de Amorim</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/arthuraa/deriving'>homepage</a>)
       (<a href='https://github.com/arthuraa/deriving/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-deriving/coq-deriving.0.2.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-deriving/coq-deriving.0.2.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Deriving provides generic instances of MathComp classes for<br>inductive data types.  It includes native support for eqType,<br>choiceType, countType and finType instances, and it allows users to<br>define their own instances for other classes.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/arthuraa/extructures'>coq-extructures.0.4.0</a>
-(0.4.0) Finite sets, maps, and other data structures with extensional reasoning</summary>
+  <summary><a href='https://github.com/arthuraa/extructures'>coq-extructures.0.5.0</a>
+(0.5.0) Finite sets, maps, and other data structures with extensional reasoning</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Arthur Azevedo de Amorim</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/arthuraa/extructures'>homepage</a>)
       (<a href='https://github.com/arthuraa/extructures/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-extructures/coq-extructures.0.4.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-extructures/coq-extructures.0.5.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -1114,15 +1114,15 @@ The **extended level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq.1.3.1+8.19</a>
-(1.3.1+8.19) A meta-programming framework for Coq</summary>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq.1.3.2+8.20</a>
+(1.3.2+8.20) A meta-programming framework for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Abhishek Anand <lt;aa755@cs.cornell.edu>gt; - Danil Annenkov <lt;danil.v.annenkov@gmail.com>gt; - Simon Boulier <lt;simon.boulier@inria.fr>gt; - Cyril Cohen <lt;cyril.cohen@inria.fr>gt; - Yannick Forster <lt;forster@ps.uni-saarland.de>gt; - Jason Gross <lt;jgross@mit.edu>gt; - Fabian Kunze <lt;fkunze@fakusb.de>gt; - Meven Lennon-Bertrand <lt;Meven.Bertrand@univ-nantes.fr>gt; - Kenji Maillard <lt;kenji.maillard@inria.fr>gt; - Gregory Malecha <lt;gmalecha@gmail.com>gt; - Jakob Botsch Nielsen <lt;Jakob.botsch.nielsen@gmail.com>gt; - Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Nicolas Tabareau <lt;nicolas.tabareau@inria.fr>gt; - Théo Winterhalter <lt;theo.winterhalter@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
       (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq/coq-metacoq.1.3.1+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq/coq-metacoq.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>The meta-package includes the template-coq library,<br>the PCUIC development including a verified equivalence between Coq and PCUIC,<br>a safe type checker and verified erasure for PCUIC and example translations.<br><br>See individual packages for more detailed descriptions.</dd>
   </dl>
@@ -1159,15 +1159,15 @@ The **extended level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://github.com/mit-plv/rewriter'>coq-rewriter.0.0.11</a>
-(0.0.11) Reflective PHOAS rewriting/pattern-matching-compilation framework for simply-typed equalities and let-lifting, experimental and tailored for use in Fiat Cryptography</summary>
+  <summary><a href='https://github.com/mit-plv/rewriter'>coq-rewriter.0.0.12</a>
+(0.0.12) Reflective PHOAS rewriting/pattern-matching-compilation framework for simply-typed equalities and let-lifting, experimental and tailored for use in Fiat Cryptography</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Google Inc. Massachusetts Institute of Technology</dd>
     <dt><b>license</b></dt><dd> MIT OR Apache-2.0 OR BSD-1-Clause - see <a href="https://github.com/mit-plv/rewriter" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/mit-plv/rewriter'>homepage</a>)
       (<a href='https://github.com/mit-plv/rewriter/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-rewriter/coq-rewriter.0.0.11/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-rewriter/coq-rewriter.0.0.12/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -1204,15 +1204,15 @@ The **extended level** contains the following packages:
 </details>
 
 <details>
-  <summary><a href='https://github.com/ejgallego/coq-serapi'>coq-serapi.8.19.0+0.19.2</a>
-(8.19.0+0.19.2) Serialization library and protocol for machine interaction with the Coq proof assistant</summary>
+  <summary><a href='https://github.com/ejgallego/coq-serapi'>coq-serapi.8.20.0+0.20.0</a>
+(8.20.0+0.20.0) Serialization library and protocol for machine interaction with the Coq proof assistant</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Emilio Jesús Gallego Arias - Karl Palmskog - Clément Pit-Claudel - Kaiyu Yang</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-or-later.html" target="_blank">LGPL-2.1-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ejgallego/coq-serapi'>homepage</a>)
       (<a href='https://github.com/ejgallego/coq-serapi/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/coq-serapi/coq-serapi.8.19.0+0.19.2/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/coq-serapi/coq-serapi.8.20.0+0.20.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>SerAPI is a library for machine-to-machine interaction with the<br>Coq proof assistant, with particular emphasis on applications in IDEs,<br>code analysis tools, and machine learning. SerAPI provides automatic<br>serialization of Coq'apos;s internal OCaml datatypes from/to JSON or<br>S-expressions (sexps).</dd>
   </dl>
@@ -1689,210 +1689,225 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://coq.inria.fr/'>coq-core.8.19.2</a>
-(8.19.2) The Coq Proof Assistant -- Core Binaries and Tools</summary>
+  <summary><a href='https://coq.inria.fr/'>coq-core.8.20.1</a>
+(8.20.1) The Coq Proof Assistant -- Core Binaries and Tools</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Coq development team, INRIA, CNRS, and contributors</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-repository/packages/coq-core/coq-core.8.19.2/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/coq-core/coq-core.8.20.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Coq is a formal proof management system. It provides<br>a formal language to write mathematical definitions, executable<br>algorithms and theorems together with an environment for<br>semi-interactive development of machine-checked proofs.<br><br>Typical applications include the certification of properties of<br>programming languages (e.g. the CompCert compiler certification<br>project, or the Bedrock verified low-level programming library), the<br>formalization of mathematics (e.g. the full formalization of the<br>Feit-Thompson theorem or homotopy type theory) and teaching.<br><br>This package includes the Coq core binaries, plugins, and tools, but<br>not the vernacular standard library.<br><br>Note that in this setup, Coq needs to be started with the -boot and<br>-noinit options, as will otherwise fail to find the regular Coq<br>prelude, now living in the coq-stdlib package.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/math-comp/analysis'>coq-mathcomp-classical.1.1.0</a>
-(1.1.0) A library for classical logic for mathematical components</summary>
+  <summary><a href='https://github.com/math-comp/analysis'>coq-mathcomp-classical.1.8.0</a>
+(1.8.0) A library for classical logic for mathematical components</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Reynald Affeldt - Alessandro Bruni - Yves Bertot - Cyril Cohen - Marie Kerjean - Assia Mahboubi - Damien Rouhling - Pierre Roux - Kazuhiko Sakaguchi - Zachary Stone - Pierre-Yves Strub - Laurent Théry</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/CECILL-C.html" target="_blank">CECILL-C</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/math-comp/analysis'>homepage</a>)
       (<a href='https://github.com/math-comp/analysis/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-classical/coq-mathcomp-classical.1.1.0/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-classical/coq-mathcomp-classical.1.8.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This repository contains a library for classical logic for<br>the Coq proof-assistant and using the Mathematical Components library.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-common.1.3.1+8.19</a>
-(1.3.1+8.19) The common library of Template Coq and PCUIC</summary>
+  <summary><a href='https://github.com/math-comp/analysis'>coq-mathcomp-reals.1.8.0</a>
+(1.8.0) A library for real numbers for mathematical components</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Reynald Affeldt - Alessandro Bruni - Yves Bertot - Cyril Cohen - Marie Kerjean - Assia Mahboubi - Damien Rouhling - Pierre Roux - Kazuhiko Sakaguchi - Zachary Stone - Pierre-Yves Strub - Laurent Théry</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/CECILL-C.html" target="_blank">CECILL-C</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/math-comp/analysis'>homepage</a>)
+      (<a href='https://github.com/math-comp/analysis/issues'>bug reports</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-mathcomp-reals/coq-mathcomp-reals.1.8.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>This package contains a library for real numbers for<br>the Coq proof-assistant and using the Mathematical Components library.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-common.1.3.2+8.20</a>
+(1.3.2+8.20) The common library of Template Coq and PCUIC</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Abhishek Anand <lt;aa755@cs.cornell.edu>gt; - Danil Annenkov <lt;danil.v.annenkov@gmail.com>gt; - Simon Boulier <lt;simon.boulier@inria.fr>gt; - Cyril Cohen <lt;cyril.cohen@inria.fr>gt; - Yannick Forster <lt;forster@ps.uni-saarland.de>gt; - Jason Gross <lt;jgross@mit.edu>gt; - Fabian Kunze <lt;fkunze@fakusb.de>gt; - Meven Lennon-Bertrand <lt;Meven.Bertrand@univ-nantes.fr>gt; - Kenji Maillard <lt;kenji.maillard@inria.fr>gt; - Gregory Malecha <lt;gmalecha@gmail.com>gt; - Jakob Botsch Nielsen <lt;Jakob.botsch.nielsen@gmail.com>gt; - Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Nicolas Tabareau <lt;nicolas.tabareau@inria.fr>gt; - Théo Winterhalter <lt;theo.winterhalter@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
       (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-common/coq-metacoq-common.1.3.1+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-common/coq-metacoq-common.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-erasure-plugin.1.3.1+8.19</a>
-(1.3.1+8.19) Implementation and verification of an erasure procedure for Coq</summary>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-erasure-plugin.1.3.2+8.20</a>
+(1.3.2+8.20) Implementation and verification of an erasure procedure for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Abhishek Anand <lt;aa755@cs.cornell.edu>gt; - Danil Annenkov <lt;danil.v.annenkov@gmail.com>gt; - Simon Boulier <lt;simon.boulier@inria.fr>gt; - Cyril Cohen <lt;cyril.cohen@inria.fr>gt; - Yannick Forster <lt;forster@ps.uni-saarland.de>gt; - Jason Gross <lt;jgross@mit.edu>gt; - Fabian Kunze <lt;fkunze@fakusb.de>gt; - Meven Lennon-Bertrand <lt;Meven.Bertrand@univ-nantes.fr>gt; - Kenji Maillard <lt;kenji.maillard@inria.fr>gt; - Gregory Malecha <lt;gmalecha@gmail.com>gt; - Jakob Botsch Nielsen <lt;Jakob.botsch.nielsen@gmail.com>gt; - Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Nicolas Tabareau <lt;nicolas.tabareau@inria.fr>gt; - Théo Winterhalter <lt;theo.winterhalter@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
       (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-erasure-plugin/coq-metacoq-erasure-plugin.1.3.1+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-erasure-plugin/coq-metacoq-erasure-plugin.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>The Erasure module provides a complete specification of Coq'apos;s so-called<br>\extraction\ procedure, starting from the PCUIC calculus and targeting<br>untyped call-by-value lambda-calculus.<br><br>The `erasure` function translates types and proofs in well-typed terms<br>into a dummy `tBox` constructor, following closely P. Letouzey'apos;s PhD<br>thesis.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-erasure.1.3.1+8.19</a>
-(1.3.1+8.19) Implementation and verification of an erasure procedure for Coq</summary>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-erasure.1.3.2+8.20</a>
+(1.3.2+8.20) Implementation and verification of an erasure procedure for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Abhishek Anand <lt;aa755@cs.cornell.edu>gt; - Danil Annenkov <lt;danil.v.annenkov@gmail.com>gt; - Simon Boulier <lt;simon.boulier@inria.fr>gt; - Cyril Cohen <lt;cyril.cohen@inria.fr>gt; - Yannick Forster <lt;forster@ps.uni-saarland.de>gt; - Jason Gross <lt;jgross@mit.edu>gt; - Fabian Kunze <lt;fkunze@fakusb.de>gt; - Meven Lennon-Bertrand <lt;Meven.Bertrand@univ-nantes.fr>gt; - Kenji Maillard <lt;kenji.maillard@inria.fr>gt; - Gregory Malecha <lt;gmalecha@gmail.com>gt; - Jakob Botsch Nielsen <lt;Jakob.botsch.nielsen@gmail.com>gt; - Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Nicolas Tabareau <lt;nicolas.tabareau@inria.fr>gt; - Théo Winterhalter <lt;theo.winterhalter@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
       (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-erasure/coq-metacoq-erasure.1.3.1+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-erasure/coq-metacoq-erasure.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>The Erasure module provides a complete specification of Coq'apos;s so-called<br>\extraction\ procedure, starting from the PCUIC calculus and targeting<br>untyped call-by-value lambda-calculus.<br><br>The `erasure` function translates types and proofs in well-typed terms<br>into a dummy `tBox` constructor, following closely P. Letouzey'apos;s PhD<br>thesis.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-pcuic.1.3.1+8.19</a>
-(1.3.1+8.19) A type system equivalent to Coq'apos;s and its metatheory</summary>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-pcuic.1.3.2+8.20</a>
+(1.3.2+8.20) A type system equivalent to Coq'apos;s and its metatheory</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Abhishek Anand <lt;aa755@cs.cornell.edu>gt; - Danil Annenkov <lt;danil.v.annenkov@gmail.com>gt; - Simon Boulier <lt;simon.boulier@inria.fr>gt; - Cyril Cohen <lt;cyril.cohen@inria.fr>gt; - Yannick Forster <lt;forster@ps.uni-saarland.de>gt; - Jason Gross <lt;jgross@mit.edu>gt; - Fabian Kunze <lt;fkunze@fakusb.de>gt; - Meven Lennon-Bertrand <lt;Meven.Bertrand@univ-nantes.fr>gt; - Kenji Maillard <lt;kenji.maillard@inria.fr>gt; - Gregory Malecha <lt;gmalecha@gmail.com>gt; - Jakob Botsch Nielsen <lt;Jakob.botsch.nielsen@gmail.com>gt; - Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Nicolas Tabareau <lt;nicolas.tabareau@inria.fr>gt; - Théo Winterhalter <lt;theo.winterhalter@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
       (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-pcuic/coq-metacoq-pcuic.1.3.1+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-pcuic/coq-metacoq-pcuic.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>The PCUIC module provides a cleaned-up specification of Coq'apos;s typing algorithm along<br>with a certified typechecker for it. This module includes the standard metatheory of<br>PCUIC: Weakening, Substitution, Confluence and Subject Reduction are proven here.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-quotation.1.3.1+8.19</a>
-(1.3.1+8.19) Gallina quotation functions for Template Coq</summary>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-quotation.1.3.2+8.20</a>
+(1.3.2+8.20) Gallina quotation functions for Template Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Abhishek Anand <lt;aa755@cs.cornell.edu>gt; - Danil Annenkov <lt;danil.v.annenkov@gmail.com>gt; - Simon Boulier <lt;simon.boulier@inria.fr>gt; - Cyril Cohen <lt;cyril.cohen@inria.fr>gt; - Yannick Forster <lt;forster@ps.uni-saarland.de>gt; - Jason Gross <lt;jgross@mit.edu>gt; - Fabian Kunze <lt;fkunze@fakusb.de>gt; - Meven Lennon-Bertrand <lt;Meven.Bertrand@univ-nantes.fr>gt; - Kenji Maillard <lt;kenji.maillard@inria.fr>gt; - Gregory Malecha <lt;gmalecha@gmail.com>gt; - Jakob Botsch Nielsen <lt;Jakob.botsch.nielsen@gmail.com>gt; - Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Nicolas Tabareau <lt;nicolas.tabareau@inria.fr>gt; - Théo Winterhalter <lt;theo.winterhalter@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
       (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-quotation/coq-metacoq-quotation.1.3.1+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-quotation/coq-metacoq-quotation.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>The Quotation module is geared at providing functions `□T → □□T` for<br>`□T := Ast.term` (currently implemented) and for `□T := { t : Ast.term<br>&amp; Σ ;;; [] |- t : T }` (still in the works).  Currently `Ast.term →<br>Ast.term` and `(Σ ;;; [] |- t : T) → Ast.term` functions are provided<br>for Template and PCUIC terms, in `MetaCoq.Quotation.ToTemplate.All`<br>and `MetaCoq.Quotation.ToPCUIC.All`.  Proving well-typedness is still<br>a work in progress.<br><br>Ultimately the goal of this development is to prove that `□` is a lax monoidal<br>semicomonad (a functor with `cojoin : □T → □□T` that codistributes over `unit`<br>and `×`), which is sufficient for proving Löb'apos;s theorem.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-safechecker-plugin.1.3.1+8.19</a>
-(1.3.1+8.19) Implementation and verification of an erasure procedure for Coq</summary>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-safechecker-plugin.1.3.2+8.20</a>
+(1.3.2+8.20) Implementation and verification of an erasure procedure for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Abhishek Anand <lt;aa755@cs.cornell.edu>gt; - Danil Annenkov <lt;danil.v.annenkov@gmail.com>gt; - Simon Boulier <lt;simon.boulier@inria.fr>gt; - Cyril Cohen <lt;cyril.cohen@inria.fr>gt; - Yannick Forster <lt;forster@ps.uni-saarland.de>gt; - Jason Gross <lt;jgross@mit.edu>gt; - Fabian Kunze <lt;fkunze@fakusb.de>gt; - Meven Lennon-Bertrand <lt;Meven.Bertrand@univ-nantes.fr>gt; - Kenji Maillard <lt;kenji.maillard@inria.fr>gt; - Gregory Malecha <lt;gmalecha@gmail.com>gt; - Jakob Botsch Nielsen <lt;Jakob.botsch.nielsen@gmail.com>gt; - Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Nicolas Tabareau <lt;nicolas.tabareau@inria.fr>gt; - Théo Winterhalter <lt;theo.winterhalter@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
       (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-safechecker-plugin/coq-metacoq-safechecker-plugin.1.3.1+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-safechecker-plugin/coq-metacoq-safechecker-plugin.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>The Erasure module provides a complete specification of Coq'apos;s so-called<br>\extraction\ procedure, starting from the PCUIC calculus and targeting<br>untyped call-by-value lambda-calculus.<br><br>The `erasure` function translates types and proofs in well-typed terms<br>into a dummy `tBox` constructor, following closely P. Letouzey'apos;s PhD<br>thesis.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-safechecker.1.3.1+8.19</a>
-(1.3.1+8.19) Implementation and verification of safe conversion and typechecking algorithms for Coq</summary>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-safechecker.1.3.2+8.20</a>
+(1.3.2+8.20) Implementation and verification of safe conversion and typechecking algorithms for Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Abhishek Anand <lt;aa755@cs.cornell.edu>gt; - Danil Annenkov <lt;danil.v.annenkov@gmail.com>gt; - Simon Boulier <lt;simon.boulier@inria.fr>gt; - Cyril Cohen <lt;cyril.cohen@inria.fr>gt; - Yannick Forster <lt;forster@ps.uni-saarland.de>gt; - Jason Gross <lt;jgross@mit.edu>gt; - Fabian Kunze <lt;fkunze@fakusb.de>gt; - Meven Lennon-Bertrand <lt;Meven.Bertrand@univ-nantes.fr>gt; - Kenji Maillard <lt;kenji.maillard@inria.fr>gt; - Gregory Malecha <lt;gmalecha@gmail.com>gt; - Jakob Botsch Nielsen <lt;Jakob.botsch.nielsen@gmail.com>gt; - Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Nicolas Tabareau <lt;nicolas.tabareau@inria.fr>gt; - Théo Winterhalter <lt;theo.winterhalter@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
       (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-safechecker/coq-metacoq-safechecker.1.3.1+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-safechecker/coq-metacoq-safechecker.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>The SafeChecker modules provides a correct implementation of<br>weak-head reduction, conversion and typechecking of Coq definitions and global environments.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-template-pcuic.1.3.1+8.19</a>
-(1.3.1+8.19) Translations between Template Coq and PCUIC and proofs of correctness</summary>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-template-pcuic.1.3.2+8.20</a>
+(1.3.2+8.20) Translations between Template Coq and PCUIC and proofs of correctness</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Abhishek Anand <lt;aa755@cs.cornell.edu>gt; - Danil Annenkov <lt;danil.v.annenkov@gmail.com>gt; - Simon Boulier <lt;simon.boulier@inria.fr>gt; - Cyril Cohen <lt;cyril.cohen@inria.fr>gt; - Yannick Forster <lt;forster@ps.uni-saarland.de>gt; - Jason Gross <lt;jgross@mit.edu>gt; - Fabian Kunze <lt;fkunze@fakusb.de>gt; - Meven Lennon-Bertrand <lt;Meven.Bertrand@univ-nantes.fr>gt; - Kenji Maillard <lt;kenji.maillard@inria.fr>gt; - Gregory Malecha <lt;gmalecha@gmail.com>gt; - Jakob Botsch Nielsen <lt;Jakob.botsch.nielsen@gmail.com>gt; - Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Nicolas Tabareau <lt;nicolas.tabareau@inria.fr>gt; - Théo Winterhalter <lt;theo.winterhalter@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
       (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-template-pcuic/coq-metacoq-template-pcuic.1.3.1+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-template-pcuic/coq-metacoq-template-pcuic.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-template.1.3.1+8.19</a>
-(1.3.1+8.19) A quoting and unquoting library for Coq in Coq</summary>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-template.1.3.2+8.20</a>
+(1.3.2+8.20) A quoting and unquoting library for Coq in Coq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Abhishek Anand <lt;aa755@cs.cornell.edu>gt; - Danil Annenkov <lt;danil.v.annenkov@gmail.com>gt; - Simon Boulier <lt;simon.boulier@inria.fr>gt; - Cyril Cohen <lt;cyril.cohen@inria.fr>gt; - Yannick Forster <lt;forster@ps.uni-saarland.de>gt; - Jason Gross <lt;jgross@mit.edu>gt; - Fabian Kunze <lt;fkunze@fakusb.de>gt; - Meven Lennon-Bertrand <lt;Meven.Bertrand@univ-nantes.fr>gt; - Kenji Maillard <lt;kenji.maillard@inria.fr>gt; - Gregory Malecha <lt;gmalecha@gmail.com>gt; - Jakob Botsch Nielsen <lt;Jakob.botsch.nielsen@gmail.com>gt; - Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Nicolas Tabareau <lt;nicolas.tabareau@inria.fr>gt; - Théo Winterhalter <lt;theo.winterhalter@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
       (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
-      (<a href='https://github.com/coq/platform/tree/main/opam/opam-coq-archive/released/packages/coq-metacoq-template/coq-metacoq-template.1.3.1+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-template/coq-metacoq-template.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>Template Coq is a quoting library for Coq. It takes Coq terms and<br>constructs a representation of their syntax tree as a Coq inductive data<br>type. The representation is based on the kernel'apos;s term representation.<br><br>In addition to a complete reification and denotation of CIC terms,<br>Template Coq includes:<br><br>- Reification of the environment structures, for constant and inductive declarations.<br>- Denotation of terms and global declarations<br>- A monad for manipulating global declarations, calling the type<br>  checker, and inserting them in the global environment, in the style of<br>  MetaCoq/MTac.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-translations.1.3.1+8.19</a>
-(1.3.1+8.19) Translations built on top of MetaCoq</summary>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-translations.1.3.2+8.20</a>
+(1.3.2+8.20) Translations built on top of MetaCoq</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Abhishek Anand <lt;aa755@cs.cornell.edu>gt; - Danil Annenkov <lt;danil.v.annenkov@gmail.com>gt; - Simon Boulier <lt;simon.boulier@inria.fr>gt; - Cyril Cohen <lt;cyril.cohen@inria.fr>gt; - Yannick Forster <lt;forster@ps.uni-saarland.de>gt; - Jason Gross <lt;jgross@mit.edu>gt; - Fabian Kunze <lt;fkunze@fakusb.de>gt; - Meven Lennon-Bertrand <lt;Meven.Bertrand@univ-nantes.fr>gt; - Kenji Maillard <lt;kenji.maillard@inria.fr>gt; - Gregory Malecha <lt;gmalecha@gmail.com>gt; - Jakob Botsch Nielsen <lt;Jakob.botsch.nielsen@gmail.com>gt; - Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Nicolas Tabareau <lt;nicolas.tabareau@inria.fr>gt; - Théo Winterhalter <lt;theo.winterhalter@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
       (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-translations/coq-metacoq-translations.1.3.1+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-translations/coq-metacoq-translations.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.<br><br>The Translations modules provides implementation of standard translations<br>from type theory to type theory, e.g. parametricity and the `cross-bool`<br>translation that invalidates functional extensionality.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-utils.1.3.1+8.19</a>
-(1.3.1+8.19) The utility library of Template Coq and PCUIC</summary>
+  <summary><a href='https://metacoq.github.io/metacoq'>coq-metacoq-utils.1.3.2+8.20</a>
+(1.3.2+8.20) The utility library of Template Coq and PCUIC</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Abhishek Anand <lt;aa755@cs.cornell.edu>gt; - Danil Annenkov <lt;danil.v.annenkov@gmail.com>gt; - Simon Boulier <lt;simon.boulier@inria.fr>gt; - Cyril Cohen <lt;cyril.cohen@inria.fr>gt; - Yannick Forster <lt;forster@ps.uni-saarland.de>gt; - Jason Gross <lt;jgross@mit.edu>gt; - Fabian Kunze <lt;fkunze@fakusb.de>gt; - Meven Lennon-Bertrand <lt;Meven.Bertrand@univ-nantes.fr>gt; - Kenji Maillard <lt;kenji.maillard@inria.fr>gt; - Gregory Malecha <lt;gmalecha@gmail.com>gt; - Jakob Botsch Nielsen <lt;Jakob.botsch.nielsen@gmail.com>gt; - Matthieu Sozeau <lt;matthieu.sozeau@inria.fr>gt; - Nicolas Tabareau <lt;nicolas.tabareau@inria.fr>gt; - Théo Winterhalter <lt;theo.winterhalter@inria.fr>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://metacoq.github.io/metacoq'>homepage</a>)
       (<a href='https://github.com/MetaCoq/metacoq/issues'>bug reports</a>)
-      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-utils/coq-metacoq-utils.1.3.1+8.19/opam'>opam package</a>)
+      (<a href='https://coq.inria.fr/opam/released/packages/coq-metacoq-utils/coq-metacoq-utils.1.3.2+8.20/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>MetaCoq is a meta-programming framework for Coq.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://coq.inria.fr/'>coq-stdlib.8.19.2</a>
-(8.19.2) The Coq Proof Assistant -- Standard Library</summary>
+  <summary><a href='https://coq.inria.fr/'>coq-stdlib.8.20.1</a>
+(8.20.1) The Coq Proof Assistant -- Standard Library</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Coq development team, INRIA, CNRS, and contributors</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/coq-stdlib/coq-stdlib.8.19.2/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/coq-stdlib/coq-stdlib.8.20.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Coq is a formal proof management system. It provides<br>a formal language to write mathematical definitions, executable<br>algorithms and theorems together with an environment for<br>semi-interactive development of machine-checked proofs.<br><br>Typical applications include the certification of properties of<br>programming languages (e.g. the CompCert compiler certification<br>project, or the Bedrock verified low-level programming library), the<br>formalization of mathematics (e.g. the full formalization of the<br>Feit-Thompson theorem or homotopy type theory) and teaching.<br><br>This package includes the Coq Standard Library, that is to say, the<br>set of modules usually bound to the Coq.* namespace.</dd>
   </dl>
@@ -1914,15 +1929,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://coq.inria.fr/'>coqide-server.8.19.2</a>
-(8.19.2) The Coq Proof Assistant, XML protocol server</summary>
+  <summary><a href='https://coq.inria.fr/'>coqide-server.8.20.1</a>
+(8.20.1) The Coq Proof Assistant, XML protocol server</summary>
   <dl>
     <dt><b>authors</b></dt><dd>The Coq development team, INRIA, CNRS, and contributors</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-only.html" target="_blank">LGPL-2.1-only</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://coq.inria.fr/'>homepage</a>)
       (<a href='https://github.com/coq/coq/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/coqide-server/coqide-server.8.19.2/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/coqide-server/coqide-server.8.20.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Coq is a formal proof management system. It provides<br>a formal language to write mathematical definitions, executable<br>algorithms and theorems together with an environment for<br>semi-interactive development of machine-checked proofs.<br><br>This package provides the `coqidetop` language server, an<br>implementation of Coq'apos;s [XML protocol](https://github.com/coq/coq/blob/master/dev/doc/xml-protocol.md)<br>which allows clients, such as CoqIDE, to interact with Coq in a<br>structured way.</dd>
   </dl>
@@ -1974,15 +1989,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/LPCIC/elpi'>elpi.1.18.2</a>
-(1.18.2) ELPI - Embeddable λProlog Interpreter</summary>
+  <summary><a href='https://github.com/LPCIC/elpi'>elpi.2.0.6</a>
+(2.0.6) ELPI - Embeddable λProlog Interpreter</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Claudio Sacerdoti Coen Enrico Tassi</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-2.1-or-later.html" target="_blank">LGPL-2.1-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/LPCIC/elpi'>homepage</a>)
       (<a href='https://github.com/LPCIC/elpi/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/elpi/elpi.1.18.2/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/elpi/elpi.2.0.6/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>ELPI implements a variant of λProlog enriched with Constraint Handling Rules,<br>a programming language well suited to manipulate syntax trees with binders.<br><br>ELPI is designed to be embedded into larger applications written in OCaml as<br>an extension language. It comes with an API to drive the interpreter and <br>with an FFI for defining built-in predicates and data types, as well as<br>quotations and similar goodies that are handy to adapt the language to the host<br>application.<br><br>This package provides both a command line interpreter (elpi) and a library to<br>be linked in other applications (eg by passing -package elpi to ocamlfind).<br><br>The ELPI programming language has the following features:<br><br>- Native support for variable binding and substitution, via an Higher Order<br>  Abstract Syntax (HOAS) embedding of the object language. The programmer<br>  does not need to care about technical devices to handle bound variables,<br>  like De Bruijn indices.<br><br>- Native support for hypothetical context. When moving under a binder one can<br>  attach to the bound variable extra information that is collected when the<br>  variable gets out of scope. For example when writing a type-checker the<br>  programmer needs not to care about managing the typing context.<br><br>- Native support for higher order unification variables, again via HOAS.<br>  Unification variables of the meta-language (λProlog) can be reused to<br>  represent the unification variables of the object language. The programmer<br>  does not need to care about the unification-variable assignment map and<br>  cannot assign to a unification variable a term containing variables out of<br>  scope, or build a circular assignment.<br><br>- Native support for syntactic constraints and their meta-level handling rules.<br>  The generative semantics of Prolog can be disabled by turning a goal into a<br>  syntactic constraint (suspended goal). A syntactic constraint is resumed as<br>  soon as relevant variables gets assigned. Syntactic constraints can be<br>  manipulated by constraint handling rules (CHR).<br><br>- Native support for backtracking. To ease implementation of search.<br><br>- The constraint store is extensible.  The host application can declare<br>  non-syntactic constraints and use custom constraint solvers to check their<br>  consistency.<br><br>- Clauses are graftable. The user is free to extend an existing program by<br>  inserting/removing clauses, both at runtime (using implication) and at<br>  \compilation\ time by accumulating files.<br><br>ELPI is free software released under the terms of LGPL 2.1 or above.</dd>
   </dl>
@@ -2094,45 +2109,45 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='http://gitlab.inria.fr/fpottier/menhir'>menhirCST.20231231</a>
-(20231231) Runtime support library for parsers generated by Menhir</summary>
+  <summary><a href='http://gitlab.inria.fr/fpottier/menhir'>menhirCST.20240715</a>
+(20240715) Runtime support library for parsers generated by Menhir</summary>
   <dl>
     <dt><b>authors</b></dt><dd>François Pottier <lt;francois.pottier@inria.fr>gt;</dd>
-    <dt><b>license</b></dt><dd> LGPL-2.0-only with OCaml-LGPL-linking-exception - see <a href="http://gitlab.inria.fr/fpottier/menhir" target="_blank">homepage</a> for details</dd>
+    <dt><b>license</b></dt><dd> LGPL-2.0-only WITH OCaml-LGPL-linking-exception - see <a href="http://gitlab.inria.fr/fpottier/menhir" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://gitlab.inria.fr/fpottier/menhir'>homepage</a>)
       (<a href='https://gitlab.inria.fr/fpottier/menhir/-/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/menhirCST/menhirCST.20231231/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/menhirCST/menhirCST.20240715/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='http://gitlab.inria.fr/fpottier/menhir'>menhirLib.20231231</a>
-(20231231) Runtime support library for parsers generated by Menhir</summary>
+  <summary><a href='http://gitlab.inria.fr/fpottier/menhir'>menhirLib.20240715</a>
+(20240715) Runtime support library for parsers generated by Menhir</summary>
   <dl>
     <dt><b>authors</b></dt><dd>François Pottier <lt;francois.pottier@inria.fr>gt; - Yann Régis-Gianas <lt;yrg@pps.univ-paris-diderot.fr>gt;</dd>
-    <dt><b>license</b></dt><dd> LGPL-2.0-only with OCaml-LGPL-linking-exception - see <a href="http://gitlab.inria.fr/fpottier/menhir" target="_blank">homepage</a> for details</dd>
+    <dt><b>license</b></dt><dd> LGPL-2.0-only WITH OCaml-LGPL-linking-exception - see <a href="http://gitlab.inria.fr/fpottier/menhir" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://gitlab.inria.fr/fpottier/menhir'>homepage</a>)
       (<a href='https://gitlab.inria.fr/fpottier/menhir/-/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/menhirLib/menhirLib.20231231/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/menhirLib/menhirLib.20240715/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='http://gitlab.inria.fr/fpottier/menhir'>menhirSdk.20231231</a>
-(20231231) Compile-time library for auxiliary tools related to Menhir</summary>
+  <summary><a href='http://gitlab.inria.fr/fpottier/menhir'>menhirSdk.20240715</a>
+(20240715) Compile-time library for auxiliary tools related to Menhir</summary>
   <dl>
     <dt><b>authors</b></dt><dd>François Pottier <lt;francois.pottier@inria.fr>gt; - Yann Régis-Gianas <lt;yrg@pps.univ-paris-diderot.fr>gt;</dd>
-    <dt><b>license</b></dt><dd> LGPL-2.0-only with OCaml-LGPL-linking-exception - see <a href="http://gitlab.inria.fr/fpottier/menhir" target="_blank">homepage</a> for details</dd>
+    <dt><b>license</b></dt><dd> LGPL-2.0-only WITH OCaml-LGPL-linking-exception - see <a href="http://gitlab.inria.fr/fpottier/menhir" target="_blank">homepage</a> for details</dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://gitlab.inria.fr/fpottier/menhir'>homepage</a>)
       (<a href='https://gitlab.inria.fr/fpottier/menhir/-/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/menhirSdk/menhirSdk.20231231/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/menhirSdk/menhirSdk.20240715/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd></dd>
   </dl>
@@ -2379,15 +2394,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml-ppx/ppx_deriving'>ppx_deriving.5.2.1</a>
-(5.2.1) Type-driven code generation for OCaml</summary>
+  <summary><a href='https://github.com/ocaml-ppx/ppx_deriving'>ppx_deriving.6.0.3</a>
+(6.0.3) Type-driven code generation for OCaml</summary>
   <dl>
     <dt><b>authors</b></dt><dd>whitequark <lt;whitequark@whitequark.org>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml-ppx/ppx_deriving'>homepage</a>)
       (<a href='https://github.com/ocaml-ppx/ppx_deriving/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ppx_deriving/ppx_deriving.5.2.1/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_deriving/ppx_deriving.6.0.3/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>ppx_deriving provides common infrastructure for generating<br>code based on type definitions, and a set of useful plugins<br>for common tasks.</dd>
   </dl>
