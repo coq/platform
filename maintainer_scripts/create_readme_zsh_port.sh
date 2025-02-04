@@ -1,4 +1,7 @@
-#!/usr/bin/env bash
+echo "This is work in progress porting this script to zsh and ehnacing the SPDX parsing"
+exit 0
+
+#!/usr/bin/env zsh
 
 ###################### COPYRIGHT/COPYLEFT ######################
 
@@ -48,7 +51,7 @@ do
     -installed|-i)         ONLY_INSTALLED='Y';;
     -depgraph|-d)          DEPENDCY_GRAPH='Y';;
     -depgraphonly)         DEPENDCY_GRAPH_ONLY='Y';;
-    *) echo "create_readme.sh: Illegal option ${arg}"; exit 1 ;;
+    *) echo "Illegal option ${arg}"; exit 1 ;;
   esac
 done
 
@@ -82,7 +85,7 @@ fi
 
 ##### Helpers to switch between HTML and MD output #####
 
-if [ "${RESULT_TYPE}" == 'MD' ]
+if [ "${RESULT_TYPE}" = 'MD' ]
 then
   BB='**'
   BE='**'
@@ -184,10 +187,20 @@ function check_url {
 # $1 = name of license
 # $2 = name of package (for warnings)
 
-declare -A SPDX_LICENSE
+typeset -A SPDX_LICENSE
+
+function spdx_license_pre_fill {
+  while read p; do
+    echo "Preset SPDX_LICENSE $p"
+    SPDX_LICENSE[$p]=yes
+  done < "${ROOT_PATH}/maintainer_scripts/spdx_known.txt"
+  echo ${(kv)SPDX_LICENSE}
+}
+
+spdx_license_pre_fill()
 
 function check_spdx_license {
-  if [ -z ${SPDX_LICENSE[$1]+_} ]
+  if ! [[ -v SPDX_LICENSE[$1] ]]
   then
     if check_url "https://spdx.org/licenses/$1.html"
     then
@@ -197,7 +210,7 @@ function check_spdx_license {
     fi
   fi
 
-  if [ "${SPDX_LICENSE[$1]}" == "yes" ]
+  if [ $SPDX_LICENSE[$1] = yes ]
   then
       return 0
   else
@@ -339,7 +352,7 @@ PACKAGES_INSTALLED="$(opam list --installed --short --columns=name,version --swi
 
 MISSING_PACKAGES=''
 
-for package in ${PACKAGES_EXTENDED}
+for package in ${=PACKAGES_EXTENDED}
 do
   if ! slist_contains "${PACKAGES_INSTALLED}" "${package}"
   then
@@ -425,7 +438,7 @@ function html_package_opam {
   do
       case "${var}" in
       version:)     pversion="${value//\"}"; multiline='' ;;
-      license:)     declare -a plicense="(${value})"; multiline='' ;;
+      license:)     plicense="(${value})"; multiline='' ;;
       synopsis:)    psynopsis="${value//\"}"; multiline='' ;;
       homepage:)    phomepage="${value//\"}"; multiline='' ;;
       bug-reports:) pbugreports="${value//\"}"; multiline='' ;;
@@ -466,7 +479,7 @@ function html_package_opam {
     do
       license="${license//\"}"
       license=${license/CeCILL/CECILL}
-      if [[ "${license}" == 'https://'* ]] || [[ "${license}" == 'http://'* ]]
+      if [[ "${license}" = 'https://'* ]] || [[ "${license}" = 'http://'* ]]
       then
         licensehtml="${licensehtml} <a href=\"${license}\" target=\"_blank\">link</a>"
         licensecsv="${licensecsv}${licensecsv:+,}${license}"
@@ -483,7 +496,7 @@ function html_package_opam {
 
   # Look up the opam package URL
   popam_url="$(opam_get_installed_opam_repo "${prepository}" "$1")"
-  if [ "${CHECKOPAMLINKS}" == 'Y' ] && ! check_url "${popam_url}"
+  if [ "${CHECKOPAMLINKS}" = 'Y' ] && ! check_url "${popam_url}"
   then
     echo "opam url '${popam_url}' for package '${package}' does not exist!" | tee WARNINGS.log
   fi
@@ -519,7 +532,7 @@ function html_package_opam {
 
 ##### Create README.md and README.csv #####
 
-if [ "$DEPENDCY_GRAPH_ONLY" == "N" ]
+if [ "$DEPENDCY_GRAPH_ONLY" = "N" ]
 then
 
 # Write CSV header
@@ -528,7 +541,7 @@ echo "package,version,license,level" > ${RESULT_FILE_CSV}
 
 # Write MD/HTML header
 
-if [ "${RESULT_TYPE}" == 'MD' ]
+if [ "${RESULT_TYPE}" = 'MD' ]
 then
   echo '' > ${RESULT_FILE_TXT}
 else
@@ -616,7 +629,7 @@ opam and contains the following package(s):
 
 EOT
 
-for package in ${PACKAGES_BASE}
+for package in ${=PACKAGES_BASE}
 do
   html_package_opam "${package}" base
 done
@@ -637,7 +650,7 @@ ${PB}The ${BB}IDE level${BE} contains the following package(s):${PE}
 
 EOT
 
-for package in ${PACKAGES_IDE}
+for package in ${=PACKAGES_IDE}
 do
   html_package_opam "${package}" ide
 done
@@ -658,7 +671,7 @@ ${PB}The ${BB}full level${BE} contains the following packages:${PE}
 
 EOT
 
-for package in ${PACKAGES_FULL}
+for package in ${=PACKAGES_FULL}
 do
   html_package_opam "${package}" full
 done
@@ -681,7 +694,7 @@ ${PB}The following packages are ${BB}optional${BE}:${PE}
 
 EOT
 
-for package in ${PACKAGES_OPTIONAL}
+for package in ${=PACKAGES_OPTIONAL}
 do
   html_package_opam "${package}" optional
 done
@@ -705,7 +718,7 @@ ${PB}The ${BB}extended level${BE} contains the following packages:${PE}
 
 EOT
 
-for package in ${PACKAGES_EXTENDED}
+for package in ${=PACKAGES_EXTENDED}
 do
   html_package_opam "${package}" extended
 done
@@ -725,7 +738,7 @@ Please refer to the linked opam package and/or your system package manager for d
 EOT
 
 # sort packages by name, but ignore a "conf-" prefix
-for package in ${PACKAGES_DEPENDENCY}
+for package in ${=PACKAGES_DEPENDENCY}
 do
   html_package_opam "${package}" dependency
 done
@@ -770,7 +783,7 @@ function write_packages (
   done
 )
 
-if [ "$DEPENDCY_GRAPH" == "Y" ]
+if [ "$DEPENDCY_GRAPH" = "Y" ]
 then
   echo "digraph G {" > dependencies.gv
   echo "label = \"Dependecy graph for Coq Platform ${COQ_PLATFORM_RELEASE}${COQ_PLATFORM_PACKAGE_PICK_POSTFIX}\\n\\n\"" >> dependencies.gv

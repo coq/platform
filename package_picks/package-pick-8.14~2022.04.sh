@@ -28,7 +28,7 @@ COQ_PLATFORM_COQ_TAG='8.14.1'
 COQ_PLATFORM_USE_DEV_REPOSITORY='N'
 
 # This extended descriptions is used for readme files
-COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2024.10.1 includes Coq 8.14.1 from 11/2021. '
+COQ_PLATFORM_VERSION_DESCRIPTION='This version of Coq Platform 2025.01.0 includes Coq 8.14.1 from 11/2021. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='There are two package picks for Coq 8.14.1: the original from 01/2022, and an updated/extended one from 03/2022. '
 COQ_PLATFORM_VERSION_DESCRIPTION+='This is the latest package pick for Coq 8.14.1 with some package updates with the goal to make it as compatible as possible to the Coq 8.15.2 package pick. '
 

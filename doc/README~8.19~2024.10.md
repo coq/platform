@@ -1,5 +1,5 @@
 
-# Coq Platform 2024.10.1 providing Coq 8.19.2 (released Jun 2024) with the first package pick from Oct 2024
+# Coq Platform 2025.01.0 providing Coq 8.19.2 (released Jun 2024) with the first package pick from Oct 2024
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language
 to write mathematical definitions, executable algorithms, and theorems, together
@@ -9,10 +9,10 @@ The [Coq Platform](https://github.com/coq/platform) is a distribution of the Coq
 interactive prover together with a selection of Coq libraries and plugins.
 
 The Coq Platform supports to install several versions of Coq (also in parallel).
-This README file is for **Coq Platform 2024.10.1 with Coq 8.19.2**.
+This README file is for **Coq Platform 2025.01.0 with Coq 8.19.2**.
 The README files for other versions are linked in the main [README](https://github.com/coq/platform/blob/main/README.md).
 
-This version of Coq Platform 2024.10.1 includes Coq 8.19.2 from Jun 2024. This is the **latest release version** of the Coq Platform and recommended for general application. 
+This version of Coq Platform 2025.01.0 includes Coq 8.19.2 from Jun 2024. 
 
 The OCaml version used is 4.14.2+options ocaml-option-flambda.
 
@@ -46,7 +46,7 @@ Please clarify the details with the homepage of the package.
 
 <br>
 
-## **Coq Platform 2024.10.1 with Coq 8.19.2 "base level"**
+## **Coq Platform 2025.01.0 with Coq 8.19.2 "base level"**
 
 The **base level** is mostly intended as a basis for custom installations using
 opam and contains the following package(s):
@@ -98,7 +98,7 @@ opam and contains the following package(s):
 
 <br>
 
-## **Coq Platform 2024.10.1 with Coq 8.19.2 "IDE level"**
+## **Coq Platform 2025.01.0 with Coq 8.19.2 "IDE level"**
 
 The **IDE level** adds an interactive development environment to the **base level**.
 
@@ -124,9 +124,24 @@ The **IDE level** contains the following package(s):
   </dl>
 </details>
 
+<details>
+  <summary><a href='https://github.com/coq-community/vscoq'>vscoq-language-server.2.2.3</a>
+(2.2.3) VSCoq language server</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Enrico Tassi Maxime Dénès Romain Tetley</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/coq-community/vscoq'>homepage</a>)
+      (<a href='https://github.com/coq-community/vscoq/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/vscoq-language-server/vscoq-language-server.2.2.3/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>LSP based language server for Coq and its VSCoq user interface</dd>
+  </dl>
+</details>
+
 <br>
 
-## **Coq Platform 2024.10.1 with Coq 8.19.2 "full level"**
+## **Coq Platform 2025.01.0 with Coq 8.19.2 "full level"**
 
 The **full level** adds many commonly used coq libraries, plug-ins and
 developments.
@@ -934,7 +949,7 @@ The **full level** contains the following packages:
 
 <br>
 
-## **Coq Platform 2024.10.1 with Coq 8.19.2 "optional packages"**
+## **Coq Platform 2025.01.0 with Coq 8.19.2 "optional packages"**
 
 The **optional** packages have the same maturity and maintenance level as the
 packages in the full level, but either take a rather long time to build or have
@@ -994,7 +1009,7 @@ The following packages are **optional**:
 
 <br>
 
-## **Coq Platform 2024.10.1 with Coq 8.19.2 "extended level"**
+## **Coq Platform 2025.01.0 with Coq 8.19.2 "extended level"**
 
 The **extended level** contains packages which are in a beta stage or otherwise
 don't yet have the level of maturity or support required for inclusion in the
@@ -1215,30 +1230,30 @@ Homebrew or Linux system package managers.
 Please refer to the linked opam package and/or your system package manager for details on what software version is used.
 
 <details>
-  <summary><a href='https://github.com/ahrefs/atd'>atd.2.15.0</a>
-(2.15.0) Parser for the ATD data format description language</summary>
+  <summary><a href='https://github.com/ahrefs/atd'>atd.2.16.0</a>
+(2.16.0) Parser for the ATD data format description language</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Martin Jambon <lt;martin@mjambon.com>gt; - Rudi Grinberg <lt;rudi.grinberg@gmail.com>gt; - Martin Jambon <lt;martin@r2c.dev>gt; - Martin Jambon <lt;github@mjambon.com>gt; - Ivan Jager <lt;aij+git@mrph.org>gt; - oleksiy <lt;oleksiy.golovko@ahrefs.com>gt; - David Sheets <lt;sheets@alum.mit.edu>gt; - Rudi Grinberg <lt;me@rgrinberg.com>gt; - Martin Jambon <lt;martin@esper.com>gt; - Jeff Meister <lt;nanaki@gmail.com>gt; - Caio Wakamatsu <lt;caio.wakamatsu@ahrefs.com>gt; - Carmelo Piccione <lt;carmelo.piccione@gmail.com>gt; - Daniel Weil <lt;danweil68@gmail.com>gt; - Egor Chemokhonenko <lt;egor.chemohonenko@ahrefs.com>gt; - Gabriel Scherer <lt;gabriel.scherer@gmail.com>gt; - Raman Varabets <lt;roman.vorobets@gmail.com>gt; - tzm <lt;frank@boldsolutions.de>gt; - Mathieu Baudet <lt;mathieubaudet@fb.com>gt; - Oleksiy Golovko <lt;alexei.golovko@gmail.com>gt; - Rauan Mayemir <lt;rauan@mayemir.io>gt; - Carmelo Piccione <lt;cep1@solvuu.com>gt; - John Billings <lt;john@monkeynut.org>gt; - Louis Roché <lt;louis@louisroche.net>gt; - Brendan Long <lt;self@brendanlong.com>gt; - Chris Yocum <lt;cyocum@gmail.com>gt; - Louis Roché (Ahrefs) <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis.roche@ahrefs.com>gt; - Pavel Antoshkin <lt;pavel.antoshkin@ahrefs.com>gt; - Pierre Boutillier <lt;pierre.boutillier@laposte.net>gt; - Shon Feder <lt;shon.feder@key.me>gt; - Anurag Soni <lt;anuragsoni.13@gmail.com>gt; - Arjun Ravi Narayan <lt;arjunravinarayan@gmail.com>gt; - Asya-kawai <lt;kawai-toshiki@aintek.xyz>gt; - Christophe Troestler <lt;christophe.Troestler@umons.ac.be>gt; - Damien Doligez <lt;ddoligez@janestreet.com>gt; - Daniel M <lt;dan.mntg@gmail.com>gt; - Ding Xiang Fei <lt;dingxiangfei2009@protonmail.ch>gt; - François Pottier <lt;francois.pottier@inria.fr>gt; - Javier Chavarri <lt;javier.chavarri@gmail.com>gt; - Kate <lt;kit.ty.kate@disroot.org>gt; - Louis <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis@cryptosense.com>gt; - Raman Varabets <lt;raman+git@ahrefs.com>gt; - Stephane Legrand <lt;slegrand45@gmail.com>gt; - Vincent Bernardoff <lt;vb@luminar.eu.org>gt; - haoyang <lt;haoyang@esper.co>gt; - pmundkur <lt;prashanth.mundkur@gmail.com>gt; - ygrek <lt;ygrek@autistici.org>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ahrefs/atd'>homepage</a>)
       (<a href='https://github.com/ahrefs/atd/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/atd/atd.2.15.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/atd/atd.2.16.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>ATD is the OCaml library providing a parser for the ATD language and various<br>utilities. ATD stands for Adjustable Type Definitions in reference to its main<br>property of supporting annotations that allow a good fit with a variety of data<br>formats. This package also provides the 'apos;atdcat'apos; and 'apos;atddiff'apos; command-line<br>utilities.</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://github.com/ahrefs/atd'>atdgen-runtime.2.15.0</a>
-(2.15.0) Runtime library for code generated by atdgen</summary>
+  <summary><a href='https://github.com/ahrefs/atd'>atdgen-runtime.2.16.0</a>
+(2.16.0) Runtime library for code generated by atdgen</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Martin Jambon <lt;martin@mjambon.com>gt; - Rudi Grinberg <lt;rudi.grinberg@gmail.com>gt; - Martin Jambon <lt;martin@r2c.dev>gt; - Martin Jambon <lt;github@mjambon.com>gt; - Ivan Jager <lt;aij+git@mrph.org>gt; - oleksiy <lt;oleksiy.golovko@ahrefs.com>gt; - David Sheets <lt;sheets@alum.mit.edu>gt; - Rudi Grinberg <lt;me@rgrinberg.com>gt; - Martin Jambon <lt;martin@esper.com>gt; - Jeff Meister <lt;nanaki@gmail.com>gt; - Caio Wakamatsu <lt;caio.wakamatsu@ahrefs.com>gt; - Carmelo Piccione <lt;carmelo.piccione@gmail.com>gt; - Daniel Weil <lt;danweil68@gmail.com>gt; - Egor Chemokhonenko <lt;egor.chemohonenko@ahrefs.com>gt; - Gabriel Scherer <lt;gabriel.scherer@gmail.com>gt; - Raman Varabets <lt;roman.vorobets@gmail.com>gt; - tzm <lt;frank@boldsolutions.de>gt; - Mathieu Baudet <lt;mathieubaudet@fb.com>gt; - Oleksiy Golovko <lt;alexei.golovko@gmail.com>gt; - Rauan Mayemir <lt;rauan@mayemir.io>gt; - Carmelo Piccione <lt;cep1@solvuu.com>gt; - John Billings <lt;john@monkeynut.org>gt; - Louis Roché <lt;louis@louisroche.net>gt; - Brendan Long <lt;self@brendanlong.com>gt; - Chris Yocum <lt;cyocum@gmail.com>gt; - Louis Roché (Ahrefs) <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis.roche@ahrefs.com>gt; - Pavel Antoshkin <lt;pavel.antoshkin@ahrefs.com>gt; - Pierre Boutillier <lt;pierre.boutillier@laposte.net>gt; - Shon Feder <lt;shon.feder@key.me>gt; - Anurag Soni <lt;anuragsoni.13@gmail.com>gt; - Arjun Ravi Narayan <lt;arjunravinarayan@gmail.com>gt; - Asya-kawai <lt;kawai-toshiki@aintek.xyz>gt; - Christophe Troestler <lt;christophe.Troestler@umons.ac.be>gt; - Damien Doligez <lt;ddoligez@janestreet.com>gt; - Daniel M <lt;dan.mntg@gmail.com>gt; - Ding Xiang Fei <lt;dingxiangfei2009@protonmail.ch>gt; - François Pottier <lt;francois.pottier@inria.fr>gt; - Javier Chavarri <lt;javier.chavarri@gmail.com>gt; - Kate <lt;kit.ty.kate@disroot.org>gt; - Louis <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis@cryptosense.com>gt; - Raman Varabets <lt;raman+git@ahrefs.com>gt; - Stephane Legrand <lt;slegrand45@gmail.com>gt; - Vincent Bernardoff <lt;vb@luminar.eu.org>gt; - haoyang <lt;haoyang@esper.co>gt; - pmundkur <lt;prashanth.mundkur@gmail.com>gt; - ygrek <lt;ygrek@autistici.org>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ahrefs/atd'>homepage</a>)
       (<a href='https://github.com/ahrefs/atd/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/atdgen-runtime/atdgen-runtime.2.15.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/atdgen-runtime/atdgen-runtime.2.16.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package should be used only in conjunction with the atdgen code<br>generator</dd>
   </dl>
@@ -1260,15 +1275,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/ahrefs/atd'>atdts.2.15.0</a>
-(2.15.0) TypeScript code generation for ATD APIs</summary>
+  <summary><a href='https://github.com/ahrefs/atd'>atdts.2.16.0</a>
+(2.16.0) TypeScript code generation for ATD APIs</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Martin Jambon <lt;martin@mjambon.com>gt; - Rudi Grinberg <lt;rudi.grinberg@gmail.com>gt; - Martin Jambon <lt;martin@r2c.dev>gt; - Martin Jambon <lt;github@mjambon.com>gt; - Ivan Jager <lt;aij+git@mrph.org>gt; - oleksiy <lt;oleksiy.golovko@ahrefs.com>gt; - David Sheets <lt;sheets@alum.mit.edu>gt; - Rudi Grinberg <lt;me@rgrinberg.com>gt; - Martin Jambon <lt;martin@esper.com>gt; - Jeff Meister <lt;nanaki@gmail.com>gt; - Caio Wakamatsu <lt;caio.wakamatsu@ahrefs.com>gt; - Carmelo Piccione <lt;carmelo.piccione@gmail.com>gt; - Daniel Weil <lt;danweil68@gmail.com>gt; - Egor Chemokhonenko <lt;egor.chemohonenko@ahrefs.com>gt; - Gabriel Scherer <lt;gabriel.scherer@gmail.com>gt; - Raman Varabets <lt;roman.vorobets@gmail.com>gt; - tzm <lt;frank@boldsolutions.de>gt; - Mathieu Baudet <lt;mathieubaudet@fb.com>gt; - Oleksiy Golovko <lt;alexei.golovko@gmail.com>gt; - Rauan Mayemir <lt;rauan@mayemir.io>gt; - Carmelo Piccione <lt;cep1@solvuu.com>gt; - John Billings <lt;john@monkeynut.org>gt; - Louis Roché <lt;louis@louisroche.net>gt; - Brendan Long <lt;self@brendanlong.com>gt; - Chris Yocum <lt;cyocum@gmail.com>gt; - Louis Roché (Ahrefs) <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis.roche@ahrefs.com>gt; - Pavel Antoshkin <lt;pavel.antoshkin@ahrefs.com>gt; - Pierre Boutillier <lt;pierre.boutillier@laposte.net>gt; - Shon Feder <lt;shon.feder@key.me>gt; - Anurag Soni <lt;anuragsoni.13@gmail.com>gt; - Arjun Ravi Narayan <lt;arjunravinarayan@gmail.com>gt; - Asya-kawai <lt;kawai-toshiki@aintek.xyz>gt; - Christophe Troestler <lt;christophe.Troestler@umons.ac.be>gt; - Damien Doligez <lt;ddoligez@janestreet.com>gt; - Daniel M <lt;dan.mntg@gmail.com>gt; - Ding Xiang Fei <lt;dingxiangfei2009@protonmail.ch>gt; - François Pottier <lt;francois.pottier@inria.fr>gt; - Javier Chavarri <lt;javier.chavarri@gmail.com>gt; - Kate <lt;kit.ty.kate@disroot.org>gt; - Louis <lt;louis.roche@ahrefs.com>gt; - Louis Roché <lt;louis@cryptosense.com>gt; - Raman Varabets <lt;raman+git@ahrefs.com>gt; - Stephane Legrand <lt;slegrand45@gmail.com>gt; - Vincent Bernardoff <lt;vb@luminar.eu.org>gt; - haoyang <lt;haoyang@esper.co>gt; - pmundkur <lt;prashanth.mundkur@gmail.com>gt; - ygrek <lt;ygrek@autistici.org>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ahrefs/atd'>homepage</a>)
       (<a href='https://github.com/ahrefs/atd/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/atdts/atdts.2.15.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/atdts/atdts.2.16.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>TypeScript code generation for ATD APIs</dd>
   </dl>
@@ -1344,15 +1359,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/Chris00/ocaml-cairo'>cairo2.0.6.4</a>
-(0.6.4) Binding to Cairo, a 2D Vector Graphics Library</summary>
+  <summary><a href='https://github.com/Chris00/ocaml-cairo'>cairo2.0.6.5</a>
+(0.6.5) Binding to Cairo, a 2D Vector Graphics Library</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Christophe Troestler <lt;Christophe.Troestler@umons.ac.be>gt; - Pierre Hauweele <lt;pierre@hauweele.net>gt;</dd>
-    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-3.0.html" target="_blank">LGPL-3.0</a></dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/LGPL-3.0-or-later.html" target="_blank">LGPL-3.0-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/Chris00/ocaml-cairo'>homepage</a>)
       (<a href='https://github.com/Chris00/ocaml-cairo/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/cairo2/cairo2.0.6.4/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/cairo2/cairo2.0.6.5/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This is a binding to Cairo, a 2D graphics library with support for<br>multiple output devices. Currently supported output targets include<br>the X Window System, Quartz, Win32, image buffers, PostScript, PDF,<br>and SVG file output.</dd>
   </dl>
@@ -1614,21 +1629,6 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='http://libjpeg.sourceforge.net/'>libjpeg.1</a>
-(1) Virtual package relying on a libjpeg system installation</summary>
-  <dl>
-    <dt><b>authors</b></dt><dd>Bob Friesenhahn Lee Howard Frank Warmerdam</dd>
-    <dt><b>license</b></dt><dd> BSD-like - see <a href="http://libjpeg.sourceforge.net/" target="_blank">homepage</a> for details</dd>
-    <dt><b>links</b></dt><dd>
-      (<a href='http://libjpeg.sourceforge.net/'>homepage</a>)
-      (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/conf-libjpeg/conf-libjpeg.1/opam'>opam package</a>)
-    </dd>
-    <dt><b>description</b></dt><dd>This package can only install if the libjpeg is installed on the system.</dd>
-  </dl>
-</details>
-
-<details>
   <summary><a href='http://www.gnu.org/software/libtool'>libtool.1</a>
 (1) Virtual package relying on libtool installation</summary>
   <dl>
@@ -1659,15 +1659,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='http://www.freedesktop.org/wiki/Software/pkg-config/'>pkg-config.3</a>
-(3) Check if pkg-config is installed and create an opam switch local pkgconfig folder</summary>
+  <summary><a href='http://www.freedesktop.org/wiki/Software/pkg-config/'>pkg-config.4</a>
+(4) Check if pkg-config is installed and create an opam switch local pkgconfig folder</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Francois Berenger</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/GPL-1.0-or-later.html" target="_blank">GPL-1.0-or-later</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='http://www.freedesktop.org/wiki/Software/pkg-config/'>homepage</a>)
       (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/conf-pkg-config/conf-pkg-config.3/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/conf-pkg-config/conf-pkg-config.4/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This package can only install if the pkg-config package is installed<br>on the system.</dd>
   </dl>
@@ -1929,15 +1929,15 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml-community/cppo'>cppo.1.7.0</a>
-(1.7.0) Code preprocessor like cpp for OCaml</summary>
+  <summary><a href='https://github.com/ocaml-community/cppo'>cppo.1.8.0</a>
+(1.8.0) Code preprocessor like cpp for OCaml</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Martin Jambon</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/BSD-3-Clause.html" target="_blank">BSD-3-Clause</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml-community/cppo'>homepage</a>)
       (<a href='https://github.com/ocaml-community/cppo/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/cppo/cppo.1.7.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/cppo/cppo.1.8.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Cppo is an equivalent of the C preprocessor for OCaml programs.<br>It allows the definition of simple macros and file inclusion.<br><br>Cppo is:<br><br>* more OCaml-friendly than cpp<br>* easy to learn without consulting a manual<br>* reasonably fast<br>* simple to install and to maintain</dd>
   </dl>
@@ -2004,32 +2004,47 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://opam.ocaml.org'>host-arch-arm64.1</a>
-(1) OCaml on AArch64 (64-bit)</summary>
+  <summary><a href='https://github.com/janestreet/jane-street-headers'>jane-street-headers.v0.16.0</a>
+(v0.16.0) Jane Street C header files</summary>
   <dl>
-    <dt><b>authors</b></dt><dd>David Allsopp</dd>
-    <dt><b>license</b></dt><dd> CC0-1.0+ - see <a href="https://opam.ocaml.org" target="_blank">homepage</a> for details</dd>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
-      (<a href='https://opam.ocaml.org'>homepage</a>)
-      (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/host-arch-arm64/host-arch-arm64.1/opam'>opam package</a>)
+      (<a href='https://github.com/janestreet/jane-street-headers'>homepage</a>)
+      (<a href='https://github.com/janestreet/jane-street-headers/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/jane-street-headers/jane-street-headers.v0.16.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This package is installed if the underlying OCaml compiler is for 64-bit ARM.<br><br>Precisely, this means `ocamlopt -config-var architecture` equals `arm64`.<br><br>This package may be used in depends or conflicts fields of dependent packages<br>to indicate either a requirement or an incompatibility with this<br>architecture.</dd>
+    <dt><b>description</b></dt><dd>C header files shared between the various Jane Street packages</dd>
   </dl>
 </details>
 
 <details>
-  <summary><a href='https://opam.ocaml.org'>host-system-other.1</a>
-(1) OCaml on an unidentified system</summary>
+  <summary><a href='https://github.com/ocaml/ocaml-lsp'>jsonrpc.1.22.0</a>
+(1.22.0) Jsonrpc protocol implemenation</summary>
   <dl>
-    <dt><b>authors</b></dt><dd>David Allsopp</dd>
-    <dt><b>license</b></dt><dd> CC0-1.0+ - see <a href="https://opam.ocaml.org" target="_blank">homepage</a> for details</dd>
+    <dt><b>authors</b></dt><dd>Andrey Popp <lt;8mayday@gmail.com>gt; - Rusty Key <lt;iam@stfoo.ru>gt; - Louis Roché <lt;louis@louisroche.net>gt; - Oleksiy Golovko <lt;alexei.golovko@gmail.com>gt; - Rudi Grinberg <lt;me@rgrinberg.com>gt; - Sacha Ayoun <lt;sachaayoun@gmail.com>gt; - cannorin <lt;cannorin@gmail.com>gt; - Ulugbek Abdullaev <lt;ulugbekna@gmail.com>gt; - Thibaut Mattio <lt;thibaut.mattio@gmail.com>gt; - Max Lantas <lt;mnxndev@outlook.com>gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/ISC.html" target="_blank">ISC</a></dd>
     <dt><b>links</b></dt><dd>
-      (<a href='https://opam.ocaml.org'>homepage</a>)
-      (<a href='https://github.com/ocaml/opam-repository/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/host-system-other/host-system-other.1/opam'>opam package</a>)
+      (<a href='https://github.com/ocaml/ocaml-lsp'>homepage</a>)
+      (<a href='https://github.com/ocaml/ocaml-lsp/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/jsonrpc/jsonrpc.1.22.0/opam'>opam package</a>)
     </dd>
-    <dt><b>description</b></dt><dd>This package is installed if the underlying OCaml compiler'apos;s system is not<br>recognised by opam-repository'apos;s compiler packaging.<br><br>It is not expected that this package be used in depends or conflicts fields of<br>dependent packages, given that its use may be changed if the packaging is<br>subsequently enhanced to recognise the system value.</dd>
+    <dt><b>description</b></dt><dd>See https://www.jsonrpc.org/specification</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/janestreet/jst-config'>jst-config.v0.16.0</a>
+(v0.16.0) Compile-time configuration for Jane Street libraries</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/jst-config'>homepage</a>)
+      (<a href='https://github.com/janestreet/jst-config/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/jst-config/jst-config.v0.16.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Defines compile-time constants used in Jane Street libraries such as Base, Core, and<br>Async.<br><br>This package has an unstable interface; it is intended only to share configuration between<br>different packages from Jane Street. Future updates may not be backward-compatible, and we<br>do not recommend using this package directly.</dd>
   </dl>
 </details>
 
@@ -2060,6 +2075,21 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://opam.ocaml.org/packages/lablgtk3/lablgtk3.3.1.5/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>OCaml interface to GTK+3<br><br>See https://garrigue.github.io/lablgtk/ for more information.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/ocaml/ocaml-lsp'>lsp.1.22.0</a>
+(1.22.0) LSP protocol implementation in OCaml</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Andrey Popp <lt;8mayday@gmail.com>gt; - Rusty Key <lt;iam@stfoo.ru>gt; - Louis Roché <lt;louis@louisroche.net>gt; - Oleksiy Golovko <lt;alexei.golovko@gmail.com>gt; - Rudi Grinberg <lt;me@rgrinberg.com>gt; - Sacha Ayoun <lt;sachaayoun@gmail.com>gt; - cannorin <lt;cannorin@gmail.com>gt; - Ulugbek Abdullaev <lt;ulugbekna@gmail.com>gt; - Thibaut Mattio <lt;thibaut.mattio@gmail.com>gt; - Max Lantas <lt;mnxndev@outlook.com>gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/ISC.html" target="_blank">ISC</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/ocaml/ocaml-lsp'>homepage</a>)
+      (<a href='https://github.com/ocaml/ocaml-lsp/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/lsp/lsp.1.22.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Implementation of the LSP protocol in OCaml. It is designed to be as portable as<br>possible and does not make any assumptions about IO.</dd>
   </dl>
 </details>
 
@@ -2244,6 +2274,21 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
+  <summary><a href='https://github.com/ocaml-doc/octavius'>octavius.1.2.2</a>
+(1.2.2) Ocamldoc comment syntax parser</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Leo White <lt;leo@lpw25.net>gt;</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/ISC.html" target="_blank">ISC</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/ocaml-doc/octavius'>homepage</a>)
+      (<a href='https://github.com/ocaml-doc/octavius/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/octavius/octavius.1.2.2/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Octavius is a library to parse the `ocamldoc` comment syntax.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://github.com/janestreet/parsexp'>parsexp.v0.16.0</a>
 (v0.16.0) S-expression parsing library</summary>
   <dl>
@@ -2255,6 +2300,51 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://opam.ocaml.org/packages/parsexp/parsexp.v0.16.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>This library provides generic parsers for parsing S-expressions from<br>strings or other medium.<br><br>The library is focused on performances but still provide full generic<br>parsers that can be used with strings, bigstrings, lexing buffers,<br>character streams or any other sources effortlessly.<br><br>It provides three different class of parsers:<br>- the normal parsers, producing [Sexp.t] or [Sexp.t list] values<br>- the parsers with positions, building compact position sequences so<br>  that one can recover original positions in order to report properly<br>  located errors at little cost<br>- the Concrete Syntax Tree parsers, produce values of type<br>  [Parsexp.Cst.t] which record the concrete layout of the s-expression<br>  syntax, including comments<br><br>This library is portable and doesn'apos;t provide IO functions. To read<br>s-expressions from files or other external sources, you should use<br>parsexp_io.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/janestreet/ppx_assert'>ppx_assert.v0.16.0</a>
+(v0.16.0) Assert-like extension nodes that raise useful errors on failure</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/ppx_assert'>homepage</a>)
+      (<a href='https://github.com/janestreet/ppx_assert/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_assert/ppx_assert.v0.16.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Part of the Jane Street'apos;s PPX rewriters collection.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/janestreet/ppx_base'>ppx_base.v0.16.0</a>
+(v0.16.0) Base set of ppx rewriters</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/ppx_base'>homepage</a>)
+      (<a href='https://github.com/janestreet/ppx_base/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_base/ppx_base.v0.16.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>ppx_base is the set of ppx rewriters used for Base.<br><br>Note that Base doesn'apos;t need ppx to build, it is only used as a<br>verification tool.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/janestreet/ppx_cold'>ppx_cold.v0.16.0</a>
+(v0.16.0) Expands [@cold] into [@inline never][@specialise never][@local never]</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/ppx_cold'>homepage</a>)
+      (<a href='https://github.com/janestreet/ppx_cold/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_cold/ppx_cold.v0.16.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Part of the Jane Street'apos;s PPX rewriters collection.</dd>
   </dl>
 </details>
 
@@ -2304,17 +2394,47 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml-ppx/ppx_deriving_yojson'>ppx_deriving_yojson.3.9.0</a>
-(3.9.0) JSON codec generator for OCaml</summary>
+  <summary><a href='https://github.com/ocaml-ppx/ppx_deriving_yojson'>ppx_deriving_yojson.3.9.1</a>
+(3.9.1) JSON codec generator for OCaml</summary>
   <dl>
     <dt><b>authors</b></dt><dd>whitequark <lt;whitequark@whitequark.org>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml-ppx/ppx_deriving_yojson'>homepage</a>)
       (<a href='https://github.com/ocaml-ppx/ppx_deriving_yojson/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ppx_deriving_yojson/ppx_deriving_yojson.3.9.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_deriving_yojson/ppx_deriving_yojson.3.9.1/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>ppx_deriving_yojson is a ppx_deriving plugin that provides<br>a JSON codec generator.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/janestreet/ppx_enumerate'>ppx_enumerate.v0.16.0</a>
+(v0.16.0) Generate a list containing all values of a finite type</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/ppx_enumerate'>homepage</a>)
+      (<a href='https://github.com/janestreet/ppx_enumerate/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_enumerate/ppx_enumerate.v0.16.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Part of the Jane Street'apos;s PPX rewriters collection.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/janestreet/ppx_globalize'>ppx_globalize.v0.16.0</a>
+(v0.16.0) A ppx rewriter that generates functions to copy local values to the global heap</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/ppx_globalize'>homepage</a>)
+      (<a href='https://github.com/janestreet/ppx_globalize/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_globalize/ppx_globalize.v0.16.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Part of the Jane Street'apos;s PPX rewriters collection.</dd>
   </dl>
 </details>
 
@@ -2328,6 +2448,21 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://github.com/janestreet/ppx_hash'>homepage</a>)
       (<a href='https://github.com/janestreet/ppx_hash/issues'>bug reports</a>)
       (<a href='https://opam.ocaml.org/packages/ppx_hash/ppx_hash.v0.16.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Part of the Jane Street'apos;s PPX rewriters collection.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/janestreet/ppx_here'>ppx_here.v0.16.0</a>
+(v0.16.0) Expands [%here] into its location</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/ppx_here'>homepage</a>)
+      (<a href='https://github.com/janestreet/ppx_here/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_here/ppx_here.v0.16.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Part of the Jane Street'apos;s PPX rewriters collection.</dd>
   </dl>
@@ -2349,6 +2484,51 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
+  <summary><a href='https://github.com/janestreet/ppx_inline_test'>ppx_inline_test.v0.16.1</a>
+(v0.16.1) Syntax extension for writing in-line tests in ocaml code</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/ppx_inline_test'>homepage</a>)
+      (<a href='https://github.com/janestreet/ppx_inline_test/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_inline_test/ppx_inline_test.v0.16.1/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Part of the Jane Street'apos;s PPX rewriters collection.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/janestreet/ppx_js_style'>ppx_js_style.v0.16.0</a>
+(v0.16.0) Code style checker for Jane Street Packages</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/ppx_js_style'>homepage</a>)
+      (<a href='https://github.com/janestreet/ppx_js_style/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_js_style/ppx_js_style.v0.16.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Part of the Jane Street'apos;s PPX rewriters collection.<br><br>This packages is a no-op ppx rewriter. It is used as a 'apos;lint'apos; tool to<br>enforce some coding conventions across all Jane Street packages.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/janestreet/ppx_optcomp'>ppx_optcomp.v0.16.0</a>
+(v0.16.0) Optional compilation for OCaml</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/ppx_optcomp'>homepage</a>)
+      (<a href='https://github.com/janestreet/ppx_optcomp/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_optcomp/ppx_optcomp.v0.16.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Part of the Jane Street'apos;s PPX rewriters collection.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://github.com/janestreet/ppx_sexp_conv'>ppx_sexp_conv.v0.16.0</a>
 (v0.16.0) [@@deriving] plugin to generate S-expression conversion functions</summary>
   <dl>
@@ -2364,15 +2544,45 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
-  <summary><a href='https://github.com/ocaml-ppx/ppxlib'>ppxlib.0.33.0</a>
-(0.33.0) Standard infrastructure for ppx rewriters</summary>
+  <summary><a href='https://github.com/janestreet/ppx_yojson_conv'>ppx_yojson_conv.v0.16.0</a>
+(v0.16.0) [@@deriving] plugin to generate Yojson conversion functions</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/ppx_yojson_conv'>homepage</a>)
+      (<a href='https://github.com/janestreet/ppx_yojson_conv/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_yojson_conv/ppx_yojson_conv.v0.16.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Part of the Jane Street'apos;s PPX rewriters collection.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/janestreet/ppx_yojson_conv_lib'>ppx_yojson_conv_lib.v0.16.0</a>
+(v0.16.0) Runtime lib for ppx_yojson_conv</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/ppx_yojson_conv_lib'>homepage</a>)
+      (<a href='https://github.com/janestreet/ppx_yojson_conv_lib/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/ppx_yojson_conv_lib/ppx_yojson_conv_lib.v0.16.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Part of the Jane Street'apos;s PPX rewriters collection.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/ocaml-ppx/ppxlib'>ppxlib.0.34.0</a>
+(0.34.0) Standard infrastructure for ppx rewriters</summary>
   <dl>
     <dt><b>authors</b></dt><dd>Jane Street Group, LLC <lt;opensource@janestreet.com>gt;</dd>
     <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
     <dt><b>links</b></dt><dd>
       (<a href='https://github.com/ocaml-ppx/ppxlib'>homepage</a>)
       (<a href='https://github.com/ocaml-ppx/ppxlib/issues'>bug reports</a>)
-      (<a href='https://opam.ocaml.org/packages/ppxlib/ppxlib.0.33.0/opam'>opam package</a>)
+      (<a href='https://opam.ocaml.org/packages/ppxlib/ppxlib.0.34.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Ppxlib is the standard infrastructure for ppx rewriters<br>and other programs that manipulate the in-memory representation of<br>OCaml programs, a.k.a the \Parsetree\.<br><br>It also comes bundled with two ppx rewriters that are commonly used to<br>write tools that manipulate and/or generate Parsetree values;<br>`ppxlib.metaquot` which allows to construct Parsetree values using the<br>OCaml syntax directly and `ppxlib.traverse` which provides various<br>ways of automatically traversing values of a given type, in particular<br>allowing to inject a complex structured value into generated code.</dd>
   </dl>
@@ -2409,6 +2619,21 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
+  <summary><a href='https://github.com/gares/sel'>sel.0.5.0</a>
+(0.5.0) Simple Event Library</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Enrico Tassi</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/gares/sel'>homepage</a>)
+      (<a href='https://github.com/gares/sel/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/sel/sel.0.5.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>This library is the result of our experience in using threads and the Lwt async monad to tame the problem of writing a server which has to listen and react to multiple sources of events. The library itself is just sugar atop Unix.select. You can read more about the library on https://github.com/gares/sel</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href=' '>seq.base</a>
 (base) Compatibility package for OCaml'apos;s standard iterator type starting from 4.07.</summary>
   <dl>
@@ -2439,6 +2664,21 @@ Please refer to the linked opam package and/or your system package manager for d
 </details>
 
 <details>
+  <summary><a href='https://github.com/janestreet/stdio'>stdio.v0.16.0</a>
+(v0.16.0) Standard IO library for OCaml</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/stdio'>homepage</a>)
+      (<a href='https://github.com/janestreet/stdio/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/stdio/stdio.v0.16.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Stdio implements simple input/output functionalities for OCaml.<br><br>It re-exports the input/output functions of the OCaml standard<br>libraries using a more consistent API.</dd>
+  </dl>
+</details>
+
+<details>
   <summary><a href='https://github.com/ocaml/stdlib-shims'>stdlib-shims.0.3.0</a>
 (0.3.0) Backport some of the new stdlib features to older compiler</summary>
   <dl>
@@ -2450,6 +2690,51 @@ Please refer to the linked opam package and/or your system package manager for d
       (<a href='https://opam.ocaml.org/packages/stdlib-shims/stdlib-shims.0.3.0/opam'>opam package</a>)
     </dd>
     <dt><b>description</b></dt><dd>Backport some of the new stdlib features to older compiler,<br>such as the Stdlib module.<br><br>This allows projects that require compatibility with older compiler to<br>use these new features in their code.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://github.com/janestreet/time_now'>time_now.v0.16.0</a>
+(v0.16.0) Reports the current time</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>Jane Street Group, LLC</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/MIT.html" target="_blank">MIT</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://github.com/janestreet/time_now'>homepage</a>)
+      (<a href='https://github.com/janestreet/time_now/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/time_now/time_now.v0.16.0/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Provides a single function to report the current time in nanoseconds<br>since the start of the Unix epoch.</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://erratique.ch/software/topkg'>topkg.1.0.7</a>
+(1.0.7) The transitory OCaml software packager</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>The topkg programmers</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/ISC.html" target="_blank">ISC</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://erratique.ch/software/topkg'>homepage</a>)
+      (<a href='https://github.com/dbuenzli/topkg/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/topkg/topkg.1.0.7/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Topkg is a packager for distributing OCaml software. It provides an<br>API to describe the files a package installs in a given build<br>configuration and to specify information about the package'apos;s<br>distribution, creation and publication procedures.<br><br>The optional topkg-care package provides the `topkg` command line tool<br>which helps with various aspects of a package'apos;s life cycle: creating<br>and linting a distribution, releasing it on the WWW, publish its<br>documentation, add it to the OCaml opam repository, etc.<br><br>Topkg is distributed under the ISC license and has **no**<br>dependencies. This is what your packages will need as a *build*<br>dependency.<br><br>Topkg-care is distributed under the ISC license it depends on<br>[fmt][fmt], [logs][logs], [bos][bos], [cmdliner][cmdliner],<br>[webbrowser][webbrowser] and `opam-format`.<br><br>[fmt]: http://erratique.ch/software/fmt<br>[logs]: http://erratique.ch/software/logs<br>[bos]: http://erratique.ch/software/bos<br>[cmdliner]: http://erratique.ch/software/cmdliner<br>[webbrowser]: http://erratique.ch/software/webbrowser<br><br>Home page: http://erratique.ch/software/topkg</dd>
+  </dl>
+</details>
+
+<details>
+  <summary><a href='https://erratique.ch/software/uutf'>uutf.1.0.3</a>
+(1.0.3) Non-blocking streaming Unicode codec for OCaml</summary>
+  <dl>
+    <dt><b>authors</b></dt><dd>The uutf programmers</dd>
+    <dt><b>license</b></dt><dd> <a href="https://spdx.org/licenses/ISC.html" target="_blank">ISC</a></dd>
+    <dt><b>links</b></dt><dd>
+      (<a href='https://erratique.ch/software/uutf'>homepage</a>)
+      (<a href='https://github.com/dbuenzli/uutf/issues'>bug reports</a>)
+      (<a href='https://opam.ocaml.org/packages/uutf/uutf.1.0.3/opam'>opam package</a>)
+    </dd>
+    <dt><b>description</b></dt><dd>Uutf is a non-blocking streaming codec to decode and encode the UTF-8,<br>UTF-16, UTF-16LE and UTF-16BE encoding schemes. It can efficiently<br>work character by character without blocking on IO. Decoders perform<br>character position tracking and support newline normalization.<br><br>Functions are also provided to fold over the characters of UTF encoded<br>OCaml string values and to directly encode characters in OCaml<br>Buffer.t values. **Note** that since OCaml 4.14, that functionality<br>can be found in the Stdlib and you are encouraged to migrate to it.<br><br>Uutf has no dependency and is distributed under the ISC license.<br><br>Home page: http://erratique.ch/software/uutf  <br>Contact: Daniel Bünzli `<lt;daniel.buenzl i@erratique.ch>gt;`</dd>
   </dl>
 </details>
 
