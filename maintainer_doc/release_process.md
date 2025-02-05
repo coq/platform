@@ -150,8 +150,9 @@ GIT tag-versions: 8.6.0  8.7.0  8.8+beta1  8.8.0  8.9.0  8.10+beta1  8.10.0  8.1
 - create the ReadMe .md file, the package list .csv file and depedency graph .pdf file with
   **ATTENTION** this script is not compatible with zsh (porting is in progress but complicated - maybe better move to python)!
   `brew install bash`
-  `ls /opt/homebrew/Cellar/bash/`
-  `/opt/homebrew/Cellar/bash/5.2.37/bin/bash maintainer_scripts/create_readme.sh -pick=8.20~2025.01 -depgraph`
+  `ln -s /opt/homebrew/bin/bash /usr/local/bin`
+  `hash -r`
+  `maintainer_scripts/create_readme.sh -pick=8.20~2025.01 -depgraph`
 
 ### Optional: recreate documentation for all picks
 
@@ -178,6 +179,24 @@ GIT tag-versions: 8.6.0  8.7.0  8.8+beta1  8.8.0  8.9.0  8.10+beta1  8.10.0  8.1
 - create the smoke test kit by running `shell_scripts/create_smoke_test_kit.sh`
 - run the smoke test kit by running `smoke-test-kit/run-smoke-test.sh`
 - create the installer by running `macos/create_installer_macos.sh`
+  - **ATTENTION** this script requires a modern bash, so you might need
+  ```
+  `brew install bash`
+  `ln -s /opt/homebrew/bin/bash /usr/local/bin`
+  `hash -r`
+  ```
+- locally test the installer
+  - it should be possible to install the DMG to Aplications in the normal way
+  - usually no executable does run then, even from the console
+  - run these commands to run at least coqc and vscoqtop:
+    ```
+    cd /Applications/Coq-Platform~8.20~2025.01.app/Contents/Resources/bin
+    codesign --sign - --force --preserve-metadata=entitlements,requirements,flags,runtime coqc
+    codesign --sign - --force --preserve-metadata=entitlements,requirements,flags,runtime vscoqtop
+    codesign --sign - --force --preserve-metadata=entitlements,requirements,flags,runtime ../lib/dylib/libgmp.10.dylib
+    ```
+    use `otool -L <binary>` to list additional shared libraries used by an executable - for coqc & Co it is just libgmp
+
 - upload the installer as attachment to the github draft release create above
 - possibly repeat the complete process for additional variant installers
 - have INRIA sign the installer(s)  (ask Romain Tetely or the current release manager)
@@ -221,7 +240,7 @@ Note: coqc can also be used from an unsigned installer!
 
 ### Tag
 
-- git tag 2025.01.0 -a -m "Release 2025.01.0 with latest pick 8.19~2024.10"
+- git tag 2025.01.0 -a -m "Release 2025.01.0 with latest pick 8.20~2025.01"
 - git push --tags
 
 ### Remove the "ATTENTION RELEASE IN PROGRESS" note from ReadMe.md
