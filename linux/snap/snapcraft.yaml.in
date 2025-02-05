@@ -95,6 +95,10 @@ apps:
     plugs: [home,network-bind]
     command-chain: [ coq-platform/bin/coq_wrapper ]
     command: coq-platform/bin/coqidetop.opt
+  vscoqtop:
+    plugs: [home,network-bind]
+    command-chain: [ coq-platform/bin/coq_wrapper ]
+    command: coq-platform/bin/vscoqtop
   coqdep:
     plugs: [home]
     command-chain: [ coq-platform/bin/coq_wrapper ]
