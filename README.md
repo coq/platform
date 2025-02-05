@@ -1,9 +1,3 @@
-# ATTENTION RELEASE IN PROGRESS
-
-**We are currently preparing a release, which has the effect that some links already refer to the new tag, even though this does not exist as yet.**
-
-**In case you experience dead links, please replace `2025.01.0` with `2024.10.0`.**
-
 # Overview
 
 The [Coq proof assistant](https://coq.inria.fr) provides a formal language

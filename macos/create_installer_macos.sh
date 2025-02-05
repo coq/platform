@@ -68,8 +68,8 @@ pip3 show --files macpack
 
 command -v python3 &> /dev/null || ( echo "You don't have python3 - which is starnge because macOS supplies one" ; exit 1)
 command -v pip3 &> /dev/null || ( echo "You don't have pip3 - which is starnge because macOS supplies one" ; exit 1)
-command -v gfind &> /dev/null || ( echo "Please install gfind (eg. sudo port install findutils)" ; exit 1)
-command -v grealpath &> /dev/null || ( echo "Please install grealpath (eg. sudo port install coreutils)" ; exit 1)
+command -v gfind &> /dev/null || ( echo "Please install gfind (e.g. 'sudo port install findutils' or 'brew install findutils')" ; exit 1)
+command -v grealpath &> /dev/null || ( echo "Please install grealpath (eg. 'sudo port install coreutils' or 'brew install coreutils')" ; exit 1)
 
 # Determine the path to the macpack binary.
 # We filter these two lines from the output of 'pip3 show macpack --files'
