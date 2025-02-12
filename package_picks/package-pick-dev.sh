@@ -183,6 +183,9 @@ then
   # Communication with coqtop
   PACKAGES="${PACKAGES} coq-serapi.dev"
 
+  # LSP server for Coq
+  PACKAGES="${PACKAGES} coq-lsp.dev"
+
   # Bedrock2, fiat crypto, ...
   PACKAGES="${PACKAGES} coq-coqutil.dev"
   # PACKAGES="${PACKAGES} coq-bedrock2.dev"                   # Error: "sed: illegal option -- z"
